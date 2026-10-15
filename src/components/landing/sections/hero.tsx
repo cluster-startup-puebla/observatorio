@@ -40,7 +40,6 @@ export function Hero() {
                 className={clusterLogo.className}
               />
             </li>
-            <li className="text-small font-semibold text-ink">Sin costo</li>
           </ul>
           <div className="grid gap-2">
             <Kicker>Organismo empresarial</Kicker>

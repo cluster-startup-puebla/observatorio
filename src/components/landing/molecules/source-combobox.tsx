@@ -3,7 +3,7 @@
 import { useEffect, useId, useRef, useState } from "react";
 import { ChevronDown } from "lucide-react";
 import { ThemedLogo } from "@/components/landing/atoms/partner-mark";
-import { partners } from "@/content/landing";
+import { clusterLogo, partners } from "@/content/landing";
 import { controlClass } from "@/components/landing/molecules/field";
 
 function SourceLogo({
@@ -40,7 +40,8 @@ export function SourceCombobox({
   const [open, setOpen] = useState(false);
   const rootRef = useRef<HTMLDivElement>(null);
   const listId = useId();
-  const selected = partners.find((partner) => partner.alt === value);
+  const sources = [...partners, clusterLogo];
+  const selected = sources.find((partner) => partner.alt === value);
 
   useEffect(() => {
     function onPointerDown(event: MouseEvent) {
@@ -88,7 +89,7 @@ export function SourceCombobox({
           aria-label="¿Cómo te enteraste?"
           className="absolute z-20 mt-2 max-h-96 w-full overflow-auto rounded-sm border border-line bg-elevated p-1 shadow-[var(--card-shadow)]"
         >
-          {partners.map((partner) => {
+          {sources.map((partner) => {
             const active = partner.alt === value;
             return (
               <li key={partner.src} role="presentation">
