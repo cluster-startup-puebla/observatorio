@@ -1,4 +1,4 @@
-import { opticalLogoHeight, ThemedLogo } from "@/components/landing/atoms/partner-mark";
+import { ThemedLogo } from "@/components/landing/atoms/partner-mark";
 
 const institutional = [
   {
@@ -31,8 +31,7 @@ export function GovernmentLockup({ optical = false }: { optical?: boolean }) {
           alt={logo.alt}
           width={logo.width}
           height={logo.height}
-          className={optical ? "h-auto w-auto object-contain" : "h-10 w-auto sm:h-12"}
-          style={optical ? { height: opticalLogoHeight(logo.width, logo.height) } : undefined}
+          className={optical ? "h-12 w-auto object-contain" : "h-10 w-auto sm:h-12"}
         />
       ))}
     </div>

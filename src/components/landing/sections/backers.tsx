@@ -1,6 +1,6 @@
 import { GovernmentLockup } from "@/components/landing/atoms/government-lockup";
 import { Kicker } from "@/components/landing/atoms/kicker";
-import { opticalLogoHeight, PartnerMark } from "@/components/landing/atoms/partner-mark";
+import { PartnerMark } from "@/components/landing/atoms/partner-mark";
 import { PartnerRow } from "@/components/landing/atoms/partner-row";
 import { SectionHeading } from "@/components/landing/molecules/section-heading";
 import { backers, clusterLogo, partners } from "@/content/landing";
@@ -17,7 +17,7 @@ export function Backers() {
           </div>
           <p className="text-small mt-3 text-ink-secondary">{backers.alsoConvene}</p>
         </div>
-        <div className="mt-10 grid items-center gap-8 border-t border-line pt-8 lg:grid-cols-[minmax(0,1fr)_auto] lg:gap-16">
+        <div className="mt-10 grid items-start gap-8 border-t border-line pt-8 lg:grid-cols-[minmax(0,1fr)_auto] lg:gap-16">
           <div>
             <Kicker>Respaldo institucional</Kicker>
             <div className="mt-4">
@@ -32,8 +32,7 @@ export function Backers() {
                 alt={clusterLogo.alt}
                 width={clusterLogo.width}
                 height={clusterLogo.height}
-                className="h-auto w-auto object-contain"
-                style={{ height: opticalLogoHeight(clusterLogo.width, clusterLogo.height) }}
+                className="h-12 w-auto object-contain sm:h-12"
               />
             </div>
           </div>

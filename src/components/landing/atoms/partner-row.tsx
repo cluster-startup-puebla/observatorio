@@ -15,7 +15,7 @@ export function PartnerRow({
 }) {
   if (layout === "natural") {
     return (
-      <ul className="flex w-full flex-wrap items-center gap-x-5 gap-y-6">
+      <ul className="flex w-full flex-wrap items-center justify-between gap-y-6 xl:flex-nowrap">
         {partners.map((partner) => (
           <li key={partner.src} className="min-w-0">
             <PartnerMark

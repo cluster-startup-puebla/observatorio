@@ -4,11 +4,11 @@ import { cn } from "cn";
 
 const sedetraSize = { width: 1106, height: 253 };
 
-/** Same visual weight for wide wordmarks and stacked marks. */
-export function opticalLogoHeight(width: number, height: number, target = 48) {
+/** Wide wordmarks shrink and stacked marks grow so the row shares one visual weight. */
+export function opticalLogoHeight(width: number, height: number, target = 46) {
   const aspect = width / Math.max(height, 1);
   const px = target * Math.sqrt(2.4 / aspect);
-  return Math.round(Math.min(target * 1.7, Math.max(target * 0.75, px)));
+  return Math.round(Math.min(target * 1.55, Math.max(target * 0.78, px)));
 }
 
 const negativeBySrc: Record<string, string> = {
