@@ -6,10 +6,10 @@ export const siteDescription =
   "Reserva tu lugar en la sesión de tu sector y ayuda a construir el primer Observatorio Tecnológico del estado.";
 
 export const ogImage = {
-  url: "/opengraph-image",
-  width: 1200,
-  height: 630,
-  alt: "Observatorio Tecnológico de Puebla. Levantamiento de necesidades.",
+  url: "/og.png",
+  width: 2400,
+  height: 1260,
+  alt: "Lo que Puebla no sabe que necesita, tu empresa puede decirlo primero.",
 } as const;
 
 const titleTemplate = `%s · ${siteName}`;
@@ -59,14 +59,6 @@ export const rootMetadata: Metadata = {
   },
 };
 
-function imageFor(path: string, alt: string) {
-  return {
-    ...ogImage,
-    url: path === "/" ? "/opengraph-image" : `${path}/opengraph-image`,
-    alt,
-  };
-}
-
 export function pageMetadata({
   title,
   description,
@@ -78,7 +70,6 @@ export function pageMetadata({
   path: string;
   absolute?: boolean;
 }): Metadata {
-  const image = imageFor(path, `${title}. ${description}`);
   const socialTitle = absolute ? { absolute: title } : title;
 
   return {
@@ -90,13 +81,11 @@ export function pageMetadata({
       title: socialTitle,
       description,
       url: path,
-      images: [image],
     },
     twitter: {
       card: "summary_large_image",
       title: socialTitle,
       description,
-      images: [image.url],
     },
   };
 }
