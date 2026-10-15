@@ -1,69 +1,130 @@
-import Image from "next/image";
+const LINES = [
+  "El nombre de lo que se observa",
+  "El contexto al lado del dato",
+  "Una acción que se ve sin buscarla",
+];
+
+const LAYERS = [
+  {
+    title: "Nombre",
+    description: "Lo que se mira lleva un título que se lee de lejos, antes que cualquier adorno.",
+  },
+  {
+    title: "Contexto",
+    description: "La explicación vive al lado, en una medida corta, sin competir con el título.",
+  },
+  {
+    title: "Acción",
+    description: "El siguiente paso es un botón. El rosa marca esa acción y no pinta el resto.",
+  },
+];
+
+const STEPS = [
+  {
+    title: "Pregunta",
+    description: "Qué hay que ver, para quién y qué ya está registrado.",
+  },
+  {
+    title: "Contexto",
+    description: "La escena alrededor del dato, antes de producir variantes.",
+  },
+  {
+    title: "Registro",
+    description: "La pieza queda con estados reales, no con un esquema vacío.",
+  },
+  {
+    title: "Lectura",
+    description: "Alguien más puede seguirla sin reinterpretar el color ni la jerarquía.",
+  },
+];
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <>
+      <section id="inicio" className="border-b border-line">
+        <div className="container-site grid items-end gap-12 py-20 lg:grid-cols-[minmax(0,1.4fr)_minmax(18rem,0.7fr)] lg:py-28">
+          <div>
+            <p className="text-micro uppercase text-ink-muted">Observatorio</p>
+            <h1 className="text-display mt-4 max-w-4xl text-balance text-ink">Mirar lo que cambia.</h1>
+            <p className="text-body-lg mt-6 max-w-xl text-ink-secondary">
+              Señales, contexto y el siguiente paso, en una sola lectura. El lienzo es claro. El
+              navy escribe. El rosa solo nombra la acción.
+            </p>
+            <div className="mt-10 flex flex-wrap gap-3">
+              <a href="#lectura" className="btn btn-primary">
+                Ver la lectura
+              </a>
+              <a href="#como" className="btn btn-secondary">
+                Cómo está armado
+              </a>
+            </div>
+          </div>
+
+          <aside className="border border-line bg-elevated p-6" aria-label="En esta página">
+            <p className="text-micro uppercase text-ink-muted">En esta página</p>
+            <ol className="mt-6 divide-y divide-line">
+              {LINES.map((line, index) => (
+                <li key={line} className="flex gap-4 py-4 text-body text-ink">
+                  <span className="text-micro w-6 pt-1 text-ink-muted">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
+                  <span>{line}</span>
+                </li>
+              ))}
+            </ol>
+          </aside>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
+      </section>
+
+      <section id="lectura" className="container-site py-20 lg:py-28">
+        <div className="grid gap-12 lg:grid-cols-[16rem_minmax(0,1fr)] lg:gap-20">
+          <header>
+            <p className="text-micro uppercase text-ink-muted">Lectura</p>
+            <h2 className="text-h2 mt-3 text-ink">Tres capas</h2>
+          </header>
+          <ul className="divide-y divide-line border-y border-line">
+            {LAYERS.map((item) => (
+              <li
+                key={item.title}
+                className="grid gap-2 py-8 md:grid-cols-[12rem_minmax(0,1fr)] md:gap-10"
+              >
+                <h3 className="text-h4 text-ink">{item.title}</h3>
+                <p className="text-body max-w-xl text-ink-secondary">{item.description}</p>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      <section id="como" className="container-site py-20 lg:py-28">
+        <header className="max-w-2xl">
+          <p className="text-micro uppercase text-ink-muted">Cómo</p>
+          <h2 className="text-h2 mt-3 text-ink">De la pregunta al registro</h2>
+        </header>
+        <ol className="mt-12 grid gap-px bg-line sm:grid-cols-2 lg:grid-cols-4">
+          {STEPS.map((step, index) => (
+            <li key={step.title} className="bg-surface p-6">
+              <p className="text-micro text-ink-muted">{String(index + 1).padStart(2, "0")}</p>
+              <h3 className="text-h4 mt-4 text-ink">{step.title}</h3>
+              <p className="text-small mt-3 text-ink-secondary">{step.description}</p>
+            </li>
+          ))}
+        </ol>
+      </section>
+
+      <section className="band-ink">
+        <div className="container-site flex flex-col items-start gap-8 py-20 lg:flex-row lg:items-end lg:justify-between lg:py-28">
+          <div className="max-w-2xl">
+            <h2 className="text-h1 text-balance">Cuando haya algo que anotar.</h2>
+            <p className="text-body-lg band-ink-muted mt-4">
+              El siguiente paso se queda en esta página, con el mismo navy y el mismo rosa.
+            </p>
+          </div>
+          <a href="#inicio" className="btn btn-on-dark">
+            Volver al inicio
           </a>
         </div>
-      </main>
-    </div>
+      </section>
+    </>
   );
 }
