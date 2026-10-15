@@ -2,13 +2,8 @@
 
 import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
+import { ctaLabel, navItems } from "@/content/landing";
 import { ThemeToggle } from "@/components/site/theme-toggle";
-
-const ITEMS = [
-  { label: "Inicio", href: "#inicio" },
-  { label: "Lectura", href: "#lectura" },
-  { label: "Cómo", href: "#como" },
-];
 
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
@@ -43,13 +38,13 @@ export function SiteHeader() {
           }`}
         >
           <div className="container-site flex items-center justify-between gap-4 py-3">
-            <a href="#inicio" className="font-display text-h4 text-ink">
+            <a href="/#inicio" className="font-display text-h4 text-ink">
               Observatorio
             </a>
 
             <nav className="hidden lg:block" aria-label="Principal">
               <ul className="flex items-center gap-5">
-                {ITEMS.map((item) => (
+                {navItems.map((item) => (
                   <li key={item.href}>
                     <a href={item.href} className="text-small text-ink-secondary transition hover:text-ink">
                       {item.label}
@@ -60,6 +55,9 @@ export function SiteHeader() {
             </nav>
 
             <div className="flex items-center gap-2">
+              <a href="/register" className="btn btn-primary hidden px-4 py-2 text-small lg:inline-flex">
+                {ctaLabel}
+              </a>
               <ThemeToggle />
               <button
                 type="button"
@@ -82,7 +80,7 @@ export function SiteHeader() {
             aria-label="Principal"
           >
             <ul className="flex flex-col p-4">
-              {ITEMS.map((item) => (
+              {navItems.map((item) => (
                 <li key={item.href}>
                   <a
                     href={item.href}

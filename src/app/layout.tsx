@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { Archivo, Raleway } from "next/font/google";
 import Script from "next/script";
-import { SiteFooter } from "@/components/site/footer";
-import { SiteHeader } from "@/components/site/header";
+import { SiteFrame } from "@/components/site/site-frame";
+import { rootMetadata } from "@/lib/metadata";
 import "./globals.css";
 
 const archivo = Archivo({
@@ -22,10 +22,7 @@ const raleway = Raleway({
 
 const themeScript = `(function(){try{var t=localStorage.getItem("observatorio-theme");document.documentElement.dataset.theme=t==="dark"?"dark":"light";}catch(e){document.documentElement.dataset.theme="light";}})();`;
 
-export const metadata: Metadata = {
-  title: "Observatorio",
-  description: "Una lectura clara, con la paleta del clúster y la composición del estudio.",
-};
+export const metadata: Metadata = rootMetadata;
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
@@ -39,11 +36,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <Script id="observatorio-theme" strategy="beforeInteractive">
           {themeScript}
         </Script>
-        <SiteHeader />
-        <main id="contenido" className="flex-1">
-          {children}
-        </main>
-        <SiteFooter />
+        <SiteFrame>{children}</SiteFrame>
       </body>
     </html>
   );

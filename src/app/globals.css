@@ -279,4 +279,9 @@
   .band-ink-muted {
     color: var(--band-muted);
   }
+
+  /* Versión en negativo: tinta blanca sobre fondo oscuro. */
+  [data-theme="dark"] .logo-negative {
+    filter: brightness(0) invert(1);
+  }
 }
