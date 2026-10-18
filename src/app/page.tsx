@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Backers } from "@/components/landing/sections/backers";
 import { Benefits } from "@/components/landing/sections/benefits";
 import { Boundaries } from "@/components/landing/sections/boundaries";
+import { DiagnosticBanner } from "@/components/landing/sections/diagnostic-banner";
 import { Faq } from "@/components/landing/sections/faq";
 import { Hero } from "@/components/landing/sections/hero";
 import { Pipeline } from "@/components/landing/sections/pipeline";
@@ -22,6 +23,7 @@ export default function Home() {
   return (
     <div className="pb-24 lg:pb-0">
       <Hero />
+      <DiagnosticBanner />
       <Problem />
       <Pipeline />
       <Vision />
@@ -30,18 +32,6 @@ export default function Home() {
       <Backers />
       <Boundaries />
       <Faq />
-      <section className="border-t border-line py-20">
-        <div className="container-site grid max-w-3xl gap-4">
-          <h2 className="text-h2 text-balance">Puebla ante el T-MEC, con las cifras y las gráficas del diagnóstico.</h2>
-          <p className="text-body-lg text-ink-secondary">
-            El resumen ejecutivo está en la página. El diagnóstico integral, de 82 páginas, se
-            descarga al registrarte.
-          </p>
-          <a href="/diagnostico-tmec-puebla" className="btn btn-secondary mt-2 justify-self-start">
-            Leer el diagnóstico
-          </a>
-        </div>
-      </section>
       <section id="registro" className="scroll-mt-24 band-ink py-20">
         <div className="container-site">
           <div className="max-w-2xl">
