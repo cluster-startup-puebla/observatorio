@@ -4,6 +4,7 @@ const LINKS = [
   { label: "Cómo funciona", href: "/#como" },
   { label: "La sesión", href: "/#sesion" },
   { label: "Reservar", href: "/register" },
+  { label: "Diagnóstico T-MEC", href: "/diagnostico-tmec-puebla" },
   { label: "Aviso de privacidad", href: "/aviso-de-privacidad" },
   { label: "Uso de datos", href: "/uso-de-datos" },
 ];

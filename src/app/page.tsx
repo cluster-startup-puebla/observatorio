@@ -30,6 +30,18 @@ export default function Home() {
       <Backers />
       <Boundaries />
       <Faq />
+      <section className="border-t border-line py-20">
+        <div className="container-site grid max-w-3xl gap-4">
+          <h2 className="text-h2 text-balance">Puebla ante el T-MEC, con las cifras y las gráficas del diagnóstico.</h2>
+          <p className="text-body-lg text-ink-secondary">
+            El resumen ejecutivo está en la página. El diagnóstico integral, de 82 páginas, se
+            descarga al registrarte.
+          </p>
+          <a href="/diagnostico-tmec-puebla" className="btn btn-secondary mt-2 justify-self-start">
+            Leer el diagnóstico
+          </a>
+        </div>
+      </section>
       <section id="registro" className="scroll-mt-24 band-ink py-20">
         <div className="container-site">
           <div className="max-w-2xl">

@@ -48,6 +48,10 @@ export default function PrivacyPage() {
         <li>Organismo por el que te enteraste.</li>
       </ul>
       <p>
+        Para descargar el diagnóstico Puebla ante el T-MEC se piden nombre, empresa, industria y
+        correo. Sirven para entregarte el documento y saber de qué industria llega cada solicitud.
+      </p>
+      <p>
         En la sesión puedes contar problemas de operación de tu empresa. Eso se trata como
         información confidencial de la empresa y, si te identifica, como dato personal.
       </p>

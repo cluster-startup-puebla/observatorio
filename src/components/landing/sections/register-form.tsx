@@ -1,10 +1,13 @@
 "use client";
 
 import { useState } from "react";
+import { useSearchParams } from "next/navigation";
 import { GovernmentLockup } from "@/components/landing/atoms/government-lockup";
 import { Kicker } from "@/components/landing/atoms/kicker";
 import { controlClass, Field } from "@/components/landing/molecules/field";
+import { downloadDiagnosticPdf } from "@/components/diagnostico/download-pdf";
 import { companySizes, ctaLabel } from "@/content/landing";
+import { diagnosticDownloadParam } from "@/content/diagnostico-tmec";
 import { SourceCombobox } from "@/components/landing/molecules/source-combobox";
 
 type FormState = {
@@ -64,19 +67,41 @@ function SuccessLinks({ quietClassName }: { quietClassName: string }) {
 }
 
 export function RegisterForm({ variant = "page" }: { variant?: "band" | "page" }) {
+  const downloadDiagnostic = useSearchParams().get("descarga") === diagnosticDownloadParam;
   const [values, setValues] = useState<FormState>(empty);
   const [errors, setErrors] = useState<Errors>({});
   const [sent, setSent] = useState(false);
+  const [pending, setPending] = useState(false);
+  const [downloadError, setDownloadError] = useState("");
 
   function update<K extends keyof FormState>(key: K, value: FormState[K]) {
     setValues((current) => ({ ...current, [key]: value }));
   }
 
-  function onSubmit(event: React.FormEvent<HTMLFormElement>) {
+  async function onSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const nextErrors = validate(values);
     setErrors(nextErrors);
-    if (Object.keys(nextErrors).length === 0) setSent(true);
+    if (Object.keys(nextErrors).length > 0) return;
+
+    setPending(true);
+    setDownloadError("");
+    if (downloadDiagnostic) {
+      try {
+        const error = await downloadDiagnosticPdf({
+          name: values.name,
+          company: values.company,
+          industry: values.sector,
+          email: values.email,
+          origin: "registro",
+        });
+        if (error) setDownloadError(error);
+      } catch {
+        setDownloadError("No se pudo preparar la descarga. Intenta de nuevo.");
+      }
+    }
+    setPending(false);
+    setSent(true);
   }
 
   if (sent && variant === "band") {
@@ -84,7 +109,13 @@ export function RegisterForm({ variant = "page" }: { variant?: "band" | "page" }
       <section id="registro" className="scroll-mt-24 band-ink py-20 lg:py-28">
         <div className="container-site max-w-2xl">
           <h2 className="text-h2 text-balance">Tu lugar quedó solicitado.</h2>
-          <p className="text-body-lg band-ink-muted mt-4">{successCopy}</p>
+          <p className="text-body-lg band-ink-muted mt-4">
+            {successCopy}
+            {downloadDiagnostic && !downloadError
+              ? " El diagnóstico integral se está descargando."
+              : ""}
+          </p>
+          {downloadError ? <p className="text-small text-mark mt-3">{downloadError}</p> : null}
           <div className="mt-6">
             <SuccessLinks quietClassName="band-ink-muted underline underline-offset-4" />
           </div>
@@ -97,7 +128,11 @@ export function RegisterForm({ variant = "page" }: { variant?: "band" | "page" }
     return (
       <div className="grid gap-4 text-ink">
         <h2 className="text-h2 text-balance">Tu lugar quedó solicitado.</h2>
-        <p className="text-body-lg text-ink-secondary">{successCopy}</p>
+        <p className="text-body-lg text-ink-secondary">
+          {successCopy}
+          {downloadDiagnostic && !downloadError ? " El diagnóstico integral se está descargando." : ""}
+        </p>
+        {downloadError ? <p className="text-small text-mark">{downloadError}</p> : null}
         <SuccessLinks quietClassName="text-ink-muted underline underline-offset-4" />
       </div>
     );
@@ -230,8 +265,13 @@ export function RegisterForm({ variant = "page" }: { variant?: "band" | "page" }
         </label>
         {errors.privacy ? <p className="text-small text-mark">{errors.privacy}</p> : null}
       </div>
-      <button type="submit" className="btn btn-primary">
-        {ctaLabel}
+      {downloadDiagnostic ? (
+        <p className="text-small text-ink-secondary">
+          Al terminar se descarga el diagnóstico integral de VIA Partners.
+        </p>
+      ) : null}
+      <button type="submit" className="btn btn-primary" disabled={pending}>
+        {pending ? "Preparando…" : downloadDiagnostic ? "Registrarme y descargar" : ctaLabel}
       </button>
       <p className="text-small text-ink-muted">
         Cupo limitado de 15 a 30 empresas por sesión. Sin costo.

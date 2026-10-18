@@ -30,6 +30,10 @@ export default function DataUsePage() {
         <li>Correo y WhatsApp: para confirmar el lugar y enviarte el diagnóstico de tu sector.</li>
         <li>Cómo te enteraste: para saber qué organismo te convocó. No se usa para publicidad.</li>
       </ul>
+      <p>
+        En la descarga del diagnóstico Puebla ante el T-MEC, el nombre, la empresa, la industria y
+        el correo se usan para entregarte el PDF. No se publican y no arman un padrón.
+      </p>
 
       <LegalHeading>Qué se publica</LegalHeading>
       <p>

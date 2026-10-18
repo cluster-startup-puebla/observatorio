@@ -285,3 +285,276 @@
     filter: brightness(0) invert(1);
   }
 }
+
+/* Documento largo: lectura en teléfono y modo lectura. */
+.doc-wrap {
+  max-width: 64rem;
+}
+
+.doc-prose {
+  line-height: 1.75;
+}
+
+.doc-prose > * {
+  max-width: 68ch;
+}
+
+.doc-prose > figure,
+.doc-prose > .report-banner,
+.doc-prose > .doc-wide {
+  max-width: none;
+}
+
+.doc-index-mark::before {
+  content: "+";
+  font-size: 1.25rem;
+  line-height: 1;
+}
+
+.doc-index details[open] .doc-index-mark::before {
+  content: "–";
+}
+
+.doc-prose > p,
+.doc-prose aside p,
+.doc-prose li {
+  line-height: 1.75;
+}
+
+.doc-index summary {
+  list-style: none;
+}
+
+.doc-index summary::-webkit-details-marker {
+  display: none;
+}
+
+.doc-page,
+.doc-wrap,
+.doc-prose,
+.doc-prose > figure,
+.doc-chart-frame,
+.doc-chart-scroll {
+  min-width: 0;
+  max-width: 100%;
+}
+
+.doc-chart-frame {
+  border: 1px solid var(--border-default);
+  background: #fff;
+  padding: 0.75rem;
+  overflow: hidden;
+}
+
+.doc-chart-scroll {
+  overflow: hidden;
+}
+
+.doc-chart-image {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+}
+
+.doc-chart-hint,
+.doc-chart-full {
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+.doc-chart-hint {
+  font-size: 0.875rem;
+}
+
+.doc-chart-full {
+  font-size: 1.0625rem;
+}
+
+.doc-table-stack {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.doc-table-wide {
+  display: none;
+  overflow-x: auto;
+  border: 1px solid var(--border-default);
+}
+
+.reading-dock {
+  position: fixed;
+  right: 1rem;
+  bottom: calc(1rem + env(safe-area-inset-bottom));
+  z-index: 40;
+}
+
+.reading-pill,
+.reading-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: 3rem;
+  border-radius: 9999px;
+  border: 1px solid var(--border-default);
+  background: var(--bg-elevated);
+  color: var(--text-primary);
+  font-weight: 600;
+  font-size: 1rem;
+  padding: 0.75rem 1.1rem;
+  box-shadow: var(--card-shadow);
+  cursor: pointer;
+}
+
+.reading-dock-on {
+  right: 0;
+  left: 0;
+  bottom: 0;
+  border-top: 1px solid var(--border-default);
+  background: var(--bg-elevated);
+}
+
+.reading-progress {
+  height: 3px;
+  background: var(--border-default);
+}
+
+.reading-progress > span {
+  display: block;
+  height: 100%;
+  background: var(--brand-primary);
+}
+
+.reading-dock-bar {
+  display: grid;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem calc(0.75rem + env(safe-area-inset-bottom));
+}
+
+.reading-jump select {
+  width: 100%;
+  min-height: 3rem;
+  border-radius: 9999px;
+  border: 1px solid var(--border-default);
+  background: var(--bg-base);
+  color: var(--text-primary);
+  font-size: 1rem;
+  padding: 0 1rem;
+}
+
+@media (min-width: 640px) {
+  .doc-page h2 {
+    font-size: 2rem;
+  }
+
+  .doc-chart-hint,
+  .doc-chart-full {
+    display: none;
+  }
+
+  .reading-dock-bar {
+    grid-template-columns: auto minmax(0, 1fr);
+    align-items: center;
+    padding-inline: 1.5rem;
+  }
+}
+
+@media (max-width: 639px) {
+  .doc-page h1 {
+    font-size: 2.15rem;
+    line-height: 1.08;
+  }
+
+  .doc-page h2 {
+    font-size: 1.7rem;
+    line-height: 1.22;
+  }
+
+  .doc-prose > p,
+  .doc-prose aside p,
+  .doc-prose > ul li,
+  .doc-prose > div li {
+    font-size: 1.0625rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .doc-table-stack {
+    display: none;
+  }
+
+  .doc-table-wide {
+    display: block;
+  }
+}
+
+html[data-reading="on"] .doc-page {
+  padding-bottom: 8rem;
+}
+
+html[data-reading="on"] {
+  --bg-base: #f3eee4;
+  --bg-subtle: #e8e1d4;
+  --bg-elevated: #f7f3eb;
+  --text-primary: #16284f;
+  --text-secondary: #24344c;
+  --border-default: #ddd4c4;
+}
+
+html[data-theme="dark"][data-reading="on"] {
+  --bg-base: #1b1b1b;
+  --bg-subtle: #242424;
+  --bg-elevated: #262626;
+  --text-primary: #f2f2f2;
+  --text-secondary: #d4d4d4;
+  --border-default: #3a3a3a;
+}
+
+html[data-reading="on"] .site-header,
+html[data-reading="on"] footer,
+html[data-reading="on"] .doc-hero-actions,
+html[data-reading="on"] .doc-index,
+html[data-reading="on"] .report-banner {
+  display: none;
+}
+
+html[data-reading="on"] .doc-wrap {
+  max-width: 42rem;
+}
+
+html[data-reading="on"] .doc-section {
+  scroll-margin-top: 1.25rem;
+  padding-block: 2.25rem;
+}
+
+html[data-reading="on"] .doc-prose > p,
+html[data-reading="on"] .doc-prose aside p,
+html[data-reading="on"] .doc-prose > ul li,
+html[data-reading="on"] .doc-prose > div li {
+  font-size: 1.1875rem;
+  line-height: 1.8;
+}
+
+html[data-reading="on"] .doc-prose > * {
+  max-width: 65ch;
+}
+
+html[data-reading="on"] .doc-chart-full {
+  display: block;
+}
+
+html[data-reading="on"] .doc-chart-hint,
+html[data-reading="on"] .doc-table-wide {
+  display: none;
+}
+
+html[data-reading="on"] .doc-table-stack {
+  display: grid;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .reading-progress > span {
+    transition: width 120ms linear;
+  }
+}
