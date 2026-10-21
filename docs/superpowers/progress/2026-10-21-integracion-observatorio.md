@@ -32,7 +32,7 @@ Registro para retomar si el trabajo se corta. Rama: `cursor/integracion-observat
 | 2.1 Landing | hecho | en este commit | testids sobre la landing existente; varios CTA se conservan |
 | 3.1 Directory | hecho | en este commit | respuestas por persona, QR solo al terminar, correo duplicado no crea otra cuenta |
 | 3.2 Onboarding | pendiente | | |
-| 4.1 CRM directory | pendiente | | |
+| 4.1 CRM directory | hecho | en este commit | repetidos, filas inválidas y token alterado no atribuyen |
 | 4.2 Organismo | pendiente | | |
 | 5.1 Metodología | pendiente | | |
 | 6.1 Mesa | pendiente | | |
