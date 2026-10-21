@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { SECTIONS } from "./instrument";
-import { calculateIntegralResult } from "./score";
+import { completedAnswerSeed } from "./seed";
+import { answersFromStored, calculateIntegralResult } from "./score";
 
 function priority(top: string) {
   const ranks: Record<string, number> = {
@@ -71,5 +72,20 @@ describe("calculateIntegralResult", () => {
     const unordered = answersFor("a", "falta_materiales");
     unordered[18] = { personal: 2, fallas_mecanicas: 3 };
     expect(calculateIntegralResult(unordered).totalScore).toBe(17);
+  });
+
+  it("recupera la prioridad guardada como JSON y deja el resto como letra", () => {
+    const stored = completedAnswerSeed();
+    stored["2"] = "no-es-json";
+    const parsed = answersFromStored(stored);
+    expect(parsed[1]).toBe("a");
+    expect(parsed[2]).toBe("no-es-json");
+    expect(parsed[18]).toMatchObject({ falta_materiales: 1 });
+    expect(calculateIntegralResult(answersFromStored(completedAnswerSeed())).category).toBe("Bronce");
+  });
+
+  it("un JSON roto no se convierte en prioridad", () => {
+    expect(answersFromStored({ "18": "{no" })[18]).toBe("{no");
+    expect(calculateIntegralResult(answersFromStored({ "18": "{no" })).totalScore).toBe(0);
   });
 });

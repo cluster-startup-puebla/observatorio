@@ -50,6 +50,26 @@ function questionScore(value: AnswerValue | undefined, type: "single" | "priorit
   return ANSWER_POINTS[value as keyof typeof ANSWER_POINTS];
 }
 
+export function answersFromStored(raw: Record<string, string>): Record<number, AnswerValue> {
+  const answers: Record<number, AnswerValue> = {};
+  for (const [id, value] of Object.entries(raw)) {
+    if (value.startsWith("{")) {
+      try {
+        const parsed = JSON.parse(value) as Record<string, number>;
+        if (parsed && typeof parsed === "object") {
+          answers[Number(id)] = parsed;
+          continue;
+        }
+      } catch {
+        answers[Number(id)] = value;
+        continue;
+      }
+    }
+    answers[Number(id)] = value;
+  }
+  return answers;
+}
+
 export function calculateIntegralResult(answers: Record<number, AnswerValue>): IntegralResult {
   const sections: SectionResult[] = SECTIONS.map((section) => {
     const score = section.questions.reduce(
