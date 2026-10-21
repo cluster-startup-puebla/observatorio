@@ -14,7 +14,7 @@ export function sealRef(orgId: string, secret: string): string {
 export function openRef(token: string, secret: string): string | null {
   try {
     const buf = Buffer.from(token, "base64url");
-    if (buf.length < 29) return null;
+    if (buf.length < 29 || buf.toString("base64url") !== token) return null;
     const decipher = createDecipheriv("aes-256-gcm", key(secret), buf.subarray(0, 12));
     decipher.setAuthTag(buf.subarray(12, 28));
     return Buffer.concat([decipher.update(buf.subarray(28)), decipher.final()]).toString("utf8");

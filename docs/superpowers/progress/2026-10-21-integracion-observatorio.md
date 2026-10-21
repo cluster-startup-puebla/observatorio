@@ -30,7 +30,7 @@ Registro para retomar si el trabajo se corta. Rama: `cursor/integracion-observat
 | 1.5 Excel | hecho | 1bcb543 | encabezado con espacios, correo en mayúsculas y hoja vacía |
 | 1.6 Diagnóstico | hecho | febf665 | instrumento local: el archivo del ejercicio anterior no está en el repo |
 | 2.1 Landing | hecho | en este commit | testids sobre la landing existente; varios CTA se conservan |
-| 3.1 Directory | pendiente | | |
+| 3.1 Directory | hecho | en este commit | respuestas por persona, QR solo al terminar, correo duplicado no crea otra cuenta |
 | 3.2 Onboarding | pendiente | | |
 | 4.1 CRM directory | pendiente | | |
 | 4.2 Organismo | pendiente | | |
