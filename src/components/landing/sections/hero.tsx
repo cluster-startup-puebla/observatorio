@@ -5,9 +5,13 @@ import { PartnerMark } from "@/components/landing/atoms/partner-mark";
 import { PartnerRow } from "@/components/landing/atoms/partner-row";
 import { clusterLogo, ctaLabel, partners } from "@/content/landing";
 
-export function Hero() {
+export function Hero({ reserveHref = "/register" }: { reserveHref?: string }) {
   return (
-    <section id="inicio" className="flex min-h-[calc(100svh-4.5rem)] scroll-mt-24 flex-col border-b border-line">
+    <section
+      id="inicio"
+      data-testid="bloque-objetivo"
+      className="flex min-h-[calc(100svh-4.5rem)] scroll-mt-24 flex-col border-b border-line"
+    >
       <div className="container-site flex flex-1 flex-col py-8 lg:py-12">
         <Kicker>Levantamiento de necesidades</Kicker>
         <h1 className="mt-4 max-w-4xl text-balance text-[clamp(1.875rem,3.2vw,2.75rem)] leading-[1.08] font-bold tracking-[-0.03em] text-ink">
@@ -19,7 +23,7 @@ export function Hero() {
           propia empresa.
         </p>
         <div className="mt-6 flex flex-wrap gap-3">
-          <Cta href="/register">{ctaLabel}</Cta>
+          <Cta href={reserveHref}>{ctaLabel}</Cta>
           <Cta href="/#como" variant="secondary">
             Ver cómo funciona
           </Cta>

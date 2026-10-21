@@ -2,7 +2,7 @@ import { ArrowUpRight } from "lucide-react";
 
 export function DiagnosticBanner() {
   return (
-    <aside className="border-b border-line bg-surface-subtle">
+    <aside data-testid="bloque-via-partners" className="border-b border-line bg-surface-subtle">
       <div className="container-site flex flex-col gap-4 py-5 sm:flex-row sm:items-center sm:justify-between sm:py-6">
         <div className="grid gap-1">
           <p className="text-h4 text-ink">Puebla ante el T-MEC</p>

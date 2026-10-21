@@ -3,7 +3,7 @@ import { agenda, sessionFacts, speakers } from "@/content/landing";
 
 export function Session() {
   return (
-    <section id="sesion" className="scroll-mt-24 container-site py-20 lg:py-28">
+    <section id="sesion" data-testid="bloque-evento" className="scroll-mt-24 container-site py-20 lg:py-28">
       <SectionHeading title="Un desayuno. Cuatro horas. Cero relleno." />
       <dl className="mt-12 grid gap-px bg-line sm:grid-cols-2 lg:grid-cols-3">
         {sessionFacts.map((fact) => (

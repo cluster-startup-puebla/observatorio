@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import { ArrowUpRight, Menu, X } from "lucide-react";
 import { ctaLabel, navItems } from "@/content/landing";
+import { reserveHref } from "@/lib/sectors";
 import { ReadingToggle } from "@/components/diagnostico/reading-dock";
 import { ThemeToggle } from "@/components/site/theme-toggle";
 
@@ -80,7 +81,7 @@ export function SiteHeader() {
             <div className="flex shrink-0 items-center gap-2">
               {onDiagnostic ? <ReadingToggle /> : null}
               <a
-                href="/register"
+                href={reserveHref(path)}
                 className="btn btn-primary hidden px-4 py-2 text-small whitespace-nowrap lg:inline-flex"
               >
                 {ctaLabel}
