@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "skills": {
+    "ordina-panel-detail-page": {
+      "source": "sabia-mx/skills",
+      "sourceType": "github",
+      "skillPath": "ordina-panel-detail-page/SKILL.md",
+      "computedHash": "9d84fb25334d7c5d4e48b728d1c2023733ca4d5320ad8f8bb9b50e258e5daa81"
+    },
+    "ordina-panel-screen": {
+      "source": "sabia-mx/skills",
+      "sourceType": "github",
+      "skillPath": "ordina-panel-screen/SKILL.md",
+      "computedHash": "eb44577d414b0eb732d31e2ab1e6ba36bb7110027be5f5c4a3caaae10b08bd20"
+    }
+  }
+}
