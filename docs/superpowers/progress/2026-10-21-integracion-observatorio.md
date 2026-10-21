@@ -35,5 +35,5 @@ Registro para retomar si el trabajo se corta. Rama: `cursor/integracion-observat
 | 4.1 CRM directory | hecho | en este commit | repetidos, filas inválidas y token alterado no atribuyen |
 | 4.2 Organismo | pendiente | | |
 | 5.1 Metodología | pendiente | | |
-| 6.1 Mesa | pendiente | | |
+| 6.1 Mesa | hecho | en este commit | segundo escaneo no retrocede; el invitado sin perfil no recibe correo |
 | 6.2 E2E mesa | pendiente | | |
