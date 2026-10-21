@@ -21,9 +21,9 @@ Registro para retomar si el trabajo se corta. Rama: `cursor/integracion-observat
 
 | Tarea | Estado | Commit | Notas |
 | --- | --- | --- | --- |
-| 0.1 Vitest | en curso | | |
+| 0.1 Vitest | hecho | 92484ed | vitest@3.2.4 porque vitest 5 choca con @types/node 20 |
 | 0.2 Playwright | pendiente | | |
-| 1.1 Permisos | pendiente | | |
+| 1.1 Permisos | hecho | 6d43e89 | matriz completa de rol por acción |
 | 1.2 CRM | pendiente | | |
 | 1.3 Sector | pendiente | | |
 | 1.4 Enlace | pendiente | | |
