@@ -22,13 +22,13 @@ Registro para retomar si el trabajo se corta. Rama: `cursor/integracion-observat
 | Tarea | Estado | Commit | Notas |
 | --- | --- | --- | --- |
 | 0.1 Vitest | hecho | 92484ed | vitest@3.2.4 porque vitest 5 choca con @types/node 20 |
-| 0.2 Playwright | pendiente | | |
-| 1.1 Permisos | hecho | 6d43e89 | matriz completa de rol por acción |
-| 1.2 CRM | hecho | ad42cb0 | rechazos desde null, doble carga y estados cerrados |
-| 1.3 Sector | hecho | 72d4665 | la ruta gana, el nombre no es slug, enlace de reserva |
-| 1.4 Enlace | hecho | e991e9d | token vacío, truncado, acentos y secreto oculto |
-| 1.5 Excel | hecho | e3e7f8d | encabezado con espacios, correo en mayúsculas y hoja vacía |
-| 1.6 Diagnóstico | hecho | 5e48be3 | instrumento local: el archivo del ejercicio anterior no está en el repo |
+| 0.2 Playwright | hecho | en este commit | workers 1; chromium instalado |
+| 1.1 Permisos | hecho | 92c1bd9 | matriz completa de rol por acción |
+| 1.2 CRM | hecho | cc1eb5d | rechazos desde null, doble carga y estados cerrados |
+| 1.3 Sector | hecho | ad50863 | la ruta gana, el nombre no es slug, enlace de reserva |
+| 1.4 Enlace | hecho | 4b8361b | token vacío, truncado, acentos y secreto oculto |
+| 1.5 Excel | hecho | 1bcb543 | encabezado con espacios, correo en mayúsculas y hoja vacía |
+| 1.6 Diagnóstico | hecho | febf665 | instrumento local: el archivo del ejercicio anterior no está en el repo |
 | 2.1 Landing | pendiente | | |
 | 3.1 Directory | pendiente | | |
 | 3.2 Onboarding | pendiente | | |
