@@ -26,7 +26,7 @@ Registro para retomar si el trabajo se corta. Rama: `cursor/integracion-observat
 | 1.1 Permisos | hecho | 6d43e89 | matriz completa de rol por acción |
 | 1.2 CRM | hecho | ad42cb0 | rechazos desde null, doble carga y estados cerrados |
 | 1.3 Sector | hecho | 72d4665 | la ruta gana, el nombre no es slug, enlace de reserva |
-| 1.4 Enlace | pendiente | | |
+| 1.4 Enlace | hecho | e991e9d | token vacío, truncado, acentos y secreto oculto |
 | 1.5 Excel | pendiente | | |
 | 1.6 Diagnóstico | pendiente | | |
 | 2.1 Landing | pendiente | | |
