@@ -223,7 +223,26 @@ function createMemoryDirectory(): Directory {
         count: Object.keys(answers).length,
       }));
     },
+
+    async getAccount(id) {
+      const person = store().people.find((item) => item.id === id && !item.orgId);
+      if (!person) return null;
+      return {
+        id: person.id,
+        email: person.email,
+        role: person.role,
+        onboarded: person.onboarded,
+        sectorSlug: person.sectorSlug,
+        name: person.name,
+        logoKey: person.logoKey,
+      };
+    },
   };
+}
+
+export function ensureMesaSeed() {
+  if (process.env.DIRECTORY !== "memory") return;
+  ensureDeskSeed(store());
 }
 
 export function getDirectory(): Directory {

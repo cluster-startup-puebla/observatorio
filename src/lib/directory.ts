@@ -38,4 +38,13 @@ export interface Directory {
   sendOpenInnovation(): Promise<void>;
   outbox(): Promise<{ to: string; subject: string }[]>;
   progress(): Promise<{ personId: string; count: number }[]>;
+  getAccount(id: string): Promise<{
+    id: string;
+    email: string;
+    role: AccountRole;
+    onboarded: boolean;
+    sectorSlug?: string;
+    name?: string;
+    logoKey?: string;
+  } | null>;
 }

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
 import { AuthShell } from "@/components/auth/auth-shell";
+import { AccountForm } from "@/components/onboarding/account-form";
 import { RegisterForm } from "@/components/landing/sections/register-form";
 import { diagnosticDownloadParam } from "@/content/diagnostico-tmec";
 import { pageMetadata } from "@/lib/metadata";
@@ -10,6 +11,8 @@ export const metadata: Metadata = pageMetadata({
   description: "La sesión de tu sector. Sin costo. Cupo de 15 a 30 empresas.",
   path: "/register",
 });
+
+export const instant = false;
 
 const loginLink = (
   <a href="/login" className="text-small text-link">
@@ -38,11 +41,20 @@ async function RegisterScreen({ searchParams }: Pick<PageProps<"/register">, "se
   const params = await searchParams;
   const requested = Array.isArray(params.descarga) ? params.descarga[0] : params.descarga;
   const withDiagnostic = requested === diagnosticDownloadParam;
+  const sector = typeof params.sector === "string" ? params.sector : undefined;
+  const cuenta = typeof params.cuenta === "string" ? params.cuenta : undefined;
+  const organismo = cuenta === "organismo";
 
   return (
     <AuthShell
       kicker="Levantamiento de necesidades"
-      title={withDiagnostic ? "Regístrate y descarga el diagnóstico" : "Reserva tu lugar"}
+      title={
+        withDiagnostic
+          ? "Regístrate y descarga el diagnóstico"
+          : organismo
+            ? "Crea la cuenta de tu organismo"
+            : "Reserva tu lugar"
+      }
       lead={
         withDiagnostic
           ? "Reservas tu lugar en la sesión y, al terminar, se descarga el análisis integral de VIA Partners."
@@ -50,9 +62,13 @@ async function RegisterScreen({ searchParams }: Pick<PageProps<"/register">, "se
       }
       links={loginLink}
     >
-      <Suspense>
-        <RegisterForm variant="page" />
-      </Suspense>
+      {withDiagnostic ? (
+        <Suspense>
+          <RegisterForm variant="page" />
+        </Suspense>
+      ) : (
+        <AccountForm sector={sector} cuenta={cuenta} />
+      )}
     </AuthShell>
   );
 }
