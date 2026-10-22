@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { redirect } from "next/navigation";
 import { AuthSplit } from "@/components/auth/auth-split";
 import { LoginForm } from "@/components/auth/login-form";
@@ -45,12 +46,12 @@ export default async function LoginPage({
         <LoginForm error={error} errorCode={params.error} />
       </div>
       <div className="mt-6 flex flex-wrap gap-x-4 gap-y-2 text-small">
-        <a href="/recuperar" className="text-link">
+        <Link href="/recuperar" className="text-link">
           Olvidé mi contraseña
-        </a>
-        <a href="/register" className="text-link">
+        </Link>
+        <Link href="/register" className="text-link">
           ¿Aún no reservas? Reserva tu lugar
-        </a>
+        </Link>
       </div>
     </AuthSplit>
   );

@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { listCrumbs, PanelHeader } from "@/components/admin/panel-header";
 import { Kicker } from "@/components/landing/atoms/kicker";
 import { Field, controlClass } from "@/components/landing/molecules/field";
@@ -25,7 +26,7 @@ export default async function MesaPage({
           lead="El pase solo existe si el perfil ya está terminado. Quien no está registrado no entra."
           crumbs={listCrumbs("Mesa", mesaHref)}
         />
-        <a href="/admin">Volver al panel</a>
+        <Link href="/admin">Volver al panel</Link>
         <p data-testid="mesa-href">{mesaHref}</p>
         <form action={scanDeskAction} className="grid gap-5">
           <Field id="codigo" label="Código QR">

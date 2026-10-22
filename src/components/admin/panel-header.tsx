@@ -17,17 +17,19 @@ export function PanelHeader({
   testId?: string;
 }) {
   return (
-    <header className="mb-6 flex flex-col gap-2">
-      <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-        <div className="flex flex-wrap items-center gap-4">
+    <header className="mb-8">
+      <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+        <div className="min-w-0">
           <h1 className="text-h1 text-ink" data-testid={testId}>
             {title}
           </h1>
-          {actions ? <div className="flex shrink-0 flex-wrap items-center gap-3">{actions}</div> : null}
+          {lead ? <p className="mt-2 max-w-2xl text-body text-ink-secondary">{lead}</p> : null}
         </div>
-        <PanelCrumbs crumbs={crumbs} />
+        <div className="flex flex-col items-start gap-3 sm:items-end">
+          <PanelCrumbs crumbs={crumbs} />
+          {actions ? <div className="flex flex-wrap items-center justify-end gap-2">{actions}</div> : null}
+        </div>
       </div>
-      {lead ? <p className="max-w-2xl text-body text-ink-secondary">{lead}</p> : null}
     </header>
   );
 }
