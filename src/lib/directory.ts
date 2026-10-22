@@ -18,6 +18,15 @@ export type CrmPerson = {
 
 export interface Directory {
   createAccount(input: { email: string; role: AccountRole }): Promise<{ id: string }>;
+  superadminCount(): Promise<number>;
+  createFirstSuperadmin(input: {
+    email: string;
+    password: string;
+  }): Promise<{ ok: true; id: string } | { ok: false; reason: "ya existe" }>;
+  loginSuperadmin(input: {
+    email: string;
+    password: string;
+  }): Promise<{ ok: true; id: string } | { ok: false; reason: "credenciales" }>;
   findByEmail(email: string): Promise<{ id: string; role: AccountRole; onboarded: boolean } | null>;
   completeOnboarding(
     id: string,

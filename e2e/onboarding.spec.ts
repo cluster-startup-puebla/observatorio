@@ -9,7 +9,7 @@ test("el empresario termina el perfil con el sector de la ruta", async ({ page }
   await page.goto("/automotriz-y-autopartes");
   await page.getByRole("link", { name: "Reservar mi lugar" }).first().click();
   await page.getByLabel("Correo").fill("ana@norte.mx");
-  await page.getByLabel("Contraseña").fill("secreto-largo");
+  await page.getByLabel("Contraseña", { exact: true }).fill("secreto-largo");
   await page.getByRole("button", { name: "Crear cuenta" }).click();
   await expect(page.getByTestId("aviso-confidencial")).toHaveText(
     "Esta información es solo estadística. No se comparte y es confidencial.",
@@ -23,7 +23,7 @@ test("el empresario termina el perfil con el sector de la ruta", async ({ page }
 test("el organismo no invita hasta terminar su marca", async ({ page }) => {
   await page.goto("/register?cuenta=organismo");
   await page.getByLabel("Correo").fill("director@canacintra.mx");
-  await page.getByLabel("Contraseña").fill("secreto-largo");
+  await page.getByLabel("Contraseña", { exact: true }).fill("secreto-largo");
   await page.getByRole("button", { name: "Crear cuenta" }).click();
   await expect(page.getByRole("button", { name: "Copiar enlace del evento" })).toBeDisabled();
   await page.getByLabel("Nombre del organismo").fill("CANACINTRA");
@@ -36,7 +36,7 @@ test("el organismo no invita hasta terminar su marca", async ({ page }) => {
 test("una contraseña corta no abre el perfil", async ({ page }) => {
   await page.goto("/register");
   await page.getByLabel("Correo").fill("ana@norte.mx");
-  await page.getByLabel("Contraseña").fill("corta");
+  await page.getByLabel("Contraseña", { exact: true }).fill("corta");
   await page.getByRole("button", { name: "Crear cuenta" }).click();
   await expect(page.getByText("Usa al menos 8 caracteres.")).toBeVisible();
   await expect(page).toHaveURL(/\/register$/);
@@ -45,7 +45,7 @@ test("una contraseña corta no abre el perfil", async ({ page }) => {
 test("sin tamaño de empresa no aparece el pase", async ({ page }) => {
   await page.goto("/register?sector=turismo");
   await page.getByLabel("Correo").fill("sin-tamano@norte.mx");
-  await page.getByLabel("Contraseña").fill("secreto-largo");
+  await page.getByLabel("Contraseña", { exact: true }).fill("secreto-largo");
   await page.getByRole("button", { name: "Crear cuenta" }).click();
   await page.getByRole("button", { name: "Terminar perfil" }).click();
   await expect(page.getByText("Elige el tamaño de tu empresa para terminar.")).toBeVisible();

@@ -1,7 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { controlClass, Field } from "@/components/landing/molecules/field";
+import { PasswordInput } from "@/components/auth/password-input";
+import { Field } from "@/components/landing/molecules/field";
 
 type Errors = {
   password?: string;
@@ -31,29 +32,27 @@ export function ResetForm() {
   return (
     <form onSubmit={onSubmit} noValidate className="grid gap-5">
       <Field id="contrasena" label="Nueva contraseña" error={errors.password}>
-        <input
+        <PasswordInput
           id="contrasena"
           name="contrasena"
-          type="password"
+          label="nueva contraseña"
           autoComplete="new-password"
           value={password}
-          onChange={(event) => setPassword(event.target.value)}
-          className={controlClass}
-          aria-invalid={Boolean(errors.password)}
-          aria-describedby={errors.password ? "contrasena-error" : undefined}
+          onChange={setPassword}
+          ariaInvalid={Boolean(errors.password)}
+          ariaDescribedBy={errors.password ? "contrasena-error" : undefined}
         />
       </Field>
       <Field id="confirmar" label="Confirmar contraseña" error={errors.confirm}>
-        <input
+        <PasswordInput
           id="confirmar"
           name="confirmar"
-          type="password"
+          label="confirmación"
           autoComplete="new-password"
           value={confirm}
-          onChange={(event) => setConfirm(event.target.value)}
-          className={controlClass}
-          aria-invalid={Boolean(errors.confirm)}
-          aria-describedby={errors.confirm ? "confirmar-error" : undefined}
+          onChange={setConfirm}
+          ariaInvalid={Boolean(errors.confirm)}
+          ariaDescribedBy={errors.confirm ? "confirmar-error" : undefined}
         />
       </Field>
       <button type="submit" className="btn btn-primary">

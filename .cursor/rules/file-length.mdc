@@ -1,0 +1,13 @@
+---
+description: Refactorizar cualquier archivo de código que pase de 90 líneas
+alwaysApply: true
+---
+
+# Archivos de más de 90 líneas
+
+Si un archivo `.ts`, `.tsx`, `.js` o `.jsx` pasa de 90 líneas, refactorízalo en el mismo cambio. No lo dejes así.
+
+- Parte la responsabilidad en módulos, componentes o funciones con un nombre claro.
+- El comportamiento visible se conserva.
+- Al editar un archivo que ya pasa de 90 líneas, pártelo antes de seguir agregando código.
+- No apliques este límite a migraciones SQL, lockfiles ni documentos.

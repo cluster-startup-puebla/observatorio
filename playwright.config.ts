@@ -10,7 +10,7 @@ export default defineConfig({
     url: "http://127.0.0.1:3000",
     reuseExistingServer: true,
     timeout: 120_000,
-    env: { DIRECTORY: "memory" },
+    env: { DIRECTORY: "memory", AUTH_PROVIDER: "memory" },
   },
   projects: [{ name: "chromium", use: { ...devices["Desktop Chrome"] } }],
 });

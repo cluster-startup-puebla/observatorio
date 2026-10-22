@@ -1,6 +1,7 @@
 "use client";
 
 import { useActionState } from "react";
+import { PasswordInput } from "@/components/auth/password-input";
 import { Field, controlClass } from "@/components/landing/molecules/field";
 import { createAccountAction, type AccountFormState } from "@/lib/account-actions";
 
@@ -18,13 +19,7 @@ export function AccountForm({ sector, cuenta }: { sector?: string; cuenta?: stri
         <input id="correo" name="correo" type="email" autoComplete="email" className={controlClass} />
       </Field>
       <Field id="contrasena" label="Contraseña" error={state?.errors.password}>
-        <input
-          id="contrasena"
-          name="contrasena"
-          type="password"
-          autoComplete="new-password"
-          className={controlClass}
-        />
+        <PasswordInput id="contrasena" name="contrasena" label="contraseña" autoComplete="new-password" />
       </Field>
       <button type="submit" className="btn btn-primary" disabled={pending}>
         Crear cuenta

@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { PasswordInput } from "@/components/auth/password-input";
 import { controlClass, Field } from "@/components/landing/molecules/field";
 
 type Errors = {
@@ -55,16 +56,15 @@ export function LoginForm() {
         />
       </Field>
       <Field id="contrasena" label="Contraseña" error={errors.password}>
-        <input
+        <PasswordInput
           id="contrasena"
           name="contrasena"
-          type="password"
+          label="contraseña"
           autoComplete="current-password"
           value={password}
-          onChange={(event) => setPassword(event.target.value)}
-          className={controlClass}
-          aria-invalid={Boolean(errors.password)}
-          aria-describedby={errors.password ? "contrasena-error" : undefined}
+          onChange={setPassword}
+          ariaInvalid={Boolean(errors.password)}
+          ariaDescribedBy={errors.password ? "contrasena-error" : undefined}
         />
       </Field>
       <button type="submit" className="btn btn-primary">

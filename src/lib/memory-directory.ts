@@ -14,6 +14,7 @@ type Person = {
   size?: string;
   name?: string;
   logoKey?: string;
+  password?: string;
   orgId?: string;
   empresa?: string;
   status: CrmStatus | null;
@@ -91,6 +92,40 @@ function createMemoryDirectory(): Directory {
         if (next.ok) person.status = next.status;
       }
       return { id: account.id };
+    },
+
+    async superadminCount() {
+      return store().people.filter((person) => person.role === "superadmin" && !person.orgId).length;
+    },
+
+    async createFirstSuperadmin(input) {
+      const state = store();
+      if (state.people.some((person) => person.role === "superadmin" && !person.orgId)) {
+        return { ok: false as const, reason: "ya existe" as const };
+      }
+      const email = input.email.trim().toLowerCase();
+      state.seq += 1;
+      const account: Person = {
+        id: `p${state.seq}`,
+        email,
+        role: "superadmin",
+        onboarded: true,
+        password: input.password,
+        status: null,
+      };
+      state.people.push(account);
+      return { ok: true as const, id: account.id };
+    },
+
+    async loginSuperadmin(input) {
+      const email = input.email.trim().toLowerCase();
+      const person = store().people.find(
+        (item) => item.email === email && item.role === "superadmin" && !item.orgId,
+      );
+      if (!person || person.password !== input.password) {
+        return { ok: false as const, reason: "credenciales" as const };
+      }
+      return { ok: true as const, id: person.id };
     },
 
     async findByEmail(email) {

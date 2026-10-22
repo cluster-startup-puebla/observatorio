@@ -9,3 +9,7 @@ export async function readAccountId() {
 export async function writeAccountId(id: string) {
   (await cookies()).set(accountCookie, id, { httpOnly: true, sameSite: "lax", path: "/" });
 }
+
+export async function clearAccountId() {
+  (await cookies()).delete(accountCookie);
+}

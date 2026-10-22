@@ -8,7 +8,7 @@ test.beforeEach(async ({ request }) => {
 test("el organismo carga el Excel y copia el enlace", async ({ page }) => {
   await page.goto("/register?cuenta=organismo");
   await page.getByLabel("Correo").fill("mesa@camara.mx");
-  await page.getByLabel("Contraseña").fill("secreto-largo");
+  await page.getByLabel("Contraseña", { exact: true }).fill("secreto-largo");
   await page.getByRole("button", { name: "Crear cuenta" }).click();
   await page.getByLabel("Nombre del organismo").fill("CANACINTRA");
   await page.getByLabel("Color").fill("#1B3A5C");
@@ -37,7 +37,7 @@ test("el organismo carga el Excel y copia el enlace", async ({ page }) => {
 test("un archivo sin filas no inventa invitaciones", async ({ page }) => {
   await page.goto("/register?cuenta=organismo");
   await page.getByLabel("Correo").fill("vacio@camara.mx");
-  await page.getByLabel("Contraseña").fill("secreto-largo");
+  await page.getByLabel("Contraseña", { exact: true }).fill("secreto-largo");
   await page.getByRole("button", { name: "Crear cuenta" }).click();
   await page.getByLabel("Nombre del organismo").fill("CANACINTRA");
   await page.getByLabel("Color").fill("#1B3A5C");
@@ -54,7 +54,7 @@ test("un archivo sin filas no inventa invitaciones", async ({ page }) => {
 test("una invitación a mano entra como Cargado", async ({ page }) => {
   await page.goto("/register?cuenta=organismo");
   await page.getByLabel("Correo").fill("manual@camara.mx");
-  await page.getByLabel("Contraseña").fill("secreto-largo");
+  await page.getByLabel("Contraseña", { exact: true }).fill("secreto-largo");
   await page.getByRole("button", { name: "Crear cuenta" }).click();
   await page.getByLabel("Nombre del organismo").fill("CANACINTRA");
   await page.getByLabel("Color").fill("#1B3A5C");

@@ -8,6 +8,9 @@ const notImplemented = async (): Promise<never> => {
 export function createSupabaseDirectory(client: SupabaseClient): Directory {
   return {
     createAccount: notImplemented,
+    superadminCount: notImplemented,
+    createFirstSuperadmin: notImplemented,
+    loginSuperadmin: notImplemented,
     async findByEmail(email) {
       const normalized = email.trim().toLowerCase();
       const { data } = await client

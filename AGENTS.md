@@ -7,3 +7,7 @@ This version has breaking changes — APIs, conventions, and file structure may 
 This block is written and re-added by `next dev` — verify at `node_modules/next/dist/server/lib/generate-agent-files.js`. Removing it from a diff only re-creates the uncommitted change; committing it with your work keeps the tree clean.
 
 <!-- END:nextjs-agent-rules -->
+
+## Límite de 90 líneas
+
+Si un archivo de código (`.ts`, `.tsx`, `.js`, `.jsx`) pasa de 90 líneas, hay que refactorizarlo en el mismo cambio. No lo dejes largo. Parte la responsabilidad en módulos o componentes más chicos y conserva el comportamiento. No cuentes este límite para migraciones SQL, lockfiles ni documentos.
