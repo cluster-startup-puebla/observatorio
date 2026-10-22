@@ -1,8 +1,10 @@
 import { FormSheet } from "@/components/admin/form-sheet";
+import { FileDrop } from "@/components/file-drop";
+import { SheetSubmit } from "@/components/admin/sheet-submit";
 
 export function UploadForm({ orgs, open }: { orgs: { id: string; name: string }[]; open?: boolean }) {
   return (
-    <FormSheet action="Crear" resource="invitaciones" open={open}>
+    <FormSheet action="Crear" resource="plantilla" label="Subir plantilla" open={open}>
     <form action="/api/admin/invitaciones" method="post" encType="multipart/form-data" className="grid gap-3">
       <label className="grid gap-1 text-small" htmlFor="organization_id">
         Organismo
@@ -14,13 +16,14 @@ export function UploadForm({ orgs, open }: { orgs: { id: string; name: string }[
           ))}
         </select>
       </label>
-      <label className="grid gap-1 text-small" htmlFor="archivo">
-        Archivo de invitaciones
-        <input id="archivo" name="archivo" type="file" accept=".csv,text/csv" />
-      </label>
-      <button className="btn btn-primary" type="submit">
-        Subir plantilla
-      </button>
+      <FileDrop
+        id="archivo"
+        name="archivo"
+        label="Archivo de invitaciones"
+        accept=".csv,text/csv"
+        hint="CSV con nombre, empresa y correo"
+      />
+      <SheetSubmit>Subir plantilla</SheetSubmit>
     </form>
     </FormSheet>
   );

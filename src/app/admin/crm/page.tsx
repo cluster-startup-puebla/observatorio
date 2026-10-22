@@ -1,27 +1,23 @@
-import { DataList } from "@/components/admin/data-list";
+import { CrmList } from "@/app/admin/crm/crm-list";
+import { adminDb } from "@/lib/admin/admin-db";
 import { listCrm } from "@/lib/admin/crm/list";
 import { requireSuperadmin } from "@/lib/auth/require-superadmin";
 
 export const instant = false;
 
-export default async function CrmPage({ searchParams }: { searchParams: Promise<{ page?: string }> }) {
+export default async function CrmPage({ searchParams }: { searchParams: Promise<{ page?: string; error?: string }> }) {
   await requireSuperadmin();
   const params = await searchParams;
   const data = await listCrm(params.page);
+  const db = await adminDb();
+  const orgs = db ? await db.from("organizations").select("id, name").order("name") : { data: [], error: null };
+  if (orgs.error) throw new Error(orgs.error.message);
   return (
-    <DataList
-      title="CRM"
-      lead="Contactos de todos los organismos. El estatus sale de los hechos."
-      columns={[
-        { key: "nombre", label: "Nombre" },
-        { key: "empresa", label: "Empresa" },
-        { key: "email", label: "Correo" },
-        { key: "source", label: "Origen" },
-        { key: "status", label: "Estatus" },
-      ]}
+    <CrmList
       rows={data.rows}
       page={data.page}
-      basePath="/admin/crm"
+      error={params.error}
+      orgs={(orgs.data ?? []).map((org) => ({ id: org.id, name: org.name ?? org.id }))}
     />
   );
 }

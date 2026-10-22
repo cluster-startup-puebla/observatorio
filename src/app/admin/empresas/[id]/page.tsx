@@ -12,7 +12,7 @@ export default async function EmpresaDetailPage({
   searchParams,
 }: {
   params: Promise<{ id: string }>;
-  searchParams: Promise<{ tab?: string }>;
+  searchParams: Promise<{ tab?: string; error?: string }>;
 }) {
   await requireSuperadmin();
   const { id } = await params;
@@ -33,10 +33,9 @@ export default async function EmpresaDetailPage({
       tabs={[...companyTabs]}
       active={active}
     >
-      {active === "sector" ? <p>{data.sector?.slug}</p> : null}
-      {active === "tamano" ? <p>{data.company.employee_band}</p> : null}
+      {query.error ? <p className="text-small text-mark">{query.error}</p> : null}
       {active === "respuestas" ? (
-        <ul>
+        <ul className="mt-4">
           {data.answers.map((row) => (
             <li key={`${row.question_id}-${row.option_value}`}>
               {row.question_id}: {row.option_value}
@@ -44,7 +43,7 @@ export default async function EmpresaDetailPage({
           ))}
         </ul>
       ) : null}
-      {active === "pase" ? <p>{data.pass ? "Pase emitido." : "Sin pase."}</p> : null}
+      {active === "pase" ? <p className="mt-4">{data.pass ? "Pase emitido." : "Sin pase."}</p> : null}
     </DetailFrame>
   );
 }

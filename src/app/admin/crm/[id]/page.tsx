@@ -39,7 +39,6 @@ export default async function CrmDetailPage({
       active={active}
     >
       {query.error ? <p className="text-small text-mark">{query.error}</p> : null}
-      {active === "ficha" ? <p>El estatus no se guarda en el contacto.</p> : null}
       {active === "hechos" ? (
         <div className="grid gap-4">
           <ul>

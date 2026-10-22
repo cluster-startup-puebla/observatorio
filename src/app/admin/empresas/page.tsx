@@ -1,25 +1,21 @@
-import { DataList } from "@/components/admin/data-list";
+import { EmpresasList } from "@/app/admin/empresas/empresas-list";
+import { empresaChoices } from "@/lib/admin/empresas/choices";
 import { listEmpresas } from "@/lib/admin/empresas/list";
 import { requireSuperadmin } from "@/lib/auth/require-superadmin";
 
 export const instant = false;
 
-export default async function EmpresasPage({ searchParams }: { searchParams: Promise<{ page?: string }> }) {
+export default async function EmpresasPage({ searchParams }: { searchParams: Promise<{ page?: string; error?: string }> }) {
   await requireSuperadmin();
   const params = await searchParams;
-  const data = await listEmpresas(params.page);
+  const [data, choices] = await Promise.all([listEmpresas(params.page), empresaChoices()]);
   return (
-    <DataList
-      title="Empresas"
-      lead="La empresa del empresario y su perfil."
-      columns={[
-        { key: "legal_name", label: "Razón social" },
-        { key: "employee_band", label: "Tamaño" },
-        { key: "sector_id", label: "Sector" },
-      ]}
+    <EmpresasList
       rows={data.rows}
       page={data.page}
-      basePath="/admin/empresas"
+      error={params.error}
+      sectors={choices.sectors}
+      profiles={choices.profiles}
     />
   );
 }
