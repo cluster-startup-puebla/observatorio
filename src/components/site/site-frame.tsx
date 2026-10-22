@@ -37,7 +37,7 @@ export function SiteFrame({
   return (
     <>
       <SiteHeader />
-      <main id="contenido" className="flex-1">
+      <main id="contenido" className="flex flex-1 flex-col">
         {children}
       </main>
       <SiteFooter />

@@ -9,10 +9,12 @@ export function OrganismoOnboarding({
   accountId,
   missingSlug,
   missingLogo,
+  brandError,
 }: {
   accountId: string;
   missingSlug?: boolean;
   missingLogo?: boolean;
+  brandError?: boolean;
 }) {
   return (
     <form action={completeOrganismoAction} className="grid gap-5">
@@ -31,6 +33,9 @@ export function OrganismoOnboarding({
       />
       {missingLogo ? (
         <p className="text-small text-mark">Sube un logo PNG o JPG de hasta 2 MB para continuar.</p>
+      ) : null}
+      {brandError ? (
+        <p className="text-small text-mark">No se pudo guardar la marca. Intenta de nuevo.</p>
       ) : null}
       <SheetSubmit pendingLabel="Terminando…">Terminar perfil</SheetSubmit>
     </form>

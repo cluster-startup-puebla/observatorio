@@ -14,7 +14,9 @@ test("la landing muestra la estructura y los sectores", async ({ page }) => {
 
 test("la ruta de un sector lo deja seleccionado", async ({ page }) => {
   await page.goto("/automotriz-y-autopartes");
-  await expect(page.getByTestId("sector-seleccionado")).toHaveText("Automotriz y autopartes");
+  await expect(page.getByTestId("sector-seleccionado")).toHaveText(
+    "Empresa del sector Automotriz y autopartes.",
+  );
   await expect(page.getByTestId("bloque-objetivo")).toBeVisible();
 });
 

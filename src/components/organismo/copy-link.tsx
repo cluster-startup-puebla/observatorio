@@ -1,12 +1,18 @@
 import { CopyLinkButton } from "@/components/organismo/copy-link-button";
+import { Alert, AlertDescription } from "@/components/ui/alert";
 import { copyEventLinkAction } from "@/lib/organismo/copy-link-action";
 import { sectors } from "@/lib/sectors";
 
-export function CopyLink({ url, sector }: { url?: string; sector?: string }) {
+export function CopyLink({ url, sector, failed }: { url?: string; sector?: string; failed?: boolean }) {
   const selected = sector && sectors.some((item) => item.slug === sector) ? sector : "turismo";
 
   return (
     <section className="grid max-w-3xl gap-4">
+      {failed ? (
+        <Alert variant="destructive">
+          <AlertDescription>No se pudo generar el enlace. Intenta de nuevo.</AlertDescription>
+        </Alert>
+      ) : null}
       <form action={copyEventLinkAction} className="flex flex-wrap items-end gap-3">
         <label className="grid gap-1 text-small text-ink-secondary">
           Sector

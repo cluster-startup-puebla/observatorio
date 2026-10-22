@@ -4,6 +4,7 @@ export const authPaths = [
   "/recuperar",
   "/restablecer",
   "/verificar",
+  "/onboarding",
   "/admin",
 ];
 

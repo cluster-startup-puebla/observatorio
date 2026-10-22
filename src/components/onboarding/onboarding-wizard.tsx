@@ -1,32 +1,31 @@
-import { ConfidentialityNote } from "@/components/onboarding/confidentiality-note";
+import { EmpresarioForm } from "@/components/onboarding/empresario-form";
 import { OrganismoOnboarding } from "@/components/onboarding/organismo-form";
-import { SheetSubmit } from "@/components/admin/sheet-submit";
-import { completeEmpresarioAction } from "@/lib/account-actions";
-
-const sizes = ["1–10", "11–50", "51–250"];
+import { ConfidentialityNote } from "@/components/onboarding/confidentiality-note";
 
 export function OnboardingWizard({
   accountId,
   role,
   sectorSlug,
   sectorName,
+  sectorLocked,
   onboarded,
-  missingSize,
+  formError,
   missingSlug,
   missingLogo,
+  brandError,
 }: {
   accountId: string;
   role: string;
   sectorSlug: string | null;
   sectorName: string | null;
+  sectorLocked: boolean;
   onboarded: boolean;
-  missingSize?: boolean;
+  formError?: string;
   missingSlug?: boolean;
   missingLogo?: boolean;
+  brandError?: boolean;
 }) {
-  const organismo = role === "director";
-
-  if (onboarded && !organismo) {
+  if (onboarded && role !== "director") {
     return (
       <div className="grid gap-4">
         <ConfidentialityNote />
@@ -37,35 +36,30 @@ export function OnboardingWizard({
     );
   }
 
-  if (organismo) {
+  if (role === "director") {
     return (
-      <OrganismoOnboarding accountId={accountId} missingSlug={missingSlug} missingLogo={missingLogo} />
+      <OrganismoOnboarding
+        accountId={accountId}
+        missingSlug={missingSlug}
+        missingLogo={missingLogo}
+        brandError={brandError}
+      />
     );
   }
 
   return (
-    <form action={completeEmpresarioAction} className="grid gap-5">
-      <ConfidentialityNote />
+    <div className="grid gap-4">
       {sectorName ? (
-        <p data-testid="sector-elegido" className="text-h3 text-ink">
-          {sectorName}
+        <p data-testid="sector-elegido" className="text-small text-ink-secondary">
+          Industria sugerida: {sectorName}
         </p>
       ) : null}
-      <input type="hidden" name="accountId" value={accountId} />
-      <input type="hidden" name="sector" value={sectorSlug ?? ""} />
-      <fieldset className="grid gap-3">
-        <legend className="text-small font-semibold text-ink">Personas en la empresa</legend>
-        {sizes.map((size) => (
-          <label key={size} className="flex items-center gap-3 text-body text-ink">
-            <input type="radio" name="size" value={size} />
-            {size}
-          </label>
-        ))}
-      </fieldset>
-      {missingSize ? (
-        <p className="text-small text-mark">Elige el tamaño de tu empresa para terminar.</p>
-      ) : null}
-      <SheetSubmit pendingLabel="Terminando…">Terminar perfil</SheetSubmit>
-    </form>
+      <EmpresarioForm
+        accountId={accountId}
+        sectorSlug={sectorSlug}
+        sectorLocked={sectorLocked}
+        error={formError}
+      />
+    </div>
   );
 }

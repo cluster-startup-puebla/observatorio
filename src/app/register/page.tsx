@@ -4,6 +4,7 @@ import { AuthShell } from "@/components/auth/auth-shell";
 import { AccountForm } from "@/components/onboarding/account-form";
 import { RegisterForm } from "@/components/landing/sections/register-form";
 import { diagnosticDownloadParam } from "@/content/diagnostico-tmec";
+import { registerError } from "@/lib/organismo/register-error";
 import { pageMetadata } from "@/lib/metadata";
 
 export const metadata: Metadata = pageMetadata({
@@ -44,6 +45,7 @@ async function RegisterScreen({ searchParams }: Pick<PageProps<"/register">, "se
   const sector = typeof params.sector === "string" ? params.sector : undefined;
   const cuenta = typeof params.cuenta === "string" ? params.cuenta : undefined;
   const organismo = cuenta === "organismo";
+  const error = registerError(typeof params.error === "string" ? params.error : undefined);
 
   return (
     <AuthShell
@@ -67,7 +69,7 @@ async function RegisterScreen({ searchParams }: Pick<PageProps<"/register">, "se
           <RegisterForm variant="page" />
         </Suspense>
       ) : (
-        <AccountForm sector={sector} cuenta={cuenta} />
+        <AccountForm sector={sector} cuenta={cuenta} error={error} />
       )}
     </AuthShell>
   );

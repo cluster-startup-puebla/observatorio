@@ -15,6 +15,12 @@ export type Person = {
   password?: string;
   orgId?: string;
   empresa?: string;
+  jobTitle?: string;
+  whatsapp?: string;
+  marketSize?: string;
+  municipality?: string;
+  referralSource?: string;
+  sessionInterest?: string;
   status: CrmStatus | null;
 };
 

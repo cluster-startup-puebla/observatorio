@@ -9,13 +9,15 @@ import {
   createSupabaseWithAccess,
   readAccessToken,
 } from "@/lib/supabase/auth-session";
+import { clearOrgIntent } from "./signup-intent";
 import { orgSlug, slugError } from "./slug";
 
 export async function finishOrganismoBrand(formData: FormData) {
   const name = String(formData.get("nombre") ?? "").trim();
   const color = String(formData.get("color") ?? "").trim();
   const logo = await readLogoFile(formData.get("logo"));
-  if (!logo || "error" in logo || name.length < 2 || !color) return { ok: false as const };
+  if (!logo || "error" in logo) redirect("/onboarding?error=logo");
+  if (name.length < 2 || !color) redirect("/onboarding?error=marca");
 
   const slug = orgSlug(name, "");
   if (slugError(slug, sectors.map((s) => s.slug))) redirect("/onboarding?error=slug");
@@ -36,15 +38,21 @@ export async function finishOrganismoBrand(formData: FormData) {
     logo_type: logo.contentType,
     logo_bytes: logo.bytes.byteLength,
   });
-  if (finished.error) return { ok: false as const };
+  if (finished.error) {
+    console.error("[organismo] marca", finished.error.message);
+    const text = finished.error.message.toLowerCase();
+    if (text.includes("enlace") || text.includes("sector")) redirect("/onboarding?error=slug");
+    redirect("/onboarding?error=marca");
+  }
 
   const uploaded = await db.storage.from("organization-logos").upload(logoPath, logo.bytes, {
     upsert: true,
     contentType: logo.contentType,
   });
-  if (uploaded.error) return { ok: false as const };
+  if (uploaded.error) console.error("[organismo] logo", uploaded.error.message);
 
   const jar = await cookies();
   jar.set("org-slug", slug, { path: "/", httpOnly: true, sameSite: "lax" });
+  await clearOrgIntent();
   redirect(`/${slug}`);
 }

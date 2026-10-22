@@ -2,38 +2,15 @@ import type { Metadata } from "next";
 
 export const instant = false;
 import { LandingBody } from "@/components/landing/landing-body";
+import { SectorLanding } from "@/components/landing/sector-landing";
 import { OrgHome } from "@/components/organismo/home";
 import { getDirectory } from "@/lib/memory-directory";
 import { pageMetadata, siteDescription, siteName } from "@/lib/metadata";
+import { eventToken } from "@/lib/organismo/event-token";
+import { inviteBrand } from "@/lib/organismo/invite-brand";
 import { readInviteLink } from "@/lib/organismo/invite-link-cookie";
 import { ownerBySlug } from "@/lib/organismo/owner";
 import { resolveSector } from "@/lib/sectors";
-
-const namedSearchKeys = new Set([
-  "cuenta",
-  "codigo",
-  "completas",
-  "descarga",
-  "enlace",
-  "enviado",
-  "error",
-  "estatus",
-  "nombre",
-  "persona",
-  "pregunta",
-  "ref",
-  "rol",
-  "sector",
-  "ver",
-]);
-
-function eventToken(searchParams: { [key: string]: string | string[] | undefined }) {
-  for (const key of Object.keys(searchParams)) {
-    if (!key || namedSearchKeys.has(key)) continue;
-    return key;
-  }
-  return null;
-}
 
 export const metadata: Metadata = pageMetadata({
   title: siteName,
@@ -62,11 +39,11 @@ export default async function SectorPage({
         orgId={owner.id}
         url={enlace}
         sector={inviteSector}
+        failed={sp.error === "enlace"}
       />
     );
   }
   const token = eventToken(sp);
-  const brand = token ? await getDirectory().brandForToken(token) : null;
   const resolved = resolveSector({ pathSector: sector });
   if (token && resolved.slug) {
     const { connection } = await import("next/server");
@@ -77,9 +54,8 @@ export default async function SectorPage({
       at: new Date().toISOString(),
     });
   }
-  const message = resolved.slug ? await getDirectory().sectorMessage(resolved.slug) : null;
   const reserveHref = resolved.slug ? `/register?sector=${resolved.slug}` : "/register";
-  return (
-    <LandingBody reserveHref={reserveHref} selected={resolved.name} brand={brand} message={message} />
-  );
+  if (!resolved.name) return <LandingBody reserveHref={reserveHref} />;
+  const brand = token ? await inviteBrand(token) : null;
+  return <SectorLanding sector={resolved.name} reserveHref={reserveHref} brand={brand} />;
 }

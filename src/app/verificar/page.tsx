@@ -13,7 +13,7 @@ export default function VerifyPage() {
     <AuthShell
       kicker="Correo"
       title="Revisa tu correo"
-      lead="Cuando el acceso quede conectado, te escribimos para confirmar la cuenta."
+      lead="Te enviamos un correo. Confírmalo para seguir al registro."
       footer={
         <>
           <a href="/login" className="text-link">

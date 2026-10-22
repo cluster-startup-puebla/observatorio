@@ -2,10 +2,11 @@
 
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
-import { ArrowUpRight, Menu, X } from "lucide-react";
-import { ctaLabel, navItems } from "@/content/landing";
-import { reserveHref } from "@/lib/sectors";
+import { Menu, X } from "lucide-react";
 import { ReadingToggle } from "@/components/diagnostico/reading-dock";
+import { HeaderCtas } from "@/components/site/header-ctas";
+import { HeaderLinks } from "@/components/site/header-links";
+import { HeaderMenu } from "@/components/site/header-menu";
 import { ThemeToggle } from "@/components/site/theme-toggle";
 
 export function SiteHeader() {
@@ -50,42 +51,12 @@ export function SiteHeader() {
             <a href="/#inicio" className="shrink-0 font-display text-h4 whitespace-nowrap text-ink">
               Observatorio
             </a>
-
-            <nav className="hidden lg:block" aria-label="Principal">
-              <ul className="flex items-center gap-4 xl:gap-5">
-                {navItems.map((item) => (
-                  <li key={item.href}>
-                    <a
-                      href={item.href}
-                      className="text-small whitespace-nowrap text-ink-secondary transition hover:text-ink"
-                    >
-                      {item.label}
-                    </a>
-                  </li>
-                ))}
-                <li>
-                  <a
-                    href="/diagnostico-tmec-puebla"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1 text-small whitespace-nowrap text-ink-secondary transition hover:text-ink"
-                  >
-                    T-MEC
-                    <ArrowUpRight size={14} aria-hidden />
-                    <span className="sr-only">, se abre en otra pestaña</span>
-                  </a>
-                </li>
-              </ul>
-            </nav>
-
+            <HeaderLinks />
             <div className="flex shrink-0 items-center gap-2">
               {onDiagnostic ? <ReadingToggle /> : null}
-              <a
-                href={reserveHref(path)}
-                className="btn btn-primary hidden px-4 py-2 text-small whitespace-nowrap lg:inline-flex"
-              >
-                {ctaLabel}
-              </a>
+              <div className="hidden items-center gap-2 lg:flex">
+                <HeaderCtas path={path} />
+              </div>
               <ThemeToggle />
               <button
                 type="button"
@@ -100,41 +71,7 @@ export function SiteHeader() {
             </div>
           </div>
         </div>
-
-        {open ? (
-          <nav
-            id="mobile-nav"
-            className="mx-3 mt-2 rounded-md border border-line bg-surface shadow-md lg:hidden"
-            aria-label="Principal"
-          >
-            <ul className="flex flex-col p-4">
-              {navItems.map((item) => (
-                <li key={item.href}>
-                  <a
-                    href={item.href}
-                    className="block py-3 text-body text-ink-secondary"
-                    onClick={() => setOpen(false)}
-                  >
-                    {item.label}
-                  </a>
-                </li>
-              ))}
-              <li>
-                <a
-                  href="/diagnostico-tmec-puebla"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1 py-3 text-body text-ink-secondary"
-                  onClick={() => setOpen(false)}
-                >
-                  T-MEC
-                  <ArrowUpRight size={16} aria-hidden />
-                  <span className="sr-only">, se abre en otra pestaña</span>
-                </a>
-              </li>
-            </ul>
-          </nav>
-        ) : null}
+        {open ? <HeaderMenu path={path} onNavigate={() => setOpen(false)} /> : null}
       </header>
     </>
   );

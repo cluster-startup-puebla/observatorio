@@ -5,6 +5,7 @@ import { accountErrors } from "@/lib/account-draft";
 import { getDirectory } from "@/lib/memory-directory";
 import { writeAccountId } from "@/lib/session";
 import { usesSupabaseAuth, writeSupabaseSession } from "@/lib/supabase/auth-session";
+import { readOrgIntent } from "@/lib/organismo/signup-intent";
 import { homeForRole } from "./home";
 import { orgSlugForUser, setOrgSlugCookie } from "./login-org";
 import { signInWithPassword } from "./sign-in";
@@ -30,5 +31,9 @@ export async function loginAction(formData: FormData) {
   await writeSupabaseSession(signed.session);
   const slug = await orgSlugForUser(signed.session.access_token, signed.session.user.id);
   if (slug) await setOrgSlugCookie(slug);
+  const intent = signed.session.user.user_metadata?.intent;
+  if (!slug && signed.role === "empresario" && (intent === "organismo" || (await readOrgIntent()))) {
+    redirect("/onboarding");
+  }
   redirect(homeForRole(signed.role, slug));
 }

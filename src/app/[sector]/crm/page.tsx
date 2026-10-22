@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 import { CrmCards } from "@/components/organismo/crm-cards";
+import { CrmFilters } from "@/components/organismo/crm-filters";
 import { CrmTable } from "@/components/organismo/crm-table";
 import { CrmToggle } from "@/components/organismo/crm-toggle";
 import { getDirectory } from "@/lib/memory-directory";
@@ -20,17 +21,20 @@ export default async function CrmPage({
   const owner = await ownerBySlug(sector);
   if (!owner) notFound();
   const vista = orgView(query.vista);
-  const people = filterOrgCrm(await getDirectory().crm(owner.id), query.estado);
+  const people = filterOrgCrm(await getDirectory().crm(owner.id), vista === "tabla" ? query.estado : undefined);
   return (
     <div className="grid gap-6">
-      <header className="grid gap-2">
+      <header className="flex items-center justify-between gap-4">
         <h1 className="text-h2 text-ink">CRM</h1>
+        <CrmToggle vista={vista} estado={query.estado} />
       </header>
-      <CrmToggle vista={vista} estado={query.estado} />
       {vista === "tarjetas" ? (
         <CrmCards people={people} vista={vista} />
       ) : (
-        <CrmTable people={people} vista={vista} />
+        <div className="grid gap-4">
+          <CrmFilters estado={query.estado} />
+          <CrmTable people={people} vista={vista} />
+        </div>
       )}
     </div>
   );

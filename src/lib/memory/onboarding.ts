@@ -15,6 +15,13 @@ export function onboardingMethods(): Pick<Directory, "completeOnboarding" | "get
       person.size = profile.size;
       if (profile.name) person.name = profile.name;
       if (profile.logoKey) person.logoKey = profile.logoKey;
+      if (profile.jobTitle) person.jobTitle = profile.jobTitle;
+      if (profile.whatsapp) person.whatsapp = profile.whatsapp;
+      if (profile.companyName) person.empresa = profile.companyName;
+      if (profile.marketSize) person.marketSize = profile.marketSize;
+      if (profile.municipality) person.municipality = profile.municipality;
+      if (profile.referralSource) person.referralSource = profile.referralSource;
+      if (profile.sessionInterest) person.sessionInterest = profile.sessionInterest;
       if (person.role === "director") {
         person.orgSlug = orgSlug(profile.name ?? "", profile.slug ?? "");
       }

@@ -1,53 +1,31 @@
-const ESTADOS = [
-  { value: "pendiente", label: "Pendiente" },
-  { value: "contactado", label: "Contactado" },
-  { value: "confirmado", label: "Confirmado" },
-] as const;
-
-export function CrmToggle({
-  vista,
-  estado,
-}: {
-  vista: "tabla" | "tarjetas";
-  estado?: string;
-}) {
+export function CrmToggle({ vista, estado }: { vista: "tabla" | "tarjetas"; estado?: string }) {
   const vistas = [
     { value: "tabla" as const, label: "Tabla" },
     { value: "tarjetas" as const, label: "Tarjetas" },
   ];
   return (
-    <div className="flex flex-wrap gap-4">
-      <nav className="flex flex-wrap gap-2" aria-label="Vista">
-        {vistas.map((item) => (
+    <nav className="flex rounded-full border border-line bg-surface-subtle p-1" aria-label="Vista">
+      {vistas.map((item) => {
+        const active = vista === item.value;
+        return (
           <a
             key={item.value}
-            href={`?vista=${item.value}`}
-            className="text-small font-semibold text-link"
-            aria-current={vista === item.value ? "page" : undefined}
+            href={
+              item.value === "tabla" && estado
+                ? `?vista=tabla&estado=${estado}`
+                : `?vista=${item.value}`
+            }
+            aria-current={active ? "page" : undefined}
+            className={
+              active
+                ? "rounded-full bg-brand px-4 py-1.5 text-small font-semibold text-on-brand"
+                : "rounded-full px-4 py-1.5 text-small font-semibold text-ink"
+            }
           >
             {item.label}
           </a>
-        ))}
-      </nav>
-      <nav className="flex flex-wrap gap-2" aria-label="Estado">
-        <a
-          href={`?vista=${vista}`}
-          className="text-small font-semibold text-link"
-          aria-current={!estado ? "page" : undefined}
-        >
-          Todas
-        </a>
-        {ESTADOS.map((item) => (
-          <a
-            key={item.value}
-            href={`?vista=${vista}&estado=${item.value}`}
-            className="text-small font-semibold text-link"
-            aria-current={estado === item.value ? "page" : undefined}
-          >
-            {item.label}
-          </a>
-        ))}
-      </nav>
-    </div>
+        );
+      })}
+    </nav>
   );
 }
