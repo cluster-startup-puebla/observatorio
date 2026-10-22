@@ -4,9 +4,12 @@ import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { accountErrors } from "./account-draft";
 import { getDirectory } from "./memory-directory";
+import { finishOrganismoBrand } from "./organismo/finish-brand";
 import { orgSlug, slugError } from "./organismo/slug";
+import { signupOrganismoAndSession } from "./organismo/signup-organismo";
 import { sectors } from "./sectors";
 import { writeAccountId } from "./session";
+import { usesSupabaseAuth } from "./supabase/auth-session";
 
 export type AccountFormState = { errors: { email?: string; password?: string } } | null;
 
@@ -19,10 +22,15 @@ export async function createAccountAction(
   const errors = accountErrors({ email, password });
   if (errors) return { errors };
 
-  const role = formData.get("cuenta") === "organismo" ? "director" : "empresario";
+  const isOrganismo = formData.get("cuenta") === "organismo";
+  const sector = String(formData.get("sector") ?? "").trim();
+  if (usesSupabaseAuth() && isOrganismo) {
+    await signupOrganismoAndSession(email, password, sector);
+  }
+
+  const role = isOrganismo ? "director" : "empresario";
   const account = await getDirectory().createAccount({ email, role });
   await writeAccountId(account.id);
-  const sector = String(formData.get("sector") ?? "").trim();
   redirect(sector ? `/onboarding?sector=${encodeURIComponent(sector)}` : "/onboarding");
 }
 
@@ -40,6 +48,8 @@ export async function completeEmpresarioAction(formData: FormData) {
 }
 
 export async function completeOrganismoAction(formData: FormData) {
+  if (usesSupabaseAuth()) return finishOrganismoBrand(formData);
+
   const id = String(formData.get("accountId") ?? "");
   const name = String(formData.get("nombre") ?? "").trim();
   const color = String(formData.get("color") ?? "").trim();

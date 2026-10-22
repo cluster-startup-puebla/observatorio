@@ -1,6 +1,7 @@
 import type { SupabaseClient } from "@supabase/supabase-js";
 import { landingMessage } from "@/lib/admin/sectores/headline";
 import type { AccountRole, Directory } from "./directory";
+import { opensForOrganization, recordLinkOpen } from "./supabase/link-opens";
 
 const notImplemented = async (): Promise<never> => {
   throw new Error("no implementado");
@@ -47,8 +48,8 @@ export function createSupabaseDirectory(client: SupabaseClient): Directory {
     },
     attributeRegistration: notImplemented,
     conversion: notImplemented,
-    recordOpen: notImplemented,
-    opensFor: notImplemented,
+    recordOpen: recordLinkOpen,
+    opensFor: (orgId) => opensForOrganization(client, orgId),
     scanQr: notImplemented,
     sendOpenInnovation: notImplemented,
     outbox: notImplemented,
