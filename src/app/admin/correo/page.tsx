@@ -2,6 +2,9 @@ import { Kicker } from "@/components/landing/atoms/kicker";
 import { can, type Role } from "@/lib/access";
 import { sendInnovationAction } from "@/lib/flow-actions";
 import { getDirectory } from "@/lib/memory-directory";
+import { usesSupabaseAuth } from "@/lib/supabase/auth-session";
+
+const mailAction = usesSupabaseAuth() ? "/api/admin/correo" : sendInnovationAction;
 
 export const instant = false;
 
@@ -29,7 +32,7 @@ export default async function CorreoPage({
           El aviso sale solo a quienes ya terminaron el perfil. Queda en la bandeja, sin abrir el correo todavía.
         </p>
         {allowed ? (
-          <form action={sendInnovationAction}>
+          <form action={mailAction}>
             <button type="submit" className="btn btn-primary">
               Enviar innovación abierta
             </button>
