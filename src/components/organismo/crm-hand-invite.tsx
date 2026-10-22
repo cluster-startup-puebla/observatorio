@@ -5,6 +5,7 @@ import { createHandInviteAction } from "@/lib/organismo/hand-invite-action";
 const notices: Record<string, string> = {
   invitacion: "Escribe nombre, empresa y un correo válido.",
   repetido: "Ese correo ya está en el CRM.",
+  guardar: "No se pudo guardar la invitación.",
 };
 
 export function CrmHandInvite({ slug, error }: { slug: string; error?: string }) {

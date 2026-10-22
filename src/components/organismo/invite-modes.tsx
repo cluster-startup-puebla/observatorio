@@ -62,16 +62,16 @@ export function InviteModes({
         })}
       </nav>
       <p className="text-body text-ink-secondary">{current.lead}</p>
-      {active === "mano" ? <ManualInvite /> : null}
+      {active === "mano" ? <ManualInvite slug={slug} error={error} /> : null}
       {active === "archivo" ? (
         <div className="grid gap-5">
           <a className="text-small font-semibold text-link" href={`/${slug}/invitaciones/plantilla`}>
             Descargar plantilla
           </a>
-          <InviteUpload />
+          <InviteUpload slug={slug} error={error} />
         </div>
       ) : null}
-      {active === "correos" ? <EmailBox error={error} /> : null}
+      {active === "correos" ? <EmailBox slug={slug} error={error} /> : null}
     </div>
   );
 }
