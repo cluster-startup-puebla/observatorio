@@ -1,13 +1,24 @@
 "use server";
 
 import { redirect } from "next/navigation";
+import { invitesFromEmails } from "./organismo/email-list";
 import { getDirectory } from "./memory-directory";
 import { readAccountId } from "./session";
 
 export { copyEventLinkAction } from "./organismo/copy-link-action";
 
-export async function uploadInvitesAction(formData: FormData) {
+async function accountWithSlug() {
   const id = await readAccountId();
+  const account = id ? await getDirectory().getAccount(id) : null;
+  return { id, slug: account?.orgSlug };
+}
+
+function toCrm(slug?: string) {
+  redirect(slug ? `/${slug}/crm` : "/onboarding");
+}
+
+export async function uploadInvitesAction(formData: FormData) {
+  const { id, slug } = await accountWithSlug();
   const file = formData.get("archivo");
   if (!id || !(file instanceof File)) return;
   const text = await file.text();
@@ -26,11 +37,11 @@ export async function uploadInvitesAction(formData: FormData) {
       correo: row[2] ?? "",
     })),
   );
-  redirect("/organismo/crm");
+  toCrm(slug);
 }
 
 export async function createInviteAction(formData: FormData) {
-  const id = await readAccountId();
+  const { id, slug } = await accountWithSlug();
   if (!id) return;
   await getDirectory().importInvites(id, [
     {
@@ -39,5 +50,16 @@ export async function createInviteAction(formData: FormData) {
       correo: String(formData.get("correo") ?? ""),
     },
   ]);
-  redirect("/organismo/crm");
+  toCrm(slug);
+}
+
+export async function uploadEmailsAction(formData: FormData) {
+  const { id, slug } = await accountWithSlug();
+  if (!id || !slug) return;
+  const parsed = invitesFromEmails(String(formData.get("correos") ?? ""));
+  if (parsed.ok.length === 0) {
+    redirect(`/${slug}/invitaciones?error=correos`);
+  }
+  await getDirectory().importInvites(id, parsed.ok);
+  redirect(`/${slug}/crm`);
 }
