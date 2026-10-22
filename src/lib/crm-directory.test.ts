@@ -66,4 +66,14 @@ describe("crm en memoria", () => {
     await directory.attributeRegistration({ token, email: "beto@sur.mx" });
     expect(await directory.conversion(org.id, "logistica")).toEqual({ copies: 0, registrations: 0 });
   });
+
+  it("la cuenta del invitado confirma y el perfil lo registra", async () => {
+    const directory = getDirectory();
+    const org = await directory.createAccount({ email: "dir@camara.mx", role: "director" });
+    await directory.importInvites(org.id, [{ nombre: "Ana", empresa: "Norte", correo: "ana@norte.mx" }]);
+    const account = await directory.createAccount({ email: "ana@norte.mx", role: "empresario" });
+    expect((await directory.crm(org.id))[0].status).toBe("confirmo");
+    await directory.completeOnboarding(account.id, { sectorSlug: "turismo", size: "1–10", name: "Ana" });
+    expect((await directory.crm(org.id))[0].status).toBe("registrado");
+  });
 });

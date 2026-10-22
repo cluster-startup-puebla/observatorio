@@ -71,18 +71,24 @@ function createMemoryDirectory(): Directory {
     async createAccount(input) {
       const state = store();
       const email = input.email.trim().toLowerCase();
-      const existing = state.people.find((person) => person.email === email && !person.orgId);
-      if (existing) return { id: existing.id };
-      state.seq += 1;
-      const id = `p${state.seq}`;
-      state.people.push({
-        id,
-        email,
-        role: input.role,
-        onboarded: false,
-        status: null,
-      });
-      return { id };
+      let account = state.people.find((person) => person.email === email && !person.orgId);
+      if (!account) {
+        state.seq += 1;
+        account = {
+          id: `p${state.seq}`,
+          email,
+          role: input.role,
+          onboarded: false,
+          status: null,
+        };
+        state.people.push(account);
+      }
+      for (const person of state.people) {
+        if (!person.orgId || person.email.trim().toLowerCase() !== email) continue;
+        const next = applyCrmEvent(person.status, "confirmar");
+        if (next.ok) person.status = next.status;
+      }
+      return { id: account.id };
     },
 
     async findByEmail(email) {
@@ -94,7 +100,8 @@ function createMemoryDirectory(): Directory {
     },
 
     async completeOnboarding(id, profile) {
-      const person = store().people.find((item) => item.id === id);
+      const state = store();
+      const person = state.people.find((item) => item.id === id);
       if (!person) return;
       person.onboarded = true;
       person.sectorSlug = profile.sectorSlug;
@@ -102,6 +109,13 @@ function createMemoryDirectory(): Directory {
       if (profile.name) person.name = profile.name;
       if (profile.logoKey) person.logoKey = profile.logoKey;
       person.status = "registrado";
+      const email = person.email.trim().toLowerCase();
+      for (const row of state.people) {
+        if (!row.orgId || row.email.trim().toLowerCase() !== email) continue;
+        if (row.status !== "confirmo") continue;
+        const next = applyCrmEvent(row.status, "registrar");
+        if (next.ok) row.status = next.status;
+      }
     },
 
     async saveAnswer(input) {
