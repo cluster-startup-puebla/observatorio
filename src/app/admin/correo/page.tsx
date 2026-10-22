@@ -1,17 +1,23 @@
 import { Kicker } from "@/components/landing/atoms/kicker";
-import { can } from "@/lib/access";
+import { can, type Role } from "@/lib/access";
 import { sendInnovationAction } from "@/lib/flow-actions";
 import { getDirectory } from "@/lib/memory-directory";
 
 export const instant = false;
 
+function roleFromQuery(value: string | undefined): Role {
+  if (value === "moderador") return "moderador";
+  return "superadmin";
+}
+
 export default async function CorreoPage({
   searchParams,
 }: {
-  searchParams: Promise<{ enviado?: string }>;
+  searchParams: Promise<{ enviado?: string; rol?: string }>;
 }) {
   const params = await searchParams;
-  const allowed = can("superadmin", "send_mass_email");
+  const role = roleFromQuery(params.rol);
+  const allowed = can(role, "send_mass_email");
   const count = params.enviado === "1" ? (await getDirectory().outbox()).length : null;
 
   return (

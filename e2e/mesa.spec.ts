@@ -38,3 +38,13 @@ test("el segundo escaneo no vuelve a marcar llegada", async ({ page }) => {
   await expect(page.getByText("transición inválida")).toBeVisible();
   await expect(page.getByTestId("bienvenida")).toHaveCount(0);
 });
+
+test("el moderador ve el avance y no el botón de correo", async ({ page }) => {
+  await page.goto("/metodologia?persona=p-mod");
+  await expect(page.getByTestId("metodologia-lista")).toBeAttached();
+  await page.getByRole("radio", { name: "Papel/Bitácoras" }).check();
+  await page.goto("/panel?rol=moderador");
+  await expect(page.getByTestId("avance-p-mod")).toContainText("1");
+  await page.goto("/admin/correo?rol=moderador");
+  await expect(page.getByRole("button", { name: "Enviar innovación abierta" })).toHaveCount(0);
+});

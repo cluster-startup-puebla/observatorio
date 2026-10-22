@@ -1,10 +1,22 @@
 import { Kicker } from "@/components/landing/atoms/kicker";
+import type { Role } from "@/lib/access";
 import { getDirectory } from "@/lib/memory-directory";
 
 export const instant = false;
 
-export default async function PanelPage() {
-  const rows = await getDirectory().progress();
+function roleFromQuery(value: string | undefined): Role {
+  if (value === "moderador") return "moderador";
+  return "superadmin";
+}
+
+export default async function PanelPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ rol?: string }>;
+}) {
+  const params = await searchParams;
+  const role = roleFromQuery(params.rol);
+  const rows = role === "superadmin" || role === "moderador" ? await getDirectory().progress() : [];
 
   return (
     <section className="container-site py-10 lg:py-14">
