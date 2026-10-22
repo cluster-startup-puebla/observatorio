@@ -2,6 +2,7 @@ import "server-only";
 
 import { adminDb } from "@/lib/admin/admin-db";
 import { bandLabel } from "./band-label";
+import { sectorSourceLabel } from "./sector-source";
 
 export async function loadEmpresa(id: string) {
   const db = await adminDb();
@@ -22,7 +23,11 @@ export async function loadEmpresa(id: string) {
     if (result.error) throw new Error(result.error.message);
   }
   return {
-    company: { ...company.data, employee_label: bandLabel(company.data.employee_band) },
+    company: {
+      ...company.data,
+      employee_label: bandLabel(company.data.employee_band),
+      source_label: sectorSourceLabel(company.data.sector_source),
+    },
     sector: sector.data,
     answers: answers.data ?? [],
     pass: pass.data,

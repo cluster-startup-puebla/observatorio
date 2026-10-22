@@ -2,6 +2,7 @@
 
 import { BandSelect } from "@/app/admin/empresas/band-select";
 import { EmpresaPickers } from "@/app/admin/empresas/empresa-pickers";
+import { SourceSelect } from "@/app/admin/empresas/source-select";
 import { FormSheet } from "@/components/admin/form-sheet";
 import { SheetSubmit } from "@/components/admin/sheet-submit";
 
@@ -11,6 +12,7 @@ export function EditEmpresaForm({
   band,
   sectorId,
   referral,
+  source,
   sectors,
   open,
   trigger,
@@ -20,6 +22,7 @@ export function EditEmpresaForm({
   band: string;
   sectorId: string;
   referral: string;
+  source: string;
   sectors: { id: string; name: string }[];
   open?: boolean;
   trigger?: React.ReactNode;
@@ -36,6 +39,10 @@ export function EditEmpresaForm({
         <label className="grid gap-1 text-small">
           Tamaño
           <BandSelect value={band} />
+        </label>
+        <label className="grid gap-1 text-small">
+          Cómo llegó el sector
+          <SourceSelect value={source} />
         </label>
         <label className="grid gap-1 text-small">
           Referencia

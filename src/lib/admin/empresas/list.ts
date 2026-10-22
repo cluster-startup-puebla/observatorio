@@ -10,7 +10,7 @@ export async function listEmpresas(rawPage: string | undefined) {
   if (!db) return { page: page.page, rows: [] as Record<string, string>[] };
   const result = await db
     .from("companies")
-    .select("id, legal_name, employee_band, sector_id, referral_source, sectors(name)")
+    .select("id, legal_name, employee_band, sector_id, sector_source, referral_source, sectors(name)")
     .order("legal_name")
     .range(page.from, page.to);
   if (result.error) throw new Error(result.error.message);
@@ -27,6 +27,7 @@ export async function listEmpresas(rawPage: string | undefined) {
         sector_name: name ?? "",
         sector_id: row.sector_id,
         referral_source: row.referral_source ?? "",
+        sector_source: row.sector_source ?? "",
       };
     }),
   };

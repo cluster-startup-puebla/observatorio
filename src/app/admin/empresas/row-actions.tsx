@@ -24,6 +24,7 @@ export function EmpresaRowActions({
           band={row.band}
           sectorId={row.sector_id}
           referral={row.referral_source}
+          source={row.sector_source}
           sectors={sectors}
           trigger={
             <Button type="button" variant="ghost" size="icon-sm" aria-label="Editar">

@@ -18,6 +18,7 @@ export async function POST(request: NextRequest) {
     band: String(form.get("employee_band") ?? ""),
     referral: String(form.get("referral_source") ?? ""),
     profileId: String(form.get("profile_id") ?? ""),
+    sectorSource: String(form.get("sector_source") ?? ""),
   });
   if (!draft.ok) return NextResponse.redirect(new URL(`/admin/empresas?error=${encodeURIComponent(draft.reason)}`, request.url));
   const db = await adminDb();

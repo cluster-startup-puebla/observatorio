@@ -31,6 +31,7 @@ export async function POST(request: NextRequest, context: { params: Promise<{ id
     band: String(form.get("employee_band") ?? ""),
     referral: String(form.get("referral_source") ?? ""),
     profileId: current.company.profile_id,
+    sectorSource: String(form.get("sector_source") ?? ""),
   });
   if (!draft.ok) return NextResponse.redirect(new URL(`${back}?error=${encodeURIComponent(draft.reason)}`, request.url));
   const db = await adminDb();
@@ -40,6 +41,7 @@ export async function POST(request: NextRequest, context: { params: Promise<{ id
     sector_id: draft.sector_id,
     employee_band: draft.employee_band,
     referral_source: draft.referral_source,
+    sector_source: draft.sector_source,
   }).eq("id", id);
   if (updated.error) return NextResponse.redirect(new URL(`${back}?error=${encodeURIComponent(updated.error.message)}`, request.url));
   return NextResponse.redirect(new URL(back, request.url));

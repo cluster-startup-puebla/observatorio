@@ -27,7 +27,7 @@ export default async function EmpresaDetailPage({
       facts={[
         { label: "Sector", value: data.sector?.name ?? "" },
         { label: "Tamaño", value: data.company.employee_label },
-        { label: "Cómo llegó el sector", value: data.company.sector_source },
+        { label: "Cómo llegó el sector", value: data.company.source_label },
         { label: "Referencia", value: data.company.referral_source },
       ]}
       tabs={[...companyTabs]}
