@@ -1,5 +1,6 @@
 import { Kicker } from "@/components/landing/atoms/kicker";
 import { Field, controlClass } from "@/components/landing/molecules/field";
+import { mesaHref } from "@/lib/admin/mesa/href";
 import { scanDeskAction } from "@/lib/flow-actions";
 
 export const instant = false;
@@ -20,6 +21,8 @@ export default async function MesaPage({
         <p className="text-body-lg text-ink-secondary">
           El pase solo existe si el perfil ya está terminado. Quien no está registrado no entra.
         </p>
+        <a href="/admin">Volver al panel</a>
+        <p data-testid="mesa-href">{mesaHref}</p>
         <form action={scanDeskAction} className="grid gap-5">
           <Field id="codigo" label="Código QR">
             <input
