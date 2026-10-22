@@ -16,7 +16,7 @@ export function OpensChart({
 }) {
   return (
     <ChartPanel title="Aperturas por día" hint={hint}>
-      <ChartContainer config={config} className="aspect-[2/1] w-full">
+      <ChartContainer config={config} className="aspect-auto h-72 w-full">
         <BarChart accessibilityLayer data={bars} margin={{ left: 0, right: 0 }}>
           <CartesianGrid vertical={false} />
           <XAxis dataKey="dia" tickLine={false} axisLine={false} tickMargin={8} />
