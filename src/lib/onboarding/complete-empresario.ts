@@ -4,20 +4,35 @@ import { redirect } from "next/navigation";
 import { readSessionAccount } from "@/lib/auth/session-account";
 import { getDirectory } from "@/lib/memory-directory";
 import { attributeSignup } from "@/lib/organismo/attribute-signup";
-import { usesSupabaseAuth } from "@/lib/supabase/auth-session";
-import { empresarioErrors, parseEmpresarioForm } from "./empresario-draft";
+import { readAccessToken, usesSupabaseAuth } from "@/lib/supabase/auth-session";
+import { empresarioErrors, parseEmpresarioForm, type EmpresarioProfile } from "./empresario-draft";
+import { saveEmpresarioProfile } from "./save-empresario";
 
-export async function completeEmpresarioAction(formData: FormData) {
-  const id = String(formData.get("accountId") ?? "");
-  const profile = parseEmpresarioForm(formData);
-  const token = String(formData.get("invitacion") ?? "").trim();
-  const reason = !id ? "cuenta" : empresarioErrors(profile);
-  if (reason) {
-    const query = new URLSearchParams({ error: reason });
-    if (profile.sectorSlug) query.set("sector", profile.sectorSlug);
-    if (token) query.set("invitacion", token);
-    redirect(`/onboarding?${query.toString()}`);
+function back(reason: string, profile: EmpresarioProfile, token: string) {
+  const query = new URLSearchParams({ error: reason });
+  if (profile.sectorSlug) query.set("sector", profile.sectorSlug);
+  if (token) query.set("invitacion", token);
+  redirect(`/onboarding?${query.toString()}`);
+}
+
+async function finishInSupabase(profile: EmpresarioProfile, token: string) {
+  const session = await readSessionAccount();
+  const access = await readAccessToken();
+  if (!session || session.role !== "empresario" || !access) back("cuenta", profile, token);
+  const saved = await saveEmpresarioProfile(access!, session!.id, profile, Boolean(token));
+  if (!saved.ok) back(saved.reason, profile, token);
+  if (token) {
+    await attributeSignup({
+      token,
+      email: session!.email,
+      sectorSlug: profile.sectorSlug,
+      nombre: profile.fullName,
+      empresa: profile.companyName,
+    });
   }
+}
+
+async function finishInMemory(id: string, profile: EmpresarioProfile, token: string) {
   const directory = getDirectory();
   const session = await readSessionAccount();
   await directory.completeOnboarding(id, {
@@ -34,20 +49,19 @@ export async function completeEmpresarioAction(formData: FormData) {
     email: session?.email,
   });
   const account = await directory.getAccount(id);
-  if (token && usesSupabaseAuth() && session?.email) {
-    await attributeSignup({
-      token,
-      email: session.email,
-      sectorSlug: profile.sectorSlug,
-      nombre: profile.fullName,
-      empresa: profile.companyName,
-    });
-  } else if (account?.onboarded && token) {
-    await directory.attributeRegistration({
-      token,
-      email: account.email,
-      sectorSlug: profile.sectorSlug,
-    });
+  if (account?.onboarded && token) {
+    await directory.attributeRegistration({ token, email: account.email, sectorSlug: profile.sectorSlug });
   }
+}
+
+export async function completeEmpresarioAction(formData: FormData) {
+  const id = String(formData.get("accountId") ?? "");
+  const profile = parseEmpresarioForm(formData);
+  const token = String(formData.get("invitacion") ?? "").trim();
+  const supabase = usesSupabaseAuth();
+  const reason = empresarioErrors(profile) ?? (!supabase && !id ? "cuenta" : null);
+  if (reason) back(reason, profile, token);
+  if (supabase) await finishInSupabase(profile, token);
+  else await finishInMemory(id, profile, token);
   redirect("/onboarding");
 }

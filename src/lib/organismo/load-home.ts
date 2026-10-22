@@ -8,10 +8,7 @@ import { sectorCuts } from "./sector-cuts";
 
 export async function loadOrgHome(orgId: string, sectorSlug?: string) {
   await connection();
-  if (usesSupabaseAuth()) {
-    const stored = await loadSupabaseHome(orgId, sectorSlug);
-    if (stored) return stored;
-  }
+  if (usesSupabaseAuth()) return loadSupabaseHome(orgId, sectorSlug);
   const directory = getDirectory();
   const opens = await directory.opensFor(orgId);
   const names = new Map(sectors.map((sector) => [sector.slug, sector.name]));

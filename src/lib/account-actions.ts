@@ -10,6 +10,7 @@ import { orgSlug, slugError } from "./organismo/slug";
 import { signupOrganismoAndSession } from "./organismo/signup-organismo";
 import { sectors } from "./sectors";
 import { writeAccountId } from "./session";
+import { signupEmpresarioAndSession } from "./auth/signup-empresario";
 import { usesSupabaseAuth } from "./supabase/auth-session";
 
 export type AccountFormState = {
@@ -29,12 +30,13 @@ export async function createAccountAction(
 
   const isOrganismo = formData.get("cuenta") === "organismo";
   const sector = String(formData.get("sector") ?? "").trim();
+  const invite = String(formData.get("invitacion") ?? "").trim();
   if (usesSupabaseAuth() && isOrganismo) return signupOrganismoAndSession(email, password, sector);
+  if (usesSupabaseAuth()) return signupEmpresarioAndSession(email, password, sector, invite);
 
   const role = isOrganismo ? "director" : "empresario";
   const account = await getDirectory().createAccount({ email, role });
   await writeAccountId(account.id);
-  const invite = String(formData.get("invitacion") ?? "").trim();
   const next = new URLSearchParams();
   if (sector) next.set("sector", sector);
   if (invite) next.set("invitacion", invite);

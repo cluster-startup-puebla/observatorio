@@ -7,6 +7,7 @@ import { getDirectory } from "@/lib/memory-directory";
 import { filterOrgCrm, orgView } from "@/lib/organismo/crm-view";
 import { listOrgCrm } from "@/lib/organismo/org-crm-read";
 import { ownerBySlug } from "@/lib/organismo/owner";
+import { usesSupabaseAuth } from "@/lib/supabase/auth-session";
 
 export const instant = false;
 
@@ -24,7 +25,7 @@ export default async function CrmPage({
   const vista = orgView(query.vista);
   const stored = await listOrgCrm(owner.id);
   const people = filterOrgCrm(
-    stored ?? (await getDirectory().crm(owner.id)),
+    stored ?? (usesSupabaseAuth() ? [] : await getDirectory().crm(owner.id)),
     vista === "tabla" ? query.estado : undefined,
   );
   return (

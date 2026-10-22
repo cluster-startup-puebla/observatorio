@@ -5,9 +5,8 @@ import { OnboardingWizard } from "@/components/onboarding/onboarding-wizard";
 import { orgSlugForUser } from "@/lib/auth/login-org";
 import { readSessionAccount } from "@/lib/auth/session-account";
 import { readOrgIntent } from "@/lib/organismo/signup-intent";
-import { getDirectory } from "@/lib/memory-directory";
 import { resolveSector } from "@/lib/sectors";
-import { createSupabaseAnon, readAccessToken } from "@/lib/supabase/auth-session";
+import { createSupabaseAnon, createSupabaseWithAccess, readAccessToken } from "@/lib/supabase/auth-session";
 
 export async function SupabaseOnboarding({
   searchParams,
@@ -28,6 +27,11 @@ export async function SupabaseOnboarding({
   const org = account.role === "director" || intent === "organismo" || (await readOrgIntent());
   const params = await searchParams;
   const resolved = resolveSector({ pathSector: params.sector });
+  const finished = await createSupabaseWithAccess(token)
+    .from("profiles")
+    .select("onboarded_at")
+    .eq("id", account.id)
+    .maybeSingle();
 
   return (
     <AuthShell
@@ -42,7 +46,7 @@ export async function SupabaseOnboarding({
         sectorSlug={resolved.slug}
         sectorName={resolved.name}
         invitacion={params.invitacion}
-        onboarded={!org && Boolean(await getDirectory().qrFor(account.id))}
+        onboarded={!org && Boolean(finished.data?.onboarded_at)}
         formError={params.error}
         missingSlug={params.error === "slug"}
         missingLogo={params.error === "logo"}

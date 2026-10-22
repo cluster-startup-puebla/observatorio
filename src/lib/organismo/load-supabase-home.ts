@@ -13,9 +13,21 @@ function sectorSlug(joined: SectorJoin) {
   return Array.isArray(joined) ? (joined[0]?.slug ?? "") : joined.slug;
 }
 
+function emptyHome() {
+  const names = new Map(sectors.map((sector) => [sector.slug, sector.name]));
+  const totals = linkStats({ opens: [], conversions: 0, now: new Date() });
+  return {
+    opens: totals.opens,
+    conversions: totals.conversions,
+    rate: totals.rate,
+    bars: totals.bars,
+    cuts: sectorCuts([], names, new Map()),
+  };
+}
+
 export async function loadSupabaseHome(orgId: string, sectorSlugFilter?: string) {
   const db = await orgDb();
-  if (!db) return null;
+  if (!db) return emptyHome();
   const opens = await opensForOrganization(db, orgId);
   const contacts = await db
     .from("crm_contacts")
