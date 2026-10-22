@@ -58,6 +58,8 @@ export default async function SectorPage({
   const brand = token ? await getDirectory().brandForToken(token) : null;
   const resolved = resolveSector({ pathSector: sector });
   if (token && resolved.slug) {
+    const { connection } = await import("next/server");
+    await connection();
     await getDirectory().recordOpen({
       token,
       sectorSlug: resolved.slug,

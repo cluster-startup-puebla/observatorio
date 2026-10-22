@@ -13,6 +13,7 @@ describe("slug y aperturas en postgres", () => {
     expect(sql).toContain("create table public.link_opens");
     expect(sql).toContain("record_link_open");
     expect(sql).toContain("finish_organization_brand");
+    expect(sql).toContain("organization_by_slug");
     expect(sql).not.toContain("ref=");
   });
 });

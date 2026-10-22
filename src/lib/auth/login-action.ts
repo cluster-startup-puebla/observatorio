@@ -1,12 +1,12 @@
 "use server";
 
-import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { accountErrors } from "@/lib/account-draft";
 import { getDirectory } from "@/lib/memory-directory";
 import { writeAccountId } from "@/lib/session";
 import { usesSupabaseAuth, writeSupabaseSession } from "@/lib/supabase/auth-session";
 import { homeForRole } from "./home";
+import { orgSlugForUser, setOrgSlugCookie } from "./login-org";
 import { signInWithPassword } from "./sign-in";
 
 export async function loginAction(formData: FormData) {
@@ -21,15 +21,14 @@ export async function loginAction(formData: FormData) {
     if (!result.ok) redirect("/login?error=credenciales");
     await writeAccountId(result.id);
     const account = await getDirectory().getAccount(result.id);
-    if (account?.orgSlug) {
-      const jar = await cookies();
-      jar.set("org-slug", account.orgSlug, { path: "/", httpOnly: true, sameSite: "lax" });
-    }
+    if (account?.orgSlug) await setOrgSlugCookie(account.orgSlug);
     redirect(homeForRole(result.role, account?.orgSlug));
   }
 
   const signed = await signInWithPassword(email, password);
   if (!signed.ok) redirect(`/login?error=${signed.reason}`);
   await writeSupabaseSession(signed.session);
-  redirect(homeForRole(signed.role));
+  const slug = await orgSlugForUser(signed.session.access_token, signed.session.user.id);
+  if (slug) await setOrgSlugCookie(slug);
+  redirect(homeForRole(signed.role, slug));
 }

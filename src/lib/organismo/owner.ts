@@ -3,11 +3,7 @@ import "server-only";
 import { readSessionAccount } from "@/lib/auth/session-account";
 import { getDirectory } from "@/lib/memory-directory";
 import { memoryStore } from "@/lib/memory/store";
-import {
-  createSupabaseWithAccess,
-  readAccessToken,
-  usesSupabaseAuth,
-} from "@/lib/supabase/auth-session";
+import { createSupabaseAnon, usesSupabaseAuth } from "@/lib/supabase/auth-session";
 
 export type OrgOwner = { id: string; slug: string; name: string; email: string };
 
@@ -21,19 +17,9 @@ export async function ownerBySlug(slug: string): Promise<OrgOwner | null> {
 }
 
 async function ownerFromSupabase(slug: string): Promise<OrgOwner | null> {
-  const token = await readAccessToken();
-  if (!token) return null;
-  const org = await createSupabaseWithAccess(token)
-    .from("organizations")
-    .select("id, name, slug")
-    .eq("slug", slug)
-    .maybeSingle();
-  if (!org.data?.name || !org.data.slug) return null;
+  const result = await createSupabaseAnon().rpc("organization_by_slug", { org_slug: slug });
+  const row = Array.isArray(result.data) ? result.data[0] : result.data;
+  if (result.error || !row?.id || !row.name || !row.slug) return null;
   const account = await readSessionAccount();
-  return {
-    id: org.data.id,
-    slug: org.data.slug,
-    name: org.data.name,
-    email: account?.email ?? "",
-  };
+  return { id: row.id, slug: row.slug, name: row.name, email: account?.email ?? "" };
 }
