@@ -1,8 +1,11 @@
 import "server-only";
 
 import { adminDb } from "@/lib/admin/admin-db";
+import { usesSupabaseAuth } from "@/lib/supabase/auth-session";
+import { memoryLoadOrganismo } from "./memory";
 
 export async function loadOrganismo(id: string) {
+  if (!usesSupabaseAuth()) return memoryLoadOrganismo(id);
   const db = await adminDb();
   if (!db) return null;
   const org = await db.from("organizations").select("id, name, brand_color, brand_completed_at").eq("id", id).maybeSingle();

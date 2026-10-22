@@ -1,4 +1,6 @@
 import { FormSheet } from "@/components/admin/form-sheet";
+import { OrganismoLogoTab } from "@/app/admin/organismos/[id]/logo-tab";
+import { SheetSubmit } from "@/components/admin/sheet-submit";
 
 export function OrganismoTabs({
   id,
@@ -53,25 +55,11 @@ export function OrganismoTabs({
                 </option>
               ))}
             </select>
-            <button className="btn btn-primary" type="submit">
-              Copiar enlace del evento
-            </button>
+            <SheetSubmit>Copiar enlace del evento</SheetSubmit>
           </form>
         </FormSheet>
       </div>
     );
   }
-  return (
-    <div className="mt-4 grid gap-3">
-      <p>{data.logo?.object_path ?? "Sin logo."}</p>
-      <FormSheet action="Editar" resource="logo">
-        <form action={`/api/admin/organismos/${id}/logo`} method="post" encType="multipart/form-data" className="grid gap-3">
-          <input name="logo" type="file" accept="image/png,image/jpeg,image/webp" />
-          <button className="btn btn-primary" type="submit">
-            Subir logo
-          </button>
-        </form>
-      </FormSheet>
-    </div>
-  );
+  return <OrganismoLogoTab id={id} logo={data.logo} />;
 }

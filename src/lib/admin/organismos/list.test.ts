@@ -23,5 +23,7 @@ describe("lista de organismos", () => {
     expect(list).toContain(".range(page.from, page.to)");
     expect(route).toContain("await requireSuperadmin()");
     expect(route).not.toMatch(/export async function DELETE/);
+    const remote = readFileSync("src/lib/admin/organismos/create-remote.ts", "utf8");
+    expect(remote.indexOf(".upload(")).toBeLessThan(remote.indexOf("create_organization_brand"));
   });
 });

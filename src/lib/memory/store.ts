@@ -16,6 +16,17 @@ export type Person = {
   status: CrmStatus | null;
 };
 
+export type StoredLogo = { bytes: Uint8Array; contentType: string; objectPath: string };
+
+export type StoredOrg = {
+  id: string;
+  name: string | null;
+  brand_color: string | null;
+  brand_completed_at: string | null;
+  created_at: string;
+  logo: StoredLogo | null;
+};
+
 export type MemoryStore = {
   seq: number;
   people: Person[];
@@ -23,12 +34,13 @@ export type MemoryStore = {
   copies: Record<string, number>;
   registrations: Record<string, number>;
   outbox: { to: string; subject: string }[];
+  organizations: StoredOrg[];
 };
 
 const globalKey = "__observatorioDirectory";
 
 export function emptyStore(): MemoryStore {
-  return { seq: 0, people: [], answers: {}, copies: {}, registrations: {}, outbox: [] };
+  return { seq: 0, people: [], answers: {}, copies: {}, registrations: {}, outbox: [], organizations: [] };
 }
 
 export function memoryStore(): MemoryStore {
