@@ -9,9 +9,13 @@ export function sectorSlug(name: string): string {
     .replace(/^-|-$/g, "");
 }
 
+const keptSlug: Record<string, string> = {
+  "Plásticos y Economía circular": "plasticos-y-hule",
+};
+
 export const sectors = diagnosticIndustries.map((name) => ({
   name,
-  slug: sectorSlug(name),
+  slug: keptSlug[name] ?? sectorSlug(name),
 }));
 
 export function resolveSector(input: { pathSector?: string; chosen?: string }): {

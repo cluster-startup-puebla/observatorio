@@ -4,6 +4,9 @@ import { reserveHref, resolveSector, sectorSlug, sectors } from "./sectors";
 describe("sectors", () => {
   it("publica el catálogo con slug estable", () => {
     expect(sectors.map((sector) => sector.slug)).toContain("automotriz-y-autopartes");
+    expect(sectors.find((sector) => sector.slug === "plasticos-y-hule")?.name).toBe(
+      "Plásticos y Economía circular",
+    );
     expect(sectorSlug("Textil y confección")).toBe("textil-y-confeccion");
   });
 

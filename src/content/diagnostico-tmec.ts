@@ -8,7 +8,7 @@ export const diagnosticIndustries = [
   "Construcción",
   "Química",
   "Artes gráficas y empaque",
-  "Plásticos y hule",
+  "Plásticos y Economía circular",
   "Minerales no metálicos",
   "Tecnología y servicios de TI",
   "Turismo",
