@@ -3,6 +3,8 @@
 import { redirect } from "next/navigation";
 import { readSessionAccount } from "@/lib/auth/session-account";
 import { getDirectory } from "@/lib/memory-directory";
+import { attributeSignup } from "@/lib/organismo/attribute-signup";
+import { usesSupabaseAuth } from "@/lib/supabase/auth-session";
 import { empresarioErrors, parseEmpresarioForm } from "./empresario-draft";
 
 export async function completeEmpresarioAction(formData: FormData) {
@@ -32,7 +34,15 @@ export async function completeEmpresarioAction(formData: FormData) {
     email: session?.email,
   });
   const account = await directory.getAccount(id);
-  if (account?.onboarded && token) {
+  if (token && usesSupabaseAuth() && session?.email) {
+    await attributeSignup({
+      token,
+      email: session.email,
+      sectorSlug: profile.sectorSlug,
+      nombre: profile.fullName,
+      empresa: profile.companyName,
+    });
+  } else if (account?.onboarded && token) {
     await directory.attributeRegistration({
       token,
       email: account.email,

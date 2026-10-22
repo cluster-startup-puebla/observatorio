@@ -5,6 +5,8 @@ import { LandingBody } from "@/components/landing/landing-body";
 import { SectorLanding } from "@/components/landing/sector-landing";
 import { OrgHome } from "@/components/organismo/home";
 import { getDirectory } from "@/lib/memory-directory";
+import { recordLinkOpen } from "@/lib/supabase/link-opens";
+import { usesSupabaseAuth } from "@/lib/supabase/auth-session";
 import { pageMetadata, siteDescription, siteName } from "@/lib/metadata";
 import { eventToken } from "@/lib/organismo/event-token";
 import { inviteBrand } from "@/lib/organismo/invite-brand";
@@ -50,11 +52,9 @@ export default async function SectorPage({
   if (token && resolved.slug) {
     const { connection } = await import("next/server");
     await connection();
-    await getDirectory().recordOpen({
-      token,
-      sectorSlug: resolved.slug,
-      at: new Date().toISOString(),
-    });
+    const open = { token, sectorSlug: resolved.slug, at: new Date().toISOString() };
+    if (usesSupabaseAuth()) await recordLinkOpen(open);
+    else await getDirectory().recordOpen(open);
     await captureFinishedInvite(token, resolved.slug);
   }
   const href = reserveHref(`/${sector}`, token);

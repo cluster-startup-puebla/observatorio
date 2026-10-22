@@ -1,11 +1,17 @@
 import { connection } from "next/server";
 import { getDirectory } from "@/lib/memory-directory";
 import { sectors } from "@/lib/sectors";
+import { usesSupabaseAuth } from "@/lib/supabase/auth-session";
 import { linkStats } from "./link-stats";
+import { loadSupabaseHome } from "./load-supabase-home";
 import { sectorCuts } from "./sector-cuts";
 
 export async function loadOrgHome(orgId: string, sectorSlug?: string) {
   await connection();
+  if (usesSupabaseAuth()) {
+    const stored = await loadSupabaseHome(orgId, sectorSlug);
+    if (stored) return stored;
+  }
   const directory = getDirectory();
   const opens = await directory.opensFor(orgId);
   const names = new Map(sectors.map((sector) => [sector.slug, sector.name]));
