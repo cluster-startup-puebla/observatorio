@@ -8,11 +8,13 @@ export async function OrgHome({
   name,
   orgId,
   url,
+  sector,
 }: {
   slug: string;
   name: string;
   orgId: string;
   url?: string;
+  sector?: string;
 }) {
   const stats = await loadOrgHome(orgId);
   return (
@@ -21,7 +23,7 @@ export async function OrgHome({
         <h1 className="text-h1 text-ink">{name}</h1>
         <p className="text-body text-ink-secondary">Panel de {slug}</p>
       </header>
-      <CopyLink url={url} />
+      <CopyLink url={url} sector={sector} />
       <LinkCards opens={stats.opens} conversions={stats.conversions} rate={stats.rate} />
       <OpensChart bars={stats.bars} />
     </div>

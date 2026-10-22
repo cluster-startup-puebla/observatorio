@@ -9,17 +9,25 @@ export function OrgShell({
   slug,
   name,
   email,
+  logoSrc,
   children,
 }: {
   slug: string;
   name: string;
   email: string;
+  logoSrc?: string;
   children: React.ReactNode;
 }) {
   return (
     <TooltipProvider>
       <SidebarProvider className="h-dvh min-h-0 overflow-hidden">
-        <AppSidebar email={email} groups={orgGroups(slug)} title={name} subtitle="Organismo" />
+        <AppSidebar
+          email={email}
+          groups={orgGroups(slug)}
+          title={name}
+          subtitle="Organismo"
+          logoSrc={logoSrc}
+        />
         <SidebarInset className="min-h-0 overflow-hidden">
           <header className="flex h-12 shrink-0 items-center gap-2 border-b px-3">
             <SidebarTrigger />

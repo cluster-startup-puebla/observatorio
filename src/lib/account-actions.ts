@@ -5,6 +5,7 @@ import { redirect } from "next/navigation";
 import { accountErrors } from "./account-draft";
 import { getDirectory } from "./memory-directory";
 import { finishOrganismoBrand } from "./organismo/finish-brand";
+import { saveDirectorLogo } from "./organismo/memory-logo";
 import { orgSlug, slugError } from "./organismo/slug";
 import { signupOrganismoAndSession } from "./organismo/signup-organismo";
 import { sectors } from "./sectors";
@@ -53,11 +54,10 @@ export async function completeOrganismoAction(formData: FormData) {
   const id = String(formData.get("accountId") ?? "");
   const name = String(formData.get("nombre") ?? "").trim();
   const color = String(formData.get("color") ?? "").trim();
-  const logo = formData.get("logo");
-  const hasLogo = logo instanceof File && logo.size > 0;
-  if (!id || name.length < 2 || !color || !hasLogo) return { ok: false as const };
-  const slug = orgSlug(name, String(formData.get("slug") ?? ""));
+  if (!id || name.length < 2 || !color) return { ok: false as const };
+  const slug = orgSlug(name, "");
   if (slugError(slug, sectors.map((s) => s.slug))) redirect("/onboarding?error=slug");
+  if (!(await saveDirectorLogo(id, formData.get("logo")))) redirect("/onboarding?error=logo");
   await getDirectory().completeOnboarding(id, {
     sectorSlug: "general",
     size: "organismo",

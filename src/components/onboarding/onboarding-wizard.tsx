@@ -1,5 +1,6 @@
 import { ConfidentialityNote } from "@/components/onboarding/confidentiality-note";
 import { OrganismoOnboarding } from "@/components/onboarding/organismo-form";
+import { SheetSubmit } from "@/components/admin/sheet-submit";
 import { completeEmpresarioAction } from "@/lib/account-actions";
 
 const sizes = ["1–10", "11–50", "51–250"];
@@ -12,6 +13,7 @@ export function OnboardingWizard({
   onboarded,
   missingSize,
   missingSlug,
+  missingLogo,
 }: {
   accountId: string;
   role: string;
@@ -20,6 +22,7 @@ export function OnboardingWizard({
   onboarded: boolean;
   missingSize?: boolean;
   missingSlug?: boolean;
+  missingLogo?: boolean;
 }) {
   const organismo = role === "director";
 
@@ -34,7 +37,11 @@ export function OnboardingWizard({
     );
   }
 
-  if (organismo) return <OrganismoOnboarding accountId={accountId} missingSlug={missingSlug} />;
+  if (organismo) {
+    return (
+      <OrganismoOnboarding accountId={accountId} missingSlug={missingSlug} missingLogo={missingLogo} />
+    );
+  }
 
   return (
     <form action={completeEmpresarioAction} className="grid gap-5">
@@ -58,9 +65,7 @@ export function OnboardingWizard({
       {missingSize ? (
         <p className="text-small text-mark">Elige el tamaño de tu empresa para terminar.</p>
       ) : null}
-      <button type="submit" className="btn btn-primary">
-        Terminar perfil
-      </button>
+      <SheetSubmit pendingLabel="Terminando…">Terminar perfil</SheetSubmit>
     </form>
   );
 }

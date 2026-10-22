@@ -25,7 +25,7 @@ test("el organismo no invita hasta terminar su marca", async ({ page }) => {
   await page.getByLabel("Correo").fill("director@canacintra.mx");
   await page.getByLabel("Contraseña", { exact: true }).fill("secreto-largo");
   await page.getByRole("button", { name: "Crear cuenta" }).click();
-  await expect(page.getByRole("button", { name: "Copiar enlace del evento" })).toBeDisabled();
+  await expect(page.getByRole("button", { name: "Copiar enlace del evento" })).toHaveCount(0);
   await page.getByLabel("Nombre del organismo").fill("CANACINTRA");
   await page.getByLabel("Color").fill("#1B3A5C");
   await page.getByLabel("Logo").setInputFiles("e2e/fixtures/logo.png");

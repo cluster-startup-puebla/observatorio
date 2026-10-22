@@ -36,6 +36,7 @@ export default async function OnboardingPage({
         onboarded={account.onboarded}
         missingSize={params.error === "tamano"}
         missingSlug={params.error === "slug"}
+        missingLogo={params.error === "logo"}
       />
     </AuthShell>
   );

@@ -10,6 +10,7 @@ export type Person = {
   size?: string;
   name?: string;
   logoKey?: string;
+  logo?: StoredLogo;
   orgSlug?: string;
   password?: string;
   orgId?: string;

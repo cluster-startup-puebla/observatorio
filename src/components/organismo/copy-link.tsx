@@ -2,32 +2,44 @@ import { CopyLinkButton } from "@/components/organismo/copy-link-button";
 import { copyEventLinkAction } from "@/lib/organismo/copy-link-action";
 import { sectors } from "@/lib/sectors";
 
-export function CopyLink({ url }: { url?: string }) {
+export function CopyLink({ url, sector }: { url?: string; sector?: string }) {
+  const selected = sector && sectors.some((item) => item.slug === sector) ? sector : "turismo";
+
   return (
-    <section className="grid gap-3">
+    <section className="grid max-w-3xl gap-4">
       <form action={copyEventLinkAction} className="flex flex-wrap items-end gap-3">
         <label className="grid gap-1 text-small text-ink-secondary">
           Sector
-          <select name="sector" className="min-w-48 rounded-lg border border-line px-3 py-2" defaultValue="turismo">
-            {sectors.map((sector) => (
-              <option key={sector.slug} value={sector.slug}>
-                {sector.name}
+          <select
+            name="sector"
+            key={selected}
+            defaultValue={selected}
+            className="min-w-48 rounded-lg border border-line bg-elevated px-3 py-2 text-ink"
+          >
+            {sectors.map((item) => (
+              <option key={item.slug} value={item.slug}>
+                {item.name}
               </option>
             ))}
           </select>
         </label>
         <button type="submit" className="btn btn-primary">
-          Copiar enlace del evento
+          Generar enlace
         </button>
       </form>
       {url ? (
-        <div className="flex flex-wrap items-center gap-3">
-          <p data-testid="enlace-evento" className="text-small text-ink break-all">
+        <div className="flex flex-col gap-2 sm:flex-row sm:items-center">
+          <p
+            data-testid="enlace-evento"
+            className="min-w-0 flex-1 break-all rounded-lg border border-line bg-surface-subtle px-3 py-2 font-mono text-small text-ink"
+          >
             {url}
           </p>
           <CopyLinkButton url={url} />
         </div>
-      ) : null}
+      ) : (
+        <p className="text-small text-ink-muted">Elige el sector y genera el enlace para compartirlo.</p>
+      )}
     </section>
   );
 }

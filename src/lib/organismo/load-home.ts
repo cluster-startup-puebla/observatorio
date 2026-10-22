@@ -1,8 +1,10 @@
+import { connection } from "next/server";
 import { getDirectory } from "@/lib/memory-directory";
 import { sectors } from "@/lib/sectors";
 import { linkStats } from "./link-stats";
 
 export async function loadOrgHome(orgId: string) {
+  await connection();
   const directory = getDirectory();
   const opens = await directory.opensFor(orgId);
   let conversions = 0;

@@ -4,6 +4,7 @@ import { useState } from "react";
 import { FileText, LayoutDashboard, Users } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { AppSidebarGroup } from "@/components/app-sidebar-group";
+import { AppSidebarMark } from "@/components/app-sidebar-mark";
 import { AppSidebarUser } from "@/components/app-sidebar-user";
 import type { AdminLink } from "@/components/admin/nav";
 import { openGroupName } from "@/components/admin/nav-match";
@@ -29,11 +30,13 @@ export function AppSidebar({
   groups,
   title = "Observatorio",
   subtitle = "Superadmin",
+  logoSrc,
 }: {
   email: string;
   groups: { name: string; links: AdminLink[] }[];
   title?: string;
   subtitle?: string;
+  logoSrc?: string;
 }) {
   const path = usePathname();
   const matchedName = openGroupName(path, groups);
@@ -46,9 +49,7 @@ export function AppSidebar({
         <SidebarMenu>
           <SidebarMenuItem>
             <SidebarMenuButton className="h-12">
-              <span className="flex size-8 items-center justify-center rounded-lg bg-brand text-xs font-semibold text-on-brand">
-                Ob
-              </span>
+              <AppSidebarMark logoSrc={logoSrc} title={title} />
               <span className="grid text-left text-sm leading-tight">
                 <span className="truncate font-medium">{title}</span>
                 <span className="truncate text-xs text-sidebar-foreground/70">{subtitle}</span>

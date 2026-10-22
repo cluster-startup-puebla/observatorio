@@ -5,6 +5,7 @@ import { LandingBody } from "@/components/landing/landing-body";
 import { OrgHome } from "@/components/organismo/home";
 import { getDirectory } from "@/lib/memory-directory";
 import { pageMetadata, siteDescription, siteName } from "@/lib/metadata";
+import { readInviteLink } from "@/lib/organismo/invite-link-cookie";
 import { ownerBySlug } from "@/lib/organismo/owner";
 import { resolveSector } from "@/lib/sectors";
 
@@ -51,8 +52,18 @@ export default async function SectorPage({
   const sp = await searchParams;
   const owner = await ownerBySlug(sector);
   if (owner) {
-    const enlace = typeof sp.enlace === "string" ? sp.enlace : undefined;
-    return <OrgHome slug={owner.slug} name={owner.name} orgId={owner.id} url={enlace} />;
+    const saved = await readInviteLink(owner.slug);
+    const enlace = typeof sp.enlace === "string" ? sp.enlace : saved?.url;
+    const inviteSector = typeof sp.sector === "string" ? sp.sector : saved?.sector;
+    return (
+      <OrgHome
+        slug={owner.slug}
+        name={owner.name}
+        orgId={owner.id}
+        url={enlace}
+        sector={inviteSector}
+      />
+    );
   }
   const token = eventToken(sp);
   const brand = token ? await getDirectory().brandForToken(token) : null;

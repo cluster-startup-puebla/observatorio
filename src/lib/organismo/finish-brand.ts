@@ -17,7 +17,7 @@ export async function finishOrganismoBrand(formData: FormData) {
   const logo = await readLogoFile(formData.get("logo"));
   if (!logo || "error" in logo || name.length < 2 || !color) return { ok: false as const };
 
-  const slug = orgSlug(name, String(formData.get("slug") ?? ""));
+  const slug = orgSlug(name, "");
   if (slugError(slug, sectors.map((s) => s.slug))) redirect("/onboarding?error=slug");
 
   const token = await readAccessToken();
