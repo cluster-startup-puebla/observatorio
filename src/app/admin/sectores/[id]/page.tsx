@@ -4,6 +4,7 @@ import { FormSheet } from "@/components/admin/form-sheet";
 import { tabQuery } from "@/lib/admin/tab-query";
 import { loadSector } from "@/lib/admin/sectores/detail";
 import { requireSuperadmin } from "@/lib/auth/require-superadmin";
+import { SheetSubmit } from "@/components/admin/sheet-submit";
 
 export const instant = false;
 
@@ -50,9 +51,7 @@ export default async function SectorDetailPage({
               Cuerpo
               <textarea id="body" name="body" defaultValue={data.page?.body ?? ""} />
             </label>
-            <button className="btn btn-primary" type="submit">
-              Guardar página
-            </button>
+            <SheetSubmit>Guardar página</SheetSubmit>
           </form>
         </FormSheet>
       ) : null}

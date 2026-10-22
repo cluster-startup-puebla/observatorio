@@ -5,6 +5,7 @@ import { tabQuery } from "@/lib/admin/tab-query";
 import { loadSesion } from "@/lib/admin/sesiones/detail";
 import { requireSuperadmin } from "@/lib/auth/require-superadmin";
 import { FichaForm } from "@/app/admin/sesiones/[id]/ficha-form";
+import { SheetSubmit } from "@/components/admin/sheet-submit";
 
 export const instant = false;
 
@@ -56,9 +57,7 @@ export default async function SesionDetailPage({
             <form action={`/api/admin/sesiones/${id}/temas`} method="post" className="grid gap-3">
               <input name="position" type="number" min={1} />
               <input name="title" />
-              <button className="btn" type="submit">
-                Agregar tema
-              </button>
+              <SheetSubmit>Agregar tema</SheetSubmit>
             </form>
           </FormSheet>
         </div>

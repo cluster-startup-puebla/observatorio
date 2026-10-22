@@ -1,4 +1,5 @@
 import { FormSheet } from "@/components/admin/form-sheet";
+import { SheetSubmit } from "@/components/admin/sheet-submit";
 
 export function SectionForms({
   id,
@@ -22,9 +23,7 @@ export function SectionForms({
           <input type="hidden" name="tab" value="bandas" />
           <input name="name" defaultValue={section.name} />
           <input name="range_kind" defaultValue={section.range_kind} />
-          <button className="btn" type="submit">
-            Guardar sección
-          </button>
+          <SheetSubmit>Guardar sección</SheetSubmit>
         </form>
       </FormSheet>
       {questions.map((question) => (
@@ -34,9 +33,7 @@ export function SectionForms({
             <input type="hidden" name="tab" value="preguntas" />
             <input type="hidden" name="question_id" value={question.id} />
             <input name="prompt" defaultValue={question.prompt} />
-            <button className="btn" type="submit">
-              Guardar pregunta
-            </button>
+            <SheetSubmit>Guardar pregunta</SheetSubmit>
           </form>
         </FormSheet>
       ))}
@@ -50,9 +47,7 @@ export function SectionForms({
             <input name="label" defaultValue={option.label} />
             <input name="points" type="number" />
             <input name="severity" type="number" />
-            <button className="btn" type="submit">
-              Guardar opción
-            </button>
+            <SheetSubmit>Guardar opción</SheetSubmit>
           </form>
         </FormSheet>
       ))}
@@ -66,9 +61,7 @@ export function SectionForms({
             <input name="max_score" type="number" defaultValue={band.max_score} />
             <input name="riesgo" defaultValue={band.riesgo} />
             <input name="reto" defaultValue={band.reto} />
-            <button className="btn" type="submit">
-              Guardar banda
-            </button>
+            <SheetSubmit>Guardar banda</SheetSubmit>
           </form>
         </FormSheet>
       ))}
@@ -79,9 +72,7 @@ export function SectionForms({
           <input name="question_id" type="number" />
           <input name="depends_on_question_id" type="number" />
           <input name="expected_value" />
-          <button className="btn" type="submit">
-            Agregar condición
-          </button>
+          <SheetSubmit>Agregar condición</SheetSubmit>
         </form>
       </FormSheet>
     </div>

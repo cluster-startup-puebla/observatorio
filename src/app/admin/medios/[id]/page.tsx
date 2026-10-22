@@ -1,9 +1,11 @@
 import { notFound } from "next/navigation";
 import { DetailFrame } from "@/components/admin/detail-frame";
+import { FileDrop } from "@/components/file-drop";
 import { FormSheet } from "@/components/admin/form-sheet";
 import { tabQuery } from "@/lib/admin/tab-query";
 import { loadMedio } from "@/lib/admin/medios/detail";
 import { requireSuperadmin } from "@/lib/auth/require-superadmin";
+import { SheetSubmit } from "@/components/admin/sheet-submit";
 
 export const instant = false;
 
@@ -39,10 +41,15 @@ export default async function MedioDetailPage({
       <FormSheet action="Editar" resource="archivo" open={Boolean(query.error)}>
         <form action={`/api/admin/medios/${id}`} method="post" encType="multipart/form-data" className="grid gap-3">
           <input name="filename" placeholder="foto.png" />
-          <input name="archivo" type="file" accept="image/png,image/jpeg,image/webp" />
-          <button className="btn btn-primary" type="submit">
-            Reemplazar
-          </button>
+          <FileDrop
+            id="medio-archivo"
+            name="archivo"
+            label="Archivo"
+            accept="image/png,image/jpeg,image/webp"
+            hint="PNG, JPG o WebP"
+            preview
+          />
+          <SheetSubmit>Reemplazar</SheetSubmit>
         </form>
       </FormSheet>
     </DetailFrame>

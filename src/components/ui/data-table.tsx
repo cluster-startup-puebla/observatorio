@@ -164,7 +164,13 @@ export function DataTable<TData>({
               {table.getHeaderGroups().map((headerGroup) => (
                 <tr key={headerGroup.id}>
                   {headerGroup.headers.map((header) => (
-                    <th key={header.id} className="px-4 py-3 text-left font-medium whitespace-nowrap text-muted-foreground">
+                    <th
+                      key={header.id}
+                      className={cn(
+                        "px-4 py-3 text-left font-medium whitespace-nowrap text-muted-foreground",
+                        (header.column.columnDef.meta as { className?: string } | undefined)?.className,
+                      )}
+                    >
                       {header.isPlaceholder ? null : flexRender(header.column.columnDef.header, header.getContext())}
                     </th>
                   ))}
@@ -197,7 +203,13 @@ export function DataTable<TData>({
                     onClick={onRowClick ? () => onRowClick(row.original) : undefined}
                   >
                     {row.getVisibleCells().map((cell) => (
-                      <td key={cell.id} className="px-4 py-3">
+                      <td
+                        key={cell.id}
+                        className={cn(
+                          "px-4 py-3",
+                          (cell.column.columnDef.meta as { className?: string } | undefined)?.className,
+                        )}
+                      >
                         {flexRender(cell.column.columnDef.cell, cell.getContext())}
                       </td>
                     ))}

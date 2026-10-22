@@ -1,4 +1,5 @@
 import { FormSheet } from "@/components/admin/form-sheet";
+import { SheetSubmit } from "@/components/admin/sheet-submit";
 
 type SessionFields = {
   venue: string;
@@ -27,9 +28,7 @@ export function FichaForm({ id, session, open }: { id: string; session: SessionF
       <label>
         <input name="is_current" type="checkbox" defaultChecked={session.is_current} /> Vigente
       </label>
-      <button className="btn btn-primary" type="submit">
-        Guardar sesión
-      </button>
+      <SheetSubmit>Guardar sesión</SheetSubmit>
     </form>
     </FormSheet>
   );

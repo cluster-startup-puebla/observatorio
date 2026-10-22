@@ -2,11 +2,9 @@
 
 import { useRouter } from "next/navigation";
 import type { ColumnDef } from "@tanstack/react-table";
+import { columnDef, type DataColumn, type DataRow } from "@/components/admin/data-columns";
 import { listCrumbs, PanelHeader } from "@/components/admin/panel-header";
 import { DataTable } from "@/components/ui/data-table";
-
-type DataColumn = { key: string; label: string };
-type DataRow = Record<string, string>;
 
 export function DataList({
   title,
@@ -16,6 +14,7 @@ export function DataList({
   page,
   basePath,
   error,
+  rowActions,
   children,
 }: {
   title: string;
@@ -25,19 +24,22 @@ export function DataList({
   page: number;
   basePath: string;
   error?: string;
+  rowActions?: (row: DataRow) => React.ReactNode;
   children?: React.ReactNode;
 }) {
   const router = useRouter();
   const tableColumns: ColumnDef<DataRow>[] = [
-    ...columns.map((column) => ({ accessorKey: column.key, header: column.label })),
+    ...columns.map((column) => columnDef(column)),
     {
       id: "acciones",
       header: "Acciones",
-      cell: ({ row }) => (
-        <a className="text-link" href={`${basePath}/${row.original.id}`}>
-          Abrir
-        </a>
-      ),
+      meta: { className: "w-[1%] whitespace-nowrap" },
+      cell: ({ row }) =>
+        rowActions?.(row.original) ?? (
+          <a className="text-link" href={`${basePath}/${row.original.id}`}>
+            Abrir
+          </a>
+        ),
     },
   ];
   const totalPages = rows.length >= 10 ? page + 1 : page;

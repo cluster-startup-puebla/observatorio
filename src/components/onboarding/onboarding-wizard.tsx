@@ -1,6 +1,6 @@
 import { ConfidentialityNote } from "@/components/onboarding/confidentiality-note";
-import { Field, controlClass } from "@/components/landing/molecules/field";
-import { completeEmpresarioAction, completeOrganismoAction } from "@/lib/account-actions";
+import { OrganismoOnboarding } from "@/components/onboarding/organismo-form";
+import { completeEmpresarioAction } from "@/lib/account-actions";
 
 const sizes = ["1–10", "11–50", "51–250"];
 
@@ -32,29 +32,7 @@ export function OnboardingWizard({
     );
   }
 
-  if (organismo) {
-    return (
-      <form action={completeOrganismoAction} className="grid gap-5">
-        <ConfidentialityNote />
-        <input type="hidden" name="accountId" value={accountId} />
-        <Field id="nombre-organismo" label="Nombre del organismo">
-          <input id="nombre-organismo" name="nombre" className={controlClass} />
-        </Field>
-        <Field id="color" label="Color">
-          <input id="color" name="color" className={controlClass} />
-        </Field>
-        <Field id="logo" label="Logo">
-          <input id="logo" name="logo" type="file" accept="image/png,image/jpeg" className={controlClass} />
-        </Field>
-        <button type="button" className="btn btn-secondary" disabled>
-          Copiar enlace del evento
-        </button>
-        <button type="submit" className="btn btn-primary">
-          Terminar perfil
-        </button>
-      </form>
-    );
-  }
+  if (organismo) return <OrganismoOnboarding accountId={accountId} />;
 
   return (
     <form action={completeEmpresarioAction} className="grid gap-5">

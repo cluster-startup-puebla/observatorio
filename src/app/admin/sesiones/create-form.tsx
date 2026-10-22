@@ -1,4 +1,5 @@
 import { FormSheet } from "@/components/admin/form-sheet";
+import { SheetSubmit } from "@/components/admin/sheet-submit";
 
 export function CreateSessionForm({ open }: { open?: boolean }) {
   return (
@@ -12,9 +13,7 @@ export function CreateSessionForm({ open }: { open?: boolean }) {
       <input name="capacity_max" type="number" min={1} defaultValue={12} />
       <input name="audience" placeholder="Público" required />
       <input name="includes" placeholder="Incluye" required />
-      <button className="btn btn-primary" type="submit">
-        Crear sesión
-      </button>
+      <SheetSubmit>Crear sesión</SheetSubmit>
     </form>
     </FormSheet>
   );

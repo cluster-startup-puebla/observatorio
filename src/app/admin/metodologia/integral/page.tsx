@@ -2,6 +2,7 @@ import { FormSheet } from "@/components/admin/form-sheet";
 import { PanelHeader, parentLabel, trailCrumbs } from "@/components/admin/panel-header";
 import { adminDb } from "@/lib/admin/admin-db";
 import { requireSuperadmin } from "@/lib/auth/require-superadmin";
+import { SheetSubmit } from "@/components/admin/sheet-submit";
 
 export const instant = false;
 
@@ -29,9 +30,7 @@ export default async function IntegralPage({ searchParams }: { searchParams: Pro
                 <input name="max_score" type="number" defaultValue={band.max_score} />
                 <input name="riesgo" defaultValue={band.riesgo} />
                 <input name="reto" defaultValue={band.reto} />
-                <button className="btn" type="submit">
-                  Guardar banda
-                </button>
+                <SheetSubmit>Guardar banda</SheetSubmit>
               </form>
             </FormSheet>
           </li>
