@@ -2,7 +2,7 @@ import "server-only";
 
 import { accountErrors } from "@/lib/account-draft";
 import { adminDb } from "@/lib/admin/admin-db";
-import { createSupabaseAdmin } from "@/lib/supabase/server";
+import { staffCreateError } from "./staff-create-error";
 import { staffDraft } from "./staff-draft";
 
 export async function createStaff(form: FormData) {
@@ -15,29 +15,22 @@ export async function createStaff(form: FormData) {
   if (!draft.ok) return draft;
   const errors = accountErrors({ email, password });
   if (errors) return { ok: false as const, reason: errors.email ?? errors.password ?? "datos inválidos" };
-  const admin = createSupabaseAdmin();
-  const created = await admin.auth.admin.createUser({
-    email: email.trim().toLowerCase(),
-    password,
-    email_confirm: true,
-  });
-  if (created.error || !created.data.user) {
-    return { ok: false as const, reason: created.error?.message ?? "no se creó la cuenta" };
-  }
+
   const db = await adminDb();
   if (!db) {
-    await admin.auth.admin.deleteUser(created.data.user.id);
-    return { ok: false as const, reason: "sin sesión de supabase" };
+    console.error("createStaff: sin sesión de supabase");
+    return { ok: false as const, reason: staffCreateError("missing") };
   }
-  const inserted = await db.from("profiles").insert({
-    id: created.data.user.id,
-    role: draft.role,
-    email: email.trim().toLowerCase(),
-    organization_id: draft.organizationId,
+
+  const created = await db.rpc("create_staff_account", {
+    staff_email: email.trim().toLowerCase(),
+    staff_password: password,
+    staff_role: draft.role,
+    staff_organization_id: draft.organizationId,
   });
-  if (inserted.error) {
-    await admin.auth.admin.deleteUser(created.data.user.id);
-    return { ok: false as const, reason: inserted.error.message };
+  if (created.error || !created.data) {
+    console.error("create_staff_account", created.error);
+    return { ok: false as const, reason: staffCreateError(created.error?.message ?? "missing") };
   }
-  return { ok: true as const, id: created.data.user.id };
+  return { ok: true as const, id: created.data as string };
 }

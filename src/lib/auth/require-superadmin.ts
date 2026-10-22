@@ -1,3 +1,4 @@
+import { cache } from "react";
 import { redirect } from "next/navigation";
 import { getDirectory } from "@/lib/memory-directory";
 import { readAccountId } from "@/lib/session";
@@ -8,7 +9,7 @@ import {
   usesSupabaseAuth,
 } from "@/lib/supabase/auth-session";
 
-export async function readSuperadmin() {
+export const readSuperadmin = cache(async function readSuperadmin() {
   if (!usesSupabaseAuth()) {
     const id = await readAccountId();
     const found = id ? await getDirectory().getAccount(id) : null;
@@ -27,7 +28,7 @@ export async function readSuperadmin() {
     .maybeSingle();
   if (profile.error || profile.data?.role !== "superadmin") return null;
   return { email: profile.data.email ?? user.data.user.email ?? "" };
-}
+});
 
 export async function requireSuperadmin() {
   const account = await readSuperadmin();

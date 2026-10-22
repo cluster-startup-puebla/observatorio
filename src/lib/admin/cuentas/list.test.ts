@@ -31,6 +31,7 @@ describe("lista de cuentas", () => {
   it("la lista lee profiles y el handler no borra", () => {
     const list = readFileSync("src/lib/admin/cuentas/list.ts", "utf8");
     const route = readFileSync("src/app/api/admin/cuentas/route.ts", "utf8");
+    const create = readFileSync("src/lib/admin/cuentas/create-staff.ts", "utf8");
     expect(list).toContain('.from("profiles")');
     expect(list).toContain("full_name");
     expect(list).toContain("email");
@@ -39,5 +40,8 @@ describe("lista de cuentas", () => {
     expect(list).not.toContain("password");
     expect(route).toContain("await requireSuperadmin()");
     expect(route).not.toMatch(/export async function DELETE/);
+    expect(create).toContain('rpc("create_staff_account"');
+    expect(create).not.toContain("createSupabaseAdmin");
   });
 });
+

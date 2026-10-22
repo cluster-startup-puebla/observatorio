@@ -29,7 +29,9 @@ export function getDirectory(): Directory {
   if (!mode || mode === "memory") return createMemoryDirectory();
   if (mode === "supabase") {
     const { createSupabaseAdmin } = require("./supabase/server") as typeof import("./supabase/server");
-    return createSupabaseDirectory(createSupabaseAdmin());
+    const admin = createSupabaseAdmin();
+    if (!admin) throw new Error("Directory supabase no está listo");
+    return createSupabaseDirectory(admin);
   }
   throw new Error(`Directory ${mode} todavía no está conectado`);
 }

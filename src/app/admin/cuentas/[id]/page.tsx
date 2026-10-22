@@ -1,6 +1,5 @@
 import { notFound } from "next/navigation";
 import { DetailFrame } from "@/components/admin/detail-frame";
-import { RoleForm } from "@/app/admin/cuentas/[id]/role-form";
 import { CuentaTabs } from "@/app/admin/cuentas/[id]/tabs";
 import { tabQuery } from "@/lib/admin/tab-query";
 import { loadCuenta } from "@/lib/admin/cuentas/detail";
@@ -43,7 +42,6 @@ export default async function CuentaDetailPage({
       active={active}
     >
       {query.error ? <p className="mb-4 text-small text-mark">{query.error}</p> : null}
-      <RoleForm id={id} role={profile.role} organizationId={profile.organization_id ?? ""} orgs={data.orgs} open={Boolean(query.error)} />
       <CuentaTabs
         active={active}
         companyName={data.company?.legal_name ?? ""}

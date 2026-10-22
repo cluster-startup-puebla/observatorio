@@ -9,7 +9,7 @@ export async function listCuentas(rawPage: string | undefined) {
   if (!db) return { page: page.page, rows: [] as Record<string, string>[], orgs: [] as { id: string; name: string }[] };
   const profiles = await db
     .from("profiles")
-    .select("id, full_name, email, role, onboarded_at")
+    .select("id, full_name, email, role, onboarded_at, job_title, whatsapp, organization_id")
     .order("created_at", { ascending: false })
     .range(page.from, page.to);
   if (profiles.error) throw new Error(profiles.error.message);
@@ -23,6 +23,9 @@ export async function listCuentas(rawPage: string | undefined) {
       email: row.email ?? "",
       role: row.role,
       onboarded_at: row.onboarded_at ? "Terminado" : "Sin terminar",
+      job_title: row.job_title ?? "",
+      whatsapp: row.whatsapp ?? "",
+      organization_id: row.organization_id ?? "",
     })),
     orgs: (orgs.data ?? []).map((org) => ({ id: org.id, name: org.name ?? org.id })),
   };
