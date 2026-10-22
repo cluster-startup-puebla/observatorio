@@ -194,6 +194,14 @@ function createMemoryDirectory(): Directory {
       return sealRef(orgId, refSecret());
     },
 
+    async brandForToken(token) {
+      const orgId = openRef(token, refSecret());
+      if (!orgId) return null;
+      const account = store().people.find((item) => item.id === orgId && !item.orgId);
+      if (!account?.name || !account.logoKey) return null;
+      return { name: account.name, logoKey: account.logoKey };
+    },
+
     async attributeRegistration(input) {
       const orgId = openRef(input.token, refSecret());
       if (!orgId) return;

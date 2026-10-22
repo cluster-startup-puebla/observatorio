@@ -44,5 +44,6 @@ export async function copyEventLinkAction() {
   const id = await readAccountId();
   if (!id) return "";
   const account = await getDirectory().getAccount(id);
-  return getDirectory().copyEventLink(id, account?.sectorSlug || "general");
+  const token = await getDirectory().copyEventLink(id, account?.sectorSlug || "general");
+  redirect(`/organismo?enlace=${encodeURIComponent(token)}`);
 }

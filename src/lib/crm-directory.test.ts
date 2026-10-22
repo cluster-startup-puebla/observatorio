@@ -67,6 +67,24 @@ describe("crm en memoria", () => {
     expect(await directory.conversion(org.id, "logistica")).toEqual({ copies: 0, registrations: 0 });
   });
 
+  it("el enlace no lleva ref= y la marca solo aparece si el organismo terminó", async () => {
+    const directory = getDirectory();
+    const org = await directory.createAccount({ email: "dir@camara.mx", role: "director" });
+    expect(await directory.brandForToken("token-falso")).toBeNull();
+    await directory.completeOnboarding(org.id, {
+      sectorSlug: "turismo",
+      size: "organismo",
+      name: "CANACINTRA",
+      logoKey: `logos/${org.id}`,
+    });
+    const token = await directory.copyEventLink(org.id, "turismo");
+    expect(token.includes("ref=")).toBe(false);
+    expect(await directory.brandForToken(token)).toEqual({
+      name: "CANACINTRA",
+      logoKey: `logos/${org.id}`,
+    });
+  });
+
   it("la cuenta del invitado confirma y el perfil lo registra", async () => {
     const directory = getDirectory();
     const org = await directory.createAccount({ email: "dir@camara.mx", role: "director" });

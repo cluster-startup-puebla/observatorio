@@ -33,6 +33,7 @@ export interface Directory {
     event: "contactar" | "rechazar",
   ): Promise<{ ok: true; status: "contactado" | "no" } | { ok: false; reason: string }>;
   copyEventLink(orgId: string, sectorSlug: string): Promise<string>;
+  brandForToken(token: string): Promise<{ name: string; logoKey: string } | null>;
   attributeRegistration(input: { token: string; email: string }): Promise<void>;
   conversion(orgId: string, sectorSlug: string): Promise<{ copies: number; registrations: number }>;
   scanQr(id: string): Promise<

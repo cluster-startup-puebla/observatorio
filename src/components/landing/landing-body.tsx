@@ -16,9 +16,11 @@ import { Vision } from "@/components/landing/sections/vision";
 export function LandingBody({
   reserveHref = "/register",
   selected,
+  brand,
 }: {
   reserveHref?: string;
   selected?: string | null;
+  brand?: { name: string } | null;
 }) {
   return (
     <div className="pb-24 lg:pb-0">
@@ -27,6 +29,7 @@ export function LandingBody({
           {selected}
         </p>
       ) : null}
+      {brand ? <p data-testid="marca-organismo">{brand.name}</p> : null}
       <Hero reserveHref={reserveHref} />
       <DiagnosticBanner />
       <Problem />

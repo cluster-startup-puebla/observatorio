@@ -27,3 +27,8 @@ test("un slug vacío de signos no se presenta como sector", async ({ page }) => 
   await page.goto("/%20%20");
   await expect(page.getByTestId("sector-seleccionado")).toHaveCount(0);
 });
+
+test("un token alterado no muestra marca", async ({ page }) => {
+  await page.goto("/turismo?aaaa");
+  await expect(page.getByTestId("marca-organismo")).toHaveCount(0);
+});
