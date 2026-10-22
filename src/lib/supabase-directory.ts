@@ -1,4 +1,5 @@
 import type { SupabaseClient } from "@supabase/supabase-js";
+import { landingMessage } from "@/lib/admin/sectores/headline";
 import type { AccountRole, Directory } from "./directory";
 
 const notImplemented = async (): Promise<never> => {
@@ -34,7 +35,15 @@ export function createSupabaseDirectory(client: SupabaseClient): Directory {
     applyCrm: notImplemented,
     copyEventLink: notImplemented,
     brandForToken: notImplemented,
-    sectorMessage: notImplemented,
+    async sectorMessage(slug: string) {
+      const sector = await client.from("sectors").select("id").eq("slug", slug).maybeSingle();
+      if (sector.error) throw new Error(sector.error.message);
+      if (!sector.data) return null;
+      const page = await client.from("sector_pages").select("headline, body").eq("sector_id", sector.data.id).maybeSingle();
+      if (page.error) throw new Error(page.error.message);
+      if (!page.data) return null;
+      return landingMessage(page.data);
+    },
     attributeRegistration: notImplemented,
     conversion: notImplemented,
     scanQr: notImplemented,
