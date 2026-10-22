@@ -5,8 +5,6 @@ import { invitesFromEmails } from "./organismo/email-list";
 import { getDirectory } from "./memory-directory";
 import { readAccountId } from "./session";
 
-export { copyEventLinkAction } from "./organismo/copy-link-action";
-
 async function accountWithSlug() {
   const id = await readAccountId();
   const account = id ? await getDirectory().getAccount(id) : null;

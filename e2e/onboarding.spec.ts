@@ -30,7 +30,11 @@ test("el organismo no invita hasta terminar su marca", async ({ page }) => {
   await page.getByLabel("Color").fill("#1B3A5C");
   await page.getByLabel("Logo").setInputFiles("e2e/fixtures/logo.png");
   await page.getByRole("button", { name: "Terminar perfil" }).click();
+  await expect(page).toHaveURL(/\/canacintra$/);
   await expect(page.getByRole("button", { name: "Copiar enlace del evento" })).toBeEnabled();
+  await expect(page.getByRole("link", { name: "Inicio" })).toBeVisible();
+  await expect(page.getByRole("link", { name: "Invitaciones" })).toBeVisible();
+  await expect(page.getByRole("link", { name: "CRM" })).toBeVisible();
 });
 
 test("una contraseña corta no abre el perfil", async ({ page }) => {
