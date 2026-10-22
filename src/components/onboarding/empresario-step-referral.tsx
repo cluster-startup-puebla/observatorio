@@ -15,6 +15,7 @@ export function EmpresarioStepReferral({
       <div className="grid gap-2">
         <p className="text-small font-semibold text-ink">¿Cómo te enteraste?</p>
         <SourceCombobox
+          compact
           value={values.referralSource}
           onChange={(referralSource) => onChange({ referralSource })}
         />
