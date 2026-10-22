@@ -11,6 +11,7 @@ test("la respuesta sobrevive al recargar y el panel la ve", async ({ browser }) 
   await page.goto("/metodologia?persona=p-e2e");
   await expect(page.getByTestId("metodologia-lista")).toBeAttached();
   await page.getByRole("radio", { name: "Papel/Bitácoras" }).check();
+  await page.goto("/metodologia?persona=p-e2e&pregunta=1");
   await expect(page.getByText("Guardada")).toBeVisible();
   await page.reload();
   await expect(page.getByRole("radio", { name: "Papel/Bitácoras" })).toBeChecked();
@@ -44,4 +45,13 @@ test("la metodología repite el aviso de confidencialidad", async ({ page }) => 
   await expect(page.getByTestId("aviso-confidencial")).toHaveText(
     "Esta información es solo estadística. No se comparte y es confidencial.",
   );
+});
+
+test("guardar la primera pregunta abre la segunda", async ({ page }) => {
+  await page.goto("/metodologia?persona=p-pasos");
+  await expect(page.getByTestId("metodologia-lista")).toBeAttached();
+  await page.getByRole("radio", { name: "Papel/Bitácoras" }).check();
+  await expect(page.getByText("¿La información de producción se puede consultar sin pedirla a una persona?")).toBeVisible();
+  await expect(page.getByTestId("seccion-actual")).toHaveText("Infraestructura y digitalización");
+  await expect(page.getByTestId("progreso-preguntas")).toHaveText("1 de 18");
 });
