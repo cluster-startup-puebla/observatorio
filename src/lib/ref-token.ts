@@ -11,6 +11,12 @@ export function sealRef(orgId: string, secret: string): string {
   return Buffer.concat([iv, cipher.getAuthTag(), ciphertext]).toString("base64url");
 }
 
+const uuid = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+
+export function isUuid(value: string) {
+  return uuid.test(value);
+}
+
 export function openRef(token: string, secret: string): string | null {
   try {
     const buf = Buffer.from(token, "base64url");

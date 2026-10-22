@@ -1,5 +1,5 @@
 import { createClient, type SupabaseClient } from "@supabase/supabase-js";
-import { openRef } from "@/lib/ref-token";
+import { isUuid, openRef } from "@/lib/ref-token";
 
 function refSecret() {
   return process.env.REF_SECRET ?? "e2e-ref-secret";
@@ -14,7 +14,7 @@ function anonClient() {
 
 export async function recordLinkOpen(input: { token: string; sectorSlug: string; at: string }) {
   const orgId = openRef(input.token, refSecret());
-  if (!orgId) return;
+  if (!orgId || !isUuid(orgId)) return;
   await anonClient().rpc("record_link_open", {
     org_id: orgId,
     sector_slug: input.sectorSlug,

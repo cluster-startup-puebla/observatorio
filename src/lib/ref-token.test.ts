@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { openRef, sealRef } from "./ref-token";
+import { isUuid, openRef, sealRef } from "./ref-token";
 
 const secret = "secreto-de-prueba";
 
@@ -25,6 +25,11 @@ describe("ref token", () => {
     expect(openRef("", secret)).toBeNull();
     expect(openRef("no-es-un-token", secret)).toBeNull();
     expect(openRef(sealRef("canacintra", secret).slice(0, 8), secret)).toBeNull();
+  });
+
+  it("un id de memoria no es uuid de organismo", () => {
+    expect(isUuid("p1")).toBe(false);
+    expect(isUuid("0f342f99-9162-4ac7-bf29-f95e0adacc5d")).toBe(true);
   });
 
   it("no filtra el secreto y conserva un id con acentos", () => {

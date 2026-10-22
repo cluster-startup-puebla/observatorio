@@ -1,7 +1,7 @@
 import "server-only";
 
 import { getDirectory } from "@/lib/memory-directory";
-import { openRef } from "@/lib/ref-token";
+import { isUuid, openRef } from "@/lib/ref-token";
 import { createSupabaseAnon, usesSupabaseAuth } from "@/lib/supabase/auth-session";
 
 export type InviteBrand = { name: string; logoPath: string | null };
@@ -18,6 +18,7 @@ export async function loadInviteBrand(token: string): Promise<InviteBrand | null
     return brand ? { name: brand.name, logoPath: null } : null;
   }
 
+  if (!isUuid(orgId)) return null;
   const result = await createSupabaseAnon().rpc("organization_invite_brand", { org_id: orgId });
   const row = Array.isArray(result.data) ? result.data[0] : result.data;
   if (result.error || !row?.name) {

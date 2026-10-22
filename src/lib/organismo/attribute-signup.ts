@@ -1,7 +1,7 @@
 import "server-only";
 
 import { getDirectory } from "@/lib/memory-directory";
-import { openRef } from "@/lib/ref-token";
+import { isUuid, openRef } from "@/lib/ref-token";
 import { createSupabaseWithAccess, readAccessToken, usesSupabaseAuth } from "@/lib/supabase/auth-session";
 
 function refSecret() {
@@ -21,7 +21,7 @@ export async function attributeSignup(input: {
   }
   const orgId = openRef(input.token, refSecret());
   const email = input.email.trim().toLowerCase();
-  if (!orgId || !input.sectorSlug || !email) return;
+  if (!orgId || !isUuid(orgId) || !input.sectorSlug || !email) return;
   const access = await readAccessToken();
   if (!access) return;
   const saved = await createSupabaseWithAccess(access).rpc("attribute_link_signup", {
