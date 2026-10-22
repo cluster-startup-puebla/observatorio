@@ -5,9 +5,11 @@ import { orgEstado, orgEstadoLabel } from "@/lib/organismo/estado";
 export function CrmTable({
   people,
   vista,
+  slug,
 }: {
   people: CrmPerson[];
   vista: "tabla" | "tarjetas";
+  slug: string;
 }) {
   return (
     <div className="overflow-x-auto border border-line">
@@ -38,6 +40,7 @@ export function CrmTable({
                 <td className="px-4 py-3">
                   {orgEstado(person.status) === "pendiente" ? (
                     <form action={crmEventAction}>
+                      <input type="hidden" name="slug" value={slug} />
                       <input type="hidden" name="personId" value={person.id} />
                       <input type="hidden" name="event" value="contactar" />
                       <input type="hidden" name="vista" value={vista} />

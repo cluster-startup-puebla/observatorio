@@ -40,6 +40,7 @@ export function CrmCards({
                   <CrmCardBody person={person} />
                   {column.key === "pendiente" ? (
                     <form action={crmEventAction}>
+                      <input type="hidden" name="slug" value={slug} />
                       <input type="hidden" name="personId" value={person.id} />
                       <input type="hidden" name="event" value="contactar" />
                       <input type="hidden" name="vista" value={vista} />

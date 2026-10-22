@@ -5,6 +5,7 @@ import { CrmTable } from "@/components/organismo/crm-table";
 import { CrmToggle } from "@/components/organismo/crm-toggle";
 import { getDirectory } from "@/lib/memory-directory";
 import { filterOrgCrm, orgView } from "@/lib/organismo/crm-view";
+import { listOrgCrm } from "@/lib/organismo/org-crm-read";
 import { ownerBySlug } from "@/lib/organismo/owner";
 
 export const instant = false;
@@ -21,7 +22,11 @@ export default async function CrmPage({
   const owner = await ownerBySlug(sector);
   if (!owner) notFound();
   const vista = orgView(query.vista);
-  const people = filterOrgCrm(await getDirectory().crm(owner.id), vista === "tabla" ? query.estado : undefined);
+  const stored = await listOrgCrm(owner.id);
+  const people = filterOrgCrm(
+    stored ?? (await getDirectory().crm(owner.id)),
+    vista === "tabla" ? query.estado : undefined,
+  );
   return (
     <div className="grid gap-6">
       <header className="flex items-center justify-between gap-4">
@@ -33,7 +38,7 @@ export default async function CrmPage({
       ) : (
         <div className="grid gap-4">
           <CrmFilters estado={query.estado} />
-          <CrmTable people={people} vista={vista} />
+          <CrmTable people={people} vista={vista} slug={owner.slug} />
         </div>
       )}
     </div>
