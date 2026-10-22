@@ -7,7 +7,16 @@ import { SiteHeader } from "@/components/site/header";
 
 export function SiteFrame({ children }: { children: React.ReactNode }) {
   const path = usePathname();
+  const panel = path.startsWith("/admin") && path !== "/admin/login" && path !== "/admin/signup";
   const auth = isAuthPath(path);
+
+  if (panel) {
+    return (
+      <main id="contenido" className="h-dvh overflow-hidden">
+        {children}
+      </main>
+    );
+  }
 
   if (auth) {
     return (
