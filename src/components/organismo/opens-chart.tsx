@@ -7,9 +7,15 @@ import { ChartTooltip, ChartTooltipContent } from "@/components/ui/chart-tooltip
 
 const config = { aperturas: { label: "Aperturas", color: "var(--ink)" } };
 
-export function OpensChart({ bars }: { bars: { dia: string; aperturas: number }[] }) {
+export function OpensChart({
+  bars,
+  hint = "Visitas al enlace en los últimos 14 días.",
+}: {
+  bars: { dia: string; aperturas: number }[];
+  hint?: string;
+}) {
   return (
-    <ChartPanel title="Aperturas por día" hint="Visitas al enlace en los últimos 14 días.">
+    <ChartPanel title="Aperturas por día" hint={hint}>
       <ChartContainer config={config} className="aspect-[2/1] w-full">
         <BarChart accessibilityLayer data={bars} margin={{ left: 0, right: 0 }}>
           <CartesianGrid vertical={false} />

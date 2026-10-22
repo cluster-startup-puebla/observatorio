@@ -66,7 +66,7 @@ export interface Directory {
   attributeRegistration(input: { token: string; email: string }): Promise<void>;
   conversion(orgId: string, sectorSlug: string): Promise<{ copies: number; registrations: number }>;
   recordOpen(input: { token: string; sectorSlug: string; at: string }): Promise<void>;
-  opensFor(orgId: string): Promise<{ at: string }[]>;
+  opensFor(orgId: string): Promise<{ at: string; sectorSlug: string }[]>;
   scanQr(id: string): Promise<
     | { ok: true; name: string; status: "llego" }
     | { ok: false; reason: string }

@@ -17,6 +17,6 @@ describe("aperturas", () => {
     await directory.recordOpen({ token, sectorSlug: "turismo", at: "2026-10-22T15:00:00.000Z" });
     await directory.recordOpen({ token: `${token}x`, sectorSlug: "turismo", at: "2026-10-22T15:00:00.000Z" });
     const opens = await directory.opensFor(org.id);
-    expect(opens).toEqual([{ at: "2026-10-22T15:00:00.000Z" }]);
+    expect(opens).toEqual([{ at: "2026-10-22T15:00:00.000Z", sectorSlug: "turismo" }]);
   });
 });

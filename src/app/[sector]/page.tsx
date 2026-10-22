@@ -40,6 +40,7 @@ export default async function SectorPage({
         url={enlace}
         sector={inviteSector}
         failed={sp.error === "enlace"}
+        corte={typeof sp.corte === "string" ? sp.corte : undefined}
       />
     );
   }

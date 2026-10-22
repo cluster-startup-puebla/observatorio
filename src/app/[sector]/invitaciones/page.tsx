@@ -1,7 +1,5 @@
 import { notFound } from "next/navigation";
-import { EmailBox } from "@/components/organismo/email-box";
-import { InviteUpload } from "@/components/organismo/invite-upload";
-import { ManualInvite } from "@/components/organismo/manual-invite";
+import { InviteModes } from "@/components/organismo/invite-modes";
 import { ownerBySlug } from "@/lib/organismo/owner";
 
 export const instant = false;
@@ -11,23 +9,19 @@ export default async function InvitacionesPage({
   searchParams,
 }: {
   params: Promise<{ sector: string }>;
-  searchParams: Promise<{ error?: string }>;
+  searchParams: Promise<{ error?: string; modo?: string }>;
 }) {
   const { sector } = await params;
   const owner = await ownerBySlug(sector);
   if (!owner) notFound();
-  const paramsQuery = await searchParams;
+  const query = await searchParams;
   return (
-    <div className="grid max-w-3xl gap-8">
+    <div className="grid max-w-3xl gap-6">
       <header className="grid gap-2">
         <h1 className="text-h2 text-ink">Invitaciones</h1>
-        <a className="text-small font-semibold text-link" href={`/${owner.slug}/invitaciones/plantilla`}>
-          Descargar plantilla
-        </a>
+        <p className="text-body text-ink-secondary">Tres formas de invitar. Elige una.</p>
       </header>
-      <ManualInvite />
-      <InviteUpload />
-      <EmailBox error={paramsQuery.error} />
+      <InviteModes slug={owner.slug} mode={query.modo ?? "mano"} error={query.error} />
     </div>
   );
 }

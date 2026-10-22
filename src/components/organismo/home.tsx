@@ -1,7 +1,9 @@
 import { CopyLink } from "@/components/organismo/copy-link";
 import { LinkCards } from "@/components/organismo/link-cards";
 import { OpensChart } from "@/components/organismo/opens-chart";
+import { SectorCuts } from "@/components/organismo/sector-cuts";
 import { loadOrgHome } from "@/lib/organismo/load-home";
+import { sectors } from "@/lib/sectors";
 
 export async function OrgHome({
   slug,
@@ -10,6 +12,7 @@ export async function OrgHome({
   url,
   sector,
   failed,
+  corte,
 }: {
   slug: string;
   name: string;
@@ -17,8 +20,13 @@ export async function OrgHome({
   url?: string;
   sector?: string;
   failed?: boolean;
+  corte?: string;
 }) {
-  const stats = await loadOrgHome(orgId);
+  const chosen = sectors.find((item) => item.slug === corte);
+  const stats = await loadOrgHome(orgId, chosen?.slug);
+  const hint = chosen
+    ? `Visitas de ${chosen.name} en los últimos 14 días.`
+    : "Visitas al enlace en los últimos 14 días.";
   return (
     <div className="grid gap-6">
       <header className="grid gap-2">
@@ -27,7 +35,8 @@ export async function OrgHome({
       </header>
       <CopyLink url={url} sector={sector} failed={failed} />
       <LinkCards opens={stats.opens} conversions={stats.conversions} rate={stats.rate} />
-      <OpensChart bars={stats.bars} />
+      <SectorCuts orgSlug={slug} cuts={stats.cuts} active={chosen?.slug} />
+      <OpensChart bars={stats.bars} hint={hint} />
     </div>
   );
 }

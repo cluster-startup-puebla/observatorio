@@ -20,6 +20,7 @@ async function finishBrand(page: import("@playwright/test").Page, email: string)
 test("el organismo carga el Excel y copia el enlace", async ({ page }) => {
   await finishBrand(page, "mesa@camara.mx");
   await page.getByRole("link", { name: "Invitaciones" }).click();
+  await page.getByRole("link", { name: "Desde un archivo" }).click();
   const download = await Promise.all([
     page.waitForEvent("download"),
     page.getByRole("link", { name: "Descargar plantilla" }).click(),
@@ -31,6 +32,7 @@ test("el organismo carga el Excel y copia el enlace", async ({ page }) => {
   await expect(page.getByRole("cell", { name: "ana@norte.mx" })).toBeVisible();
   await expect(page.getByRole("cell", { name: "Pendiente" })).toBeVisible();
   await page.goto("/canacintra/invitaciones");
+  await page.getByRole("link", { name: "Desde un archivo" }).click();
   await expect(page.getByTestId("carga-lista")).toBeAttached();
   await page.getByLabel("Archivo de invitaciones").setInputFiles("e2e/fixtures/invitaciones.csv");
   await expect(page).toHaveURL(/\/canacintra\/crm/);
@@ -44,6 +46,7 @@ test("el organismo carga el Excel y copia el enlace", async ({ page }) => {
 test("un archivo sin filas no inventa invitaciones", async ({ page }) => {
   await finishBrand(page, "vacio@camara.mx");
   await page.getByRole("link", { name: "Invitaciones" }).click();
+  await page.getByRole("link", { name: "Desde un archivo" }).click();
   await expect(page.getByTestId("carga-lista")).toBeAttached();
   await page.getByLabel("Archivo de invitaciones").setInputFiles("e2e/fixtures/vacio.csv");
   await expect(page).toHaveURL(/\/canacintra\/crm/);

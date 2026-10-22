@@ -24,9 +24,13 @@ export async function recordLinkOpen(input: { token: string; sectorSlug: string;
 export async function opensForOrganization(client: SupabaseClient, orgId: string) {
   const { data, error } = await client
     .from("link_opens")
-    .select("opened_at")
+    .select("opened_at, sectors(slug)")
     .eq("organization_id", orgId)
     .order("opened_at", { ascending: false });
   if (error) throw new Error(error.message);
-  return (data ?? []).map((row) => ({ at: row.opened_at as string }));
+  return (data ?? []).map((row) => {
+    const nested = row.sectors as { slug?: string } | { slug?: string }[] | null;
+    const slug = Array.isArray(nested) ? nested[0]?.slug : nested?.slug;
+    return { at: row.opened_at as string, sectorSlug: slug ?? "" };
+  });
 }

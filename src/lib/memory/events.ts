@@ -69,7 +69,7 @@ export function eventMethods(): Pick<
     async opensFor(orgId) {
       return memoryStore()
         .opens.filter((item) => item.orgId === orgId)
-        .map((item) => ({ at: item.at }));
+        .map((item) => ({ at: item.at, sectorSlug: item.sectorSlug }));
     },
   };
 }
