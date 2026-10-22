@@ -1,11 +1,12 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { FileText, LayoutDashboard, Users } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { AppSidebarGroup } from "@/components/app-sidebar-group";
 import { AppSidebarUser } from "@/components/app-sidebar-user";
 import type { AdminLink } from "@/components/admin/nav";
+import { openGroupName } from "@/components/admin/nav-match";
 import {
   Sidebar,
   SidebarContent,
@@ -34,14 +35,9 @@ export function AppSidebar({
   subtitle?: string;
 }) {
   const path = usePathname();
-  const [openName, setOpenName] = useState(
-    () => groups.find((group) => group.links.some((link) => link.href === path))?.name ?? null,
-  );
-
-  useEffect(() => {
-    const match = groups.find((group) => group.links.some((link) => link.href === path));
-    if (match) setOpenName(match.name);
-  }, [path]);
+  const matchedName = openGroupName(path, groups);
+  const [override, setOverride] = useState<{ path: string; name: string | null } | null>(null);
+  const openName = override?.path === path ? override.name : matchedName;
 
   return (
     <Sidebar variant="inset" collapsible="icon">
@@ -70,7 +66,7 @@ export function AppSidebar({
               path={path}
               icon={icons[group.name]}
               open={openName === group.name}
-              onOpenChange={(open) => setOpenName(open ? group.name : null)}
+              onOpenChange={(open) => setOverride({ path, name: open ? group.name : null })}
             />
           ))}
         </SidebarMenu>

@@ -10,6 +10,7 @@ import {
   SidebarMenuSubItem,
 } from "@/components/ui/sidebar";
 import type { AdminLink } from "@/components/admin/nav";
+import { bestMatchingHref } from "@/components/admin/nav-match";
 
 export function AppSidebarGroup({
   name,
@@ -26,6 +27,11 @@ export function AppSidebarGroup({
   open: boolean;
   onOpenChange: (open: boolean) => void;
 }) {
+  const activeHref = bestMatchingHref(
+    path,
+    links.map((link) => link.href),
+  );
+
   return (
     <Collapsible open={open} onOpenChange={onOpenChange} className="group/collapsible">
       <SidebarMenuItem>
@@ -44,7 +50,7 @@ export function AppSidebarGroup({
             <SidebarMenuSub>
               {links.map((link) => (
                 <SidebarMenuSubItem key={link.href}>
-                  <SidebarMenuSubButton asChild isActive={path === link.href}>
+                  <SidebarMenuSubButton asChild isActive={link.href === activeHref}>
                     <a href={link.href}>{link.label}</a>
                   </SidebarMenuSubButton>
                 </SidebarMenuSubItem>
