@@ -5,7 +5,13 @@ import { PartnerMark } from "@/components/landing/atoms/partner-mark";
 import { PartnerRow } from "@/components/landing/atoms/partner-row";
 import { clusterLogo, ctaLabel, partners } from "@/content/landing";
 
-export function Hero({ reserveHref = "/register" }: { reserveHref?: string }) {
+export function Hero({
+  reserveHref = "/register",
+  message = null,
+}: {
+  reserveHref?: string;
+  message?: { headline: string; body: string } | null;
+}) {
   return (
     <section
       id="inicio"
@@ -15,8 +21,11 @@ export function Hero({ reserveHref = "/register" }: { reserveHref?: string }) {
       <div className="container-site flex flex-1 flex-col py-8 lg:py-12">
         <Kicker>Levantamiento de necesidades</Kicker>
         <h1 className="mt-4 max-w-4xl text-balance text-[clamp(1.875rem,3.2vw,2.75rem)] leading-[1.08] font-bold tracking-[-0.03em] text-ink">
-          Lo que Puebla no sabe que necesita, tu empresa puede decirlo primero.
+          {message
+            ? message.headline
+            : "Lo que Puebla no sabe que necesita, tu empresa puede decirlo primero."}
         </h1>
+        {message ? <p data-testid="mensaje-sector">{message.body}</p> : null}
         <p className="text-body-lg mt-6 max-w-2xl text-ink-secondary">
           Participa en la sesión de tu sector, ayuda a construir el primer Observatorio
           Tecnológico del estado y sé de los primeros en probar las soluciones que surjan, en tu

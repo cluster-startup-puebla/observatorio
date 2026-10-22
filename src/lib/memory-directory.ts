@@ -48,6 +48,8 @@ function refSecret() {
 
 const openInnovationSubject = "¿Quieres ser una empresa de innovación abierta?";
 
+const messages = new Map<string, { headline: string; body: string }>();
+
 export function resetDirectory() {
   (globalThis as typeof globalThis & { [globalKey]?: Store })[globalKey] = emptyStore();
 }
@@ -200,6 +202,10 @@ function createMemoryDirectory(): Directory {
       const account = store().people.find((item) => item.id === orgId && !item.orgId);
       if (!account?.name || !account.logoKey) return null;
       return { name: account.name, logoKey: account.logoKey };
+    },
+
+    async sectorMessage(slug: string) {
+      return messages.get(slug) ?? null;
     },
 
     async attributeRegistration(input) {

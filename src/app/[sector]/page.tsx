@@ -49,6 +49,9 @@ export default async function SectorPage({
   const token = eventToken(await searchParams);
   const brand = token ? await getDirectory().brandForToken(token) : null;
   const resolved = resolveSector({ pathSector: sector });
+  const message = resolved.slug ? await getDirectory().sectorMessage(resolved.slug) : null;
   const reserveHref = resolved.slug ? `/register?sector=${resolved.slug}` : "/register";
-  return <LandingBody reserveHref={reserveHref} selected={resolved.name} brand={brand} />;
+  return (
+    <LandingBody reserveHref={reserveHref} selected={resolved.name} brand={brand} message={message} />
+  );
 }

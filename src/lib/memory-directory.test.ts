@@ -39,4 +39,9 @@ describe("memory directory", () => {
     expect(await directory.answersFor("p1")).toEqual({ "1": "a" });
     expect(await directory.answersFor("sin-respuestas")).toEqual({});
   });
+
+  it("sin headline el sector no cambia el mensaje", async () => {
+    const directory = getDirectory();
+    expect(await directory.sectorMessage("turismo")).toBeNull();
+  });
 });
