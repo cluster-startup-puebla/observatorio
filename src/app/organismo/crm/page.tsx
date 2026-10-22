@@ -1,4 +1,5 @@
 import { Kicker } from "@/components/landing/atoms/kicker";
+import { ManualInvite } from "@/components/organismo/manual-invite";
 import { crmEventAction } from "@/lib/crm-actions";
 import { crmLabel } from "@/lib/crm-label";
 import { getDirectory } from "@/lib/memory-directory";
@@ -16,6 +17,7 @@ export default async function CrmPage() {
         <Kicker>CRM</Kicker>
         <h1 className="text-h1 text-ink">Invitaciones</h1>
       </header>
+      <ManualInvite />
       <div className="overflow-x-auto border border-line">
         <table className="w-full text-left text-body">
           <thead className="bg-surface-subtle text-small text-ink-muted">

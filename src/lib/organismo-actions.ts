@@ -27,6 +27,19 @@ export async function uploadInvitesAction(formData: FormData) {
   redirect("/organismo/crm");
 }
 
+export async function createInviteAction(formData: FormData) {
+  const id = await readAccountId();
+  if (!id) return;
+  await getDirectory().importInvites(id, [
+    {
+      nombre: String(formData.get("nombre") ?? ""),
+      empresa: String(formData.get("empresa") ?? ""),
+      correo: String(formData.get("correo") ?? ""),
+    },
+  ]);
+  redirect("/organismo/crm");
+}
+
 export async function copyEventLinkAction() {
   const id = await readAccountId();
   if (!id) return "";

@@ -50,3 +50,21 @@ test("un archivo sin filas no inventa invitaciones", async ({ page }) => {
   await expect(page.getByText("Todavía no hay invitaciones.")).toBeVisible();
   await expect(page.getByRole("cell", { name: "ana@norte.mx" })).toHaveCount(0);
 });
+
+test("una invitación a mano entra como Cargado", async ({ page }) => {
+  await page.goto("/register?cuenta=organismo");
+  await page.getByLabel("Correo").fill("manual@camara.mx");
+  await page.getByLabel("Contraseña").fill("secreto-largo");
+  await page.getByRole("button", { name: "Crear cuenta" }).click();
+  await page.getByLabel("Nombre del organismo").fill("CANACINTRA");
+  await page.getByLabel("Color").fill("#1B3A5C");
+  await page.getByLabel("Logo").setInputFiles("e2e/fixtures/logo.png");
+  await page.getByRole("button", { name: "Terminar perfil" }).click();
+  await page.getByRole("link", { name: "CRM" }).click();
+  await page.getByLabel("Nombre").fill("Luis");
+  await page.getByLabel("Empresa").fill("Sur");
+  await page.getByLabel("Correo del invitado").fill("luis@sur.mx");
+  await page.getByRole("button", { name: "Crear invitación" }).click();
+  await expect(page.getByRole("cell", { name: "luis@sur.mx" })).toBeVisible();
+  await expect(page.getByRole("cell", { name: "Cargado" })).toBeVisible();
+});
