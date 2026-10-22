@@ -1,8 +1,11 @@
 "use server";
 
+import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { accountErrors } from "./account-draft";
 import { getDirectory } from "./memory-directory";
+import { orgSlug, slugError } from "./organismo/slug";
+import { sectors } from "./sectors";
 import { writeAccountId } from "./session";
 
 export type AccountFormState = { errors: { email?: string; password?: string } } | null;
@@ -43,11 +46,16 @@ export async function completeOrganismoAction(formData: FormData) {
   const logo = formData.get("logo");
   const hasLogo = logo instanceof File && logo.size > 0;
   if (!id || name.length < 2 || !color || !hasLogo) return { ok: false as const };
+  const slug = orgSlug(name, String(formData.get("slug") ?? ""));
+  if (slugError(slug, sectors.map((s) => s.slug))) redirect("/onboarding?error=slug");
   await getDirectory().completeOnboarding(id, {
     sectorSlug: "general",
     size: "organismo",
     name,
     logoKey: `logos/${id}`,
+    slug,
   });
-  redirect("/organismo");
+  const jar = await cookies();
+  jar.set("org-slug", slug, { path: "/", httpOnly: true, sameSite: "lax" });
+  redirect(`/${slug}`);
 }

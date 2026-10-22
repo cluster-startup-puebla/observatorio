@@ -11,6 +11,7 @@ export function OnboardingWizard({
   sectorName,
   onboarded,
   missingSize,
+  missingSlug,
 }: {
   accountId: string;
   role: string;
@@ -18,6 +19,7 @@ export function OnboardingWizard({
   sectorName: string | null;
   onboarded: boolean;
   missingSize?: boolean;
+  missingSlug?: boolean;
 }) {
   const organismo = role === "director";
 
@@ -32,7 +34,7 @@ export function OnboardingWizard({
     );
   }
 
-  if (organismo) return <OrganismoOnboarding accountId={accountId} />;
+  if (organismo) return <OrganismoOnboarding accountId={accountId} missingSlug={missingSlug} />;
 
   return (
     <form action={completeEmpresarioAction} className="grid gap-5">

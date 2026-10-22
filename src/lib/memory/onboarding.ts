@@ -1,5 +1,6 @@
 import { applyCrmEvent } from "../crm-status";
 import type { Directory } from "../directory";
+import { orgSlug } from "../organismo/slug";
 import { mailFor } from "../outbox-message";
 import { memoryStore } from "./store";
 
@@ -14,6 +15,9 @@ export function onboardingMethods(): Pick<Directory, "completeOnboarding" | "get
       person.size = profile.size;
       if (profile.name) person.name = profile.name;
       if (profile.logoKey) person.logoKey = profile.logoKey;
+      if (person.role === "director") {
+        person.orgSlug = orgSlug(profile.name ?? "", profile.slug ?? "");
+      }
       person.status = "registrado";
       const email = person.email.trim().toLowerCase();
       for (const row of state.people) {
@@ -39,6 +43,7 @@ export function onboardingMethods(): Pick<Directory, "completeOnboarding" | "get
         sectorSlug: person.sectorSlug,
         name: person.name,
         logoKey: person.logoKey,
+        orgSlug: person.orgSlug,
       };
     },
   };

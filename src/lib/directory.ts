@@ -36,7 +36,7 @@ export interface Directory {
   findByEmail(email: string): Promise<{ id: string; role: AccountRole; onboarded: boolean } | null>;
   completeOnboarding(
     id: string,
-    profile: { sectorSlug: string; size: string; name?: string; logoKey?: string },
+    profile: { sectorSlug: string; size: string; name?: string; logoKey?: string; slug?: string },
   ): Promise<void>;
   saveAnswer(input: { personId: string; questionId: string; value: string }): Promise<void>;
   answersFor(personId: string): Promise<Record<string, string>>;
@@ -67,5 +67,6 @@ export interface Directory {
     sectorSlug?: string;
     name?: string;
     logoKey?: string;
+    orgSlug?: string;
   } | null>;
 }

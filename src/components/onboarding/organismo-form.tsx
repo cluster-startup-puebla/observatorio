@@ -4,7 +4,13 @@ import { FileDrop } from "@/components/file-drop";
 import { Field, controlClass } from "@/components/landing/molecules/field";
 import { completeOrganismoAction } from "@/lib/account-actions";
 
-export function OrganismoOnboarding({ accountId }: { accountId: string }) {
+export function OrganismoOnboarding({
+  accountId,
+  missingSlug,
+}: {
+  accountId: string;
+  missingSlug?: boolean;
+}) {
   return (
     <form action={completeOrganismoAction} className="grid gap-5">
       <ConfidentialityNote />
@@ -12,6 +18,10 @@ export function OrganismoOnboarding({ accountId }: { accountId: string }) {
       <Field id="nombre-organismo" label="Nombre del organismo">
         <input id="nombre-organismo" name="nombre" className={controlClass} />
       </Field>
+      <Field id="slug-organismo" label="Enlace del panel">
+        <input id="slug-organismo" name="slug" placeholder="coparmex-puebla" className={controlClass} />
+      </Field>
+      {missingSlug ? <p className="text-small text-mark">Ese enlace no está disponible.</p> : null}
       <ColorField id="color" name="color" />
       <FileDrop
         id="logo"

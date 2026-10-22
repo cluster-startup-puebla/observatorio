@@ -10,7 +10,7 @@ export const instant = false;
 export default async function OnboardingPage({
   searchParams,
 }: {
-  searchParams: Promise<{ sector?: string }>;
+  searchParams: Promise<{ sector?: string; error?: string }>;
 }) {
   const id = await readAccountId();
   if (!id) redirect("/register");
@@ -35,6 +35,7 @@ export default async function OnboardingPage({
         sectorName={resolved.name}
         onboarded={account.onboarded}
         missingSize={params.error === "tamano"}
+        missingSlug={params.error === "slug"}
       />
     </AuthShell>
   );
