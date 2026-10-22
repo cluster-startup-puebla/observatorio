@@ -36,4 +36,25 @@ describe("primer superadmin", () => {
       await directory.loginSuperadmin({ email: " Ana@Admin.mx ", password: "secreto-largo" }),
     ).toEqual({ ok: true, id: "p2" });
   });
+
+  it("acepta la contraseña de cualquier rol y deja el superadmin cerrado", async () => {
+    const directory = getDirectory();
+    const created = await directory.createAccount({ email: "luz@mesa.mx", role: "moderador" });
+    const { memoryStore } = await import("./memory/store");
+    const person = memoryStore().people.find((item) => item.id === created.id);
+    if (person) person.password = "secreto-largo";
+    expect(await directory.loginAccount({ email: " Luz@Mesa.mx ", password: "secreto-largo" })).toEqual({
+      ok: true,
+      id: created.id,
+      role: "moderador",
+    });
+    expect(await directory.loginSuperadmin({ email: "luz@mesa.mx", password: "secreto-largo" })).toEqual({
+      ok: false,
+      reason: "credenciales",
+    });
+    expect(await directory.loginAccount({ email: "luz@mesa.mx", password: "otra-clave" })).toEqual({
+      ok: false,
+      reason: "credenciales",
+    });
+  });
 });
