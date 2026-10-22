@@ -13,3 +13,9 @@ export function logoObjectPath(organizationId: string, contentType: string) {
 export function passObjectPath(profileId: string) {
   return `${profileId}/pass.png`;
 }
+
+export function contentObjectPath(slug: string, filename: string) {
+  if (!/^[a-z0-9-]+$/.test(slug)) throw new Error("slug inválido");
+  if (!/^[a-z0-9.-]+\.(png|jpg|webp)$/.test(filename)) throw new Error("archivo inválido");
+  return `${slug}/${filename}`;
+}
