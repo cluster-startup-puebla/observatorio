@@ -1,0 +1,30 @@
+import "server-only";
+
+import { adminDb } from "@/lib/admin/admin-db";
+import { pageQuery } from "@/lib/admin/page-query";
+import { bandLabel } from "./band-label";
+
+export async function listEmpresas(rawPage: string | undefined) {
+  const page = pageQuery(rawPage);
+  const db = await adminDb();
+  if (!db) return { page: page.page, rows: [] as Record<string, string>[] };
+  const result = await db
+    .from("companies")
+    .select("id, legal_name, employee_band, sector_id, sectors(name)")
+    .order("legal_name")
+    .range(page.from, page.to);
+  if (result.error) throw new Error(result.error.message);
+  return {
+    page: page.page,
+    rows: (result.data ?? []).map((row) => {
+      const sector = row.sectors as { name?: string } | { name?: string }[] | null;
+      const name = Array.isArray(sector) ? sector[0]?.name : sector?.name;
+      return {
+        id: row.id,
+        legal_name: row.legal_name,
+        employee_band: bandLabel(row.employee_band),
+        sector_id: name ?? row.sector_id,
+      };
+    }),
+  };
+}
