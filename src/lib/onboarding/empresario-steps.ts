@@ -1,7 +1,7 @@
 import { companySizes } from "@/content/landing";
+import { acceptedIndustry } from "@/lib/sectors";
 import { parseMarketSize } from "./market-sizes";
 import { isPueblaMunicipio } from "./puebla-municipios";
-import { sectors } from "@/lib/sectors";
 
 export type EmpresarioValues = {
   fullName: string;
@@ -46,7 +46,7 @@ export function stepReady(step: number, values: EmpresarioValues) {
       Boolean(parseMarketSize(values.marketSize)) &&
       companySizes.includes(values.employeeBand) &&
       isPueblaMunicipio(values.municipality) &&
-      sectors.some((sector) => sector.slug === values.sectorSlug)
+      Boolean(acceptedIndustry(values.sectorSlug))
     );
   }
   return values.referralSource.trim().length >= 2 && values.sessionInterest.trim().length >= 2;

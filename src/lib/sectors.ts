@@ -31,6 +31,15 @@ export function resolveSector(input: { pathSector?: string; chosen?: string }): 
     : { slug: null, name: null, locked: false };
 }
 
+export function acceptedIndustry(value: string) {
+  const text = value.trim();
+  if (text.length < 2 || text.length > 80) return null;
+  const known = sectors.find(
+    (sector) => sector.slug === text || sector.name.toLowerCase() === text.toLowerCase(),
+  );
+  return known?.slug ?? text;
+}
+
 export function reserveHref(pathname: string, token?: string | null): string {
   const slug = pathname.split("/").filter(Boolean)[0] ?? "";
   const resolved = resolveSector({ pathSector: slug });

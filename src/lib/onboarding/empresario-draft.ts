@@ -1,5 +1,5 @@
 import { companySizes } from "@/content/landing";
-import { sectors } from "@/lib/sectors";
+import { acceptedIndustry } from "@/lib/sectors";
 import { parseMarketSize } from "./market-sizes";
 import { isPueblaMunicipio } from "./puebla-municipios";
 
@@ -25,7 +25,7 @@ export function parseEmpresarioForm(form: FormData): EmpresarioProfile {
     marketSize: String(form.get("marketSize") ?? "").trim(),
     employeeBand: String(form.get("employeeBand") ?? "").trim(),
     municipality: String(form.get("municipality") ?? "").trim(),
-    sectorSlug: String(form.get("sector") ?? "").trim(),
+    sectorSlug: acceptedIndustry(String(form.get("sector") ?? "")) ?? "",
     referralSource: String(form.get("referralSource") ?? "").trim(),
     sessionInterest: String(form.get("sessionInterest") ?? "").trim(),
   };
@@ -39,7 +39,7 @@ export function empresarioErrors(input: EmpresarioProfile): string | null {
   if (!parseMarketSize(input.marketSize)) return "mercado";
   if (!companySizes.includes(input.employeeBand)) return "empleados";
   if (!isPueblaMunicipio(input.municipality)) return "municipio";
-  if (!sectors.some((sector) => sector.slug === input.sectorSlug)) return "sector";
+  if (!acceptedIndustry(input.sectorSlug)) return "sector";
   if (input.referralSource.length < 2) return "referencia";
   if (input.sessionInterest.length < 2) return "interes";
   return null;

@@ -27,4 +27,14 @@ describe("onboarding empresario", () => {
     expect(stepReady(1, { ...valid, marketSize: "", sectorSlug: "" })).toBe(false);
     expect(stepReady(1, valid)).toBe(true);
   });
+
+  it("acepta una industria que no está en la lista", () => {
+    const form = new FormData();
+    for (const [key, value] of Object.entries({ ...valid, sectorSlug: "Cerámica" })) form.set(key, value);
+    form.set("sector", "Cerámica");
+    const parsed = parseEmpresarioForm(form);
+    expect(parsed.sectorSlug).toBe("Cerámica");
+    expect(empresarioErrors(parsed)).toBeNull();
+    expect(stepReady(1, { ...valid, sectorSlug: "Cerámica" })).toBe(true);
+  });
 });

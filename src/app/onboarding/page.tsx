@@ -40,7 +40,6 @@ export default async function OnboardingPage({
         role={account.role}
         sectorSlug={resolved.slug}
         sectorName={resolved.name}
-        sectorLocked={resolved.locked}
         invitacion={params.invitacion}
         onboarded={account.onboarded}
         formError={params.error}

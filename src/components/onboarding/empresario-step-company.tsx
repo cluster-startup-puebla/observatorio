@@ -1,4 +1,5 @@
 import { controlClass, Field } from "@/components/landing/molecules/field";
+import { FilterCombobox } from "@/components/onboarding/filter-combobox";
 import { OnboardingSelect } from "@/components/onboarding/onboarding-select";
 import { companySizes } from "@/content/landing";
 import { marketSizes } from "@/lib/onboarding/market-sizes";
@@ -15,11 +16,9 @@ export type CompanyStepValues = {
 
 export function EmpresarioStepCompany({
   values,
-  sectorLocked,
   onChange,
 }: {
   values: CompanyStepValues;
-  sectorLocked: boolean;
   onChange: (patch: Partial<CompanyStepValues>) => void;
 }) {
   return (
@@ -52,23 +51,25 @@ export function EmpresarioStepCompany({
         onChange={(employeeBand) => onChange({ employeeBand })}
         options={companySizes.map((size) => ({ value: size, label: size }))}
       />
-      <OnboardingSelect
+      <FilterCombobox
         id="municipality"
+        name="municipality"
         label="Municipio de Puebla"
         value={values.municipality}
-        onChange={(municipality) => onChange({ municipality })}
+        placeholder="Busca tu municipio"
         options={pueblaMunicipios.map((name) => ({ value: name, label: name }))}
+        onChange={(municipality) => onChange({ municipality })}
       />
-      <OnboardingSelect
+      <FilterCombobox
         id="sector"
+        name="sector"
         label="Industria"
-        name={sectorLocked ? null : "sector"}
         value={values.sectorSlug}
-        onChange={(sectorSlug) => onChange({ sectorSlug })}
-        disabled={sectorLocked}
+        allowCustom
+        placeholder="Escribe o elige"
         options={sectors.map((sector) => ({ value: sector.slug, label: sector.name }))}
+        onChange={(sectorSlug) => onChange({ sectorSlug })}
       />
-      {sectorLocked ? <input type="hidden" name="sector" value={values.sectorSlug} /> : null}
     </div>
   );
 }

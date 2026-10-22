@@ -14,13 +14,11 @@ const titles = ["Tú", "Tu empresa", "La sesión"];
 export function EmpresarioForm({
   accountId,
   sectorSlug,
-  sectorLocked,
   invitacion,
   error,
 }: {
   accountId: string;
   sectorSlug: string | null;
-  sectorLocked: boolean;
   invitacion?: string;
   error?: string;
 }) {
@@ -53,11 +51,7 @@ export function EmpresarioForm({
         <EmpresarioStepPerson values={values} onChange={patch} />
       </div>
       <div className={step === 1 ? "grid gap-4" : "hidden"}>
-        <EmpresarioStepCompany
-          values={values}
-          sectorLocked={sectorLocked && Boolean(sectorSlug)}
-          onChange={patch}
-        />
+        <EmpresarioStepCompany values={values} onChange={patch} />
       </div>
       <div className={step === 2 ? "grid gap-4" : "hidden"}>
         <EmpresarioStepReferral values={values} onChange={patch} />

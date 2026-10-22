@@ -1,3 +1,4 @@
+import { AccessPass } from "@/components/onboarding/access-pass";
 import { EmpresarioForm } from "@/components/onboarding/empresario-form";
 import { OrganismoOnboarding } from "@/components/onboarding/organismo-form";
 import { ConfidentialityNote } from "@/components/onboarding/confidentiality-note";
@@ -7,7 +8,6 @@ export function OnboardingWizard({
   role,
   sectorSlug,
   sectorName,
-  sectorLocked,
   invitacion,
   onboarded,
   formError,
@@ -19,7 +19,6 @@ export function OnboardingWizard({
   role: string;
   sectorSlug: string | null;
   sectorName: string | null;
-  sectorLocked: boolean;
   invitacion?: string;
   onboarded: boolean;
   formError?: string;
@@ -31,9 +30,7 @@ export function OnboardingWizard({
     return (
       <div className="grid gap-4">
         <ConfidentialityNote />
-        <p data-testid="qr-listo" className="text-h3 text-ink">
-          Tu pase quedó listo.
-        </p>
+        <AccessPass code={accountId} />
       </div>
     );
   }
@@ -59,7 +56,6 @@ export function OnboardingWizard({
       <EmpresarioForm
         accountId={accountId}
         sectorSlug={sectorSlug}
-        sectorLocked={sectorLocked}
         invitacion={invitacion}
         error={formError}
       />

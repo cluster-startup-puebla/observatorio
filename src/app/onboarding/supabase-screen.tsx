@@ -5,6 +5,7 @@ import { OnboardingWizard } from "@/components/onboarding/onboarding-wizard";
 import { orgSlugForUser } from "@/lib/auth/login-org";
 import { readSessionAccount } from "@/lib/auth/session-account";
 import { readOrgIntent } from "@/lib/organismo/signup-intent";
+import { getDirectory } from "@/lib/memory-directory";
 import { resolveSector } from "@/lib/sectors";
 import { createSupabaseAnon, readAccessToken } from "@/lib/supabase/auth-session";
 
@@ -40,9 +41,8 @@ export async function SupabaseOnboarding({
         role={org ? "director" : account.role}
         sectorSlug={resolved.slug}
         sectorName={resolved.name}
-        sectorLocked={resolved.locked}
         invitacion={params.invitacion}
-        onboarded={false}
+        onboarded={!org && Boolean(await getDirectory().qrFor(account.id))}
         formError={params.error}
         missingSlug={params.error === "slug"}
         missingLogo={params.error === "logo"}
