@@ -2,6 +2,7 @@ import "server-only";
 
 import { adminDb } from "@/lib/admin/admin-db";
 import { pageQuery } from "@/lib/admin/page-query";
+import { kindLabel } from "./kind-label";
 import { mailKind } from "./kinds";
 
 const kinds = ["password", "event_pass", "open_innovation"] as const;
@@ -24,6 +25,7 @@ export async function listBandeja(rawPage: string | undefined, rawKind: string |
     rows: (result.data ?? []).map((row) => ({
       id: row.id,
       kind: row.kind,
+      kind_label: kindLabel(row.kind),
       to_email: row.to_email,
       subject: row.subject,
       created_at: row.created_at,

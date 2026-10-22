@@ -1,7 +1,8 @@
 import { notFound } from "next/navigation";
 import { DetailFrame } from "@/components/admin/detail-frame";
-import { tabQuery } from "@/lib/admin/tab-query";
+import { kindLabel } from "@/lib/admin/bandeja/kind-label";
 import { loadMensaje } from "@/lib/admin/bandeja/detail";
+import { tabQuery } from "@/lib/admin/tab-query";
 import { requireSuperadmin } from "@/lib/auth/require-superadmin";
 
 export const instant = false;
@@ -26,19 +27,14 @@ export default async function MensajeDetailPage({
       title={data.subject}
       backHref="/admin/bandeja"
       facts={[
-        { label: "Tipo", value: data.kind },
+        { label: "Tipo", value: kindLabel(data.kind) },
         { label: "Para", value: data.to_email },
         { label: "Asunto", value: data.subject },
       ]}
       tabs={tabs}
       active={active}
     >
-      {query.error ? <p className="text-small text-mark">{query.error}</p> : null}
-      <form action={`/api/admin/bandeja/${id}`} method="post">
-        <button className="btn btn-primary" type="submit">
-          Reintentar envío
-        </button>
-      </form>
+      <p className="text-small text-ink-muted">Reintenta el envío desde la lista de la bandeja.</p>
     </DetailFrame>
   );
 }

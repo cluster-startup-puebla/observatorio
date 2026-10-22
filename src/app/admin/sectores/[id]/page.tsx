@@ -1,10 +1,8 @@
 import { notFound } from "next/navigation";
 import { DetailFrame } from "@/components/admin/detail-frame";
-import { FormSheet } from "@/components/admin/form-sheet";
 import { tabQuery } from "@/lib/admin/tab-query";
 import { loadSector } from "@/lib/admin/sectores/detail";
 import { requireSuperadmin } from "@/lib/auth/require-superadmin";
-import { SheetSubmit } from "@/components/admin/sheet-submit";
 
 export const instant = false;
 
@@ -38,22 +36,15 @@ export default async function SectorDetailPage({
       tabs={tabs}
       active={active}
     >
-      {query.error ? <p className="text-small text-mark">{query.error}</p> : null}
-      {active === "ficha" ? <p>/{data.sector.slug}</p> : null}
+      {active === "ficha" ? <p className="text-small text-ink-muted">/{data.sector.slug}</p> : null}
       {active === "pagina" ? (
-        <FormSheet action="Editar" resource="página" open={Boolean(query.error)}>
-          <form action={`/api/admin/sectores/${id}`} method="post" className="grid gap-3">
-            <label className="grid gap-1 text-small" htmlFor="headline">
-              Titular
-              <input id="headline" name="headline" defaultValue={data.page?.headline ?? ""} />
-            </label>
-            <label className="grid gap-1 text-small" htmlFor="body">
-              Cuerpo
-              <textarea id="body" name="body" defaultValue={data.page?.body ?? ""} />
-            </label>
-            <SheetSubmit>Guardar página</SheetSubmit>
-          </form>
-        </FormSheet>
+        <div className="grid gap-2 text-small">
+          <p>
+            <span className="text-ink-muted">Titular · </span>
+            {data.page?.headline || "Sin titular"}
+          </p>
+          <p className="whitespace-pre-wrap">{data.page?.body || "Sin cuerpo. Edítalo desde la lista."}</p>
+        </div>
       ) : null}
     </DetailFrame>
   );

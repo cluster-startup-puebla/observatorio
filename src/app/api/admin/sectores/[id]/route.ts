@@ -1,8 +1,10 @@
 import { adminDb } from "@/lib/admin/admin-db";
 import { loadSector } from "@/lib/admin/sectores/detail";
 import { headlineForStore } from "@/lib/admin/sectores/headline";
+import { redirectTo } from "@/lib/admin/redirect";
+import { removeBy } from "@/lib/admin/remove-row";
 import { requireSuperadmin } from "@/lib/auth/require-superadmin";
-import { NextResponse, type NextRequest } from "next/server";
+import type { NextRequest } from "next/server";
 
 export async function GET(_request: NextRequest, context: { params: Promise<{ id: string }> }) {
   await requireSuperadmin();
@@ -16,12 +18,23 @@ export async function POST(request: NextRequest, context: { params: Promise<{ id
   await requireSuperadmin();
   const { id } = await context.params;
   const form = await request.formData();
+  const list = "/admin/sectores";
+  if (form.get("accion") === "eliminar") {
+    const removed = await removeBy("sectors", "id", id);
+    const path = removed.ok ? list : `${list}?error=${encodeURIComponent(removed.reason)}`;
+    return redirectTo(request, path);
+  }
   const headline = headlineForStore(String(form.get("headline") ?? ""));
   const body = String(form.get("body") ?? "").trim();
   const db = await adminDb();
-  const back = `/admin/sectores/${id}?tab=pagina`;
-  if (!db) return NextResponse.redirect(new URL(`${back}&error=sin%20sesi%C3%B3n`, request.url));
+  if (!db) {
+    console.error("sectores page: sin sesión");
+    return redirectTo(request, `${list}?error=${encodeURIComponent("No se pudo guardar. Intenta de nuevo.")}`);
+  }
   const saved = await db.from("sector_pages").upsert({ sector_id: id, headline, body: body || null });
-  if (saved.error) return NextResponse.redirect(new URL(`${back}&error=${encodeURIComponent(saved.error.message)}`, request.url));
-  return NextResponse.redirect(new URL(back, request.url));
+  if (saved.error) {
+    console.error("sector_pages upsert", saved.error);
+    return redirectTo(request, `${list}?error=${encodeURIComponent("No se pudo guardar. Intenta de nuevo.")}`);
+  }
+  return redirectTo(request, list);
 }

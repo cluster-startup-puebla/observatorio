@@ -20,6 +20,7 @@ export async function listMetodologia(rawPage: string | undefined) {
       name: row.name,
       position: String(row.position),
       range_kind: row.range_kind,
+      range_label: row.range_kind === "high" ? "Alto" : row.range_kind === "low" ? "Bajo" : row.range_kind,
     })),
   };
 }

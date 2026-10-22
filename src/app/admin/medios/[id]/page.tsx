@@ -1,11 +1,9 @@
 import { notFound } from "next/navigation";
 import { DetailFrame } from "@/components/admin/detail-frame";
-import { FileDrop } from "@/components/file-drop";
-import { FormSheet } from "@/components/admin/form-sheet";
 import { tabQuery } from "@/lib/admin/tab-query";
 import { loadMedio } from "@/lib/admin/medios/detail";
+import { purposeLabel } from "@/lib/admin/medios/purpose-label";
 import { requireSuperadmin } from "@/lib/auth/require-superadmin";
-import { SheetSubmit } from "@/components/admin/sheet-submit";
 
 export const instant = false;
 
@@ -26,7 +24,7 @@ export default async function MedioDetailPage({
   const active = tabQuery(query.tab, ["archivo"], "archivo");
   return (
     <DetailFrame
-      title={data.purpose}
+      title={purposeLabel(data.purpose)}
       backHref="/admin/medios"
       facts={[
         { label: "Bucket", value: data.bucket_id },
@@ -37,21 +35,7 @@ export default async function MedioDetailPage({
       tabs={tabs}
       active={active}
     >
-      {query.error ? <p className="text-small text-mark">{query.error}</p> : null}
-      <FormSheet action="Editar" resource="archivo" open={Boolean(query.error)}>
-        <form action={`/api/admin/medios/${id}`} method="post" encType="multipart/form-data" className="grid gap-3">
-          <input name="filename" placeholder="foto.png" />
-          <FileDrop
-            id="medio-archivo"
-            name="archivo"
-            label="Archivo"
-            accept="image/png,image/jpeg,image/webp"
-            hint="PNG, JPG o WebP"
-            preview
-          />
-          <SheetSubmit>Reemplazar</SheetSubmit>
-        </form>
-      </FormSheet>
+      <p className="text-small text-ink-muted">Reemplaza el archivo desde la lista de medios.</p>
     </DetailFrame>
   );
 }

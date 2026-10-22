@@ -1,9 +1,10 @@
-import { adminDb } from "@/lib/admin/admin-db";
 import { loadMensaje } from "@/lib/admin/bandeja/detail";
 import { mailKind } from "@/lib/admin/bandeja/kinds";
 import { retryRow } from "@/lib/admin/bandeja/retry";
+import { adminDb } from "@/lib/admin/admin-db";
+import { redirectTo } from "@/lib/admin/redirect";
 import { requireSuperadmin } from "@/lib/auth/require-superadmin";
-import { NextResponse, type NextRequest } from "next/server";
+import type { NextRequest } from "next/server";
 
 export async function GET(_request: NextRequest, context: { params: Promise<{ id: string }> }) {
   await requireSuperadmin();
@@ -17,19 +18,31 @@ export async function POST(request: NextRequest, context: { params: Promise<{ id
   await requireSuperadmin();
   const { id } = await context.params;
   const current = await loadMensaje(id);
-  const back = `/admin/bandeja/${id}`;
+  const list = "/admin/bandeja";
   const kind = current ? mailKind(current.kind) : null;
-  if (!current || !kind) return NextResponse.redirect(new URL(`${back}?error=no%20encontrado`, request.url));
-  const db = await adminDb();
-  if (!db) return NextResponse.redirect(new URL(`${back}?error=sin%20sesi%C3%B3n`, request.url));
-  const inserted = await db.from("outbox_messages").insert(retryRow({
-    kind,
-    to_email: current.to_email,
-    profile_id: current.profile_id,
-    contact_id: current.contact_id,
-  })).select("id").single();
-  if (inserted.error || !inserted.data) {
-    return NextResponse.redirect(new URL(`${back}?error=${encodeURIComponent(inserted.error?.message ?? "no se reintentó")}`, request.url));
+  if (!current || !kind) {
+    return redirectTo(request, `${list}?error=${encodeURIComponent("mensaje no encontrado")}`);
   }
-  return NextResponse.redirect(new URL(`/admin/bandeja/${inserted.data.id}`, request.url));
+  const db = await adminDb();
+  if (!db) {
+    console.error("bandeja retry: sin sesión");
+    return redirectTo(request, `${list}?error=${encodeURIComponent("No se pudo reintentar. Intenta de nuevo.")}`);
+  }
+  const inserted = await db
+    .from("outbox_messages")
+    .insert(
+      retryRow({
+        kind,
+        to_email: current.to_email,
+        profile_id: current.profile_id,
+        contact_id: current.contact_id,
+      }),
+    )
+    .select("id")
+    .single();
+  if (inserted.error || !inserted.data) {
+    console.error("bandeja retry", inserted.error);
+    return redirectTo(request, `${list}?error=${encodeURIComponent("No se pudo reintentar. Intenta de nuevo.")}`);
+  }
+  return redirectTo(request, list);
 }

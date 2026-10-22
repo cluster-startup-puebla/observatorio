@@ -1,7 +1,10 @@
 import { loadSeccion } from "@/lib/admin/metodologia/detail";
 import { saveSection } from "@/lib/admin/metodologia/save-section";
+import { redirectTo } from "@/lib/admin/redirect";
 import { requireSuperadmin } from "@/lib/auth/require-superadmin";
-import { NextResponse, type NextRequest } from "next/server";
+import type { NextRequest } from "next/server";
+
+const known = new Set(["rango inválido"]);
 
 export async function GET(_request: NextRequest, context: { params: Promise<{ id: string }> }) {
   await requireSuperadmin();
@@ -16,8 +19,14 @@ export async function POST(request: NextRequest, context: { params: Promise<{ id
   const { id } = await context.params;
   const form = await request.formData();
   const tab = String(form.get("tab") ?? "preguntas");
-  const back = `/admin/metodologia/${id}?tab=${tab}`;
+  const toList = form.get("return_to") === "list";
+  const back = toList ? "/admin/metodologia" : `/admin/metodologia/${id}?tab=${tab}`;
   const saved = await saveSection(id, form);
-  if (!saved.ok) return NextResponse.redirect(new URL(`${back}&error=${encodeURIComponent(saved.reason)}`, request.url));
-  return NextResponse.redirect(new URL(back, request.url));
+  if (!saved.ok) {
+    if (!known.has(saved.reason)) console.error("saveSection", saved.reason);
+    const reason = known.has(saved.reason) ? saved.reason : "No se pudo guardar. Intenta de nuevo.";
+    const sep = back.includes("?") ? "&" : "?";
+    return redirectTo(request, `${back}${sep}error=${encodeURIComponent(reason)}`);
+  }
+  return redirectTo(request, back);
 }

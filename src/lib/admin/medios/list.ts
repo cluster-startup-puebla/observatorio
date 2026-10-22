@@ -2,6 +2,7 @@ import "server-only";
 
 import { adminDb } from "@/lib/admin/admin-db";
 import { pageQuery } from "@/lib/admin/page-query";
+import { purposeLabel } from "./purpose-label";
 
 export async function listMedios(rawPage: string | undefined) {
   const page = pageQuery(rawPage);
@@ -18,6 +19,7 @@ export async function listMedios(rawPage: string | undefined) {
     rows: (result.data ?? []).map((row) => ({
       id: row.id,
       purpose: row.purpose,
+      purpose_label: purposeLabel(row.purpose),
       bucket_id: row.bucket_id,
       object_path: row.object_path,
       content_type: row.content_type,
