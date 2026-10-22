@@ -25,6 +25,7 @@ export function attributeInStore(
     role: "empresario",
     onboarded: false,
     orgId,
+    sectorSlug: input.sectorSlug,
     status: "registrado",
   });
 }

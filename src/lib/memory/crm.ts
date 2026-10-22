@@ -1,7 +1,8 @@
 import { applyCrmEvent } from "../crm-status";
-import type { CrmPerson, Directory } from "../directory";
+import type { Directory } from "../directory";
 import { parseInviteSheet } from "../invite-sheet";
 import { mailFor } from "../outbox-message";
+import { crmPerson } from "./crm-person";
 import { memoryStore } from "./store";
 
 export function crmMethods(): Pick<Directory, "importInvites" | "crm" | "applyCrm"> {
@@ -35,15 +36,7 @@ export function crmMethods(): Pick<Directory, "importInvites" | "crm" | "applyCr
     async crm(orgId) {
       return memoryStore()
         .people.filter((person) => person.orgId === orgId)
-        .map(
-          (person): CrmPerson => ({
-            id: person.id,
-            nombre: person.name ?? "",
-            empresa: person.empresa ?? "",
-            correo: person.email,
-            status: person.status ?? "",
-          }),
-        );
+        .map((person) => crmPerson(memoryStore(), person));
     },
 
     async applyCrm(personId, event) {

@@ -34,6 +34,9 @@ export function onboardingMethods(): Pick<Directory, "completeOnboarding" | "get
       const email = person.email.trim().toLowerCase();
       for (const row of state.people) {
         if (!row.orgId || row.email.trim().toLowerCase() !== email) continue;
+        if (person.name) row.name = person.name;
+        if (person.empresa) row.empresa = person.empresa;
+        if (person.sectorSlug) row.sectorSlug = person.sectorSlug;
         if (row.status !== "confirmo") continue;
         const next = applyCrmEvent(row.status, "registrar");
         if (next.ok) row.status = next.status;

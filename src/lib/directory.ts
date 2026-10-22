@@ -14,6 +14,7 @@ export type CrmPerson = {
   empresa: string;
   correo: string;
   status: string;
+  sector: string;
 };
 
 export interface Directory {

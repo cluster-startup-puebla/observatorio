@@ -14,7 +14,7 @@ export default async function CrmPage({
   searchParams,
 }: {
   params: Promise<{ sector: string }>;
-  searchParams: Promise<{ vista?: string; estado?: string }>;
+  searchParams: Promise<{ vista?: string; estado?: string; error?: string }>;
 }) {
   const { sector } = await params;
   const query = await searchParams;
@@ -29,7 +29,7 @@ export default async function CrmPage({
         <CrmToggle vista={vista} estado={query.estado} />
       </header>
       {vista === "tarjetas" ? (
-        <CrmCards people={people} vista={vista} />
+        <CrmCards people={people} vista={vista} slug={owner.slug} error={query.error} />
       ) : (
         <div className="grid gap-4">
           <CrmFilters estado={query.estado} />

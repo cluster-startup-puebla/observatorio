@@ -1,5 +1,7 @@
 import { crmEventAction } from "@/lib/crm-actions";
 import type { CrmPerson } from "@/lib/directory";
+import { CrmCardBody } from "@/components/organismo/crm-card-body";
+import { CrmHandInvite } from "@/components/organismo/crm-hand-invite";
 import { orgEstado, type OrgEstado } from "@/lib/organismo/estado";
 
 const columns: { key: OrgEstado; label: string }[] = [
@@ -8,7 +10,17 @@ const columns: { key: OrgEstado; label: string }[] = [
   { key: "confirmado", label: "Confirmado" },
 ];
 
-export function CrmCards({ people, vista }: { people: CrmPerson[]; vista: "tabla" | "tarjetas" }) {
+export function CrmCards({
+  people,
+  vista,
+  slug,
+  error,
+}: {
+  people: CrmPerson[];
+  vista: "tabla" | "tarjetas";
+  slug: string;
+  error?: string;
+}) {
   return (
     <div className="grid items-start gap-4 lg:grid-cols-3">
       {columns.map((column) => {
@@ -19,14 +31,13 @@ export function CrmCards({ people, vista }: { people: CrmPerson[]; vista: "tabla
               <h2 className="text-small font-semibold text-ink">{column.label}</h2>
               <span className="rounded-full bg-elevated px-2 py-0.5 text-small text-ink-secondary">{rows.length}</span>
             </header>
+            {column.key === "pendiente" ? <CrmHandInvite slug={slug} error={error} /> : null}
             {rows.length === 0 ? (
               <p className="px-1 pb-2 text-small text-ink-secondary">Nadie en esta columna.</p>
             ) : (
               rows.map((person) => (
                 <article key={person.id} className="grid gap-2 rounded-xl border border-line bg-elevated p-4">
-                  <p className="text-body font-semibold text-ink">{person.nombre}</p>
-                  <p className="text-small text-ink-secondary">{person.empresa}</p>
-                  <p className="text-small text-ink-secondary">{person.correo}</p>
+                  <CrmCardBody person={person} />
                   {column.key === "pendiente" ? (
                     <form action={crmEventAction}>
                       <input type="hidden" name="personId" value={person.id} />
