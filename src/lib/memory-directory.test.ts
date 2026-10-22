@@ -40,6 +40,16 @@ describe("memory directory", () => {
     expect(await directory.answersFor("sin-respuestas")).toEqual({});
   });
 
+  it("con correo, el pase nace para quien entra por la sesión", async () => {
+    const directory = getDirectory();
+    await directory.completeOnboarding("sesion-nueva", {
+      sectorSlug: "Cerámica",
+      size: "11–50",
+      email: "ana@norte.mx",
+    });
+    expect(await directory.qrFor("sesion-nueva")).toEqual({ personId: "sesion-nueva" });
+  });
+
   it("sin headline el sector no cambia el mensaje", async () => {
     const directory = getDirectory();
     expect(await directory.sectorMessage("turismo")).toBeNull();

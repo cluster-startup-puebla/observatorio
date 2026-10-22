@@ -8,8 +8,13 @@ export function onboardingMethods(): Pick<Directory, "completeOnboarding" | "get
   return {
     async completeOnboarding(id, profile) {
       const state = memoryStore();
-      const person = state.people.find((item) => item.id === id);
-      if (!person) return;
+      let person = state.people.find((item) => item.id === id);
+      if (!person) {
+        const email = profile.email?.trim() ?? "";
+        if (!email) return;
+        person = { id, email, role: "empresario", onboarded: false, status: null };
+        state.people.push(person);
+      }
       person.onboarded = true;
       person.sectorSlug = profile.sectorSlug;
       person.size = profile.size;

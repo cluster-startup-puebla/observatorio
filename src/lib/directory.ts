@@ -49,6 +49,7 @@ export interface Directory {
       municipality?: string;
       referralSource?: string;
       sessionInterest?: string;
+      email?: string;
     },
   ): Promise<void>;
   saveAnswer(input: { personId: string; questionId: string; value: string }): Promise<void>;
