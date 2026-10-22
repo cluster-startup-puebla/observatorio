@@ -1,6 +1,7 @@
 "use server";
 
 import { redirect } from "next/navigation";
+import { signInWithPassword } from "./auth/sign-in";
 import { bootstrapAdminErrors } from "./bootstrap-admin";
 import { getDirectory } from "./memory-directory";
 import { clearAccountId, writeAccountId } from "./session";
@@ -69,23 +70,13 @@ export async function loginSuperadminAction(formData: FormData) {
     redirect("/admin");
   }
 
-  const normalized = email.trim().toLowerCase();
-  const anon = createSupabaseAnon();
-  const logged = await anon.auth.signInWithPassword({ email: normalized, password });
-  if (logged.error || !logged.data.session || !logged.data.user) {
-    redirect("/admin/login?error=credenciales");
+  const signed = await signInWithPassword(email, password);
+  if (!signed.ok || signed.role !== "superadmin") {
+    await clearSupabaseSession();
+    redirect(`/admin/login?error=${signed.ok ? "rol" : signed.reason}`);
   }
 
-  const profile = await createSupabaseWithAccess(logged.data.session.access_token)
-    .from("profiles")
-    .select("role")
-    .eq("id", logged.data.user.id)
-    .maybeSingle();
-  if (profile.error || profile.data?.role !== "superadmin") {
-    redirect("/admin/login?error=rol");
-  }
-
-  await writeSupabaseSession(logged.data.session);
+  await writeSupabaseSession(signed.session);
   redirect("/admin");
 }
 
