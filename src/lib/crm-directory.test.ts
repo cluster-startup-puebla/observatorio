@@ -43,6 +43,22 @@ describe("crm en memoria", () => {
     expect(await directory.crm("otro-organismo")).toEqual([]);
   });
 
+  it("contactar y rechazar solo ocurren desde un estatus abierto", async () => {
+    const directory = getDirectory();
+    const org = await directory.createAccount({ email: "dir@camara.mx", role: "director" });
+    await directory.importInvites(org.id, [
+      { nombre: "Ana", empresa: "Norte", correo: "ana@norte.mx" },
+      { nombre: "Beto", empresa: "Sur", correo: "beto@sur.mx" },
+    ]);
+    const [ana, beto] = await directory.crm(org.id);
+    expect(await directory.applyCrm(ana.id, "contactar")).toEqual({ ok: true, status: "contactado" });
+    expect(await directory.applyCrm(beto.id, "rechazar")).toEqual({ ok: true, status: "no" });
+    expect(await directory.applyCrm(beto.id, "contactar")).toEqual({
+      ok: false,
+      reason: "transición inválida",
+    });
+  });
+
   it("sin copia previa el registro no infla la conversión de otro sector", async () => {
     const directory = getDirectory();
     const org = await directory.createAccount({ email: "dir@camara.mx", role: "director" });

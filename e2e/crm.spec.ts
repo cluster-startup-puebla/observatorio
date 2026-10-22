@@ -30,6 +30,8 @@ test("el organismo carga el Excel y copia el enlace", async ({ page }) => {
   await expect(page.getByRole("cell", { name: "Cargado" })).toBeVisible();
   await page.getByLabel("Archivo de invitaciones").setInputFiles("e2e/fixtures/invitaciones.csv");
   await expect(page.getByRole("cell", { name: "ana@norte.mx" })).toHaveCount(1);
+  await page.getByRole("button", { name: "Contactar" }).click();
+  await expect(page.getByRole("cell", { name: "Contactado" })).toBeVisible();
 });
 
 test("un archivo sin filas no inventa invitaciones", async ({ page }) => {
