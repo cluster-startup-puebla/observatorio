@@ -12,15 +12,11 @@ describe("supabase directory", () => {
         return {
           select() {
             return {
-              is(_column: string, _value: null) {
+              eq(_emailColumn: string, email: string) {
                 return {
-                  eq(_emailColumn: string, email: string) {
-                    return {
-                      maybeSingle: async () => ({
-                        data: rows.find((row) => row.email === email && row.org_id === null) ?? null,
-                      }),
-                    };
-                  },
+                  maybeSingle: async () => ({
+                    data: rows.find((row) => row.email === email && row.org_id === null) ?? null,
+                  }),
                 };
               },
             };

@@ -13,7 +13,6 @@ export function createSupabaseDirectory(client: SupabaseClient): Directory {
       const { data } = await client
         .from("profiles")
         .select("id, role, onboarded_at")
-        .is("org_id", null)
         .eq("email", normalized)
         .maybeSingle();
       if (!data) return null;
