@@ -2,6 +2,7 @@ import { applyCrmEvent, type CrmStatus } from "./crm-status";
 import type { AccountRole, CrmPerson, Directory } from "./directory";
 import { parseInviteSheet } from "./invite-sheet";
 import { openRef, sealRef } from "./ref-token";
+import { createSupabaseDirectory } from "./supabase-directory";
 
 type Person = {
   id: string;
@@ -287,10 +288,12 @@ export function ensureMesaSeed() {
 
 export function getDirectory(): Directory {
   const mode = process.env.DIRECTORY;
-  if (mode && mode !== "memory") {
-    throw new Error(`Directory ${mode} todavía no está conectado`);
+  if (!mode || mode === "memory") return createMemoryDirectory();
+  if (mode === "supabase") {
+    const { createSupabaseAdmin } = require("./supabase/server") as typeof import("./supabase/server");
+    return createSupabaseDirectory(createSupabaseAdmin());
   }
-  return createMemoryDirectory();
+  throw new Error(`Directory ${mode} todavía no está conectado`);
 }
 
 export function seedCompletedAnswers(personId: string, answers: Record<string, string>) {
