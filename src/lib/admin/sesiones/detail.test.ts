@@ -23,9 +23,13 @@ describe("detalle de sesiones", () => {
 
   it("el handler limpia is_current antes de encender la nueva", () => {
     const source = readFileSync("src/app/api/admin/sesiones/[id]/route.ts", "utf8");
+    const detail = readFileSync("src/lib/admin/sesiones/detail.ts", "utf8");
     expect(source).toContain("await requireSuperadmin()");
     expect(source).toContain("currentFlip");
     expect(source).toContain('.from("sessions")');
     expect(source).toContain("is_current");
+    expect(source).toContain("saveSessionQuotas");
+    expect(detail).toContain("session_sector_quotas");
   });
 });
+

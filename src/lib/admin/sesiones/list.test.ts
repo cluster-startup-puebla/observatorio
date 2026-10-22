@@ -11,7 +11,10 @@ describe("lista de sesiones", () => {
     expect(list).toContain("starts_local");
     expect(list).toContain("ends_local");
     expect(list).toContain("is_current");
+    expect(list).toContain("session_sector_quotas");
     expect(list).toContain(".range(page.from, page.to)");
     expect(route).toContain("await requireSuperadmin()");
+    expect(route).toContain("saveSessionQuotas");
   });
 });
+

@@ -1,16 +1,17 @@
 import { notFound } from "next/navigation";
+import { CuposTab } from "@/app/admin/sesiones/[id]/cupos-tab";
+import { FichaTab } from "@/app/admin/sesiones/[id]/ficha-tab";
+import { TemasTab } from "@/app/admin/sesiones/[id]/temas-tab";
 import { DetailFrame } from "@/components/admin/detail-frame";
-import { FormSheet } from "@/components/admin/form-sheet";
 import { tabQuery } from "@/lib/admin/tab-query";
 import { loadSesion } from "@/lib/admin/sesiones/detail";
 import { requireSuperadmin } from "@/lib/auth/require-superadmin";
-import { FichaForm } from "@/app/admin/sesiones/[id]/ficha-form";
-import { SheetSubmit } from "@/components/admin/sheet-submit";
 
 export const instant = false;
 
 const tabs = [
   { value: "ficha", label: "Ficha" },
+  { value: "sectores", label: "Sectores" },
   { value: "temas", label: "Temas" },
   { value: "asistentes", label: "Asistentes" },
 ];
@@ -29,6 +30,9 @@ export default async function SesionDetailPage({
   if (!data) notFound();
   const active = tabQuery(query.tab, tabs.map((tab) => tab.value), "ficha");
   const session = data.session;
+  const quotaLabel = data.quotas.length
+    ? `${session.capacity_max} en ${data.quotas.length} sectores`
+    : `${session.capacity_min}–${session.capacity_max}`;
   return (
     <DetailFrame
       title={session.venue}
@@ -36,34 +40,18 @@ export default async function SesionDetailPage({
       facts={[
         { label: "Formato", value: session.format_name },
         { label: "Horario", value: `${session.starts_local}–${session.ends_local}` },
-        { label: "Cupo", value: `${session.capacity_min}–${session.capacity_max}` },
+        { label: "Cupo", value: quotaLabel },
         { label: "Vigente", value: session.is_current ? "Sí" : "No" },
       ]}
       tabs={tabs}
       active={active}
     >
       {query.error ? <p className="text-small text-mark">{query.error}</p> : null}
-      {active === "ficha" ? <FichaForm id={id} session={session} open={active === "ficha" && Boolean(query.error)} /> : null}
-      {active === "temas" ? (
-        <div>
-          <ul>
-            {data.topics.map((topic) => (
-              <li key={topic.id}>
-                {topic.position}. {topic.title}
-              </li>
-            ))}
-          </ul>
-          <FormSheet action="Crear" resource="tema" open={Boolean(query.error)}>
-            <form action={`/api/admin/sesiones/${id}/temas`} method="post" className="grid gap-3">
-              <input name="position" type="number" min={1} />
-              <input name="title" />
-              <SheetSubmit>Agregar tema</SheetSubmit>
-            </form>
-          </FormSheet>
-        </div>
-      ) : null}
+      {active === "ficha" ? <FichaTab audience={session.audience} includes={session.includes} /> : null}
+      {active === "sectores" ? <CuposTab quotas={data.quotas} /> : null}
+      {active === "temas" ? <TemasTab id={id} topics={data.topics} open={Boolean(query.error)} /> : null}
       {active === "asistentes" ? (
-        <ul>
+        <ul className="grid gap-1 text-small">
           {data.attendees.map((row) => (
             <li key={row.profile_id}>{row.profile_id}</li>
           ))}
