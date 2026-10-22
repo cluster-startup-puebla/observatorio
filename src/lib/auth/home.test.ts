@@ -11,8 +11,18 @@ describe("homeForRole", () => {
     expect(homeForRole("invitador")).toBe("/organismo");
   });
 
+  it("con slug manda al organismo a su raíz", () => {
+    expect(homeForRole("director", "canacintra")).toBe("/canacintra");
+    expect(homeForRole("capturista", "canacintra")).toBe("/canacintra");
+    expect(homeForRole("invitador", "canacintra")).toBe("/canacintra");
+    expect(homeForRole("superadmin", "canacintra")).toBe("/admin");
+    expect(homeForRole("director", "")).toBe("/organismo");
+    expect(homeForRole("director", null)).toBe("/organismo");
+  });
+
   it("rechaza un rol que no está en el enum", () => {
     expect(isAccountRole("gobierno")).toBe(false);
     expect(isAccountRole("empresario")).toBe(true);
   });
 });
+

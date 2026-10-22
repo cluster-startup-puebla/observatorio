@@ -19,6 +19,7 @@ import {
 
 const icons: Record<string, React.ReactNode> = {
   Operación: <LayoutDashboard />,
+  Panel: <LayoutDashboard />,
   Directorio: <Users />,
   Contenido: <FileText />,
 };

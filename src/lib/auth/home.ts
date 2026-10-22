@@ -13,6 +13,9 @@ export function isAccountRole(value: string): value is AccountRole {
   return Object.hasOwn(homes, value);
 }
 
-export function homeForRole(role: AccountRole) {
+const orgRoles = new Set<AccountRole>(["director", "capturista", "invitador"]);
+
+export function homeForRole(role: AccountRole, slug?: string | null) {
+  if (orgRoles.has(role) && slug) return `/${slug}`;
   return homes[role];
 }
