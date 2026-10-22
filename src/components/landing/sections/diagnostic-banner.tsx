@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 
 export function DiagnosticBanner({ closing = false }: { closing?: boolean }) {
@@ -20,13 +21,13 @@ export function DiagnosticBanner({ closing = false }: { closing?: boolean }) {
             leerlo antes de la sesión.
           </p>
         </div>
-        <a
+        <Link
           href="/diagnostico-tmec-puebla"
           className={`inline-flex min-h-11 shrink-0 items-center gap-1 self-start text-body font-semibold text-link ${closing ? "sm:self-end" : "sm:self-center"}`}
         >
           Leer el diagnóstico
           <ArrowUpRight size={18} aria-hidden />
-        </a>
+        </Link>
       </div>
     </aside>
   );

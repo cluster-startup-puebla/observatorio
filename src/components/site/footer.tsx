@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { clusterEmail, clusterUrl } from "@/content/landing";
 
 const LINKS = [
@@ -14,9 +15,9 @@ export function SiteFooter() {
     <footer className="mt-24 border-t border-line bg-surface-subtle py-16">
       <div className="container-site grid gap-12 md:grid-cols-3">
         <div>
-          <a href="/#inicio" className="font-display text-h4 text-ink">
+          <Link href="/#inicio" className="font-display text-h4 text-ink">
             Observatorio
-          </a>
+          </Link>
           <p className="mt-4 max-w-sm text-small text-ink-secondary">
             Es una iniciativa del{" "}
             <a href={clusterUrl} className="text-link" target="_blank" rel="noopener noreferrer">
@@ -38,9 +39,9 @@ export function SiteFooter() {
           <ul className="mt-3 space-y-2 text-small">
             {LINKS.map((item) => (
               <li key={item.href}>
-                <a href={item.href} className="text-link">
+                <Link href={item.href} className="text-link">
                   {item.label}
-                </a>
+                </Link>
               </li>
             ))}
           </ul>
@@ -50,15 +51,15 @@ export function SiteFooter() {
       <div className="container-site mt-12 flex flex-col gap-3 border-t border-line pt-6 sm:flex-row sm:items-center sm:justify-between">
         <p className="text-micro text-ink-muted">© 2026 Observatorio Tecnológico de Puebla</p>
         <p className="text-micro">
-          <a href="/aviso-de-privacidad" className="text-link">
+          <Link href="/aviso-de-privacidad" className="text-link">
             Aviso de privacidad
-          </a>
+          </Link>
           <span className="px-2 text-ink-muted" aria-hidden>
             ·
           </span>
-          <a href="/uso-de-datos" className="text-link">
+          <Link href="/uso-de-datos" className="text-link">
             Uso de datos
-          </a>
+          </Link>
         </p>
       </div>
     </footer>

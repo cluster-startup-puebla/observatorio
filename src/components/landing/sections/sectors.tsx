@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { SectionHeading } from "@/components/landing/molecules/section-heading";
 import { sectors } from "@/lib/sectors";
 
@@ -9,13 +10,13 @@ export function Sectors() {
         <ul className="mt-10 flex flex-wrap gap-3">
           {sectors.map((sector) => (
             <li key={sector.slug}>
-              <a
+              <Link
                 data-testid={`sector-${sector.slug}`}
                 href={`/${sector.slug}`}
                 className="btn btn-secondary px-4 py-2 text-small"
               >
                 {sector.name}
-              </a>
+              </Link>
             </li>
           ))}
         </ul>

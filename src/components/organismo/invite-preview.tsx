@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Kicker } from "@/components/landing/atoms/kicker";
 import { inviteLine } from "@/components/landing/sections/invite-intro";
 
@@ -46,9 +47,9 @@ export function InvitePreview({
         </span>
       </article>
       {href ? (
-        <a className="text-small font-semibold text-link" href={href}>
+        <Link className="text-small font-semibold text-link" href={href}>
           Abrir el enlace
-        </a>
+        </Link>
       ) : (
         <p className="text-small text-ink-secondary">
           El sector sale del enlace que generas en Inicio.

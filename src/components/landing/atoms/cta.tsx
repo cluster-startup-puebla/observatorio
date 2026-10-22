@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { cn } from "cn";
 
 export function Cta({
@@ -12,8 +13,8 @@ export function Cta({
   className?: string;
 }) {
   return (
-    <a href={href} className={cn("btn", `btn-${variant}`, className)}>
+    <Link href={href} className={cn("btn", `btn-${variant}`, className)}>
       {children}
-    </a>
+    </Link>
   );
 }

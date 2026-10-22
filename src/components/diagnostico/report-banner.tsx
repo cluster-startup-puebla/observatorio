@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { diagnosticRegisterHref } from "@/content/diagnostico-tmec";
 
 export function ReportBanner() {
@@ -9,9 +10,9 @@ export function ReportBanner() {
           Al terminar el registro se descarga el diagnóstico de VIA Partners, el de 82 páginas.
         </p>
       </div>
-      <a href={diagnosticRegisterHref} className="btn btn-primary w-full shrink-0 sm:w-auto">
+      <Link href={diagnosticRegisterHref} className="btn btn-primary w-full shrink-0 sm:w-auto">
         Registrarme y descargar
-      </a>
+      </Link>
     </aside>
   );
 }

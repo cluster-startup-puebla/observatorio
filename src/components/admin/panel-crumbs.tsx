@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { adminLinks } from "@/components/admin/nav";
 
 export type Crumb = { name: string; href: string };
@@ -32,9 +33,9 @@ export function PanelCrumbs({ crumbs }: { crumbs: Crumb[] }) {
           return (
             <li key={`${index}-${crumb.name}`} className="flex items-center">
               {linked ? (
-                <a href={crumb.href} aria-current={current ? "page" : undefined} className={className}>
+                <Link href={crumb.href} aria-current={current ? "page" : undefined} className={className}>
                   {crumb.name}
-                </a>
+                </Link>
               ) : (
                 <span className={className} aria-current="page">
                   {crumb.name}

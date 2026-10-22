@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { LegalArticle, LegalHeading } from "@/components/legal/legal-article";
 import { clusterEmail } from "@/content/landing";
 import { pageMetadata } from "@/lib/metadata";
@@ -16,9 +17,9 @@ export default function DataUsePage() {
       <p>
         Esta página explica, en concreto, qué se hace con lo que dejas en el registro y en la
         sesión. El marco legal está en el{" "}
-        <a href="/aviso-de-privacidad" className="text-link">
+        <Link href="/aviso-de-privacidad" className="text-link">
           aviso de privacidad
-        </a>
+        </Link>
         .
       </p>
 

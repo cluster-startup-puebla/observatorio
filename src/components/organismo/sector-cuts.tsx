@@ -1,3 +1,4 @@
+import Link from "next/link";
 import type { SectorCut } from "@/lib/organismo/sector-cuts";
 
 export function SectorCuts({
@@ -15,9 +16,9 @@ export function SectorCuts({
       <div className="flex items-baseline justify-between gap-3">
         <h2 className="text-h3 text-ink">Por sector</h2>
         {active ? (
-          <a href={`/${orgSlug}`} className="text-small font-semibold text-link">
+          <Link href={`/${orgSlug}`} className="text-small font-semibold text-link">
             Ver todos
-          </a>
+          </Link>
         ) : null}
       </div>
       <div className="overflow-x-auto rounded-2xl border border-line">
@@ -34,9 +35,9 @@ export function SectorCuts({
             {cuts.map((cut) => (
               <tr key={cut.slug} className={cut.slug === active ? "bg-surface-subtle" : undefined}>
                 <td className="border-t border-line px-4 py-3">
-                  <a href={`/${orgSlug}?corte=${cut.slug}`} className="font-semibold text-ink">
+                  <Link href={`/${orgSlug}?corte=${cut.slug}`} className="font-semibold text-ink">
                     {cut.name}
-                  </a>
+                  </Link>
                 </td>
                 <td className="border-t border-line px-4 py-3 tabular-nums text-ink">{cut.opens}</td>
                 <td className="border-t border-line px-4 py-3 tabular-nums text-ink">{cut.conversions}</td>

@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { PanelHeader, parentLabel, trailCrumbs } from "@/components/admin/panel-header";
 
 export function DetailFrame({
@@ -28,14 +29,14 @@ export function DetailFrame({
       </dl>
       <nav className="mt-8 flex flex-wrap gap-2">
         {tabs.map((tab) => (
-          <a
+          <Link
             key={tab.value}
             href={`?tab=${tab.value}`}
             data-testid={`tab-${tab.value}`}
             className={tab.value === active ? "btn btn-primary" : "btn"}
           >
             {tab.label}
-          </a>
+          </Link>
         ))}
       </nav>
       <div className="mt-6">{children}</div>

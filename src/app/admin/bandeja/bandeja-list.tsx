@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { BandejaRowActions } from "@/app/admin/bandeja/row-actions";
 import { DataList } from "@/components/admin/data-list";
 
@@ -36,9 +37,9 @@ export function BandejaList({
     >
       <nav className="flex flex-wrap gap-3">
         {filters.map((filter) => (
-          <a key={filter.href} className="text-link" href={filter.href}>
+          <Link key={filter.href} className="text-link" href={filter.href}>
             {filter.label}
-          </a>
+          </Link>
         ))}
       </nav>
     </DataList>

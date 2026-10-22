@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import type { ColumnDef } from "@tanstack/react-table";
 import { columnDef, type DataColumn, type DataRow } from "@/components/admin/data-columns";
@@ -36,9 +37,9 @@ export function DataList({
       meta: { className: "w-[1%] whitespace-nowrap" },
       cell: ({ row }) =>
         rowActions?.(row.original) ?? (
-          <a className="text-link" href={`${basePath}/${row.original.id}`}>
+          <Link className="text-link" href={`${basePath}/${row.original.id}`}>
             Abrir
-          </a>
+          </Link>
         ),
     },
   ];

@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { EmailBox } from "@/components/organismo/email-box";
 import { InviteUpload } from "@/components/organismo/invite-upload";
 import { ManualInvite } from "@/components/organismo/manual-invite";
@@ -45,7 +46,7 @@ export function InviteModes({
         {modes.map((item) => {
           const on = item.id === active;
           return (
-            <a
+            <Link
               key={item.id}
               href={`/${slug}/invitaciones?modo=${item.id}`}
               aria-current={on ? "page" : undefined}
@@ -56,7 +57,7 @@ export function InviteModes({
               }
             >
               {item.label}
-            </a>
+            </Link>
           );
         })}
       </nav>

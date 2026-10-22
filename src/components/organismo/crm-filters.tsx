@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 const estados = [
   { value: "", label: "Todas" },
   { value: "pendiente", label: "Pendiente" },
@@ -12,7 +14,7 @@ export function CrmFilters({ estado }: { estado?: string }) {
         const active = (estado ?? "") === item.value;
         const href = item.value ? `?vista=tabla&estado=${item.value}` : "?vista=tabla";
         return (
-          <a
+          <Link
             key={item.label}
             href={href}
             aria-current={active ? "true" : undefined}
@@ -23,7 +25,7 @@ export function CrmFilters({ estado }: { estado?: string }) {
             }
           >
             {item.label}
-          </a>
+          </Link>
         );
       })}
     </nav>

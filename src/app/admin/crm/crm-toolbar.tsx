@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { CrmChips } from "@/app/admin/crm/crm-chips";
 import { crmEstados, crmHref, crmOrigenes, type CrmVista } from "@/lib/admin/crm/query";
 import { crmLabel } from "@/lib/crm-label";
@@ -28,7 +29,7 @@ export function CrmToolbar({
         {vistas.map((item) => {
           const active = vista === item.value;
           return (
-            <a
+            <Link
               key={item.value}
               href={crmHref({ vista: item.value, estado, origen })}
               aria-current={active ? "page" : undefined}
@@ -39,7 +40,7 @@ export function CrmToolbar({
               }
             >
               {item.label}
-            </a>
+            </Link>
           );
         })}
       </nav>

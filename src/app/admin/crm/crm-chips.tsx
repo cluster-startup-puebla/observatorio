@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export function CrmChips({
   label,
   current,
@@ -17,7 +19,7 @@ export function CrmChips({
         {items.map((item) => {
           const active = current === item.value;
           return (
-            <a
+            <Link
               key={item.label}
               href={hrefFor(item.value)}
               aria-current={active ? "true" : undefined}
@@ -28,7 +30,7 @@ export function CrmChips({
               }
             >
               {item.label}
-            </a>
+            </Link>
           );
         })}
       </div>

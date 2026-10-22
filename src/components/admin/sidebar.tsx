@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { ChevronDown } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { logoutAdminAction } from "@/lib/admin-actions";
@@ -34,7 +35,7 @@ function NavGroup({ name, links, path }: { name: string; links: AdminLink[]; pat
               {links.map((link) => (
                 <SidebarMenuItem key={link.href}>
                   <SidebarMenuButton asChild isActive={path === link.href}>
-                    <a href={link.href}>{link.label}</a>
+                    <Link href={link.href}>{link.label}</Link>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
               ))}

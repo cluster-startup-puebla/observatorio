@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { AuthShell } from "@/components/auth/auth-shell";
 import { pageMetadata } from "@/lib/metadata";
 
@@ -16,12 +17,12 @@ export default function VerifyPage() {
       lead="Te enviamos un correo. Confírmalo para seguir al registro."
       footer={
         <>
-          <a href="/login" className="text-link">
+          <Link href="/login" className="text-link">
             Entrar
-          </a>
-          <a href="/register" className="text-link">
+          </Link>
+          <Link href="/register" className="text-link">
             Reservar mi lugar
-          </a>
+          </Link>
         </>
       }
     />

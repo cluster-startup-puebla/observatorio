@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export function CrmToggle({ vista, estado }: { vista: "tabla" | "tarjetas"; estado?: string }) {
   const vistas = [
     { value: "tabla" as const, label: "Tabla" },
@@ -8,7 +10,7 @@ export function CrmToggle({ vista, estado }: { vista: "tabla" | "tarjetas"; esta
       {vistas.map((item) => {
         const active = vista === item.value;
         return (
-          <a
+          <Link
             key={item.value}
             href={
               item.value === "tabla" && estado
@@ -23,7 +25,7 @@ export function CrmToggle({ vista, estado }: { vista: "tabla" | "tarjetas"; esta
             }
           >
             {item.label}
-          </a>
+          </Link>
         );
       })}
     </nav>

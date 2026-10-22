@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { AuthShell } from "@/components/auth/auth-shell";
 import { ResetForm } from "@/components/auth/reset-form";
 import { pageMetadata } from "@/lib/metadata";
@@ -14,9 +15,9 @@ export default function ResetPage() {
     <AuthShell
       title="Nueva contraseña"
       footer={
-        <a href="/login" className="text-link">
+        <Link href="/login" className="text-link">
           Entrar
-        </a>
+        </Link>
       }
     >
       <ResetForm />

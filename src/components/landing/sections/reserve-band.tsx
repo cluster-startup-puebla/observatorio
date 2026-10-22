@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { ctaLabel } from "@/content/landing";
 
 export function ReserveBand({ href }: { href: string }) {
@@ -11,12 +12,12 @@ export function ReserveBand({ href }: { href: string }) {
             conectado.
           </p>
           <div className="mt-8 flex flex-wrap items-center gap-4">
-            <a href={href} className="btn btn-on-dark">
+            <Link href={href} className="btn btn-on-dark">
               {ctaLabel}
-            </a>
-            <a href="/login" className="text-small band-ink-muted underline underline-offset-4">
+            </Link>
+            <Link href="/login" className="text-small band-ink-muted underline underline-offset-4">
               ¿Ya tienes cuenta? Entra
-            </a>
+            </Link>
           </div>
         </div>
       </div>

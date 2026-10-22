@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { navItems } from "@/content/landing";
 
@@ -7,9 +8,9 @@ export function HeaderLinks() {
       <ul className="flex items-center gap-4 xl:gap-5">
         {navItems.map((item) => (
           <li key={item.href}>
-            <a href={item.href} className="text-small whitespace-nowrap text-ink-secondary transition hover:text-ink">
+            <Link href={item.href} className="text-small whitespace-nowrap text-ink-secondary transition hover:text-ink">
               {item.label}
-            </a>
+            </Link>
           </li>
         ))}
         <li>

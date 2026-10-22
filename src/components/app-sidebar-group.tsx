@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { ChevronRight } from "lucide-react";
 import { Collapsible, CollapsibleTrigger } from "@/components/ui/collapsible";
 import {
@@ -51,7 +52,7 @@ export function AppSidebarGroup({
               {links.map((link) => (
                 <SidebarMenuSubItem key={link.href}>
                   <SidebarMenuSubButton asChild isActive={link.href === activeHref}>
-                    <a href={link.href}>{link.label}</a>
+                    <Link href={link.href}>{link.label}</Link>
                   </SidebarMenuSubButton>
                 </SidebarMenuSubItem>
               ))}
