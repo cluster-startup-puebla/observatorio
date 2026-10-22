@@ -1,3 +1,5 @@
+import { Suspense } from "react";
+import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { navItems } from "@/content/landing";
 import { HeaderCtas } from "@/components/site/header-ctas";
@@ -12,9 +14,9 @@ export function HeaderMenu({ path, onNavigate }: { path: string; onNavigate: () 
       <ul className="flex flex-col p-4">
         {navItems.map((item) => (
           <li key={item.href}>
-            <a href={item.href} className="block py-3 text-body text-ink-secondary" onClick={onNavigate}>
+            <Link href={item.href} className="block py-3 text-body text-ink-secondary" onClick={onNavigate}>
               {item.label}
-            </a>
+            </Link>
           </li>
         ))}
         <li>
@@ -32,7 +34,9 @@ export function HeaderMenu({ path, onNavigate }: { path: string; onNavigate: () 
         </li>
       </ul>
       <div className="grid gap-2 px-4 pb-4">
-        <HeaderCtas path={path} onNavigate={onNavigate} />
+        <Suspense>
+          <HeaderCtas path={path} onNavigate={onNavigate} />
+        </Suspense>
       </div>
     </nav>
   );

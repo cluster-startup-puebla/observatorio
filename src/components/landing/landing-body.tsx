@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import { Backers } from "@/components/landing/sections/backers";
 import { Benefits } from "@/components/landing/sections/benefits";
 import { Boundaries } from "@/components/landing/sections/boundaries";
@@ -45,7 +46,9 @@ export function LandingBody({
       <Boundaries />
       <Faq />
       <ReserveBand href={reserveHref} />
-      <StickyCta />
+      <Suspense>
+        <StickyCta />
+      </Suspense>
     </div>
   );
 }

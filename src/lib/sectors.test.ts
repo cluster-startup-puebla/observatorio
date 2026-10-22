@@ -57,5 +57,6 @@ describe("sectors", () => {
     );
     expect(reserveHref("/")).toBe("/register");
     expect(reserveHref("/sector-inventado")).toBe("/register");
+    expect(reserveHref("/turismo", "abc")).toBe("/register?sector=turismo&invitacion=abc");
   });
 });

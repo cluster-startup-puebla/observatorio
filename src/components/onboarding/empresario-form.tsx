@@ -6,7 +6,7 @@ import { ConfidentialityNote } from "@/components/onboarding/confidentiality-not
 import { EmpresarioStepCompany } from "@/components/onboarding/empresario-step-company";
 import { EmpresarioStepPerson } from "@/components/onboarding/empresario-step-person";
 import { EmpresarioStepReferral } from "@/components/onboarding/empresario-step-referral";
-import { completeEmpresarioAction } from "@/lib/account-actions";
+import { completeEmpresarioAction } from "@/lib/onboarding/complete-empresario";
 import { emptyEmpresarioValues, stepReady } from "@/lib/onboarding/empresario-steps";
 
 const titles = ["Tú", "Tu empresa", "La sesión"];
@@ -15,11 +15,13 @@ export function EmpresarioForm({
   accountId,
   sectorSlug,
   sectorLocked,
+  invitacion,
   error,
 }: {
   accountId: string;
   sectorSlug: string | null;
   sectorLocked: boolean;
+  invitacion?: string;
   error?: string;
 }) {
   const [step, setStep] = useState(0);
@@ -46,6 +48,7 @@ export function EmpresarioForm({
         Paso {step + 1} de 3 · {titles[step]}
       </p>
       <input type="hidden" name="accountId" value={accountId} />
+      <input type="hidden" name="invitacion" value={invitacion ?? ""} />
       <div className={step === 0 ? "grid gap-4" : "hidden"}>
         <EmpresarioStepPerson values={values} onChange={patch} />
       </div>

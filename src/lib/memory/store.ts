@@ -41,6 +41,7 @@ export type MemoryStore = {
   answers: Record<string, Record<string, string>>;
   copies: Record<string, number>;
   registrations: Record<string, number>;
+  attributed: string[];
   outbox: { to: string; subject: string }[];
   organizations: StoredOrg[];
   opens: { orgId: string; sectorSlug: string; at: string }[];
@@ -50,7 +51,7 @@ const globalKey = "__observatorioDirectory";
 
 export function emptyStore(): MemoryStore {
   return {
-    seq: 0, people: [], answers: {}, copies: {}, registrations: {},
+    seq: 0, people: [], answers: {}, copies: {}, registrations: {}, attributed: [],
     outbox: [], organizations: [], opens: [],
   };
 }
@@ -73,20 +74,3 @@ export function refSecret() {
   return process.env.REF_SECRET ?? "e2e-ref-secret";
 }
 
-export function ensureDeskSeed(state: MemoryStore) {
-  if (state.people.some((person) => person.id === "persona-registrada")) return;
-  state.people.push({
-    id: "persona-registrada",
-    email: "ana.lopez@mesa.observatorio",
-    role: "empresario",
-    onboarded: true,
-    sectorSlug: "turismo",
-    size: "1–10",
-    name: "Ana López",
-    status: "registrado",
-  });
-}
-
-export function seedCompletedAnswers(personId: string, answers: Record<string, string>) {
-  memoryStore().answers[personId] = { ...answers };
-}

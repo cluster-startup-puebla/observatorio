@@ -4,7 +4,6 @@ import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { accountErrors } from "./account-draft";
 import { getDirectory } from "./memory-directory";
-import { empresarioErrors, parseEmpresarioForm } from "./onboarding/empresario-draft";
 import { finishOrganismoBrand } from "./organismo/finish-brand";
 import { saveDirectorLogo } from "./organismo/memory-logo";
 import { orgSlug, slugError } from "./organismo/slug";
@@ -35,31 +34,11 @@ export async function createAccountAction(
   const role = isOrganismo ? "director" : "empresario";
   const account = await getDirectory().createAccount({ email, role });
   await writeAccountId(account.id);
-  return { next: sector ? `/onboarding?sector=${encodeURIComponent(sector)}` : "/onboarding" };
-}
-
-export async function completeEmpresarioAction(formData: FormData) {
-  const id = String(formData.get("accountId") ?? "");
-  const profile = parseEmpresarioForm(formData);
-  const reason = !id ? "cuenta" : empresarioErrors(profile);
-  if (reason) {
-    const query = new URLSearchParams({ error: reason });
-    if (profile.sectorSlug) query.set("sector", profile.sectorSlug);
-    redirect(`/onboarding?${query.toString()}`);
-  }
-  await getDirectory().completeOnboarding(id, {
-    sectorSlug: profile.sectorSlug,
-    size: profile.employeeBand,
-    name: profile.fullName,
-    jobTitle: profile.jobTitle,
-    whatsapp: profile.whatsapp || undefined,
-    companyName: profile.companyName,
-    marketSize: profile.marketSize,
-    municipality: profile.municipality,
-    referralSource: profile.referralSource,
-    sessionInterest: profile.sessionInterest,
-  });
-  redirect("/onboarding");
+  const invite = String(formData.get("invitacion") ?? "").trim();
+  const next = new URLSearchParams();
+  if (sector) next.set("sector", sector);
+  if (invite) next.set("invitacion", invite);
+  return { next: next.size ? `/onboarding?${next}` : "/onboarding" };
 }
 
 export async function completeOrganismoAction(formData: FormData) {

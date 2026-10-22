@@ -8,6 +8,7 @@ export function OnboardingWizard({
   sectorSlug,
   sectorName,
   sectorLocked,
+  invitacion,
   onboarded,
   formError,
   missingSlug,
@@ -19,6 +20,7 @@ export function OnboardingWizard({
   sectorSlug: string | null;
   sectorName: string | null;
   sectorLocked: boolean;
+  invitacion?: string;
   onboarded: boolean;
   formError?: string;
   missingSlug?: boolean;
@@ -58,6 +60,7 @@ export function OnboardingWizard({
         accountId={accountId}
         sectorSlug={sectorSlug}
         sectorLocked={sectorLocked}
+        invitacion={invitacion}
         error={formError}
       />
     </div>

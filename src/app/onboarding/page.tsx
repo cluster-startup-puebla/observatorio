@@ -13,7 +13,7 @@ export const instant = false;
 export default async function OnboardingPage({
   searchParams,
 }: {
-  searchParams: Promise<{ sector?: string; error?: string }>;
+  searchParams: Promise<{ sector?: string; error?: string; invitacion?: string }>;
 }) {
   if (usesSupabaseAuth() && (await readAccessToken())) {
     return <SupabaseOnboarding searchParams={searchParams} />;
@@ -41,6 +41,7 @@ export default async function OnboardingPage({
         sectorSlug={resolved.slug}
         sectorName={resolved.name}
         sectorLocked={resolved.locked}
+        invitacion={params.invitacion}
         onboarded={account.onboarded}
         formError={params.error}
         missingSlug={params.error === "slug"}

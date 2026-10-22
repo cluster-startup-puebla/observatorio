@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import Link from "next/link";
+import { Suspense, useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
 import { ReadingToggle } from "@/components/diagnostico/reading-dock";
@@ -48,14 +49,16 @@ export function SiteHeader() {
               condensed ? "px-5 py-2 sm:px-6" : "container-site py-3"
             }`}
           >
-            <a href="/#inicio" className="shrink-0 font-display text-h4 whitespace-nowrap text-ink">
+            <Link href="/#inicio" className="shrink-0 font-display text-h4 whitespace-nowrap text-ink">
               Observatorio
-            </a>
+            </Link>
             <HeaderLinks />
             <div className="flex shrink-0 items-center gap-2">
               {onDiagnostic ? <ReadingToggle /> : null}
               <div className="hidden items-center gap-2 lg:flex">
-                <HeaderCtas path={path} />
+                <Suspense>
+                  <HeaderCtas path={path} />
+                </Suspense>
               </div>
               <ThemeToggle />
               <button

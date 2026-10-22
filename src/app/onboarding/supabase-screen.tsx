@@ -11,7 +11,7 @@ import { createSupabaseAnon, readAccessToken } from "@/lib/supabase/auth-session
 export async function SupabaseOnboarding({
   searchParams,
 }: {
-  searchParams: Promise<{ sector?: string; error?: string }>;
+  searchParams: Promise<{ sector?: string; error?: string; invitacion?: string }>;
 }) {
   const account = await readSessionAccount();
   const token = await readAccessToken();
@@ -41,6 +41,7 @@ export async function SupabaseOnboarding({
         sectorSlug={resolved.slug}
         sectorName={resolved.name}
         sectorLocked={resolved.locked}
+        invitacion={params.invitacion}
         onboarded={false}
         formError={params.error}
         missingSlug={params.error === "slug"}

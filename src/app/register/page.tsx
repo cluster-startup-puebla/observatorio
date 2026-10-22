@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { Suspense } from "react";
 import { AuthShell } from "@/components/auth/auth-shell";
 import { AccountForm } from "@/components/onboarding/account-form";
@@ -16,9 +17,9 @@ export const metadata: Metadata = pageMetadata({
 export const instant = false;
 
 const loginLink = (
-  <a href="/login" className="text-small text-link">
+  <Link href="/login" className="text-small text-link">
     ¿Ya tienes cuenta? Entra
-  </a>
+  </Link>
 );
 
 export default function RegisterPage({ searchParams }: PageProps<"/register">) {
@@ -43,6 +44,7 @@ async function RegisterScreen({ searchParams }: Pick<PageProps<"/register">, "se
   const requested = Array.isArray(params.descarga) ? params.descarga[0] : params.descarga;
   const withDiagnostic = requested === diagnosticDownloadParam;
   const sector = typeof params.sector === "string" ? params.sector : undefined;
+  const invitacion = typeof params.invitacion === "string" ? params.invitacion : undefined;
   const cuenta = typeof params.cuenta === "string" ? params.cuenta : undefined;
   const organismo = cuenta === "organismo";
   const error = registerError(typeof params.error === "string" ? params.error : undefined);
@@ -69,7 +71,7 @@ async function RegisterScreen({ searchParams }: Pick<PageProps<"/register">, "se
           <RegisterForm variant="page" />
         </Suspense>
       ) : (
-        <AccountForm sector={sector} cuenta={cuenta} error={error} />
+        <AccountForm sector={sector} cuenta={cuenta} invitacion={invitacion} error={error} />
       )}
     </AuthShell>
   );

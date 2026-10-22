@@ -11,10 +11,12 @@ import { registerError } from "@/lib/organismo/register-error";
 export function AccountForm({
   sector,
   cuenta,
+  invitacion,
   error = "",
 }: {
   sector?: string;
   cuenta?: string;
+  invitacion?: string;
   error?: string;
 }) {
   const router = useRouter();
@@ -37,6 +39,7 @@ export function AccountForm({
       ) : null}
       <input type="hidden" name="sector" value={sector ?? ""} />
       <input type="hidden" name="cuenta" value={cuenta ?? ""} />
+      <input type="hidden" name="invitacion" value={invitacion ?? ""} />
       <Field id="correo" label="Correo" error={state?.errors?.email}>
         <input id="correo" name="correo" type="email" autoComplete="email" className={controlClass} />
       </Field>

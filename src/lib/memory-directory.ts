@@ -4,7 +4,8 @@ import { crmMethods } from "./memory/crm";
 import { deskMethods } from "./memory/desk";
 import { eventMethods } from "./memory/events";
 import { onboardingMethods } from "./memory/onboarding";
-import { ensureDeskSeed, memoryStore, resetDirectory, seedCompletedAnswers } from "./memory/store";
+import { ensureDeskSeed, seedCompletedAnswers } from "./memory/desk-seed";
+import { memoryStore, resetDirectory } from "./memory/store";
 import { createSupabaseDirectory } from "./supabase-directory";
 
 export { resetDirectory, seedCompletedAnswers };

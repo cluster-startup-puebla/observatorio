@@ -1,7 +1,8 @@
 import { applyCrmEvent } from "../crm-status";
 import type { Directory } from "../directory";
 import { mailFor } from "../outbox-message";
-import { ensureDeskSeed, memoryStore } from "./store";
+import { ensureDeskSeed } from "./desk-seed";
+import { memoryStore } from "./store";
 
 export function deskMethods(): Pick<
   Directory,

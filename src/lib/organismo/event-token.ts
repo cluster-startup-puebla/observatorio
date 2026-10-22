@@ -6,6 +6,7 @@ const namedSearchKeys = new Set([
   "enlace",
   "enviado",
   "error",
+  "invitacion",
   "estatus",
   "nombre",
   "persona",
@@ -22,4 +23,12 @@ export function eventToken(searchParams: { [key: string]: string | string[] | un
     return key;
   }
   return null;
+}
+
+export function tokenFromQuery(query: { forEach(fn: (value: string, key: string) => void): void }) {
+  const bag: Record<string, string> = {};
+  query.forEach((value, key) => {
+    bag[key] = value;
+  });
+  return eventToken(bag);
 }

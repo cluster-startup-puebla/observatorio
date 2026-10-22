@@ -1,5 +1,6 @@
 import type { Directory } from "../directory";
 import { openRef, sealRef } from "../ref-token";
+import { attributeInStore } from "./attribute-registration";
 import { bucket, memoryStore, refSecret } from "./store";
 
 const messages = new Map<string, { headline: string; body: string }>();
@@ -35,20 +36,7 @@ export function eventMethods(): Pick<
     },
 
     async attributeRegistration(input) {
-      const orgId = openRef(input.token, refSecret());
-      if (!orgId) return;
-      const state = memoryStore();
-      const key = Object.keys(state.copies).find((item) => item.startsWith(`${orgId}:`));
-      if (!key) return;
-      state.registrations[key] = (state.registrations[key] ?? 0) + 1;
-      state.people.push({
-        id: `reg-${input.email}`,
-        email: input.email.trim().toLowerCase(),
-        role: "empresario",
-        onboarded: false,
-        orgId,
-        status: "registrado",
-      });
+      attributeInStore(memoryStore(), input);
     },
 
     async conversion(orgId, sectorSlug) {

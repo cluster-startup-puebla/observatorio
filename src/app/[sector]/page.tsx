@@ -9,8 +9,9 @@ import { pageMetadata, siteDescription, siteName } from "@/lib/metadata";
 import { eventToken } from "@/lib/organismo/event-token";
 import { inviteBrand } from "@/lib/organismo/invite-brand";
 import { readInviteLink } from "@/lib/organismo/invite-link-cookie";
+import { captureFinishedInvite } from "@/lib/organismo/capture-invite";
 import { ownerBySlug } from "@/lib/organismo/owner";
-import { resolveSector } from "@/lib/sectors";
+import { reserveHref, resolveSector } from "@/lib/sectors";
 
 export const metadata: Metadata = pageMetadata({
   title: siteName,
@@ -54,9 +55,10 @@ export default async function SectorPage({
       sectorSlug: resolved.slug,
       at: new Date().toISOString(),
     });
+    await captureFinishedInvite(token, resolved.slug);
   }
-  const reserveHref = resolved.slug ? `/register?sector=${resolved.slug}` : "/register";
-  if (!resolved.name) return <LandingBody reserveHref={reserveHref} />;
+  const href = reserveHref(`/${sector}`, token);
+  if (!resolved.name) return <LandingBody reserveHref={href} />;
   const brand = token ? await inviteBrand(token) : null;
-  return <SectorLanding sector={resolved.name} reserveHref={reserveHref} brand={brand} />;
+  return <SectorLanding sector={resolved.name} reserveHref={href} brand={brand} />;
 }

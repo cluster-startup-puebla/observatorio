@@ -63,7 +63,7 @@ export interface Directory {
   copyEventLink(orgId: string, sectorSlug: string): Promise<string>;
   brandForToken(token: string): Promise<{ name: string; logoKey: string } | null>;
   sectorMessage(slug: string): Promise<{ headline: string; body: string } | null>;
-  attributeRegistration(input: { token: string; email: string }): Promise<void>;
+  attributeRegistration(input: { token: string; email: string; sectorSlug?: string }): Promise<void>;
   conversion(orgId: string, sectorSlug: string): Promise<{ copies: number; registrations: number }>;
   recordOpen(input: { token: string; sectorSlug: string; at: string }): Promise<void>;
   opensFor(orgId: string): Promise<{ at: string; sectorSlug: string }[]>;

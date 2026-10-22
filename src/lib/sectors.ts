@@ -31,8 +31,11 @@ export function resolveSector(input: { pathSector?: string; chosen?: string }): 
     : { slug: null, name: null, locked: false };
 }
 
-export function reserveHref(pathname: string): string {
+export function reserveHref(pathname: string, token?: string | null): string {
   const slug = pathname.split("/").filter(Boolean)[0] ?? "";
   const resolved = resolveSector({ pathSector: slug });
-  return resolved.slug ? `/register?sector=${resolved.slug}` : "/register";
+  if (!resolved.slug) return "/register";
+  const query = new URLSearchParams({ sector: resolved.slug });
+  if (token) query.set("invitacion", token);
+  return `/register?${query.toString()}`;
 }
