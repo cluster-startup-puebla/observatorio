@@ -2,6 +2,7 @@ import { listCrumbs, PanelHeader } from "@/components/admin/panel-header";
 import { Kicker } from "@/components/landing/atoms/kicker";
 import { Field, controlClass } from "@/components/landing/molecules/field";
 import { mesaHref } from "@/lib/admin/mesa/href";
+import { requireMesa } from "@/lib/auth/guards";
 import { scanDeskAction } from "@/lib/flow-actions";
 
 export const instant = false;
@@ -11,6 +12,7 @@ export default async function MesaPage({
 }: {
   searchParams: Promise<{ codigo?: string; nombre?: string; estatus?: string; error?: string }>;
 }) {
+  await requireMesa();
   const params = await searchParams;
   const arrived = params.estatus === "llego" && params.nombre;
 
