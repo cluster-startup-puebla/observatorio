@@ -28,6 +28,10 @@ export interface Directory {
   qrFor(id: string): Promise<{ personId: string } | null>;
   importInvites(orgId: string, rows: InviteInput[]): Promise<void>;
   crm(orgId: string): Promise<CrmPerson[]>;
+  applyCrm(
+    personId: string,
+    event: "contactar" | "rechazar",
+  ): Promise<{ ok: true; status: "contactado" | "no" } | { ok: false; reason: string }>;
   copyEventLink(orgId: string, sectorSlug: string): Promise<string>;
   attributeRegistration(input: { token: string; email: string }): Promise<void>;
   conversion(orgId: string, sectorSlug: string): Promise<{ copies: number; registrations: number }>;

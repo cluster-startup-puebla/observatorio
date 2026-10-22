@@ -161,6 +161,18 @@ function createMemoryDirectory(): Directory {
         );
     },
 
+    async applyCrm(personId, event) {
+      const person = store().people.find((item) => item.id === personId);
+      if (!person) return { ok: false as const, reason: "transición inválida" };
+      const next = applyCrmEvent(person.status, event);
+      if (!next.ok) return { ok: false as const, reason: next.reason };
+      if (next.status !== "contactado" && next.status !== "no") {
+        return { ok: false as const, reason: "transición inválida" };
+      }
+      person.status = next.status;
+      return { ok: true as const, status: next.status };
+    },
+
     async copyEventLink(orgId, sectorSlug) {
       const state = store();
       const key = bucket(orgId, sectorSlug);

@@ -1,4 +1,5 @@
 import { Kicker } from "@/components/landing/atoms/kicker";
+import { crmEventAction } from "@/lib/crm-actions";
 import { crmLabel } from "@/lib/crm-label";
 import { getDirectory } from "@/lib/memory-directory";
 import { readAccountId } from "@/lib/session";
@@ -21,22 +22,47 @@ export default async function CrmPage() {
             <tr>
               <th className="px-4 py-3 font-semibold">Correo</th>
               <th className="px-4 py-3 font-semibold">Estatus</th>
+              <th className="px-4 py-3 font-semibold">Acciones</th>
             </tr>
           </thead>
           <tbody>
             {people.length === 0 ? (
               <tr>
-                <td className="px-4 py-6 text-ink-secondary" colSpan={2}>
+                <td className="px-4 py-6 text-ink-secondary" colSpan={3}>
                   Todavía no hay invitaciones.
                 </td>
               </tr>
             ) : (
-              people.map((person) => (
-                <tr key={person.id} className="border-t border-line">
-                  <td className="px-4 py-3">{person.correo}</td>
-                  <td className="px-4 py-3">{crmLabel(person.status)}</td>
-                </tr>
-              ))
+              people.map((person) => {
+                const label = crmLabel(person.status);
+                const canAct = label === "Cargado" || label === "Contactado";
+                return (
+                  <tr key={person.id} className="border-t border-line">
+                    <td className="px-4 py-3">{person.correo}</td>
+                    <td className="px-4 py-3">{label}</td>
+                    <td className="px-4 py-3">
+                      {canAct ? (
+                        <div className="flex flex-wrap gap-2">
+                          <form action={crmEventAction}>
+                            <input type="hidden" name="personId" value={person.id} />
+                            <input type="hidden" name="event" value="contactar" />
+                            <button type="submit" className="btn btn-primary">
+                              Contactar
+                            </button>
+                          </form>
+                          <form action={crmEventAction}>
+                            <input type="hidden" name="personId" value={person.id} />
+                            <input type="hidden" name="event" value="rechazar" />
+                            <button type="submit" className="btn btn-secondary">
+                              Rechazar
+                            </button>
+                          </form>
+                        </div>
+                      ) : null}
+                    </td>
+                  </tr>
+                );
+              })
             )}
           </tbody>
         </table>
