@@ -38,3 +38,10 @@ test("sin persona el panel no inventa avance", async ({ page }) => {
   await page.goto("/panel");
   await expect(page.getByText("Todavía no hay respuestas.")).toBeVisible();
 });
+
+test("la metodología repite el aviso de confidencialidad", async ({ page }) => {
+  await page.goto("/metodologia?persona=p-aviso");
+  await expect(page.getByTestId("aviso-confidencial")).toHaveText(
+    "Esta información es solo estadística. No se comparte y es confidencial.",
+  );
+});

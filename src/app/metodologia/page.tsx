@@ -1,5 +1,6 @@
 import { Kicker } from "@/components/landing/atoms/kicker";
 import { QuestionStep } from "@/components/methodology/question-step";
+import { ConfidentialityNote } from "@/components/onboarding/confidentiality-note";
 import { getDirectory, seedCompletedAnswers } from "@/lib/memory-directory";
 import { SECTIONS } from "@/lib/methodology/instrument";
 import { completedAnswerSeed } from "@/lib/methodology/seed";
@@ -29,6 +30,7 @@ export default async function MetodologiaPage({
         <p className="text-body-lg text-ink-secondary">
           Cada respuesta se guarda al elegirla. Puedes recargar y seguir en el mismo punto.
         </p>
+        <ConfidentialityNote />
         <QuestionStep
           persona={persona}
           question={question}
