@@ -1,6 +1,7 @@
 import { PanelHeader, parentLabel, trailCrumbs } from "@/components/admin/panel-header";
 import { can, type Role } from "@/lib/access";
 import { sendInnovationAction } from "@/lib/flow-actions";
+import { requireSuperadmin } from "@/lib/auth/require-superadmin";
 import { getDirectory } from "@/lib/memory-directory";
 import { usesSupabaseAuth } from "@/lib/supabase/auth-session";
 
@@ -18,6 +19,7 @@ export default async function CorreoPage({
 }: {
   searchParams: Promise<{ enviado?: string; rol?: string }>;
 }) {
+  if (usesSupabaseAuth()) await requireSuperadmin();
   const params = await searchParams;
   const role = roleFromQuery(params.rol);
   const allowed = can(role, "send_mass_email");
