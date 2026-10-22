@@ -1,7 +1,13 @@
 import type { Metadata } from "next";
-import { AuthBack } from "@/components/auth/auth-back";
+import { redirect } from "next/navigation";
+import { AuthSplit } from "@/components/auth/auth-split";
 import { LoginForm } from "@/components/auth/login-form";
+import { LoginNotice } from "@/components/auth/login-notice";
+import { homeForRole } from "@/lib/auth/home";
+import { readSessionAccount } from "@/lib/auth/session-account";
 import { pageMetadata } from "@/lib/metadata";
+
+export const instant = false;
 
 export const metadata: Metadata = pageMetadata({
   title: "Entrar",
@@ -9,35 +15,43 @@ export const metadata: Metadata = pageMetadata({
   path: "/login",
 });
 
-export default function LoginPage() {
+const messages: Record<string, string> = {
+  correo: "Escribe un correo válido.",
+  contrasena: "Usa al menos 8 caracteres.",
+  credenciales: "Correo o contraseña incorrectos.",
+  rol: "Esta cuenta no tiene un acceso reconocido.",
+};
+
+export default async function LoginPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ error?: string; aviso?: string }>;
+}) {
+  const account = await readSessionAccount();
+  if (account) redirect(homeForRole(account.role));
+
+  const params = await searchParams;
+  const error = params.error ? messages[params.error] : undefined;
+  const notice = params.aviso === "sesion" ? "Sesión cerrada." : undefined;
+
   return (
-    <div className="flex min-h-dvh flex-col px-4 py-4 sm:px-6 sm:py-6">
-      <AuthBack />
-      <div className="mt-4 grid flex-1 gap-4 lg:grid-cols-2">
-        <section className="band-ink flex min-h-72 flex-col justify-between rounded-3xl p-8 lg:min-h-full lg:p-12">
-          <p className="font-display text-h3">Observatorio</p>
-          <div>
-            <p className="text-h2 text-balance">La sesión de tu sector.</p>
-            <p className="band-ink-muted mt-4 max-w-sm text-body">
-              Sin costo. Entras a tu cuenta cuando el acceso quede conectado.
-            </p>
-          </div>
-        </section>
-        <section className="flex flex-col justify-center rounded-3xl border border-line bg-elevated p-8 shadow-[var(--card-shadow)] lg:p-12">
-          <h1 className="text-h2 text-ink">Entrar</h1>
-          <div className="mt-8">
-            <LoginForm />
-          </div>
-          <div className="mt-6 flex flex-wrap gap-x-4 gap-y-2 text-small">
-            <a href="/recuperar" className="text-link">
-              Olvidé mi contraseña
-            </a>
-            <a href="/register" className="text-link">
-              ¿Aún no reservas? Reserva tu lugar
-            </a>
-          </div>
-        </section>
+    <AuthSplit
+      title="La sesión de tu sector."
+      lead="Entras con tu correo. Cada rol llega a su propia puerta."
+    >
+      <h1 className="text-h2 text-ink">Entrar</h1>
+      <div className="mt-8">
+        <LoginNotice notice={notice} />
+        <LoginForm error={error} errorCode={params.error} />
       </div>
-    </div>
+      <div className="mt-6 flex flex-wrap gap-x-4 gap-y-2 text-small">
+        <a href="/recuperar" className="text-link">
+          Olvidé mi contraseña
+        </a>
+        <a href="/register" className="text-link">
+          ¿Aún no reservas? Reserva tu lugar
+        </a>
+      </div>
+    </AuthSplit>
   );
 }

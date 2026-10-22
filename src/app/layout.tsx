@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Archivo, Raleway } from "next/font/google";
 import Script from "next/script";
+import { Toaster } from "@/components/ui/sonner";
 import { SiteFrame } from "@/components/site/site-frame";
 import { rootMetadata } from "@/lib/metadata";
 import "./globals.css";
@@ -38,6 +39,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           {themeScript}
         </Script>
         <SiteFrame>{children}</SiteFrame>
+        <Toaster />
       </body>
     </html>
   );
