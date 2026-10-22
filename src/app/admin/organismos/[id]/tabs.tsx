@@ -1,3 +1,5 @@
+import { FormSheet } from "@/components/admin/form-sheet";
+
 export function OrganismoTabs({
   id,
   active,
@@ -39,29 +41,37 @@ export function OrganismoTabs({
   }
   if (active === "enlace") {
     return (
-      <form action={`/api/admin/organismos/${id}/enlace`} method="post" className="mt-4 grid gap-3">
-        <select name="sector_id">
-          {data.sectors.map((sector) => (
-            <option key={sector.id} value={sector.id}>
-              {sector.name}
-            </option>
-          ))}
-        </select>
-        <button className="btn btn-primary" type="submit">
-          Copiar enlace del evento
-        </button>
+      <div className="mt-4 grid gap-3">
         {enlace ? <p data-testid="enlace-evento">{enlace}</p> : null}
         <p>{data.copies.length} copias</p>
-      </form>
+        <FormSheet action="Crear" resource="enlace" open={Boolean(enlace)}>
+          <form action={`/api/admin/organismos/${id}/enlace`} method="post" className="grid gap-3">
+            <select name="sector_id">
+              {data.sectors.map((sector) => (
+                <option key={sector.id} value={sector.id}>
+                  {sector.name}
+                </option>
+              ))}
+            </select>
+            <button className="btn btn-primary" type="submit">
+              Copiar enlace del evento
+            </button>
+          </form>
+        </FormSheet>
+      </div>
     );
   }
   return (
-    <form action={`/api/admin/organismos/${id}/logo`} method="post" encType="multipart/form-data" className="mt-4 grid gap-3">
+    <div className="mt-4 grid gap-3">
       <p>{data.logo?.object_path ?? "Sin logo."}</p>
-      <input name="logo" type="file" accept="image/png,image/jpeg,image/webp" />
-      <button className="btn btn-primary" type="submit">
-        Subir logo
-      </button>
-    </form>
+      <FormSheet action="Editar" resource="logo">
+        <form action={`/api/admin/organismos/${id}/logo`} method="post" encType="multipart/form-data" className="grid gap-3">
+          <input name="logo" type="file" accept="image/png,image/jpeg,image/webp" />
+          <button className="btn btn-primary" type="submit">
+            Subir logo
+          </button>
+        </form>
+      </FormSheet>
+    </div>
   );
 }

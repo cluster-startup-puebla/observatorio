@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 import { DetailFrame } from "@/components/admin/detail-frame";
+import { FormSheet } from "@/components/admin/form-sheet";
 import { tabQuery } from "@/lib/admin/tab-query";
 import { loadSesion } from "@/lib/admin/sesiones/detail";
 import { requireSuperadmin } from "@/lib/auth/require-superadmin";
@@ -41,7 +42,7 @@ export default async function SesionDetailPage({
       active={active}
     >
       {query.error ? <p className="text-small text-mark">{query.error}</p> : null}
-      {active === "ficha" ? <FichaForm id={id} session={session} /> : null}
+      {active === "ficha" ? <FichaForm id={id} session={session} open={active === "ficha" && Boolean(query.error)} /> : null}
       {active === "temas" ? (
         <div>
           <ul>
@@ -51,13 +52,15 @@ export default async function SesionDetailPage({
               </li>
             ))}
           </ul>
-          <form action={`/api/admin/sesiones/${id}/temas`} method="post" className="mt-4 grid gap-3">
-            <input name="position" type="number" min={1} />
-            <input name="title" />
-            <button className="btn" type="submit">
-              Agregar tema
-            </button>
-          </form>
+          <FormSheet action="Crear" resource="tema" open={Boolean(query.error)}>
+            <form action={`/api/admin/sesiones/${id}/temas`} method="post" className="grid gap-3">
+              <input name="position" type="number" min={1} />
+              <input name="title" />
+              <button className="btn" type="submit">
+                Agregar tema
+              </button>
+            </form>
+          </FormSheet>
         </div>
       ) : null}
       {active === "asistentes" ? (

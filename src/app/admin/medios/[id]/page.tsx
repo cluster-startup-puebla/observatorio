@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 import { DetailFrame } from "@/components/admin/detail-frame";
+import { FormSheet } from "@/components/admin/form-sheet";
 import { tabQuery } from "@/lib/admin/tab-query";
 import { loadMedio } from "@/lib/admin/medios/detail";
 import { requireSuperadmin } from "@/lib/auth/require-superadmin";
@@ -35,13 +36,15 @@ export default async function MedioDetailPage({
       active={active}
     >
       {query.error ? <p className="text-small text-mark">{query.error}</p> : null}
-      <form action={`/api/admin/medios/${id}`} method="post" encType="multipart/form-data" className="grid gap-3">
-        <input name="filename" placeholder="foto.png" />
-        <input name="archivo" type="file" accept="image/png,image/jpeg,image/webp" />
-        <button className="btn btn-primary" type="submit">
-          Reemplazar
-        </button>
-      </form>
+      <FormSheet action="Editar" resource="archivo" open={Boolean(query.error)}>
+        <form action={`/api/admin/medios/${id}`} method="post" encType="multipart/form-data" className="grid gap-3">
+          <input name="filename" placeholder="foto.png" />
+          <input name="archivo" type="file" accept="image/png,image/jpeg,image/webp" />
+          <button className="btn btn-primary" type="submit">
+            Reemplazar
+          </button>
+        </form>
+      </FormSheet>
     </DetailFrame>
   );
 }

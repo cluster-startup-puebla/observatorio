@@ -1,3 +1,5 @@
+import { FormSheet } from "@/components/admin/form-sheet";
+
 const roles = ["superadmin", "moderador", "empresario", "director", "capturista", "invitador"];
 
 export function RoleForm({
@@ -5,14 +7,17 @@ export function RoleForm({
   role,
   organizationId,
   orgs,
+  open,
 }: {
   id: string;
   role: string;
   organizationId: string;
   orgs: { id: string; name: string | null }[];
+  open?: boolean;
 }) {
   return (
-    <form action={`/api/admin/cuentas/${id}`} method="post" className="grid max-w-md gap-3">
+    <FormSheet action="Editar" resource="rol" open={open}>
+    <form action={`/api/admin/cuentas/${id}`} method="post" className="grid gap-3">
       <label className="grid gap-1 text-small" htmlFor="role">
         Rol
         <select id="role" name="role" defaultValue={role} className="rounded-lg border border-line px-3 py-2">
@@ -38,5 +43,6 @@ export function RoleForm({
         Cambiar rol
       </button>
     </form>
+    </FormSheet>
   );
 }

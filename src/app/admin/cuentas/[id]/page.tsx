@@ -43,7 +43,7 @@ export default async function CuentaDetailPage({
       active={active}
     >
       {query.error ? <p className="mb-4 text-small text-mark">{query.error}</p> : null}
-      <RoleForm id={id} role={profile.role} organizationId={profile.organization_id ?? ""} orgs={data.orgs} />
+      <RoleForm id={id} role={profile.role} organizationId={profile.organization_id ?? ""} orgs={data.orgs} open={Boolean(query.error)} />
       <CuentaTabs
         active={active}
         companyName={data.company?.legal_name ?? ""}

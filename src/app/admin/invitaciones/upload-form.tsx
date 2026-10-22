@@ -1,6 +1,9 @@
-export function UploadForm({ orgs }: { orgs: { id: string; name: string }[] }) {
+import { FormSheet } from "@/components/admin/form-sheet";
+
+export function UploadForm({ orgs, open }: { orgs: { id: string; name: string }[]; open?: boolean }) {
   return (
-    <form action="/api/admin/invitaciones" method="post" encType="multipart/form-data" className="mt-8 grid max-w-xl gap-3">
+    <FormSheet action="Crear" resource="invitaciones" open={open}>
+    <form action="/api/admin/invitaciones" method="post" encType="multipart/form-data" className="grid gap-3">
       <label className="grid gap-1 text-small" htmlFor="organization_id">
         Organismo
         <select id="organization_id" name="organization_id" className="rounded-lg border border-line px-3 py-2">
@@ -19,5 +22,6 @@ export function UploadForm({ orgs }: { orgs: { id: string; name: string }[] }) {
         Subir plantilla
       </button>
     </form>
+    </FormSheet>
   );
 }

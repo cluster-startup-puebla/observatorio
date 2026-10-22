@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 import { DetailFrame } from "@/components/admin/detail-frame";
+import { FormSheet } from "@/components/admin/form-sheet";
 import { tabQuery } from "@/lib/admin/tab-query";
 import { loadSector } from "@/lib/admin/sectores/detail";
 import { requireSuperadmin } from "@/lib/auth/require-superadmin";
@@ -39,19 +40,21 @@ export default async function SectorDetailPage({
       {query.error ? <p className="text-small text-mark">{query.error}</p> : null}
       {active === "ficha" ? <p>/{data.sector.slug}</p> : null}
       {active === "pagina" ? (
-        <form action={`/api/admin/sectores/${id}`} method="post" className="grid max-w-xl gap-3">
-          <label className="grid gap-1 text-small" htmlFor="headline">
-            Titular
-            <input id="headline" name="headline" defaultValue={data.page?.headline ?? ""} />
-          </label>
-          <label className="grid gap-1 text-small" htmlFor="body">
-            Cuerpo
-            <textarea id="body" name="body" defaultValue={data.page?.body ?? ""} />
-          </label>
-          <button className="btn btn-primary" type="submit">
-            Guardar página
-          </button>
-        </form>
+        <FormSheet action="Editar" resource="página" open={Boolean(query.error)}>
+          <form action={`/api/admin/sectores/${id}`} method="post" className="grid gap-3">
+            <label className="grid gap-1 text-small" htmlFor="headline">
+              Titular
+              <input id="headline" name="headline" defaultValue={data.page?.headline ?? ""} />
+            </label>
+            <label className="grid gap-1 text-small" htmlFor="body">
+              Cuerpo
+              <textarea id="body" name="body" defaultValue={data.page?.body ?? ""} />
+            </label>
+            <button className="btn btn-primary" type="submit">
+              Guardar página
+            </button>
+          </form>
+        </FormSheet>
       ) : null}
     </DetailFrame>
   );

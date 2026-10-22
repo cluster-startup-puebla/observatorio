@@ -28,7 +28,7 @@ export default async function InvitacionesPage({
       basePath="/admin/invitaciones"
       error={params.error}
     >
-      <UploadForm orgs={data.orgs} />
+      <UploadForm orgs={data.orgs} open={Boolean(params.error)} />
     </DataList>
   );
 }

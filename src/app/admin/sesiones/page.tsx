@@ -29,7 +29,7 @@ export default async function SesionesPage({
       basePath="/admin/sesiones"
       error={params.error}
     >
-      <CreateSessionForm />
+      <CreateSessionForm open={Boolean(params.error)} />
     </DataList>
   );
 }

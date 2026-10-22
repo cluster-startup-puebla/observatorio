@@ -1,6 +1,9 @@
+import { FormSheet } from "@/components/admin/form-sheet";
+
 export function StaffForm({ orgs, error }: { orgs: { id: string; name: string }[]; error: string }) {
   return (
-    <form action="/api/admin/cuentas" method="post" className="mt-8 grid max-w-xl gap-3">
+    <FormSheet action="Crear" resource="cuenta" open={Boolean(error)}>
+    <form action="/api/admin/cuentas" method="post" className="grid gap-3">
       {error ? <p className="text-small text-mark">{error}</p> : null}
       <label className="grid gap-1 text-small text-ink" htmlFor="email">
         Correo
@@ -33,5 +36,6 @@ export function StaffForm({ orgs, error }: { orgs: { id: string; name: string }[
         Crear cuenta de staff
       </button>
     </form>
+    </FormSheet>
   );
 }

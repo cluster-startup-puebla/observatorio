@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 import { DetailFrame } from "@/components/admin/detail-frame";
+import { FormSheet } from "@/components/admin/form-sheet";
 import { tabQuery } from "@/lib/admin/tab-query";
 import { loadOrganismo } from "@/lib/admin/organismos/detail";
 import { requireSuperadmin } from "@/lib/auth/require-superadmin";
@@ -38,12 +39,16 @@ export default async function OrganismoDetailPage({
       tabs={tabs}
       active={active}
     >
-      {query.error ? <p className="text-small text-mark">{query.error}</p> : null}
-      <form action={`/api/admin/organismos/${id}`} method="post" className="mt-4 grid max-w-md gap-3">
-        <input name="name" defaultValue={data.org.name ?? ""} className="rounded-lg border border-line px-3 py-2" />
-        <input name="brand_color" defaultValue={data.org.brand_color ?? ""} className="rounded-lg border border-line px-3 py-2" />
-        <button className="btn btn-primary" type="submit">Guardar nombre y color</button>
-      </form>
+      {query.error && !query.tab ? <p className="text-small text-mark">{query.error}</p> : null}
+      <FormSheet action="Editar" resource="organismo" open={Boolean(query.error) && !query.tab}>
+        <form action={`/api/admin/organismos/${id}`} method="post" className="grid gap-3">
+          <input name="name" defaultValue={data.org.name ?? ""} className="rounded-lg border border-line px-3 py-2" />
+          <input name="brand_color" defaultValue={data.org.brand_color ?? ""} className="rounded-lg border border-line px-3 py-2" />
+          <button className="btn btn-primary" type="submit">
+            Guardar nombre y color
+          </button>
+        </form>
+      </FormSheet>
       <OrganismoTabs id={id} active={active} data={data} enlace={query.enlace} />
     </DetailFrame>
   );

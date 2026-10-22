@@ -1,3 +1,5 @@
+import { FormSheet } from "@/components/admin/form-sheet";
+
 type SessionFields = {
   venue: string;
   format_name: string;
@@ -10,9 +12,10 @@ type SessionFields = {
   is_current: boolean;
 };
 
-export function FichaForm({ id, session }: { id: string; session: SessionFields }) {
+export function FichaForm({ id, session, open }: { id: string; session: SessionFields; open?: boolean }) {
   return (
-    <form action={`/api/admin/sesiones/${id}`} method="post" className="grid max-w-xl gap-3">
+    <FormSheet action="Editar" resource="sesión" open={open}>
+    <form action={`/api/admin/sesiones/${id}`} method="post" className="grid gap-3">
       <input name="venue" defaultValue={session.venue} />
       <input name="format_name" defaultValue={session.format_name} />
       <input name="starts_local" type="time" defaultValue={session.starts_local} />
@@ -28,5 +31,6 @@ export function FichaForm({ id, session }: { id: string; session: SessionFields 
         Guardar sesión
       </button>
     </form>
+    </FormSheet>
   );
 }

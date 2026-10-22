@@ -1,6 +1,9 @@
-export function CreateSessionForm() {
+import { FormSheet } from "@/components/admin/form-sheet";
+
+export function CreateSessionForm({ open }: { open?: boolean }) {
   return (
-    <form action="/api/admin/sesiones" method="post" className="mt-8 grid max-w-xl gap-3">
+    <FormSheet action="Crear" resource="sesión" open={open}>
+    <form action="/api/admin/sesiones" method="post" className="grid gap-3">
       <input name="venue" placeholder="Lugar" required />
       <input name="format_name" placeholder="Formato" required />
       <input name="starts_local" type="time" required />
@@ -13,5 +16,6 @@ export function CreateSessionForm() {
         Crear sesión
       </button>
     </form>
+    </FormSheet>
   );
 }
