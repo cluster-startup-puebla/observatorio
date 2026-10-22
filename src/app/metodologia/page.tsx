@@ -11,7 +11,13 @@ export const instant = false;
 export default async function MetodologiaPage({
   searchParams,
 }: {
-  searchParams: Promise<{ persona?: string; completas?: string; ver?: string; error?: string }>;
+  searchParams: Promise<{
+    persona?: string;
+    pregunta?: string;
+    completas?: string;
+    ver?: string;
+    error?: string;
+  }>;
 }) {
   const params = await searchParams;
   const persona = params.persona?.trim() ?? "";
@@ -21,7 +27,11 @@ export default async function MetodologiaPage({
   }
   const stored = persona ? await getDirectory().answersFor(persona) : {};
   const result = calculateIntegralResult(answersFromStored(stored));
-  const question = SECTIONS[0].questions[0];
+  const flat = SECTIONS.flatMap((section) =>
+    section.questions.map((question) => ({ section, question })),
+  );
+  const current =
+    flat.find((item) => String(item.question.id) === (params.pregunta ?? "1")) ?? flat[0];
 
   return (
     <section className="container-site py-10 lg:py-14">
@@ -35,10 +45,12 @@ export default async function MetodologiaPage({
         {saveFailed ? (
           <p className="text-small text-mark">No se pudo guardar. Vuelve a elegir la respuesta.</p>
         ) : null}
+        <p data-testid="seccion-actual">{current.section.name}</p>
+        <p data-testid="progreso-preguntas">{Object.keys(stored).length} de 18</p>
         <QuestionStep
           persona={persona}
-          question={question}
-          saved={saveFailed ? "" : (stored[String(question.id)] ?? "")}
+          question={current.question}
+          saved={saveFailed ? "" : (stored[String(current.question.id)] ?? "")}
         />
         {Object.keys(stored).length >= 18 && params.ver === "1" ? (
           <div className="grid gap-3 border border-line bg-surface-subtle p-5">

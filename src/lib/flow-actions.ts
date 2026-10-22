@@ -18,7 +18,9 @@ export async function saveMethodologyForm(formData: FormData) {
       (input) => getDirectory().saveAnswer(input),
       { personId: persona, questionId, value },
     );
+    const next = String(Math.min(Number(questionId) + 1, 18));
     const query = new URLSearchParams({ persona });
+    query.set("pregunta", result.ok ? next : questionId);
     if (!result.ok) query.set("error", "guardar");
     redirect(`/metodologia?${query.toString()}`);
   }
