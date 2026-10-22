@@ -11,7 +11,7 @@ export function companyDraft(input: {
   const referral = input.referral.trim();
   if (legalName.length < 2 || legalName.length > 160) return { ok: false as const, reason: "razón social inválida" };
   if (!bands.includes(input.band as (typeof bands)[number])) return { ok: false as const, reason: "tamaño inválido" };
-  if (!input.sectorId || !input.profileId) return { ok: false as const, reason: "faltan sector o perfil" };
+  if (!input.sectorId || !input.profileId) return { ok: false as const, reason: "faltan sector o empresario" };
   if (referral.length < 2 || referral.length > 160) return { ok: false as const, reason: "referencia inválida" };
   return {
     ok: true as const,

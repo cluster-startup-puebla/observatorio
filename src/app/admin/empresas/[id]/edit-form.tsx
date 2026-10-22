@@ -1,6 +1,7 @@
 "use client";
 
 import { BandSelect } from "@/app/admin/empresas/band-select";
+import { EmpresaPickers } from "@/app/admin/empresas/empresa-pickers";
 import { FormSheet } from "@/components/admin/form-sheet";
 import { SheetSubmit } from "@/components/admin/sheet-submit";
 
@@ -31,16 +32,7 @@ export function EditEmpresaForm({
           Razón social
           <input name="legal_name" defaultValue={legalName} required className="rounded-lg border border-line px-3 py-2" />
         </label>
-        <label className="grid gap-1 text-small">
-          Sector
-          <select name="sector_id" defaultValue={sectorId} className="rounded-lg border border-line px-3 py-2">
-            {sectors.map((sector) => (
-              <option key={sector.id} value={sector.id}>
-                {sector.name}
-              </option>
-            ))}
-          </select>
-        </label>
+        <EmpresaPickers sectors={sectors} sectorId={sectorId} />
         <label className="grid gap-1 text-small">
           Tamaño
           <BandSelect value={band} />

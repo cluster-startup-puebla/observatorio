@@ -20,7 +20,7 @@ export function EmpresasList({
   return (
     <DataList
       title="Empresas"
-      lead="La empresa del empresario y su perfil."
+      lead="La empresa ligada a un empresario y su sector."
       columns={[
         { key: "legal_name", label: "Razón social" },
         { key: "employee_band", label: "Tamaño" },

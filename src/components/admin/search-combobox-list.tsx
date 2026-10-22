@@ -1,22 +1,24 @@
 "use client";
 
-type Org = { id: string; name: string | null };
+type Item = { id: string; label: string };
 
-export function OrgComboboxList({
+export function SearchComboboxList({
   listId,
+  label,
   value,
   noneLabel,
   filtered,
   onPick,
 }: {
   listId: string;
+  label: string;
   value: string;
   noneLabel: string;
-  filtered: Org[];
+  filtered: Item[];
   onPick: (next: string) => void;
 }) {
   return (
-    <ul id={listId} role="listbox" aria-label="Organismo" className="max-h-48 overflow-auto">
+    <ul id={listId} role="listbox" aria-label={label} className="max-h-48 overflow-auto">
       <li role="presentation">
         <button
           type="button"
@@ -28,16 +30,16 @@ export function OrgComboboxList({
           {noneLabel}
         </button>
       </li>
-      {filtered.map((org) => (
-        <li key={org.id} role="presentation">
+      {filtered.map((item) => (
+        <li key={item.id} role="presentation">
           <button
             type="button"
             role="option"
-            aria-selected={value === org.id}
-            onClick={() => onPick(org.id)}
-            className={`w-full rounded-md px-3 py-2 text-left text-small hover:bg-surface-subtle ${value === org.id ? "bg-surface-subtle" : ""}`}
+            aria-selected={value === item.id}
+            onClick={() => onPick(item.id)}
+            className={`w-full rounded-md px-3 py-2 text-left text-small hover:bg-surface-subtle ${value === item.id ? "bg-surface-subtle" : ""}`}
           >
-            {org.name ?? org.id}
+            {item.label}
           </button>
         </li>
       ))}
