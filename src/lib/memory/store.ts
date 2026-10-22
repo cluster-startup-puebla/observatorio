@@ -36,12 +36,16 @@ export type MemoryStore = {
   registrations: Record<string, number>;
   outbox: { to: string; subject: string }[];
   organizations: StoredOrg[];
+  opens: { orgId: string; sectorSlug: string; at: string }[];
 };
 
 const globalKey = "__observatorioDirectory";
 
 export function emptyStore(): MemoryStore {
-  return { seq: 0, people: [], answers: {}, copies: {}, registrations: {}, outbox: [], organizations: [] };
+  return {
+    seq: 0, people: [], answers: {}, copies: {}, registrations: {},
+    outbox: [], organizations: [], opens: [],
+  };
 }
 
 export function memoryStore(): MemoryStore {

@@ -47,6 +47,8 @@ export function createSupabaseDirectory(client: SupabaseClient): Directory {
     },
     attributeRegistration: notImplemented,
     conversion: notImplemented,
+    recordOpen: notImplemented,
+    opensFor: notImplemented,
     scanQr: notImplemented,
     sendOpenInnovation: notImplemented,
     outbox: notImplemented,

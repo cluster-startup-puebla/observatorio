@@ -4,6 +4,8 @@ import { redirect } from "next/navigation";
 import { getDirectory } from "./memory-directory";
 import { readAccountId } from "./session";
 
+export { copyEventLinkAction } from "./organismo/copy-link-action";
+
 export async function uploadInvitesAction(formData: FormData) {
   const id = await readAccountId();
   const file = formData.get("archivo");
@@ -38,12 +40,4 @@ export async function createInviteAction(formData: FormData) {
     },
   ]);
   redirect("/organismo/crm");
-}
-
-export async function copyEventLinkAction() {
-  const id = await readAccountId();
-  if (!id) return "";
-  const account = await getDirectory().getAccount(id);
-  const token = await getDirectory().copyEventLink(id, account?.sectorSlug || "general");
-  redirect(`/organismo?enlace=${encodeURIComponent(token)}`);
 }

@@ -6,7 +6,13 @@ const messages = new Map<string, { headline: string; body: string }>();
 
 export function eventMethods(): Pick<
   Directory,
-  "copyEventLink" | "brandForToken" | "sectorMessage" | "attributeRegistration" | "conversion"
+  | "copyEventLink"
+  | "brandForToken"
+  | "sectorMessage"
+  | "attributeRegistration"
+  | "conversion"
+  | "recordOpen"
+  | "opensFor"
 > {
   return {
     async copyEventLink(orgId, sectorSlug) {
@@ -52,6 +58,18 @@ export function eventMethods(): Pick<
         copies: state.copies[key] ?? 0,
         registrations: state.registrations[key] ?? 0,
       };
+    },
+
+    async recordOpen(input) {
+      const orgId = openRef(input.token, refSecret());
+      if (!orgId) return;
+      memoryStore().opens.push({ orgId, sectorSlug: input.sectorSlug, at: input.at });
+    },
+
+    async opensFor(orgId) {
+      return memoryStore()
+        .opens.filter((item) => item.orgId === orgId)
+        .map((item) => ({ at: item.at }));
     },
   };
 }

@@ -48,11 +48,22 @@ export default async function SectorPage({
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 }) {
   const { sector } = await params;
+  const sp = await searchParams;
   const owner = await ownerBySlug(sector);
-  if (owner) return <OrgHome slug={owner.slug} name={owner.name} />;
-  const token = eventToken(await searchParams);
+  if (owner) {
+    const enlace = typeof sp.enlace === "string" ? sp.enlace : undefined;
+    return <OrgHome slug={owner.slug} name={owner.name} orgId={owner.id} url={enlace} />;
+  }
+  const token = eventToken(sp);
   const brand = token ? await getDirectory().brandForToken(token) : null;
   const resolved = resolveSector({ pathSector: sector });
+  if (token && resolved.slug) {
+    await getDirectory().recordOpen({
+      token,
+      sectorSlug: resolved.slug,
+      at: new Date().toISOString(),
+    });
+  }
   const message = resolved.slug ? await getDirectory().sectorMessage(resolved.slug) : null;
   const reserveHref = resolved.slug ? `/register?sector=${resolved.slug}` : "/register";
   return (
