@@ -12,6 +12,7 @@ export function createSupabaseDirectory(client: SupabaseClient): Directory {
     superadminCount: notImplemented,
     createFirstSuperadmin: notImplemented,
     loginSuperadmin: notImplemented,
+    loginAccount: notImplemented,
     async findByEmail(email) {
       const normalized = email.trim().toLowerCase();
       const { data } = await client

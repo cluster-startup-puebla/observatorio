@@ -27,6 +27,12 @@ export interface Directory {
     email: string;
     password: string;
   }): Promise<{ ok: true; id: string } | { ok: false; reason: "credenciales" }>;
+  loginAccount(input: {
+    email: string;
+    password: string;
+  }): Promise<
+    { ok: true; id: string; role: AccountRole } | { ok: false; reason: "credenciales" }
+  >;
   findByEmail(email: string): Promise<{ id: string; role: AccountRole; onboarded: boolean } | null>;
   completeOnboarding(
     id: string,
