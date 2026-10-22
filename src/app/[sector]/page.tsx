@@ -2,8 +2,10 @@ import type { Metadata } from "next";
 
 export const instant = false;
 import { LandingBody } from "@/components/landing/landing-body";
+import { OrgHome } from "@/components/organismo/home";
 import { getDirectory } from "@/lib/memory-directory";
 import { pageMetadata, siteDescription, siteName } from "@/lib/metadata";
+import { ownerBySlug } from "@/lib/organismo/owner";
 import { resolveSector } from "@/lib/sectors";
 
 const namedSearchKeys = new Set([
@@ -46,6 +48,8 @@ export default async function SectorPage({
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 }) {
   const { sector } = await params;
+  const owner = await ownerBySlug(sector);
+  if (owner) return <OrgHome slug={owner.slug} name={owner.name} />;
   const token = eventToken(await searchParams);
   const brand = token ? await getDirectory().brandForToken(token) : null;
   const resolved = resolveSector({ pathSector: sector });

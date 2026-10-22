@@ -1,5 +1,6 @@
 "use server";
 
+import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { accountErrors } from "@/lib/account-draft";
 import { getDirectory } from "@/lib/memory-directory";
@@ -19,7 +20,12 @@ export async function loginAction(formData: FormData) {
     const result = await getDirectory().loginAccount({ email, password });
     if (!result.ok) redirect("/login?error=credenciales");
     await writeAccountId(result.id);
-    redirect(homeForRole(result.role));
+    const account = await getDirectory().getAccount(result.id);
+    if (account?.orgSlug) {
+      const jar = await cookies();
+      jar.set("org-slug", account.orgSlug, { path: "/", httpOnly: true, sameSite: "lax" });
+    }
+    redirect(homeForRole(result.role, account?.orgSlug));
   }
 
   const signed = await signInWithPassword(email, password);

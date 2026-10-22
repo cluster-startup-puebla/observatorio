@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Archivo, Raleway } from "next/font/google";
+import { cookies } from "next/headers";
 import Script from "next/script";
 import { Toaster } from "@/components/ui/sonner";
 import { SiteFrame } from "@/components/site/site-frame";
@@ -25,7 +26,8 @@ const themeScript = `(function(){try{var t=localStorage.getItem("observatorio-th
 
 export const metadata: Metadata = rootMetadata;
 
-export default function RootLayout({ children }: LayoutProps<"/">) {
+export default async function RootLayout({ children }: LayoutProps<"/">) {
+  const orgSlug = (await cookies()).get("org-slug")?.value ?? "";
   return (
     <html
       lang="es"
@@ -38,7 +40,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <Script id="observatorio-theme" strategy="beforeInteractive">
           {themeScript}
         </Script>
-        <SiteFrame>{children}</SiteFrame>
+        <SiteFrame orgSlug={orgSlug}>{children}</SiteFrame>
         <Toaster />
       </body>
     </html>
