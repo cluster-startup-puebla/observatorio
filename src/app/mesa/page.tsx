@@ -2,6 +2,7 @@ import Link from "next/link";
 import { listCrumbs, PanelHeader } from "@/components/admin/panel-header";
 import { Kicker } from "@/components/landing/atoms/kicker";
 import { Field, controlClass } from "@/components/landing/molecules/field";
+import { MesaQrScanner } from "@/components/mesa/qr-scanner";
 import { mesaHref } from "@/lib/admin/mesa/href";
 import { requireMesa } from "@/lib/auth/guards";
 import { scanDeskAction } from "@/lib/flow-actions";
@@ -29,6 +30,7 @@ export default async function MesaPage({
         <Link href="/admin">Volver al panel</Link>
         <p data-testid="mesa-href">{mesaHref}</p>
         <form action={scanDeskAction} className="grid gap-5">
+          <MesaQrScanner hold={params.codigo ?? ""} />
           <Field id="codigo" label="Código QR">
             <input
               id="codigo"
