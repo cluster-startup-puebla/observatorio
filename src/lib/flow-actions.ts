@@ -2,6 +2,7 @@
 
 import { redirect } from "next/navigation";
 import { getDirectory } from "./memory-directory";
+import { saveWithRetry } from "./save-answer";
 
 export async function saveMethodologyAnswer(personId: string, questionId: string, value: string) {
   if (!personId || !questionId) return;
@@ -13,7 +14,13 @@ export async function saveMethodologyForm(formData: FormData) {
   const questionId = String(formData.get("pregunta") ?? "").trim();
   const value = String(formData.get("valor") ?? "").trim();
   if (persona && questionId && value) {
-    await getDirectory().saveAnswer({ personId: persona, questionId, value });
+    const result = await saveWithRetry(
+      (input) => getDirectory().saveAnswer(input),
+      { personId: persona, questionId, value },
+    );
+    const query = new URLSearchParams({ persona });
+    if (!result.ok) query.set("error", "guardar");
+    redirect(`/metodologia?${query.toString()}`);
   }
   const query = new URLSearchParams();
   if (persona) query.set("persona", persona);

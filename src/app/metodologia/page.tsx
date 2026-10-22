@@ -11,10 +11,11 @@ export const instant = false;
 export default async function MetodologiaPage({
   searchParams,
 }: {
-  searchParams: Promise<{ persona?: string; completas?: string; ver?: string }>;
+  searchParams: Promise<{ persona?: string; completas?: string; ver?: string; error?: string }>;
 }) {
   const params = await searchParams;
   const persona = params.persona?.trim() ?? "";
+  const saveFailed = params.error === "guardar";
   if (persona && params.completas === "1" && process.env.DIRECTORY === "memory") {
     seedCompletedAnswers(persona, completedAnswerSeed());
   }
@@ -31,10 +32,13 @@ export default async function MetodologiaPage({
           Cada respuesta se guarda al elegirla. Puedes recargar y seguir en el mismo punto.
         </p>
         <ConfidentialityNote />
+        {saveFailed ? (
+          <p className="text-small text-mark">No se pudo guardar. Vuelve a elegir la respuesta.</p>
+        ) : null}
         <QuestionStep
           persona={persona}
           question={question}
-          saved={stored[String(question.id)] ?? ""}
+          saved={saveFailed ? "" : (stored[String(question.id)] ?? "")}
         />
         {Object.keys(stored).length >= 18 && params.ver === "1" ? (
           <div className="grid gap-3 border border-line bg-surface-subtle p-5">
