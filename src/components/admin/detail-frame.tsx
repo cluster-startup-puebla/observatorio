@@ -1,3 +1,5 @@
+import { PanelHeader, parentLabel, trailCrumbs } from "@/components/admin/panel-header";
+
 export function DetailFrame({
   title,
   backHref,
@@ -15,11 +17,8 @@ export function DetailFrame({
 }) {
   return (
     <main className="px-8 py-8">
-      <a className="text-body text-link" href={backHref}>
-        Volver
-      </a>
-      <h1 className="mt-4 text-h1 text-ink">{title}</h1>
-      <dl className="mt-6 grid gap-3 sm:grid-cols-2">
+      <PanelHeader title={title} crumbs={trailCrumbs(parentLabel(backHref), backHref, title)} />
+      <dl className="grid gap-3 sm:grid-cols-2">
         {facts.map((fact) => (
           <div key={fact.label} className="rounded-xl border border-line bg-elevated px-4 py-3">
             <dt className="text-small text-ink-secondary">{fact.label}</dt>

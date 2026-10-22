@@ -21,11 +21,9 @@ export default async function MetodologiaPage({ searchParams }: { searchParams: 
       page={data.page}
       basePath="/admin/metodologia"
     >
-      <p className="mt-6">
-        <a className="text-link" href="/admin/metodologia/integral">
-          Bandas integrales
-        </a>
-      </p>
+      <a className="text-link" href="/admin/metodologia/integral">
+        Bandas integrales
+      </a>
     </DataList>
   );
 }

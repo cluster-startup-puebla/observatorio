@@ -2,6 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import type { ColumnDef } from "@tanstack/react-table";
+import { listCrumbs, PanelHeader } from "@/components/admin/panel-header";
 import { DataTable } from "@/components/ui/data-table";
 
 type DataColumn = { key: string; label: string };
@@ -43,10 +44,8 @@ export function DataList({
 
   return (
     <main className="px-8 py-8">
-      <h1 className="text-h1 text-ink">{title}</h1>
-      <p className="mt-2 max-w-2xl text-body text-ink-secondary">{lead}</p>
-      {error ? <p className="mt-4 text-small text-mark">{error}</p> : null}
-      {children}
+      <PanelHeader title={title} lead={lead} crumbs={listCrumbs(title, basePath)} actions={children} />
+      {error ? <p className="mb-4 text-small text-mark">{error}</p> : null}
       <DataTable
         data={rows}
         columns={tableColumns}

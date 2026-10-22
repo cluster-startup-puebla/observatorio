@@ -1,3 +1,4 @@
+import { listCrumbs, PanelHeader } from "@/components/admin/panel-header";
 import { Kicker } from "@/components/landing/atoms/kicker";
 import { Field, controlClass } from "@/components/landing/molecules/field";
 import { mesaHref } from "@/lib/admin/mesa/href";
@@ -17,10 +18,11 @@ export default async function MesaPage({
     <section className="container-site py-10 lg:py-14">
       <div className="grid max-w-xl gap-6">
         <Kicker>Mesa de registro</Kicker>
-        <h1 className="text-h1 text-ink">Registrar llegada</h1>
-        <p className="text-body-lg text-ink-secondary">
-          El pase solo existe si el perfil ya está terminado. Quien no está registrado no entra.
-        </p>
+        <PanelHeader
+          title="Registrar llegada"
+          lead="El pase solo existe si el perfil ya está terminado. Quien no está registrado no entra."
+          crumbs={listCrumbs("Mesa", mesaHref)}
+        />
         <a href="/admin">Volver al panel</a>
         <p data-testid="mesa-href">{mesaHref}</p>
         <form action={scanDeskAction} className="grid gap-5">

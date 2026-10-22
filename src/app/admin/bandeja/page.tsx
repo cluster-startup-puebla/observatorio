@@ -32,7 +32,7 @@ export default async function BandejaPage({
       page={data.page}
       basePath="/admin/bandeja"
     >
-      <nav className="mt-6 flex gap-3">
+      <nav className="flex flex-wrap gap-3">
         {filters.map((filter) => (
           <a key={filter.href} className="text-link" href={filter.href}>
             {filter.label}

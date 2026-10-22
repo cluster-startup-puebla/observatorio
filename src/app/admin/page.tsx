@@ -1,5 +1,6 @@
-import { requireSuperadmin } from "@/lib/auth/require-superadmin";
+import { homeCrumb, PanelHeader } from "@/components/admin/panel-header";
 import { adminGroups } from "@/components/admin/nav";
+import { requireSuperadmin } from "@/lib/auth/require-superadmin";
 
 export const instant = false;
 
@@ -8,10 +9,7 @@ export default async function AdminHomePage() {
 
   return (
     <main className="px-8 py-8">
-      <h1 className="text-h1 text-ink" data-testid="panel-superadmin">
-        Panel
-      </h1>
-      <p className="mt-2 text-body text-ink-secondary">{account.email}</p>
+      <PanelHeader title="Panel" lead={account.email} crumbs={[homeCrumb]} testId="panel-superadmin" />
       <div className="mt-8 grid gap-6 lg:grid-cols-3">
         {adminGroups().map((group) => (
           <section key={group.name} className="rounded-2xl border border-line bg-elevated p-5">
