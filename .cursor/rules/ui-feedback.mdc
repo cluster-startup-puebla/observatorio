@@ -1,0 +1,27 @@
+---
+description: Avisos de la interfaz con toast o Alert de shadcn, nunca del navegador
+alwaysApply: true
+---
+
+# Avisos de la interfaz
+
+El usuario se entera de un error, un éxito o una confirmación con componentes de shadcn. Nunca con el diálogo del navegador.
+
+- No uses `window.alert`, `window.confirm`, `window.prompt`, ni `alert()`, `confirm()` o `prompt()`.
+- Un error de formulario que debe quedarse visible va en `Alert` de `@/components/ui/alert`.
+- Un aviso breve, que se puede cerrar solo, va en el toast de shadcn (`sonner`: `toast` y `Toaster` de `@/components/ui/sonner`).
+- Una confirmación destructiva va en `AlertDialog`, no en `confirm()`.
+- Si el componente no está en `src/components/ui/`, instálalo con el CLI de shadcn antes de usarlo. No inventes un modal propio para este caso.
+
+```tsx
+// Mal
+alert("Correo o contraseña incorrectos.");
+
+// Bien: el error se queda en el formulario
+<Alert variant="destructive">
+  <AlertDescription>Correo o contraseña incorrectos.</AlertDescription>
+</Alert>
+
+// Bien: un aviso que no está pegado a un campo
+toast.error("No se pudo guardar.");
+```
