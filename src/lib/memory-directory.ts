@@ -1,6 +1,7 @@
 import { applyCrmEvent, type CrmStatus } from "./crm-status";
 import type { AccountRole, CrmPerson, Directory } from "./directory";
 import { parseInviteSheet } from "./invite-sheet";
+import { mailFor } from "./outbox-message";
 import { openRef, sealRef } from "./ref-token";
 import { createSupabaseDirectory } from "./supabase-directory";
 
@@ -46,8 +47,6 @@ function bucket(orgId: string, sectorSlug: string) {
 function refSecret() {
   return process.env.REF_SECRET ?? "e2e-ref-secret";
 }
-
-const openInnovationSubject = "¿Quieres ser una empresa de innovación abierta?";
 
 const messages = new Map<string, { headline: string; body: string }>();
 
@@ -119,6 +118,10 @@ function createMemoryDirectory(): Directory {
         const next = applyCrmEvent(row.status, "registrar");
         if (next.ok) row.status = next.status;
       }
+      if (person.role === "empresario") {
+        const { to, subject } = mailFor("event_pass", person.email);
+        state.outbox.push({ to, subject });
+      }
     },
 
     async saveAnswer(input) {
@@ -161,6 +164,8 @@ function createMemoryDirectory(): Directory {
           empresa: row.empresa,
           status: opened.status,
         });
+        const { to, subject } = mailFor("password", row.correo);
+        state.outbox.push({ to, subject });
       }
     },
 
@@ -250,7 +255,8 @@ function createMemoryDirectory(): Directory {
       const state = store();
       for (const person of state.people) {
         if (!person.onboarded || person.orgId) continue;
-        state.outbox.push({ to: person.email, subject: openInnovationSubject });
+        const { to, subject } = mailFor("open_innovation", person.email);
+        state.outbox.push({ to, subject });
       }
     },
 

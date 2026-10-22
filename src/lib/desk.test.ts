@@ -19,8 +19,10 @@ describe("mesa y correo", () => {
     await directory.completeOnboarding(ready.id, { sectorSlug: "turismo", size: "1–10", name: "Ana" });
     await directory.sendOpenInnovation();
     const outbox = await directory.outbox();
-    expect(outbox.map((mail) => mail.to)).toEqual(["ana@norte.mx"]);
-    expect(outbox[0].subject).toBe("¿Quieres ser una empresa de innovación abierta?");
+    const openInnovation = outbox.filter(
+      (mail) => mail.subject === "¿Quieres ser una empresa de innovación abierta?",
+    );
+    expect(openInnovation.map((mail) => mail.to)).toEqual(["ana@norte.mx"]);
     expect(outbox.some((mail) => mail.to === "beto@sur.mx")).toBe(false);
     expect(pending.id).not.toBe(ready.id);
   });
@@ -41,6 +43,22 @@ describe("mesa y correo", () => {
     await directory.importInvites(org.id, [{ nombre: "Ana", empresa: "Norte", correo: "ana@norte.mx" }]);
     await directory.sendOpenInnovation();
     const outbox = await directory.outbox();
-    expect(outbox.map((mail) => mail.to)).toEqual(["dir@camara.mx"]);
+    const openInnovation = outbox.filter(
+      (mail) => mail.subject === "¿Quieres ser una empresa de innovación abierta?",
+    );
+    expect(openInnovation.map((mail) => mail.to)).toEqual(["dir@camara.mx"]);
+    expect(
+      outbox.some(
+        (mail) =>
+          mail.to === "ana@norte.mx" &&
+          mail.subject === "¿Quieres ser una empresa de innovación abierta?",
+      ),
+    ).toBe(false);
+    expect(
+      outbox.some(
+        (mail) =>
+          mail.to === "dir@camara.mx" && mail.subject === "Tu pase para la sesión ya está listo",
+      ),
+    ).toBe(false);
   });
 });
