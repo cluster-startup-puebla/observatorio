@@ -1,3 +1,5 @@
+import { isLinkAccepted } from "@/lib/crm/link-acceptance";
+
 export type AttendingInput = {
   id: string;
   legalName: string;
@@ -6,12 +8,17 @@ export type AttendingInput = {
   showLogo: boolean;
   onboarded: boolean;
   role: string;
+  linkStatus: string | null;
 };
 
 export function attendingCompanies(rows: AttendingInput[], sector: string | null) {
   const slug = sector?.trim() || null;
   const matched = rows.filter(
-    (row) => row.onboarded && row.role === "empresario" && (!slug || row.sectorSlug === slug),
+    (row) =>
+      row.onboarded &&
+      row.role === "empresario" &&
+      isLinkAccepted(row.linkStatus) &&
+      (!slug || row.sectorSlug === slug),
   );
   return {
     sector: slug,
