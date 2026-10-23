@@ -5,6 +5,7 @@ export type ContactRow = {
   nombre: string;
   empresa: string;
   email: string;
+  source: string;
   sectors: { slug: string } | { slug: string }[] | null;
 };
 
@@ -24,5 +25,6 @@ export function toCrmPeople(contacts: ContactRow[], statuses: StatusRow[]): CrmP
     correo: row.email,
     status: byContact.get(row.id) ?? "",
     sector: sectorSlug(row.sectors),
+    source: row.source,
   }));
 }

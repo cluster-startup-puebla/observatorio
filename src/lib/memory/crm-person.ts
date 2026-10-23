@@ -25,5 +25,6 @@ export function crmPerson(state: MemoryStore, person: Person): CrmPerson {
     correo: person.email,
     status: person.status ?? "",
     sector: person.sectorSlug || account?.sectorSlug || sectorFromStamp(state, person.orgId ?? "", email),
+    source: "manual",
   };
 }

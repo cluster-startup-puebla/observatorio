@@ -10,6 +10,7 @@ describe("filas del CRM en Supabase", () => {
           nombre: "Rosa",
           empresa: "Taller",
           email: "rosa@taller.mx",
+          source: "enlace",
           sectors: { slug: "turismo" },
         },
       ],
@@ -23,6 +24,7 @@ describe("filas del CRM en Supabase", () => {
         correo: "rosa@taller.mx",
         status: "cargado",
         sector: "turismo",
+        source: "enlace",
       },
     ]);
   });

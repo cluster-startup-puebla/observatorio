@@ -9,7 +9,7 @@ export async function listOrgCrm(orgId: string): Promise<CrmPerson[] | null> {
   if (!db) return null;
   const contacts = await db
     .from("crm_contacts")
-    .select("id, nombre, empresa, email, sectors(slug)")
+    .select("id, nombre, empresa, email, source, sectors(slug)")
     .eq("organization_id", orgId);
   if (contacts.error) throw new Error(contacts.error.message);
   const ids = (contacts.data ?? []).map((row) => row.id);
