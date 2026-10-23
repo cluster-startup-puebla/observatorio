@@ -48,7 +48,10 @@ export function AppSidebar({
       <SidebarHeader>
         <SidebarMenu>
           <SidebarMenuItem>
-            <SidebarMenuButton className="h-12">
+            <SidebarMenuButton
+              size="lg"
+              className="h-12 group-data-[collapsible=icon]:justify-center group-data-[collapsible=icon]:!p-0"
+            >
               <AppSidebarMark logoSrc={logoSrc} title={title} />
               <span className="grid text-left text-sm leading-tight">
                 <span className="truncate font-medium">{title}</span>

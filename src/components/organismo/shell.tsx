@@ -30,7 +30,7 @@ export function OrgShell({
         />
         <SidebarInset className="min-h-0 overflow-hidden">
           <header className="flex h-12 shrink-0 items-center gap-2 border-b px-3">
-            <SidebarTrigger />
+            <SidebarTrigger className="size-8 rounded-lg text-ink-secondary hover:bg-surface-subtle hover:text-ink [&_svg]:size-4" />
           </header>
           <div className="min-h-0 flex-1 overflow-y-auto p-6">{children}</div>
         </SidebarInset>

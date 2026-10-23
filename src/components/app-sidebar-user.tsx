@@ -16,15 +16,18 @@ export function AppSidebarUser({ email, title }: { email: string; title: string 
       <SidebarMenuItem>
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <SidebarMenuButton className="h-12">
-              <span className="flex size-8 items-center justify-center rounded-full bg-brand text-xs text-on-brand">
+            <SidebarMenuButton
+              size="lg"
+              className="h-12 group-data-[collapsible=icon]:justify-center group-data-[collapsible=icon]:!p-0"
+            >
+              <span className="flex size-8 shrink-0 items-center justify-center rounded-full bg-brand text-sm font-semibold text-on-brand">
                 {email.slice(0, 1).toUpperCase()}
               </span>
-              <span className="grid min-w-0 flex-1 text-left text-sm leading-tight">
+              <span className="grid min-w-0 flex-1 text-left text-sm leading-tight group-data-[collapsible=icon]:hidden">
                 <span className="truncate font-medium">{title}</span>
                 <span className="truncate text-xs text-sidebar-foreground/70">{email}</span>
               </span>
-              <ChevronsUpDown className="ml-auto" />
+              <ChevronsUpDown className="ml-auto group-data-[collapsible=icon]:hidden" />
             </SidebarMenuButton>
           </DropdownMenuTrigger>
           <DropdownMenuContent side="top" align="start" className="w-56">
