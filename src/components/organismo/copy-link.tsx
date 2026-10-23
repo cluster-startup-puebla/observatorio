@@ -1,9 +1,24 @@
+import { SheetSubmit } from "@/components/admin/sheet-submit";
 import { CopyLinkButton } from "@/components/organismo/copy-link-button";
+import { LinkReady } from "@/components/organismo/link-ready";
+import { SessionPick } from "@/components/session-pick";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { copyEventLinkAction } from "@/lib/organismo/copy-link-action";
 import { sectors } from "@/lib/sectors";
 
-export function CopyLink({ url, sector, failed }: { url?: string; sector?: string; failed?: boolean }) {
+export function CopyLink({
+  url,
+  sector,
+  failed,
+  ready,
+  sessions = [],
+}: {
+  url?: string;
+  sector?: string;
+  failed?: boolean;
+  ready?: boolean;
+  sessions?: { id: string; label: string }[];
+}) {
   const selected = sector && sectors.some((item) => item.slug === sector) ? sector : "turismo";
 
   return (
@@ -29,10 +44,10 @@ export function CopyLink({ url, sector, failed }: { url?: string; sector?: strin
             ))}
           </select>
         </label>
-        <button type="submit" className="btn btn-primary">
-          Generar enlace
-        </button>
+        <SessionPick sessions={sessions} />
+        <SheetSubmit pendingLabel="Generando…">Generar enlace</SheetSubmit>
       </form>
+      {ready && url ? <LinkReady url={url} /> : null}
       {url ? (
         <div className="flex flex-col gap-2 sm:flex-row sm:items-center">
           <p

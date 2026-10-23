@@ -1,6 +1,7 @@
 import { FormSheet } from "@/components/admin/form-sheet";
 import { OrganismoLogoTab } from "@/app/admin/organismos/[id]/logo-tab";
 import { SheetSubmit } from "@/components/admin/sheet-submit";
+import { SessionPick } from "@/components/session-pick";
 
 export function OrganismoTabs({
   id,
@@ -16,6 +17,7 @@ export function OrganismoTabs({
     contacts: { id: string; email: string | null; source: string }[];
     copies: { id: string }[];
     sectors: { id: string; name: string | null }[];
+    sessions: { id: string; label: string }[];
     logo: { object_path: string } | null;
   };
 }) {
@@ -55,6 +57,7 @@ export function OrganismoTabs({
                 </option>
               ))}
             </select>
+            <SessionPick sessions={data.sessions} />
             <SheetSubmit>Copiar enlace del evento</SheetSubmit>
           </form>
         </FormSheet>

@@ -11,7 +11,7 @@ import { copySupabaseEventLink } from "./copy-link-supabase";
 export async function copyEventLinkAction(formData: FormData) {
   const sector = String(formData.get("sector") ?? "").trim() || "turismo";
   if (usesSupabaseAuth()) {
-    await copySupabaseEventLink(sector);
+    await copySupabaseEventLink(sector, String(formData.get("session_id") ?? ""));
     return;
   }
   const id = await readAccountId();

@@ -5,13 +5,14 @@ import { redirect } from "next/navigation";
 import { readSessionAccount } from "@/lib/auth/session-account";
 import { sealRef } from "@/lib/ref-token";
 import { createSupabaseWithAccess, readAccessToken } from "@/lib/supabase/auth-session";
+import { boundSessionId, invitePath } from "./invite-path";
 import { writeInviteLink } from "./invite-link-cookie";
 
 function refSecret() {
   return process.env.REF_SECRET ?? "e2e-ref-secret";
 }
 
-export async function copySupabaseEventLink(sectorSlug: string) {
+export async function copySupabaseEventLink(sectorSlug: string, requestedSession = "") {
   const account = await readSessionAccount();
   const access = await readAccessToken();
   if (!account || !access) redirect("/login");
@@ -31,10 +32,18 @@ export async function copySupabaseEventLink(sectorSlug: string) {
     redirect(`/${slug}?error=enlace`);
   }
 
+  const currents = await db.from("sessions").select("id").eq("is_current", true);
+  if (currents.error) {
+    console.error("[organismo] enlace", currents.error.message);
+    redirect(`/${slug}?error=enlace`);
+  }
+  const bound = boundSessionId(requestedSession, (currents.data ?? []).map((row) => row.id));
+  if (!bound.ok) redirect(`/${slug}?error=enlace`);
   const inserted = await db.from("link_copies").insert({
     organization_id: orgId,
     sector_id: sector.data.id,
     actor_id: account.id,
+    session_id: bound.sessionId,
   });
   if (inserted.error) {
     console.error("[organismo] enlace", inserted.error.message);
@@ -44,7 +53,7 @@ export async function copySupabaseEventLink(sectorSlug: string) {
   const h = await headers();
   const host = h.get("x-forwarded-host") ?? h.get("host") ?? "localhost:3000";
   const proto = h.get("x-forwarded-proto") ?? "http";
-  const url = `${proto}://${host}/${sectorSlug}?${sealRef(orgId, refSecret())}`;
+  const url = `${proto}://${host}${invitePath(sectorSlug, sealRef(orgId, refSecret()), bound.sessionId)}`;
   await writeInviteLink(slug, { url, sector: sectorSlug });
   redirect(`/${slug}?enlace=${encodeURIComponent(url)}&sector=${encodeURIComponent(sectorSlug)}`);
 }

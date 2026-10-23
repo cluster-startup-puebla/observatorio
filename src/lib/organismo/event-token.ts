@@ -14,6 +14,7 @@ const namedSearchKeys = new Set([
   "ref",
   "rol",
   "sector",
+  "sesion",
   "ver",
 ]);
 

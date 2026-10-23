@@ -36,6 +36,7 @@ export function memoryLoadOrganismo(id: string) {
     copies: [],
     logo: org.logo ? { object_path: org.logo.objectPath, content_type: org.logo.contentType } : null,
     sectors: [] as { id: string; name: string | null }[],
+    sessions: [] as { id: string; label: string }[],
   };
 }
 

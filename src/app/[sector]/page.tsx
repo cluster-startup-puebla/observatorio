@@ -13,6 +13,7 @@ import { inviteBrand } from "@/lib/organismo/invite-brand";
 import { readInviteLink } from "@/lib/organismo/invite-link-cookie";
 import { captureFinishedInvite } from "@/lib/organismo/capture-invite";
 import { ownerBySlug } from "@/lib/organismo/owner";
+import { publicSectorPage } from "@/lib/landing/public-sector-page";
 import { reserveHref, resolveSector } from "@/lib/sectors";
 
 export const metadata: Metadata = pageMetadata({
@@ -43,6 +44,7 @@ export default async function SectorPage({
         url={enlace}
         sector={inviteSector}
         failed={sp.error === "enlace"}
+        ready={typeof sp.enlace === "string"}
         corte={typeof sp.corte === "string" ? sp.corte : undefined}
       />
     );
@@ -60,5 +62,6 @@ export default async function SectorPage({
   const href = reserveHref(`/${sector}`, token);
   if (!resolved.name) return <LandingBody reserveHref={href} />;
   const brand = token ? await inviteBrand(token) : null;
-  return <SectorLanding sector={resolved.name} reserveHref={href} brand={brand} />;
+  const message = await publicSectorPage(resolved.slug);
+  return <SectorLanding sector={resolved.name} reserveHref={href} brand={brand} message={message} />;
 }
