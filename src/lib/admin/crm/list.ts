@@ -7,7 +7,7 @@ import { crmLabel } from "@/lib/crm-label";
 
 export async function listCrm(
   rawPage: string | undefined,
-  filters?: { estado?: string; origen?: string },
+  filters?: { estado?: string; origen?: string; all?: boolean },
 ) {
   const page = pageQuery(rawPage);
   const estado = crmEstado(filters?.estado);
@@ -28,7 +28,7 @@ export async function listCrm(
     query = query.in("id", ids);
   }
 
-  const contacts = await query.range(page.from, page.to);
+  const contacts = filters?.all ? await query : await query.range(page.from, page.to);
   if (contacts.error) throw new Error(contacts.error.message);
   const ids = (contacts.data ?? []).map((row) => row.id);
   const status = ids.length
@@ -44,6 +44,7 @@ export async function listCrm(
       empresa: row.empresa,
       email: row.email,
       source: row.source,
+      estado: byContact.get(row.id) ?? "",
       status: crmLabel(byContact.get(row.id) ?? ""),
     })),
   };

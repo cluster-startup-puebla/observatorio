@@ -13,9 +13,10 @@ export default async function CrmPage({
 }) {
   await requireSuperadmin();
   const params = await searchParams;
+  const vista = crmVista(params.vista);
   const estado = crmEstado(params.estado);
   const origen = crmOrigen(params.origen);
-  const data = await listCrm(params.page, { estado, origen });
+  const data = await listCrm(params.page, { estado, origen, all: vista === "tarjetas" });
   const db = await adminDb();
   const orgs = db ? await db.from("organizations").select("id, name").order("name") : { data: [], error: null };
   if (orgs.error) throw new Error(orgs.error.message);
@@ -25,7 +26,7 @@ export default async function CrmPage({
       page={data.page}
       error={params.error}
       orgs={(orgs.data ?? []).map((org) => ({ id: org.id, name: org.name ?? org.id }))}
-      vista={crmVista(params.vista)}
+      vista={vista}
       estado={estado}
       origen={origen}
     />

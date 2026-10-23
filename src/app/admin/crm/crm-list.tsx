@@ -4,7 +4,6 @@ import { useRouter } from "next/navigation";
 import type { ColumnDef } from "@tanstack/react-table";
 import { CreateCrmForm } from "@/app/admin/crm/create-form";
 import { CrmCards } from "@/app/admin/crm/crm-cards";
-import { CrmPager } from "@/app/admin/crm/crm-pager";
 import { CrmRowActions } from "@/app/admin/crm/row-actions";
 import { CrmToolbar } from "@/app/admin/crm/crm-toolbar";
 import { columnDef, type DataRow } from "@/components/admin/data-columns";
@@ -58,10 +57,7 @@ export function CrmList({
       {error ? <p className="mb-4 text-small text-mark">{error}</p> : null}
       <CrmToolbar vista={vista} estado={estado} origen={origen} />
       {vista === "tarjetas" ? (
-        <div className="grid gap-4">
-          <CrmCards rows={rows} />
-          <CrmPager page={page} hasMore={rows.length >= 10} vista={vista} estado={estado} origen={origen} />
-        </div>
+        <CrmCards rows={rows} />
       ) : (
         <DataTable
           data={rows}
