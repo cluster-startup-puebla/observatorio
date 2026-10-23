@@ -1,6 +1,7 @@
+import { AuthLogout } from "@/components/auth/auth-logout";
 import { Kicker } from "@/components/landing/atoms/kicker";
 import { QuestionStep } from "@/components/methodology/question-step";
-import { ConfidentialityNote } from "@/components/onboarding/confidentiality-note";
+import { ThemeToggle } from "@/components/site/theme-toggle";
 import { getDirectory, seedCompletedAnswers } from "@/lib/memory-directory";
 import { SECTIONS } from "@/lib/methodology/instrument";
 import { completedAnswerSeed } from "@/lib/methodology/seed";
@@ -36,12 +37,15 @@ export default async function MetodologiaPage({
   return (
     <section className="container-site py-10 lg:py-14">
       <div className="grid max-w-3xl gap-6">
+        <div className="flex items-center justify-end gap-3">
+          <ThemeToggle />
+          <AuthLogout />
+        </div>
         <Kicker>Metodología</Kicker>
         <h1 className="text-h1 text-ink">Diagnóstico de la operación</h1>
         <p className="text-body-lg text-ink-secondary">
           Cada respuesta se guarda al elegirla. Puedes recargar y seguir en el mismo punto.
         </p>
-        <ConfidentialityNote />
         {saveFailed ? (
           <p className="text-small text-mark">No se pudo guardar. Vuelve a elegir la respuesta.</p>
         ) : null}

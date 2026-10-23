@@ -40,11 +40,12 @@ test("sin persona el panel no inventa avance", async ({ page }) => {
   await expect(page.getByText("Todavía no hay respuestas.")).toBeVisible();
 });
 
-test("la metodología repite el aviso de confidencialidad", async ({ page }) => {
+test("la metodología cierra sesión y no muestra el sitio ni el aviso", async ({ page }) => {
   await page.goto("/metodologia?persona=p-aviso");
-  await expect(page.getByTestId("aviso-confidencial")).toHaveText(
-    "Esta información es solo estadística. No se comparte y es confidencial.",
-  );
+  await expect(page.getByRole("button", { name: "Cerrar sesión" })).toBeVisible();
+  await expect(page.getByRole("button", { name: "Modo oscuro" })).toBeVisible();
+  await expect(page.getByRole("link", { name: "Observatorio" })).toHaveCount(0);
+  await expect(page.getByTestId("aviso-confidencial")).toHaveCount(0);
 });
 
 test("guardar la primera pregunta abre la segunda", async ({ page }) => {
