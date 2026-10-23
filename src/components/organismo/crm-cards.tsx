@@ -1,4 +1,4 @@
-import { crmEventAction } from "@/lib/crm-actions";
+import { PendingActions } from "@/components/organismo/pending-actions";
 import type { CrmPerson } from "@/lib/directory";
 import { CrmCardBody } from "@/components/organismo/crm-card-body";
 import { CrmHandInvite } from "@/components/organismo/crm-hand-invite";
@@ -38,17 +38,7 @@ export function CrmCards({
               rows.map((person) => (
                 <article key={person.id} className="grid gap-2 rounded-xl border border-line bg-elevated p-4">
                   <CrmCardBody person={person} />
-                  {column.key === "pendiente" ? (
-                    <form action={crmEventAction}>
-                      <input type="hidden" name="slug" value={slug} />
-                      <input type="hidden" name="personId" value={person.id} />
-                      <input type="hidden" name="event" value="contactar" />
-                      <input type="hidden" name="vista" value={vista} />
-                      <button type="submit" className="btn btn-primary">
-                        Contactar
-                      </button>
-                    </form>
-                  ) : null}
+                  <PendingActions person={person} slug={slug} vista={vista} />
                 </article>
               ))
             )}

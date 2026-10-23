@@ -1,6 +1,6 @@
-import { crmEventAction } from "@/lib/crm-actions";
+import { PendingActions } from "@/components/organismo/pending-actions";
 import type { CrmPerson } from "@/lib/directory";
-import { orgEstado, orgEstadoLabel } from "@/lib/organismo/estado";
+import { orgEstadoLabel } from "@/lib/organismo/estado";
 
 export function CrmTable({
   people,
@@ -38,17 +38,7 @@ export function CrmTable({
                 <td className="px-4 py-3">{person.correo}</td>
                 <td className="px-4 py-3">{orgEstadoLabel(person.status)}</td>
                 <td className="px-4 py-3">
-                  {orgEstado(person.status) === "pendiente" ? (
-                    <form action={crmEventAction}>
-                      <input type="hidden" name="slug" value={slug} />
-                      <input type="hidden" name="personId" value={person.id} />
-                      <input type="hidden" name="event" value="contactar" />
-                      <input type="hidden" name="vista" value={vista} />
-                      <button type="submit" className="btn btn-primary">
-                        Contactar
-                      </button>
-                    </form>
-                  ) : null}
+                  <PendingActions person={person} slug={slug} vista={vista} />
                 </td>
               </tr>
             ))
