@@ -1,3 +1,4 @@
+import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
 import { isLinkAccepted, pendingInviteAction } from "./link-acceptance";
 
@@ -17,5 +18,13 @@ describe("aceptación del enlace", () => {
     expect(pendingInviteAction({ source: "manual", status: "cargado" })).toBe("contactar");
     expect(pendingInviteAction({ source: "excel", status: "cargado" })).toBe("contactar");
     expect(pendingInviteAction({ source: "enlace", status: "registrado" })).toBeNull();
+  });
+
+  it("la migración del enlace solo carga el contacto", () => {
+    const sql = readFileSync("supabase/migrations/20261023190000_link_signup_pending.sql", "utf8");
+    expect(sql).toContain("create or replace function public.attribute_link_signup");
+    expect(sql).toContain("'cargar'");
+    expect(sql).not.toContain("'confirmar'");
+    expect(sql).not.toContain("'registrar'");
   });
 });
