@@ -34,7 +34,7 @@ export default async function CorreoPage({
         crumbs={trailCrumbs(parentLabel(section), section, "Innovación abierta")}
         actions={
           allowed ? (
-            <form action={mailAction}>
+            <form action={mailAction} method="post">
               <button type="submit" className="btn btn-primary">
                 Enviar innovación abierta
               </button>
