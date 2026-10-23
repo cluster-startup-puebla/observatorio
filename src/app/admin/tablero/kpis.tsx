@@ -4,7 +4,8 @@ const cards = [
   { key: "invitations", testId: "tablero-invitaciones", label: "Invitaciones", hint: "Excel y alta manual" },
   { key: "confirmations", testId: "tablero-confirmaciones", label: "Confirmaciones", hint: "Confirmaron, se registraron o llegaron" },
   { key: "rate", testId: "tablero-tasa", label: "Tasa", hint: "Confirmaciones entre invitaciones" },
-  { key: "linkSignups", testId: "tablero-enlace", label: "Por enlace", hint: "Entraron con el enlace del organismo" },
+  { key: "linkSignups", testId: "tablero-enlace", label: "Por enlace", hint: "Se registraron con el enlace del organismo" },
+  { key: "linkPending", testId: "tablero-enlace-pendiente", label: "Por aceptar", hint: "Se registraron con el enlace y siguen pendientes" },
 ] as const;
 
 export function TableroKpis({ board }: { board: Tablero }) {

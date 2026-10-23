@@ -34,6 +34,8 @@ describe("tablero de la convocatoria", () => {
     expect(board.invitations).toBe(3);
     expect(board.confirmations).toBe(2);
     expect(board.linkSignups).toBe(1);
+    expect(board.linkAccepted).toBe(1);
+    expect(board.linkPending).toBe(0);
     expect(board.rate).toBe(67);
     expect(board.pendingContact).toBe(1);
     expect(board.pendingRegister).toBe(1);
@@ -46,6 +48,27 @@ describe("tablero de la convocatoria", () => {
     expect(board.pace.at(-2)?.confirmaciones).toBe(1);
     expect(lectura(board)).toBe("De 3 invitaciones, 2 ya confirmaron (67%).");
     expect(convocatoriaSignals(board).map((item) => item.label)).toEqual(["Enviar correo", "Revisar CRM"]);
+  });
+
+  it("separa el enlace pendiente del aceptado", () => {
+    const board = buildTablero({
+      contacts: [
+        { id: "p", source: "enlace", organizationId: "o1" },
+        { id: "a", source: "enlace", organizationId: "o1" },
+        { id: "n", source: "enlace", organizationId: "o1" },
+      ],
+      statuses: [
+        { contactId: "p", status: "cargado" },
+        { contactId: "a", status: "registrado" },
+        { contactId: "n", status: "no" },
+      ],
+      orgs,
+      confirmations: [],
+    });
+    expect(board.linkSignups).toBe(3);
+    expect(board.linkPending).toBe(1);
+    expect(board.linkAccepted).toBe(1);
+    expect(board.invitations).toBe(0);
   });
 
   it("sin lista pide cargar y un rechazo cierra el pendiente", () => {

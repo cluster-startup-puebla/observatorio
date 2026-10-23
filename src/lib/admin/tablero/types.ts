@@ -11,6 +11,8 @@ export type Tablero = {
   invitations: number;
   confirmations: number;
   linkSignups: number;
+  linkPending: number;
+  linkAccepted: number;
   rate: number;
   funnel: FunnelRow[];
   byOrg: OrgBar[];

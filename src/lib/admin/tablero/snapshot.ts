@@ -1,3 +1,4 @@
+import { isLinkAccepted } from "@/lib/crm/link-acceptance";
 import { orgBars } from "@/lib/admin/tablero/org-bars";
 import { paceBars } from "@/lib/admin/tablero/pace-bars";
 import type { Tablero, TableroContact, TableroEvent, TableroOrg, TableroStatus } from "@/lib/admin/tablero/types";
@@ -32,12 +33,21 @@ export function buildTablero(input: {
     const status = statusOf.get(row.id) || "cargado";
     counts.set(status, (counts.get(status) ?? 0) + 1);
   }
+  const links = input.contacts.filter((row) => row.source === "enlace");
+  const linkStatus = (id: string) => statusOf.get(id) ?? "";
+  const linkPending = links.filter((row) => linkStatus(row.id) === "cargado").length;
+  const linkAccepted = links.filter((row) => {
+    const status = linkStatus(row.id);
+    return status !== "" && isLinkAccepted(status);
+  }).length;
   const invitations = invites.length;
   const confirmations = [...confirmed].reduce((sum, status) => sum + (counts.get(status) ?? 0), 0);
   return {
     invitations,
     confirmations,
-    linkSignups: input.contacts.filter((row) => row.source === "enlace").length,
+    linkSignups: links.length,
+    linkPending,
+    linkAccepted,
     rate: invitations === 0 ? 0 : Math.round((confirmations / invitations) * 100),
     funnel: stages.map((stage) => ({ etapa: stage.etapa, personas: counts.get(stage.status) ?? 0, fill: stage.fill })),
     byOrg: orgBars(invites, statusOf, input.orgs),
