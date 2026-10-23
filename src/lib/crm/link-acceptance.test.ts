@@ -1,6 +1,6 @@
 import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
-import { isLinkAccepted, pendingInviteAction } from "./link-acceptance";
+import { isLinkAccepted, passIsPending, pendingInviteAction } from "./link-acceptance";
 
 describe("aceptación del enlace", () => {
   it("solo confirmo, registrado y llego cuentan como aceptados", () => {
@@ -18,6 +18,14 @@ describe("aceptación del enlace", () => {
     expect(pendingInviteAction({ source: "manual", status: "cargado" })).toBe("contactar");
     expect(pendingInviteAction({ source: "excel", status: "cargado" })).toBe("contactar");
     expect(pendingInviteAction({ source: "enlace", status: "registrado" })).toBeNull();
+  });
+
+  it("el pase en pantalla espera a que todos los enlaces estén aceptados", () => {
+    expect(passIsPending([])).toBe(false);
+    expect(passIsPending(["registrado"])).toBe(false);
+    expect(passIsPending(["cargado"])).toBe(true);
+    expect(passIsPending(["registrado", "cargado"])).toBe(true);
+    expect(passIsPending(["no"])).toBe(true);
   });
 
   it("la migración del enlace solo carga el contacto", () => {

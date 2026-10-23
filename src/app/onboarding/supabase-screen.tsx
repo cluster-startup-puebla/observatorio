@@ -5,6 +5,7 @@ import { OnboardingWizard } from "@/components/onboarding/onboarding-wizard";
 import { orgSlugForUser } from "@/lib/auth/login-org";
 import { readSessionAccount } from "@/lib/auth/session-account";
 import { readOrgIntent } from "@/lib/organismo/signup-intent";
+import { linkPassPending } from "@/lib/onboarding/link-pass-state";
 import { resolveSector } from "@/lib/sectors";
 import { createSupabaseAnon, createSupabaseWithAccess, readAccessToken } from "@/lib/supabase/auth-session";
 
@@ -33,6 +34,9 @@ export async function SupabaseOnboarding({
     .eq("id", account.id)
     .maybeSingle();
 
+  const onboarded = !org && Boolean(finished.data?.onboarded_at);
+  const pending = onboarded && account.role === "empresario" ? await linkPassPending(token, account.email) : false;
+
   return (
     <AuthShell
       kicker="Tu perfil"
@@ -46,7 +50,8 @@ export async function SupabaseOnboarding({
         sectorSlug={resolved.slug}
         sectorName={resolved.name}
         invitacion={params.invitacion}
-        onboarded={!org && Boolean(finished.data?.onboarded_at)}
+        onboarded={onboarded}
+        pending={pending}
         formError={params.error}
         missingSlug={params.error === "slug"}
         missingLogo={params.error === "logo"}
