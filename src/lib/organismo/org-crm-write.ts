@@ -51,3 +51,13 @@ export async function contactOrgPerson(db: SupabaseClient, actorId: string, pers
   if (event.error) return { ok: false as const, reason: event.error.message };
   return { ok: true as const };
 }
+
+export async function rejectOrgPerson(db: SupabaseClient, actorId: string, personId: string) {
+  const event = await db.from("crm_events").insert({
+    contact_id: personId,
+    event: "rechazar",
+    actor_id: actorId,
+  });
+  if (event.error) return { ok: false as const, reason: event.error.message };
+  return { ok: true as const };
+}
