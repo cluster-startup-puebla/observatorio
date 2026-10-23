@@ -12,6 +12,6 @@ export async function loadMedio(id: string) {
     .maybeSingle();
   if (asset.error) throw new Error(asset.error.message);
   if (!asset.data) return null;
-  if (!["organization_logo", "content_image", "pass_qr"].includes(asset.data.purpose)) return null;
+  if (!["organization_logo", "content_image", "pass_qr", "company_logo"].includes(asset.data.purpose)) return null;
   return asset.data;
 }

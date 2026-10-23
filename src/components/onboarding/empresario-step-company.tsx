@@ -1,4 +1,5 @@
 import { controlClass, Field } from "@/components/landing/molecules/field";
+import { CompanyLogoFields } from "@/components/onboarding/company-logo-fields";
 import { FilterCombobox } from "@/components/onboarding/filter-combobox";
 import { OnboardingSelect } from "@/components/onboarding/onboarding-select";
 import { companySizes } from "@/content/landing";
@@ -12,6 +13,8 @@ export type CompanyStepValues = {
   employeeBand: string;
   municipality: string;
   sectorSlug: string;
+  showLogo: boolean;
+  hasLogo: boolean;
 };
 
 export function EmpresarioStepCompany({
@@ -37,6 +40,11 @@ export function EmpresarioStepCompany({
           Este dato es anónimo: solo sirve para tu perfil en la sesión.
         </p>
       </Field>
+      <CompanyLogoFields
+        showLogo={values.showLogo}
+        onShow={(showLogo) => onChange({ showLogo })}
+        onFile={(hasLogo) => onChange({ hasLogo })}
+      />
       <OnboardingSelect
         id="marketSize"
         label="Tamaño de mercado"

@@ -9,7 +9,7 @@ export async function loadEmpresa(id: string) {
   if (!db) return null;
   const company = await db
     .from("companies")
-    .select("id, legal_name, employee_band, sector_id, sector_source, profile_id, referral_source")
+    .select("id, legal_name, employee_band, sector_id, sector_source, profile_id, referral_source, show_logo_on_event")
     .eq("id", id)
     .maybeSingle();
   if (company.error) throw new Error(company.error.message);

@@ -1,3 +1,4 @@
+import { loadAttending } from "@/lib/admin/empresas/load-attending";
 import { companyDraft } from "@/lib/admin/empresas/draft";
 import { listEmpresas } from "@/lib/admin/empresas/list";
 import { adminDb } from "@/lib/admin/admin-db";
@@ -6,7 +7,9 @@ import { NextResponse, type NextRequest } from "next/server";
 
 export async function GET(request: NextRequest) {
   await requireSuperadmin();
-  return Response.json(await listEmpresas(request.nextUrl.searchParams.get("page") ?? undefined));
+  const params = request.nextUrl.searchParams;
+  if (params.get("vista") === "asistentes") return Response.json(await loadAttending(params.get("sector")));
+  return Response.json(await listEmpresas(params.get("page") ?? undefined));
 }
 
 export async function POST(request: NextRequest) {

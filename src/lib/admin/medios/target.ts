@@ -1,9 +1,10 @@
-import { contentObjectPath, logoObjectPath, passObjectPath } from "@/lib/storage-assets";
+import { companyLogoObjectPath, contentObjectPath, logoObjectPath, passObjectPath } from "@/lib/storage-assets";
 
 const limits = {
   organization_logo: 2_097_152,
   pass_qr: 524_288,
   content_image: 4_194_304,
+  company_logo: 2_097_152,
 } as const;
 
 export function mediaByteLimit(purpose: keyof typeof limits) {
@@ -21,6 +22,10 @@ export function mediaTarget(input: {
   if (input.purpose === "organization_logo") {
     if (!input.organizationId) throw new Error("falta el organismo");
     return { bucket: "organization-logos", path: logoObjectPath(input.organizationId, input.contentType) };
+  }
+  if (input.purpose === "company_logo") {
+    if (!input.profileId) throw new Error("falta el perfil");
+    return { bucket: "company-logos", path: companyLogoObjectPath(input.profileId, input.contentType) };
   }
   if (input.purpose === "pass_qr") {
     if (!input.profileId) throw new Error("falta el perfil");

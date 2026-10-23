@@ -22,6 +22,11 @@ describe("lista de medios", () => {
     expect(mediaByteLimit("pass_qr")).toBe(524_288);
     expect(mediaByteLimit("content_image")).toBe(4_194_304);
     expect(() => mediaTarget({ purpose: "pass_qr", profileId: id, contentType: "image/jpeg" })).toThrow("el pase es png");
+    expect(mediaTarget({ purpose: "company_logo", profileId: id, contentType: "image/png" })).toEqual({
+      bucket: "company-logos",
+      path: `${id}/logo.png`,
+    });
+    expect(mediaByteLimit("company_logo")).toBe(2_097_152);
   });
 
   it("la lista lee media_assets", () => {

@@ -3,6 +3,7 @@ import { redirectTo } from "@/lib/admin/redirect";
 import { removeBy } from "@/lib/admin/remove-row";
 import { sessionSectorChoices } from "@/lib/admin/sesiones/choices";
 import { currentFlip } from "@/lib/admin/sesiones/current";
+import { loadAttending } from "@/lib/admin/empresas/load-attending";
 import { loadSesion } from "@/lib/admin/sesiones/detail";
 import { quotaDraft } from "@/lib/admin/sesiones/quotas";
 import { scheduleFromForm } from "@/lib/admin/sesiones/schedule";
@@ -10,12 +11,13 @@ import { saveSessionQuotas } from "@/lib/admin/sesiones/save-quotas";
 import { requireSuperadmin } from "@/lib/auth/require-superadmin";
 import type { NextRequest } from "next/server";
 
-export async function GET(_request: NextRequest, context: { params: Promise<{ id: string }> }) {
+export async function GET(request: NextRequest, context: { params: Promise<{ id: string }> }) {
   await requireSuperadmin();
   const { id } = await context.params;
   const row = await loadSesion(id);
   if (!row) return Response.json({ error: "no encontrada" }, { status: 404 });
-  return Response.json(row);
+  const attending = await loadAttending(request.nextUrl.searchParams.get("sector"));
+  return Response.json({ ...row, attending });
 }
 
 export async function POST(request: NextRequest, context: { params: Promise<{ id: string }> }) {

@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import { CuposTab } from "@/app/admin/sesiones/[id]/cupos-tab";
 import { FichaTab } from "@/app/admin/sesiones/[id]/ficha-tab";
+import { LogosTab } from "@/app/admin/sesiones/[id]/logos-tab";
 import { TemasTab } from "@/app/admin/sesiones/[id]/temas-tab";
 import { DetailFrame } from "@/components/admin/detail-frame";
 import { tabQuery } from "@/lib/admin/tab-query";
@@ -15,6 +16,7 @@ const tabs = [
   { value: "sectores", label: "Sectores" },
   { value: "temas", label: "Temas" },
   { value: "asistentes", label: "Asistentes" },
+  { value: "logos", label: "Logos" },
 ];
 
 export default async function SesionDetailPage({
@@ -59,6 +61,7 @@ export default async function SesionDetailPage({
       {active === "ficha" ? <FichaTab audience={session.audience} includes={session.includes} /> : null}
       {active === "sectores" ? <CuposTab quotas={data.quotas} /> : null}
       {active === "temas" ? <TemasTab id={id} topics={data.topics} open={Boolean(query.error)} /> : null}
+      {active === "logos" ? <LogosTab /> : null}
       {active === "asistentes" ? (
         <ul className="grid gap-1 text-small">
           {data.attendees.map((row) => (

@@ -14,6 +14,8 @@ export type EmpresarioValues = {
   sectorSlug: string;
   referralSource: string;
   sessionInterest: string;
+  showLogo: boolean;
+  hasLogo: boolean;
 };
 
 export function emptyEmpresarioValues(sectorSlug: string): EmpresarioValues {
@@ -28,6 +30,8 @@ export function emptyEmpresarioValues(sectorSlug: string): EmpresarioValues {
     sectorSlug,
     referralSource: "",
     sessionInterest: "",
+    showLogo: false,
+    hasLogo: false,
   };
 }
 
@@ -46,7 +50,8 @@ export function stepReady(step: number, values: EmpresarioValues) {
       Boolean(parseMarketSize(values.marketSize)) &&
       companySizes.includes(values.employeeBand) &&
       isPueblaMunicipio(values.municipality) &&
-      Boolean(acceptedIndustry(values.sectorSlug))
+      Boolean(acceptedIndustry(values.sectorSlug)) &&
+      (!values.showLogo || values.hasLogo)
     );
   }
   return values.referralSource.trim().length >= 2 && values.sessionInterest.trim().length >= 2;

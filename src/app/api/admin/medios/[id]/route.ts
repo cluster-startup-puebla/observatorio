@@ -23,7 +23,7 @@ export async function POST(request: NextRequest, context: { params: Promise<{ id
   if (!current || !(file instanceof File) || file.size === 0) {
     return redirectTo(request, `${list}?error=${encodeURIComponent("falta el archivo")}`);
   }
-  const purpose = current.purpose as "organization_logo" | "pass_qr" | "content_image";
+  const purpose = current.purpose as "organization_logo" | "pass_qr" | "content_image" | "company_logo";
   if (file.size > mediaByteLimit(purpose)) {
     return redirectTo(request, `${list}?error=${encodeURIComponent("el archivo es demasiado grande")}`);
   }

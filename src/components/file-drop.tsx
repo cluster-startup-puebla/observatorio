@@ -11,9 +11,10 @@ type FileDropProps = {
   hint: string;
   preview?: boolean;
   tracked?: boolean;
+  onChosen?: (file: File | null) => void;
 };
 
-export function FileDrop({ id, name, label, accept, hint, preview, tracked }: FileDropProps) {
+export function FileDrop({ id, name, label, accept, hint, preview, tracked, onChosen }: FileDropProps) {
   const [file, setFile] = useState<File | null>(null);
   const [src, setSrc] = useState<string | null>(null);
   const hintId = `${id}-hint`;
@@ -25,6 +26,7 @@ export function FileDrop({ id, name, label, accept, hint, preview, tracked }: Fi
       if (!next || !preview || !next.type.startsWith("image/")) return null;
       return URL.createObjectURL(next);
     });
+    onChosen?.(next);
   }
 
   return (

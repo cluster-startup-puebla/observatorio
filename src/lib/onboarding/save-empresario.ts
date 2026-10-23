@@ -15,6 +15,7 @@ export async function saveEmpresarioProfile(
   profileId: string,
   profile: EmpresarioProfile,
   fromLink: boolean,
+  showLogo: boolean,
 ) {
   const band = bands[profile.employeeBand];
   if (!band) return { ok: false as const, reason: "empleados" };
@@ -46,6 +47,7 @@ export async function saveEmpresarioProfile(
         market_size: profile.marketSize,
         municipality: profile.municipality,
         session_interest: profile.sessionInterest,
+        show_logo_on_event: showLogo,
       },
       { onConflict: "profile_id" },
     )

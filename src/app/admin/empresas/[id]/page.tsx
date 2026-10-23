@@ -29,11 +29,15 @@ export default async function EmpresaDetailPage({
         { label: "Tamaño", value: data.company.employee_label },
         { label: "Cómo llegó el sector", value: data.company.source_label },
         { label: "Referencia", value: data.company.referral_source },
+        { label: "Logo el día del evento", value: data.company.show_logo_on_event ? "Sí" : "No" },
       ]}
       tabs={[...companyTabs]}
       active={active}
     >
       {query.error ? <p className="text-small text-mark">{query.error}</p> : null}
+      {data.company.show_logo_on_event ? (
+        <img src={`/api/admin/empresas/${id}/logo`} alt="" className="mt-4 h-16 w-auto object-contain" />
+      ) : null}
       {active === "respuestas" ? (
         <ul className="mt-4">
           {data.answers.map((row) => (
