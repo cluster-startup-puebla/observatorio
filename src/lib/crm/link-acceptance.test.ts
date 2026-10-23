@@ -27,4 +27,14 @@ describe("aceptación del enlace", () => {
     expect(sql).not.toContain("'confirmar'");
     expect(sql).not.toContain("'registrar'");
   });
+
+  it("aceptar escribe confirmar y registrar para un enlace pendiente", () => {
+    const sql = readFileSync("supabase/migrations/20261023190100_approve_link_signup.sql", "utf8");
+    expect(sql).toContain("function public.approve_link_signup(contact_id uuid)");
+    expect(sql).toContain("src is distinct from 'enlace'");
+    expect(sql).toContain("current_status is distinct from 'cargado'");
+    expect(sql).toContain("'confirmar'");
+    expect(sql).toContain("'registrar'");
+    expect(sql).toContain("grant execute on function public.approve_link_signup(uuid) to authenticated");
+  });
 });
