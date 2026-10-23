@@ -1,7 +1,9 @@
 import { notFound } from "next/navigation";
 import { DetailFrame } from "@/components/admin/detail-frame";
+import { FallbackImage } from "@/components/admin/fallback-image";
 import { tabQuery } from "@/lib/admin/tab-query";
 import { loadMedio } from "@/lib/admin/medios/detail";
+import { mediaPreviewPath } from "@/lib/admin/medios/public-access";
 import { purposeLabel } from "@/lib/admin/medios/purpose-label";
 import { requireSuperadmin } from "@/lib/auth/require-superadmin";
 
@@ -35,6 +37,13 @@ export default async function MedioDetailPage({
       tabs={tabs}
       active={active}
     >
+      <div className="mb-6">
+        <FallbackImage
+          src={mediaPreviewPath(data.purpose, data.id)}
+          alt={purposeLabel(data.purpose)}
+          className="max-h-80 max-w-full rounded-xl border border-line bg-elevated object-contain"
+        />
+      </div>
       <p className="text-small text-ink-muted">Reemplaza el archivo desde la lista de medios.</p>
     </DetailFrame>
   );

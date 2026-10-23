@@ -7,14 +7,16 @@ export function SectorLanding({
   sector,
   reserveHref,
   brand,
+  message,
 }: {
   sector: string;
   reserveHref: string;
   brand?: { name: string; logoSrc: string | null } | null;
+  message?: { headline: string; body: string } | null;
 }) {
   return (
     <div className="flex flex-1 flex-col">
-      <SectorOpen sector={sector} reserveHref={reserveHref} brand={brand} />
+      <SectorOpen sector={sector} reserveHref={reserveHref} brand={brand} message={message} />
       <Session />
       <ReserveBand href={reserveHref} />
       <DiagnosticBanner closing />

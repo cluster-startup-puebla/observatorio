@@ -1,19 +1,28 @@
 import type { ColumnDef } from "@tanstack/react-table";
+import { FallbackImage } from "@/components/admin/fallback-image";
 
-export type DataColumn = { key: string; label: string; image?: boolean; color?: boolean };
+export type DataColumn = {
+  key: string;
+  label: string;
+  image?: boolean;
+  imageAltKey?: string;
+  color?: boolean;
+};
 export type DataRow = Record<string, string>;
 
 export function columnDef(column: DataColumn): ColumnDef<DataRow> {
   if (column.image) {
+    const altKey = column.imageAltKey;
     return {
       id: column.key,
       header: column.label,
-      cell: ({ row }) =>
-        row.original[column.key] ? (
-          <img src={row.original[column.key]} alt="" className="size-8 rounded-md border border-line object-contain" />
-        ) : (
-          <span className="text-ink-secondary">—</span>
-        ),
+      cell: ({ row }) => (
+        <FallbackImage
+          src={row.original[column.key] ?? ""}
+          alt={altKey ? (row.original[altKey] ?? "") : ""}
+          className="size-8 rounded-md border border-line object-contain"
+        />
+      ),
     };
   }
   if (column.color) {

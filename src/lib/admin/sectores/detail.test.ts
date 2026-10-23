@@ -23,6 +23,10 @@ describe("detalle de sectores", () => {
     expect(source).toContain("body");
     expect(route).toContain("await requireSuperadmin()");
     expect(route).toContain("headlineForStore");
+    expect(route).toContain("sanitizeSectorBody");
     expect(hero).toContain("message.headline");
+    expect(hero).toContain("{message.body}");
+    const open = readFileSync("src/components/landing/sections/sector-open.tsx", "utf8");
+    expect(open).toContain("inviteLine(sector");
   });
 });

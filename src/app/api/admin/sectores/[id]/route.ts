@@ -1,6 +1,7 @@
 import { adminDb } from "@/lib/admin/admin-db";
 import { loadSector } from "@/lib/admin/sectores/detail";
 import { headlineForStore } from "@/lib/admin/sectores/headline";
+import { sanitizeSectorBody } from "@/lib/html/sanitize-sector-body";
 import { redirectTo } from "@/lib/admin/redirect";
 import { removeBy } from "@/lib/admin/remove-row";
 import { requireSuperadmin } from "@/lib/auth/require-superadmin";
@@ -25,7 +26,7 @@ export async function POST(request: NextRequest, context: { params: Promise<{ id
     return redirectTo(request, path);
   }
   const headline = headlineForStore(String(form.get("headline") ?? ""));
-  const body = String(form.get("body") ?? "").trim();
+  const body = sanitizeSectorBody(String(form.get("body") ?? ""));
   const db = await adminDb();
   if (!db) {
     console.error("sectores page: sin sesión");

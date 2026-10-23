@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 import { DetailFrame } from "@/components/admin/detail-frame";
+import { SectorBodyPreview } from "@/components/landing/sections/sector-page-message";
 import { tabQuery } from "@/lib/admin/tab-query";
 import { loadSector } from "@/lib/admin/sectores/detail";
 import { requireSuperadmin } from "@/lib/auth/require-superadmin";
@@ -43,7 +44,7 @@ export default async function SectorDetailPage({
             <span className="text-ink-muted">Titular · </span>
             {data.page?.headline || "Sin titular"}
           </p>
-          <p className="whitespace-pre-wrap">{data.page?.body || "Sin cuerpo. Edítalo desde la lista."}</p>
+          <SectorBodyPreview body={data.page?.body ?? ""} />
         </div>
       ) : null}
     </DetailFrame>

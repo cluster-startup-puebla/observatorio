@@ -17,6 +17,7 @@ export function MediosList({
       title="Medios"
       lead="Logos, imágenes de contenido y pases. Los bytes están en Storage."
       columns={[
+        { key: "preview", label: "Preview", image: true, imageAltKey: "purpose_label" },
         { key: "purpose_label", label: "Uso" },
         { key: "bucket_id", label: "Bucket" },
         { key: "object_path", label: "Ruta" },

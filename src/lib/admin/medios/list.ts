@@ -2,6 +2,7 @@ import "server-only";
 
 import { adminDb } from "@/lib/admin/admin-db";
 import { pageQuery } from "@/lib/admin/page-query";
+import { mediaPreviewPath } from "./public-access";
 import { purposeLabel } from "./purpose-label";
 
 export async function listMedios(rawPage: string | undefined) {
@@ -20,6 +21,7 @@ export async function listMedios(rawPage: string | undefined) {
       id: row.id,
       purpose: row.purpose,
       purpose_label: purposeLabel(row.purpose),
+      preview: mediaPreviewPath(row.purpose, row.id),
       bucket_id: row.bucket_id,
       object_path: row.object_path,
       content_type: row.content_type,

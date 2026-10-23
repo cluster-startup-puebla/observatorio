@@ -5,7 +5,13 @@ import { SectorPageForm } from "@/app/admin/sectores/page-form";
 import { RowActions } from "@/components/admin/row-actions";
 import { Button } from "@/components/ui/button";
 
-export function SectorRowActions({ row }: { row: Record<string, string> }) {
+export function SectorRowActions({
+  row,
+  images,
+}: {
+  row: Record<string, string>;
+  images: { id: string }[];
+}) {
   return (
     <RowActions
       href={`/admin/sectores/${row.id}`}
@@ -17,6 +23,7 @@ export function SectorRowActions({ row }: { row: Record<string, string> }) {
           name={row.name}
           headline={row.headline}
           body={row.body}
+          images={images}
           trigger={
             <Button type="button" variant="ghost" size="icon-sm" aria-label="Editar página">
               <Pencil className="size-4" />
