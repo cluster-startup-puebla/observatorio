@@ -1,3 +1,4 @@
+import { SessionZoneField } from "@/app/admin/sesiones/session-zone-field";
 import { QuotaFields } from "@/app/admin/sesiones/quota-fields";
 
 type Sector = { id: string; name: string; slug: string };
@@ -10,8 +11,10 @@ export function SessionFields({
   defaults?: {
     venue?: string;
     format_name?: string;
+    session_on?: string;
     starts_local?: string;
     ends_local?: string;
+    time_zone?: string;
     capacity_min?: string;
     capacity_max?: string;
     audience?: string;
@@ -33,6 +36,10 @@ export function SessionFields({
         <input name="format_name" defaultValue={d.format_name} required className="rounded-lg border border-line px-3 py-2" />
       </label>
       <label className="grid gap-1 text-small">
+        Fecha
+        <input name="session_on" type="date" defaultValue={d.session_on} required className="rounded-lg border border-line px-3 py-2" />
+      </label>
+      <label className="grid gap-1 text-small">
         Empieza
         <input name="starts_local" type="time" defaultValue={d.starts_local} required className="rounded-lg border border-line px-3 py-2" />
       </label>
@@ -40,6 +47,7 @@ export function SessionFields({
         Termina
         <input name="ends_local" type="time" defaultValue={d.ends_local} required className="rounded-lg border border-line px-3 py-2" />
       </label>
+      <SessionZoneField value={d.time_zone} />
       <label className="grid gap-1 text-small">
         Cupo mínimo
         <input name="capacity_min" type="number" min={1} defaultValue={d.capacity_min ?? "8"} className="rounded-lg border border-line px-3 py-2" />

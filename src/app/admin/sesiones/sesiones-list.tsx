@@ -24,6 +24,7 @@ export function SesionesList({
       columns={[
         { key: "venue", label: "Lugar" },
         { key: "format_name", label: "Formato" },
+        { key: "session_on_label", label: "Fecha" },
         { key: "starts_local", label: "Empieza" },
         { key: "ends_local", label: "Termina" },
         { key: "is_current", label: "Vigente" },

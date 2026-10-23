@@ -28,8 +28,10 @@ export function EditSessionForm({
           defaults={{
             venue: row.venue,
             format_name: row.format_name,
+            session_on: row.session_on,
             starts_local: row.starts_local,
             ends_local: row.ends_local,
+            time_zone: row.time_zone,
             capacity_min: row.capacity_min,
             capacity_max: row.capacity_max,
             audience: row.audience,

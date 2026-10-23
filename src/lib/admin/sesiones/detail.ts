@@ -9,7 +9,7 @@ export async function loadSesion(id: string) {
   const session = await db
     .from("sessions")
     .select(
-      "id, venue, format_name, starts_local, ends_local, capacity_min, capacity_max, audience, includes, is_current, time_zone",
+      "id, venue, format_name, session_on, starts_local, ends_local, capacity_min, capacity_max, audience, includes, is_current, time_zone",
     )
     .eq("id", id)
     .maybeSingle();

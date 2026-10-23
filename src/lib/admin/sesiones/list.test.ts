@@ -8,8 +8,10 @@ describe("lista de sesiones", () => {
     expect(list).toContain('.from("sessions")');
     expect(list).toContain("venue");
     expect(list).toContain("format_name");
+    expect(list).toContain("session_on");
     expect(list).toContain("starts_local");
     expect(list).toContain("ends_local");
+    expect(list).toContain("time_zone");
     expect(list).toContain("is_current");
     expect(list).toContain("session_sector_quotas");
     expect(list).toContain(".range(page.from, page.to)");

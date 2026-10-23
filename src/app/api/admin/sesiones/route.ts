@@ -3,6 +3,7 @@ import { redirectTo } from "@/lib/admin/redirect";
 import { sessionSectorChoices } from "@/lib/admin/sesiones/choices";
 import { listSesiones } from "@/lib/admin/sesiones/list";
 import { quotaDraft } from "@/lib/admin/sesiones/quotas";
+import { scheduleFromForm } from "@/lib/admin/sesiones/schedule";
 import { saveSessionQuotas } from "@/lib/admin/sesiones/save-quotas";
 import { requireSuperadmin } from "@/lib/auth/require-superadmin";
 import type { NextRequest } from "next/server";
@@ -16,6 +17,8 @@ export async function POST(request: NextRequest) {
   await requireSuperadmin();
   const form = await request.formData();
   const list = "/admin/sesiones";
+  const schedule = scheduleFromForm(form);
+  if (!schedule.ok) return redirectTo(request, `${list}?error=${encodeURIComponent(schedule.reason)}`);
   const sectors = await sessionSectorChoices();
   const capacityMin = Number(form.get("capacity_min") ?? 0);
   const draft = quotaDraft(form, sectors.map((sector) => sector.id), capacityMin);
@@ -31,8 +34,7 @@ export async function POST(request: NextRequest) {
     .insert({
       venue: String(form.get("venue") ?? "").trim(),
       format_name: String(form.get("format_name") ?? "").trim(),
-      starts_local: String(form.get("starts_local") ?? ""),
-      ends_local: String(form.get("ends_local") ?? ""),
+      ...schedule.fields,
       capacity_min: capacityMin,
       capacity_max: capacityMax,
       audience: String(form.get("audience") ?? "").trim(),

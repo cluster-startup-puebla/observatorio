@@ -5,6 +5,7 @@ import { TemasTab } from "@/app/admin/sesiones/[id]/temas-tab";
 import { DetailFrame } from "@/components/admin/detail-frame";
 import { tabQuery } from "@/lib/admin/tab-query";
 import { loadSesion } from "@/lib/admin/sesiones/detail";
+import { sessionWhen } from "@/lib/sessions/face";
 import { requireSuperadmin } from "@/lib/auth/require-superadmin";
 
 export const instant = false;
@@ -39,7 +40,15 @@ export default async function SesionDetailPage({
       backHref="/admin/sesiones"
       facts={[
         { label: "Formato", value: session.format_name },
-        { label: "Horario", value: `${session.starts_local}–${session.ends_local}` },
+        {
+          label: "Horario",
+          value: sessionWhen({
+            sessionOn: session.session_on,
+            starts: session.starts_local,
+            ends: session.ends_local,
+            timeZone: session.time_zone,
+          }),
+        },
         { label: "Cupo", value: quotaLabel },
         { label: "Vigente", value: session.is_current ? "Sí" : "No" },
       ]}

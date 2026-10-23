@@ -2,6 +2,7 @@ import "server-only";
 
 import { adminDb } from "@/lib/admin/admin-db";
 import { pageQuery } from "@/lib/admin/page-query";
+import { clockFace, sessionOnLabel } from "@/lib/sessions/face";
 
 export async function listSesiones(rawPage: string | undefined) {
   const page = pageQuery(rawPage);
@@ -16,7 +17,7 @@ export async function listSesiones(rawPage: string | undefined) {
   const result = await db
     .from("sessions")
     .select(
-      "id, venue, format_name, starts_local, ends_local, capacity_min, capacity_max, audience, includes, is_current, session_sector_quotas(sector_id, capacity)",
+      "id, venue, format_name, session_on, starts_local, ends_local, time_zone, capacity_min, capacity_max, audience, includes, is_current, session_sector_quotas(sector_id, capacity)",
     )
     .order("is_current", { ascending: false })
     .range(page.from, page.to);
@@ -30,8 +31,11 @@ export async function listSesiones(rawPage: string | undefined) {
       id: row.id,
       venue: row.venue,
       format_name: row.format_name,
-      starts_local: row.starts_local,
-      ends_local: row.ends_local,
+      session_on: row.session_on,
+      session_on_label: sessionOnLabel(row.session_on),
+      starts_local: clockFace(row.starts_local),
+      ends_local: clockFace(row.ends_local),
+      time_zone: row.time_zone,
       capacity_min: String(row.capacity_min),
       capacity_max: String(row.capacity_max),
       audience: row.audience,

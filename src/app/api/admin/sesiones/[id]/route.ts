@@ -5,6 +5,7 @@ import { sessionSectorChoices } from "@/lib/admin/sesiones/choices";
 import { currentFlip } from "@/lib/admin/sesiones/current";
 import { loadSesion } from "@/lib/admin/sesiones/detail";
 import { quotaDraft } from "@/lib/admin/sesiones/quotas";
+import { scheduleFromForm } from "@/lib/admin/sesiones/schedule";
 import { saveSessionQuotas } from "@/lib/admin/sesiones/save-quotas";
 import { requireSuperadmin } from "@/lib/auth/require-superadmin";
 import type { NextRequest } from "next/server";
@@ -34,26 +35,20 @@ export async function POST(request: NextRequest, context: { params: Promise<{ id
   const draft = quotaDraft(form, sectors.map((sector) => sector.id), capacityMin);
   if (!draft.ok) return redirectTo(request, `${list}?error=${encodeURIComponent(draft.reason)}`);
   const capacityMax = draft.total > 0 ? draft.total : Number(form.get("capacity_max") ?? current.session.capacity_max);
+  const schedule = scheduleFromForm(form, current.session);
+  if (!schedule.ok) return redirectTo(request, `${list}?error=${encodeURIComponent(schedule.reason)}`);
   const flip = currentFlip(current.rows, id, form.get("is_current") === "on");
   const db = await adminDb();
   if (!db) {
     console.error("sesiones update: sin sesión");
     return redirectTo(request, `${list}?error=${encodeURIComponent("No se pudo guardar. Intenta de nuevo.")}`);
   }
-  if (flip.clearIds.length) {
-    const cleared = await db.from("sessions").update({ is_current: false }).in("id", flip.clearIds);
-    if (cleared.error) {
-      console.error("sessions clear current", cleared.error);
-      return redirectTo(request, `${list}?error=${encodeURIComponent("No se pudo guardar. Intenta de nuevo.")}`);
-    }
-  }
   const updated = await db
     .from("sessions")
     .update({
       venue: String(form.get("venue") ?? current.session.venue),
       format_name: String(form.get("format_name") ?? current.session.format_name),
-      starts_local: String(form.get("starts_local") ?? current.session.starts_local),
-      ends_local: String(form.get("ends_local") ?? current.session.ends_local),
+      ...schedule.fields,
       capacity_min: capacityMin,
       capacity_max: capacityMax,
       audience: String(form.get("audience") ?? current.session.audience),

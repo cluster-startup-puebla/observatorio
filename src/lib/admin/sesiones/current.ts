@@ -3,12 +3,8 @@ export function currentFlip(
   id: string,
   wantCurrent: boolean,
 ) {
-  if (!wantCurrent) return { clearIds: [] as string[], setId: id, isCurrent: false };
-  return {
-    clearIds: rows.filter((row) => row.isCurrent && row.id !== id).map((row) => row.id),
-    setId: id,
-    isCurrent: true,
-  };
+  const stillCurrent = rows.filter((row) => row.isCurrent && row.id !== id).map((row) => row.id);
+  return { clearIds: [] as string[], setId: id, isCurrent: wantCurrent, stillCurrent };
 }
 
 export function attendeesFor<T>(isCurrent: boolean, rows: T[]) {
