@@ -46,6 +46,12 @@ export default async function CrmDetailPage({
               <li key={row.id}>{row.event}</li>
             ))}
           </ul>
+          {data.contact.source === "enlace" && data.statusCode === "cargado" ? (
+            <form action={`/api/admin/crm/${id}/evento`} method="post">
+              <input type="hidden" name="event" value="aprobar" />
+              <button className="btn btn-primary" type="submit">Aceptar</button>
+            </form>
+          ) : null}
           {actions.map((event) => (
             <form key={event} action={`/api/admin/crm/${id}/evento`} method="post">
               <input type="hidden" name="event" value={event} />

@@ -14,6 +14,15 @@ export async function POST(request: NextRequest, context: { params: Promise<{ id
   const current = await loadCrm(id);
   const back = `/admin/crm/${id}?tab=hechos`;
   if (!current) return NextResponse.redirect(new URL(`${back}&error=no%20encontrado`, request.url));
+  if (String(form.get("event") ?? "") === "aprobar") {
+    const db = await adminDb();
+    if (!db) return NextResponse.redirect(new URL(`${back}&error=${encodeURIComponent("sin sesión")}`, request.url));
+    const approved = await db.rpc("approve_link_signup", { contact_id: id });
+    if (approved.error) {
+      return NextResponse.redirect(new URL(`${back}&error=${encodeURIComponent(approved.error.message)}`, request.url));
+    }
+    return NextResponse.redirect(new URL(back, request.url));
+  }
   const next = nextCrmInsert((current.statusCode as CrmStatus | null) ?? null, String(form.get("event") ?? ""));
   if (!next.ok) return NextResponse.redirect(new URL(`${back}&error=${encodeURIComponent(next.reason)}`, request.url));
   const db = await adminDb();
