@@ -1,6 +1,7 @@
 "use server";
 
 import { redirect } from "next/navigation";
+import { mesaHref } from "@/lib/admin/mesa/href";
 import { getDirectory } from "./memory-directory";
 import { saveWithRetry } from "./save-answer";
 
@@ -39,14 +40,14 @@ export async function sendInnovationAction() {
 
 export async function scanDeskAction(formData: FormData) {
   const code = String(formData.get("codigo") ?? "").trim();
-  if (!code) redirect("/mesa?error=Escribe%20el%20c%C3%B3digo%20del%20QR.");
+  if (!code) redirect(`${mesaHref}?error=Escribe%20el%20c%C3%B3digo%20del%20QR.`);
   const result = await getDirectory().scanQr(code);
   const query = new URLSearchParams({ codigo: code });
   if (!result.ok) {
     query.set("error", result.reason);
-    redirect(`/mesa?${query.toString()}`);
+    redirect(`${mesaHref}?${query.toString()}`);
   }
   query.set("nombre", result.name);
   query.set("estatus", "llego");
-  redirect(`/mesa?${query.toString()}`);
+  redirect(`${mesaHref}?${query.toString()}`);
 }

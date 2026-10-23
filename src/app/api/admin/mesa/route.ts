@@ -1,4 +1,5 @@
 import { adminDb } from "@/lib/admin/admin-db";
+import { mesaHref } from "@/lib/admin/mesa/href";
 import { recordArrival } from "@/lib/admin/mesa/record";
 import { requireSuperadmin } from "@/lib/auth/require-superadmin";
 import { readSuperadmin } from "@/lib/auth/require-superadmin";
@@ -10,7 +11,7 @@ export async function POST(request: NextRequest) {
   const account = await readSuperadmin();
   const form = await request.formData();
   const profileId = String(form.get("codigo") ?? "").trim();
-  const back = "/mesa";
+  const back = mesaHref;
   const db = await adminDb();
   if (!db || !account || !profileId) return NextResponse.redirect(new URL(`${back}?error=sin%20qr`, request.url));
   const [pass, arrival, actor, contact] = await Promise.all([
@@ -38,5 +39,5 @@ export async function POST(request: NextRequest) {
     await db.from("crm_events").insert({ contact_id: contact.data.id, event: plan.crmEvent, actor_id: actor.data?.id ?? null });
   }
   const profile = await db.from("profiles").select("full_name").eq("id", profileId).maybeSingle();
-  return NextResponse.redirect(new URL(`/mesa/${profileId}?nombre=${encodeURIComponent(profile.data?.full_name ?? "")}`, request.url));
+  return NextResponse.redirect(new URL(`${mesaHref}/${profileId}?nombre=${encodeURIComponent(profile.data?.full_name ?? "")}`, request.url));
 }

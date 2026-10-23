@@ -13,8 +13,8 @@ describe("nav match", () => {
       ["/admin/metodologia/integral", "Contenido", "/admin/metodologia"],
       ["/admin/metodologia/abc", "Contenido", "/admin/metodologia"],
       ["/admin/correo/abc", "Operación", "/admin/correo"],
-      ["/mesa", "Operación", "/mesa"],
-      ["/mesa/profile-1", "Operación", "/mesa"],
+      ["/admin/mesa", "Operación", "/admin/mesa"],
+      ["/admin/mesa/profile-1", "Operación", "/admin/mesa"],
       ["/admin", "Operación", "/admin"],
     ] as const;
 

@@ -1,1 +1,1 @@
-export const mesaHref = "/mesa";
+export const mesaHref = "/admin/mesa";

@@ -2,7 +2,7 @@ import type { AccountRole } from "@/lib/directory";
 
 const homes: Record<AccountRole, string> = {
   superadmin: "/admin",
-  moderador: "/mesa",
+  moderador: "/admin/mesa",
   empresario: "/metodologia",
   director: "/organismo",
   capturista: "/organismo",

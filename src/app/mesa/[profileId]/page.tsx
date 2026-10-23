@@ -1,10 +1,7 @@
-import { notFound } from "next/navigation";
-import { PanelHeader, trailCrumbs } from "@/components/admin/panel-header";
+import { redirect } from "next/navigation";
 import { mesaHref } from "@/lib/admin/mesa/href";
 
-export const instant = false;
-
-export default async function MesaDetailPage({
+export default async function MesaDetailRedirect({
   params,
   searchParams,
 }: {
@@ -13,12 +10,6 @@ export default async function MesaDetailPage({
 }) {
   const { profileId } = await params;
   const query = await searchParams;
-  if (!profileId) notFound();
-  return (
-    <section className="container-site py-10">
-      <PanelHeader title="Llegada" crumbs={trailCrumbs("Mesa", mesaHref, "Llegada")} />
-      <p data-testid="bienvenida">Bienvenida, {query.nombre || profileId}</p>
-      <p data-testid="estatus">Llegó</p>
-    </section>
-  );
+  const suffix = query.nombre ? `?nombre=${encodeURIComponent(query.nombre)}` : "";
+  redirect(`${mesaHref}/${profileId}${suffix}`);
 }
