@@ -13,6 +13,6 @@ describe("dispatch del segmento", () => {
     const page = readFileSync("src/app/[sector]/page.tsx", "utf8");
     expect(page).toContain("ownerBySlug");
     expect(page).toContain("OrgHome");
-    expect(page).toContain("LandingBody");
+    expect(page).toContain("EventLanding");
   });
 });

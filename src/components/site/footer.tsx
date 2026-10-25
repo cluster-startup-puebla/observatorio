@@ -2,7 +2,7 @@ import Link from "next/link";
 import { clusterEmail, clusterUrl } from "@/content/landing";
 
 const LINKS = [
-  { label: "Cómo funciona", href: "/#como" },
+  { label: "Convocan", href: "/#convocan" },
   { label: "La sesión", href: "/#sesion" },
   { label: "Reservar", href: "/register" },
   { label: "Diagnóstico T-MEC", href: "/diagnostico-tmec-puebla" },

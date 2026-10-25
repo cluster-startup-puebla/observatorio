@@ -5,12 +5,12 @@ export function DiagnosticBanner({ closing = false }: { closing?: boolean }) {
   return (
     <aside
       data-testid="bloque-via-partners"
-      className={closing ? "flex flex-1 flex-col justify-center bg-surface-subtle" : "border-b border-line bg-surface-subtle"}
+      className={closing ? "-mb-24 bg-surface-subtle" : "border-b border-line bg-surface-subtle"}
     >
       <div
         className={
           closing
-            ? "container-site flex flex-col gap-6 py-16 sm:flex-row sm:items-end sm:justify-between lg:py-24"
+            ? "container-site flex flex-col gap-6 py-12 sm:flex-row sm:items-end sm:justify-between"
             : "container-site flex flex-col gap-4 py-5 sm:flex-row sm:items-center sm:justify-between sm:py-6"
         }
       >

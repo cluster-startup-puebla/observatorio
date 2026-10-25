@@ -1,11 +1,19 @@
 import { expect, test } from "@playwright/test";
 
-test("la landing muestra la estructura y los sectores", async ({ page }) => {
+test("la landing del evento no trae la invitación ni el listado de sectores", async ({ page }) => {
   await page.goto("/");
   await expect(page.getByTestId("bloque-objetivo")).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Lo que Puebla no sabe que necesita, tu empresa puede decirlo primero." })).toBeVisible();
+  await expect(page.getByText("cordial invitación")).toHaveCount(0);
   await expect(page.getByTestId("bloque-evento")).toContainText("Quinta Real");
-  await expect(page.getByTestId("bloque-temas")).toBeVisible();
+  await expect(page.getByTestId("bloque-temas")).toHaveCount(0);
   await expect(page.getByTestId("bloque-via-partners")).toContainText("VIA Partners");
+});
+
+test("la v1 conserva la landing larga y los sectores", async ({ page }) => {
+  await page.goto("/v1");
+  await expect(page.getByTestId("bloque-objetivo")).toBeVisible();
+  await expect(page.getByTestId("bloque-temas")).toBeVisible();
   await expect(page.getByTestId("sector-automotriz-y-autopartes")).toHaveAttribute(
     "href",
     "/automotriz-y-autopartes",

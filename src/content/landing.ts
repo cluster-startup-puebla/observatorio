@@ -1,10 +1,10 @@
 export const ctaLabel = "Reservar mi lugar";
 
 export const navItems = [
-  { label: "El problema", href: "/#problema" },
-  { label: "Cómo funciona", href: "/#como" },
-  { label: "Beneficios", href: "/#beneficios" },
+  { label: "Convocan", href: "/#convocan" },
   { label: "La sesión", href: "/#sesion" },
+  { label: "Ponentes", href: "/#ponentes" },
+  { label: "Reservar", href: "/#registro" },
 ];
 
 export const pains = [
@@ -91,54 +91,12 @@ export const benefits = [
 ];
 
 export const sessionFacts = [
-  { label: "Dónde", value: "Quinta Real, Puebla" },
+  { label: "Dónde", value: "Hotel Quinta Real, Puebla" },
   { label: "Formato", value: "Desayuno ejecutivo" },
-  { label: "Horario", value: "8:00 am – 12:00 pm" },
-  { label: "Quién asiste", value: "Dueños, dirección general, operaciones o TI" },
-  { label: "Grupo", value: "15 a 30 empresas de tu sector, de distintos tamaños" },
+  { label: "Horario", value: "8:00 am – 11:45 am" },
+  { label: "Quién asiste", value: "Dueños, directores generales o directores de operaciones" },
+  { label: "Grupo", value: "Unos 120 empresarios y directivos, de 13 sectores" },
   { label: "Incluye", value: "Desayuno durante la ponencia" },
-];
-
-export const speakers = [
-  {
-    id: "ponente-1",
-    name: "Ponente por confirmar",
-    image: "/avatars/ponente-por-confirmar.svg",
-  },
-  {
-    id: "ponente-2",
-    name: "Ponente por confirmar",
-    image: "/avatars/ponente-por-confirmar.svg",
-  },
-  {
-    id: "ponente-3",
-    name: "Ponente por confirmar",
-    image: "/avatars/ponente-por-confirmar-2.svg",
-  },
-];
-
-export const agenda = [
-  {
-    name: "Recepción",
-    time: "15 min",
-    description: "Registro y asignación de lugares.",
-  },
-  {
-    name: "Ponencia de alto valor",
-    time: "Por confirmar",
-    description:
-      "Ponentes distinguidos, por confirmar, en colaboración con la Agencia de Transformación Digital de CDMX. Desayuno durante la ponencia.",
-  },
-  {
-    name: "Cuestionario y diagnóstico guiado",
-    time: "45 min",
-    description: "Aplicación de la metodología. Aquí ponemos tu problema en el mapa.",
-  },
-  {
-    name: "Invitación a innovación abierta",
-    time: "15 min",
-    description: "Cómo tu empresa puede probar soluciones en su operación.",
-  },
 ];
 
 export const backers = {
@@ -245,7 +203,7 @@ export const faqs = [
   {
     question: "¿Quién debe asistir?",
     answer:
-      "Quien conozca la operación y decida sobre tecnología: dueño, director general, operaciones o TI.",
+      "Dueños, directores generales o directores de operaciones de los 13 sectores.",
   },
   {
     question: "¿Cuánto dura?",

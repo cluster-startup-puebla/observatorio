@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { LandingBody } from "@/components/landing/landing-body";
+import { EventLanding } from "@/components/landing/event-landing";
 import { pageMetadata, siteDescription, siteName } from "@/lib/metadata";
 
 export const metadata: Metadata = pageMetadata({
@@ -10,5 +10,5 @@ export const metadata: Metadata = pageMetadata({
 });
 
 export default function Home() {
-  return <LandingBody />;
+  return <EventLanding />;
 }

@@ -1,10 +1,9 @@
 import { Cta } from "@/components/landing/atoms/cta";
-import { GovernmentLockup } from "@/components/landing/atoms/government-lockup";
 import { Kicker } from "@/components/landing/atoms/kicker";
-import { PartnerMark } from "@/components/landing/atoms/partner-mark";
-import { clusterLogo, ctaLabel } from "@/content/landing";
+import { ctaLabel } from "@/content/landing";
 import { InviteMark } from "./invite-mark";
 import { inviteLine } from "./invite-intro";
+import { LandingMarks } from "./landing-marks";
 import { SectorPageMessage } from "./sector-page-message";
 
 type InviteBrand = { name: string; logoSrc: string | null };
@@ -47,22 +46,7 @@ export function SectorOpen({
             Ver el minuto a minuto
           </Cta>
         </div>
-        <ul className="flex flex-col gap-8 border-t border-line pt-8 sm:flex-row sm:items-end sm:gap-12">
-          <li className="grid gap-2">
-            <Kicker>Con el respaldo de</Kicker>
-            <GovernmentLockup />
-          </li>
-          <li className="grid gap-2">
-            <Kicker>Opera</Kicker>
-            <PartnerMark
-              src={clusterLogo.src}
-              alt={clusterLogo.alt}
-              width={clusterLogo.width}
-              height={clusterLogo.height}
-              className={clusterLogo.className}
-            />
-          </li>
-        </ul>
+        <LandingMarks />
       </div>
     </section>
   );
