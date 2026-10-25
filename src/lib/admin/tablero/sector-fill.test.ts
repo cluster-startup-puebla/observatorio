@@ -1,3 +1,4 @@
+import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
 import { sectorFill, type Seat } from "./sector-fill";
 
@@ -46,5 +47,15 @@ describe("cupo por sector", () => {
       fuera: 1,
       rows: [],
     });
+  });
+
+  it("el tablero lee la sesión elegida o la vigente, los cupos y la aceptación", () => {
+    const source = readFileSync("src/lib/admin/tablero/load-cupos.ts", "utf8");
+    expect(source).toContain('.eq("is_current", true)');
+    expect(source).toContain("session_sector_quotas");
+    expect(source).toContain("pendingLinkEmails");
+    expect(source).toContain("waitsForExternalApproval");
+    expect(source).toContain("sectorFill");
+    expect(source).toContain("sessionId");
   });
 });
