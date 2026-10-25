@@ -1,16 +1,22 @@
 import "server-only";
 
 import { adminDb } from "@/lib/admin/admin-db";
+import { waitsForExternalApproval } from "./external-approval";
 import { pendingLinkEmails } from "./pending-link-emails";
 import { visibleEventLogos } from "./event-logos";
 
 export async function loadEventLogos() {
   const db = await adminDb();
   if (!db) return [];
-  const companies = await db.from("companies").select("id, legal_name, profile_id, show_logo_on_event, profiles(email)");
+  const companies = await db
+    .from("companies")
+    .select("id, legal_name, profile_id, show_logo_on_event, sector_source, admitted_at, profiles(email)");
   if (companies.error) throw new Error(companies.error.message);
   const pending = await pendingLinkEmails(db);
-  const visible = (companies.data ?? []).filter((row) => {
+  const admitted = (companies.data ?? []).filter(
+    (row) => !waitsForExternalApproval(String(row.sector_source ?? ""), row.admitted_at ?? null),
+  );
+  const visible = admitted.filter((row) => {
     const profile = row.profiles as { email?: string } | { email?: string }[] | null;
     const info = Array.isArray(profile) ? profile[0] : profile;
     const email = String(info?.email ?? "").trim().toLowerCase();

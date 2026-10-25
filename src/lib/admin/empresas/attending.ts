@@ -9,6 +9,7 @@ export type AttendingInput = {
   onboarded: boolean;
   role: string;
   linkStatus: string | null;
+  externalPending: boolean;
 };
 
 export function attendingCompanies(rows: AttendingInput[], sector: string | null) {
@@ -18,6 +19,7 @@ export function attendingCompanies(rows: AttendingInput[], sector: string | null
       row.onboarded &&
       row.role === "empresario" &&
       isLinkAccepted(row.linkStatus) &&
+      !row.externalPending &&
       (!slug || row.sectorSlug === slug),
   );
   return {

@@ -51,4 +51,13 @@ describe("registro externo", () => {
     expect(screen).toContain("externalPassPending");
     expect(screen).toContain("pendingLink || pendingExternal");
   });
+
+  it("asistentes y logos leen la aceptación externa", () => {
+    const attending = readFileSync("src/lib/admin/empresas/load-attending.ts", "utf8");
+    const logos = readFileSync("src/lib/admin/empresas/load-event-logos.ts", "utf8");
+    expect(attending).toContain("waitsForExternalApproval");
+    expect(attending).toContain("admitted_at");
+    expect(logos).toContain("waitsForExternalApproval");
+    expect(logos).toContain("admitted_at");
+  });
 });

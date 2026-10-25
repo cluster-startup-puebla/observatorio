@@ -2,6 +2,7 @@ import "server-only";
 
 import { adminDb } from "@/lib/admin/admin-db";
 import { attendingCompanies, type AttendingInput } from "./attending";
+import { waitsForExternalApproval } from "./external-approval";
 import { pendingLinkEmails } from "./pending-link-emails";
 
 function one<T>(value: T | T[] | null | undefined) {
@@ -14,7 +15,7 @@ export async function loadAttending(sector: string | null) {
   if (!db) return attendingCompanies([], sector);
   const result = await db
     .from("companies")
-    .select("id, legal_name, show_logo_on_event, sectors(name, slug), profiles!inner(onboarded_at, role, email)")
+    .select("id, legal_name, show_logo_on_event, sector_source, admitted_at, sectors(name, slug), profiles!inner(onboarded_at, role, email)")
     .eq("profiles.role", "empresario")
     .not("profiles.onboarded_at", "is", null);
   if (result.error) throw new Error(result.error.message);
@@ -37,6 +38,7 @@ export async function loadAttending(sector: string | null) {
       onboarded: Boolean(profile?.onboarded_at),
       role: profile?.role ?? "",
       linkStatus: pending.has(email) ? "cargado" : null,
+      externalPending: waitsForExternalApproval(String(row.sector_source ?? ""), row.admitted_at ?? null),
     };
   });
   return attendingCompanies(rows, sector);

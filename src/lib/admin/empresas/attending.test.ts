@@ -3,9 +3,9 @@ import { describe, expect, it } from "vitest";
 import { attendingCompanies, type AttendingInput } from "./attending";
 
 const rows: AttendingInput[] = [
-  { id: "c1", legalName: "Norte", sectorSlug: "turismo", sectorName: "Turismo", showLogo: true, onboarded: true, role: "empresario", linkStatus: null },
-  { id: "c2", legalName: "Sur", sectorSlug: "textil-y-confeccion", sectorName: "Textil", showLogo: false, onboarded: true, role: "empresario", linkStatus: null },
-  { id: "c3", legalName: "Staff", sectorSlug: "turismo", sectorName: "Turismo", showLogo: false, onboarded: false, role: "director", linkStatus: null },
+  { id: "c1", legalName: "Norte", sectorSlug: "turismo", sectorName: "Turismo", showLogo: true, onboarded: true, role: "empresario", linkStatus: null, externalPending: false },
+  { id: "c2", legalName: "Sur", sectorSlug: "textil-y-confeccion", sectorName: "Textil", showLogo: false, onboarded: true, role: "empresario", linkStatus: null, externalPending: false },
+  { id: "c3", legalName: "Staff", sectorSlug: "turismo", sectorName: "Turismo", showLogo: false, onboarded: false, role: "director", linkStatus: null, externalPending: false },
 ];
 
 describe("empresas que asistirán", () => {
@@ -48,5 +48,16 @@ describe("empresas que asistirán", () => {
       null,
     );
     expect(pending.rows.map((row) => row.id)).toEqual(["c2", "c4"]);
+  });
+
+  it("saca al alta de lugar desconocido que nadie ha aceptado", () => {
+    const pending = attendingCompanies(
+      [
+        { ...rows[0], id: "c1", externalPending: true },
+        { ...rows[1], id: "c2", externalPending: false },
+      ],
+      null,
+    );
+    expect(pending.rows.map((row) => row.id)).toEqual(["c2"]);
   });
 });
