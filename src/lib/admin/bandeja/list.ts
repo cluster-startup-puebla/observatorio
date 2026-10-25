@@ -5,7 +5,7 @@ import { pageQuery } from "@/lib/admin/page-query";
 import { kindLabel } from "./kind-label";
 import { mailKind } from "./kinds";
 
-const kinds = ["password", "event_pass", "open_innovation"] as const;
+const kinds = ["password", "event_pass", "open_innovation", "welcome", "reminder", "thanks"] as const;
 
 export async function listBandeja(rawPage: string | undefined, rawKind: string | undefined) {
   const page = pageQuery(rawPage);
@@ -14,7 +14,7 @@ export async function listBandeja(rawPage: string | undefined, rawKind: string |
   if (!db) return { page: page.page, rows: [] as Record<string, string>[] };
   let query = db
     .from("outbox_messages")
-    .select("id, kind, to_email, subject, created_at")
+    .select("id, kind, to_email, subject, created_at, sent_at")
     .order("created_at", { ascending: false })
     .range(page.from, page.to);
   if (kind && kinds.includes(kind)) query = query.eq("kind", kind);
@@ -28,6 +28,7 @@ export async function listBandeja(rawPage: string | undefined, rawKind: string |
       kind_label: kindLabel(row.kind),
       to_email: row.to_email,
       subject: row.subject,
+      estado: row.sent_at ? "Enviado" : "Pendiente",
       created_at: row.created_at,
     })),
   };

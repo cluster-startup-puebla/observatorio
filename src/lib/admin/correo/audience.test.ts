@@ -21,11 +21,13 @@ describe("correo masivo", () => {
   it("la página conserva el botón del e2e y el route exige superadmin", () => {
     const page = readFileSync("src/app/admin/correo/page.tsx", "utf8");
     const route = readFileSync("src/app/api/admin/correo/route.ts", "utf8");
+    const forms = readFileSync("src/app/admin/correo/broadcast-forms.tsx", "utf8");
     expect(page).toContain("Enviar innovación abierta");
+    expect(forms).toContain("Enviar recordatorio");
+    expect(forms).toContain("Enviar gracias");
     expect(page).toContain('data-testid="encolados"');
     expect(page).toContain("sendInnovationAction");
-    expect(page).not.toContain("requireSuperadmin");
     expect(route).toContain("await requireSuperadmin()");
-    expect(route).toContain("innovationRecipients");
+    expect(route).toContain("sendBroadcast");
   });
 });

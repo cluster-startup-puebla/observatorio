@@ -1,9 +1,12 @@
+import { BroadcastForms } from "@/app/admin/correo/broadcast-forms";
 import { PanelHeader, parentLabel, trailCrumbs } from "@/components/admin/panel-header";
+import { Alert, AlertDescription } from "@/components/ui/alert";
 import { can, type Role } from "@/lib/access";
 import { adminDb } from "@/lib/admin/admin-db";
 import { sentCount } from "@/lib/admin/correo/sent-count";
-import { sendInnovationAction } from "@/lib/flow-actions";
 import { requireSuperadmin } from "@/lib/auth/require-superadmin";
+import { sendInnovationAction } from "@/lib/flow-actions";
+import { loadMailSessions } from "@/lib/mail/mail-sessions";
 import { getDirectory } from "@/lib/memory-directory";
 import { usesSupabaseAuth } from "@/lib/supabase/auth-session";
 
@@ -27,32 +30,36 @@ async function openInnovationSent() {
 export default async function CorreoPage({
   searchParams,
 }: {
-  searchParams: Promise<{ enviado?: string; rol?: string }>;
+  searchParams: Promise<{ enviado?: string; rol?: string; error?: string; n?: string }>;
 }) {
   if (usesSupabaseAuth()) await requireSuperadmin();
   const params = await searchParams;
   const role = roleFromQuery(params.rol);
   const allowed = can(role, "send_mass_email");
-  const count = params.enviado === "1" ? await openInnovationSent() : null;
-
+  const count = params.enviado === "1" ? (params.n ? Number(params.n) : await openInnovationSent()) : null;
+  const sessions = usesSupabaseAuth() ? await loadMailSessions() : [];
   const section = "/admin/correo";
   return (
     <main className="px-8 py-8">
       <PanelHeader
-        title="Innovación abierta"
-        lead="El aviso sale solo a quienes ya terminaron el perfil. Queda en la bandeja, sin abrir el correo todavía."
-        crumbs={trailCrumbs(parentLabel(section), section, "Innovación abierta")}
-        actions={
-          allowed ? (
-            <form action={mailAction} method="post">
-              <button type="submit" className="btn btn-primary">
-                Enviar innovación abierta
-              </button>
-            </form>
-          ) : null
-        }
+        title="Correos"
+        lead="Innovación abierta, recordatorio y gracias salen a los correos de quien ya se registró."
+        crumbs={trailCrumbs(parentLabel(section), section, "Correos")}
       />
-      {count !== null ? (
+      {params.error ? (
+        <Alert variant="destructive" className="mb-6">
+          <AlertDescription>{params.error}</AlertDescription>
+        </Alert>
+      ) : null}
+      {allowed ? (
+        <BroadcastForms
+          action={mailAction}
+          sessions={sessions}
+          mass={usesSupabaseAuth()}
+          innovationLabel="Enviar innovación abierta"
+        />
+      ) : null}
+      {count !== null && Number.isFinite(count) ? (
         <p data-testid="encolados" className="text-body text-ink">
           {count}
         </p>

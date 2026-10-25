@@ -1,6 +1,6 @@
 import { mailFor } from "@/lib/outbox-message";
 
-const kinds = ["password", "event_pass", "open_innovation"] as const;
+const kinds = ["password", "event_pass", "open_innovation", "welcome", "reminder", "thanks"] as const;
 export type MailKind = (typeof kinds)[number];
 
 export function mailKind(value: string | undefined): MailKind | null {

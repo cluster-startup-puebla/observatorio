@@ -23,6 +23,9 @@ export async function POST(request: NextRequest, context: { params: Promise<{ id
   if (!current || !kind) {
     return redirectTo(request, `${list}?error=${encodeURIComponent("mensaje no encontrado")}`);
   }
+  if (current.sent_at) {
+    return redirectTo(request, `${list}?error=${encodeURIComponent("Ese correo ya se envió.")}`);
+  }
   const db = await adminDb();
   if (!db) {
     console.error("bandeja retry: sin sesión");

@@ -9,6 +9,9 @@ const filters = [
   { href: "/admin/bandeja?kind=password", label: "Contraseña" },
   { href: "/admin/bandeja?kind=event_pass", label: "Pase" },
   { href: "/admin/bandeja?kind=open_innovation", label: "Innovación abierta" },
+  { href: "/admin/bandeja?kind=welcome", label: "Bienvenida" },
+  { href: "/admin/bandeja?kind=reminder", label: "Recordatorio" },
+  { href: "/admin/bandeja?kind=thanks", label: "Gracias" },
 ];
 
 export function BandejaList({
@@ -23,11 +26,12 @@ export function BandejaList({
   return (
     <DataList
       title="Bandeja"
-      lead="Los tres correos: contraseña, pase e innovación abierta."
+      lead="Cada fila dice si el correo sigue pendiente o ya se envió."
       columns={[
         { key: "kind_label", label: "Tipo" },
         { key: "to_email", label: "Para" },
         { key: "subject", label: "Asunto" },
+        { key: "estado", label: "Estado" },
       ]}
       rows={rows}
       page={page}

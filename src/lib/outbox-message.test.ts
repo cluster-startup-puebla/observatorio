@@ -10,6 +10,12 @@ describe("mailFor", () => {
     );
   });
 
+  it("arma bienvenida, recordatorio y gracias", () => {
+    expect(mailFor("welcome", "ana@norte.mx").subject).toBe("Tu lugar en el Observatorio ya está apartado");
+    expect(mailFor("reminder", "ana@norte.mx").subject).toBe("Mañana es la sesión del Observatorio");
+    expect(mailFor("thanks", "ana@norte.mx").subject).toBe("Gracias por venir a la sesión");
+  });
+
   it("no arma un correo sin destinatario", () => {
     expect(() => mailFor("password", " ")).toThrow("correo inválido");
   });

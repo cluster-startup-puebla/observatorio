@@ -8,7 +8,7 @@ export async function loadMensaje(id: string) {
   if (!db) return null;
   const row = await db
     .from("outbox_messages")
-    .select("id, kind, to_email, subject, profile_id, contact_id, created_at")
+    .select("id, kind, to_email, subject, profile_id, contact_id, created_at, sent_at")
     .eq("id", id)
     .maybeSingle();
   if (row.error) throw new Error(row.error.message);
