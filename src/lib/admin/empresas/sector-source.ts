@@ -1,6 +1,6 @@
 export const sectorSources = [
   { value: "chosen", label: "Lo eligió la persona" },
-  { value: "path", label: "Por la ruta del sector" },
+  { value: "path", label: "Lugar desconocido" },
   { value: "link", label: "Por el enlace del organismo" },
 ] as const;
 
