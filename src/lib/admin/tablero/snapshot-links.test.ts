@@ -27,6 +27,8 @@ describe("tablero de la convocatoria", () => {
     expect(board.linkPending).toBe(1);
     expect(board.linkAccepted).toBe(1);
     expect(board.invitations).toBe(0);
+    expect(board.byOrg).toEqual([]);
+    expect(board.byLinkOrg).toEqual([{ organismo: "Norte", enlaces: 3, pendientes: 1 }]);
   });
 
   it("sin lista pide cargar y un rechazo cierra el pendiente", () => {

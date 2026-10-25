@@ -43,6 +43,7 @@ describe("tablero de la convocatoria", () => {
       { organismo: "Norte", invitaciones: 2, confirmaciones: 1 },
       { organismo: "Sur", invitaciones: 1, confirmaciones: 1 },
     ]);
+    expect(board.byLinkOrg).toEqual([{ organismo: "Sur", enlaces: 1, pendientes: 0 }]);
     expect(board.pace).toHaveLength(14);
     expect(board.pace.at(-1)?.confirmaciones).toBe(1);
     expect(board.pace.at(-2)?.confirmaciones).toBe(1);

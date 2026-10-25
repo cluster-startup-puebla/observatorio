@@ -2,6 +2,7 @@ import Link from "next/link";
 import { CupoKpis } from "@/app/admin/tablero/cupo-kpis";
 import { FunnelChart } from "@/app/admin/tablero/funnel-chart";
 import { TableroKpis } from "@/app/admin/tablero/kpis";
+import { LinkOrgChart } from "@/app/admin/tablero/link-org-chart";
 import { OrgChart } from "@/app/admin/tablero/org-chart";
 import { PaceChart } from "@/app/admin/tablero/pace-chart";
 import { SectorChart } from "@/app/admin/tablero/sector-chart";
@@ -34,6 +35,7 @@ export function TableroBoard({ board, cupos, choices }: { board: Tablero; cupos:
         <PaceChart rows={board.pace} />
       </div>
       <OrgChart rows={board.byOrg} />
+      <LinkOrgChart rows={board.byLinkOrg} />
     </div>
   );
 }

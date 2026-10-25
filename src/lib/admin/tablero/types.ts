@@ -5,6 +5,7 @@ export type TableroEvent = { contactId: string; occurredAt: string };
 
 export type FunnelRow = { etapa: string; personas: number; fill: string };
 export type OrgBar = { organismo: string; invitaciones: number; confirmaciones: number };
+export type LinkOrgBar = { organismo: string; enlaces: number; pendientes: number };
 export type PaceRow = { dia: string; confirmaciones: number };
 
 export type Tablero = {
@@ -16,6 +17,7 @@ export type Tablero = {
   rate: number;
   funnel: FunnelRow[];
   byOrg: OrgBar[];
+  byLinkOrg: LinkOrgBar[];
   pace: PaceRow[];
   pendingContact: number;
   pendingConfirm: number;
