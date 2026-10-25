@@ -1,0 +1,109 @@
+{
+  "version": 1,
+  "historyId": "2420f768-ecd7-41b7-9ac4-a7593c2fe81c",
+  "currentRevision": null,
+  "pendingChanges": false,
+  "files": {
+    "DESIGN.md": {
+      "hash": "11a5c62b4db1484ff4b7eb91f53a70cf96f28138bca07866986604d91f658186",
+      "content": "/Users/alvarocastillo/.cache/hyperframes/history/2420f768-ecd7-41b7-9ac4-a7593c2fe81c/blobs/11/11a5c62b4db1484ff4b7eb91f53a70cf96f28138bca07866986604d91f658186"
+    },
+    "assets/fonts/archivo-700.woff2": {
+      "hash": "aae452db6d4c4517e88f85e2b11aa3d514d76892e08c4132523bb32ae2453073",
+      "content": "/Users/alvarocastillo/.cache/hyperframes/history/2420f768-ecd7-41b7-9ac4-a7593c2fe81c/blobs/aa/aae452db6d4c4517e88f85e2b11aa3d514d76892e08c4132523bb32ae2453073"
+    },
+    "assets/fonts/raleway-600.woff2": {
+      "hash": "76b1c6551f56811d8344bd25b4956075bb6cbfc727d4ae465233d779a80a1dfe",
+      "content": "/Users/alvarocastillo/.cache/hyperframes/history/2420f768-ecd7-41b7-9ac4-a7593c2fe81c/blobs/76/76b1c6551f56811d8344bd25b4956075bb6cbfc727d4ae465233d779a80a1dfe"
+    },
+    "assets/fonts/raleway-700.woff2": {
+      "hash": "76b1c6551f56811d8344bd25b4956075bb6cbfc727d4ae465233d779a80a1dfe",
+      "content": "/Users/alvarocastillo/.cache/hyperframes/history/2420f768-ecd7-41b7-9ac4-a7593c2fe81c/blobs/76/76b1c6551f56811d8344bd25b4956075bb6cbfc727d4ae465233d779a80a1dfe"
+    },
+    "assets/sfx/interface/click_001.ogg": {
+      "hash": "ccfb7fa0cccdd9faec0eb16033c732b1e308d139d80f799161495d58f7adcdb9",
+      "content": "/Users/alvarocastillo/.cache/hyperframes/history/2420f768-ecd7-41b7-9ac4-a7593c2fe81c/blobs/cc/ccfb7fa0cccdd9faec0eb16033c732b1e308d139d80f799161495d58f7adcdb9"
+    },
+    "assets/sfx/interface/drop_001.ogg": {
+      "hash": "692ee3a6f1821402ca649ff735bee9591dc4846c8098fc7d6a90fd15fa57c1af",
+      "content": "/Users/alvarocastillo/.cache/hyperframes/history/2420f768-ecd7-41b7-9ac4-a7593c2fe81c/blobs/69/692ee3a6f1821402ca649ff735bee9591dc4846c8098fc7d6a90fd15fa57c1af"
+    },
+    "assets/voice/vo-1.wav": {
+      "hash": "56ca1649328a8f7174734461353292764f277073ae48444e18be8d7e678ca553",
+      "content": "/Users/alvarocastillo/.cache/hyperframes/history/2420f768-ecd7-41b7-9ac4-a7593c2fe81c/blobs/56/56ca1649328a8f7174734461353292764f277073ae48444e18be8d7e678ca553"
+    },
+    "assets/voice/vo-2.wav": {
+      "hash": "edea19c78c4f1e42e9a93d8a84de1f3ba0098acfa0249b83425109727896d066",
+      "content": "/Users/alvarocastillo/.cache/hyperframes/history/2420f768-ecd7-41b7-9ac4-a7593c2fe81c/blobs/ed/edea19c78c4f1e42e9a93d8a84de1f3ba0098acfa0249b83425109727896d066"
+    },
+    "assets/voice/vo-3.wav": {
+      "hash": "ef31b53cf757586e28f71e6a8247efd05ee6bad1dc31bccec865943bde0cd183",
+      "content": "/Users/alvarocastillo/.cache/hyperframes/history/2420f768-ecd7-41b7-9ac4-a7593c2fe81c/blobs/ef/ef31b53cf757586e28f71e6a8247efd05ee6bad1dc31bccec865943bde0cd183"
+    },
+    "assets/voice/vo-4.wav": {
+      "hash": "0eadb6f854614fd765207c132bcddb232c2b02ee05a1cc06e8c0a33cf700be1d",
+      "content": "/Users/alvarocastillo/.cache/hyperframes/history/2420f768-ecd7-41b7-9ac4-a7593c2fe81c/blobs/0e/0eadb6f854614fd765207c132bcddb232c2b02ee05a1cc06e8c0a33cf700be1d"
+    },
+    "index.html": {
+      "hash": "805a14e98a2c9128fe0e24d9aa44332c9d285c361ebbdf0fde3dd27ec194d6eb",
+      "content": "/Users/alvarocastillo/.cache/hyperframes/history/2420f768-ecd7-41b7-9ac4-a7593c2fe81c/blobs/80/805a14e98a2c9128fe0e24d9aa44332c9d285c361ebbdf0fde3dd27ec194d6eb"
+    },
+    "assets/music/happy-beats-business-moves-vol-10-by-ende-dot-app.mp3": {
+      "hash": "f9912f2c962ada1e579f5ccc5a7d854d67e5e81ee96a7dd8c885a8480ae58d09",
+      "content": "/Users/alvarocastillo/.cache/hyperframes/history/2420f768-ecd7-41b7-9ac4-a7593c2fe81c/blobs/f9/f9912f2c962ada1e579f5ccc5a7d854d67e5e81ee96a7dd8c885a8480ae58d09"
+    }
+  },
+  "revisions": {},
+  "checks": {
+    "latest": {
+      "revision": null,
+      "id": "659ce928-9902-4b74-b22d-59a891896fb0"
+    },
+    "revisions": {},
+    "unversioned": [
+      {
+        "id": "659ce928-9902-4b74-b22d-59a891896fb0",
+        "scope": "project",
+        "report": "/Users/alvarocastillo/dev/levantamiento/brag-output-2026-10-25-empresario/composition/.hyperframes/artifacts/checks/659ce928-9902-4b74-b22d-59a891896fb0.json",
+        "metadata": {
+          "ok": true,
+          "browserSkipped": false,
+          "options": {
+            "samples": 9,
+            "atTransitions": false,
+            "maxIssues": 80,
+            "collapseStatic": true,
+            "tolerance": 2,
+            "timeout": 3000,
+            "contrast": true,
+            "strict": false,
+            "snapshots": false,
+            "browserGpuMode": "auto"
+          }
+        },
+        "createdAt": 1792912812492,
+        "contentHash": "aab79c74ae56ec7509f53c43b1d798d094c87bd9624fc88d60a535ab9f91e2cd",
+        "revision": null,
+        "inputFingerprint": "88d36c61ecb67385a580b60b8551c96bca0a45c68c639f2fee02b940a65ab063",
+        "inputScope": "local-project-files",
+        "attribution": "unversioned"
+      }
+    ]
+  },
+  "snapshots": {
+    "latest": null,
+    "revisions": {},
+    "unversioned": []
+  },
+  "renders": {
+    "latest": {
+      "id": "26e1feed-ab26-4c83-873b-b403e2d7ea8a",
+      "completedAt": 1792912855805,
+      "output": "/Users/alvarocastillo/dev/levantamiento/brag-output-2026-10-25-empresario/brag.mp4",
+      "status": "completed",
+      "revision": null
+    },
+    "retainedRevisions": []
+  },
+  "pendingArtifactCleanup": []
+}

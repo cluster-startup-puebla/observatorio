@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      @font-face {
+        font-family: "Archivo";
+        font-style: normal;
+        font-weight: 700;
+        src: url("assets/fonts/archivo-700.woff2") format("woff2");
+      }
+      @font-face {
+        font-family: "Raleway";
+        font-style: normal;
+        font-weight: 600;
+        src: url("assets/fonts/raleway-600.woff2") format("woff2");
+      }
+      @font-face {
+        font-family: "Raleway";
+        font-style: normal;
+        font-weight: 700;
+        src: url("assets/fonts/raleway-700.woff2") format("woff2");
+      }
+      body {
+        margin: 0;
+        width: 1920px;
+        height: 1080px;
+        overflow: hidden;
+        background: #ffffff;
+        font-family: "Raleway", sans-serif;
+        color: #16284f;
+      }
+      .scene {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 1920px;
+        height: 1080px;
+        overflow: hidden;
+        background: #ffffff;
+      }
+      .scene-content {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        width: 100%;
+        height: 100%;
+        padding: 96px 140px;
+        box-sizing: border-box;
+        gap: 28px;
+      }
+      #scene1 { z-index: 1; }
+      #scene2 { z-index: 2; opacity: 0; }
+      #scene3 { z-index: 3; opacity: 0; }
+      #scene4 { z-index: 4; opacity: 0; }
+      .glow {
+        position: absolute;
+        width: 720px;
+        height: 720px;
+        border-radius: 50%;
+        background: rgb(232 24 106 / 0.1);
+        filter: blur(20px);
+        pointer-events: none;
+      }
+      #glow-1 { top: -180px; right: -80px; }
+      #glow-2 { bottom: -220px; left: -120px; }
+      .phone {
+        width: 720px;
+        margin: 0 auto;
+        border: 1px solid #e5e7eb;
+        border-radius: 28px;
+        background: #ffffff;
+        box-shadow: 0 2px 8px rgb(22 40 79 / 0.06);
+        padding: 36px 40px 44px;
+        display: flex;
+        flex-direction: column;
+        gap: 22px;
+      }
+      .phone-top {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        font-family: "Archivo", sans-serif;
+        font-weight: 700;
+        font-size: 32px;
+      }
+      .dot {
+        width: 18px;
+        height: 18px;
+        border-radius: 50%;
+        background: #1e8e5a;
+      }
+      .bubble {
+        align-self: flex-start;
+        max-width: 560px;
+        background: #f7f7f8;
+        border-radius: 8px 18px 18px 18px;
+        padding: 22px 26px;
+        font-size: 32px;
+        line-height: 1.35;
+        font-weight: 600;
+      }
+      .link-card {
+        border: 1px solid #e5e7eb;
+        border-left: 6px solid #e8186a;
+        border-radius: 8px;
+        padding: 18px 22px;
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+      }
+      .link-kicker {
+        font-size: 28px;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: #4b5563;
+        font-weight: 600;
+      }
+      .link-title {
+        font-family: "Archivo", sans-serif;
+        font-size: 40px;
+        font-weight: 700;
+      }
+      .kicker {
+        margin: 0;
+        font-size: 28px;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: #4b5563;
+        font-weight: 600;
+      }
+      .wordmark {
+        margin: 0;
+        font-family: "Archivo", sans-serif;
+        font-size: 32px;
+        font-weight: 700;
+      }
+      h1 {
+        margin: 0;
+        max-width: 1500px;
+        font-family: "Archivo", sans-serif;
+        font-size: 52px;
+        font-weight: 700;
+        line-height: 1.14;
+        letter-spacing: -0.03em;
+      }
+      .cta-row { position: relative; width: fit-content; }
+      .cta {
+        border: 0;
+        border-radius: 8px;
+        background: #b8104f;
+        color: #ffffff;
+        font-family: "Raleway", sans-serif;
+        font-size: 28px;
+        font-weight: 700;
+        padding: 18px 36px;
+      }
+      .cursor {
+        position: absolute;
+        left: 210px;
+        top: 28px;
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        background: #16284f;
+        border: 3px solid #ffffff;
+        box-shadow: 0 2px 8px rgb(22 40 79 / 0.25);
+      }
+      #s3-window { width: 100%; height: 640px; overflow: hidden; }
+      #s3-track { display: flex; flex-direction: column; width: 100%; }
+      #s3-form, #s3-steps {
+        height: 640px;
+        flex: 0 0 640px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 28px;
+      }
+      .card {
+        width: 760px;
+        border: 1px solid #e5e7eb;
+        border-radius: 8px;
+        background: #ffffff;
+        padding: 36px 40px;
+        display: flex;
+        flex-direction: column;
+        gap: 22px;
+        box-shadow: 0 2px 8px rgb(22 40 79 / 0.06);
+      }
+      .card h2 {
+        margin: 0;
+        font-family: "Archivo", sans-serif;
+        font-size: 48px;
+        font-weight: 700;
+        letter-spacing: -0.03em;
+      }
+      label {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        font-size: 28px;
+        font-weight: 600;
+        color: #4b5563;
+      }
+      .field {
+        height: 64px;
+        border: 1px solid #e5e7eb;
+        border-radius: 8px;
+        background: #f7f7f8;
+        color: #16284f;
+        font-size: 28px;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        padding: 0 18px;
+      }
+      #s3-step-window { width: 1400px; height: 140px; overflow: hidden; }
+      #s3-step-track { display: flex; width: 4200px; height: 140px; }
+      .step-panel {
+        width: 1400px;
+        flex: 0 0 1400px;
+        height: 140px;
+        display: flex;
+        align-items: center;
+        font-family: "Archivo", sans-serif;
+        font-size: 64px;
+        font-weight: 700;
+        letter-spacing: -0.03em;
+      }
+      .finale-stack {
+        position: relative;
+        height: 260px;
+      }
+      .finale {
+        position: absolute;
+        top: 0;
+        left: 0;
+        margin: 0;
+        max-width: 1500px;
+        font-family: "Archivo", sans-serif;
+        font-size: 72px;
+        font-weight: 700;
+        line-height: 1.12;
+        letter-spacing: -0.03em;
+      }
+      #ready { opacity: 0; }
+      .brand {
+        margin: 0;
+        font-size: 28px;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: #4b5563;
+        font-weight: 600;
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      id="root"
+      data-composition-id="pase"
+      data-width="1920"
+      data-height="1080"
+      data-start="0"
+      data-duration="24"
+    >
+      <div id="scene1" class="scene">
+        <div class="glow" id="glow-1" data-layout-ignore></div>
+        <div class="scene-content">
+          <div class="phone" id="phone">
+            <div class="phone-top" id="phone-top"><span class="dot"></span>Coparmex</div>
+            <div class="bubble" id="bubble">Te compartimos el enlace.</div>
+            <div class="link-card" id="link-card">
+              <span class="link-kicker">Enlace</span>
+              <span class="link-title">Turismo</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="scene2" class="scene">
+        <div class="glow" id="glow-2" data-layout-ignore></div>
+        <div class="scene-content">
+          <p class="kicker" id="s2-kicker">Levantamiento de necesidades</p>
+          <p class="wordmark" id="s2-mark">Coparmex</p>
+          <h1 id="s2-title" data-hold>
+            Empresa del sector Turismo, reciba una cordial invitación de Coparmex para participar en
+            el levantamiento de necesidades.
+          </h1>
+          <div class="cta-row" id="s2-row">
+            <button class="cta" id="cta" type="button">Reservar mi lugar</button>
+            <span class="cursor" id="cursor" data-layout-ignore></span>
+          </div>
+        </div>
+      </div>
+
+      <div id="scene3" class="scene">
+        <div class="scene-content">
+          <div id="s3-window">
+            <div id="s3-track" data-layout-allow-overflow>
+              <div id="s3-form">
+                <div class="card" id="account-card">
+                  <p class="kicker" id="s3-kicker">Levantamiento de necesidades</p>
+                  <h2 id="s3-title">Reserva tu lugar</h2>
+                  <label id="mail-label">Correo<span class="field">ana.rios@example.com</span></label>
+                  <label id="pass-label">Contraseña<span class="field">••••••••••••</span></label>
+                  <button class="cta" id="create" type="button">Crear cuenta</button>
+                </div>
+              </div>
+              <div id="s3-steps">
+                <p class="kicker" id="industry">Industria sugerida: Turismo</p>
+                <div id="s3-step-window">
+                  <div id="s3-step-track" data-layout-allow-overflow>
+                    <div class="step-panel">Paso 1 de 3 · Tú</div>
+                    <div class="step-panel">Paso 2 de 3 · Tu empresa</div>
+                    <div class="step-panel">Paso 3 de 3 · La sesión</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="scene4" class="scene">
+        <div class="scene-content">
+          <div class="finale-stack" data-layout-allow-overlap>
+            <p class="finale" id="pending">Tu pase te llegará por correo.</p>
+            <p class="finale" id="ready">Tu pase quedó listo.</p>
+          </div>
+          <p class="brand" id="brand">Observatorio</p>
+        </div>
+      </div>
+
+      <audio id="music" data-start="0" data-duration="24" data-track-index="1" data-volume="0.13" src="assets/music/happy-beats-business-moves-vol-10-by-ende-dot-app.mp3"></audio>
+      <audio id="sfx-drop" data-start="0.7" data-duration="0.11" data-track-index="2" data-volume="0.32" src="assets/sfx/interface/drop_001.ogg"></audio>
+      <audio id="sfx-click" data-start="8.55" data-duration="0.1" data-track-index="2" data-volume="0.4" src="assets/sfx/interface/click_001.ogg"></audio>
+      <audio id="sfx-step" data-start="12.0" data-duration="0.1" data-track-index="2" data-volume="0.28" src="assets/sfx/interface/click_001.ogg"></audio>
+      <audio id="vo-1" data-start="0.35" data-duration="1.9" data-track-index="3" data-volume="1" src="assets/voice/vo-1.wav"></audio>
+      <audio id="vo-2" data-start="3.5" data-duration="2.07" data-track-index="3" data-volume="1" src="assets/voice/vo-2.wav"></audio>
+      <audio id="vo-3" data-start="10.4" data-duration="2.52" data-track-index="3" data-volume="1" src="assets/voice/vo-3.wav"></audio>
+      <audio id="vo-4" data-start="19.2" data-duration="1.82" data-track-index="3" data-volume="1" src="assets/voice/vo-4.wav"></audio>
+    </div>
+    <script>
+      window.__timelines = window.__timelines || {};
+      const tl = gsap.timeline({ paused: true });
+
+      tl.from("#phone", { y: 48, opacity: 0, duration: 0.55, ease: "power3.out" }, 0.2);
+      tl.from("#phone-top", { y: 16, opacity: 0, duration: 0.4, ease: "power2.out" }, 0.45);
+      tl.from("#bubble", { x: -28, opacity: 0, duration: 0.45, ease: "expo.out" }, 0.7);
+      tl.from("#link-card", { y: 18, opacity: 0, duration: 0.4, ease: "power1.out" }, 1.15);
+
+      tl.to("#scene1", { opacity: 0, duration: 0.7, ease: "power1.inOut" }, 3.0);
+      tl.to("#scene2", { opacity: 1, duration: 0.7, ease: "power1.inOut" }, 3.0);
+
+      tl.from("#s2-kicker", { y: 18, opacity: 0, duration: 0.4, ease: "power2.out" }, 3.45);
+      tl.from("#s2-mark", { y: 16, opacity: 0, duration: 0.4, ease: "power1.out" }, 3.6);
+      tl.from("#s2-title", { y: 36, opacity: 0, duration: 0.6, ease: "power3.out" }, 3.75);
+      tl.from("#s2-row", { y: 22, opacity: 0, duration: 0.45, ease: "expo.out" }, 4.2);
+      tl.from("#cursor", { x: 240, y: 70, opacity: 0, duration: 0.7, ease: "power2.inOut" }, 5.3);
+      tl.to("#cta", { scale: 0.96, duration: 0.08, ease: "power2.in" }, 8.55);
+      tl.to("#cta", { scale: 1, duration: 0.16, ease: "power2.out" }, 8.63);
+
+      tl.to("#scene2", { opacity: 0, duration: 0.7, ease: "power1.inOut" }, 10.0);
+      tl.to("#scene3", { opacity: 1, duration: 0.7, ease: "power1.inOut" }, 10.0);
+
+      tl.from("#s3-kicker", { y: 14, opacity: 0, duration: 0.35, ease: "power2.out" }, 10.4);
+      tl.from("#s3-title", { y: 24, opacity: 0, duration: 0.45, ease: "power3.out" }, 10.5);
+      tl.from("#mail-label", { y: 16, opacity: 0, duration: 0.35, ease: "power1.out" }, 10.7);
+      tl.from("#pass-label", { y: 16, opacity: 0, duration: 0.35, ease: "expo.out" }, 10.85);
+      tl.from("#create", { y: 12, opacity: 0, duration: 0.3, ease: "power2.out" }, 11.05);
+      tl.to("#s3-track", { y: -640, duration: 0.55, ease: "power3.inOut" }, 12.0);
+      tl.from("#industry", { y: 16, opacity: 0, duration: 0.35, ease: "power2.out" }, 12.6);
+      tl.to("#s3-step-track", { x: -1400, duration: 0.4, ease: "power2.inOut" }, 14.35);
+      tl.to("#s3-step-track", { x: -2800, duration: 0.4, ease: "power2.inOut" }, 16.5);
+
+      tl.to("#scene3", { opacity: 0, duration: 0.7, ease: "power1.inOut" }, 18.7);
+      tl.to("#scene4", { opacity: 1, duration: 0.7, ease: "power1.inOut" }, 18.7);
+
+      tl.from("#pending", { y: 32, opacity: 0, duration: 0.55, ease: "power3.out" }, 19.15);
+      tl.from("#brand", { y: 12, opacity: 0, duration: 0.4, ease: "power1.out" }, 19.4);
+      tl.to("#pending", { opacity: 0, y: -20, duration: 0.35, ease: "power2.in" }, 21.5);
+      tl.fromTo("#ready", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.45, ease: "expo.out" }, 21.65);
+
+      window.__timelines["pase"] = tl;
+    </script>
+  </body>
+</html>

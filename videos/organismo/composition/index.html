@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      @font-face { font-family: Archivo; font-weight: 600; src: url("assets/fonts/archivo-600.ttf") format("truetype"); }
+      @font-face { font-family: Archivo; font-weight: 700; src: url("assets/fonts/archivo-700.ttf") format("truetype"); }
+      @font-face { font-family: Raleway; font-weight: 500; src: url("assets/fonts/raleway-500.ttf") format("truetype"); }
+      @font-face { font-family: Raleway; font-weight: 600; src: url("assets/fonts/raleway-600.ttf") format("truetype"); }
+      @font-face { font-family: Raleway; font-weight: 700; src: url("assets/fonts/raleway-700.ttf") format("truetype"); }
+      body {
+        margin: 0;
+        width: 1920px;
+        height: 1080px;
+        overflow: hidden;
+        background: #ffffff;
+        font-family: Raleway, sans-serif;
+        color: #16284f;
+      }
+      #root {
+        position: relative;
+        width: 1920px;
+        height: 1080px;
+        overflow: hidden;
+        background: #ffffff;
+      }
+      .scene {
+        position: absolute;
+        inset: 0;
+        width: 1920px;
+        height: 1080px;
+        overflow: hidden;
+        background: #ffffff;
+      }
+      #scene2, #scene3, #scene4 { opacity: 0; }
+      #scene1 { z-index: 1; }
+      #scene2 { z-index: 2; }
+      #scene3 { z-index: 3; }
+      #scene4 { z-index: 4; }
+      .bar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 96px;
+        padding: 0 72px;
+        border-bottom: 1px solid #e5e7eb;
+        background: rgba(255, 255, 255, 0.94);
+      }
+      .word {
+        font-family: Archivo, sans-serif;
+        font-size: 28px;
+        font-weight: 700;
+      }
+      .nav {
+        display: flex;
+        gap: 28px;
+        color: #4b5563;
+        font-size: 28px;
+      }
+      .stage {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 984px;
+      }
+      .invite {
+        font-family: Archivo, sans-serif;
+        font-size: 92px;
+        font-weight: 600;
+        letter-spacing: -0.03em;
+        color: #e8186a;
+        background: #ffffff;
+        border: 2px solid #e8186a;
+        border-radius: 16px;
+        padding: 28px 56px;
+      }
+      .sheet {
+        width: 760px;
+        margin: 0 auto;
+        padding-top: 150px;
+      }
+      h1 {
+        margin: 0 0 36px;
+        font-family: Archivo, sans-serif;
+        font-size: 64px;
+        font-weight: 600;
+        letter-spacing: -0.03em;
+        line-height: 1.05;
+      }
+      .field { margin-bottom: 22px; }
+      .field p, .lbl {
+        margin: 0 0 8px;
+        font-size: 28px;
+        color: #4b5563;
+      }
+      .box {
+        display: flex;
+        align-items: center;
+        min-height: 64px;
+        padding: 0 20px;
+        border: 1px solid #e5e7eb;
+        border-radius: 12px;
+        background: #ffffff;
+        font-size: 28px;
+      }
+      .swatch {
+        width: 36px;
+        height: 36px;
+        margin-right: 16px;
+        border-radius: 8px;
+        background: #16284f;
+      }
+      .hex { font-weight: 700; letter-spacing: 0.04em; }
+      .drop {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        min-height: 88px;
+        padding: 0 20px;
+        border: 1.5px dashed #e5e7eb;
+        border-radius: 12px;
+        background: #f7f7f8;
+        font-size: 28px;
+        color: #4b5563;
+      }
+      .mark {
+        width: 56px;
+        height: 56px;
+        border-radius: 10px;
+        background: #16284f;
+      }
+      .primary, .ghost {
+        border-radius: 12px;
+        font-family: Raleway, sans-serif;
+        font-size: 28px;
+        font-weight: 700;
+      }
+      .primary {
+        border: 0;
+        background: #e8186a;
+        color: #ffffff;
+        padding: 18px 28px;
+      }
+      .wide { width: 100%; margin-top: 8px; }
+      .ghost {
+        background: #ffffff;
+        color: #e8186a;
+        border: 1.5px solid #e8186a;
+        padding: 16px 22px;
+      }
+      .panel { padding: 120px 140px; }
+      .row {
+        display: flex;
+        align-items: flex-end;
+        gap: 20px;
+        margin-bottom: 28px;
+      }
+      .grow { flex: 1; }
+      select.box { width: 100%; }
+      .toast {
+        display: inline-flex;
+        margin-bottom: 22px;
+        padding: 14px 18px;
+        border-radius: 12px;
+        background: #16284f;
+        color: #ffffff;
+        font-size: 28px;
+        font-weight: 600;
+      }
+      .urlrow {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        margin-bottom: 28px;
+      }
+      .url {
+        flex: 1;
+        font-family: "IBM Plex Mono", ui-monospace, monospace;
+        font-size: 28px;
+        color: #16284f;
+      }
+      .stat {
+        width: 280px;
+        padding: 22px 24px;
+        border: 1px solid #e5e7eb;
+        border-radius: 20px;
+        background: #ffffff;
+      }
+      .stat b {
+        display: block;
+        margin-top: 6px;
+        font-family: Archivo, sans-serif;
+        font-size: 72px;
+        font-weight: 600;
+        font-variant-numeric: tabular-nums;
+        line-height: 1;
+      }
+      .crm {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+      }
+      .card {
+        position: relative;
+        width: 560px;
+        padding: 36px;
+        border: 1px solid #e5e7eb;
+        border-radius: 24px;
+        background: #ffffff;
+        box-shadow: 0 2px 8px rgb(22 40 79 / 0.06);
+      }
+      .who {
+        margin: 0;
+        font-size: 36px;
+        font-weight: 700;
+      }
+      .meta { margin: 6px 0 0; font-size: 28px; color: #4b5563; }
+      .status {
+        margin: 22px 0;
+        font-size: 32px;
+        font-weight: 700;
+      }
+      .actions { display: flex; gap: 12px; }
+      #cursor {
+        position: absolute;
+        left: 148px;
+        top: 248px;
+        width: 36px;
+        height: 36px;
+      }
+      .lockup {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-end;
+        padding: 0 140px 140px;
+        opacity: 0;
+        background: #ffffff;
+      }
+      .lockup h2 {
+        margin: 0 0 16px;
+        font-family: Archivo, sans-serif;
+        font-size: 92px;
+        font-weight: 600;
+        letter-spacing: -0.03em;
+      }
+      .lockup p {
+        margin: 0;
+        max-width: 1100px;
+        font-size: 40px;
+        line-height: 1.25;
+        color: #16284f;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="quiero-invitar" data-width="1920" data-height="1080" data-start="0" data-duration="24">
+      <div id="scene1" class="scene">
+        <header class="bar">
+          <div id="s1-word" class="word">Observatorio</div>
+          <nav id="s1-nav" class="nav">
+            <span>Convocan</span><span>La sesión</span><span>Ponentes</span><span>Reservar</span><span>T-MEC</span>
+          </nav>
+        </header>
+        <div class="stage">
+          <div id="s1-invite" class="invite">Quiero invitar</div>
+        </div>
+      </div>
+
+      <div id="scene2" class="scene">
+        <div class="sheet">
+          <h1 id="s2-title" data-hold>La marca de tu organismo</h1>
+          <div id="s2-name" class="field">
+            <p>Nombre del organismo</p>
+            <div class="box">Cámara del Centro</div>
+          </div>
+          <div id="s2-color" class="field">
+            <p>Color</p>
+            <div class="box"><span class="swatch"></span><span class="hex">#16284F</span></div>
+          </div>
+          <div id="s2-logo" class="field">
+            <p>Logo</p>
+            <div class="drop"><span>PNG o JPG · hasta 2 MB</span><span class="mark"></span></div>
+          </div>
+          <button id="s2-done" class="primary wide" type="button">Terminar perfil</button>
+        </div>
+      </div>
+
+      <div id="scene3" class="scene">
+        <div class="panel">
+          <h1 id="s3-title">Cámara del Centro</h1>
+          <div class="row">
+            <label id="s3-sector" class="grow">
+              <span class="lbl">Sector</span>
+              <div class="box">Turismo</div>
+            </label>
+            <label id="s3-session" class="grow">
+              <span class="lbl">Sesión</span>
+              <div class="box">10 de noviembre</div>
+            </label>
+            <button id="s3-go" class="primary" type="button">Generar enlace</button>
+          </div>
+          <div id="s3-toast" class="toast">Enlace generado.</div>
+          <div id="s3-url" class="urlrow">
+            <div class="box url">observatorio.puebla/turismo</div>
+            <button class="ghost" type="button">Copiar</button>
+          </div>
+          <article id="s3-stat" class="stat">
+            <span class="lbl">Aperturas</span>
+            <b id="opens">0</b>
+          </article>
+        </div>
+      </div>
+
+      <div id="scene4" class="scene">
+        <div id="card-wrap" class="crm">
+          <article class="card">
+            <p id="s4-name" class="who">Marina Solís</p>
+            <p id="s4-co" class="meta">Taller del Alto</p>
+            <p id="s4-sector" class="meta">Turismo</p>
+            <p id="s4-status" class="status">Pendiente</p>
+            <div id="s4-actions" class="actions">
+              <button class="primary" type="button">Aceptar</button>
+              <button class="ghost" type="button">Rechazar</button>
+            </div>
+            <svg id="cursor" data-layout-allow-overflow="true" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M4 2 L4 18 L8.2 14.4 L11.4 20 L13.6 19 L10.4 13.4 L16 13.2 Z" fill="#16284f"></path>
+            </svg>
+          </article>
+        </div>
+        <div id="lockup" class="lockup">
+          <h2 id="end-name">Observatorio</h2>
+          <p id="end-line">La invitación espera a que el organismo la acepte.</p>
+        </div>
+      </div>
+
+      <audio id="music" data-start="0" data-duration="24" data-track-index="1" data-volume="0.14" src="assets/music/happy-beats-business-moves-vol-12-by-ende-dot-app.mp3"></audio>
+      <audio id="vo1" data-start="0.45" data-duration="1.78" data-track-index="2" data-volume="1" src="assets/voice/vo-1.wav"></audio>
+      <audio id="vo2" data-start="3.7" data-duration="2.29" data-track-index="2" data-volume="1" src="assets/voice/vo-2.wav"></audio>
+      <audio id="vo3" data-start="10.6" data-duration="2.31" data-track-index="2" data-volume="1" src="assets/voice/vo-3.wav"></audio>
+      <audio id="vo4" data-start="16.9" data-duration="3.78" data-track-index="2" data-volume="1" src="assets/voice/vo-4.wav"></audio>
+      <audio id="sfx-click" data-start="12.02" data-duration="0.1" data-track-index="3" data-volume="0.45" src="assets/sfx/interface/click_001.ogg"></audio>
+      <audio id="sfx-toast" data-start="13.11" data-duration="0.19" data-track-index="4" data-volume="0.35" src="assets/sfx/impact/impactSoft_medium_001.ogg"></audio>
+      <audio id="sfx-count" data-start="14.05" data-duration="0.11" data-track-index="5" data-volume="0.3" src="assets/sfx/interface/drop_001.ogg"></audio>
+    </div>
+    <script>
+      window.__timelines = window.__timelines || {};
+      const tl = gsap.timeline({ paused: true });
+      const fade = { duration: 0.7, ease: "power2.inOut" };
+
+      tl.from("#s1-word", { y: 14, duration: 0.45, ease: "power2.out" }, 0);
+      tl.from("#s1-nav", { y: 12, opacity: 0, duration: 0.4, ease: "power3.out" }, 0.2);
+      tl.from("#s1-invite", { y: 28, duration: 0.65, ease: "expo.out" }, 0);
+
+      tl.fromTo("#scene2", { opacity: 0 }, { opacity: 1, ...fade }, 2.65);
+      tl.set("#scene1", { opacity: 0 }, 3.4);
+      tl.from("#s2-title", { y: 28, opacity: 0, duration: 0.55, ease: "power3.out" }, 3.35);
+      tl.from("#s2-name", { y: 22, opacity: 0, duration: 0.45, ease: "power2.out" }, 4.39);
+      tl.from("#s2-color", { y: 22, opacity: 0, duration: 0.45, ease: "expo.out" }, 5.34);
+      tl.from("#s2-logo", { y: 22, opacity: 0, duration: 0.45, ease: "power3.out" }, 6.56);
+      tl.from("#s2-done", { y: 16, opacity: 0, duration: 0.5, ease: "power2.out" }, 7.09);
+
+      tl.fromTo("#scene3", { opacity: 0 }, { opacity: 1, ...fade }, 8.65);
+      tl.set("#scene2", { opacity: 0 }, 9.4);
+      tl.from("#s3-title", { y: 24, opacity: 0, duration: 0.5, ease: "power3.out" }, 9.35);
+      tl.from("#s3-sector", { y: 18, opacity: 0, duration: 0.4, ease: "power2.out" }, 9.83);
+      tl.from("#s3-session", { y: 18, opacity: 0, duration: 0.4, ease: "expo.out" }, 10.93);
+      tl.from("#s3-go", { scale: 0.96, opacity: 0, duration: 0.35, ease: "power3.out" }, 12.02);
+      tl.from("#s3-toast", { y: 12, opacity: 0, duration: 0.4, ease: "power2.out" }, 13.11); // beat-locked: 13.11s
+      tl.from("#s3-url", { y: 16, opacity: 0, duration: 0.45, ease: "expo.out" }, 13.2);
+      tl.from("#s3-stat", { y: 16, opacity: 0, duration: 0.4, ease: "power3.out" }, 13.35);
+      const opens = { n: 0 };
+      tl.to(opens, {
+        n: 1,
+        duration: 0.7,
+        ease: "power2.out",
+        onUpdate: () => {
+          document.getElementById("opens").textContent = String(Math.round(opens.n));
+        },
+      }, 14.05);
+
+      tl.fromTo("#scene4", { opacity: 0 }, { opacity: 1, ...fade }, 15.65);
+      tl.set("#scene3", { opacity: 0 }, 16.4);
+      tl.from("#s4-name", { y: 20, opacity: 0, duration: 0.45, ease: "power3.out" }, 16.45);
+      tl.from("#s4-co", { y: 14, opacity: 0, duration: 0.35, ease: "power2.out" }, 16.7);
+      tl.from("#s4-sector", { y: 14, opacity: 0, duration: 0.35, ease: "expo.out" }, 16.95);
+      tl.from("#s4-status", { y: 12, opacity: 0, duration: 0.35, ease: "power3.out" }, 17.2); // beat-locked: 17.47s
+      tl.from("#s4-actions", { y: 12, opacity: 0, duration: 0.4, ease: "power2.out" }, 17.55);
+      tl.from("#cursor", { x: 90, y: 70, opacity: 0, duration: 0.7, ease: "power3.out" }, 18.2);
+      tl.to("#card-wrap", { opacity: 0, duration: 0.55, ease: "power2.inOut" }, 20.7);
+      tl.to("#lockup", { opacity: 1, duration: 0.55, ease: "power2.inOut" }, 20.7);
+      tl.from("#end-name", { y: 20, opacity: 0, duration: 0.4, ease: "expo.out" }, 20.9);
+      tl.from("#end-line", { y: 16, opacity: 0, duration: 0.45, ease: "power2.out" }, 21.15);
+
+      window.__timelines["quiero-invitar"] = tl;
+    </script>
+  </body>
+</html>
