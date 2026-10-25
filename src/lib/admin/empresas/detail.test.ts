@@ -25,4 +25,16 @@ describe("detalle de empresas", () => {
     expect(route).not.toMatch(/export async function POST/);
     expect(route).not.toMatch(/export async function PATCH/);
   });
+
+  it("la ficha lee la aceptación y el botón vive en su propia ruta", () => {
+    const source = readFileSync("src/lib/admin/empresas/detail.ts", "utf8");
+    const page = readFileSync("src/app/admin/empresas/[id]/page.tsx", "utf8");
+    const route = readFileSync("src/app/api/admin/empresas/[id]/aceptar/route.ts", "utf8");
+    expect(source).toContain("admitted_at");
+    expect(source).toContain("externalApprovalLabel");
+    expect(page).toContain("/aceptar");
+    expect(page).toContain("Aceptar");
+    expect(route).toContain('rpc("approve_external_signup"');
+    expect(route).toContain("requireSuperadmin()");
+  });
 });
