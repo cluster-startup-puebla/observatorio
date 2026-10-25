@@ -6,13 +6,23 @@ import { MesaQrScanner } from "@/components/mesa/qr-scanner";
 import { mesaHref } from "@/lib/admin/mesa/href";
 import { scanDeskAction } from "@/lib/flow-actions";
 
-export function MesaDesk({ hold, name, error }: { hold: string; name?: string; error?: string }) {
+export function MesaDesk({
+  hold,
+  name,
+  error,
+  action,
+}: {
+  hold: string;
+  name?: string;
+  error?: string;
+  action?: string;
+}) {
   const router = useRouter();
   const open = Boolean(name || error);
 
   return (
     <>
-      <form action={scanDeskAction} className="flex min-h-0 flex-1 flex-col">
+      <form action={action ?? scanDeskAction} method="post" className="flex min-h-0 flex-1 flex-col">
         <input id="codigo" name="codigo" type="hidden" defaultValue="" />
         <MesaQrScanner hold={hold} paused={open} />
       </form>

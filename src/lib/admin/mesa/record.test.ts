@@ -21,7 +21,9 @@ describe("escaneo de la mesa", () => {
 
   it("el handler inserta arrivals y el hecho llegar", () => {
     const source = readFileSync("src/app/api/admin/mesa/route.ts", "utf8");
-    expect(source).toContain("await requireSuperadmin()");
+    expect(source).toContain("await requireMesa()");
+    expect(source).toContain("scannedBy: account.id");
+    expect(source).toContain('estatus: "llego"');
     expect(source).toContain("recordArrival");
     expect(source).toContain('.from("arrivals")');
     expect(source).toContain('.from("crm_events")');

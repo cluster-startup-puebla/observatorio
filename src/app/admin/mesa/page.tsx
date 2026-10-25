@@ -3,6 +3,7 @@ import { Kicker } from "@/components/landing/atoms/kicker";
 import { MesaDesk } from "@/components/mesa/mesa-desk";
 import { mesaHref } from "@/lib/admin/mesa/href";
 import { requireMesa } from "@/lib/auth/guards";
+import { usesSupabaseAuth } from "@/lib/supabase/auth-session";
 
 export const instant = false;
 
@@ -23,7 +24,12 @@ export default async function MesaPage({
         lead="Apunta el pase a la cámara. Si el perfil está terminado, la llegada queda registrada."
         crumbs={listCrumbs("Mesa", mesaHref)}
       />
-      <MesaDesk hold={params.codigo ?? ""} name={name} error={params.error} />
+      <MesaDesk
+        hold={params.codigo ?? ""}
+        name={name}
+        error={params.error}
+        action={usesSupabaseAuth() ? "/api/admin/mesa" : undefined}
+      />
     </main>
   );
 }

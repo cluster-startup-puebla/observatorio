@@ -1,23 +1,25 @@
-import { adminDb } from "@/lib/admin/admin-db";
 import { mesaHref } from "@/lib/admin/mesa/href";
 import { recordArrival } from "@/lib/admin/mesa/record";
-import { requireSuperadmin } from "@/lib/auth/require-superadmin";
-import { readSuperadmin } from "@/lib/auth/require-superadmin";
+import { requireMesa } from "@/lib/auth/guards";
 import type { CrmStatus } from "@/lib/crm-status";
+import { createSupabaseWithAccess, readAccessToken } from "@/lib/supabase/auth-session";
 import { NextResponse, type NextRequest } from "next/server";
 
+function redirectTo(request: NextRequest, query: string) {
+  return NextResponse.redirect(new URL(`${mesaHref}?${query}`, request.url));
+}
+
 export async function POST(request: NextRequest) {
-  await requireSuperadmin();
-  const account = await readSuperadmin();
+  const account = await requireMesa();
   const form = await request.formData();
   const profileId = String(form.get("codigo") ?? "").trim();
-  const back = mesaHref;
-  const db = await adminDb();
-  if (!db || !account || !profileId) return NextResponse.redirect(new URL(`${back}?error=sin%20qr`, request.url));
-  const [pass, arrival, actor, contact] = await Promise.all([
+  const token = account ? await readAccessToken() : null;
+  const db = token ? createSupabaseWithAccess(token) : null;
+  if (!db || !account || !profileId) return redirectTo(request, "error=sin%20qr");
+
+  const [pass, arrival, contact] = await Promise.all([
     db.from("passes").select("profile_id").eq("profile_id", profileId).maybeSingle(),
     db.from("arrivals").select("profile_id").eq("profile_id", profileId).maybeSingle(),
-    db.from("profiles").select("id").eq("email", account.email).maybeSingle(),
     db.from("crm_contacts").select("id").eq("profile_id", profileId).maybeSingle(),
   ]);
   let crmStatus: CrmStatus | null = null;
@@ -30,14 +32,23 @@ export async function POST(request: NextRequest) {
     hasArrival: Boolean(arrival.data),
     crmStatus,
     profileId,
-    scannedBy: actor.data?.id ?? "",
+    scannedBy: account.id,
   });
-  if (!plan.ok) return NextResponse.redirect(new URL(`${back}?codigo=${profileId}&error=${encodeURIComponent(plan.reason)}`, request.url));
+  if (!plan.ok) return redirectTo(request, `codigo=${profileId}&error=${encodeURIComponent(plan.reason)}`);
   const inserted = await db.from("arrivals").insert(plan.arrival);
-  if (inserted.error) return NextResponse.redirect(new URL(`${back}?error=${encodeURIComponent(inserted.error.message)}`, request.url));
+  if (inserted.error) return redirectTo(request, `error=${encodeURIComponent(inserted.error.message)}`);
   if (plan.crmEvent && contact.data) {
-    await db.from("crm_events").insert({ contact_id: contact.data.id, event: plan.crmEvent, actor_id: actor.data?.id ?? null });
+    await db.from("crm_events").insert({
+      contact_id: contact.data.id,
+      event: plan.crmEvent,
+      actor_id: account.id,
+    });
   }
   const profile = await db.from("profiles").select("full_name").eq("id", profileId).maybeSingle();
-  return NextResponse.redirect(new URL(`${mesaHref}/${profileId}?nombre=${encodeURIComponent(profile.data?.full_name ?? "")}`, request.url));
+  const query = new URLSearchParams({
+    codigo: profileId,
+    nombre: profile.data?.full_name ?? "",
+    estatus: "llego",
+  });
+  return NextResponse.redirect(new URL(`${mesaHref}?${query}`, request.url));
 }
