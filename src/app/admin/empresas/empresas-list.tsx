@@ -25,6 +25,8 @@ export function EmpresasList({
         { key: "legal_name", label: "Razón social" },
         { key: "employee_band", label: "Tamaño" },
         { key: "sector_name", label: "Sector" },
+        { key: "llegada", label: "Llegada" },
+        { key: "aprobacion", label: "Aprobación" },
       ]}
       rows={rows}
       page={page}

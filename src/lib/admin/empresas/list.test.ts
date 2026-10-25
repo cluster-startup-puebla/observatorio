@@ -17,6 +17,9 @@ describe("lista de empresas", () => {
     expect(list).toContain('.from("companies")');
     expect(list).toContain("legal_name");
     expect(list).toContain("employee_band");
+    expect(list).toContain("admitted_at");
+    expect(list).toContain("externalApprovalLabel");
+    expect(list).toContain("sectorSourceLabel");
     expect(list).toContain("sector_id");
     expect(list).toContain(".range(page.from, page.to)");
     expect(route).toContain("await requireSuperadmin()");
