@@ -60,7 +60,7 @@ export default async function SectorPage({
     await captureFinishedInvite(token, resolved.slug);
   }
   const href = reserveHref(`/${sector}`, token);
-  if (!resolved.name) return <LandingBody reserveHref={href} />;
+  if (!resolved.name || !resolved.slug) return <LandingBody reserveHref={href} />;
   const brand = token ? await inviteBrand(token) : null;
   const message = await publicSectorPage(resolved.slug);
   return <SectorLanding sector={resolved.name} reserveHref={href} brand={brand} message={message} />;

@@ -4,7 +4,7 @@ import { levelFromChoices } from "./level";
 
 describe("detalle de metodología", () => {
   it("calcula Bronce y no guarda el nivel", () => {
-    const rows = Array.from({ length: 17 }, (_, index) => ({
+    const rows: { question_id: number; option_value: string; rank: number | null }[] = Array.from({ length: 17 }, (_, index) => ({
       question_id: index + 1,
       option_value: "a",
       rank: null,
