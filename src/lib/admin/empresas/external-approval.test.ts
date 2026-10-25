@@ -30,4 +30,16 @@ describe("registro externo", () => {
     expect(sql).toContain("where sector_source = 'path'");
     expect(sql).toContain("admitted_at = clock_timestamp()");
   });
+
+  it("aceptar un externo solo lo puede el superadmin y deja fecha y autor", () => {
+    const sql = readFileSync("supabase/migrations/20261024230100_approve_external_signup.sql", "utf8");
+    expect(sql).toContain("function public.approve_external_signup(company_id uuid)");
+    expect(sql).toContain("private.is_superadmin()");
+    expect(sql).toContain("src is distinct from 'path'");
+    expect(sql).toContain("already is not null");
+    expect(sql).toContain("admitted_by = auth.uid()");
+    expect(sql).not.toContain("crm_events");
+    expect(sql).toContain("grant execute on function public.approve_external_signup(uuid) to authenticated");
+    expect(sql).toContain("revoke update (admitted_at, admitted_by) on public.companies from authenticated, anon");
+  });
 });
