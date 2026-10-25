@@ -42,4 +42,13 @@ describe("registro externo", () => {
     expect(sql).toContain("grant execute on function public.approve_external_signup(uuid) to authenticated");
     expect(sql).toContain("revoke update (admitted_at, admitted_by) on public.companies from authenticated, anon");
   });
+
+  it("el onboarding consulta la empresa del empresario", () => {
+    const screen = readFileSync("src/app/onboarding/supabase-screen.tsx", "utf8");
+    const state = readFileSync("src/lib/onboarding/external-pass-state.ts", "utf8");
+    expect(state).toContain("waitsForExternalApproval");
+    expect(state).toContain('.from("companies")');
+    expect(screen).toContain("externalPassPending");
+    expect(screen).toContain("pendingLink || pendingExternal");
+  });
 });

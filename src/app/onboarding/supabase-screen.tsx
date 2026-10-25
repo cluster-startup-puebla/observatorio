@@ -5,6 +5,7 @@ import { OnboardingWizard } from "@/components/onboarding/onboarding-wizard";
 import { orgSlugForUser } from "@/lib/auth/login-org";
 import { readSessionAccount } from "@/lib/auth/session-account";
 import { readOrgIntent } from "@/lib/organismo/signup-intent";
+import { externalPassPending } from "@/lib/onboarding/external-pass-state";
 import { linkPassPending } from "@/lib/onboarding/link-pass-state";
 import { resolveSector } from "@/lib/sectors";
 import { createSupabaseAnon, createSupabaseWithAccess, readAccessToken } from "@/lib/supabase/auth-session";
@@ -35,7 +36,9 @@ export async function SupabaseOnboarding({
     .maybeSingle();
 
   const onboarded = !org && Boolean(finished.data?.onboarded_at);
-  const pending = onboarded && account.role === "empresario" ? await linkPassPending(token, account.email) : false;
+  const pendingLink = onboarded && account.role === "empresario" ? await linkPassPending(token, account.email) : false;
+  const pendingExternal = onboarded && account.role === "empresario" ? await externalPassPending(token, account.id) : false;
+  const pending = pendingLink || pendingExternal;
 
   return (
     <AuthShell
