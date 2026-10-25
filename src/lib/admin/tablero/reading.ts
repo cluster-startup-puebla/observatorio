@@ -1,3 +1,4 @@
+import type { SectorFillRow } from "@/lib/admin/tablero/sector-fill";
 import type { Tablero } from "@/lib/admin/tablero/types";
 
 export type Signal = { text: string; href: string; label: string };
@@ -47,4 +48,15 @@ export function lectura(board: Tablero) {
   if (board.confirmations === 0) return `De ${invites}, ninguna ha confirmado.`;
   const confirmed = people(board.confirmations, "ya confirmó", "ya confirmaron");
   return `De ${invites}, ${confirmed} (${board.rate}%).`;
+}
+
+export function cupoSignals(rows: SectorFillRow[]): Signal[] {
+  return rows
+    .filter((row) => row.cupo > 0 && row.ocupados >= row.cupo)
+    .slice(0, 3)
+    .map((row) => ({
+      text: `${row.sector} ya llenó su cupo (${row.ocupados} de ${row.cupo}).`,
+      href: "/admin/sesiones",
+      label: "Ver sesión",
+    }));
 }

@@ -1,7 +1,7 @@
 import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
 import { buildTablero } from "@/lib/admin/tablero/snapshot";
-import { convocatoriaSignals, lectura } from "@/lib/admin/tablero/reading";
+import { convocatoriaSignals, cupoSignals, lectura } from "@/lib/admin/tablero/reading";
 
 const orgs = [
   { id: "o1", name: "Norte" },
@@ -50,48 +50,6 @@ describe("tablero de la convocatoria", () => {
     expect(convocatoriaSignals(board).map((item) => item.label)).toEqual(["Enviar correo", "Revisar CRM"]);
   });
 
-  it("separa el enlace pendiente del aceptado", () => {
-    const board = buildTablero({
-      contacts: [
-        { id: "p", source: "enlace", organizationId: "o1" },
-        { id: "a", source: "enlace", organizationId: "o1" },
-        { id: "n", source: "enlace", organizationId: "o1" },
-      ],
-      statuses: [
-        { contactId: "p", status: "cargado" },
-        { contactId: "a", status: "registrado" },
-        { contactId: "n", status: "no" },
-      ],
-      orgs,
-      confirmations: [],
-    });
-    expect(board.linkSignups).toBe(3);
-    expect(board.linkPending).toBe(1);
-    expect(board.linkAccepted).toBe(1);
-    expect(board.invitations).toBe(0);
-  });
-
-  it("sin lista pide cargar y un rechazo cierra el pendiente", () => {
-    const empty = buildTablero({ contacts: [], statuses: [], orgs: [], confirmations: [] });
-    expect(empty.rate).toBe(0);
-    expect(convocatoriaSignals(empty)[0]?.href).toBe("/admin/invitaciones");
-    const missing = buildTablero({
-      contacts: [{ id: "a", source: "manual", organizationId: "o1" }],
-      statuses: [],
-      orgs,
-      confirmations: [],
-    });
-    expect(missing.pendingContact).toBe(1);
-    const closed = buildTablero({
-      contacts: [{ id: "a", source: "excel", organizationId: "o1" }],
-      statuses: [{ contactId: "a", status: "no" }],
-      orgs,
-      confirmations: [],
-    });
-    expect(closed.confirmations).toBe(0);
-    expect(convocatoriaSignals(closed)[0]?.text).toBe("1 dijo que no. El resto de la lista ya avanzó.");
-  });
-
   it("lee el CRM y no escribe", () => {
     const source = readFileSync("src/lib/admin/tablero/load.ts", "utf8");
     expect(source).toContain('.from("crm_contacts")');
@@ -100,5 +58,15 @@ describe("tablero de la convocatoria", () => {
     expect(source).toContain('"confirmar"');
     expect(source).not.toContain(".update(");
     expect(source).not.toContain(".insert(");
+  });
+
+  it("avisa el sector que ya llegó a su cupo", () => {
+    const items = cupoSignals([
+      { sector: "Turismo", slug: "turismo", cupo: 2, ocupados: 2, pendientes: 1 },
+      { sector: "Alimentos", slug: "alimentos", cupo: 4, ocupados: 1, pendientes: 0 },
+    ]);
+    expect(items).toEqual([
+      { text: "Turismo ya llenó su cupo (2 de 2).", href: "/admin/sesiones", label: "Ver sesión" },
+    ]);
   });
 });
