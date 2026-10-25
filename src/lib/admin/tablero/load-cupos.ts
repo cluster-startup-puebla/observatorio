@@ -1,6 +1,7 @@
 import "server-only";
 
 import { adminDb } from "@/lib/admin/admin-db";
+import { companyOwner } from "@/lib/admin/empresas/company-owner";
 import { waitsForExternalApproval } from "@/lib/admin/empresas/external-approval";
 import { pendingLinkEmails } from "@/lib/admin/empresas/pending-link-emails";
 import { sectorFill, type Seat, type SectorQuota } from "./sector-fill";
@@ -18,12 +19,12 @@ function toSeat(
     sector_source?: string | null;
     admitted_at?: string | null;
     sectors?: SectorEmbed | SectorEmbed[] | null;
-    profiles?: ProfileEmbed | ProfileEmbed[] | null;
+    owner?: ProfileEmbed | ProfileEmbed[] | null;
   },
   pending: Set<string>,
 ): Seat {
   const sector = one(row.sectors);
-  const profile = one(row.profiles);
+  const profile = one(row.owner);
   const email = String(profile?.email ?? "").trim().toLowerCase();
   return {
     sectorSlug: sector?.slug ?? "",
@@ -64,9 +65,9 @@ export async function loadCupos(sessionId?: string | null) {
     db.from("session_sector_quotas").select("capacity, sectors(name, slug)").eq("session_id", session.data.id),
     db
       .from("companies")
-      .select("sector_source, admitted_at, sectors(name, slug), profiles!inner(onboarded_at, role, email)")
-      .eq("profiles.role", "empresario")
-      .not("profiles.onboarded_at", "is", null),
+      .select(`sector_source, admitted_at, sectors(name, slug), owner:${companyOwner}!inner(onboarded_at, role, email)`)
+      .eq("owner.role", "empresario")
+      .not("owner.onboarded_at", "is", null),
     pendingLinkEmails(db),
   ]);
   if (quotas.error) throw new Error(quotas.error.message);

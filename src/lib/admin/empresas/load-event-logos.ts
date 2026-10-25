@@ -1,6 +1,7 @@
 import "server-only";
 
 import { adminDb } from "@/lib/admin/admin-db";
+import { companyOwner } from "@/lib/admin/empresas/company-owner";
 import { waitsForExternalApproval } from "./external-approval";
 import { pendingLinkEmails } from "./pending-link-emails";
 import { visibleEventLogos } from "./event-logos";
@@ -10,14 +11,14 @@ export async function loadEventLogos() {
   if (!db) return [];
   const companies = await db
     .from("companies")
-    .select("id, legal_name, profile_id, show_logo_on_event, sector_source, admitted_at, profiles(email)");
+    .select(`id, legal_name, profile_id, show_logo_on_event, sector_source, admitted_at, owner:${companyOwner}(email)`);
   if (companies.error) throw new Error(companies.error.message);
   const pending = await pendingLinkEmails(db);
   const admitted = (companies.data ?? []).filter(
     (row) => !waitsForExternalApproval(String(row.sector_source ?? ""), row.admitted_at ?? null),
   );
   const visible = admitted.filter((row) => {
-    const profile = row.profiles as { email?: string } | { email?: string }[] | null;
+    const profile = row.owner as { email?: string } | { email?: string }[] | null;
     const info = Array.isArray(profile) ? profile[0] : profile;
     const email = String(info?.email ?? "").trim().toLowerCase();
     return !pending.has(email);

@@ -1,6 +1,7 @@
 import "server-only";
 
 import { adminDb } from "@/lib/admin/admin-db";
+import { companyOwner } from "@/lib/admin/empresas/company-owner";
 import { attendingCompanies, type AttendingInput } from "./attending";
 import { waitsForExternalApproval } from "./external-approval";
 import { pendingLinkEmails } from "./pending-link-emails";
@@ -15,15 +16,15 @@ export async function loadAttending(sector: string | null) {
   if (!db) return attendingCompanies([], sector);
   const result = await db
     .from("companies")
-    .select("id, legal_name, show_logo_on_event, sector_source, admitted_at, sectors(name, slug), profiles!inner(onboarded_at, role, email)")
-    .eq("profiles.role", "empresario")
-    .not("profiles.onboarded_at", "is", null);
+    .select(`id, legal_name, show_logo_on_event, sector_source, admitted_at, sectors(name, slug), owner:${companyOwner}!inner(onboarded_at, role, email)`)
+    .eq("owner.role", "empresario")
+    .not("owner.onboarded_at", "is", null);
   if (result.error) throw new Error(result.error.message);
   const pending = await pendingLinkEmails(db);
   const rows: AttendingInput[] = (result.data ?? []).map((row) => {
     const sectorInfo = one(row.sectors as { name?: string; slug?: string } | { name?: string; slug?: string }[] | null);
     const profile = one(
-      row.profiles as
+      row.owner as
         | { onboarded_at?: string | null; role?: string; email?: string }
         | { onboarded_at?: string | null; role?: string; email?: string }[]
         | null,
