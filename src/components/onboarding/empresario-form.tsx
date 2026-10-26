@@ -6,8 +6,8 @@ import { ConfidentialityNote } from "@/components/onboarding/confidentiality-not
 import { EmpresarioStepCompany } from "@/components/onboarding/empresario-step-company";
 import { EmpresarioStepPerson } from "@/components/onboarding/empresario-step-person";
 import { EmpresarioStepReferral } from "@/components/onboarding/empresario-step-referral";
+import { useEmpresarioDraft } from "@/components/onboarding/use-empresario-draft";
 import { completeEmpresarioAction } from "@/lib/onboarding/complete-empresario";
-import { emptyEmpresarioValues } from "@/lib/onboarding/empresario-steps";
 import { serverIssue, stepIssue } from "@/lib/onboarding/step-issue";
 
 const titles = ["Tú", "Tu empresa", "La sesión"];
@@ -25,7 +25,7 @@ export function EmpresarioForm({
 }) {
   const [step, setStep] = useState(0);
   const [issue, setIssue] = useState("");
-  const [values, setValues] = useState(() => emptyEmpresarioValues(sectorSlug ?? ""));
+  const [values, setValues] = useEmpresarioDraft(accountId, sectorSlug);
   const notice = issue || serverIssue(error);
 
   function patch(next: Partial<typeof values>) {
