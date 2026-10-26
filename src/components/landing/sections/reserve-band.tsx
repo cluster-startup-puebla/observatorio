@@ -16,7 +16,7 @@ export function ReserveBand({ href }: { href: string }) {
               {ctaLabel}
             </Link>
             <Link href="/login" className="text-small band-ink-muted underline underline-offset-4">
-              ¿Ya tienes cuenta? Entra
+              ¿Ya te registraste? Inicia sesión
             </Link>
           </div>
         </div>

@@ -45,6 +45,9 @@ export function AccountForm({
       </Field>
       <Field id="contrasena" label="Contraseña" error={state?.errors?.password}>
         <PasswordInput id="contrasena" name="contrasena" label="contraseña" autoComplete="new-password" />
+        {state?.errors?.password ? null : (
+          <p className="text-small text-ink-secondary">Mínimo 8 caracteres.</p>
+        )}
       </Field>
       <button type="submit" className="btn btn-primary" disabled={pending}>
         Crear cuenta

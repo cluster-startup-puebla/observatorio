@@ -18,7 +18,7 @@ export const instant = false;
 
 const loginLink = (
   <Link href="/login" className="text-small text-link">
-    ¿Ya tienes cuenta? Entra
+    ¿Ya te registraste? Inicia sesión
   </Link>
 );
 
