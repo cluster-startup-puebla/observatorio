@@ -7,7 +7,8 @@ import { EmpresarioStepCompany } from "@/components/onboarding/empresario-step-c
 import { EmpresarioStepPerson } from "@/components/onboarding/empresario-step-person";
 import { EmpresarioStepReferral } from "@/components/onboarding/empresario-step-referral";
 import { completeEmpresarioAction } from "@/lib/onboarding/complete-empresario";
-import { emptyEmpresarioValues, stepReady } from "@/lib/onboarding/empresario-steps";
+import { emptyEmpresarioValues } from "@/lib/onboarding/empresario-steps";
+import { serverIssue, stepIssue } from "@/lib/onboarding/step-issue";
 
 const titles = ["Tú", "Tu empresa", "La sesión"];
 
@@ -23,19 +24,22 @@ export function EmpresarioForm({
   error?: string;
 }) {
   const [step, setStep] = useState(0);
-  const [stepError, setStepError] = useState(false);
+  const [issue, setIssue] = useState("");
   const [values, setValues] = useState(() => emptyEmpresarioValues(sectorSlug ?? ""));
+  const notice = issue || serverIssue(error);
 
   function patch(next: Partial<typeof values>) {
+    setIssue("");
     setValues((current) => ({ ...current, ...next }));
   }
 
   function nextStep() {
-    if (!stepReady(step, values)) {
-      setStepError(true);
+    const next = stepIssue(step, values);
+    if (next) {
+      setIssue(next);
       return;
     }
-    setStepError(false);
+    setIssue("");
     setStep((current) => current + 1);
   }
 
@@ -56,9 +60,7 @@ export function EmpresarioForm({
       <div className={step === 2 ? "grid gap-4" : "hidden"}>
         <EmpresarioStepReferral values={values} onChange={patch} />
       </div>
-      {stepError || error ? (
-        <p className="text-small text-mark">Completa este paso para continuar.</p>
-      ) : null}
+      {notice ? <p className="text-small text-mark">{notice}</p> : null}
       <div className="flex flex-wrap gap-3">
         {step > 0 ? (
           <button type="button" className="btn btn-secondary" onClick={() => setStep((s) => s - 1)}>
