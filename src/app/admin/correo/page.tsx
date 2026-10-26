@@ -4,6 +4,7 @@ import { Alert, AlertDescription } from "@/components/ui/alert";
 import { can, type Role } from "@/lib/access";
 import { adminDb } from "@/lib/admin/admin-db";
 import { sentCount } from "@/lib/admin/correo/sent-count";
+import { broadcastSentLine } from "@/lib/admin/correo/sent-line";
 import { requireSuperadmin } from "@/lib/auth/require-superadmin";
 import { sendInnovationAction } from "@/lib/flow-actions";
 import { loadMailSessions } from "@/lib/mail/mail-sessions";
@@ -61,7 +62,7 @@ export default async function CorreoPage({
       ) : null}
       {count !== null && Number.isFinite(count) ? (
         <p data-testid="encolados" className="text-body text-ink">
-          {count}
+          {broadcastSentLine(count)}
         </p>
       ) : null}
     </main>

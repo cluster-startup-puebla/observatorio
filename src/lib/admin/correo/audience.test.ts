@@ -26,6 +26,7 @@ describe("correo masivo", () => {
     expect(forms).toContain("Enviar recordatorio");
     expect(forms).toContain("Enviar gracias");
     expect(page).toContain('data-testid="encolados"');
+    expect(page).toContain("broadcastSentLine");
     expect(page).toContain("sendInnovationAction");
     expect(route).toContain("await requireSuperadmin()");
     expect(route).toContain("sendBroadcast");
