@@ -9,6 +9,7 @@ import {
   SidebarMenuSub,
   SidebarMenuSubButton,
   SidebarMenuSubItem,
+  useSidebar,
 } from "@/components/ui/sidebar";
 import type { AdminLink } from "@/components/admin/nav";
 import { bestMatchingHref } from "@/components/admin/nav-match";
@@ -28,6 +29,7 @@ export function AppSidebarGroup({
   open: boolean;
   onOpenChange: (open: boolean) => void;
 }) {
+  const { setOpenMobile } = useSidebar();
   const activeHref = bestMatchingHref(
     path,
     links.map((link) => link.href),
@@ -52,7 +54,9 @@ export function AppSidebarGroup({
               {links.map((link) => (
                 <SidebarMenuSubItem key={link.href}>
                   <SidebarMenuSubButton asChild isActive={link.href === activeHref}>
-                    <Link href={link.href}>{link.label}</Link>
+                    <Link href={link.href} onClick={() => setOpenMobile(false)}>
+                      {link.label}
+                    </Link>
                   </SidebarMenuSubButton>
                 </SidebarMenuSubItem>
               ))}
