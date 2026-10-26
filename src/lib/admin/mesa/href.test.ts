@@ -6,7 +6,8 @@ import { mesaHref } from "./href";
 describe("mesa del panel", () => {
   it("usa el href que el sidebar ya tiene", () => {
     expect(mesaHref).toBe("/admin/mesa");
-    expect(adminLinks.find((link) => link.label === "Mesa")?.href).toBe(mesaHref);
+    expect(adminLinks.find((link) => link.label === "Registro")?.href).toBe(mesaHref);
+    expect(adminLinks.some((link) => link.label === "Mesa")).toBe(false);
   });
 
   it("la página conserva el escaneo del e2e", () => {

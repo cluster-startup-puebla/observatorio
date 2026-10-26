@@ -18,11 +18,11 @@ export default async function MesaPage({
 
   return (
     <main className="flex h-full min-h-0 flex-col px-8 py-6">
-      <Kicker>Mesa de registro</Kicker>
+      <Kicker>Registro</Kicker>
       <PanelHeader
         title="Registrar llegada"
         lead="Apunta el pase a la cámara. Si el perfil está terminado, la llegada queda registrada."
-        crumbs={listCrumbs("Mesa", mesaHref)}
+        crumbs={listCrumbs("Registro", mesaHref)}
       />
       <MesaDesk
         hold={params.codigo ?? ""}
