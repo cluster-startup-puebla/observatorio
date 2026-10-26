@@ -27,11 +27,13 @@ export function EmpresarioStepReferral({
           name="sessionInterest"
           required
           minLength={2}
+          maxLength={500}
           rows={4}
           className={controlClass}
           value={values.sessionInterest}
           onChange={(event) => onChange({ sessionInterest: event.target.value })}
         />
+        <p className="text-small text-ink-secondary">Máximo 500 caracteres.</p>
       </Field>
     </div>
   );

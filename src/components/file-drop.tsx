@@ -12,14 +12,27 @@ type FileDropProps = {
   preview?: boolean;
   tracked?: boolean;
   onChosen?: (file: File | null) => void;
+  maxBytes?: number;
 };
 
-export function FileDrop({ id, name, label, accept, hint, preview, tracked, onChosen }: FileDropProps) {
+export function FileDrop({ id, name, label, accept, hint, preview, tracked, onChosen, maxBytes }: FileDropProps) {
   const [file, setFile] = useState<File | null>(null);
   const [src, setSrc] = useState<string | null>(null);
+  const [rejected, setRejected] = useState(false);
   const hintId = `${id}-hint`;
 
   function choose(next: File | null) {
+    if (next && maxBytes && next.size > maxBytes) {
+      setFile(null);
+      setSrc((current) => {
+        if (current) URL.revokeObjectURL(current);
+        return null;
+      });
+      onChosen?.(null);
+      setRejected(true);
+      return;
+    }
+    setRejected(false);
     setFile(next);
     setSrc((current) => {
       if (current) URL.revokeObjectURL(current);
@@ -47,6 +60,7 @@ export function FileDrop({ id, name, label, accept, hint, preview, tracked, onCh
           aria-describedby={hintId}
           data-invite-file={tracked ? "" : undefined}
           className="absolute inset-0 z-10 size-full cursor-pointer opacity-0"
+          key={rejected ? "rejected" : "ready"}
           onChange={(event) => choose(event.target.files?.[0] ?? null)}
         />
         <span className="pointer-events-none flex items-center gap-3 px-3 py-3">
@@ -69,6 +83,7 @@ export function FileDrop({ id, name, label, accept, hint, preview, tracked, onCh
           </span>
         </span>
       </div>
+      {rejected ? <p className="text-small text-mark">Ese archivo pasa de 2 MB.</p> : null}
     </div>
   );
 }

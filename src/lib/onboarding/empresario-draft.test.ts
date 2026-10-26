@@ -51,4 +51,11 @@ describe("onboarding empresario", () => {
     expect(empresarioErrors(parsed)).toBeNull();
     expect(stepReady(1, { ...valid, sectorSlug: "Cerámica" })).toBe(true);
   });
+
+  it("un comentario de más de 500 caracteres no pasa", () => {
+    const form = new FormData();
+    fill(form, { ...valid, sessionInterest: "a".repeat(501) });
+    form.set("sector", valid.sectorSlug);
+    expect(empresarioErrors(parseEmpresarioForm(form))).toBe("interes");
+  });
 });

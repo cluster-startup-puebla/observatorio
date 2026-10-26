@@ -41,6 +41,6 @@ export function empresarioErrors(input: EmpresarioProfile): string | null {
   if (!isPueblaMunicipio(input.municipality)) return "municipio";
   if (!acceptedIndustry(input.sectorSlug)) return "sector";
   if (input.referralSource.length < 2) return "referencia";
-  if (input.sessionInterest.length < 2) return "interes";
+  if (input.sessionInterest.length < 2 || input.sessionInterest.length > 500) return "interes";
   return null;
 }

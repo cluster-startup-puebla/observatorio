@@ -1,3 +1,4 @@
+import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
 import { companyLogoObjectPath } from "@/lib/storage-assets";
 import { logoUploadDecision } from "./company-logo";
@@ -23,5 +24,10 @@ describe("logo de empresa", () => {
   it("con archivo sube y el check decide si se muestra", () => {
     expect(logoUploadDecision({ show: true, hasFile: true })).toEqual({ action: "store", show: true });
     expect(logoUploadDecision({ show: false, hasFile: true })).toEqual({ action: "store", show: false });
+  });
+
+  it("el drop del logo declara el tope de 2 MB", () => {
+    const source = readFileSync("src/components/onboarding/company-logo-fields.tsx", "utf8");
+    expect(source).toContain("maxBytes={2097152}");
   });
 });

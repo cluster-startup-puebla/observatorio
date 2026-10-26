@@ -20,6 +20,7 @@ export function CompanyLogoFields({
         accept="image/png,image/jpeg,image/webp"
         hint="PNG, JPG o WEBP · hasta 2 MB. Opcional."
         preview
+        maxBytes={2097152}
         onChosen={(file) => onFile(Boolean(file))}
       />
       <label className="flex items-start gap-2 text-small text-ink">
