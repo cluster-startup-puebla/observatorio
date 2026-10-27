@@ -21,8 +21,10 @@ describe("detalle de empresas", () => {
     expect(source).toContain('.from("response_choices")');
     expect(source).toContain('.from("passes")');
     expect(route).toContain("await requireSuperadmin()");
+    expect(route).toContain("export async function POST");
+    expect(route).toContain('form.get("accion") === "eliminar"');
+    expect(route).toContain('.from("companies").update');
     expect(route).not.toMatch(/export async function DELETE/);
-    expect(route).not.toMatch(/export async function POST/);
     expect(route).not.toMatch(/export async function PATCH/);
   });
 

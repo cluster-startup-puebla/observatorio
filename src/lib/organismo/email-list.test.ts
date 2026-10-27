@@ -17,7 +17,8 @@ describe("correos sueltos", () => {
 
   it("las acciones redirigen al CRM del slug", () => {
     const source = readFileSync("src/lib/organismo-actions.ts", "utf8");
-    expect(source).toContain("orgSlug");
+    expect(source).toContain("ownerBySlug");
+    expect(source).toContain("toCrm(owner.slug)");
     expect(source).not.toContain('redirect("/organismo/crm")');
     expect(source).toContain("invitesFromEmails");
   });
