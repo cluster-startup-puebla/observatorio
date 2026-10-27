@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import { DetailFrame } from "@/components/admin/detail-frame";
 import { tabQuery } from "@/lib/admin/tab-query";
 import { loadEmpresa } from "@/lib/admin/empresas/detail";
+import { seatFullCopy } from "@/lib/cupo/seat-full-copy";
 import { companyTabs } from "@/lib/admin/empresas/tabs";
 import { requireSuperadmin } from "@/lib/auth/require-superadmin";
 
@@ -36,7 +37,9 @@ export default async function EmpresaDetailPage({
       tabs={[...companyTabs]}
       active={active}
     >
-      {query.error ? <p className="text-small text-mark">{query.error}</p> : null}
+      {seatFullCopy(query.error) || query.error ? (
+        <p className="text-small text-mark">{seatFullCopy(query.error) || query.error}</p>
+      ) : null}
       {data.company.sector_source === "path" && !data.company.admitted_at ? (
         <form action={`/api/admin/empresas/${id}/aceptar`} method="post" className="mt-4">
           <button className="btn btn-primary" type="submit">Aceptar</button>

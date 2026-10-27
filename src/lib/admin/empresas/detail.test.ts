@@ -37,4 +37,11 @@ describe("detalle de empresas", () => {
     expect(route).toContain('rpc("approve_external_signup"');
     expect(route).toContain("requireSuperadmin()");
   });
+
+  it("la ficha traduce sector_lleno", () => {
+    const page = readFileSync("src/app/admin/empresas/[id]/page.tsx", "utf8");
+    const crm = readFileSync("src/app/admin/crm/[id]/page.tsx", "utf8");
+    expect(page).toContain("seatFullCopy");
+    expect(crm).toContain("seatFullCopy");
+  });
 });

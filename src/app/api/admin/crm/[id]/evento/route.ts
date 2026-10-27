@@ -19,7 +19,8 @@ export async function POST(request: NextRequest, context: { params: Promise<{ id
     if (!db) return NextResponse.redirect(new URL(`${back}&error=${encodeURIComponent("sin sesión")}`, request.url));
     const approved = await db.rpc("approve_link_signup", { contact_id: id });
     if (approved.error) {
-      return NextResponse.redirect(new URL(`${back}&error=${encodeURIComponent(approved.error.message)}`, request.url));
+      const code = approved.error.message.includes("sector_lleno") ? "sector_lleno" : approved.error.message;
+      return NextResponse.redirect(new URL(`${back}&error=${encodeURIComponent(code)}`, request.url));
     }
     return NextResponse.redirect(new URL(back, request.url));
   }

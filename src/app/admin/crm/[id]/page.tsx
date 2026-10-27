@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import { DetailFrame } from "@/components/admin/detail-frame";
 import { tabQuery } from "@/lib/admin/tab-query";
 import { loadCrm } from "@/lib/admin/crm/detail";
+import { seatFullCopy } from "@/lib/cupo/seat-full-copy";
 import { requireSuperadmin } from "@/lib/auth/require-superadmin";
 
 export const instant = false;
@@ -38,7 +39,9 @@ export default async function CrmDetailPage({
       tabs={tabs}
       active={active}
     >
-      {query.error ? <p className="text-small text-mark">{query.error}</p> : null}
+      {seatFullCopy(query.error) || query.error ? (
+        <p className="text-small text-mark">{seatFullCopy(query.error) || query.error}</p>
+      ) : null}
       {active === "hechos" ? (
         <div className="grid gap-4">
           <ul>
