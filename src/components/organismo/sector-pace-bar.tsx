@@ -1,10 +1,19 @@
+import { Alert, AlertDescription } from "@/components/ui/alert";
 import { loadSectorPace } from "@/lib/organismo/load-sector-pace";
 
 export async function SectorPaceBar({ slug, name }: { slug: string; name: string }) {
-  const pace = await loadSectorPace(slug);
-  if (!pace.open) {
+  const loaded = await loadSectorPace(slug);
+  if (loaded.kind === "error") {
+    return (
+      <Alert variant="destructive">
+        <AlertDescription>No se pudo leer el cupo de esta sesión.</AlertDescription>
+      </Alert>
+    );
+  }
+  if (loaded.kind === "closed") {
     return <p className="text-small text-ink-secondary">Esta sesión no tiene cupo para este sector.</p>;
   }
+  const pace = loaded.pace;
   const minePct = (pace.mine / pace.capacity) * 100;
   const othersPct = (pace.others / pace.capacity) * 100;
   return (
