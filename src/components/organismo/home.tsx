@@ -1,4 +1,5 @@
 import { CopyLink } from "@/components/organismo/copy-link";
+import { SectorPaceBar } from "@/components/organismo/sector-pace-bar";
 import { loadCurrentSessions } from "@/lib/organismo/current-sessions";
 import { LinkCards } from "@/components/organismo/link-cards";
 import { OpensChart } from "@/components/organismo/opens-chart";
@@ -37,6 +38,7 @@ export async function OrgHome({
         <p className="text-body text-ink-secondary">Panel de {slug}</p>
       </header>
       <CopyLink url={url} sector={sector} failed={failed} ready={ready} sessions={sessions} />
+      {chosen ? <SectorPaceBar slug={chosen.slug} name={chosen.name} /> : null}
       <LinkCards opens={stats.opens} conversions={stats.conversions} rate={stats.rate} />
       <SectorCuts orgSlug={slug} cuts={stats.cuts} active={chosen?.slug} />
       <OpensChart bars={stats.bars} hint={hint} />

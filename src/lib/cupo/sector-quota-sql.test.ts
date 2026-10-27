@@ -35,4 +35,12 @@ describe("conteo del cupo", () => {
     expect(gate).toContain("'registrar'");
     expect(gate).toContain("admitted_at = clock_timestamp()");
   });
+
+  it("el organismo lee su tramo y el del resto", () => {
+    const rpc = readFileSync("supabase/migrations/20261027170300_sector_pace_rpc.sql", "utf8");
+    expect(rpc).toContain("function public.sector_pace(p_sector_id uuid)");
+    expect(rpc).toContain("private.current_organization_id()");
+    expect(rpc).toContain("private.sector_occupied_ids");
+    expect(rpc).toContain("grant execute on function public.sector_pace(uuid) to authenticated");
+  });
 });
