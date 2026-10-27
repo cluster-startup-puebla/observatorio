@@ -2,6 +2,7 @@ import { redirect } from "next/navigation";
 import { AuthLogout } from "@/components/auth/auth-logout";
 import { AuthShell } from "@/components/auth/auth-shell";
 import { OnboardingWizard } from "@/components/onboarding/onboarding-wizard";
+import { AttendanceSlot } from "@/components/onboarding/attendance-slot";
 import { orgSlugForUser } from "@/lib/auth/login-org";
 import { readSessionAccount } from "@/lib/auth/session-account";
 import { readOrgIntent } from "@/lib/organismo/signup-intent";
@@ -60,6 +61,7 @@ export async function SupabaseOnboarding({
         missingLogo={params.error === "logo"}
         brandError={params.error === "marca"}
       />
+      {onboarded && account.role === "empresario" ? <AttendanceSlot token={token} error={params.error} /> : null}
     </AuthShell>
   );
 }

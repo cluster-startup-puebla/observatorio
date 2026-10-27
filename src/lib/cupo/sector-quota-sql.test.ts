@@ -43,4 +43,15 @@ describe("conteo del cupo", () => {
     expect(rpc).toContain("private.sector_occupied_ids");
     expect(rpc).toContain("grant execute on function public.sector_pace(uuid) to authenticated");
   });
+
+  it("cancelar exige motivo y solo suelta a quien ocupa", () => {
+    const cancel = readFileSync("supabase/migrations/20261027170200_cancel_attendance.sql", "utf8");
+    expect(cancel).toContain("function public.cancel_my_attendance(p_reason text)");
+    expect(cancel).toContain("function public.my_attendance_state()");
+    expect(cancel).toContain("raise exception 'todavia_no_ocupa'");
+    expect(cancel).toContain("raise exception 'ya_cancelo'");
+    expect(cancel).toContain("private.sector_occupied_ids");
+    expect(cancel).toContain("grant execute on function public.cancel_my_attendance(text) to authenticated");
+    expect(cancel).toContain("grant execute on function public.my_attendance_state() to authenticated");
+  });
 });
