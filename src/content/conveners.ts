@@ -6,6 +6,7 @@ export const conveners = [
   mark("cce-puebla", "Consejo Coordinador Empresarial Puebla", 568, 145),
   mark("canacintra-puebla", "CANACINTRA Puebla", 600, 140),
   mark("coparmex-puebla", "COPARMEX Puebla", 600, 369),
+  mark("ammje-angelopolis", "AMMJE Angelópolis", 331, 178),
   mark("canirac-puebla", "CANIRAC Puebla", 600, 151),
   mark("cmic-delegacion-puebla", "CMIC Delegación Puebla", 600, 116),
   mark("cnet-puebla", "CNET Puebla", 600, 266),

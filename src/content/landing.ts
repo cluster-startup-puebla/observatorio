@@ -147,11 +147,11 @@ export const partners = [
     className: wordmark,
   },
   {
-    src: "/logos/logo-ammje.png",
+    src: "/logos/convocantes/ammje-angelopolis.webp",
     alt: "AMMJE",
-    width: 665,
-    height: 350,
-    className: "h-12 w-auto sm:h-14",
+    width: 331,
+    height: 178,
+    className: wordmark,
   },
   {
     src: "/logos/logo-cluster-agro.png",
