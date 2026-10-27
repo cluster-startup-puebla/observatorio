@@ -16,10 +16,12 @@ export async function crmEventAction(formData: FormData) {
   const personId = String(formData.get("personId") ?? "").trim();
   const event = String(formData.get("event") ?? "");
   const vista = orgView(String(formData.get("vista") ?? "") || undefined);
-  if (personId && (event === "contactar" || event === "rechazar" || event === "aceptar")) {
-    await applyEvent(owner.id, account.id, personId, event);
-  }
-  redirect(`/${owner.slug}/crm?vista=${vista}`);
+  const failed =
+    personId && (event === "contactar" || event === "rechazar" || event === "aceptar")
+      ? await applyEvent(owner.id, account.id, personId, event)
+      : "";
+  const error = failed ? `&error=${failed}` : "";
+  redirect(`/${owner.slug}/crm?vista=${vista}${error}`);
 }
 
 async function applyEvent(
@@ -30,17 +32,20 @@ async function applyEvent(
 ) {
   if (usesSupabaseAuth()) {
     const db = await orgDb();
-    if (!db) return;
+    if (!db) return "";
     if (event === "aceptar") {
-      await db.rpc("approve_link_signup", { contact_id: personId });
-      return;
+      const approved = await db.rpc("approve_link_signup", { contact_id: personId });
+      if (approved.error?.message.includes("sector_lleno")) return "sector_lleno";
+      if (approved.error) return "aceptar";
+      return "";
     }
     if (event === "contactar") await contactOrgPerson(db, actorId, personId);
     if (event === "rechazar") await rejectOrgPerson(db, actorId, personId);
-    return;
+    return "";
   }
-  if (event === "aceptar") return;
+  if (event === "aceptar") return "";
   const directory = getDirectory();
   const people = await directory.crm(orgId);
   if (people.some((person) => person.id === personId)) await directory.applyCrm(personId, event);
+  return "";
 }
