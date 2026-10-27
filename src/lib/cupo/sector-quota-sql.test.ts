@@ -24,4 +24,15 @@ describe("conteo del cupo", () => {
     expect(sql).toContain("p.onboarded_at is not null");
     expect(sql).toContain("p.role = 'empresario'");
   });
+
+  it("las dos aceptaciones lanzan sector_lleno", () => {
+    const gate = readFileSync("supabase/migrations/20261027170100_accept_respects_sector_quota.sql", "utf8");
+    expect(gate).toContain("function public.approve_link_signup(contact_id uuid)");
+    expect(gate).toContain("function public.approve_external_signup(company_id uuid)");
+    expect(gate.match(/raise exception 'sector_lleno'/g)).toHaveLength(2);
+    expect(gate).toContain("private.sector_is_full");
+    expect(gate).toContain("'confirmar'");
+    expect(gate).toContain("'registrar'");
+    expect(gate).toContain("admitted_at = clock_timestamp()");
+  });
 });
