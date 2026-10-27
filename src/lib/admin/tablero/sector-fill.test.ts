@@ -14,6 +14,7 @@ function seat(partial: Partial<Seat> & Pick<Seat, "sectorSlug">): Seat {
     role: "empresario",
     linkPending: false,
     externalPending: false,
+    released: false,
     ...partial,
   };
 }
@@ -50,12 +51,26 @@ describe("cupo por sector", () => {
   });
 
   it("el tablero lee la sesión elegida o la vigente, los cupos y la aceptación", () => {
-    const source = readFileSync("src/lib/admin/tablero/load-cupos.ts", "utf8");
+    const source = [
+      readFileSync("src/lib/admin/tablero/load-cupos.ts", "utf8"),
+      readFileSync("src/lib/admin/tablero/cupo-seat.ts", "utf8"),
+    ].join("\n");
     expect(source).toContain('.eq("is_current", true)');
     expect(source).toContain("session_sector_quotas");
     expect(source).toContain("pendingLinkEmails");
     expect(source).toContain("waitsForExternalApproval");
     expect(source).toContain("sectorFill");
     expect(source).toContain("sessionId");
+    expect(source).toContain("attendance_cancellations");
+  });
+
+  it("quien canceló deja de ocupar", () => {
+    const result = sectorFill(quotas, [
+      seat({ sectorSlug: "turismo" }),
+      seat({ sectorSlug: "turismo", released: true }),
+    ]);
+    expect(result.ocupados).toBe(1);
+    expect(result.rows[0]?.ocupados).toBe(1);
+    expect(result.rows[0]?.pendientes).toBe(0);
   });
 });

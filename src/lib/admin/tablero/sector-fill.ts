@@ -5,6 +5,7 @@ export type Seat = {
   role: string;
   linkPending: boolean;
   externalPending: boolean;
+  released: boolean;
 };
 
 export type SectorQuota = { sectorSlug: string; sectorName: string; capacity: number };
@@ -32,6 +33,7 @@ export function sectorFill(quotas: SectorQuota[], seats: Seat[]) {
   const bySlug = new Map(rows.map((row) => [row.slug, row]));
   let fuera = 0;
   for (const seat of seats) {
+    if (seat.released) continue;
     if (!ready(seat)) continue;
     const row = bySlug.get(seat.sectorSlug);
     const waiting = seat.linkPending || seat.externalPending;
