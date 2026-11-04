@@ -8,10 +8,9 @@ export function Speakers() {
         <header className="max-w-3xl">
           <span className="block h-1 w-12 bg-brand" aria-hidden="true" />
           <h2 className="text-h2 mt-4 text-balance text-ink">Ponentes</h2>
-          <p className="text-small mt-3 font-semibold text-link">Por confirmar</p>
         </header>
         <ul className="mt-12 grid grid-cols-1 gap-x-8 gap-y-14 sm:grid-cols-2 lg:grid-cols-3">
-          {speakers.map((speaker) => (
+          {speakers.filter((speaker) => speaker.confirmed).map((speaker) => (
             <li key={speaker.photo}>
               <SpeakerCard speaker={speaker} />
             </li>

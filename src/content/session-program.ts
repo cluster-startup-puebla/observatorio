@@ -4,12 +4,12 @@ export const program = [
   {
     time: "08:40–09:10",
     name: "Keynote de apertura",
-    who: "Alejandro Preinfalk (Siemens México)",
+    who: "Por confirmar",
   },
   {
     time: "09:10–09:55",
     name: "Panel «De la necesidad a la adopción»",
-    who: "Fausto López (VW), Francisco Corona (Microsoft), María Ariza (BIVA) y Mónica Flores (ManpowerGroup). Sin moderador.",
+    who: "Fausto López (Volkswagen de México). Los demás panelistas, por confirmar.",
   },
   { time: "09:55–10:05", name: "Encuadre del ejercicio", who: "Por confirmar" },
   {
@@ -25,7 +25,7 @@ export const program = [
   {
     time: "11:05–11:35",
     name: "Keynote de cierre",
-    who: "Juan Carlos Baker (Ansley)",
+    who: "Por confirmar",
   },
   { time: "11:35–11:45", name: "Conclusiones y cierre", who: "Por confirmar" },
 ];

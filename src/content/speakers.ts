@@ -5,6 +5,7 @@ export type Speaker = {
   slot: string;
   topic: string;
   photo: string;
+  confirmed: boolean;
 };
 
 const photo = (file: string) => `/ponentes/${file}.webp`;
@@ -18,6 +19,7 @@ export const speakers: Speaker[] = [
     topic:
       "Competitividad industrial: de la necesidad tecnológica a una implementación que mejore productividad, resiliencia y capacidad de escalar",
     photo: photo("alejandro-preinfalk"),
+    confirmed: false,
   },
   {
     name: "Fausto López Aguilar",
@@ -27,6 +29,7 @@ export const speakers: Speaker[] = [
     topic:
       "Panel «De la necesidad a la adopción»: T-MEC, reglas de origen, trazabilidad, digitalización aduanera",
     photo: photo("fausto-lopez-aguilar"),
+    confirmed: true,
   },
   {
     name: "Francisco Corona",
@@ -36,6 +39,7 @@ export const speakers: Speaker[] = [
     topic:
       "Panel «De la necesidad a la adopción»: nube, IA, arquitectura, seguridad y llevar casos de uso a producción",
     photo: photo("francisco-corona"),
+    confirmed: false,
   },
   {
     name: "María Ariza García Migoya",
@@ -45,6 +49,7 @@ export const speakers: Speaker[] = [
     topic:
       "Panel «De la necesidad a la adopción»: financiamiento, gobierno corporativo e institucionalización",
     photo: photo("maria-ariza-garcia-migoya"),
+    confirmed: false,
   },
   {
     name: "Mónica Flores Barragán",
@@ -54,6 +59,7 @@ export const speakers: Speaker[] = [
     topic:
       "Panel «De la necesidad a la adopción»: talento, habilidades digitales, reconversión y gestión del cambio",
     photo: photo("monica-flores-barragan"),
+    confirmed: false,
   },
   {
     name: "Juan Carlos Baker Pineda",
@@ -63,5 +69,6 @@ export const speakers: Speaker[] = [
     topic:
       "De los datos empresariales a una agenda de competitividad: qué información necesita México para defender y ampliar oportunidades en Norteamérica",
     photo: photo("juan-carlos-baker-pineda"),
+    confirmed: false,
   },
 ];
