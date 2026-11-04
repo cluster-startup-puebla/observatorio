@@ -2,7 +2,10 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { AuthShell } from "@/components/auth/auth-shell";
 import { RecoverForm } from "@/components/auth/recover-form";
+import { redirectIfSession } from "@/lib/auth/redirect-if-session";
 import { pageMetadata } from "@/lib/metadata";
+
+export const instant = false;
 
 export const metadata: Metadata = pageMetadata({
   title: "Recuperar contraseña",
@@ -10,7 +13,8 @@ export const metadata: Metadata = pageMetadata({
   path: "/recuperar",
 });
 
-export default function RecoverPage() {
+export default async function RecoverPage() {
+  await redirectIfSession("/recuperar");
   return (
     <AuthShell
       title="Recuperar contraseña"

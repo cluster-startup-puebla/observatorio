@@ -5,6 +5,7 @@ import { AuthShell } from "@/components/auth/auth-shell";
 import { AccountForm } from "@/components/onboarding/account-form";
 import { RegisterForm } from "@/components/landing/sections/register-form";
 import { diagnosticDownloadParam } from "@/content/diagnostico-tmec";
+import { redirectIfSession } from "@/lib/auth/redirect-if-session";
 import { registerError } from "@/lib/organismo/register-error";
 import { pageMetadata } from "@/lib/metadata";
 
@@ -22,7 +23,8 @@ const loginLink = (
   </Link>
 );
 
-export default function RegisterPage({ searchParams }: PageProps<"/register">) {
+export default async function RegisterPage({ searchParams }: PageProps<"/register">) {
+  await redirectIfSession("/register");
   return (
     <Suspense
       fallback={

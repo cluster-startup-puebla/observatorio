@@ -1,8 +1,11 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { redirect } from "next/navigation";
 import { AuthShell } from "@/components/auth/auth-shell";
 import { ResendConfirmationForm } from "@/components/auth/resend-confirmation-form";
 import { Alert, AlertDescription } from "@/components/ui/alert";
+import { redirectIfSession } from "@/lib/auth/redirect-if-session";
+import { emailIsConfirmed } from "@/lib/auth/confirmed-email";
 import { pageMetadata } from "@/lib/metadata";
 
 export const instant = false;
@@ -18,8 +21,10 @@ export default async function VerifyPage({
 }: {
   searchParams: Promise<{ correo?: string }>;
 }) {
+  await redirectIfSession("/verificar");
   const params = await searchParams;
   const email = params.correo?.trim() ?? "";
+  if (email && (await emailIsConfirmed(email))) redirect("/login?aviso=confirmado");
   return (
     <AuthShell
       kicker="Correo"
