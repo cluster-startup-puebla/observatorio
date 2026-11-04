@@ -1,7 +1,10 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { AuthShell } from "@/components/auth/auth-shell";
+import { ResendConfirmationForm } from "@/components/auth/resend-confirmation-form";
 import { pageMetadata } from "@/lib/metadata";
+
+export const instant = false;
 
 export const metadata: Metadata = pageMetadata({
   title: "Revisa tu correo",
@@ -9,12 +12,18 @@ export const metadata: Metadata = pageMetadata({
   path: "/verificar",
 });
 
-export default function VerifyPage() {
+export default async function VerifyPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ correo?: string }>;
+}) {
+  const params = await searchParams;
+  const email = params.correo?.trim() ?? "";
   return (
     <AuthShell
       kicker="Correo"
       title="Revisa tu correo"
-      lead="Te enviamos un correo. Confírmalo para seguir al registro."
+      lead="Te enviamos un enlace para confirmar la cuenta. Ábrelo y luego entra. Si no llega, pide otro."
       footer={
         <>
           <Link href="/login" className="text-link">
@@ -25,6 +34,8 @@ export default function VerifyPage() {
           </Link>
         </>
       }
-    />
+    >
+      <ResendConfirmationForm email={email} />
+    </AuthShell>
   );
 }

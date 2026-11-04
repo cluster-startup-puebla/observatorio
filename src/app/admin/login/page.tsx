@@ -24,6 +24,7 @@ const messages: Record<string, string> = {
   contrasena: "Usa al menos 8 caracteres.",
   credenciales: "Correo o contraseña incorrectos.",
   rol: "Esta entrada es solo del superadmin.",
+  confirmar: "Confirma el correo antes de entrar.",
 };
 
 export default async function AdminLoginPage({

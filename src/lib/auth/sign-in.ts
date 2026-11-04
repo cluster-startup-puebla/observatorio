@@ -11,7 +11,7 @@ import { isAccountRole } from "./home";
 
 export type SignInResult =
   | { ok: true; session: Session; role: AccountRole }
-  | { ok: false; reason: "credenciales" | "rol" };
+  | { ok: false; reason: "credenciales" | "rol" | "confirmar" };
 
 export async function signInWithPassword(email: string, password: string): Promise<SignInResult> {
   const normalized = email.trim().toLowerCase();
@@ -20,6 +20,8 @@ export async function signInWithPassword(email: string, password: string): Promi
     password,
   });
   if (logged.error || !logged.data.session || !logged.data.user) {
+    const message = logged.error?.message.toLowerCase() ?? "";
+    if (message.includes("not confirmed")) return { ok: false, reason: "confirmar" };
     return { ok: false, reason: "credenciales" };
   }
 

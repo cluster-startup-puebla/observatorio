@@ -21,19 +21,29 @@ const messages: Record<string, string> = {
   contrasena: "Usa al menos 8 caracteres.",
   credenciales: "Correo o contraseña incorrectos.",
   rol: "Esta cuenta no tiene un acceso reconocido.",
+  confirmar: "Confirma el correo antes de entrar. Revisa la bandeja o pide otro enlace.",
 };
 
 export default async function LoginPage({
   searchParams,
 }: {
-  searchParams: Promise<{ error?: string; aviso?: string }>;
+  searchParams: Promise<{ error?: string; aviso?: string; correo?: string }>;
 }) {
   const account = await readSessionAccount();
   if (account) redirect(homeForRole(account.role));
 
   const params = await searchParams;
   const error = params.error ? messages[params.error] : undefined;
-  const notice = params.aviso === "sesion" ? "Sesión cerrada." : undefined;
+  const notice =
+    params.aviso === "confirmado"
+      ? "Correo confirmado. Ya puedes entrar."
+      : params.aviso === "sesion"
+        ? "Sesión cerrada."
+        : undefined;
+  const resend =
+    params.error === "confirmar"
+      ? `/verificar?correo=${encodeURIComponent(params.correo ?? "")}`
+      : "";
 
   return (
     <AuthSplit
@@ -46,6 +56,11 @@ export default async function LoginPage({
         <LoginForm error={error} errorCode={params.error} />
       </div>
       <div className="mt-6 flex flex-wrap gap-x-4 gap-y-2 text-small">
+        {resend ? (
+          <Link href={resend} className="text-link">
+            Reenviar correo de verificación
+          </Link>
+        ) : null}
         <Link href="/recuperar" className="text-link">
           Olvidé mi contraseña
         </Link>

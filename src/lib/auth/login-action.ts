@@ -27,7 +27,10 @@ export async function loginAction(formData: FormData) {
   }
 
   const signed = await signInWithPassword(email, password);
-  if (!signed.ok) redirect(`/login?error=${signed.reason}`);
+  if (!signed.ok) {
+    const correo = signed.reason === "confirmar" ? `&correo=${encodeURIComponent(email.trim().toLowerCase())}` : "";
+    redirect(`/login?error=${signed.reason}${correo}`);
+  }
   await writeSupabaseSession(signed.session);
   const slug = await orgSlugForUser(signed.session.access_token, signed.session.user.id);
   if (slug) await setOrgSlugCookie(slug);

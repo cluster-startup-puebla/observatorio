@@ -1,6 +1,7 @@
 import "server-only";
 
 import type { SupabaseClient } from "@supabase/supabase-js";
+import { confirmEmailRedirect, unconfirmedSignup, verifyEmailPath } from "@/lib/auth/confirm-email";
 import { sendOwnMail } from "@/lib/mail/send-own";
 import { signupErrorCode } from "@/lib/organismo/signup-back";
 import { createSupabaseAnon, writeSupabaseSession } from "@/lib/supabase/auth-session";
@@ -35,19 +36,27 @@ export async function signupEmpresarioAndSession(email: string, password: string
   const signed = await anon.auth.signUp({
     email: normalized,
     password,
-    options: { data: { intent: "empresario" } },
+    options: {
+      data: { intent: "empresario" },
+      emailRedirectTo: confirmEmailRedirect(process.env.NEXT_PUBLIC_SITE_URL),
+    },
   });
   if (signed.error) {
     const code = signupErrorCode(signed.error.message);
     if (code === "limite" && !needConfirm) return skipConfirm(anon, normalized, password, sector, invite);
+    if (code === "confirmar") return { next: verifyEmailPath({ email: normalized, sector, invite }) };
     return { error: code };
   }
   let session = signed.data.session;
+  let signInError: string | null = null;
   if (!session && !needConfirm) {
     const logged = await anon.auth.signInWithPassword({ email: normalized, password });
+    signInError = logged.error?.message ?? null;
     session = logged.data.session;
   }
-  if (!session) return needConfirm ? { next: nextPath(sector, invite, "/verificar") } : { error: "auth" };
+  const gate = unconfirmedSignup({ needConfirm, signInError, gotSession: Boolean(session) });
+  if (gate === "verificar") return { next: verifyEmailPath({ email: normalized, sector, invite }) };
+  if (!session) return { error: "auth" };
   await writeSupabaseSession(session);
   await sendOwnMail(session.access_token, "welcome");
   return { next: nextPath(sector, invite) };
