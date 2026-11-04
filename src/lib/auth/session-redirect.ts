@@ -12,7 +12,23 @@ const sessionEntries = new Set<string>([
   "/restablecer",
 ]);
 
+function destination(account: GateAccount) {
+  return pathAfterSignIn({ role: account.role, onboarded: account.onboarded });
+}
+
 export function sessionRedirect(input: { path: string; account: GateAccount | null }) {
   if (!input.account || !sessionEntries.has(input.path)) return null;
-  return pathAfterSignIn({ role: input.account.role, onboarded: input.account.onboarded });
+  return destination(input.account);
+}
+
+export function adminLoginRedirect(input: { open: boolean; account: GateAccount | null }) {
+  if (input.open) return "/admin/signup";
+  if (!input.account) return null;
+  return destination(input.account);
+}
+
+export function adminSignupRedirect(input: { open: boolean; account: GateAccount | null }) {
+  if (input.open) return null;
+  if (input.account) return destination(input.account);
+  return "/admin/login";
 }
