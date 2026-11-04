@@ -7,6 +7,7 @@ describe("sectors", () => {
     expect(sectors.find((sector) => sector.slug === "plasticos-y-hule")?.name).toBe(
       "Plásticos y Economía circular",
     );
+    expect(sectors.find((sector) => sector.slug === "agroindustria")?.name).toBe("Agronomía");
     expect(sectorSlug("Textil y confección")).toBe("textil-y-confeccion");
   });
 

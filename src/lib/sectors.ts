@@ -11,6 +11,7 @@ export function sectorSlug(name: string): string {
 
 const keptSlug: Record<string, string> = {
   "Plásticos y Economía circular": "plasticos-y-hule",
+  Agronomía: "agroindustria",
 };
 
 export const sectors = diagnosticIndustries.map((name) => ({

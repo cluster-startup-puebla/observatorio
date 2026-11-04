@@ -1,9 +1,8 @@
 import Link from "next/link";
 import { Kicker } from "@/components/landing/atoms/kicker";
-import { inviteLine } from "@/components/landing/sections/invite-intro";
+import { SectorInviteTitle } from "@/components/landing/sections/invite-intro";
 
-function previewLine(sectorName: string | null, orgName: string) {
-  if (sectorName) return inviteLine(sectorName, orgName);
+function previewFallback(orgName: string) {
   return `Empresa de tu sector, reciba una cordial invitación de ${orgName} para participar en el levantamiento de necesidades.`;
 }
 
@@ -37,7 +36,9 @@ export function InvitePreview({
           <p className="text-small font-semibold text-ink">{orgName}</p>
         )}
         <Kicker>Levantamiento de necesidades tecnológicas</Kicker>
-        <p className="text-body font-semibold text-balance text-ink">{previewLine(sectorName, orgName)}</p>
+        <p className="text-body font-semibold text-balance text-ink">
+          {sectorName ? <SectorInviteTitle sector={sectorName} orgName={orgName} /> : previewFallback(orgName)}
+        </p>
         <p className="text-small text-ink-secondary">
           Participa en la sesión de tu sector y ayuda a construir el primer Observatorio Tecnológico
           del estado.

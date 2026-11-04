@@ -6,7 +6,7 @@ import { clusterLogo } from "@/content/landing";
 
 export function LandingMarks() {
   return (
-    <div className="grid gap-8 border-t border-line pt-8">
+    <div className="grid gap-5 border-t border-line pt-5">
       <ul className="flex flex-col gap-8 sm:flex-row sm:items-end sm:gap-12">
         <li className="grid gap-2">
           <Kicker>Opera</Kicker>

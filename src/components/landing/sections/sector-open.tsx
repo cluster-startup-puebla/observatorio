@@ -2,7 +2,7 @@ import { Cta } from "@/components/landing/atoms/cta";
 import { EventTitle } from "@/components/landing/atoms/event-title";
 import { ctaLabel } from "@/content/landing";
 import { InviteMark } from "./invite-mark";
-import { inviteLine } from "./invite-intro";
+import { SectorInviteTitle } from "./invite-intro";
 import { LandingMarks } from "./landing-marks";
 import { SectorPageMessage } from "./sector-page-message";
 
@@ -21,16 +21,16 @@ export function SectorOpen({
 }) {
   return (
     <section id="inicio" data-testid="bloque-objetivo" className="border-b border-line">
-      <div className="container-site grid gap-10 py-12 lg:py-16">
+      <div className="container-site grid gap-6 py-8">
         <div className="grid max-w-3xl gap-6 sm:gap-8">
           <InviteMark brand={brand} />
           <div className="grid gap-5">
             <EventTitle />
             <h1
               data-testid="sector-seleccionado"
-              className="text-balance text-[clamp(1.75rem,2.8vw,2.5rem)] leading-[1.12] font-bold tracking-[-0.03em] text-ink"
+              className="text-body-lg max-w-2xl text-balance font-semibold leading-snug text-ink"
             >
-              {inviteLine(sector, brand?.name)}
+              <SectorInviteTitle sector={sector} orgName={brand?.name} />
             </h1>
             <p className="text-body-lg max-w-2xl text-ink-secondary">
               Participa en la sesión de tu sector, ayuda a construir el primer Observatorio

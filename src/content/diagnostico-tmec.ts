@@ -13,7 +13,7 @@ export const diagnosticIndustries = [
   "Tecnología y servicios de TI",
   "Turismo",
   "Logística",
-  "Agroindustria",
+  "Agronomía",
   "Gastronomía",
 ] as const;
 

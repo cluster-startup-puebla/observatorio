@@ -15,7 +15,7 @@ export const forumBenefits = [
 
 export const forumSectors = [
   { name: "Automotriz", href: "/automotriz-y-autopartes" },
-  { name: "Agroindustria", href: "/agroindustria" },
+  { name: "Agronomía", href: "/agroindustria" },
   { name: "Alimentos", href: "/alimentos-y-bebidas" },
   { name: "Plásticos", href: "/plasticos-y-hule" },
   { name: "Metalmecánica", href: "/metalmecanica" },
