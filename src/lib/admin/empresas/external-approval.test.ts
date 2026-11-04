@@ -49,7 +49,7 @@ describe("registro externo", () => {
     expect(state).toContain("waitsForExternalApproval");
     expect(state).toContain('.from("companies")');
     expect(screen).toContain("externalPassPending");
-    expect(screen).toContain("pendingLink || pendingExternal");
+    expect(screen).toContain("pendingExternal");
   });
 
   it("asistentes y logos leen la aceptación externa", () => {

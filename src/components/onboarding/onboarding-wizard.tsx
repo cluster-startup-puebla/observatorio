@@ -1,8 +1,6 @@
-import { AccessPass } from "@/components/onboarding/access-pass";
-import { PendingNotice } from "@/components/onboarding/pending-notice";
 import { EmpresarioForm } from "@/components/onboarding/empresario-form";
+import { FinishedProfile } from "@/components/onboarding/finished-profile";
 import { OrganismoOnboarding } from "@/components/onboarding/organismo-form";
-import { ConfidentialityNote } from "@/components/onboarding/confidentiality-note";
 
 export function OnboardingWizard({
   accountId,
@@ -12,6 +10,7 @@ export function OnboardingWizard({
   invitacion,
   onboarded,
   pending,
+  gate,
   formError,
   missingSlug,
   missingLogo,
@@ -24,26 +23,15 @@ export function OnboardingWizard({
   invitacion?: string;
   onboarded: boolean;
   pending?: boolean;
+  gate?: "espera" | "cerrado" | "cancelo" | "pase";
   formError?: string;
   missingSlug?: boolean;
   missingLogo?: boolean;
   brandError?: boolean;
 }) {
   if (onboarded && role !== "director") {
-    if (pending) {
-      return (
-        <div className="grid gap-4">
-          <ConfidentialityNote />
-          <PendingNotice />
-        </div>
-      );
-    }
-    return (
-      <div className="grid gap-4">
-        <ConfidentialityNote />
-        <AccessPass code={accountId} />
-      </div>
-    );
+    const shown = gate ?? (pending ? "espera" : "pase");
+    return <FinishedProfile accountId={accountId} gate={shown} />;
   }
 
   if (role === "director") {
