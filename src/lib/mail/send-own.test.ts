@@ -12,6 +12,8 @@ describe("envío propio", () => {
     const send = readFileSync("src/lib/mail/send-own.ts", "utf8");
     const signup = readFileSync("src/lib/auth/signup-empresario.ts", "utf8");
     const done = readFileSync("src/lib/onboarding/complete-empresario.ts", "utf8");
+    const issue = readFileSync("src/lib/onboarding/issue-confirmed-pass.ts", "utf8");
+    const screen = readFileSync("src/app/onboarding/supabase-screen.tsx", "utf8");
     const store = readFileSync("src/lib/onboarding/store-pass.ts", "utf8");
     expect(send).toContain("enqueue_own_mail");
     expect(send).toContain("record_own_mail");
@@ -19,10 +21,12 @@ describe("envío propio", () => {
     expect(send).toContain("already_sent");
     expect(signup).toContain("sendOwnMail");
     expect(signup).toContain('"welcome"');
-    expect(done).toContain("storePass");
-    expect(done).toContain("sendOwnMail");
-    expect(done).toContain('"event_pass"');
-    expect(done).toContain("linkPassPending");
+    expect(done).toContain("issueConfirmedPass");
+    expect(screen).toContain("issueConfirmedPass");
+    expect(issue).toContain("storePass");
+    expect(issue).toContain("sendOwnMail");
+    expect(issue).toContain('"event_pass"');
+    expect(issue).toContain("linkPassPending");
     expect(store).toContain("pass-images");
     expect(store).toContain("pass_qr");
     expect(store).toContain('.from("passes")');
