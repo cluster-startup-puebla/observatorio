@@ -4,7 +4,7 @@ import { redirect } from "next/navigation";
 import { AuthSplit } from "@/components/auth/auth-split";
 import { LoginForm } from "@/components/auth/login-form";
 import { LoginNotice } from "@/components/auth/login-notice";
-import { homeForRole } from "@/lib/auth/home";
+import { pathAfterSignIn } from "@/lib/auth/home";
 import { readSessionAccount } from "@/lib/auth/session-account";
 import { pageMetadata } from "@/lib/metadata";
 
@@ -30,7 +30,7 @@ export default async function LoginPage({
   searchParams: Promise<{ error?: string; aviso?: string; correo?: string }>;
 }) {
   const account = await readSessionAccount();
-  if (account) redirect(homeForRole(account.role));
+  if (account) redirect(pathAfterSignIn({ role: account.role, onboarded: account.onboarded }));
 
   const params = await searchParams;
   const error = params.error ? messages[params.error] : undefined;

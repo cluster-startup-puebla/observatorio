@@ -11,14 +11,24 @@ import {
 } from "@/lib/supabase/auth-session";
 import { isAccountRole } from "./home";
 
-export type SessionAccount = { id: string; role: AccountRole; email: string };
+export type SessionAccount = {
+  id: string;
+  role: AccountRole;
+  email: string;
+  onboarded: boolean;
+};
 
 export async function readSessionAccount(): Promise<SessionAccount | null> {
   if (!usesSupabaseAuth()) {
     const id = await readAccountId();
     const account = id ? await getDirectory().getAccount(id) : null;
     if (!account) return null;
-    return { id: account.id, role: account.role, email: account.email };
+    return {
+      id: account.id,
+      role: account.role,
+      email: account.email,
+      onboarded: account.onboarded,
+    };
   }
 
   const token = await readAccessToken();
@@ -27,7 +37,7 @@ export async function readSessionAccount(): Promise<SessionAccount | null> {
   if (user.error || !user.data.user) return null;
   const profile = await createSupabaseWithAccess(token)
     .from("profiles")
-    .select("role, email")
+    .select("role, email, onboarded_at")
     .eq("id", user.data.user.id)
     .maybeSingle();
   const role = profile.data?.role;
@@ -36,5 +46,6 @@ export async function readSessionAccount(): Promise<SessionAccount | null> {
     id: user.data.user.id,
     role,
     email: profile.data?.email ?? user.data.user.email ?? "",
+    onboarded: Boolean(profile.data?.onboarded_at),
   };
 }

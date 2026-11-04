@@ -5,7 +5,7 @@ import { FormAlert } from "@/components/auth/form-alert";
 import { PasswordInput } from "@/components/auth/password-input";
 import { controlClass, Field } from "@/components/landing/molecules/field";
 import { loginSuperadminAction } from "@/lib/admin-actions";
-import { homeForRole } from "@/lib/auth/home";
+import { pathAfterSignIn } from "@/lib/auth/home";
 import { readSessionAccount } from "@/lib/auth/session-account";
 import { getDirectory } from "@/lib/memory-directory";
 import { pageMetadata } from "@/lib/metadata";
@@ -39,7 +39,7 @@ export default async function AdminLoginPage({
 
   const account = await readSessionAccount();
   if (account?.role === "superadmin") redirect("/admin");
-  if (account) redirect(homeForRole(account.role));
+  if (account) redirect(pathAfterSignIn({ role: account.role, onboarded: account.onboarded }));
 
   const params = await searchParams;
   const error = params.error ? messages[params.error] : undefined;

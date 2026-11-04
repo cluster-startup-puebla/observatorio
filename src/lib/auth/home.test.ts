@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { homeForRole, isAccountRole } from "./home";
+import { homeForRole, isAccountRole, pathAfterSignIn } from "./home";
 
 describe("homeForRole", () => {
   it("manda cada rol a la ruta que ya existe", () => {
@@ -23,6 +23,15 @@ describe("homeForRole", () => {
   it("rechaza un rol que no está en el enum", () => {
     expect(isAccountRole("gobierno")).toBe(false);
     expect(isAccountRole("empresario")).toBe(true);
+  });
+});
+
+describe("pathAfterSignIn", () => {
+  it("manda al empresario sin perfil a onboarding", () => {
+    expect(pathAfterSignIn({ role: "empresario", onboarded: false })).toBe("/onboarding");
+    expect(pathAfterSignIn({ role: "empresario", onboarded: true })).toBe("/metodologia");
+    expect(pathAfterSignIn({ role: "director", onboarded: true, slug: "canacintra" })).toBe("/canacintra");
+    expect(pathAfterSignIn({ role: "superadmin", onboarded: true })).toBe("/admin");
   });
 });
 

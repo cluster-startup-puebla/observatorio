@@ -4,9 +4,12 @@ import { redirect } from "next/navigation";
 import { accountErrors } from "@/lib/account-draft";
 import { getDirectory } from "@/lib/memory-directory";
 import { writeAccountId } from "@/lib/session";
-import { usesSupabaseAuth, writeSupabaseSession } from "@/lib/supabase/auth-session";
-import { readOrgIntent } from "@/lib/organismo/signup-intent";
-import { homeForRole } from "./home";
+import {
+  createSupabaseWithAccess,
+  usesSupabaseAuth,
+  writeSupabaseSession,
+} from "@/lib/supabase/auth-session";
+import { pathAfterSignIn } from "./home";
 import { orgSlugForUser, setOrgSlugCookie } from "./login-org";
 import { signInWithPassword } from "./sign-in";
 
@@ -23,7 +26,13 @@ export async function loginAction(formData: FormData) {
     await writeAccountId(result.id);
     const account = await getDirectory().getAccount(result.id);
     if (account?.orgSlug) await setOrgSlugCookie(account.orgSlug);
-    redirect(homeForRole(result.role, account?.orgSlug));
+    redirect(
+      pathAfterSignIn({
+        role: result.role,
+        slug: account?.orgSlug,
+        onboarded: Boolean(account?.onboarded),
+      }),
+    );
   }
 
   const signed = await signInWithPassword(email, password);
@@ -36,9 +45,11 @@ export async function loginAction(formData: FormData) {
   await writeSupabaseSession(signed.session);
   const slug = await orgSlugForUser(signed.session.access_token, signed.session.user.id);
   if (slug) await setOrgSlugCookie(slug);
-  const intent = signed.session.user.user_metadata?.intent;
-  if (!slug && signed.role === "empresario" && (intent === "organismo" || (await readOrgIntent()))) {
-    redirect("/onboarding");
-  }
-  redirect(homeForRole(signed.role, slug));
+  const profile = await createSupabaseWithAccess(signed.session.access_token)
+    .from("profiles")
+    .select("onboarded_at")
+    .eq("id", signed.session.user.id)
+    .maybeSingle();
+  const onboarded = Boolean(profile.data?.onboarded_at);
+  redirect(pathAfterSignIn({ role: signed.role, slug, onboarded }));
 }

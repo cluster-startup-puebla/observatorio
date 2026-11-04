@@ -19,3 +19,12 @@ export function homeForRole(role: AccountRole, slug?: string | null) {
   if (orgRoles.has(role) && slug) return `/${slug}`;
   return homes[role];
 }
+
+export function pathAfterSignIn(input: {
+  role: AccountRole;
+  onboarded: boolean;
+  slug?: string | null;
+}) {
+  if (input.role === "empresario" && !input.onboarded) return "/onboarding";
+  return homeForRole(input.role, input.slug);
+}

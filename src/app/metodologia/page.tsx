@@ -5,6 +5,7 @@ import { ThemeToggle } from "@/components/site/theme-toggle";
 import { getDirectory, seedCompletedAnswers } from "@/lib/memory-directory";
 import { SECTIONS } from "@/lib/methodology/instrument";
 import { completedAnswerSeed } from "@/lib/methodology/seed";
+import { redirectUnfinishedEmpresario } from "@/lib/auth/onboarding-gate";
 import { answersFromStored, calculateIntegralResult } from "@/lib/methodology/score";
 
 export const instant = false;
@@ -20,6 +21,7 @@ export default async function MetodologiaPage({
     error?: string;
   }>;
 }) {
+  await redirectUnfinishedEmpresario();
   const params = await searchParams;
   const persona = params.persona?.trim() ?? "";
   const saveFailed = params.error === "guardar";
