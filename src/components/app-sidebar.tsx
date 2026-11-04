@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { FileText, LayoutDashboard, Users } from "lucide-react";
+import { FileText, KeyRound, LayoutDashboard, Users } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { AppSidebarGroup } from "@/components/app-sidebar-group";
 import { AppSidebarMark } from "@/components/app-sidebar-mark";
@@ -21,6 +21,7 @@ import {
 const icons: Record<string, React.ReactNode> = {
   Operación: <LayoutDashboard />,
   Panel: <LayoutDashboard />,
+  Seguridad: <KeyRound />,
   Directorio: <Users />,
   Contenido: <FileText />,
 };

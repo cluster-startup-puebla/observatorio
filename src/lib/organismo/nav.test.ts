@@ -6,12 +6,13 @@ import { orgLinks } from "./nav";
 describe("nav del organismo", () => {
   it("tres rutas y el home no se come al CRM", () => {
     const links = orgLinks("coparmex-puebla");
-    expect(links.map((link) => link.label)).toEqual(["Inicio", "Invitaciones", "CRM"]);
+    expect(links.map((link) => link.label)).toEqual(["Inicio", "Invitaciones", "CRM", "Contraseña"]);
     const hrefs = links.map((link) => link.href);
     expect(hrefs).toEqual([
       "/coparmex-puebla",
       "/coparmex-puebla/invitaciones",
       "/coparmex-puebla/crm",
+      "/coparmex-puebla/seguridad",
     ]);
     expect(bestMatchingHref("/coparmex-puebla/crm", hrefs)).toBe("/coparmex-puebla/crm");
     expect(bestMatchingHref("/coparmex-puebla", hrefs)).toBe("/coparmex-puebla");

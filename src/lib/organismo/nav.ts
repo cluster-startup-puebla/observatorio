@@ -6,9 +6,14 @@ export function orgLinks(slug: string): AdminLink[] {
     { href: root, label: "Inicio", group: "Panel" },
     { href: `${root}/invitaciones`, label: "Invitaciones", group: "Panel" },
     { href: `${root}/crm`, label: "CRM", group: "Panel" },
+    { href: `${root}/seguridad`, label: "Contraseña", group: "Seguridad" },
   ];
 }
 
 export function orgGroups(slug: string) {
-  return [{ name: "Panel", links: orgLinks(slug) }];
+  const links = orgLinks(slug);
+  return [
+    { name: "Panel", links: links.filter((link) => link.group === "Panel") },
+    { name: "Seguridad", links: links.filter((link) => link.group === "Seguridad") },
+  ];
 }
