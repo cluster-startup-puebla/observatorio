@@ -22,6 +22,6 @@ export async function awaitingSessionApproval(input: {
     return holdsSession({ cancelled, linkPending, externalPending });
   } catch (error) {
     console.error("invite approval", error instanceof Error ? error.message : "error");
-    return false;
+    return true;
   }
 }
