@@ -9,7 +9,7 @@ import {
   readAccessToken,
   usesSupabaseAuth,
 } from "@/lib/supabase/auth-session";
-import { linkPassPending } from "@/lib/onboarding/link-pass-state";
+import { awaitingSessionApproval } from "./awaiting-approval";
 import { isAccountRole } from "./home";
 
 export type SessionAccount = {
@@ -19,16 +19,6 @@ export type SessionAccount = {
   onboarded: boolean;
   awaitingApproval: boolean;
 };
-
-async function inviteStillPending(token: string, email: string, role: AccountRole, onboarded: boolean) {
-  if (role !== "empresario" || !onboarded || !email) return false;
-  try {
-    return await linkPassPending(token, email);
-  } catch (error) {
-    console.error("invite approval", error instanceof Error ? error.message : "error");
-    return false;
-  }
-}
 
 export async function readSessionAccount(): Promise<SessionAccount | null> {
   if (!usesSupabaseAuth()) {
@@ -62,6 +52,9 @@ export async function readSessionAccount(): Promise<SessionAccount | null> {
     role,
     email,
     onboarded,
-    awaitingApproval: await inviteStillPending(token, email, role, onboarded),
+    awaitingApproval:
+      role === "empresario" && onboarded
+        ? await awaitingSessionApproval({ token, email, profileId: user.data.user.id })
+        : false,
   };
 }

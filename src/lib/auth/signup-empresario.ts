@@ -2,6 +2,7 @@ import "server-only";
 
 import type { SupabaseClient } from "@supabase/supabase-js";
 import { confirmEmailRedirect, unconfirmedSignup, verifyEmailPath } from "@/lib/auth/confirm-email";
+import { inviteMetadata } from "@/lib/auth/invite-carry";
 import { sendOwnMail } from "@/lib/mail/send-own";
 import { signupErrorCode } from "@/lib/organismo/signup-back";
 import { createSupabaseAnon, writeSupabaseSession } from "@/lib/supabase/auth-session";
@@ -37,7 +38,7 @@ export async function signupEmpresarioAndSession(email: string, password: string
     email: normalized,
     password,
     options: {
-      data: { intent: "empresario" },
+      data: inviteMetadata(sector, invite),
       emailRedirectTo: confirmEmailRedirect(process.env.NEXT_PUBLIC_SITE_URL),
     },
   });

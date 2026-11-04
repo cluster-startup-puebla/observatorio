@@ -1,7 +1,7 @@
 import { ConfidentialityNote } from "@/components/onboarding/confidentiality-note";
 import { OrgNameSlug } from "@/components/onboarding/org-name-slug";
 import { ColorField } from "@/components/admin/color-field";
-import { SheetSubmit } from "@/components/admin/sheet-submit";
+import { PendingSubmit } from "@/components/auth/pending-submit";
 import { FileDrop } from "@/components/file-drop";
 import { completeOrganismoAction } from "@/lib/account-actions";
 
@@ -37,7 +37,7 @@ export function OrganismoOnboarding({
       {brandError ? (
         <p className="text-small text-mark">No se pudo guardar la marca. Intenta de nuevo.</p>
       ) : null}
-      <SheetSubmit pendingLabel="Terminando…">Terminar perfil</SheetSubmit>
+      <PendingSubmit idle="Terminar perfil" pendingLabel="Terminando…" />
     </form>
   );
 }

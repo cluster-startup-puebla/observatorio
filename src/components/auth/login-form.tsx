@@ -1,4 +1,5 @@
 import { FormAlert } from "@/components/auth/form-alert";
+import { PendingSubmit } from "@/components/auth/pending-submit";
 import { PasswordInput } from "@/components/auth/password-input";
 import { controlClass, Field } from "@/components/landing/molecules/field";
 import { loginAction } from "@/lib/auth/login-action";
@@ -31,9 +32,7 @@ export function LoginForm({ error, errorCode }: { error?: string; errorCode?: st
       <div id="login-error">
         <FormAlert message={error} />
       </div>
-      <button type="submit" className="btn btn-primary">
-        Entrar
-      </button>
+      <PendingSubmit idle="Entrar" pendingLabel="Entrando…" />
     </form>
   );
 }

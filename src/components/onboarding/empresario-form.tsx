@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { SheetSubmit } from "@/components/admin/sheet-submit";
+import { PendingSubmit } from "@/components/auth/pending-submit";
 import { ConfidentialityNote } from "@/components/onboarding/confidentiality-note";
 import { EmpresarioStepCompany } from "@/components/onboarding/empresario-step-company";
 import { EmpresarioStepPerson } from "@/components/onboarding/empresario-step-person";
@@ -72,7 +72,7 @@ export function EmpresarioForm({
             Continuar
           </button>
         ) : (
-          <SheetSubmit pendingLabel="Terminando…">Terminar perfil</SheetSubmit>
+          <PendingSubmit idle="Terminar perfil" pendingLabel="Terminando…" />
         )}
       </div>
     </form>

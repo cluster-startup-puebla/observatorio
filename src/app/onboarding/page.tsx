@@ -30,6 +30,7 @@ export default async function OnboardingPage({
 
   return (
     <AuthShell
+      back={false}
       kicker="Tu perfil"
       title={account.role === "director" ? "La marca de tu organismo" : "Tu empresa en la sesión"}
       lead="Un paso más y el lugar queda apartado."

@@ -7,6 +7,7 @@ import { attributeSignup } from "@/lib/organismo/attribute-signup";
 import { readAccessToken, usesSupabaseAuth } from "@/lib/supabase/auth-session";
 import { logoUploadDecision } from "./company-logo";
 import { empresarioErrors, parseEmpresarioForm, type EmpresarioProfile } from "./empresario-draft";
+import { inviteToken } from "./invite-token";
 import { issueConfirmedPass } from "./issue-confirmed-pass";
 import { saveCompanyLogo } from "./save-company-logo";
 import { saveEmpresarioProfile } from "./save-empresario";
@@ -68,7 +69,7 @@ async function finishInMemory(id: string, profile: EmpresarioProfile, token: str
 export async function completeEmpresarioAction(formData: FormData) {
   const id = String(formData.get("accountId") ?? "");
   const profile = parseEmpresarioForm(formData);
-  const token = String(formData.get("invitacion") ?? "").trim();
+  const token = await inviteToken(formData);
   const supabase = usesSupabaseAuth();
   const file = formData.get("logo");
   const decision = logoUploadDecision({

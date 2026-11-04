@@ -45,6 +45,7 @@ export async function SupabaseOnboarding({
 
   return (
     <AuthShell
+      back={false}
       kicker="Tu perfil"
       title={org ? "La marca de tu organismo" : "Tu empresa en la sesión"}
       lead="Un paso más y el lugar queda apartado."

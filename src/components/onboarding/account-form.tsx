@@ -3,6 +3,7 @@
 import { useActionState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { PasswordInput } from "@/components/auth/password-input";
+import { PendingSubmit } from "@/components/auth/pending-submit";
 import { Field, controlClass } from "@/components/landing/molecules/field";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { createAccountAction, type AccountFormState } from "@/lib/account-actions";
@@ -20,10 +21,7 @@ export function AccountForm({
   error?: string;
 }) {
   const router = useRouter();
-  const [state, action, pending] = useActionState<AccountFormState, FormData>(
-    createAccountAction,
-    null,
-  );
+  const [state, action] = useActionState<AccountFormState, FormData>(createAccountAction, null);
   const notice = state?.error ? registerError(state.error) : error;
 
   useEffect(() => {
@@ -49,9 +47,7 @@ export function AccountForm({
           <p className="text-small text-ink-secondary">Mínimo 8 caracteres.</p>
         )}
       </Field>
-      <button type="submit" className="btn btn-primary" disabled={pending}>
-        Crear cuenta
-      </button>
+      <PendingSubmit idle="Crear cuenta" pendingLabel="Creando cuenta…" forcePending={Boolean(state?.next)} />
     </form>
   );
 }

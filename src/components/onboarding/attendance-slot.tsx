@@ -1,3 +1,4 @@
+import { PendingSubmit } from "@/components/auth/pending-submit";
 import { Field, controlClass } from "@/components/landing/molecules/field";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { cancelAttendanceAction } from "@/lib/onboarding/cancel-attendance";
@@ -34,9 +35,11 @@ export async function AttendanceSlot({ token, error }: { token: string; error?: 
       <Field id="cancel-reason" label="Por qué cancelas tu asistencia">
         <textarea id="cancel-reason" name="reason" required maxLength={280} rows={3} className={controlClass} />
       </Field>
-      <button className="btn btn-secondary w-fit" type="submit">
-        Cancelar mi lugar
-      </button>
+      <PendingSubmit
+        idle="Cancelar mi lugar"
+        pendingLabel="Cancelando…"
+        className="btn btn-secondary w-fit"
+      />
     </form>
   );
 }
