@@ -5,6 +5,8 @@ import { FormAlert } from "@/components/auth/form-alert";
 import { PasswordInput } from "@/components/auth/password-input";
 import { controlClass, Field } from "@/components/landing/molecules/field";
 import { createFirstSuperadminAction } from "@/lib/admin-actions";
+import { adminSignupRedirect } from "@/lib/auth/session-redirect";
+import { readSessionAccount } from "@/lib/auth/session-account";
 import { getDirectory } from "@/lib/memory-directory";
 import { pageMetadata } from "@/lib/metadata";
 import { superadminExists, usesSupabaseAuth } from "@/lib/supabase/auth-session";
@@ -33,7 +35,12 @@ export default async function AdminSignupPage({
   const open = usesSupabaseAuth()
     ? !(await superadminExists())
     : (await getDirectory().superadminCount()) === 0;
-  if (!open) redirect("/admin/login");
+  const account = open ? null : await readSessionAccount();
+  const next = adminSignupRedirect({
+    open,
+    account: account ? { role: account.role, onboarded: account.onboarded } : null,
+  });
+  if (next) redirect(next);
 
   const params = await searchParams;
   const error = params.error ? messages[params.error] : undefined;

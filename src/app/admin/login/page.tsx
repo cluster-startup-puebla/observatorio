@@ -5,7 +5,7 @@ import { FormAlert } from "@/components/auth/form-alert";
 import { PasswordInput } from "@/components/auth/password-input";
 import { controlClass, Field } from "@/components/landing/molecules/field";
 import { loginSuperadminAction } from "@/lib/admin-actions";
-import { pathAfterSignIn } from "@/lib/auth/home";
+import { adminLoginRedirect } from "@/lib/auth/session-redirect";
 import { readSessionAccount } from "@/lib/auth/session-account";
 import { getDirectory } from "@/lib/memory-directory";
 import { pageMetadata } from "@/lib/metadata";
@@ -35,11 +35,12 @@ export default async function AdminLoginPage({
   const open = usesSupabaseAuth()
     ? !(await superadminExists())
     : (await getDirectory().superadminCount()) === 0;
-  if (open) redirect("/admin/signup");
-
-  const account = await readSessionAccount();
-  if (account?.role === "superadmin") redirect("/admin");
-  if (account) redirect(pathAfterSignIn({ role: account.role, onboarded: account.onboarded }));
+  const account = open ? null : await readSessionAccount();
+  const next = adminLoginRedirect({
+    open,
+    account: account ? { role: account.role, onboarded: account.onboarded } : null,
+  });
+  if (next) redirect(next);
 
   const params = await searchParams;
   const error = params.error ? messages[params.error] : undefined;
