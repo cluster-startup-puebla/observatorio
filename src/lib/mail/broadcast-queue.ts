@@ -72,7 +72,7 @@ async function enqueue(
 }
 
 async function pendingMails(db: SupabaseClient, input: { kind: BroadcastKind; sessionId: string | null }) {
-  let query = db.from("outbox_messages").select("id, to_email, subject, kind").eq("kind", input.kind).is("sent_at", null);
+  let query = db.from("outbox_messages").select("id, to_email, subject, kind, profile_id").eq("kind", input.kind).is("sent_at", null);
   query = input.sessionId ? query.eq("session_id", input.sessionId) : query.is("session_id", null);
   const pending = await query;
   if (pending.error) return { error: pending.error.message };
