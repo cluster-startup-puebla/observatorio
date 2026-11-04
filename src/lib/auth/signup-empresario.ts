@@ -1,8 +1,9 @@
 import "server-only";
 
 import type { SupabaseClient } from "@supabase/supabase-js";
-import { createSupabaseAnon, writeSupabaseSession } from "@/lib/supabase/auth-session";
+import { sendOwnMail } from "@/lib/mail/send-own";
 import { signupErrorCode } from "@/lib/organismo/signup-back";
+import { createSupabaseAnon, writeSupabaseSession } from "@/lib/supabase/auth-session";
 
 function nextPath(sector: string, invite: string, base = "/onboarding") {
   const query = new URLSearchParams();
@@ -23,6 +24,7 @@ async function skipConfirm(anon: SupabaseClient, email: string, password: string
     return { error: logged.error ? signupErrorCode(logged.error.message) : "confirmar" };
   }
   await writeSupabaseSession(logged.data.session);
+  await sendOwnMail(logged.data.session.access_token, "welcome");
   return { next: nextPath(sector, invite) };
 }
 
@@ -47,5 +49,6 @@ export async function signupEmpresarioAndSession(email: string, password: string
   }
   if (!session) return needConfirm ? { next: nextPath(sector, invite, "/verificar") } : { error: "auth" };
   await writeSupabaseSession(session);
+  await sendOwnMail(session.access_token, "welcome");
   return { next: nextPath(sector, invite) };
 }

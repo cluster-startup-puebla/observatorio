@@ -1,0 +1,30 @@
+import { readFileSync } from "node:fs";
+import { describe, expect, it } from "vitest";
+import { continueHref } from "./continue-href";
+
+describe("envío propio", () => {
+  it("arma el enlace solo si hay sitio", () => {
+    expect(continueHref("https://observatorio.example")).toBe("https://observatorio.example/onboarding");
+    expect(continueHref(undefined)).toBeNull();
+  });
+
+  it("el alta manda bienvenida y la confirmación guarda el pase", () => {
+    const send = readFileSync("src/lib/mail/send-own.ts", "utf8");
+    const signup = readFileSync("src/lib/auth/signup-empresario.ts", "utf8");
+    const done = readFileSync("src/lib/onboarding/complete-empresario.ts", "utf8");
+    const store = readFileSync("src/lib/onboarding/store-pass.ts", "utf8");
+    expect(send).toContain("enqueue_own_mail");
+    expect(send).toContain("record_own_mail");
+    expect(send).toContain("paintMail");
+    expect(send).toContain("already_sent");
+    expect(signup).toContain("sendOwnMail");
+    expect(signup).toContain('"welcome"');
+    expect(done).toContain("storePass");
+    expect(done).toContain("sendOwnMail");
+    expect(done).toContain('"event_pass"');
+    expect(done).toContain("linkPassPending");
+    expect(store).toContain("pass-images");
+    expect(store).toContain("pass_qr");
+    expect(store).toContain('.from("passes")');
+  });
+});

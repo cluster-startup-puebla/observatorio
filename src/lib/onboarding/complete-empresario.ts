@@ -2,13 +2,17 @@
 
 import { redirect } from "next/navigation";
 import { readSessionAccount } from "@/lib/auth/session-account";
+import { sendOwnMail } from "@/lib/mail/send-own";
 import { getDirectory } from "@/lib/memory-directory";
 import { attributeSignup } from "@/lib/organismo/attribute-signup";
 import { readAccessToken, usesSupabaseAuth } from "@/lib/supabase/auth-session";
-import { empresarioErrors, parseEmpresarioForm, type EmpresarioProfile } from "./empresario-draft";
 import { logoUploadDecision } from "./company-logo";
+import { empresarioErrors, parseEmpresarioForm, type EmpresarioProfile } from "./empresario-draft";
+import { externalPassPending } from "./external-pass-state";
+import { linkPassPending } from "./link-pass-state";
 import { saveCompanyLogo } from "./save-company-logo";
 import { saveEmpresarioProfile } from "./save-empresario";
+import { storePass } from "./store-pass";
 
 function back(reason: string, profile: EmpresarioProfile, token: string) {
   const query = new URLSearchParams({ error: reason });
@@ -39,6 +43,11 @@ async function finishInSupabase(profile: EmpresarioProfile, token: string, formD
       empresa: profile.companyName,
     });
   }
+  const pendingLink = await linkPassPending(access!, session!.email);
+  const pendingExternal = await externalPassPending(access!, session!.id);
+  if (pendingLink || pendingExternal) return;
+  const stored = await storePass(access!, session!.id);
+  if (stored.ok) await sendOwnMail(access!, "event_pass");
 }
 
 async function finishInMemory(id: string, profile: EmpresarioProfile, token: string) {
