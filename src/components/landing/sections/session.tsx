@@ -19,9 +19,15 @@ export function Session() {
       </p>
       <dl className="mt-12 grid gap-px bg-line sm:grid-cols-2 lg:grid-cols-3">
         {sessionFacts.map((fact) => (
-          <div key={fact.label} className="bg-surface p-6">
+          <div key={fact.label} className="bg-surface-subtle p-6">
             <dt className="text-micro uppercase text-ink-muted">{fact.label}</dt>
-            <dd className="text-body mt-2 text-ink">
+            <dd
+              className={
+                fact.label === "Horario" || fact.label === "Grupo"
+                  ? "text-h3 mt-2 text-balance text-ink"
+                  : "text-body mt-2 text-ink"
+              }
+            >
               {fact.label === "Dónde" ? (
                 <a
                   href={quintaRealMap}

@@ -2,6 +2,8 @@ import { SpeakerCard } from "@/components/landing/atoms/speaker-card";
 import { speakers } from "@/content/speakers";
 
 export function Speakers() {
+  const visible = speakers.filter((speaker) => speaker.confirmed);
+  const columns = visible.length > 1 ? "sm:grid-cols-2 lg:grid-cols-3" : "";
   return (
     <section id="ponentes" data-testid="bloque-ponentes" className="scroll-mt-24 border-t border-line py-20 lg:py-28">
       <div className="container-site">
@@ -9,8 +11,8 @@ export function Speakers() {
           <span className="block h-1 w-12 bg-brand" aria-hidden="true" />
           <h2 className="text-h2 mt-4 text-balance text-ink">Ponentes</h2>
         </header>
-        <ul className="mt-12 grid grid-cols-1 gap-x-8 gap-y-14 sm:grid-cols-2 lg:grid-cols-3">
-          {speakers.filter((speaker) => speaker.confirmed).map((speaker) => (
+        <ul className={`mt-12 grid grid-cols-1 gap-x-8 gap-y-14 ${columns}`}>
+          {visible.map((speaker) => (
             <li key={speaker.photo}>
               <SpeakerCard speaker={speaker} />
             </li>

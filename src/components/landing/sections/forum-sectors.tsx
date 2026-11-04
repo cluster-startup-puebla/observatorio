@@ -8,7 +8,10 @@ export function ForumSectors() {
       <ul className="mt-4 flex flex-wrap gap-3">
         {forumSectors.map((sector) => (
           <li key={sector.href}>
-            <Link href={sector.href} className="btn btn-secondary px-4 py-2 text-small">
+            <Link
+              href={sector.href}
+              className="inline-flex rounded-full border border-line px-4 py-2 text-small text-ink hover:bg-surface-subtle"
+            >
               {sector.name}
             </Link>
           </li>
