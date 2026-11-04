@@ -1,5 +1,5 @@
 import { Cta } from "@/components/landing/atoms/cta";
-import { Kicker } from "@/components/landing/atoms/kicker";
+import { EventTitle } from "@/components/landing/atoms/event-title";
 import { ctaLabel } from "@/content/landing";
 import { LandingMarks } from "./landing-marks";
 
@@ -8,7 +8,7 @@ export function EventOpen({ reserveHref = "/register" }: { reserveHref?: string 
     <section id="inicio" data-testid="bloque-objetivo" className="border-b border-line">
       <div className="container-site grid gap-10 py-12 lg:py-16">
         <div className="grid max-w-3xl gap-5">
-          <Kicker>Levantamiento de necesidades</Kicker>
+          <EventTitle />
           <h1 className="text-balance text-[clamp(1.75rem,2.8vw,2.5rem)] leading-[1.12] font-bold tracking-[-0.03em] text-ink">
             Lo que Puebla no sabe que necesita, tu empresa puede decirlo primero.
           </h1>

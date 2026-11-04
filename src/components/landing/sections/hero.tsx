@@ -1,5 +1,6 @@
 import { Cta } from "@/components/landing/atoms/cta";
 import { GovernmentLockup } from "@/components/landing/atoms/government-lockup";
+import { EventTitle } from "@/components/landing/atoms/event-title";
 import { Kicker } from "@/components/landing/atoms/kicker";
 import { PartnerMark } from "@/components/landing/atoms/partner-mark";
 import { ConvenerRow } from "@/components/landing/atoms/convener-row";
@@ -19,7 +20,7 @@ export function Hero({
       className="flex min-h-[calc(100svh-4.5rem)] scroll-mt-24 flex-col border-b border-line"
     >
       <div className="container-site flex flex-1 flex-col py-8 lg:py-12">
-        <Kicker>Levantamiento de necesidades</Kicker>
+        <EventTitle />
         <h1 className="mt-4 max-w-4xl text-balance text-[clamp(1.875rem,3.2vw,2.75rem)] leading-[1.08] font-bold tracking-[-0.03em] text-ink">
           {message
             ? message.headline

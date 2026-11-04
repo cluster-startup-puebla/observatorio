@@ -13,6 +13,8 @@ export const diagnosticIndustries = [
   "Tecnología y servicios de TI",
   "Turismo",
   "Logística",
+  "Agroindustria",
+  "Gastronomía",
 ] as const;
 
 export const diagnosticPdfName = "Diagnostico-Integral-Puebla-TMEC.pdf";

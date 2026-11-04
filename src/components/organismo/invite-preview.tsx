@@ -36,7 +36,7 @@ export function InvitePreview({
         ) : (
           <p className="text-small font-semibold text-ink">{orgName}</p>
         )}
-        <Kicker>Levantamiento de necesidades</Kicker>
+        <Kicker>Levantamiento de necesidades tecnológicas</Kicker>
         <p className="text-body font-semibold text-balance text-ink">{previewLine(sectorName, orgName)}</p>
         <p className="text-small text-ink-secondary">
           Participa en la sesión de tu sector y ayuda a construir el primer Observatorio Tecnológico

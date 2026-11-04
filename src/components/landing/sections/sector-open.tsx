@@ -1,5 +1,5 @@
 import { Cta } from "@/components/landing/atoms/cta";
-import { Kicker } from "@/components/landing/atoms/kicker";
+import { EventTitle } from "@/components/landing/atoms/event-title";
 import { ctaLabel } from "@/content/landing";
 import { InviteMark } from "./invite-mark";
 import { inviteLine } from "./invite-intro";
@@ -25,7 +25,7 @@ export function SectorOpen({
         <div className="grid max-w-3xl gap-6 sm:gap-8">
           <InviteMark brand={brand} />
           <div className="grid gap-5">
-            <Kicker>Levantamiento de necesidades</Kicker>
+            <EventTitle />
             <h1
               data-testid="sector-seleccionado"
               className="text-balance text-[clamp(1.75rem,2.8vw,2.5rem)] leading-[1.12] font-bold tracking-[-0.03em] text-ink"

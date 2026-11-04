@@ -27,7 +27,7 @@ export default function RegisterPage({ searchParams }: PageProps<"/register">) {
     <Suspense
       fallback={
         <AuthShell
-          kicker="Levantamiento de necesidades"
+          kicker="Levantamiento de necesidades tecnológicas"
           title="Reserva tu lugar"
           lead="La sesión de tu sector. Sin costo. Cupo de 15 a 30 empresas."
           links={loginLink}
@@ -51,7 +51,7 @@ async function RegisterScreen({ searchParams }: Pick<PageProps<"/register">, "se
 
   return (
     <AuthShell
-      kicker="Levantamiento de necesidades"
+      kicker="Levantamiento de necesidades tecnológicas"
       title={
         withDiagnostic
           ? "Regístrate y descarga el diagnóstico"
