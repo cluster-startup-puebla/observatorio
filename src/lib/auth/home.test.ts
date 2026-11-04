@@ -29,6 +29,7 @@ describe("homeForRole", () => {
 describe("pathAfterSignIn", () => {
   it("manda al empresario sin perfil a onboarding", () => {
     expect(pathAfterSignIn({ role: "empresario", onboarded: false })).toBe("/onboarding");
+    expect(pathAfterSignIn({ role: "empresario", onboarded: true, awaitingApproval: true })).toBe("/onboarding");
     expect(pathAfterSignIn({ role: "empresario", onboarded: true })).toBe("/metodologia");
     expect(pathAfterSignIn({ role: "director", onboarded: true, slug: "canacintra" })).toBe("/canacintra");
     expect(pathAfterSignIn({ role: "superadmin", onboarded: true })).toBe("/admin");

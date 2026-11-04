@@ -8,7 +8,9 @@ export async function redirectIfSession(path: string) {
   const account = await readSessionAccount();
   const next = sessionRedirect({
     path,
-    account: account ? { role: account.role, onboarded: account.onboarded } : null,
+    account: account
+      ? { role: account.role, onboarded: account.onboarded, awaitingApproval: account.awaitingApproval }
+      : null,
   });
   if (next) redirect(next);
 }

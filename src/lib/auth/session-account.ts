@@ -9,6 +9,7 @@ import {
   readAccessToken,
   usesSupabaseAuth,
 } from "@/lib/supabase/auth-session";
+import { linkPassPending } from "@/lib/onboarding/link-pass-state";
 import { isAccountRole } from "./home";
 
 export type SessionAccount = {
@@ -16,7 +17,18 @@ export type SessionAccount = {
   role: AccountRole;
   email: string;
   onboarded: boolean;
+  awaitingApproval: boolean;
 };
+
+async function inviteStillPending(token: string, email: string, role: AccountRole, onboarded: boolean) {
+  if (role !== "empresario" || !onboarded || !email) return false;
+  try {
+    return await linkPassPending(token, email);
+  } catch (error) {
+    console.error("invite approval", error instanceof Error ? error.message : "error");
+    return false;
+  }
+}
 
 export async function readSessionAccount(): Promise<SessionAccount | null> {
   if (!usesSupabaseAuth()) {
@@ -28,6 +40,7 @@ export async function readSessionAccount(): Promise<SessionAccount | null> {
       role: account.role,
       email: account.email,
       onboarded: account.onboarded,
+      awaitingApproval: false,
     };
   }
 
@@ -42,10 +55,13 @@ export async function readSessionAccount(): Promise<SessionAccount | null> {
     .maybeSingle();
   const role = profile.data?.role;
   if (profile.error || typeof role !== "string" || !isAccountRole(role)) return null;
+  const email = profile.data?.email ?? user.data.user.email ?? "";
+  const onboarded = Boolean(profile.data?.onboarded_at);
   return {
     id: user.data.user.id,
     role,
-    email: profile.data?.email ?? user.data.user.email ?? "",
-    onboarded: Boolean(profile.data?.onboarded_at),
+    email,
+    onboarded,
+    awaitingApproval: await inviteStillPending(token, email, role, onboarded),
   };
 }

@@ -14,7 +14,13 @@ async function requireRoles(allowed: AccountRole[]) {
   const account = await readSessionAccount();
   if (!account) redirect("/login");
   if (!allowed.includes(account.role)) {
-    redirect(pathAfterSignIn({ role: account.role, onboarded: account.onboarded }));
+    redirect(
+      pathAfterSignIn({
+        role: account.role,
+        onboarded: account.onboarded,
+        awaitingApproval: account.awaitingApproval,
+      }),
+    );
   }
   return account;
 }

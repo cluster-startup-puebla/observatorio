@@ -17,6 +17,6 @@ describe("redirectIfSession", () => {
   it("la sesión ya trae onboarded y este plan no la reescribe", () => {
     const source = readFileSync("src/lib/auth/session-account.ts", "utf8");
     expect(source).toContain("onboarded: account.onboarded");
-    expect(source).toContain("onboarded: Boolean(profile.data?.onboarded_at)");
+    expect(source).toContain("const onboarded = Boolean(profile.data?.onboarded_at)");
   });
 });

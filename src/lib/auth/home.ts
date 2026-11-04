@@ -23,8 +23,9 @@ export function homeForRole(role: AccountRole, slug?: string | null) {
 export function pathAfterSignIn(input: {
   role: AccountRole;
   onboarded: boolean;
+  awaitingApproval?: boolean;
   slug?: string | null;
 }) {
-  if (input.role === "empresario" && !input.onboarded) return "/onboarding";
+  if (input.role === "empresario" && (!input.onboarded || input.awaitingApproval)) return "/onboarding";
   return homeForRole(input.role, input.slug);
 }

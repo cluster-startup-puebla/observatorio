@@ -7,6 +7,6 @@ import { readSessionAccount } from "./session-account";
 export async function redirectUnfinishedEmpresario() {
   if (!usesSupabaseAuth()) return;
   const account = await readSessionAccount();
-  if (!account || account.role !== "empresario" || account.onboarded) return;
-  redirect("/onboarding");
+  if (!account || account.role !== "empresario") return;
+  if (!account.onboarded || account.awaitingApproval) redirect("/onboarding");
 }

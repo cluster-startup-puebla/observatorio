@@ -1,7 +1,7 @@
 import type { AccountRole } from "@/lib/directory";
 import { pathAfterSignIn } from "./home";
 
-type GateAccount = { role: AccountRole; onboarded: boolean };
+type GateAccount = { role: AccountRole; onboarded: boolean; awaitingApproval?: boolean };
 
 const sessionEntries = new Set<string>([
   "/",
@@ -13,7 +13,11 @@ const sessionEntries = new Set<string>([
 ]);
 
 function destination(account: GateAccount) {
-  return pathAfterSignIn({ role: account.role, onboarded: account.onboarded });
+  return pathAfterSignIn({
+    role: account.role,
+    onboarded: account.onboarded,
+    awaitingApproval: account.awaitingApproval,
+  });
 }
 
 export function sessionRedirect(input: { path: string; account: GateAccount | null }) {

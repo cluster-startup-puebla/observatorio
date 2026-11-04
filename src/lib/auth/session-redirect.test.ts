@@ -54,7 +54,7 @@ describe("sessionRedirect", () => {
     expect(gate).toContain("pathAfterSignIn");
     expect(gate).not.toContain("empresario");
     expect(readFileSync("src/lib/auth/home.ts", "utf8")).toContain(
-      'if (input.role === "empresario" && !input.onboarded) return "/onboarding"',
+      'if (input.role === "empresario" && (!input.onboarded || input.awaitingApproval)) return "/onboarding"',
     );
     const files = [
       "src/app/layout.tsx",

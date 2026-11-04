@@ -9,6 +9,7 @@ import {
   usesSupabaseAuth,
   writeSupabaseSession,
 } from "@/lib/supabase/auth-session";
+import { linkPassPending } from "@/lib/onboarding/link-pass-state";
 import { pathAfterSignIn } from "./home";
 import { orgSlugForUser, setOrgSlugCookie } from "./login-org";
 import { signInWithPassword } from "./sign-in";
@@ -51,5 +52,14 @@ export async function loginAction(formData: FormData) {
     .eq("id", signed.session.user.id)
     .maybeSingle();
   const onboarded = Boolean(profile.data?.onboarded_at);
-  redirect(pathAfterSignIn({ role: signed.role, slug, onboarded }));
+  const emailAddress = signed.session.user.email ?? email.trim().toLowerCase();
+  let awaitingApproval = false;
+  if (signed.role === "empresario" && onboarded) {
+    try {
+      awaitingApproval = await linkPassPending(signed.session.access_token, emailAddress);
+    } catch (error) {
+      console.error("invite approval", error instanceof Error ? error.message : "error");
+    }
+  }
+  redirect(pathAfterSignIn({ role: signed.role, slug, onboarded, awaitingApproval }));
 }

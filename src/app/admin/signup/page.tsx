@@ -38,7 +38,9 @@ export default async function AdminSignupPage({
   const account = open ? null : await readSessionAccount();
   const next = adminSignupRedirect({
     open,
-    account: account ? { role: account.role, onboarded: account.onboarded } : null,
+    account: account
+      ? { role: account.role, onboarded: account.onboarded, awaitingApproval: account.awaitingApproval }
+      : null,
   });
   if (next) redirect(next);
 
