@@ -46,6 +46,7 @@ export async function sendOwnMail(accessToken: string, kind: OwnKind) {
       profileId: row.profile_id,
       sessionLabel: null,
       continueHref: kind === "welcome" ? continueHref(process.env.NEXT_PUBLIC_SITE_URL) : null,
+      acceptHref: null,
     });
     const sent = await new Resend(key).emails.send(
       resendPayload({ from, to: row.to_email, subject: row.subject, html: painted.html, attachments: painted.attachments }),

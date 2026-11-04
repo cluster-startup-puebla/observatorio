@@ -14,13 +14,16 @@ export async function paintMail(input: {
   profileId: string | null;
   sessionLabel: string | null;
   continueHref: string | null;
+  acceptHref: string | null;
 }): Promise<PaintedMail> {
   if (input.kind === "password") throw new Error("sin cuerpo");
   if (input.kind === "welcome") {
     return { html: await render(<WelcomeMail continueHref={input.continueHref} />), attachments: [] };
   }
   if (input.kind === "open_innovation") {
-    return { html: await render(<OpenInnovationMail />), attachments: [] };
+    const href = input.acceptHref?.trim() ?? "";
+    if (!href) throw new Error("sin permiso");
+    return { html: await render(<OpenInnovationMail acceptHref={href} />), attachments: [] };
   }
   if (input.kind === "thanks") {
     return { html: await render(<ThanksMail sessionLabel={input.sessionLabel} />), attachments: [] };

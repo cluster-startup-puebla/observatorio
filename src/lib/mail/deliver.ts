@@ -58,6 +58,7 @@ async function paintRow(row: PendingMail, context: MailContext) {
       profileId: row.profile_id,
       sessionLabel: context.sessionLabel,
       continueHref: context.continueHref,
+      acceptHref: null,
     });
   } catch (error) {
     return { error: error instanceof Error ? error.message : "sin cuerpo" };

@@ -22,10 +22,13 @@ describe("cuerpos del foro", () => {
     expect(html).toContain(session);
   });
 
-  it("innovación abierta pide respuesta y no trae QR", async () => {
-    const html = await render(<OpenInnovationMail />);
+  it("innovación abierta trae el permiso y no el QR", async () => {
+    const href = "https://observatorio.example/innovacion-abierta/aceptar?t=abc";
+    const html = await render(<OpenInnovationMail acceptHref={href} />);
     expect(html).toContain("innovación abierta");
-    expect(html).toContain("Responde a este correo");
+    expect(html).toContain("Sí, pueden contactarme");
+    expect(html).toContain(href);
+    expect(html).not.toContain("Responde a este correo");
     expect(html).not.toContain("cid:pase");
   });
 
