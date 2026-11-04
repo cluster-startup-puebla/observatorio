@@ -2,16 +2,20 @@ import { Body, Container, Head, Hr, Html, Preview, Section, Text } from "@react-
 import type { ReactNode } from "react";
 import { forumKicker, forumName } from "@/content/forum-public";
 import { mailBrand } from "./brand";
+import { MailFooter } from "./mail-footer";
 
 export function MailShell({
   preview,
   title,
   children,
+  assetBase,
 }: {
   preview: string;
   title: string;
   children: ReactNode;
+  assetBase?: string;
 }) {
+  const base = assetBase ?? process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
   return (
     <Html lang="es">
       <Head />
@@ -42,11 +46,7 @@ export function MailShell({
             {children}
           </Section>
           <Hr style={{ borderColor: mailBrand.line, margin: 0 }} />
-          <Section style={{ backgroundColor: mailBrand.white, padding: "16px 32px 28px" }}>
-            <Text style={{ margin: 0, color: mailBrand.muted, fontSize: 12, lineHeight: "1.5" }}>
-              Clúster de Startups e Innovación · Si respondes, llega a {mailBrand.replyTo}
-            </Text>
-          </Section>
+          <MailFooter assetBase={base} />
         </Container>
       </Body>
     </Html>
