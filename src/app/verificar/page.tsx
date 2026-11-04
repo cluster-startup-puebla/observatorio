@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { AuthShell } from "@/components/auth/auth-shell";
 import { ResendConfirmationForm } from "@/components/auth/resend-confirmation-form";
+import { Alert, AlertDescription } from "@/components/ui/alert";
 import { pageMetadata } from "@/lib/metadata";
 
 export const instant = false;
@@ -35,7 +36,13 @@ export default async function VerifyPage({
         </>
       }
     >
-      <ResendConfirmationForm email={email} />
+      {email ? (
+        <ResendConfirmationForm email={email} />
+      ) : (
+        <Alert>
+          <AlertDescription>Entra con tu correo. Si falta confirmarlo, aquí puedes pedir otro enlace.</AlertDescription>
+        </Alert>
+      )}
     </AuthShell>
   );
 }

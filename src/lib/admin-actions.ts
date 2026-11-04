@@ -71,6 +71,9 @@ export async function loginSuperadminAction(formData: FormData) {
   }
 
   const signed = await signInWithPassword(email, password);
+  if (!signed.ok && signed.reason === "confirmar") {
+    redirect(`/verificar?correo=${encodeURIComponent(email.trim().toLowerCase())}`);
+  }
   if (!signed.ok || signed.role !== "superadmin") {
     await clearSupabaseSession();
     redirect(`/admin/login?error=${signed.ok ? "rol" : signed.reason}`);

@@ -40,10 +40,9 @@ export default async function LoginPage({
       : params.aviso === "sesion"
         ? "Sesión cerrada."
         : undefined;
-  const resend =
-    params.error === "confirmar"
-      ? `/verificar?correo=${encodeURIComponent(params.correo ?? "")}`
-      : "";
+  if (params.error === "confirmar" && params.correo) {
+    redirect(`/verificar?correo=${encodeURIComponent(params.correo)}`);
+  }
 
   return (
     <AuthSplit
@@ -56,11 +55,6 @@ export default async function LoginPage({
         <LoginForm error={error} errorCode={params.error} />
       </div>
       <div className="mt-6 flex flex-wrap gap-x-4 gap-y-2 text-small">
-        {resend ? (
-          <Link href={resend} className="text-link">
-            Reenviar correo de verificación
-          </Link>
-        ) : null}
         <Link href="/recuperar" className="text-link">
           Olvidé mi contraseña
         </Link>

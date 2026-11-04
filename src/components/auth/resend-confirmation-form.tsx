@@ -1,7 +1,6 @@
 "use client";
 
 import { useActionState } from "react";
-import { controlClass, Field } from "@/components/landing/molecules/field";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { resendConfirmationAction, type ResendState } from "@/lib/auth/resend-confirmation-action";
 
@@ -17,22 +16,14 @@ export function ResendConfirmationForm({ email }: { email: string }) {
     );
   }
   return (
-    <form action={action} noValidate className="grid gap-5">
+    <form action={action} className="grid gap-5">
       {state.error ? (
         <Alert variant="destructive">
           <AlertDescription>{state.error}</AlertDescription>
         </Alert>
       ) : null}
-      <Field id="correo" label="Correo">
-        <input
-          id="correo"
-          name="correo"
-          type="email"
-          autoComplete="email"
-          defaultValue={email}
-          className={controlClass}
-        />
-      </Field>
+      <p className="text-body text-ink">{email}</p>
+      <input type="hidden" name="correo" value={email} />
       <button type="submit" className="btn btn-primary" disabled={pending}>
         Reenviar correo
       </button>
