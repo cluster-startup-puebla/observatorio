@@ -34,5 +34,6 @@ describe("aviso del paso", () => {
       "El WhatsApp lleva de 10 a 15 dígitos, o déjalo vacío.",
     );
     expect(serverIssue("logo")).toBe("Sube un logo PNG, JPG o WEBP de hasta 2 MB.");
+    expect(serverIssue("terminos")).toBe("Acepta los términos y condiciones para continuar.");
   });
 });

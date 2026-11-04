@@ -13,6 +13,7 @@ async function finishBrand(page: import("@playwright/test").Page, email: string)
   await page.getByLabel("Nombre del organismo").fill("CANACINTRA");
   await page.getByLabel("Color").fill("#1B3A5C");
   await page.getByLabel("Logo").setInputFiles("e2e/fixtures/logo.png");
+  await page.getByRole("checkbox", { name: /términos y condiciones/ }).check();
   await page.getByRole("button", { name: "Terminar perfil" }).click();
   await expect(page).toHaveURL(/\/canacintra$/);
 }

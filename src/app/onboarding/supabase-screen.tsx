@@ -65,6 +65,7 @@ export async function SupabaseOnboarding({
         missingSlug={params.error === "slug"}
         missingLogo={params.error === "logo"}
         brandError={params.error === "marca"}
+        termsError={params.error === "terminos"}
       />
       {onboarded && account.role === "empresario" ? <AttendanceSlot token={token} error={params.error} /> : null}
     </AuthShell>

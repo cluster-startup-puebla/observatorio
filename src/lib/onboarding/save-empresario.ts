@@ -20,6 +20,8 @@ export async function saveEmpresarioProfile(
   const band = bands[profile.employeeBand];
   if (!band) return { ok: false as const, reason: "empleados" };
   const db = createSupabaseWithAccess(accessToken);
+  const consent = await db.rpc("record_privacy_consent");
+  if (consent.error) return { ok: false as const, reason: "terminos" };
   const sector = await db.from("sectors").select("id").eq("slug", profile.sectorSlug).maybeSingle();
   if (sector.error || !sector.data) return { ok: false as const, reason: "sector" };
   const person = await db

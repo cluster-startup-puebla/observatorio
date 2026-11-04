@@ -17,6 +17,7 @@ const serverMessages: Record<string, string> = {
   interes: "Cuéntanos qué te interesa de esta sesión. Máximo 500 caracteres.",
   logo: "Sube un logo PNG, JPG o WEBP de hasta 2 MB.",
   cuenta: "La sesión expiró. Entra de nuevo.",
+  terminos: "Acepta los términos y condiciones para continuar.",
 };
 
 export function serverIssue(code: string | undefined) {

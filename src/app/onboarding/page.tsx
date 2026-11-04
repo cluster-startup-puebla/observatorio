@@ -46,6 +46,7 @@ export default async function OnboardingPage({
         formError={params.error}
         missingSlug={params.error === "slug"}
         missingLogo={params.error === "logo"}
+        termsError={params.error === "terminos"}
       />
     </AuthShell>
   );

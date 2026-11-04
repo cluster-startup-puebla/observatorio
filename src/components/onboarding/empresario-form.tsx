@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { PendingSubmit } from "@/components/auth/pending-submit";
 import { ConfidentialityNote } from "@/components/onboarding/confidentiality-note";
+import { TermsAccept } from "@/components/onboarding/terms-accept";
 import { EmpresarioStepCompany } from "@/components/onboarding/empresario-step-company";
 import { EmpresarioStepPerson } from "@/components/onboarding/empresario-step-person";
 import { EmpresarioStepReferral } from "@/components/onboarding/empresario-step-referral";
@@ -24,6 +25,7 @@ export function EmpresarioForm({
   error?: string;
 }) {
   const [step, setStep] = useState(0);
+  const [terms, setTerms] = useState(false);
   const [issue, setIssue] = useState("");
   const [values, setValues] = useEmpresarioDraft(accountId, sectorSlug);
   const notice = issue || serverIssue(error);
@@ -43,8 +45,14 @@ export function EmpresarioForm({
     setStep((current) => current + 1);
   }
 
+  function onSubmit(event: React.FormEvent<HTMLFormElement>) {
+    if (terms) return;
+    event.preventDefault();
+    setIssue(serverIssue("terminos"));
+  }
+
   return (
-    <form action={completeEmpresarioAction} className="grid gap-5">
+    <form action={completeEmpresarioAction} onSubmit={onSubmit} className="grid gap-5">
       <ConfidentialityNote />
       <p className="text-small font-semibold text-ink">
         Paso {step + 1} de 3 · {titles[step]}
@@ -59,6 +67,7 @@ export function EmpresarioForm({
       </div>
       <div className={step === 2 ? "grid gap-4" : "hidden"}>
         <EmpresarioStepReferral values={values} onChange={patch} />
+        <TermsAccept checked={terms} onChange={setTerms} />
       </div>
       {notice ? <p className="text-small text-mark">{notice}</p> : null}
       <div className="flex flex-wrap gap-3">

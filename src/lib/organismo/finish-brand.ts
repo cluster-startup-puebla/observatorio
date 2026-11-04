@@ -13,6 +13,7 @@ import { clearOrgIntent } from "./signup-intent";
 import { orgSlug, slugError } from "./slug";
 
 export async function finishOrganismoBrand(formData: FormData) {
+  if (formData.get("terminos") !== "si") redirect("/onboarding?error=terminos");
   const name = String(formData.get("nombre") ?? "").trim();
   const color = String(formData.get("color") ?? "").trim();
   const logo = await readLogoFile(formData.get("logo"));
@@ -28,6 +29,8 @@ export async function finishOrganismoBrand(formData: FormData) {
   const orgId = crypto.randomUUID();
   const logoPath = logoObjectPath(orgId, logo.contentType);
   const db = createSupabaseWithAccess(token);
+  const consent = await db.rpc("record_privacy_consent");
+  if (consent.error) redirect("/onboarding?error=terminos");
 
   const finished = await db.rpc("finish_organization_brand", {
     org_id: orgId,

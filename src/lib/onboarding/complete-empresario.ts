@@ -76,7 +76,12 @@ export async function completeEmpresarioAction(formData: FormData) {
     show: formData.get("showLogo") === "1",
     hasFile: file instanceof File && file.size > 0,
   });
-  const reason = decision.action === "reject" ? "logo" : empresarioErrors(profile) ?? (!supabase && !id ? "cuenta" : null);
+  const reason =
+    decision.action === "reject"
+      ? "logo"
+      : empresarioErrors(profile) ??
+        (formData.get("terminos") === "si" ? null : "terminos") ??
+        (!supabase && !id ? "cuenta" : null);
   if (reason) back(reason, profile, token);
   if (supabase) await finishInSupabase(profile, token, formData);
   else await finishInMemory(id, profile, token);

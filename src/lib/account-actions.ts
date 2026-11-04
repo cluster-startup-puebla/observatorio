@@ -44,6 +44,7 @@ export async function createAccountAction(
 }
 
 export async function completeOrganismoAction(formData: FormData) {
+  if (formData.get("terminos") !== "si") redirect("/onboarding?error=terminos");
   if (usesSupabaseAuth()) return finishOrganismoBrand(formData);
 
   const id = String(formData.get("accountId") ?? "");

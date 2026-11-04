@@ -1,4 +1,5 @@
 import { ConfidentialityNote } from "@/components/onboarding/confidentiality-note";
+import { TermsAccept } from "@/components/onboarding/terms-accept";
 import { OrgNameSlug } from "@/components/onboarding/org-name-slug";
 import { ColorField } from "@/components/admin/color-field";
 import { PendingSubmit } from "@/components/auth/pending-submit";
@@ -10,11 +11,13 @@ export function OrganismoOnboarding({
   missingSlug,
   missingLogo,
   brandError,
+  termsError,
 }: {
   accountId: string;
   missingSlug?: boolean;
   missingLogo?: boolean;
   brandError?: boolean;
+  termsError?: boolean;
 }) {
   return (
     <form action={completeOrganismoAction} className="grid gap-5">
@@ -37,6 +40,8 @@ export function OrganismoOnboarding({
       {brandError ? (
         <p className="text-small text-mark">No se pudo guardar la marca. Intenta de nuevo.</p>
       ) : null}
+      {termsError ? <p className="text-small text-mark">Acepta los términos y condiciones para continuar.</p> : null}
+      <TermsAccept />
       <PendingSubmit idle="Terminar perfil" pendingLabel="Terminando…" />
     </form>
   );
