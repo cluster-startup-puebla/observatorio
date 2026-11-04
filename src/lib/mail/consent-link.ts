@@ -1,14 +1,9 @@
 import { randomBytes } from "node:crypto";
 
 type ConsentDb = {
-  from(table: "innovation_consents"): {
-    select(columns: "token"): {
-      eq(column: "profile_id", value: string): {
-        maybeSingle(): Promise<{ data: { token: string } | null; error: { message: string } | null }>;
-      };
-    };
-    insert(row: { profile_id: string; token: string }): Promise<{ error: { message: string } | null }>;
-  };
+  // PostgrestBuilder is thenable. Typing it as Promise rejects SupabaseClient.
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  from(table: string): any;
 };
 
 export function newConsentToken() {
