@@ -13,6 +13,7 @@ describe("nav match", () => {
       ["/admin/metodologia/integral", "Contenido", "/admin/metodologia"],
       ["/admin/metodologia/abc", "Contenido", "/admin/metodologia"],
       ["/admin/correo/abc", "Operación", "/admin/correo"],
+      ["/admin/innovacion", "Operación", "/admin/innovacion"],
       ["/admin/mesa", "Operación", "/admin/mesa"],
       ["/admin/mesa/profile-1", "Operación", "/admin/mesa"],
       ["/admin", "Operación", "/admin"],

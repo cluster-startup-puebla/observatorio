@@ -4,6 +4,7 @@ export const adminLinks: AdminLink[] = [
   { href: "/admin", label: "Inicio", group: "Operación" },
   { href: "/admin/mesa", label: "Registro", group: "Operación" },
   { href: "/admin/correo", label: "Correo masivo", group: "Operación" },
+  { href: "/admin/innovacion", label: "Innovación abierta", group: "Operación" },
   { href: "/admin/bandeja", label: "Bandeja", group: "Operación" },
   { href: "/admin/cuentas", label: "Cuentas", group: "Directorio" },
   { href: "/admin/organismos", label: "Organismos", group: "Directorio" },
