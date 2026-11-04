@@ -3,7 +3,8 @@ import "server-only";
 import type { SupabaseClient } from "@supabase/supabase-js";
 import { Resend } from "resend";
 import type { BroadcastKind } from "./broadcast-audience";
-import { paintMail } from "./paint-mail";
+import type { PassAttachment } from "./pass-qr";
+import { paintPending } from "./paint-pending";
 import { resendPayload } from "./post-mail";
 
 export type PendingMail = {
@@ -28,7 +29,7 @@ export async function deliverPending(db: SupabaseClient, rows: PendingMail[], co
   }
   let sent = 0;
   for (const row of rows) {
-    const painted = await paintRow(row, context);
+    const painted = await paintPending(db, row, context);
     if ("error" in painted) {
       await mark(db, row.id, painted.error);
       continue;
@@ -51,26 +52,12 @@ export async function deliverPending(db: SupabaseClient, rows: PendingMail[], co
   return { sent };
 }
 
-async function paintRow(row: PendingMail, context: MailContext) {
-  try {
-    return await paintMail({
-      kind: row.kind,
-      profileId: row.profile_id,
-      sessionLabel: context.sessionLabel,
-      continueHref: context.continueHref,
-      acceptHref: null,
-    });
-  } catch (error) {
-    return { error: error instanceof Error ? error.message : "sin cuerpo" };
-  }
-}
-
 async function post(
   key: string,
   from: string,
   row: PendingMail,
   html: string,
-  attachments: Awaited<ReturnType<typeof paintMail>>["attachments"],
+  attachments: PassAttachment[],
 ) {
   const sent = await new Resend(key).emails.send(
     resendPayload({ from, to: row.to_email, subject: row.subject, html, attachments }),
