@@ -13,12 +13,22 @@ export type SignInResult =
   | { ok: true; session: Session; role: AccountRole }
   | { ok: false; reason: "credenciales" | "rol" | "confirmar" };
 
+async function openConfirmedLogin(email: string, password: string) {
+  if (process.env.AUTH_NEED_CONFIRM === "1") return false;
+  const opened = await createSupabaseAnon().rpc("confirm_login_email", {
+    account_email: email,
+    account_password: password,
+  });
+  return opened.data === true;
+}
+
 export async function signInWithPassword(email: string, password: string): Promise<SignInResult> {
   const normalized = email.trim().toLowerCase();
-  const logged = await createSupabaseAnon().auth.signInWithPassword({
-    email: normalized,
-    password,
-  });
+  let logged = await createSupabaseAnon().auth.signInWithPassword({ email: normalized, password });
+  const pending = (logged.error?.message ?? "").toLowerCase().includes("not confirmed");
+  if (pending && (await openConfirmedLogin(normalized, password))) {
+    logged = await createSupabaseAnon().auth.signInWithPassword({ email: normalized, password });
+  }
   if (logged.error || !logged.data.session || !logged.data.user) {
     const message = logged.error?.message.toLowerCase() ?? "";
     if (message.includes("not confirmed")) return { ok: false, reason: "confirmar" };

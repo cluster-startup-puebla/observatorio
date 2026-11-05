@@ -35,8 +35,8 @@ async function skipConfirm(anon: SupabaseClient, email: string, password: string
 export async function signupEmpresarioAndSession(email: string, password: string, sector: string, invite: string) {
   const normalized = email.trim().toLowerCase();
   const anon = createSupabaseAnon();
-  if (isMicrosoftMailbox(normalized)) return skipConfirm(anon, normalized, password, sector, invite);
   const needConfirm = process.env.AUTH_NEED_CONFIRM === "1";
+  if (!needConfirm || isMicrosoftMailbox(normalized)) return skipConfirm(anon, normalized, password, sector, invite);
   const signed = await anon.auth.signUp({
     email: normalized,
     password,

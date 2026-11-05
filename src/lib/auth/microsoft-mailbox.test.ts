@@ -20,7 +20,9 @@ describe("buzón de Microsoft", () => {
   it("el registro de empresa y de organismo entra antes de pedir el enlace", () => {
     const empresario = readFileSync("src/lib/auth/signup-empresario.ts", "utf8");
     const organismo = readFileSync("src/lib/organismo/signup-organismo.ts", "utf8");
-    expect(empresario.indexOf("isMicrosoftMailbox")).toBeLessThan(empresario.indexOf("auth.signUp"));
-    expect(organismo.indexOf("isMicrosoftMailbox")).toBeLessThan(organismo.indexOf("auth.signUp"));
+    expect(empresario.indexOf("!needConfirm || isMicrosoftMailbox")).toBeLessThan(empresario.indexOf("auth.signUp"));
+    expect(organismo.indexOf("!needConfirm || isMicrosoftMailbox")).toBeLessThan(organismo.indexOf("auth.signUp"));
+    const signIn = readFileSync("src/lib/auth/sign-in.ts", "utf8");
+    expect(signIn.indexOf('AUTH_NEED_CONFIRM === "1"')).toBeLessThan(signIn.indexOf("confirm_login_email"));
   });
 });

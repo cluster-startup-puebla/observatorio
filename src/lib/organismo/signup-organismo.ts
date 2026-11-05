@@ -21,8 +21,8 @@ async function sessionOrCode(session: Session, sector: string) {
 export async function signupOrganismoAndSession(email: string, password: string, sector: string) {
   const normalized = email.trim().toLowerCase();
   const anon = createSupabaseAnon();
-  if (isMicrosoftMailbox(normalized)) return signupSkippingConfirm(anon, normalized, password, sector);
   const needConfirm = process.env.AUTH_NEED_CONFIRM === "1";
+  if (!needConfirm || isMicrosoftMailbox(normalized)) return signupSkippingConfirm(anon, normalized, password, sector);
   const signed = await anon.auth.signUp({
     email: normalized,
     password,
