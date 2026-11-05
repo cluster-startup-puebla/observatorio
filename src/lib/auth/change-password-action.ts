@@ -31,6 +31,7 @@ export async function changePasswordAction(formData: FormData) {
   });
   const updated = ready.error ? { error: ready.error } : await client.auth.updateUser({ password: next });
   if (updated.error || !ready.data.session) redirect(`${back}?error=guardar`);
-  await writeSupabaseSession(ready.data.session);
+  const latest = await client.auth.getSession();
+  await writeSupabaseSession(latest.data.session ?? ready.data.session);
   redirect(`${back}?listo=1`);
 }

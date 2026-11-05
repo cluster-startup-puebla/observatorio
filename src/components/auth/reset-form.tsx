@@ -1,61 +1,53 @@
 "use client";
 
-import { useState } from "react";
+import { useActionState, useEffect, useState } from "react";
+import { Alert, AlertDescription } from "@/components/ui/alert";
 import { PasswordInput } from "@/components/auth/password-input";
 import { Field } from "@/components/landing/molecules/field";
+import { saveResetPassword, type ResetSaveState } from "@/lib/auth/save-reset-password";
+import { recoveryHash } from "@/lib/auth/recovery-link";
 
-type Errors = {
-  password?: string;
-  confirm?: string;
-};
+const empty: ResetSaveState = null;
 
 export function ResetForm() {
-  const [password, setPassword] = useState("");
-  const [confirm, setConfirm] = useState("");
-  const [errors, setErrors] = useState<Errors>({});
-  const [sent, setSent] = useState(false);
+  const [tokens, setTokens] = useState<{ access: string; refresh: string } | null>(null);
+  const [ready, setReady] = useState(false);
+  const [state, action, pending] = useActionState(saveResetPassword, empty);
 
-  function onSubmit(event: React.FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-    const nextErrors: Errors = {};
-    if (password.length < 8) nextErrors.password = "La contraseña necesita al menos 8 caracteres.";
-    if (confirm.length < 8) nextErrors.confirm = "La contraseña necesita al menos 8 caracteres.";
-    else if (password !== confirm) nextErrors.confirm = "Las contraseñas no coinciden.";
-    setErrors(nextErrors);
-    if (Object.keys(nextErrors).length === 0) setSent(true);
-  }
+  useEffect(() => {
+    const found = recoveryHash(window.location.hash);
+    if (found) {
+      setTokens(found);
+      window.history.replaceState(null, "", window.location.pathname);
+    }
+    setReady(true);
+  }, []);
 
-  if (sent) {
-    return <p className="text-body text-ink">Contraseña actualizada.</p>;
+  if (!ready) return null;
+  if (!tokens) {
+    return (
+      <Alert variant="destructive">
+        <AlertDescription>El enlace no es válido o ya venció. Pide otro desde recuperar contraseña.</AlertDescription>
+      </Alert>
+    );
   }
 
   return (
-    <form onSubmit={onSubmit} noValidate className="grid gap-5">
-      <Field id="contrasena" label="Nueva contraseña" error={errors.password}>
-        <PasswordInput
-          id="contrasena"
-          name="contrasena"
-          label="nueva contraseña"
-          autoComplete="new-password"
-          value={password}
-          onChange={setPassword}
-          ariaInvalid={Boolean(errors.password)}
-          ariaDescribedBy={errors.password ? "contrasena-error" : undefined}
-        />
+    <form action={action} className="grid gap-5">
+      {state?.error ? (
+        <Alert variant="destructive">
+          <AlertDescription>{state.error}</AlertDescription>
+        </Alert>
+      ) : null}
+      <input type="hidden" name="access" value={tokens.access} />
+      <input type="hidden" name="refresh" value={tokens.refresh} />
+      <Field id="contrasena" label="Nueva contraseña">
+        <PasswordInput id="contrasena" name="contrasena" label="nueva contraseña" autoComplete="new-password" />
       </Field>
-      <Field id="confirmar" label="Confirmar contraseña" error={errors.confirm}>
-        <PasswordInput
-          id="confirmar"
-          name="confirmar"
-          label="confirmación"
-          autoComplete="new-password"
-          value={confirm}
-          onChange={setConfirm}
-          ariaInvalid={Boolean(errors.confirm)}
-          ariaDescribedBy={errors.confirm ? "confirmar-error" : undefined}
-        />
+      <Field id="confirmar" label="Confirmar contraseña">
+        <PasswordInput id="confirmar" name="confirmar" label="confirmación" autoComplete="new-password" />
       </Field>
-      <button type="submit" className="btn btn-primary">
+      <button type="submit" className="btn btn-primary" disabled={pending}>
         Guardar contraseña
       </button>
     </form>

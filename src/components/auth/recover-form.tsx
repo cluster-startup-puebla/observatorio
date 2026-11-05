@@ -1,49 +1,33 @@
 "use client";
 
-import { useState } from "react";
+import { useActionState } from "react";
+import { Alert, AlertDescription } from "@/components/ui/alert";
 import { controlClass, Field } from "@/components/landing/molecules/field";
+import { requestPasswordReset, type ResetRequestState } from "@/lib/auth/request-password-reset";
 
-const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const empty: ResetRequestState = null;
 
 export function RecoverForm() {
-  const [email, setEmail] = useState("");
-  const [error, setError] = useState("");
-  const [sent, setSent] = useState(false);
-
-  function onSubmit(event: React.FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-    if (!emailPattern.test(email.trim())) {
-      setError("Escribe un correo válido.");
-      return;
-    }
-    setError("");
-    setSent(true);
-  }
-
-  if (sent) {
+  const [state, action, pending] = useActionState(requestPasswordReset, empty);
+  if (state?.ok) {
     return (
       <p className="text-body text-ink-secondary">
-        Si ese correo está registrado, enviaremos un enlace para restablecer la contraseña.
+        Si ese correo está registrado, enviamos un enlace para restablecer la contraseña.
       </p>
     );
   }
 
   return (
-    <form onSubmit={onSubmit} noValidate className="grid gap-5">
-      <Field id="correo" label="Correo" error={error}>
-        <input
-          id="correo"
-          name="correo"
-          type="email"
-          autoComplete="email"
-          value={email}
-          onChange={(event) => setEmail(event.target.value)}
-          className={controlClass}
-          aria-invalid={Boolean(error)}
-          aria-describedby={error ? "correo-error" : undefined}
-        />
+    <form action={action} noValidate className="grid gap-5">
+      {state?.error ? (
+        <Alert variant="destructive">
+          <AlertDescription>{state.error}</AlertDescription>
+        </Alert>
+      ) : null}
+      <Field id="correo" label="Correo">
+        <input id="correo" name="correo" type="email" autoComplete="email" className={controlClass} />
       </Field>
-      <button type="submit" className="btn btn-primary">
+      <button type="submit" className="btn btn-primary" disabled={pending}>
         Enviar enlace
       </button>
     </form>
