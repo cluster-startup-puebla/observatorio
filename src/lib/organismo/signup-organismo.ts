@@ -2,6 +2,7 @@ import "server-only";
 
 import type { Session } from "@supabase/supabase-js";
 import { confirmEmailRedirect, unconfirmedSignup, verifyEmailPath } from "@/lib/auth/confirm-email";
+import { isMicrosoftMailbox } from "@/lib/auth/microsoft-mailbox";
 import { createSupabaseAnon, writeSupabaseSession } from "@/lib/supabase/auth-session";
 import { signupErrorCode } from "./signup-back";
 import { writeOrgIntent } from "./signup-intent";
@@ -20,6 +21,7 @@ async function sessionOrCode(session: Session, sector: string) {
 export async function signupOrganismoAndSession(email: string, password: string, sector: string) {
   const normalized = email.trim().toLowerCase();
   const anon = createSupabaseAnon();
+  if (isMicrosoftMailbox(normalized)) return signupSkippingConfirm(anon, normalized, password, sector);
   const needConfirm = process.env.AUTH_NEED_CONFIRM === "1";
   const signed = await anon.auth.signUp({
     email: normalized,

@@ -3,6 +3,7 @@ import "server-only";
 import type { SupabaseClient } from "@supabase/supabase-js";
 import { confirmEmailRedirect, unconfirmedSignup, verifyEmailPath } from "@/lib/auth/confirm-email";
 import { inviteMetadata } from "@/lib/auth/invite-carry";
+import { isMicrosoftMailbox } from "@/lib/auth/microsoft-mailbox";
 import { sendOwnMail } from "@/lib/mail/send-own";
 import { signupErrorCode } from "@/lib/organismo/signup-back";
 import { createSupabaseAnon, writeSupabaseSession } from "@/lib/supabase/auth-session";
@@ -26,6 +27,7 @@ async function skipConfirm(anon: SupabaseClient, email: string, password: string
     return { error: logged.error ? signupErrorCode(logged.error.message) : "confirmar" };
   }
   await writeSupabaseSession(logged.data.session);
+  await anon.auth.updateUser({ data: inviteMetadata(sector, invite) });
   await sendOwnMail(logged.data.session.access_token, "welcome");
   return { next: nextPath(sector, invite) };
 }
@@ -33,6 +35,7 @@ async function skipConfirm(anon: SupabaseClient, email: string, password: string
 export async function signupEmpresarioAndSession(email: string, password: string, sector: string, invite: string) {
   const normalized = email.trim().toLowerCase();
   const anon = createSupabaseAnon();
+  if (isMicrosoftMailbox(normalized)) return skipConfirm(anon, normalized, password, sector, invite);
   const needConfirm = process.env.AUTH_NEED_CONFIRM === "1";
   const signed = await anon.auth.signUp({
     email: normalized,

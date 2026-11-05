@@ -22,6 +22,7 @@ export async function signupSkippingConfirm(
     return { error: logged.error ? signupErrorCode(logged.error.message) : "confirmar" };
   }
   await writeSupabaseSession(logged.data.session);
+  await anon.auth.updateUser({ data: { intent: "organismo" } });
   await writeOrgIntent();
   return { next: sector ? `/onboarding?sector=${encodeURIComponent(sector)}` : "/onboarding" };
 }
