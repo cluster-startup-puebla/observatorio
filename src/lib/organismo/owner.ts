@@ -4,8 +4,15 @@ import { readSessionAccount } from "@/lib/auth/session-account";
 import { getDirectory } from "@/lib/memory-directory";
 import { memoryStore } from "@/lib/memory/store";
 import { createSupabaseAnon, usesSupabaseAuth } from "@/lib/supabase/auth-session";
+import { orgSlug } from "./slug";
 
-export type OrgOwner = { id: string; slug: string; name: string; email: string };
+export type OrgOwner = {
+  id: string;
+  slug: string;
+  name: string;
+  email: string;
+  brandColor?: string;
+};
 
 export async function ownerBySlug(slug: string): Promise<OrgOwner | null> {
   if (usesSupabaseAuth()) return ownerFromSupabase(slug);
@@ -13,7 +20,22 @@ export async function ownerBySlug(slug: string): Promise<OrgOwner | null> {
   if (!person?.orgSlug || !person.name) return null;
   const account = await getDirectory().getAccount(person.id);
   if (!account) return null;
-  return { id: person.id, slug: person.orgSlug, name: person.name, email: account.email };
+  return {
+    id: person.id,
+    slug: person.orgSlug,
+    name: person.name,
+    email: account.email,
+    brandColor: memoryBrandColor(person.orgSlug),
+  };
+}
+
+function memoryBrandColor(slug: string) {
+  const org = memoryStore().organizations?.find((item) => {
+    if (!item.brand_completed_at || !item.brand_color || !item.name) return false;
+    return orgSlug(item.name, "") === slug;
+  });
+  const color = org?.brand_color?.trim() ?? "";
+  return color || undefined;
 }
 
 async function ownerFromSupabase(slug: string): Promise<OrgOwner | null> {
@@ -21,5 +43,12 @@ async function ownerFromSupabase(slug: string): Promise<OrgOwner | null> {
   const row = Array.isArray(result.data) ? result.data[0] : result.data;
   if (result.error || !row?.id || !row.name || !row.slug) return null;
   const account = await readSessionAccount();
-  return { id: row.id, slug: row.slug, name: row.name, email: account?.email ?? "" };
+  const brandColor = typeof row.brand_color === "string" ? row.brand_color.trim() : "";
+  return {
+    id: row.id,
+    slug: row.slug,
+    name: row.name,
+    email: account?.email ?? "",
+    brandColor: brandColor || undefined,
+  };
 }

@@ -1,7 +1,10 @@
 "use client";
 
 import { AppSidebar } from "@/components/app-sidebar";
+import type { MonochromeInk } from "@/components/app-sidebar-mark";
 import { orgGroups } from "@/lib/organismo/nav";
+import { OrgBrandSheet } from "@/components/organismo/brand-sheet";
+import { sidebarBrandStyle } from "@/lib/organismo/brand-color";
 import { SidebarInset, SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { TooltipProvider } from "@/components/ui/tooltip";
 
@@ -10,23 +13,31 @@ export function OrgShell({
   name,
   email,
   logoSrc,
+  brandColor,
+  monochromeInk,
   children,
 }: {
   slug: string;
   name: string;
   email: string;
   logoSrc?: string;
+  brandColor?: string;
+  monochromeInk?: MonochromeInk;
   children: React.ReactNode;
 }) {
+  const brandStyle = sidebarBrandStyle(brandColor);
   return (
     <TooltipProvider>
-      <SidebarProvider className="h-dvh min-h-0 overflow-hidden">
+      <OrgBrandSheet style={brandStyle} />
+      <SidebarProvider style={brandStyle} className="h-dvh min-h-0 overflow-hidden">
         <AppSidebar
           email={email}
           groups={orgGroups(slug)}
           title={name}
           subtitle="Organismo"
           logoSrc={logoSrc}
+          brandColor={brandColor}
+          monochromeInk={monochromeInk}
         />
         <SidebarInset className="min-h-0 overflow-hidden">
           <header className="flex h-12 shrink-0 items-center gap-2 border-b px-3">
