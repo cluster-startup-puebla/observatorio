@@ -3,7 +3,7 @@ function mark(file: string, alt: string, width: number, height: number) {
 }
 
 export const conveners = [
-  mark("cluster-agroalimentario-puebla", "Clúster Agroalimentario de Puebla", 339, 368),
+  mark("cluster-agroalimentario-puebla", "Clúster Agronomía y Alimentos", 339, 368),
   mark("cluster-plasticos-economia-circular", "Clúster Plásticos y Economía Circular", 600, 348),
   mark("clauz-cluster-automotriz-zona-centro", "CLAUZ Clúster Automotriz Zona Centro", 600, 203),
   mark("vive-puebla-cluster-industria-reuniones", "Vive Puebla, Clúster de la Industria de Reuniones", 600, 201),

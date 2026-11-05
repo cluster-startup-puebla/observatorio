@@ -106,7 +106,7 @@ export const backers = {
     "CANACINTRA",
     "COPARMEX",
     "AMMJE",
-    "Clúster Agroindustria y Alimentos",
+    "Clúster Agronomía y Alimentos",
     "Clúster Plásticos y Economía Circular",
     "Clúster Energético",
   ],
@@ -155,7 +155,7 @@ export const partners = [
   },
   {
     src: "/logos/logo-cluster-agro.png",
-    alt: "Clúster Agroindustria y Alimentos",
+    alt: "Clúster Agronomía y Alimentos",
     width: 324,
     height: 352,
     className: "h-16 w-auto sm:h-20",
