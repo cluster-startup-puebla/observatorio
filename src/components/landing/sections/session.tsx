@@ -52,10 +52,7 @@ export function Session() {
         {program.map((item) => (
           <li key={item.time} className="grid gap-2 border-b border-line py-6 sm:grid-cols-[8.5rem_1fr] sm:gap-8">
             <p className="text-small font-semibold text-ink">{item.time}</p>
-            <div>
-              <h3 className="text-h4 text-ink">{item.name}</h3>
-              {item.who ? <p className="text-small mt-2 text-ink-secondary">{item.who}</p> : null}
-            </div>
+            <h3 className="text-h4 text-ink">{item.name}</h3>
           </li>
         ))}
       </ol>

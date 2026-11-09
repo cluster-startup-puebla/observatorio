@@ -16,7 +16,7 @@ export const pains = [
 export const steps = [
   {
     name: "Levanta",
-    detail: "Cuatro horas, en persona, con tu sector. Cuentas lo que de verdad te frena.",
+    detail: "De 8:30 a 11:00, en persona, con tu sector. Cuentas lo que de verdad te frena.",
   },
   {
     name: "Analiza",
@@ -93,7 +93,7 @@ export const benefits = [
 export const sessionFacts = [
   { label: "Dónde", value: "Hotel Quinta Real, Puebla" },
   { label: "Formato", value: "Desayuno ejecutivo" },
-  { label: "Horario", value: "8:00 am – 11:45 am" },
+  { label: "Horario", value: "8:30 am – 11:00 am" },
   { label: "Quién asiste", value: "Dueños, directores generales o directores de operaciones" },
   { label: "Grupo", value: "Unos 120 empresarios y directivos, de 13 sectores" },
   { label: "Incluye", value: "Desayuno durante la ponencia" },
@@ -207,7 +207,7 @@ export const faqs = [
   },
   {
     question: "¿Cuánto dura?",
-    answer: "Cuatro horas, con desayuno.",
+    answer: "De 8:30 a 11:00, con desayuno.",
   },
   {
     question: "¿Soy muy pequeño o muy grande para participar?",

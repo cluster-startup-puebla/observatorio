@@ -25,9 +25,8 @@ export const speakers: Speaker[] = [
     name: "Fausto López Aguilar",
     position: "Gerente de Tratados Internacionales · Vicepresidente COMCE Sur",
     company: "Volkswagen de México / COMCE Sur",
-    slot: "Panelista · 09:10–09:55",
-    topic:
-      "Panel «De la necesidad a la adopción»: T-MEC, reglas de origen, trazabilidad, digitalización aduanera",
+    slot: "Ponente · 10:30–10:50",
+    topic: "Ventajas de adopción tecnológica para la industria poblana ante el T-MEC",
     photo: photo("fausto-lopez-aguilar"),
     confirmed: true,
   },

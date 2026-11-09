@@ -5,6 +5,7 @@ import { ChevronDown } from "lucide-react";
 import { useComboboxDismiss } from "@/components/admin/use-combobox-dismiss";
 import { SourceLogo } from "@/components/landing/molecules/source-logo";
 import { SourceMenu } from "@/components/landing/molecules/source-menu";
+import { automotrizSource } from "@/content/automotriz-source";
 import { clusterLogo, partners } from "@/content/landing";
 import { controlClass } from "@/components/landing/molecules/field";
 
@@ -22,7 +23,7 @@ export function SourceCombobox({
   const [open, setOpen] = useState(false);
   const rootRef = useRef<HTMLDivElement>(null);
   const listId = useId();
-  const sources = [...partners, clusterLogo];
+  const sources = [...partners, automotrizSource, clusterLogo];
   const selected = sources.find((partner) => partner.alt === value);
   useComboboxDismiss(rootRef, setOpen);
 

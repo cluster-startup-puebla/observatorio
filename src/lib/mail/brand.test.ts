@@ -12,7 +12,7 @@ describe("marca del correo", () => {
     expect(publicFacts(null)).toEqual([
       { label: "Fecha", value: "Miércoles 18 de noviembre de 2026" },
       { label: "Dónde", value: "Hotel Quinta Real, Puebla" },
-      { label: "Horario", value: "8:00 am – 11:45 am" },
+      { label: "Horario", value: "8:30 am – 11:00 am" },
     ]);
   });
 

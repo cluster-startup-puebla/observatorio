@@ -1,31 +1,10 @@
 export const program = [
-  { time: "08:00–08:20", name: "Registro y desayuno" },
-  { time: "08:20–08:40", name: "Palabras de apertura" },
-  {
-    time: "08:40–09:10",
-    name: "Keynote de apertura",
-    who: "Por confirmar",
-  },
-  {
-    time: "09:10–09:55",
-    name: "Panel «De la necesidad a la adopción»",
-    who: "Fausto López (Volkswagen de México). Los demás panelistas, por confirmar.",
-  },
-  { time: "09:55–10:05", name: "Encuadre del ejercicio", who: "Por confirmar" },
-  {
-    time: "10:05–10:45",
-    name: "Ejercicio sectorial (13 mesas)",
-    who: "Facilitadores por confirmar",
-  },
-  {
-    time: "10:45–11:05",
-    name: "Caso de éxito e innovación abierta",
-    who: "Ponente por confirmar",
-  },
-  {
-    time: "11:05–11:35",
-    name: "Keynote de cierre",
-    who: "Por confirmar",
-  },
-  { time: "11:35–11:45", name: "Conclusiones y cierre", who: "Por confirmar" },
+  { time: "08:30–09:00", name: "Registro" },
+  { time: "09:00–09:15", name: "Apertura y presídium" },
+  { time: "09:15–09:25", name: "Estrategia estatal de vinculación industrial con innovación" },
+  { time: "09:25–09:35", name: "Encuadre de ejercicio" },
+  { time: "09:35–10:15", name: "Aplicación de la metodología" },
+  { time: "10:15–10:30", name: "Caso de éxito e invitación a innovación abierta" },
+  { time: "10:30–10:50", name: "Ventajas de adopción tecnológica para la industria poblana ante el T-MEC" },
+  { time: "10:50–11:00", name: "Cierre y conclusiones" },
 ];
