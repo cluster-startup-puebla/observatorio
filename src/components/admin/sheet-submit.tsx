@@ -1,22 +1,27 @@
 "use client";
 
 import { Loader2 } from "lucide-react";
-import { useState } from "react";
+import { useState, type CSSProperties } from "react";
 
 export function SheetSubmit({
   children,
   disabled,
   pendingLabel = "Guardando…",
+  className,
+  style,
 }: {
   children: string;
   disabled?: boolean;
   pendingLabel?: string;
+  className?: string;
+  style?: CSSProperties;
 }) {
   const [pending, setPending] = useState(false);
   const locked = Boolean(disabled || pending);
   return (
     <button
-      className={`btn btn-primary${locked ? " pointer-events-none opacity-70" : ""}`}
+      className={`btn btn-primary${locked ? " pointer-events-none opacity-70" : ""}${className ? ` ${className}` : ""}`}
+      style={style}
       type="submit"
       aria-busy={pending}
       aria-disabled={locked}

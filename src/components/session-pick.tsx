@@ -1,9 +1,13 @@
+import type { CSSProperties } from "react";
+
 export function SessionPick({
   sessions,
   className,
+  selectStyle,
 }: {
   sessions: { id: string; label: string }[];
   className?: string;
+  selectStyle?: CSSProperties;
 }) {
   if (sessions.length === 0) return null;
   const only = sessions.length === 1 ? sessions[0].id : "";
@@ -15,6 +19,7 @@ export function SessionPick({
         required
         defaultValue={only}
         className={className ?? "min-w-48 rounded-lg border border-line bg-elevated px-3 py-2 text-ink"}
+        style={selectStyle}
       >
         {only ? null : <option value="">Elige una sesión</option>}
         {sessions.map((session) => (

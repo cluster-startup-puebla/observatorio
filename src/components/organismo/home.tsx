@@ -39,7 +39,7 @@ export async function OrgHome({
         <h1 className="text-h1 text-ink">{name}</h1>
         <p className="text-body text-ink-secondary">Panel de {slug}</p>
       </header>
-      <CopyLink url={url} sector={sector} failed={failed} ready={ready} sessions={sessions} />
+      <CopyLink url={url} sector={sector} failed={failed} ready={ready} sessions={sessions} brandColor={brandColor} />
       {chosen ? <SectorPaceBar slug={chosen.slug} name={chosen.name} /> : null}
       <LinkCards opens={stats.opens} conversions={stats.conversions} rate={stats.rate} />
       <SectorCuts orgSlug={slug} cuts={stats.cuts} active={chosen?.slug} />

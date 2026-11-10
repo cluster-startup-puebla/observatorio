@@ -4,7 +4,18 @@ import { LinkReady } from "@/components/organismo/link-ready";
 import { SessionPick } from "@/components/session-pick";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { copyEventLinkAction } from "@/lib/organismo/copy-link-action";
+import { sidebarInk } from "@/lib/organismo/brand-color";
 import { sectors } from "@/lib/sectors";
+
+const chevron =
+  "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%234b5563' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E\")";
+
+const control =
+  "h-9 appearance-none rounded-md border border-line bg-elevated bg-[length:1rem] bg-[position:right_0.75rem_center] bg-no-repeat pr-9 pl-3 text-small text-ink";
+
+const chevronStyle = {
+  backgroundImage: chevron,
+};
 
 export function CopyLink({
   url,
@@ -12,31 +23,29 @@ export function CopyLink({
   failed,
   ready,
   sessions = [],
+  brandColor,
 }: {
   url?: string;
   sector?: string;
   failed?: boolean;
   ready?: boolean;
   sessions?: { id: string; label: string }[];
+  brandColor?: string;
 }) {
   const selected = sector && sectors.some((item) => item.slug === sector) ? sector : "turismo";
+  const tone = sidebarInk(brandColor);
 
   return (
-    <section className="grid max-w-3xl gap-4">
+    <section className="grid gap-4">
       {failed ? (
         <Alert variant="destructive">
           <AlertDescription>No se pudo generar el enlace. Intenta de nuevo.</AlertDescription>
         </Alert>
       ) : null}
       <form action={copyEventLinkAction} className="flex flex-wrap items-end gap-3">
-        <label className="grid gap-1 text-small text-ink-secondary">
+        <label className="grid w-56 max-w-full gap-1 text-small text-ink-secondary">
           Sector
-          <select
-            name="sector"
-            key={selected}
-            defaultValue={selected}
-            className="min-w-48 rounded-lg border border-line bg-elevated px-3 py-2 text-ink"
-          >
+          <select name="sector" key={selected} defaultValue={selected} className={`${control} w-full`} style={chevronStyle}>
             {sectors.map((item) => (
               <option key={item.slug} value={item.slug}>
                 {item.name}
@@ -44,8 +53,14 @@ export function CopyLink({
             ))}
           </select>
         </label>
-        <SessionPick sessions={sessions} />
-        <SheetSubmit pendingLabel="Generando…">Generar enlace</SheetSubmit>
+        <SessionPick sessions={sessions} className={`${control} w-72 max-w-full`} selectStyle={chevronStyle} />
+        <SheetSubmit
+          pendingLabel="Generando…"
+          className="h-9 rounded-md px-4 py-0 text-small shadow-none hover:brightness-95"
+          style={{ background: tone.background, color: tone.ink }}
+        >
+          Generar enlace
+        </SheetSubmit>
       </form>
       {ready && url ? <LinkReady url={url} /> : null}
       {url ? (
