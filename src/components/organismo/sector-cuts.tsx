@@ -34,6 +34,7 @@ export function SectorCuts({
               <th className="px-4 py-3 font-medium">Tasa</th>
               <th className="px-4 py-3 font-medium">Lugares</th>
               <th className="px-4 py-3 font-medium">Confirmados</th>
+              <th className="px-4 py-3 font-medium">Disponibles</th>
             </tr>
           </thead>
           <tbody>
@@ -49,6 +50,7 @@ export function SectorCuts({
                 <td className="border-t border-line px-4 py-3 tabular-nums text-ink">{cut.rate}%</td>
                 <td className="border-t border-line px-4 py-3 tabular-nums text-ink">{lugares(seats[cut.slug])}</td>
                 <td className="border-t border-line px-4 py-3 tabular-nums text-ink">{confirmados(seats[cut.slug])}</td>
+                <td className="border-t border-line px-4 py-3 tabular-nums text-ink">{disponibles(seats[cut.slug])}</td>
               </tr>
             ))}
           </tbody>
@@ -67,4 +69,9 @@ function lugares(seat: SectorSeat | null | undefined) {
 function confirmados(seat: SectorSeat | null | undefined) {
   if (!seat) return "—";
   return String(seat.filled);
+}
+
+function disponibles(seat: SectorSeat | null | undefined) {
+  if (!seat || seat.capacity === null) return "—";
+  return String(Math.max(seat.capacity - seat.filled, 0));
 }
