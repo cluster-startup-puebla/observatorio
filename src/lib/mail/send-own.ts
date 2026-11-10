@@ -3,6 +3,7 @@ import "server-only";
 import { Resend } from "resend";
 import { createSupabaseWithAccess } from "@/lib/supabase/auth-session";
 import { continueHref } from "./continue-href";
+import { mailFrom } from "./mail-from";
 import { paintMail } from "./paint-mail";
 import { resendPayload } from "./post-mail";
 
@@ -36,7 +37,7 @@ export async function sendOwnMail(accessToken: string, kind: OwnKind) {
     const row = ownRow((enqueued.data ?? null) as OwnRow | OwnRow[] | null);
     if (enqueued.error || !row || row.already_sent) return;
     const key = process.env.RESEND_API_KEY;
-    const from = process.env.MAIL_FROM;
+    const from = mailFrom(process.env.MAIL_FROM);
     if (!key || !from) {
       await record(db, row.id, null, missing, null);
       return;

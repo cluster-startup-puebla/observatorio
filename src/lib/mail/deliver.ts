@@ -3,6 +3,7 @@ import "server-only";
 import type { SupabaseClient } from "@supabase/supabase-js";
 import { Resend } from "resend";
 import type { BroadcastKind } from "./broadcast-audience";
+import { mailFrom } from "./mail-from";
 import type { PassAttachment } from "./pass-qr";
 import { paintPending } from "./paint-pending";
 import { resendPayload } from "./post-mail";
@@ -22,7 +23,7 @@ type MailContext = { sessionLabel: string | null; continueHref: string | null };
 export async function deliverPending(db: SupabaseClient, rows: PendingMail[], context: MailContext) {
   if (!rows.length) return { sent: 0 };
   const key = process.env.RESEND_API_KEY;
-  const from = process.env.MAIL_FROM;
+  const from = mailFrom(process.env.MAIL_FROM);
   if (!key || !from) {
     for (const row of rows) await mark(db, row.id, missing);
     return { sent: 0, warning: "Los correos quedaron en la bandeja. Falta RESEND_API_KEY o MAIL_FROM." };
