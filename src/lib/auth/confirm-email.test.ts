@@ -1,6 +1,12 @@
 import { describe, expect, it } from "vitest";
 import { signupErrorCode } from "@/lib/organismo/signup-back";
-import { confirmEmailRedirect, resendConfirmationResult, unconfirmedSignup, verifyEmailPath } from "./confirm-email";
+import {
+  confirmEmailRedirect,
+  matchingUserConfirmed,
+  resendConfirmationResult,
+  unconfirmedSignup,
+  verifyEmailPath,
+} from "./confirm-email";
 
 describe("confirmación de correo", () => {
   it("reconoce el rechazo de supabase", () => {
@@ -24,6 +30,16 @@ describe("confirmación de correo", () => {
     expect(unconfirmedSignup({ needConfirm: true, signInError: null, gotSession: false })).toBe("verificar");
     expect(unconfirmedSignup({ needConfirm: false, signInError: "invalid", gotSession: false })).toBe("auth");
     expect(unconfirmedSignup({ needConfirm: false, signInError: null, gotSession: true })).toBe("session");
+  });
+
+  it("solo el correo ya confirmado sale de la pantalla de reenvío", () => {
+    const users = [
+      { email: "Ana@Empresa.mx", email_confirmed_at: "2026-11-04T18:04:22Z" },
+      { email: "pendiente@empresa.mx", email_confirmed_at: null },
+    ];
+    expect(matchingUserConfirmed(users, "ana@empresa.mx")).toBe(true);
+    expect(matchingUserConfirmed(users, "pendiente@empresa.mx")).toBe(false);
+    expect(matchingUserConfirmed(users, "otro@empresa.mx")).toBe(false);
   });
 
   it("el reenvío no revela si el correo existe", () => {

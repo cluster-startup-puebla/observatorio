@@ -25,3 +25,12 @@ export function resendConfirmationResult(errorMessage: string | null) {
   if (!errorMessage) return "ok" as const;
   return signupErrorCode(errorMessage) === "limite" ? ("limite" as const) : ("ok" as const);
 }
+
+export function matchingUserConfirmed(
+  users: { email?: string | null; email_confirmed_at?: string | null }[],
+  email: string,
+) {
+  const normalized = email.trim().toLowerCase();
+  const user = users.find((item) => item.email?.toLowerCase() === normalized);
+  return Boolean(user?.email_confirmed_at);
+}
