@@ -16,4 +16,5 @@ export const conveners = [
   mark("cmic-delegacion-puebla", "CMIC Delegación Puebla", 600, 116),
   mark("cnet-puebla", "CNET Puebla", 600, 266),
   mark("citex-puebla-tlaxcala", "CITEX Puebla-Tlaxcala", 600, 230),
+  mark("puebla-care", "Puebla Care", 1250, 417),
 ];

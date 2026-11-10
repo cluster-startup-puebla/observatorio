@@ -15,7 +15,8 @@ describe("pie de logos", () => {
     expect(html).toContain("https://observatorio.example/logos/logo-cinco-de-mayo.png");
     expect(html).toContain("https://observatorio.example/logos/convocantes/cluster-agroalimentario-puebla.webp");
     expect(html).toContain("https://observatorio.example/logos/convocantes/citex-puebla-tlaxcala.webp");
-    expect(html.match(/observatorio\.example\/logos\//g)?.length).toBe(17);
+    expect(html).toContain("https://observatorio.example/logos/convocantes/puebla-care.webp");
+    expect(html.match(/observatorio\.example\/logos\//g)?.length).toBe(18);
     expect(html).toContain("Opera");
     expect(html).toContain("Con el respaldo de");
     expect(html).toContain("Convocan");
