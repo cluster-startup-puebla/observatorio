@@ -25,6 +25,7 @@ export function AppSidebar({
   subtitle = "Superadmin",
   logoSrc,
   brandColor,
+  logout = "admin",
 }: {
   email: string;
   groups: { name: string; links: AdminLink[] }[];
@@ -32,6 +33,7 @@ export function AppSidebar({
   subtitle?: string;
   logoSrc?: string;
   brandColor?: string;
+  logout?: "home" | "admin";
 }) {
   const path = usePathname();
   const matchedName = openGroupName(path, groups);
@@ -59,7 +61,7 @@ export function AppSidebar({
         </SidebarMenu>
       </SidebarContent>
       <SidebarFooter>
-        <AppSidebarUser email={email || "Sin sesión"} title={subtitle} />
+        <AppSidebarUser email={email || "Sin sesión"} title={subtitle} door={logout} />
       </SidebarFooter>
       <SidebarRail />
     </Sidebar>

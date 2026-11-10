@@ -34,6 +34,7 @@ export function OrgShell({
           subtitle="Organismo"
           logoSrc={logoSrc}
           brandColor={brandColor}
+          logout="home"
         />
         <SidebarInset className="min-h-0 overflow-hidden">
           <header className="flex h-12 shrink-0 items-center gap-2 border-b px-3">
