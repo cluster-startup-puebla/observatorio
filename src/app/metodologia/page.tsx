@@ -5,8 +5,9 @@ import { ThemeToggle } from "@/components/site/theme-toggle";
 import { getDirectory, seedCompletedAnswers } from "@/lib/memory-directory";
 import { SECTIONS } from "@/lib/methodology/instrument";
 import { completedAnswerSeed } from "@/lib/methodology/seed";
-import { redirectIfEventClosed } from "@/lib/auth/current-event-open";
+import { prepareMetodologiaReload } from "@/lib/auth/metodologia-reload-gate";
 import { redirectUnfinishedEmpresario } from "@/lib/auth/onboarding-gate";
+import { MetodologiaReloadNotice } from "./reload-notice";
 import { answersFromStored, calculateIntegralResult } from "@/lib/methodology/score";
 
 export const instant = false;
@@ -23,7 +24,7 @@ export default async function MetodologiaPage({
   }>;
 }) {
   await redirectUnfinishedEmpresario();
-  await redirectIfEventClosed();
+  const showReloadNotice = await prepareMetodologiaReload();
   const params = await searchParams;
   const persona = params.persona?.trim() ?? "";
   const saveFailed = params.error === "guardar";
@@ -40,6 +41,7 @@ export default async function MetodologiaPage({
 
   return (
     <section className="container-site py-10 lg:py-14">
+      {showReloadNotice ? <MetodologiaReloadNotice /> : null}
       <div className="grid max-w-3xl gap-6">
         <div className="flex items-center justify-end gap-3">
           <ThemeToggle />
