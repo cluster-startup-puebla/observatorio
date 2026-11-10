@@ -4,7 +4,7 @@ import { useState } from "react";
 import { usePathname } from "next/navigation";
 import { AppSidebarGroup } from "@/components/app-sidebar-group";
 import { sidebarIcons } from "@/components/app-sidebar-icons";
-import { AppSidebarMark, type MonochromeInk } from "@/components/app-sidebar-mark";
+import { AppSidebarBrand } from "@/components/app-sidebar-brand";
 import { AppSidebarUser } from "@/components/app-sidebar-user";
 import type { AdminLink } from "@/components/admin/nav";
 import { openGroupName } from "@/components/admin/nav-match";
@@ -16,8 +16,6 @@ import {
   SidebarHeader,
   SidebarMenu,
   SidebarRail,
-  SidebarMenuButton,
-  SidebarMenuItem,
 } from "@/components/ui/sidebar";
 
 export function AppSidebar({
@@ -27,7 +25,6 @@ export function AppSidebar({
   subtitle = "Superadmin",
   logoSrc,
   brandColor,
-  monochromeInk,
 }: {
   email: string;
   groups: { name: string; links: AdminLink[] }[];
@@ -35,7 +32,6 @@ export function AppSidebar({
   subtitle?: string;
   logoSrc?: string;
   brandColor?: string;
-  monochromeInk?: MonochromeInk;
 }) {
   const path = usePathname();
   const matchedName = openGroupName(path, groups);
@@ -44,18 +40,8 @@ export function AppSidebar({
 
   return (
     <Sidebar variant="floating" collapsible="icon" style={sidebarBrandStyle(brandColor)}>
-      <SidebarHeader>
-        <SidebarMenu>
-          <SidebarMenuItem>
-            <SidebarMenuButton size="lg" tooltip={title} className="group-data-[collapsible=icon]:justify-center">
-              <AppSidebarMark logoSrc={logoSrc} title={title} monochromeInk={monochromeInk} />
-              <span className="grid min-w-0 flex-1 text-left text-sm leading-tight group-data-[collapsible=icon]:hidden">
-                <span className="truncate font-medium">{title}</span>
-                <span className="truncate text-xs text-sidebar-foreground/70">{subtitle}</span>
-              </span>
-            </SidebarMenuButton>
-          </SidebarMenuItem>
-        </SidebarMenu>
+      <SidebarHeader className="border-b border-sidebar-border px-3 pt-3 pb-3">
+        <AppSidebarBrand title={title} subtitle={subtitle} logoSrc={logoSrc} brandColor={brandColor} />
       </SidebarHeader>
       <SidebarContent>
         <SidebarMenu className="gap-1">
