@@ -1,14 +1,17 @@
 import Link from "next/link";
 import type { SectorCut } from "@/lib/organismo/sector-cuts";
+import type { SectorSeat } from "@/lib/organismo/load-sector-seats";
 
 export function SectorCuts({
   orgSlug,
   cuts,
   active,
+  seats = {},
 }: {
   orgSlug: string;
   cuts: SectorCut[];
   active?: string;
+  seats?: Record<string, SectorSeat | null>;
 }) {
   if (cuts.length === 0) return null;
   return (
@@ -29,6 +32,8 @@ export function SectorCuts({
               <th className="px-4 py-3 font-medium">Aperturas</th>
               <th className="px-4 py-3 font-medium">Conversiones</th>
               <th className="px-4 py-3 font-medium">Tasa</th>
+              <th className="px-4 py-3 font-medium">Lugares</th>
+              <th className="px-4 py-3 font-medium">Confirmados</th>
             </tr>
           </thead>
           <tbody>
@@ -42,6 +47,8 @@ export function SectorCuts({
                 <td className="border-t border-line px-4 py-3 tabular-nums text-ink">{cut.opens}</td>
                 <td className="border-t border-line px-4 py-3 tabular-nums text-ink">{cut.conversions}</td>
                 <td className="border-t border-line px-4 py-3 tabular-nums text-ink">{cut.rate}%</td>
+                <td className="border-t border-line px-4 py-3 tabular-nums text-ink">{lugares(seats[cut.slug])}</td>
+                <td className="border-t border-line px-4 py-3 tabular-nums text-ink">{confirmados(seats[cut.slug])}</td>
               </tr>
             ))}
           </tbody>
@@ -49,4 +56,15 @@ export function SectorCuts({
       </div>
     </section>
   );
+}
+
+function lugares(seat: SectorSeat | null | undefined) {
+  if (!seat) return "—";
+  if (seat.capacity === null) return "Sin cupo";
+  return String(seat.capacity);
+}
+
+function confirmados(seat: SectorSeat | null | undefined) {
+  if (!seat) return "—";
+  return String(seat.filled);
 }

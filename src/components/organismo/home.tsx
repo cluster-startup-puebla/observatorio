@@ -1,10 +1,10 @@
 import { CopyLink } from "@/components/organismo/copy-link";
-import { SectorPaceBar } from "@/components/organismo/sector-pace-bar";
 import { loadCurrentSessions } from "@/lib/organismo/current-sessions";
 import { LinkCards } from "@/components/organismo/link-cards";
 import { OpensChart } from "@/components/organismo/opens-chart";
 import { SectorCuts } from "@/components/organismo/sector-cuts";
 import { loadOrgHome } from "@/lib/organismo/load-home";
+import { loadSectorSeats } from "@/lib/organismo/load-sector-seats";
 import { sectors } from "@/lib/sectors";
 
 export async function OrgHome({
@@ -30,6 +30,7 @@ export async function OrgHome({
 }) {
   const chosen = sectors.find((item) => item.slug === corte);
   const [stats, sessions] = await Promise.all([loadOrgHome(orgId, chosen?.slug), loadCurrentSessions()]);
+  const seats = await loadSectorSeats(stats.cuts.map((cut) => cut.slug));
   const hint = chosen
     ? `Aperturas y conversiones de ${chosen.name} en los últimos 14 días.`
     : "Aperturas y conversiones del enlace en los últimos 14 días.";
@@ -40,9 +41,8 @@ export async function OrgHome({
         <p className="text-body text-ink-secondary">Panel de {slug}</p>
       </header>
       <CopyLink url={url} sector={sector} failed={failed} ready={ready} sessions={sessions} brandColor={brandColor} />
-      {chosen ? <SectorPaceBar slug={chosen.slug} name={chosen.name} /> : null}
       <LinkCards opens={stats.opens} conversions={stats.conversions} rate={stats.rate} />
-      <SectorCuts orgSlug={slug} cuts={stats.cuts} active={chosen?.slug} />
+      <SectorCuts orgSlug={slug} cuts={stats.cuts} active={chosen?.slug} seats={seats} />
       <OpensChart bars={stats.bars} hint={hint} color={brandColor} />
     </div>
   );

@@ -4,16 +4,20 @@ import { sectorPace } from "@/lib/cupo/sector-pace";
 import { orgDb } from "@/lib/organismo/org-db";
 
 export type SectorPaceLoad =
-  | { kind: "closed" }
+  | { kind: "closed"; filled: number }
   | { kind: "error" }
   | { kind: "ready"; pace: Extract<ReturnType<typeof sectorPace>, { open: true }> };
 
+function counted(row: { mine?: number | null; others?: number | null }) {
+  return Number(row.mine ?? 0) + Number(row.others ?? 0);
+}
+
 export async function loadSectorPace(slug: string): Promise<SectorPaceLoad> {
   const db = await orgDb();
-  if (!db) return { kind: "closed" };
+  if (!db) return { kind: "closed", filled: 0 };
   const sector = await db.from("sectors").select("id").eq("slug", slug).maybeSingle();
   if (sector.error) return { kind: "error" };
-  if (!sector.data) return { kind: "closed" };
+  if (!sector.data) return { kind: "closed", filled: 0 };
   const pace = await db.rpc("sector_pace", { p_sector_id: sector.data.id });
   const row = Array.isArray(pace.data) ? pace.data[0] : pace.data;
   if (pace.error || !row) return { kind: "error" };
@@ -22,6 +26,6 @@ export async function loadSectorPace(slug: string): Promise<SectorPaceLoad> {
     mine: Number(row.mine ?? 0),
     others: Number(row.others ?? 0),
   });
-  if (!parsed.open) return { kind: "closed" };
+  if (!parsed.open) return { kind: "closed", filled: counted(row) };
   return { kind: "ready", pace: parsed };
 }
