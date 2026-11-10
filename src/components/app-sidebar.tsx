@@ -15,6 +15,7 @@ import {
   SidebarFooter,
   SidebarHeader,
   SidebarMenu,
+  SidebarRail,
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
@@ -42,22 +43,13 @@ export function AppSidebar({
   const openName = override?.path === path ? override.name : matchedName;
 
   return (
-    <Sidebar variant="inset" collapsible="icon" style={sidebarBrandStyle(brandColor)}>
+    <Sidebar variant="floating" collapsible="icon" style={sidebarBrandStyle(brandColor)}>
       <SidebarHeader>
         <SidebarMenu>
           <SidebarMenuItem>
-            <SidebarMenuButton
-              size="lg"
-              className="h-12 group-data-[collapsible=icon]:justify-center group-data-[collapsible=icon]:!p-0"
-            >
+            <SidebarMenuButton size="lg" tooltip={title} className="group-data-[collapsible=icon]:justify-center">
               <AppSidebarMark logoSrc={logoSrc} title={title} monochromeInk={monochromeInk} />
-              <span
-                className={
-                  logoSrc
-                    ? "grid text-left text-sm leading-tight group-data-[collapsible=icon]:hidden"
-                    : "grid text-left text-sm leading-tight"
-                }
-              >
+              <span className="grid min-w-0 flex-1 text-left text-sm leading-tight group-data-[collapsible=icon]:hidden">
                 <span className="truncate font-medium">{title}</span>
                 <span className="truncate text-xs text-sidebar-foreground/70">{subtitle}</span>
               </span>
@@ -66,7 +58,7 @@ export function AppSidebar({
         </SidebarMenu>
       </SidebarHeader>
       <SidebarContent>
-        <SidebarMenu>
+        <SidebarMenu className="gap-1">
           {groups.map((group) => (
             <AppSidebarGroup
               key={group.name}
@@ -83,6 +75,7 @@ export function AppSidebar({
       <SidebarFooter>
         <AppSidebarUser email={email || "Sin sesión"} title={subtitle} />
       </SidebarFooter>
+      <SidebarRail />
     </Sidebar>
   );
 }

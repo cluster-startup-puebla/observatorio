@@ -29,24 +29,35 @@ export function AppSidebarGroup({
   open: boolean;
   onOpenChange: (open: boolean) => void;
 }) {
-  const { setOpenMobile } = useSidebar();
+  const { isMobile, setOpen, setOpenMobile, state } = useSidebar();
   const activeHref = bestMatchingHref(
     path,
     links.map((link) => link.href),
   );
 
   return (
-    <Collapsible open={open} onOpenChange={onOpenChange} className="group/collapsible">
+    <Collapsible
+      open={open}
+      onOpenChange={(next) => {
+        if (state === "collapsed" && !isMobile) {
+          setOpen(true);
+          onOpenChange(true);
+          return;
+        }
+        onOpenChange(next);
+      }}
+      className="group/collapsible w-full"
+    >
       <SidebarMenuItem>
         <CollapsibleTrigger asChild>
-          <SidebarMenuButton>
+          <SidebarMenuButton tooltip={name} className="group-data-[collapsible=icon]:justify-center">
             {icon}
-            <span>{name}</span>
-            <ChevronRight className="ml-auto transition-transform duration-200 ease-out group-data-[state=open]/collapsible:rotate-90" />
+            <span className="group-data-[collapsible=icon]:hidden">{name}</span>
+            <ChevronRight className="ml-auto transition-transform duration-200 ease-out group-data-[collapsible=icon]:hidden group-data-[state=open]/collapsible:rotate-90" />
           </SidebarMenuButton>
         </CollapsibleTrigger>
         <div
-          className="grid transition-[grid-template-rows] duration-300 ease-out motion-reduce:transition-none group-data-[collapsible=icon]:hidden"
+          className="grid transition-[grid-template-rows] duration-200 ease-out motion-reduce:transition-none group-data-[collapsible=icon]:absolute group-data-[collapsible=icon]:hidden group-data-[collapsible=icon]:transition-none"
           style={{ gridTemplateRows: open ? "1fr" : "0fr" }}
         >
           <div className="overflow-hidden">

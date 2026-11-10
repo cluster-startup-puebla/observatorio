@@ -577,3 +577,15 @@ html[data-reading="on"] .doc-table-stack {
   }
 }
 
+@layer base {
+  /* icon rail centers every menu button */
+  [data-collapsible="icon"] [data-sidebar="menu"] {
+    align-items: center;
+  }
+
+  [data-collapsible="icon"] [data-sidebar="menu-button"] {
+    margin-inline: auto;
+    justify-content: center;
+  }
+}
+
