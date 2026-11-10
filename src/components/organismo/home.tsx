@@ -16,6 +16,7 @@ export async function OrgHome({
   failed,
   ready,
   corte,
+  brandColor,
 }: {
   slug: string;
   name: string;
@@ -25,12 +26,13 @@ export async function OrgHome({
   failed?: boolean;
   ready?: boolean;
   corte?: string;
+  brandColor?: string;
 }) {
   const chosen = sectors.find((item) => item.slug === corte);
   const [stats, sessions] = await Promise.all([loadOrgHome(orgId, chosen?.slug), loadCurrentSessions()]);
   const hint = chosen
-    ? `Visitas de ${chosen.name} en los últimos 14 días.`
-    : "Visitas al enlace en los últimos 14 días.";
+    ? `Aperturas y conversiones de ${chosen.name} en los últimos 14 días.`
+    : "Aperturas y conversiones del enlace en los últimos 14 días.";
   return (
     <div className="grid gap-6">
       <header className="grid gap-2">
@@ -41,7 +43,7 @@ export async function OrgHome({
       {chosen ? <SectorPaceBar slug={chosen.slug} name={chosen.name} /> : null}
       <LinkCards opens={stats.opens} conversions={stats.conversions} rate={stats.rate} />
       <SectorCuts orgSlug={slug} cuts={stats.cuts} active={chosen?.slug} />
-      <OpensChart bars={stats.bars} hint={hint} />
+      <OpensChart bars={stats.bars} hint={hint} color={brandColor} />
     </div>
   );
 }

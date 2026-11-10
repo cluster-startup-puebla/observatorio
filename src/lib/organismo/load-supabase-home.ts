@@ -2,7 +2,7 @@ import "server-only";
 
 import { sectors } from "@/lib/sectors";
 import { opensForOrganization } from "@/lib/supabase/link-opens";
-import { linkConversions } from "./link-conversions";
+import { conversionMoments, linkConversions } from "./link-conversions";
 import { linkStats } from "./link-stats";
 import { orgDb } from "./org-db";
 import { sectorCuts } from "./sector-cuts";
@@ -32,7 +32,7 @@ export async function loadSupabaseHome(orgId: string, sectorSlugFilter?: string)
   const opens = await opensForOrganization(db, orgId);
   const contacts = await db
     .from("crm_contacts")
-    .select("id, sectors(slug)")
+    .select("id, created_at, sectors(slug)")
     .eq("organization_id", orgId)
     .eq("source", "enlace");
   if (contacts.error) throw new Error(contacts.error.message);
@@ -42,17 +42,19 @@ export async function loadSupabaseHome(orgId: string, sectorSlugFilter?: string)
     : { data: [], error: null };
   if (statuses.error) throw new Error(statuses.error.message);
   const statusOf = new Map((statuses.data ?? []).map((row) => [row.contact_id as string, row.status as string]));
-  const registrations = linkConversions(
-    (contacts.data ?? []).map((row) => ({
-      slug: sectorSlug(row.sectors as SectorJoin),
-      status: statusOf.get(row.id as string) ?? null,
-    })),
-  );
+  const people = (contacts.data ?? []).map((row) => ({
+    slug: sectorSlug(row.sectors as SectorJoin),
+    status: statusOf.get(row.id as string) ?? null,
+    at: row.created_at as string,
+  }));
+  const registrations = linkConversions(people);
   const conversions = [...registrations.values()].reduce((sum, count) => sum + count, 0);
+  const moments = conversionMoments(people);
   const names = new Map(sectors.map((sector) => [sector.slug, sector.name]));
   const visible = sectorSlugFilter ? opens.filter((open) => open.sectorSlug === sectorSlugFilter) : opens;
+  const converted = sectorSlugFilter ? moments.filter((row) => row.slug === sectorSlugFilter) : moments;
   const totals = linkStats({ opens, conversions, now: new Date() });
-  const chart = linkStats({ opens: visible, conversions, now: new Date() });
+  const chart = linkStats({ opens: visible, conversions, convertedAt: converted, now: new Date() });
   return {
     opens: totals.opens,
     conversions: totals.conversions,

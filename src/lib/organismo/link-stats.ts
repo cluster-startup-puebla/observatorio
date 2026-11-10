@@ -7,22 +7,37 @@ function shiftDay(day: string, delta: number) {
   return mexicoDay(new Date(Date.UTC(year, month - 1, date + delta, 18)));
 }
 
-export function linkStats(input: { opens: { at: string }[]; conversions: number; now: Date }) {
-  const end = mexicoDay(input.now);
-  const axis = Array.from({ length: days }, (_, index) => shiftDay(end, index - (days - 1)));
+function tally(events: { at: string }[], axis: string[]) {
   const counts = new Map(axis.map((day) => [day, 0]));
-  for (const open of input.opens) {
-    const parsed = new Date(open.at);
+  for (const event of events) {
+    const parsed = new Date(event.at);
     if (Number.isNaN(parsed.getTime())) continue;
     const day = mexicoDay(parsed);
     if (!counts.has(day)) continue;
     counts.set(day, (counts.get(day) ?? 0) + 1);
   }
+  return counts;
+}
+
+export function linkStats(input: {
+  opens: { at: string }[];
+  conversions: number;
+  convertedAt?: { at: string }[];
+  now: Date;
+}) {
+  const end = mexicoDay(input.now);
+  const axis = Array.from({ length: days }, (_, index) => shiftDay(end, index - (days - 1)));
+  const opens = tally(input.opens, axis);
+  const converted = tally(input.convertedAt ?? [], axis);
   const rate = input.opens.length === 0 ? 0 : Math.round((input.conversions / input.opens.length) * 100);
   return {
     opens: input.opens.length,
     conversions: input.conversions,
     rate,
-    bars: axis.map((day) => ({ dia: dayLabel(day), aperturas: counts.get(day) ?? 0 })),
+    bars: axis.map((day) => ({
+      dia: dayLabel(day),
+      aperturas: opens.get(day) ?? 0,
+      conversiones: converted.get(day) ?? 0,
+    })),
   };
 }

@@ -46,6 +46,7 @@ export default async function SectorPage({
         failed={sp.error === "enlace"}
         ready={typeof sp.enlace === "string"}
         corte={typeof sp.corte === "string" ? sp.corte : undefined}
+        brandColor={owner.brandColor}
       />
     );
   }

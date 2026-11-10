@@ -11,14 +11,15 @@ describe("cifras del enlace", () => {
         { at: "2026-10-01T16:00:00.000Z" },
       ],
       conversions: 1,
+      convertedAt: [{ at: "2026-10-22T17:00:00.000Z" }, { at: "2026-09-01T17:00:00.000Z" }],
       now,
     });
     expect(stats.opens).toBe(3);
     expect(stats.conversions).toBe(1);
     expect(stats.rate).toBe(33);
     expect(stats.bars).toHaveLength(14);
-    expect(stats.bars[13]).toMatchObject({ aperturas: 2 });
-    expect(stats.bars[0].aperturas).toBe(0);
+    expect(stats.bars[13]).toMatchObject({ aperturas: 2, conversiones: 1 });
+    expect(stats.bars[0]).toMatchObject({ aperturas: 0, conversiones: 0 });
   });
 
   it("la tasa es 0 si nadie abrió", () => {

@@ -1,5 +1,9 @@
 import { isLinkAccepted } from "@/lib/crm/link-acceptance";
 
+export function conversionMoments(rows: { slug: string; status: string | null; at: string }[]) {
+  return rows.filter((row) => row.slug && row.at && row.status !== null && isLinkAccepted(row.status));
+}
+
 export function linkConversions(rows: { slug: string; status: string | null }[]) {
   const counts = new Map<string, number>();
   for (const row of rows) {
