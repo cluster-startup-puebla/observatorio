@@ -33,12 +33,12 @@ begin
   select status into current_status
   from public.crm_contact_status
   where crm_contact_status.contact_id = enqueue_accepted_pass.contact_id;
-  if current_status not in ('confirmo', 'registrado', 'llego') then
+  if current_status is null or current_status not in ('confirmo', 'registrado', 'llego') then
     raise exception 'el enlace no está aceptado';
   end if;
   select profiles.id into guest_id
   from public.profiles
-  where lower(profiles.email) = guest
+  where lower(profiles.email) = lower(guest)
     and profiles.role = 'empresario'
     and profiles.onboarded_at is not null;
   if guest_id is null then
@@ -70,7 +70,6 @@ set search_path = ''
 as $$
 declare
   guest uuid;
-  org uuid;
 begin
   if auth.uid() is null then
     raise exception 'sin sesión';
@@ -81,19 +80,15 @@ begin
   if guest is null then
     raise exception 'no se pudo registrar';
   end if;
-  select organization_id into org
-  from public.crm_contacts
-  where lower(email) = (select lower(email) from public.profiles where id = guest)
-    and source = 'enlace'
-  limit 1;
-  if org is null then
-    raise exception 'no se pudo registrar';
-  end if;
   if not (
     (select private.is_superadmin())
-    or (
-      org = (select private.current_organization_id())
-      and (select private.current_role()) in ('director', 'capturista')
+    or exists (
+      select 1
+      from public.crm_contacts
+      where lower(email) = (select lower(email) from public.profiles where id = guest)
+        and source = 'enlace'
+        and organization_id = (select private.current_organization_id())
+        and (select private.current_role()) in ('director', 'capturista')
     )
   ) then
     raise exception 'no se pudo registrar';

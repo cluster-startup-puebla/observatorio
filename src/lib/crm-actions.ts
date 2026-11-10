@@ -7,7 +7,8 @@ import { requireOrgMember } from "./organismo/member";
 import { contactOrgPerson, rejectOrgPerson } from "./organismo/org-crm-write";
 import { orgDb } from "./organismo/org-db";
 import { ownerBySlug } from "./organismo/owner";
-import { usesSupabaseAuth } from "./supabase/auth-session";
+import { sendAcceptedPass } from "./mail/send-accepted-pass";
+import { readAccessToken, usesSupabaseAuth } from "./supabase/auth-session";
 
 export async function crmEventAction(formData: FormData) {
   const owner = await ownerBySlug(String(formData.get("slug") ?? "").trim());
@@ -37,6 +38,8 @@ async function applyEvent(
       const approved = await db.rpc("approve_link_signup", { contact_id: personId });
       if (approved.error?.message.includes("sector_lleno")) return "sector_lleno";
       if (approved.error) return "aceptar";
+      const token = await readAccessToken();
+      if (token) await sendAcceptedPass(token, personId);
       return "";
     }
     if (event === "contactar") await contactOrgPerson(db, actorId, personId);

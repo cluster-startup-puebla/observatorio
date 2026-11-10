@@ -7,7 +7,8 @@ describe("pase al aceptar", () => {
   it("encola el pase del invitado, no el del director", () => {
     expect(sql).toContain("function public.enqueue_accepted_pass(contact_id uuid)");
     expect(sql).toContain("src is distinct from 'enlace'");
-    expect(sql).toContain("current_status not in ('confirmo', 'registrado', 'llego')");
+    expect(sql).toContain("current_status is null or current_status not in ('confirmo', 'registrado', 'llego')");
+    expect(sql).toContain("organization_id = (select private.current_organization_id())");
     expect(sql).toContain("profiles.onboarded_at is not null");
     expect(sql).toContain("'event_pass'");
     expect(sql).toContain("already_sent");

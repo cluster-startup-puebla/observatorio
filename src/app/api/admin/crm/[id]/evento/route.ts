@@ -4,6 +4,8 @@ import { nextCrmInsert } from "@/lib/admin/crm/next-event";
 import { requireSuperadmin } from "@/lib/auth/require-superadmin";
 import { readSuperadmin } from "@/lib/auth/require-superadmin";
 import type { CrmStatus } from "@/lib/crm-status";
+import { sendAcceptedPass } from "@/lib/mail/send-accepted-pass";
+import { readAccessToken } from "@/lib/supabase/auth-session";
 import { NextResponse, type NextRequest } from "next/server";
 
 export async function POST(request: NextRequest, context: { params: Promise<{ id: string }> }) {
@@ -22,6 +24,8 @@ export async function POST(request: NextRequest, context: { params: Promise<{ id
       const code = approved.error.message.includes("sector_lleno") ? "sector_lleno" : approved.error.message;
       return NextResponse.redirect(new URL(`${back}&error=${encodeURIComponent(code)}`, request.url));
     }
+    const token = await readAccessToken();
+    if (token) await sendAcceptedPass(token, id);
     return NextResponse.redirect(new URL(back, request.url));
   }
   const next = nextCrmInsert((current.statusCode as CrmStatus | null) ?? null, String(form.get("event") ?? ""));
