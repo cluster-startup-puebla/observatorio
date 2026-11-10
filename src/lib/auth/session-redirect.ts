@@ -1,7 +1,12 @@
 import type { AccountRole } from "@/lib/directory";
 import { pathAfterSignIn } from "./home";
 
-type GateAccount = { role: AccountRole; onboarded: boolean; awaitingApproval?: boolean };
+type GateAccount = {
+  role: AccountRole;
+  onboarded: boolean;
+  awaitingApproval?: boolean;
+  eventOpen?: boolean;
+};
 
 const sessionEntries = new Set<string>([
   "/",
@@ -17,6 +22,7 @@ function destination(account: GateAccount) {
     role: account.role,
     onboarded: account.onboarded,
     awaitingApproval: account.awaitingApproval,
+    eventOpen: account.eventOpen,
   });
 }
 

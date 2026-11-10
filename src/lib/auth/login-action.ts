@@ -10,6 +10,7 @@ import {
   writeSupabaseSession,
 } from "@/lib/supabase/auth-session";
 import { awaitingSessionApproval } from "./awaiting-approval";
+import { currentEventOpen } from "./current-event-open";
 import { pathAfterSignIn } from "./home";
 import { inviteFromMetadata, withInvite } from "./invite-carry";
 import { orgSlugForUser, setOrgSlugCookie } from "./login-org";
@@ -62,5 +63,8 @@ export async function loginAction(formData: FormData) {
         })
       : false;
   const carried = inviteFromMetadata(signed.session.user.user_metadata);
-  redirect(withInvite(pathAfterSignIn({ role: signed.role, slug, onboarded, awaitingApproval }), carried));
+  const eventOpen = await currentEventOpen();
+  redirect(
+    withInvite(pathAfterSignIn({ role: signed.role, slug, onboarded, awaitingApproval, eventOpen }), carried),
+  );
 }

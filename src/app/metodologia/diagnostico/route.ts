@@ -1,9 +1,11 @@
+import { redirectIfEventClosed } from "@/lib/auth/current-event-open";
 import { redirectUnfinishedEmpresario } from "@/lib/auth/onboarding-gate";
 import { getDirectory } from "@/lib/memory-directory";
 import { answersFromStored, calculateIntegralResult } from "@/lib/methodology/score";
 
 export async function GET(request: Request) {
   await redirectUnfinishedEmpresario();
+  await redirectIfEventClosed();
   const persona = new URL(request.url).searchParams.get("persona") ?? "";
   const stored = await getDirectory().answersFor(persona);
   const result = calculateIntegralResult(answersFromStored(stored));

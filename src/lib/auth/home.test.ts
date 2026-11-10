@@ -34,5 +34,24 @@ describe("pathAfterSignIn", () => {
     expect(pathAfterSignIn({ role: "director", onboarded: true, slug: "canacintra" })).toBe("/canacintra");
     expect(pathAfterSignIn({ role: "superadmin", onboarded: true })).toBe("/admin");
   });
+
+  it("deja al empresario registrado en onboarding hasta que abre el evento", () => {
+    expect(pathAfterSignIn({ role: "empresario", onboarded: true, eventOpen: false })).toBe("/onboarding");
+    expect(pathAfterSignIn({ role: "empresario", onboarded: true, eventOpen: true })).toBe("/metodologia");
+    expect(pathAfterSignIn({ role: "empresario", onboarded: true })).toBe("/metodologia");
+    expect(pathAfterSignIn({ role: "empresario", onboarded: false, eventOpen: true })).toBe("/onboarding");
+    expect(
+      pathAfterSignIn({ role: "empresario", onboarded: true, awaitingApproval: true, eventOpen: true }),
+    ).toBe("/onboarding");
+  });
+
+  it("no afecta a quien no es empresario", () => {
+    expect(pathAfterSignIn({ role: "director", onboarded: true, slug: "canacintra", eventOpen: false })).toBe(
+      "/canacintra",
+    );
+    expect(pathAfterSignIn({ role: "director", onboarded: true, eventOpen: false })).toBe("/organismo");
+    expect(pathAfterSignIn({ role: "superadmin", onboarded: true, eventOpen: false })).toBe("/admin");
+    expect(pathAfterSignIn({ role: "moderador", onboarded: true, eventOpen: false })).toBe("/admin/mesa");
+  });
 });
 
