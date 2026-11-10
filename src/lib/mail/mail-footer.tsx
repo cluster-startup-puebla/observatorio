@@ -53,6 +53,9 @@ export function MailFooter({ assetBase }: { assetBase: string }) {
       <Text style={{ margin: 0, color: mailBrand.muted, fontSize: 12, lineHeight: "1.5" }}>
         Clúster de Startups e Innovación · Si respondes, llega a {mailBrand.replyTo}
       </Text>
+      <Text style={{ margin: "12px 0 0", color: mailBrand.muted, fontSize: 12, lineHeight: "1.5" }}>
+        Revisa la bandeja de correo no deseado.
+      </Text>
     </Section>
   );
 }

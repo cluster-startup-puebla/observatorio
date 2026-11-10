@@ -29,7 +29,7 @@ export default async function VerifyPage({
     <AuthShell
       kicker="Correo"
       title="Revisa tu correo"
-      lead="Te enviamos un enlace para confirmar la cuenta. Ábrelo y luego entra. Si no llega, pide otro."
+      lead="Te enviamos un enlace para confirmar la cuenta. Ábrelo y luego entra. Si no llega, pide otro. Revisa la bandeja de correo no deseado."
       footer={
         <>
           <Link href="/login" className="text-link">

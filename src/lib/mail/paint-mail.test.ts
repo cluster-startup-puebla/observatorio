@@ -7,6 +7,7 @@ describe("pintar correo", () => {
   it("la bienvenida no adjunta pase", async () => {
     const painted = await paintMail({ kind: "welcome", profileId, sessionLabel: null, continueHref: null, acceptHref: null });
     expect(painted.html).toContain("Tu lugar ya está apartado");
+    expect(painted.html).toContain("Revisa la bandeja de correo no deseado.");
     expect(painted.attachments).toEqual([]);
   });
 
@@ -19,6 +20,7 @@ describe("pintar correo", () => {
       acceptHref: null,
     });
     expect(painted.html).toContain("Mañana nos vemos");
+    expect(painted.html).toContain("Revisa la bandeja de correo no deseado.");
     expect(painted.html).toContain("cid:pase");
     expect(painted.attachments).toHaveLength(1);
     expect(painted.attachments[0].contentId).toBe("pase");
@@ -33,6 +35,7 @@ describe("pintar correo", () => {
       acceptHref: null,
     });
     expect(painted.html).toContain("cid:pase");
+    expect(painted.html).toContain("Revisa la bandeja de correo no deseado.");
     expect(painted.attachments).toHaveLength(1);
     expect(painted.attachments[0].contentId).toBe("pase");
   });
@@ -71,6 +74,7 @@ describe("pintar correo", () => {
       acceptHref: href,
     });
     expect(painted.html).toContain(href);
+    expect(painted.html).toContain("Revisa la bandeja de correo no deseado.");
     expect(painted.attachments).toEqual([]);
   });
 });

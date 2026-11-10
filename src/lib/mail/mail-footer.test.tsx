@@ -23,5 +23,6 @@ describe("pie de logos", () => {
     expect(html).toContain("Con el respaldo de");
     expect(html).toContain("Convocan");
     expect(html).toContain("hola@clusterdestartups.org");
+    expect(html).toContain("Revisa la bandeja de correo no deseado.");
   });
 });

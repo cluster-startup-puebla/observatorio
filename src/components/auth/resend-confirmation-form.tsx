@@ -11,7 +11,9 @@ export function ResendConfirmationForm({ email }: { email: string }) {
   if (state.sent) {
     return (
       <Alert>
-        <AlertDescription>Si ese correo está pendiente, enviamos otro enlace para confirmarlo.</AlertDescription>
+        <AlertDescription>
+          Si ese correo está pendiente, enviamos otro enlace para confirmarlo. Revisa la bandeja de correo no deseado.
+        </AlertDescription>
       </Alert>
     );
   }

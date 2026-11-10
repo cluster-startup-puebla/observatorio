@@ -20,7 +20,7 @@ const messages: Record<string, string> = {
   contrasena: "Usa al menos 8 caracteres.",
   credenciales: "Correo o contraseña incorrectos.",
   rol: "Esta cuenta no tiene un acceso reconocido.",
-  confirmar: "Confirma el correo antes de entrar. Revisa la bandeja o pide otro enlace.",
+  confirmar: "Confirma el correo antes de entrar. Revisa la bandeja o pide otro enlace. Revisa la bandeja de correo no deseado.",
 };
 
 export default async function LoginPage({

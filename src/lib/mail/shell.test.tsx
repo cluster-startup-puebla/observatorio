@@ -16,5 +16,6 @@ describe("cascarón del correo", () => {
     expect(html).toContain("Título");
     expect(html).toContain("Cuerpo");
     expect(html).toContain("hola@clusterdestartups.org");
+    expect(html).toContain("Revisa la bandeja de correo no deseado.");
   });
 });

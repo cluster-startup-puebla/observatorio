@@ -23,7 +23,7 @@ const messages: Record<string, string> = {
   correo: "Escribe un correo válido.",
   contrasena: "Usa al menos 8 caracteres.",
   existe: "Ese correo ya está registrado o ya hay un superadmin.",
-  confirmar: "No se pudo confirmar el correo. Revisa la bandeja o inténtalo de nuevo.",
+  confirmar: "No se pudo confirmar el correo. Revisa la bandeja o inténtalo de nuevo. Revisa la bandeja de correo no deseado.",
   auth: "No se pudo crear la cuenta.",
 };
 

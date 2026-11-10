@@ -12,7 +12,7 @@ export function RecoverForm() {
   if (state?.ok) {
     return (
       <p className="text-body text-ink-secondary">
-        Si ese correo está registrado, enviamos un enlace para restablecer la contraseña.
+        Si ese correo está registrado, enviamos un enlace para restablecer la contraseña. Revisa la bandeja de correo no deseado.
       </p>
     );
   }
