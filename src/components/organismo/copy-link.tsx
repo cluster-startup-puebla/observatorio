@@ -45,7 +45,7 @@ export function CopyLink({
       <form action={copyEventLinkAction} className="flex flex-wrap items-end gap-3">
         <label className="grid w-56 max-w-full gap-1 text-small text-ink-secondary">
           Sector
-          <select name="sector" key={selected} defaultValue={selected} className={`${control} w-full`} style={chevronStyle}>
+          <select name="sector" key={selected} defaultValue={selected} data-tour="sector" className={`${control} w-full`} style={chevronStyle}>
             {sectors.map((item) => (
               <option key={item.slug} value={item.slug}>
                 {item.name}
@@ -53,7 +53,7 @@ export function CopyLink({
             ))}
           </select>
         </label>
-        <SessionPick sessions={sessions} className={`${control} w-72 max-w-full`} selectStyle={chevronStyle} />
+        <SessionPick sessions={sessions} tour="sesion" className={`${control} w-72 max-w-full`} selectStyle={chevronStyle} />
         <SheetSubmit
           pendingLabel="Generando…"
           className="h-9 rounded-md px-4 py-0 text-small shadow-none hover:brightness-95"

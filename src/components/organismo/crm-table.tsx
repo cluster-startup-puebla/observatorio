@@ -12,7 +12,7 @@ export function CrmTable({
   slug: string;
 }) {
   return (
-    <div className="overflow-x-auto border border-line">
+    <div className="overflow-x-auto border border-line" data-tour="crm">
       <table className="w-full text-left text-body">
         <thead className="bg-surface-subtle text-small text-ink-muted">
           <tr>

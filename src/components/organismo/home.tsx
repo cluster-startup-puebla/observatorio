@@ -1,4 +1,5 @@
 import { CopyLink } from "@/components/organismo/copy-link";
+import { OrgTour } from "@/components/organismo/tour/org-tour";
 import { loadCurrentSessions } from "@/lib/organismo/current-sessions";
 import { LinkCards } from "@/components/organismo/link-cards";
 import { OpensChart } from "@/components/organismo/opens-chart";
@@ -36,6 +37,7 @@ export async function OrgHome({
     : "Aperturas y conversiones del enlace en los últimos 14 días.";
   return (
     <div className="grid gap-6">
+      <OrgTour slug={slug} sessions={sessions.length} crm={false} tour={false} />
       <header className="grid gap-2">
         <h1 className="text-h1 text-ink">{name}</h1>
         <p className="text-body text-ink-secondary">Panel de {slug}</p>

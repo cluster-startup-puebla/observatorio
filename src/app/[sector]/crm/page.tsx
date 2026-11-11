@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { CrmCards } from "@/components/organismo/crm-cards";
+import { OrgTour } from "@/components/organismo/tour/org-tour";
 import { CrmFilters } from "@/components/organismo/crm-filters";
 import { CrmTable } from "@/components/organismo/crm-table";
 import { CrmToggle } from "@/components/organismo/crm-toggle";
@@ -18,7 +19,7 @@ export default async function CrmPage({
   searchParams,
 }: {
   params: Promise<{ sector: string }>;
-  searchParams: Promise<{ vista?: string; estado?: string; error?: string }>;
+  searchParams: Promise<{ vista?: string; estado?: string; error?: string; tour?: string }>;
 }) {
   const { sector } = await params;
   const query = await searchParams;
@@ -33,6 +34,7 @@ export default async function CrmPage({
   const notice = seatFullCopy(query.error);
   return (
     <div className="grid gap-6">
+      <OrgTour slug={sector} sessions={0} crm tour={query.tour === "1"} />
       {notice ? (
         <Alert variant="destructive">
           <AlertDescription>{notice}</AlertDescription>
