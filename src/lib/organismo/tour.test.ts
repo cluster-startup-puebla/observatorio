@@ -21,14 +21,14 @@ describe("tour del organismo", () => {
     expect(sessionCopy(2)).not.toMatch(/una sola/);
   });
 
-  it("el inicio no pide generar y el CRM señala la tabla", () => {
-    expect(tourSteps("home", 1).map((step) => step.element)).toEqual(["sector", "sesion"]);
-    expect(tourSteps("home", 1)[0]?.description).toMatch(/invitas a todos/);
+  it("el botón explica el enlace único y el CRM señala la tabla", () => {
+    expect(tourSteps("home", 1).map((step) => step.element)).toEqual(["sector", "sesion", "generar"]);
+    expect(tourSteps("home", 1).find((step) => step.element === "generar")?.description).toMatch(/un solo enlace/i);
     expect(tourSteps("crm", 0).map((step) => step.element)).toEqual(["crm"]);
     expect(tourSteps("crm", 0)[0]?.description).toMatch(/esta tabla/);
   });
 
   it("sin sesiones no señala la sesión", () => {
-    expect(tourSteps("home", 0).map((step) => step.element)).toEqual(["sector"]);
+    expect(tourSteps("home", 0).map((step) => step.element)).toEqual(["sector", "generar"]);
   });
 });

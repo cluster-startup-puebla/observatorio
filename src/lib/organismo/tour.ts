@@ -1,7 +1,7 @@
 export type TourPhase = "home" | "crm";
 
 export type TourStep = {
-  element: "sector" | "sesion" | "crm";
+  element: "sector" | "sesion" | "generar" | "crm";
   title: string;
   description: string;
 };
@@ -31,12 +31,16 @@ export function tourSteps(phase: TourPhase, sessions: number): TourStep[] {
     {
       element: "sector",
       title: "El sector",
-      description:
-        "Elige el sector que vas a convocar. Cuando generes el enlace y lo copies, con ese invitas a todos los de tu sector.",
+      description: "Elige el sector que vas a convocar.",
     },
   ];
   if (sessions > 0) {
     steps.push({ element: "sesion", title: "La sesión", description: sessionCopy(sessions) });
   }
+  steps.push({
+    element: "generar",
+    title: "La invitación",
+    description: "Con este botón generas la invitación. Un solo enlace para todo tu sector.",
+  });
   return steps;
 }

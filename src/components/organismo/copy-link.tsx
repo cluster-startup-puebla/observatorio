@@ -54,13 +54,15 @@ export function CopyLink({
           </select>
         </label>
         <SessionPick sessions={sessions} tour="sesion" className={`${control} w-72 max-w-full`} selectStyle={chevronStyle} />
-        <SheetSubmit
-          pendingLabel="Generando…"
-          className="h-9 rounded-md px-4 py-0 text-small shadow-none hover:brightness-95"
-          style={{ background: tone.background, color: tone.ink }}
-        >
-          Generar enlace
-        </SheetSubmit>
+        <span data-tour="generar" className="inline-flex">
+          <SheetSubmit
+            pendingLabel="Generando…"
+            className="h-9 rounded-md px-4 py-0 text-small shadow-none hover:brightness-95"
+            style={{ background: tone.background, color: tone.ink }}
+          >
+            Generar enlace
+          </SheetSubmit>
+        </span>
       </form>
       {ready && url ? <LinkReady url={url} /> : null}
       {url ? (

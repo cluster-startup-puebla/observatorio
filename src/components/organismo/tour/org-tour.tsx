@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 import { driveTour } from "@/components/organismo/tour/drive";
 import { tourStart, tourSteps } from "@/lib/organismo/tour";
 
@@ -19,6 +20,7 @@ export function OrgTour({
   crm: boolean;
   tour: boolean;
 }) {
+  const router = useRouter();
   useEffect(() => {
     const seen = window.localStorage.getItem("org-tour-seen") === "1";
     const path = crm ? `/${slug}/crm` : `/${slug}`;
@@ -29,14 +31,13 @@ export function OrgTour({
       return driveTour({
         steps,
         onAdvance: () => {
-          // eslint-disable-next-line @next/next/no-location-assign-relative-destination
-          window.location.assign(`/${slug}/crm?tour=1`);
+          router.push(`/${slug}/crm?tour=1`);
         },
         onFinish: markSeen,
       });
     }
     return driveTour({ steps, onFinish: markSeen });
-  }, [crm, sessions, slug, tour]);
+  }, [crm, router, sessions, slug, tour]);
 
   return null;
 }
