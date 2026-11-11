@@ -16,6 +16,8 @@ export function OnboardingWizard({
   missingLogo,
   brandError,
   termsError,
+  offerLogo = false,
+  logoError,
 }: {
   accountId: string;
   role: string;
@@ -30,10 +32,12 @@ export function OnboardingWizard({
   missingLogo?: boolean;
   brandError?: boolean;
   termsError?: boolean;
+  offerLogo?: boolean;
+  logoError?: string;
 }) {
   if (onboarded && role !== "director") {
     const shown = gate ?? (pending ? "espera" : "pase");
-    return <FinishedProfile accountId={accountId} gate={shown} />;
+    return <FinishedProfile accountId={accountId} gate={shown} offerLogo={offerLogo} logoError={logoError} />;
   }
 
   if (role === "director") {

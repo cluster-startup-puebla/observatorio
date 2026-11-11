@@ -20,4 +20,20 @@ describe("lectura del logo de empresa", () => {
     expect(source).not.toContain("issueConfirmedPass");
     expect(source).not.toContain("onboarded_at:");
   });
+
+  it("la espera y el pase explican las pantallas y reutilizan el check", () => {
+    const form = readFileSync("src/components/onboarding/later-logo-form.tsx", "utf8");
+    const finished = readFileSync("src/components/onboarding/finished-profile.tsx", "utf8");
+    const wizard = readFileSync("src/components/onboarding/onboarding-wizard.tsx", "utf8");
+    expect(form).toContain("Veo que no tienes logo. ¿Te gustaría subirlo ahora?");
+    expect(form).toContain("Durante el evento tu logo puede aparecer en las pantallas.");
+    expect(form).toContain("CompanyLogoFields");
+    expect(form).toContain("uploadCompanyLogoLater");
+    expect(form).toContain("Alert");
+    expect(form).not.toContain("deferrable");
+    expect(finished).toContain("LaterLogoForm");
+    expect(finished).toContain('gate === "espera"');
+    expect(finished).toContain("AccessPass");
+    expect(wizard).toContain("offerLogo");
+  });
 });

@@ -1,14 +1,20 @@
 import { AccessPass } from "@/components/onboarding/access-pass";
+import { LaterLogoForm } from "@/components/onboarding/later-logo-form";
 import { PendingNotice } from "@/components/onboarding/pending-notice";
 import { ConfidentialityNote } from "@/components/onboarding/confidentiality-note";
 
 export function FinishedProfile({
   accountId,
   gate,
+  offerLogo = false,
+  logoError,
 }: {
   accountId: string;
   gate: "espera" | "cerrado" | "cancelo" | "pase";
+  offerLogo?: boolean;
+  logoError?: string;
 }) {
+  const logo = offerLogo ? <LaterLogoForm error={logoError} /> : null;
   if (gate === "cancelo") return <ConfidentialityNote />;
   if (gate === "cerrado") {
     return (
@@ -25,6 +31,7 @@ export function FinishedProfile({
       <div className="grid gap-4">
         <ConfidentialityNote />
         <PendingNotice />
+        {logo}
       </div>
     );
   }
@@ -32,6 +39,7 @@ export function FinishedProfile({
     <div className="grid gap-4">
       <ConfidentialityNote />
       <AccessPass code={accountId} />
+      {logo}
     </div>
   );
 }
