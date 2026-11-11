@@ -44,6 +44,7 @@ export function EmpresarioStepCompany({
         showLogo={values.showLogo}
         onShow={(showLogo) => onChange({ showLogo })}
         onFile={(hasLogo) => onChange({ hasLogo })}
+        deferrable
       />
       <OnboardingSelect
         id="marketSize"

@@ -30,4 +30,12 @@ describe("logo de empresa", () => {
     const source = readFileSync("src/components/onboarding/company-logo-fields.tsx", "utf8");
     expect(source).toContain("maxBytes={2097152}");
   });
+
+  it("el paso de la empresa dice que el logo puede esperar", () => {
+    const fields = readFileSync("src/components/onboarding/company-logo-fields.tsx", "utf8");
+    const step = readFileSync("src/components/onboarding/empresario-step-company.tsx", "utf8");
+    expect(fields).toContain("Opcional. Lo puedes subir después.");
+    expect(fields).toContain("deferrable");
+    expect(step).toContain("deferrable");
+  });
 });
