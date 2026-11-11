@@ -1,7 +1,7 @@
 import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
 import { companyLogoObjectPath } from "@/lib/storage-assets";
-import { logoUploadDecision } from "./company-logo";
+import { laterLogoOffer, logoUploadDecision } from "./company-logo";
 
 const id = "11111111-1111-4111-8111-111111111111";
 
@@ -37,5 +37,14 @@ describe("logo de empresa", () => {
     expect(fields).toContain("Opcional. Lo puedes subir después.");
     expect(fields).toContain("deferrable");
     expect(step).toContain("deferrable");
+  });
+
+  it("ofrece el logo solo en la espera y en el pase, si falta el archivo", () => {
+    expect(laterLogoOffer({ hasLogo: false, gate: "espera" })).toBe(true);
+    expect(laterLogoOffer({ hasLogo: false, gate: "pase" })).toBe(true);
+    expect(laterLogoOffer({ hasLogo: true, gate: "espera" })).toBe(false);
+    expect(laterLogoOffer({ hasLogo: true, gate: "pase" })).toBe(false);
+    expect(laterLogoOffer({ hasLogo: false, gate: "cerrado" })).toBe(false);
+    expect(laterLogoOffer({ hasLogo: false, gate: "cancelo" })).toBe(false);
   });
 });
