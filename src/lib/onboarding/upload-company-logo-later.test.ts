@@ -36,4 +36,14 @@ describe("lectura del logo de empresa", () => {
     expect(finished).toContain("AccessPass");
     expect(wizard).toContain("offerLogo");
   });
+
+  it("la pantalla de Supabase calcula la oferta y la de memoria no", () => {
+    const screen = readFileSync("src/app/onboarding/supabase-screen.tsx", "utf8");
+    const memory = readFileSync("src/app/onboarding/page.tsx", "utf8");
+    expect(screen).toContain("companyHasLogo");
+    expect(screen).toContain("laterLogoOffer");
+    expect(screen).toContain("offerLogo={offerLogo}");
+    expect(screen).toContain('params.error === "logo"');
+    expect(memory).toContain("offerLogo={false}");
+  });
 });

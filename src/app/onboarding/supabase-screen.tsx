@@ -6,6 +6,8 @@ import { AttendanceSlot } from "@/components/onboarding/attendance-slot";
 import { orgSlugForUser } from "@/lib/auth/login-org";
 import { readSessionAccount } from "@/lib/auth/session-account";
 import { readOrgIntent } from "@/lib/organismo/signup-intent";
+import { companyHasLogo } from "@/lib/onboarding/company-has-logo";
+import { laterLogoOffer } from "@/lib/onboarding/company-logo";
 import { externalPassPending } from "@/lib/onboarding/external-pass-state";
 import { issueConfirmedPass } from "@/lib/onboarding/issue-confirmed-pass";
 import { linkInviteOutcome } from "@/lib/onboarding/link-pass-state";
@@ -43,6 +45,9 @@ export async function SupabaseOnboarding({
   const attendance = empresario ? await createSupabaseWithAccess(token).rpc("my_attendance_state") : { data: null };
   const pendingExternal = empresario ? await externalPassPending(token, account.id) : false;
   const gate = attendance.data === "cancelo" ? "cancelo" : link === "cerrado" ? "cerrado" : link === "espera" || pendingExternal ? "espera" : "pase";
+  const hasLogo =
+    empresario && (gate === "espera" || gate === "pase") ? await companyHasLogo(token, account.id) : true;
+  const offerLogo = laterLogoOffer({ hasLogo, gate });
   if (onboarded && account.role === "empresario") await issueConfirmedPass(token, account.id, account.email);
 
   return (
@@ -66,6 +71,8 @@ export async function SupabaseOnboarding({
         missingLogo={params.error === "logo"}
         brandError={params.error === "marca"}
         termsError={params.error === "terminos"}
+        offerLogo={offerLogo}
+        logoError={params.error === "logo" ? "logo" : undefined}
       />
       {onboarded && account.role === "empresario" ? <AttendanceSlot token={token} error={params.error} /> : null}
     </AuthShell>
