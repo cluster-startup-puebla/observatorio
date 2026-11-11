@@ -3,9 +3,9 @@ import { describe, expect, it } from "vitest";
 import { continueHref } from "./continue-href";
 
 describe("envío propio", () => {
-  it("arma el enlace solo si hay sitio", () => {
-    expect(continueHref("https://observatorio.example")).toBe("https://observatorio.example/onboarding");
-    expect(continueHref(undefined)).toBeNull();
+  it("arma el enlace de inicio de sesión", () => {
+    expect(continueHref("https://observatorio.example")).toBe("https://observatorio.example/login");
+    expect(continueHref(undefined)).toBe("https://observatorio.clusterdestartups.org/login");
   });
 
   it("el alta manda bienvenida y la confirmación guarda el pase", () => {

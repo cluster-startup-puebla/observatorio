@@ -6,7 +6,7 @@ const profileId = "360ab36d-9882-44c6-9b61-1010b9aab795";
 describe("pintar correo", () => {
   it("la bienvenida no adjunta pase", async () => {
     const painted = await paintMail({ kind: "welcome", profileId, sessionLabel: null, continueHref: null, acceptHref: null });
-    expect(painted.html).toContain("Tu lugar ya está apartado");
+    expect(painted.html).toContain("Tu cuenta ya fue creada");
     expect(painted.html).toContain("Revisa la bandeja de correo no deseado.");
     expect(painted.attachments).toEqual([]);
   });

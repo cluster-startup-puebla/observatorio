@@ -2,6 +2,7 @@ import { Body, Container, Head, Hr, Html, Preview, Section, Text } from "@react-
 import type { ReactNode } from "react";
 import { forumKicker, forumName } from "@/content/forum-public";
 import { mailBrand } from "./brand";
+import { mailOrigin } from "./continue-href";
 import { MailFooter } from "./mail-footer";
 
 export function MailShell({
@@ -15,7 +16,7 @@ export function MailShell({
   children: ReactNode;
   assetBase?: string;
 }) {
-  const base = assetBase ?? process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
+  const base = assetBase ?? mailOrigin(process.env.NEXT_PUBLIC_SITE_URL);
   return (
     <Html lang="es">
       <Head />

@@ -1,5 +1,10 @@
-export function continueHref(siteUrl: string | undefined) {
+const publishedSite = "https://observatorio.clusterdestartups.org";
+
+export function mailOrigin(siteUrl: string | undefined) {
   const base = siteUrl?.trim().replace(/\/$/, "");
-  if (!base) return null;
-  return `${base}/onboarding`;
+  return base || publishedSite;
+}
+
+export function continueHref(siteUrl: string | undefined) {
+  return `${mailOrigin(siteUrl)}/login`;
 }

@@ -2,7 +2,7 @@ const subjects = {
   password: "Crea tu contraseña para la sesión",
   event_pass: "Tu pase para la sesión ya está listo",
   open_innovation: "¿Quieres ser una empresa de innovación abierta?",
-  welcome: "Tu lugar en el Observatorio ya está apartado",
+  welcome: "Tu cuenta en el Observatorio ya fue creada",
   reminder: "Mañana es la sesión del Observatorio",
   thanks: "Gracias por venir a la sesión",
 } as const;

@@ -3,18 +3,22 @@ import { describe, expect, it } from "vitest";
 import { WelcomeMail } from "./welcome-mail";
 
 describe("correo de bienvenida", () => {
-  it("pide terminar el perfil y no trae pase", async () => {
-    const html = await render(<WelcomeMail continueHref="https://observatorio.example/onboarding" />);
-    expect(html).toContain("Tu lugar ya está apartado");
+  it("avisa que la cuenta existe y manda a iniciar sesión", async () => {
+    const html = await render(<WelcomeMail continueHref="https://observatorio.example/login" />);
+    expect(html).toContain("Tu cuenta ya fue creada");
     expect(html).toContain("termina el perfil de tu empresa");
-    expect(html).toContain("https://observatorio.example/onboarding");
+    expect(html).toContain("https://observatorio.example/login");
+    expect(html).toContain("Iniciar sesión");
+    expect(html).not.toContain("Tu lugar ya está apartado");
+    expect(html).not.toContain("Ahí queda tu pase");
     expect(html).toContain("Hotel Quinta Real, Puebla");
     expect(html).not.toContain("cid:pase");
   });
 
-  it("sin sitio no inventa un botón", async () => {
+  it("sin sitio igual muestra el botón al sitio publicado", async () => {
     const html = await render(<WelcomeMail continueHref={null} />);
-    expect(html).toContain("Vuelve al registro e inicia sesión.");
-    expect(html).not.toContain('href="http');
+    expect(html).toContain("Iniciar sesión");
+    expect(html).toContain("https://observatorio.clusterdestartups.org/login");
+    expect(html).not.toContain("Inicia sesión para terminar tu perfil.");
   });
 });

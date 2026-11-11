@@ -4,9 +4,46 @@ import {
   absoluteLogo,
   backingLogos,
   convenerLogos,
+  logoBox,
+  logoRows,
   operaLogos,
   type MailLogo,
 } from "./footer-logos";
+
+const labelStyle = {
+  margin: "0 0 8px",
+  color: mailBrand.muted,
+  fontSize: 11,
+  letterSpacing: "0.08em",
+  textTransform: "uppercase" as const,
+};
+
+function LogoTable({ logos, assetBase }: { logos: MailLogo[]; assetBase: string }) {
+  return (
+    <table role="presentation" cellPadding={0} cellSpacing={0} style={{ margin: "0 0 4px" }}>
+      <tbody>
+        {logoRows(logos, 4).map((row) => (
+          <tr key={row[0].src}>
+            {row.map((logo) => {
+              const box = logoBox(logo);
+              return (
+                <td key={logo.src} style={{ padding: "0 16px 14px 0", verticalAlign: "middle" }}>
+                  <Img
+                    src={absoluteLogo(logo.src, assetBase)}
+                    alt={logo.alt}
+                    width={box.width}
+                    height={box.height}
+                    style={{ display: "block" }}
+                  />
+                </td>
+              );
+            })}
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  );
+}
 
 export function LogoRow({
   label,
@@ -19,27 +56,8 @@ export function LogoRow({
 }) {
   return (
     <Section>
-      <Text
-        style={{
-          margin: "0 0 8px",
-          color: mailBrand.muted,
-          fontSize: 11,
-          letterSpacing: "0.08em",
-          textTransform: "uppercase",
-        }}
-      >
-        {label}
-      </Text>
-      {logos.map((logo) => (
-        <Img
-          key={logo.src}
-          src={absoluteLogo(logo.src, assetBase)}
-          alt={logo.alt}
-          width={88}
-          height={32}
-          style={{ display: "inline-block", margin: "0 12px 8px 0" }}
-        />
-      ))}
+      <Text style={labelStyle}>{label}</Text>
+      <LogoTable logos={logos} assetBase={assetBase} />
     </Section>
   );
 }
