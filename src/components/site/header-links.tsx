@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { ArrowUpRight } from "lucide-react";
 import { navItems } from "@/content/landing";
 
 export function HeaderLinks() {
@@ -13,18 +12,6 @@ export function HeaderLinks() {
             </Link>
           </li>
         ))}
-        <li>
-          <a
-            href="/diagnostico-tmec-puebla"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-1 text-small whitespace-nowrap text-ink-secondary transition hover:text-ink"
-          >
-            T-MEC
-            <ArrowUpRight size={14} aria-hidden />
-            <span className="sr-only">, se abre en otra pestaña</span>
-          </a>
-        </li>
       </ul>
     </nav>
   );
