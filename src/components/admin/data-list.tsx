@@ -1,11 +1,13 @@
 "use client";
 
 import Link from "next/link";
+import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import type { ColumnDef } from "@tanstack/react-table";
 import { columnDef, type DataColumn, type DataRow } from "@/components/admin/data-columns";
 import { listCrumbs, PanelHeader } from "@/components/admin/panel-header";
 import { DataTable } from "@/components/ui/data-table";
+import { pageCount, pageSize } from "@/lib/admin/page-query";
 
 export function DataList({
   title,
@@ -13,6 +15,7 @@ export function DataList({
   columns,
   rows,
   page,
+  total,
   basePath,
   error,
   rowActions,
@@ -23,12 +26,14 @@ export function DataList({
   columns: DataColumn[];
   rows: DataRow[];
   page: number;
+  total: number;
   basePath: string;
   error?: string;
   rowActions?: (row: DataRow) => React.ReactNode;
   children?: React.ReactNode;
 }) {
   const router = useRouter();
+  const pages = pageCount(total);
   const tableColumns: ColumnDef<DataRow>[] = [
     ...columns.map((column) => columnDef(column)),
     {
@@ -43,7 +48,10 @@ export function DataList({
         ),
     },
   ];
-  const totalPages = rows.length >= 10 ? page + 1 : page;
+
+  useEffect(() => {
+    if (page > pages) router.replace(`${basePath}?page=${pages}`);
+  }, [basePath, page, pages, router]);
 
   return (
     <main className="px-8 py-8">
@@ -53,9 +61,9 @@ export function DataList({
         data={rows}
         columns={tableColumns}
         page={page}
-        totalPages={totalPages}
-        total={rows.length}
-        limit={10}
+        totalPages={pages}
+        total={total}
+        limit={pageSize}
         emptyMessage="Sin filas."
         onPageChange={(next) => router.push(`${basePath}?page=${next}`)}
       />
