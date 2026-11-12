@@ -23,7 +23,7 @@ function row(org: StoredOrg) {
 export function memoryListOrganismos(rawPage: string | undefined) {
   const page = pageQuery(rawPage);
   const all = [...orgs()].sort((a, b) => b.created_at.localeCompare(a.created_at));
-  return { page: page.page, rows: all.slice(page.from, page.to + 1).map(row) };
+  return { page: page.page, rows: all.slice(page.from, page.to + 1).map(row), total: all.length };
 }
 
 export function memoryLoadOrganismo(id: string) {

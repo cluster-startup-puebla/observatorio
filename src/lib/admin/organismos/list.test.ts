@@ -21,6 +21,8 @@ describe("lista de organismos", () => {
     expect(list).toContain("brand_color");
     expect(list).toContain("brand_completed_at");
     expect(list).toContain(".range(page.from, page.to)");
+    expect(list).toContain('{ count: "exact", head: true }');
+    expect(list).toContain("total");
     expect(route).toContain("await requireSuperadmin()");
     expect(route).not.toMatch(/export async function DELETE/);
     const remote = readFileSync("src/lib/admin/organismos/create-remote.ts", "utf8");

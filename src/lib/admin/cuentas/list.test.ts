@@ -37,6 +37,7 @@ describe("lista de cuentas", () => {
     expect(list).toContain("email");
     expect(list).toContain("role");
     expect(list).toContain(".range(page.from, page.to)");
+    expect(list).toContain('{ count: "exact" }');
     expect(list).not.toContain("password");
     expect(route).toContain("await requireSuperadmin()");
     expect(route).not.toMatch(/export async function DELETE/);

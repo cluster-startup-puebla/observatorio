@@ -10,6 +10,9 @@ describe("lista de sectores", () => {
     expect(list).toContain("name");
     expect(list).toContain("position");
     expect(list).toContain(".range(page.from, page.to)");
+    expect(list).toContain('{ count: "exact" }');
+    expect(list).toContain("total: result.count ?? 0");
+    expect(list).toContain("total: 0");
     expect(route).toContain("await requireSuperadmin()");
     expect(route).not.toMatch(/export async function DELETE/);
   });

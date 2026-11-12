@@ -6,15 +6,16 @@ import { pageQuery } from "@/lib/admin/page-query";
 export async function listSectores(rawPage: string | undefined) {
   const page = pageQuery(rawPage);
   const db = await adminDb();
-  if (!db) return { page: page.page, rows: [] as Record<string, string>[] };
+  if (!db) return { page: page.page, rows: [] as Record<string, string>[], total: 0 };
   const result = await db
     .from("sectors")
-    .select("id, slug, name, position, sector_pages(headline, body)")
+    .select("id, slug, name, position, sector_pages(headline, body)", { count: "exact" })
     .order("position")
     .range(page.from, page.to);
   if (result.error) throw new Error(result.error.message);
   return {
     page: page.page,
+    total: result.count ?? 0,
     rows: (result.data ?? []).map((row) => {
       const pageRow = row.sector_pages as { headline?: string | null; body?: string | null } | { headline?: string | null; body?: string | null }[] | null;
       const page = Array.isArray(pageRow) ? pageRow[0] : pageRow;

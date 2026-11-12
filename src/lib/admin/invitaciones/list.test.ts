@@ -34,6 +34,7 @@ describe("lista de invitaciones", () => {
     expect(list).toContain('"excel"');
     expect(list).toContain('"manual"');
     expect(list).toContain(".range(page.from, page.to)");
+    expect(list).toContain('{ count: "exact" }');
     expect(route).toContain("await requireSuperadmin()");
     expect(route).not.toMatch(/export async function DELETE/);
   });

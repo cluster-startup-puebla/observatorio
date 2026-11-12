@@ -11,10 +11,10 @@ export async function listBandeja(rawPage: string | undefined, rawKind: string |
   const page = pageQuery(rawPage);
   const kind = mailKind(rawKind);
   const db = await adminDb();
-  if (!db) return { page: page.page, rows: [] as Record<string, string>[] };
+  if (!db) return { page: page.page, rows: [] as Record<string, string>[], total: 0 };
   let query = db
     .from("outbox_messages")
-    .select("id, kind, to_email, subject, created_at, sent_at")
+    .select("id, kind, to_email, subject, created_at, sent_at", { count: "exact" })
     .order("created_at", { ascending: false })
     .range(page.from, page.to);
   if (kind && kinds.includes(kind)) query = query.eq("kind", kind);
@@ -22,6 +22,7 @@ export async function listBandeja(rawPage: string | undefined, rawKind: string |
   if (result.error) throw new Error(result.error.message);
   return {
     page: page.page,
+    total: result.count ?? 0,
     rows: (result.data ?? []).map((row) => ({
       id: row.id,
       kind: row.kind,

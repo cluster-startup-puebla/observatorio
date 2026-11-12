@@ -9,7 +9,9 @@ export async function listOrganismos(rawPage: string | undefined) {
   if (!usesSupabaseAuth()) return memoryListOrganismos(rawPage);
   const page = pageQuery(rawPage);
   const db = await adminDb();
-  if (!db) return { page: page.page, rows: [] as Record<string, string>[] };
+  if (!db) return { page: page.page, rows: [] as Record<string, string>[], total: 0 };
+  const counted = await db.from("organizations").select("id", { count: "exact", head: true });
+  if (counted.error) throw new Error(counted.error.message);
   const result = await db
     .from("organizations")
     .select("id, name, brand_color, brand_completed_at, media_assets(object_path, purpose)")
@@ -29,5 +31,6 @@ export async function listOrganismos(rawPage: string | undefined) {
         brand_completed_at: row.brand_completed_at ? "Lista" : "Incompleta",
       };
     }),
+    total: counted.count ?? 0,
   };
 }

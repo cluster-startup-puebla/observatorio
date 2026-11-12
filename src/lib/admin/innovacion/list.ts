@@ -8,10 +8,10 @@ type ConsentRow = { profile_id: string; accepted_at: string };
 export async function listAcceptedInnovation(rawPage: string | undefined) {
   const page = pageQuery(rawPage);
   const db = await adminDb();
-  if (!db) return { page: page.page, rows: [] as Record<string, string>[] };
+  if (!db) return { page: page.page, rows: [] as Record<string, string>[], total: 0 };
   const consents = await db
     .from("innovation_consents")
-    .select("profile_id, accepted_at")
+    .select("profile_id, accepted_at", { count: "exact" })
     .not("accepted_at", "is", null)
     .order("accepted_at", { ascending: false })
     .range(page.from, page.to);
@@ -30,6 +30,7 @@ export async function listAcceptedInnovation(rawPage: string | undefined) {
   const companyByProfile = new Map((companies.data ?? []).map((row) => [row.profile_id, row]));
   return {
     page: page.page,
+    total: consents.count ?? 0,
     rows: rows.map((row) => {
       const person = personById.get(row.profile_id);
       const company = companyByProfile.get(row.profile_id);

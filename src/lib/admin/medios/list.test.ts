@@ -37,6 +37,7 @@ describe("lista de medios", () => {
     expect(list).toContain("bucket_id");
     expect(list).toContain("object_path");
     expect(list).toContain(".range(page.from, page.to)");
+    expect(list).toContain('{ count: "exact" }');
     expect(route).toContain("await requireSuperadmin()");
   });
 });

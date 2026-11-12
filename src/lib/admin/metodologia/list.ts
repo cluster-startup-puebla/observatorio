@@ -6,15 +6,16 @@ import { pageQuery } from "@/lib/admin/page-query";
 export async function listMetodologia(rawPage: string | undefined) {
   const page = pageQuery(rawPage);
   const db = await adminDb();
-  if (!db) return { page: page.page, rows: [] as Record<string, string>[] };
+  if (!db) return { page: page.page, rows: [] as Record<string, string>[], total: 0 };
   const result = await db
     .from("instrument_sections")
-    .select("id, name, position, range_kind")
+    .select("id, name, position, range_kind", { count: "exact" })
     .order("position")
     .range(page.from, page.to);
   if (result.error) throw new Error(result.error.message);
   return {
     page: page.page,
+    total: result.count ?? 0,
     rows: (result.data ?? []).map((row) => ({
       id: row.id,
       name: row.name,

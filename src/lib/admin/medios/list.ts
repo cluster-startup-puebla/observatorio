@@ -8,15 +8,16 @@ import { purposeLabel } from "./purpose-label";
 export async function listMedios(rawPage: string | undefined) {
   const page = pageQuery(rawPage);
   const db = await adminDb();
-  if (!db) return { page: page.page, rows: [] as Record<string, string>[] };
+  if (!db) return { page: page.page, rows: [] as Record<string, string>[], total: 0 };
   const result = await db
     .from("media_assets")
-    .select("id, purpose, bucket_id, object_path, content_type, byte_size")
+    .select("id, purpose, bucket_id, object_path, content_type, byte_size", { count: "exact" })
     .order("created_at", { ascending: false })
     .range(page.from, page.to);
   if (result.error) throw new Error(result.error.message);
   return {
     page: page.page,
+    total: result.count ?? 0,
     rows: (result.data ?? []).map((row) => ({
       id: row.id,
       purpose: row.purpose,

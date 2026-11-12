@@ -16,6 +16,7 @@ describe("lista de pases", () => {
     expect(list).toContain('.from("arrivals")');
     expect(list).toContain("profile_id");
     expect(list).toContain(".range(page.from, page.to)");
+    expect(list).toContain('{ count: "exact" }');
     expect(route).toContain("await requireSuperadmin()");
   });
 });

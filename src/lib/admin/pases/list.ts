@@ -6,10 +6,10 @@ import { pageQuery } from "@/lib/admin/page-query";
 export async function listPases(rawPage: string | undefined) {
   const page = pageQuery(rawPage);
   const db = await adminDb();
-  if (!db) return { page: page.page, rows: [] as Record<string, string>[] };
+  if (!db) return { page: page.page, rows: [] as Record<string, string>[], total: 0 };
   const passes = await db
     .from("passes")
-    .select("profile_id, image_asset_id, issued_at")
+    .select("profile_id, image_asset_id, issued_at", { count: "exact" })
     .order("issued_at", { ascending: false })
     .range(page.from, page.to);
   if (passes.error) throw new Error(passes.error.message);
@@ -21,6 +21,7 @@ export async function listPases(rawPage: string | undefined) {
   const arrived = new Set((arrivals.data ?? []).map((row) => row.profile_id));
   return {
     page: page.page,
+    total: passes.count ?? 0,
     rows: (passes.data ?? []).map((row) => ({
       id: row.profile_id,
       profile_id: row.profile_id,

@@ -22,6 +22,7 @@ describe("lista de empresas", () => {
     expect(list).toContain("sectorSourceLabel");
     expect(list).toContain("sector_id");
     expect(list).toContain(".range(page.from, page.to)");
+    expect(list).toContain('{ count: "exact" }');
     expect(route).toContain("await requireSuperadmin()");
     expect(route).not.toMatch(/export async function DELETE/);
   });

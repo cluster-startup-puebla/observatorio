@@ -12,8 +12,11 @@ export async function listSesiones(rawPage: string | undefined) {
       page: page.page,
       rows: [] as Record<string, string>[],
       quotasBySession: {} as Record<string, Record<string, number>>,
+      total: 0,
     };
   }
+  const counted = await db.from("sessions").select("id", { count: "exact", head: true });
+  if (counted.error) throw new Error(counted.error.message);
   const result = await db
     .from("sessions")
     .select(
@@ -46,5 +49,5 @@ export async function listSesiones(rawPage: string | undefined) {
     };
   });
 
-  return { page: page.page, rows, quotasBySession };
+  return { page: page.page, rows, quotasBySession, total: counted.count ?? 0 };
 }

@@ -24,6 +24,7 @@ describe("lista de bandeja", () => {
     expect(list).toContain("event_pass");
     expect(list).toContain("open_innovation");
     expect(list).toContain(".range(page.from, page.to)");
+    expect(list).toContain('{ count: "exact" }');
     expect(route).toContain("await requireSuperadmin()");
   });
 });

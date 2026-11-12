@@ -15,6 +15,8 @@ describe("lista de sesiones", () => {
     expect(list).toContain("is_current");
     expect(list).toContain("session_sector_quotas");
     expect(list).toContain(".range(page.from, page.to)");
+    expect(list).toContain('{ count: "exact", head: true }');
+    expect(list).toContain("total");
     expect(route).toContain("await requireSuperadmin()");
     expect(route).toContain("saveSessionQuotas");
   });
