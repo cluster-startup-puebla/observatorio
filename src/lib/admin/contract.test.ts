@@ -4,11 +4,11 @@ import { pageQuery } from "./page-query";
 import { tabQuery } from "./tab-query";
 
 describe("contrato del panel", () => {
-  it("pide 10 filas y un tab desconocido cae al primero", () => {
-    expect(pageQuery(undefined)).toEqual({ page: 1, from: 0, to: 9, size: 10 });
-    expect(pageQuery("2")).toEqual({ page: 2, from: 10, to: 19, size: 10 });
-    expect(pageQuery("0")).toEqual({ page: 1, from: 0, to: 9, size: 10 });
-    expect(pageQuery("no")).toEqual({ page: 1, from: 0, to: 9, size: 10 });
+  it("pide 20 filas y un tab desconocido cae al primero", () => {
+    expect(pageQuery(undefined)).toEqual({ page: 1, from: 0, to: 19, size: 20 });
+    expect(pageQuery("2")).toEqual({ page: 2, from: 20, to: 39, size: 20 });
+    expect(pageQuery("0")).toEqual({ page: 1, from: 0, to: 19, size: 20 });
+    expect(pageQuery("no")).toEqual({ page: 1, from: 0, to: 19, size: 20 });
     expect(tabQuery("crm", ["miembros", "crm"], "miembros")).toBe("crm");
     expect(tabQuery("borrar", ["miembros", "crm"], "miembros")).toBe("miembros");
     expect(tabQuery(undefined, ["empresa", "pase"], "empresa")).toBe("empresa");
