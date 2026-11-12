@@ -12,7 +12,7 @@ export function DetailFrame({
   title: string;
   backHref: string;
   facts: { label: string; value: string }[];
-  tabs: { value: string; label: string }[];
+  tabs: { value: string; label: string; count?: number }[];
   active: string;
   children: React.ReactNode;
 }) {
@@ -36,6 +36,7 @@ export function DetailFrame({
             className={tab.value === active ? "btn btn-primary" : "btn"}
           >
             {tab.label}
+            {tab.count ? <span className="ml-2 text-small">{tab.count}</span> : null}
           </Link>
         ))}
       </nav>

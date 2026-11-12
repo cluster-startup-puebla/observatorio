@@ -38,7 +38,7 @@ export default async function OrganismoDetailPage({
         { label: "Color", value: data.org.brand_color ?? "" },
         { label: "Marca", value: data.org.brand_completed_at ? "Lista" : "Incompleta" },
       ]}
-      tabs={tabs}
+      tabs={tabs.map((tab) => (tab.value === "crm" ? { ...tab, count: data.contactCount } : tab))}
       active={active}
     >
       {data.logo ? (

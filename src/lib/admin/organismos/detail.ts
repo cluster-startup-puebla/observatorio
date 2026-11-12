@@ -14,7 +14,7 @@ export async function loadOrganismo(id: string) {
   if (!org.data) return null;
   const [members, contacts, copies, logo, sectors, sessions] = await Promise.all([
     db.from("profiles").select("id, full_name, email, role").eq("organization_id", id),
-    db.from("crm_contacts").select("id, nombre, empresa, email, source").eq("organization_id", id),
+    db.from("crm_contacts").select("id", { count: "exact", head: true }).eq("organization_id", id),
     db.from("link_copies").select("id, sector_id, created_at").eq("organization_id", id),
     db.from("media_assets").select("id, object_path, content_type").eq("organization_id", id).eq("purpose", "organization_logo").maybeSingle(),
     db.from("sectors").select("id, slug, name").order("position"),
@@ -26,7 +26,7 @@ export async function loadOrganismo(id: string) {
   return {
     org: org.data,
     members: members.data ?? [],
-    contacts: contacts.data ?? [],
+    contactCount: contacts.count ?? 0,
     copies: copies.data ?? [],
     logo: logo.data,
     sectors: sectors.data ?? [],

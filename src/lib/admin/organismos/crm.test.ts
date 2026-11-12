@@ -34,4 +34,15 @@ describe("crm de un organismo", () => {
     expect(page).toContain("OrganismoCrmTab");
     expect(screen).not.toContain("data.contacts");
   });
+
+  it("el tab CRM muestra el total y no descarga todas las filas", () => {
+    const detail = readFileSync("src/lib/admin/organismos/detail.ts", "utf8");
+    const frame = readFileSync("src/components/admin/detail-frame.tsx", "utf8");
+    const page = readFileSync("src/app/admin/organismos/[id]/page.tsx", "utf8");
+    expect(detail).toContain('{ count: "exact", head: true }');
+    expect(detail).toContain("contactCount");
+    expect(detail).not.toContain("nombre, empresa, email, source");
+    expect(frame).toContain("tab.count");
+    expect(page).toContain("count: data.contactCount");
+  });
 });

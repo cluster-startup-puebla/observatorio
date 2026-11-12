@@ -32,7 +32,7 @@ export function memoryLoadOrganismo(id: string) {
   return {
     org,
     members: [],
-    contacts: [],
+    contactCount: 0,
     copies: [],
     logo: org.logo ? { object_path: org.logo.objectPath, content_type: org.logo.contentType } : null,
     sectors: [] as { id: string; name: string | null }[],
