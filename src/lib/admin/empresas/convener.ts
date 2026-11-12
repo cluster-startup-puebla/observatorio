@@ -1,5 +1,5 @@
 type Named = { name?: string } | { name?: string }[] | null;
-type Owner = { email?: string } | { email?: string }[] | null;
+type Owner = { email?: string | null } | { email?: string | null }[] | null;
 
 export function convenerLabel(names: string[]) {
   const unique = [...new Set(names.map((name) => name.trim()).filter(Boolean))];

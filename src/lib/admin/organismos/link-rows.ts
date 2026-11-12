@@ -68,7 +68,7 @@ export function linksFromCopies(rows: CopyRecord[], token: string): OrganismoLin
         sectorId: sector?.id ?? "",
         sectorName: sector?.name?.trim() || "Sector desconocido",
         sectorSlug: sector?.slug ?? "",
-        sessionLabel: session ? currentOption(session).label : "Sin sesión",
+        sessionLabel: session ? currentOption({ id: row.session_id ?? "", ...session }).label : "Sin sesión",
         token,
         sessionId: row.session_id,
       });
