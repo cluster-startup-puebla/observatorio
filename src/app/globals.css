@@ -304,6 +304,33 @@
   }
 }
 
+.band-photo {
+  opacity: 0;
+  animation: band-photo-fade 18s linear infinite both;
+}
+
+.band-veil {
+  background: color-mix(in srgb, var(--band) 60%, transparent);
+}
+
+@keyframes band-photo-fade {
+  0% { opacity: 0; }
+  6.67% { opacity: 1; }
+  33.33% { opacity: 1; }
+  40% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .band-photo {
+    animation: none;
+  }
+
+  .band-photo:first-child {
+    opacity: 1;
+  }
+}
+
 /* Documento largo: lectura en teléfono y modo lectura. */
 .doc-wrap {
   max-width: 64rem;
