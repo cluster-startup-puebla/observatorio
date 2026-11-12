@@ -2,7 +2,8 @@ import "server-only";
 
 import { adminDb } from "@/lib/admin/admin-db";
 import { bandLabel } from "./band-label";
-import { externalApprovalLabel } from "./external-approval";
+import { acceptorLabel, externalApprovalLabel } from "./external-approval";
+import { loadLinkContacts } from "./link-contacts";
 import { sectorSourceLabel } from "./sector-source";
 
 export async function loadEmpresa(id: string) {
@@ -27,14 +28,22 @@ export async function loadEmpresa(id: string) {
     ? await db.from("profiles").select("email").eq("id", company.data.admitted_by).maybeSingle()
     : { data: null, error: null };
   if (admitter.error) throw new Error(admitter.error.message);
+  const owner = await db.from("profiles").select("email").eq("id", company.data.profile_id).maybeSingle();
+  if (owner.error) throw new Error(owner.error.message);
+  const email = String(owner.data?.email ?? "").trim().toLowerCase();
+  const links = await loadLinkContacts(db, email ? [email] : []);
+  const convener = links.convened.get(email) ?? "";
+  const statuses = links.statuses.get(email) ?? [];
   return {
     company: {
       ...company.data,
       employee_label: bandLabel(company.data.employee_band),
       source_label: sectorSourceLabel(company.data.sector_source),
       admitted_at: company.data.admitted_at,
-      approval_label: externalApprovalLabel(company.data.sector_source, company.data.admitted_at),
+      approval_label: externalApprovalLabel(company.data.sector_source, company.data.admitted_at, statuses),
       admitted_by_email: admitter.data?.email ?? "",
+      acceptor: acceptorLabel(convener, company.data.sector_source, admitter.data?.email ?? ""),
+      has_link: links.convened.has(email),
     },
     sector: sector.data,
     answers: answers.data ?? [],

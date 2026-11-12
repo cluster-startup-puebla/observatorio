@@ -34,6 +34,9 @@ describe("detalle de empresas", () => {
     const route = readFileSync("src/app/api/admin/empresas/[id]/aceptar/route.ts", "utf8");
     expect(source).toContain("admitted_at");
     expect(source).toContain("externalApprovalLabel");
+    expect(source).toContain("loadLinkContacts");
+    expect(page).toContain("has_link");
+    expect(page).toContain("La acepta");
     expect(page).toContain("/aceptar");
     expect(page).toContain("Aceptar");
     expect(route).toContain('rpc("approve_external_signup"');

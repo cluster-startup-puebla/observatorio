@@ -53,7 +53,7 @@ export async function listEmpresas(rawPage: string | undefined) {
         sector_source: row.sector_source ?? "",
         convoco: links.hrefs.get(email) ?? "—",
         llegada: sectorSourceLabel(row.sector_source ?? ""),
-        aprobacion: externalApprovalLabel(row.sector_source ?? "", row.admitted_at),
+        aprobacion: externalApprovalLabel(row.sector_source ?? "", row.admitted_at, links.statuses.get(email) ?? []),
       };
     }),
   };

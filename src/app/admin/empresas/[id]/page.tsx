@@ -30,7 +30,7 @@ export default async function EmpresaDetailPage({
         { label: "Tamaño", value: data.company.employee_label },
         { label: "Cómo llegó el sector", value: data.company.source_label },
         { label: "Aprobación", value: data.company.approval_label },
-        { label: "Aceptó", value: data.company.admitted_by_email || "Nadie" },
+        { label: "La acepta", value: data.company.acceptor },
         { label: "Referencia", value: data.company.referral_source },
         { label: "Logo el día del evento", value: data.company.show_logo_on_event ? "Sí" : "No" },
       ]}
@@ -40,7 +40,7 @@ export default async function EmpresaDetailPage({
       {seatFullCopy(query.error) || query.error ? (
         <p className="text-small text-mark">{seatFullCopy(query.error) || query.error}</p>
       ) : null}
-      {data.company.sector_source === "path" && !data.company.admitted_at ? (
+      {data.company.sector_source === "path" && !data.company.admitted_at && !data.company.has_link ? (
         <form action={`/api/admin/empresas/${id}/aceptar`} method="post" className="mt-4">
           <button className="btn btn-primary" type="submit">Aceptar</button>
         </form>

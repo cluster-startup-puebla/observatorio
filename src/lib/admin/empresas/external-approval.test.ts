@@ -1,6 +1,6 @@
 import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
-import { externalApprovalLabel, waitsForExternalApproval } from "./external-approval";
+import { acceptorLabel, externalApprovalLabel, waitsForExternalApproval } from "./external-approval";
 import { sectorSourceLabel } from "./sector-source";
 
 describe("registro externo", () => {
@@ -17,10 +17,17 @@ describe("registro externo", () => {
     expect(waitsForExternalApproval("chosen", null)).toBe(false);
   });
 
-  it("la ficha distingue pendiente, aceptada y lo que no aplica", () => {
+  it("quien llegó por enlace lo acepta el organismo", () => {
     expect(externalApprovalLabel("path", null)).toBe("Pendiente");
     expect(externalApprovalLabel("path", "2026-10-24T00:00:00Z")).toBe("Aceptada");
-    expect(externalApprovalLabel("link", null)).toBe("No aplica");
+    expect(externalApprovalLabel("link", null)).toBe("Sin organismo");
+    expect(externalApprovalLabel("link", null, ["cargado"])).toBe("Pendiente");
+    expect(externalApprovalLabel("link", null, ["confirmo"])).toBe("Aceptada");
+    expect(externalApprovalLabel("link", null, ["no"])).toBe("Rechazada");
+    expect(externalApprovalLabel("path", null, ["cargado"])).toBe("Pendiente");
+    expect(acceptorLabel("Clúster Agroindustria Puebla", "link", "")).toBe("Clúster Agroindustria Puebla");
+    expect(acceptorLabel("", "path", "")).toBe("Superadmin");
+    expect(acceptorLabel("—", "chosen", "")).toBe("Nadie");
   });
 
   it("las columnas dejan aceptadas a las empresas path que ya existen", () => {

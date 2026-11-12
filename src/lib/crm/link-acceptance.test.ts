@@ -36,6 +36,16 @@ describe("aceptación del enlace", () => {
     expect(sql).not.toContain("'registrar'");
   });
 
+  it("un enlace tardío reclama a quien se registró sin organismo", () => {
+    const sql = readFileSync("supabase/migrations/20261112061522_link_claim_replaces_unknown_place.sql", "utf8");
+    const claim = sql.indexOf("set sector_source = 'link'");
+    const existing = sql.indexOf("organization_id = org_id and email = normalized");
+    expect(claim).toBeGreaterThan(-1);
+    expect(existing).toBeGreaterThan(claim);
+    expect(sql).toContain("company.admitted_at is null");
+    expect(sql).toContain("contact.source = 'enlace'");
+  });
+
   it("aceptar escribe confirmar y registrar para un enlace pendiente", () => {
     const sql = readFileSync("supabase/migrations/20261023190100_approve_link_signup.sql", "utf8");
     expect(sql).toContain("function public.approve_link_signup(contact_id uuid)");
