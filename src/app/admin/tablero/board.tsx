@@ -3,6 +3,7 @@ import { CupoKpis } from "@/app/admin/tablero/cupo-kpis";
 import { LogoAside } from "@/app/admin/tablero/logo-aside";
 import { TableroKpis } from "@/app/admin/tablero/kpis";
 import { LinkOrgChart } from "@/app/admin/tablero/link-org-chart";
+import { OrgOpenChart } from "@/app/admin/tablero/org-open-chart";
 import { PaceChart } from "@/app/admin/tablero/pace-chart";
 import { UnconvenedCard } from "@/app/admin/tablero/unconvened-card";
 import { SectorChart } from "@/app/admin/tablero/sector-chart";
@@ -13,6 +14,7 @@ import type { ShowableLogo } from "@/lib/admin/empresas/event-logos";
 import type { DataRow } from "@/components/admin/data-columns";
 import type { SessionChoice } from "@/lib/admin/tablero/session-choices";
 import type { OmittedSector, SectorFillRow } from "@/lib/admin/tablero/sector-fill";
+import type { OrgOpenSeries } from "@/lib/admin/tablero/org-open-bars";
 import type { Tablero } from "@/lib/admin/tablero/types";
 
 type Cupos = {
@@ -30,11 +32,13 @@ export function TableroBoard({
   cupos,
   choices,
   logos,
+  opens,
 }: {
   board: Tablero;
   cupos: Cupos;
   choices: SessionChoice[];
   logos: ShowableLogo[];
+  opens: { bars: Record<string, string | number>[]; series: OrgOpenSeries[] };
 }) {
   const columns = logos.length > 0 ? "lg:grid-cols-[minmax(0,1fr)_18rem]" : "";
   return (
@@ -46,7 +50,8 @@ export function TableroBoard({
         <CupoKpis fill={cupos} />
         <UnconvenedCard rows={cupos.omitidos} companies={cupos.companies} />
         <CupoAlerts rows={cupos.rows} />
-        <SectorChart rows={cupos.rows} />
+        <SectorChart rows={cupos.rows} outside={cupos.omitidos} />
+        <OrgOpenChart bars={opens.bars} series={opens.series} />
         <div className="grid min-w-0 gap-6 lg:grid-cols-2">
           <PaceChart rows={board.pace} />
           <LinkOrgChart rows={board.byLinkOrg} />

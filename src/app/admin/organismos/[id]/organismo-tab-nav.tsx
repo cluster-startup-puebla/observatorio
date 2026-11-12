@@ -4,6 +4,7 @@ export const organismoTabs = [
   { value: "miembros", label: "Miembros" },
   { value: "crm", label: "CRM" },
   { value: "enlace", label: "Enlaces" },
+  { value: "actividad", label: "Actividad" },
   { value: "logo", label: "Logo" },
 ];
 

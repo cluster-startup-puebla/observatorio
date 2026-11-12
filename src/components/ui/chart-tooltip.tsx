@@ -22,25 +22,33 @@ function shown(value: TipItem["value"]) {
   return "";
 }
 
+function counts(value: TipItem["value"]) {
+  if (typeof value === "number") return value;
+  if (typeof value === "string" && value !== "") return Number(value);
+  return Number.NaN;
+}
+
 export function ChartTooltipContent({
   active,
   payload,
   label,
   className,
+  omitZero = false,
 }: {
   active?: boolean;
   payload?: ReadonlyArray<TipItem>;
   label?: string | number;
   className?: string;
+  omitZero?: boolean;
 }) {
   const { config } = useChart();
-  if (!active || !payload?.length) return null;
+  const rows = (payload ?? []).filter((item) => item.type !== "none" && (!omitZero || counts(item.value) > 0));
+  if (!active || rows.length === 0) return null;
   const title = typeof label === "string" ? (config[label]?.label ?? label) : label;
   return (
     <div className={cn("grid min-w-32 gap-1.5 rounded-lg border bg-background px-2.5 py-1.5 text-xs shadow-xl", className)}>
       {title ? <div className="font-medium">{title}</div> : null}
-      {payload
-        .filter((item) => item.type !== "none")
+      {rows
         .map((item, index) => {
           const key = String(item.dataKey ?? item.name ?? "value");
           const color = item.payload?.fill ?? item.color ?? `var(--color-${key})`;

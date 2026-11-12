@@ -3,7 +3,8 @@
 import { Bar, BarChart, CartesianGrid, XAxis, YAxis } from "recharts";
 import { ChartPanel } from "@/app/admin/tablero/chart-panel";
 import { ChartContainer, ChartTooltip, ChartTooltipContent, type ChartConfig } from "@/components/ui/chart";
-import type { SectorFillRow } from "@/lib/admin/tablero/sector-fill";
+import { sectorChartRows } from "@/lib/admin/tablero/sector-chart-rows";
+import type { OmittedSector, SectorFillRow } from "@/lib/admin/tablero/sector-fill";
 
 const config = {
   cupo: { label: "Cupo", color: "var(--brand-secondary)" },
@@ -11,16 +12,20 @@ const config = {
   pendientes: { label: "Pendientes", color: "var(--warning)" },
 } satisfies ChartConfig;
 
-export function SectorChart({ rows }: { rows: SectorFillRow[] }) {
+export function SectorChart({ rows, outside }: { rows: SectorFillRow[]; outside: OmittedSector[] }) {
+  const data = sectorChartRows(rows, outside);
   return (
-    <ChartPanel title="Por sector" hint="Lugares de la sesión elegida contra quienes ya ocupan y quienes esperan.">
-      {rows.length === 0 ? (
+    <ChartPanel
+      title="Por sector"
+      hint="Lugares de la sesión contra quienes ocupan y quienes esperan. Al final, sectores que se registraron sin estar en la lista: su cupo queda en cero."
+    >
+      {data.length === 0 ? (
         <p className="text-small text-ink-secondary">No hay sesión vigente.</p>
       ) : (
         <>
           <SectorLegend />
-          <ChartContainer config={config} className="aspect-auto w-full" style={{ height: Math.max(240, rows.length * 48) }}>
-            <BarChart data={rows} layout="vertical" margin={{ left: 4, right: 8 }}>
+          <ChartContainer config={config} className="aspect-auto w-full" style={{ height: Math.max(240, data.length * 48) }}>
+            <BarChart data={data} layout="vertical" margin={{ left: 4, right: 8 }}>
               <CartesianGrid horizontal={false} />
               <XAxis type="number" allowDecimals={false} tickLine={false} axisLine={false} />
               <YAxis type="category" dataKey="sector" width={128} tickLine={false} axisLine={false} tickFormatter={shortName} />

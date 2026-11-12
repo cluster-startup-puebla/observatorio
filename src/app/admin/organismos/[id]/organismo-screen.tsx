@@ -1,3 +1,4 @@
+import { ActivityTab } from "@/app/admin/organismos/[id]/activity-tab";
 import { OrganismoCrm } from "@/app/admin/organismos/[id]/organismo-crm";
 import { OrganismoHeader } from "@/app/admin/organismos/[id]/organismo-header";
 import { OrganismoTabNav } from "@/app/admin/organismos/[id]/organismo-tab-nav";
@@ -5,11 +6,14 @@ import { OrganismoTabs } from "@/app/admin/organismos/[id]/tabs";
 import { type DataRow } from "@/components/admin/data-columns";
 import { PanelHeader, parentLabel, trailCrumbs } from "@/components/admin/panel-header";
 import { type CrmVista } from "@/lib/admin/crm/query";
+import type { loadOrganismoActivity } from "@/lib/admin/organismos/activity";
 
 type Data = Parameters<typeof OrganismoTabs>[0]["data"] & {
   org: { name: string | null; brand_color: string | null; brand_completed_at: string | null };
   contactCount: number;
 };
+
+type Activity = Awaited<ReturnType<typeof loadOrganismoActivity>>;
 
 export function OrganismoScreen({
   id,
@@ -17,6 +21,7 @@ export function OrganismoScreen({
   active,
   enlace,
   crm,
+  activity,
   vista,
   estado,
   origen,
@@ -26,6 +31,7 @@ export function OrganismoScreen({
   active: string;
   enlace?: string;
   crm: { rows: DataRow[]; page: number; total: number } | null;
+  activity: Activity | null;
   vista: CrmVista;
   estado: string;
   origen: string;
@@ -45,7 +51,9 @@ export function OrganismoScreen({
       />
       <OrganismoTabNav id={id} active={active} contactCount={data.contactCount} />
       <div className="mt-6">
-        {crm ? (
+        {activity ? (
+          <ActivityTab stats={activity} color={data.org.brand_color} />
+        ) : crm ? (
           <OrganismoCrm id={id} rows={crm.rows} page={crm.page} total={crm.total} vista={vista} estado={estado} origen={origen} />
         ) : (
           <OrganismoTabs id={id} active={active} data={data} enlace={enlace} />

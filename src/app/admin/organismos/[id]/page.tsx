@@ -4,6 +4,7 @@ import { organismoTabs } from "@/app/admin/organismos/[id]/organismo-tab-nav";
 import { listCrm } from "@/lib/admin/crm/list";
 import { crmEstado, crmOrigen, crmVista } from "@/lib/admin/crm/query";
 import { tabQuery } from "@/lib/admin/tab-query";
+import { loadOrganismoActivity } from "@/lib/admin/organismos/activity";
 import { loadOrganismo } from "@/lib/admin/organismos/detail";
 import { requireSuperadmin } from "@/lib/auth/require-superadmin";
 
@@ -26,5 +27,18 @@ export default async function OrganismoDetailPage({
   const estado = crmEstado(query.estado);
   const origen = crmOrigen(query.origen);
   const crm = active === "crm" ? await listCrm(query.page, { estado, origen, all: vista === "tarjetas", organizationId: id }) : null;
-  return <OrganismoScreen id={id} data={data} active={active} enlace={query.enlace} crm={crm} vista={vista} estado={estado} origen={origen} />;
+  const activity = active === "actividad" ? await loadOrganismoActivity(id) : null;
+  return (
+    <OrganismoScreen
+      id={id}
+      data={data}
+      active={active}
+      enlace={query.enlace}
+      crm={crm}
+      activity={activity}
+      vista={vista}
+      estado={estado}
+      origen={origen}
+    />
+  );
 }
