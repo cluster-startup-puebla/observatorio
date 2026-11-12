@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { reserveHref, resolveSector, sectorSlug, sectors } from "./sectors";
+import { inviteSector, inviteSectors, reserveHref, resolveSector, sectorSlug, sectors } from "./sectors";
 
 describe("sectors", () => {
   it("publica el catálogo con slug estable", () => {
@@ -9,6 +9,11 @@ describe("sectors", () => {
     );
     expect(sectors.find((sector) => sector.slug === "agroindustria")?.name).toBe("Agronomía");
     expect(sectorSlug("Textil y confección")).toBe("textil-y-confeccion");
+    expect(inviteSectors).toHaveLength(sectors.length - 3);
+    expect(inviteSector("tecnologia-y-servicios-de-ti")).toBe(false);
+    expect(inviteSector("quimica")).toBe(false);
+    expect(inviteSector("minerales-no-metalicos")).toBe(false);
+    expect(inviteSector("turismo")).toBe(true);
   });
 
   it("una ruta conocida deja el sector seleccionado y bloqueado", () => {

@@ -19,6 +19,18 @@ export const sectors = diagnosticIndustries.map((name) => ({
   slug: keptSlug[name] ?? sectorSlug(name),
 }));
 
+const heldThisSession = new Set([
+  "quimica",
+  "minerales-no-metalicos",
+  "tecnologia-y-servicios-de-ti",
+]);
+
+export const inviteSectors = sectors.filter((sector) => !heldThisSession.has(sector.slug));
+
+export function inviteSector(slug: string) {
+  return inviteSectors.some((sector) => sector.slug === slug);
+}
+
 export function resolveSector(input: { pathSector?: string; chosen?: string }): {
   slug: string | null;
   name: string | null;
