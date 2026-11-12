@@ -32,6 +32,9 @@ describe("ficha de empresa", () => {
     expect(tabs).toContain("TabsTrigger");
     expect(tabs).toContain("data-testid={`tab-${value}`}");
     expect(readFileSync("src/app/admin/empresas/[id]/pase-section.tsx", "utf8")).toContain("/api/admin/medios/");
+    const members = readFileSync("src/app/admin/empresas/[id]/miembros-section.tsx", "utf8");
+    expect(members).toContain("/admin/cuentas/");
+    expect(members).toContain("<User");
     for (const file of ["sector-section", "tamano-section", "miembros-section", "respuestas-section", "pase-section"]) {
       expect(tabs).toContain(`./${file}`);
       expect(readFileSync(`src/app/admin/empresas/[id]/${file}.tsx`, "utf8").length).toBeGreaterThan(20);
