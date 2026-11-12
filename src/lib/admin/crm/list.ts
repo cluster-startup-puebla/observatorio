@@ -13,18 +13,18 @@ export async function listCrm(
   const estado = crmEstado(filters?.estado);
   const origen = crmOrigen(filters?.origen);
   const db = await adminDb();
-  if (!db) return { page: page.page, rows: [] as Record<string, string>[] };
+  if (!db) return { page: page.page, rows: [] as Record<string, string>[], total: 0 };
 
   let query = db
     .from("crm_contacts")
-    .select("id, nombre, empresa, email, source, organization_id")
+    .select("id, nombre, empresa, email, source, organization_id", { count: "exact" })
     .order("created_at", { ascending: false });
   if (origen) query = query.eq("source", origen);
   if (estado) {
     const matched = await db.from("crm_contact_status").select("contact_id").eq("status", estado);
     if (matched.error) throw new Error(matched.error.message);
     const ids = (matched.data ?? []).map((row) => row.contact_id);
-    if (ids.length === 0) return { page: page.page, rows: [] as Record<string, string>[] };
+    if (ids.length === 0) return { page: page.page, rows: [] as Record<string, string>[], total: 0 };
     query = query.in("id", ids);
   }
 
@@ -38,6 +38,7 @@ export async function listCrm(
   const byContact = new Map((status.data ?? []).map((row) => [row.contact_id, row.status ?? ""]));
   return {
     page: page.page,
+    total: contacts.count ?? 0,
     rows: (contacts.data ?? []).map((row) => ({
       id: row.id,
       nombre: row.nombre,

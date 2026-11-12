@@ -23,7 +23,7 @@ export default async function CrmPage({
   return (
     <CrmList
       rows={data.rows}
-      page={data.page}
+      page={data.page} total={data.total}
       error={params.error}
       orgs={(orgs.data ?? []).map((org) => ({ id: org.id, name: org.name ?? org.id }))}
       vista={vista}
