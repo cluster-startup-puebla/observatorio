@@ -5,8 +5,9 @@ import { pageQuery } from "@/lib/admin/page-query";
 import { bandLabel } from "./band-label";
 import { companyLogoSrc } from "./company-logo-src";
 import { companyOwner } from "./company-owner";
-import { convenerByEmail, organizationName, ownerEmail } from "./convener";
+import { ownerEmail } from "./convener";
 import { externalApprovalLabel } from "./external-approval";
+import { loadLinkContacts } from "./link-contacts";
 import { sectorSourceLabel } from "./sector-source";
 
 export async function listEmpresas(rawPage: string | undefined) {
@@ -31,17 +32,8 @@ export async function listEmpresas(rawPage: string | undefined) {
     ? await db.from("media_assets").select("profile_id").eq("purpose", "company_logo").in("profile_id", profileIds)
     : { data: [], error: null };
   if (assets.error) throw new Error(assets.error.message);
-  const contacts = emails.length
-    ? await db.from("crm_contacts").select("email, organizations(name)").eq("source", "enlace").in("email", emails)
-    : { data: [], error: null };
-  if (contacts.error) throw new Error(contacts.error.message);
+  const links = await loadLinkContacts(db, emails);
   const withLogo = new Set((assets.data ?? []).map((asset) => asset.profile_id));
-  const convened = convenerByEmail(
-    (contacts.data ?? []).map((contact) => ({
-      email: contact.email,
-      name: organizationName(contact.organizations as { name?: string } | { name?: string }[] | null),
-    })),
-  );
   return {
     page: page.page,
     total: result.count ?? 0,
@@ -59,7 +51,7 @@ export async function listEmpresas(rawPage: string | undefined) {
         sector_id: row.sector_id,
         referral_source: row.referral_source ?? "",
         sector_source: row.sector_source ?? "",
-        convoco: convened.get(email) ?? "—",
+        convoco: links.hrefs.get(email) ?? "—",
         llegada: sectorSourceLabel(row.sector_source ?? ""),
         aprobacion: externalApprovalLabel(row.sector_source ?? "", row.admitted_at),
       };

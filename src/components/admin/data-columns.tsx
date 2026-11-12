@@ -1,3 +1,4 @@
+import Link from "next/link";
 import type { ColumnDef } from "@tanstack/react-table";
 import { FallbackImage } from "@/components/admin/fallback-image";
 
@@ -7,10 +8,38 @@ export type DataColumn = {
   image?: boolean;
   imageAltKey?: string;
   color?: boolean;
+  links?: boolean;
 };
 export type DataRow = Record<string, string>;
 
+function linkItems(value: string) {
+  if (!value.startsWith("[")) return [];
+  try {
+    const parsed = JSON.parse(value) as { name?: string; href?: string }[];
+    if (!Array.isArray(parsed)) return [];
+    return parsed.flatMap((item) => (item?.name && item.href ? [{ name: item.name, href: item.href }] : []));
+  } catch {
+    return [];
+  }
+}
+
 export function columnDef(column: DataColumn): ColumnDef<DataRow> {
+  if (column.links) {
+    return {
+      id: column.key,
+      header: column.label,
+      cell: ({ row }) => {
+        const items = linkItems(row.original[column.key] ?? "");
+        if (items.length === 0) return "—";
+        return items.map((item, index) => (
+          <span key={item.href}>
+            {index > 0 ? ", " : null}
+            <Link className="text-link" href={item.href}>{item.name}</Link>
+          </span>
+        ));
+      },
+    };
+  }
   if (column.image) {
     const altKey = column.imageAltKey;
     return {
