@@ -10,3 +10,13 @@ const labels: Record<string, string> = {
 export function crmLabel(status: string) {
   return labels[status] ?? status;
 }
+
+const sources: Record<string, string> = {
+  enlace: "Enlace",
+  excel: "Excel",
+  manual: "Manual",
+};
+
+export function crmSourceLabel(source: string) {
+  return sources[source] ?? source;
+}
