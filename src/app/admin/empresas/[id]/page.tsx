@@ -1,10 +1,14 @@
 import { notFound } from "next/navigation";
-import { DetailFrame } from "@/components/admin/detail-frame";
-import { tabQuery } from "@/lib/admin/tab-query";
+import { EmpresaHeaderCard } from "@/app/admin/empresas/[id]/header-card";
+import { EmpresaTabs } from "@/app/admin/empresas/[id]/empresa-tabs";
+import { PanelHeader, parentLabel, trailCrumbs } from "@/components/admin/panel-header";
+import { Alert, AlertDescription } from "@/components/ui/alert";
+import { loadAnswerLines } from "@/lib/admin/empresas/answer-lines";
 import { loadEmpresa } from "@/lib/admin/empresas/detail";
-import { seatFullCopy } from "@/lib/cupo/seat-full-copy";
 import { companyTabs } from "@/lib/admin/empresas/tabs";
+import { tabQuery } from "@/lib/admin/tab-query";
 import { requireSuperadmin } from "@/lib/auth/require-superadmin";
+import { seatFullCopy } from "@/lib/cupo/seat-full-copy";
 
 export const instant = false;
 
@@ -21,43 +25,44 @@ export default async function EmpresaDetailPage({
   const data = await loadEmpresa(id);
   if (!data) notFound();
   const active = tabQuery(query.tab, companyTabs.map((tab) => tab.value), "sector");
+  const lines = await loadAnswerLines(data.answers ?? []);
+  const notice = seatFullCopy(query.error) || query.error;
+  const company = data.company;
   return (
-    <DetailFrame
-      title={data.company.legal_name}
-      backHref="/admin/empresas"
-      facts={[
-        { label: "Sector", value: data.sector?.name ?? "" },
-        { label: "Tamaño", value: data.company.employee_label },
-        { label: "Cómo llegó el sector", value: data.company.source_label },
-        { label: "Aprobación", value: data.company.approval_label },
-        { label: "La acepta", value: data.company.acceptor },
-        { label: "Referencia", value: data.company.referral_source },
-        { label: "Logo el día del evento", value: data.company.show_logo_on_event ? "Sí" : "No" },
-      ]}
-      tabs={[...companyTabs]}
-      active={active}
-    >
-      {seatFullCopy(query.error) || query.error ? (
-        <p className="text-small text-mark">{seatFullCopy(query.error) || query.error}</p>
+    <main className="px-8 py-8">
+      <PanelHeader
+        title={company.legal_name}
+        crumbs={trailCrumbs(parentLabel("/admin/empresas"), "/admin/empresas", company.legal_name)}
+      />
+      <EmpresaHeaderCard
+        id={id}
+        legalName={company.legal_name}
+        sourceLabel={company.source_label}
+        sectorId={company.sector_id ?? ""}
+        sectorName={data.sector?.name ?? ""}
+        approvalLabel={company.approval_label}
+        acceptor={company.acceptor}
+        employeeLabel={company.employee_label}
+        referral={company.referral_source ?? ""}
+        showLogo={Boolean(company.show_logo_on_event)}
+      />
+      {notice ? (
+        <Alert variant="destructive" className="mb-6">
+          <AlertDescription>{notice}</AlertDescription>
+        </Alert>
       ) : null}
-      {data.company.sector_source === "path" && !data.company.admitted_at && !data.company.has_link ? (
-        <form action={`/api/admin/empresas/${id}/aceptar`} method="post" className="mt-4">
-          <button className="btn btn-primary" type="submit">Aceptar</button>
-        </form>
-      ) : null}
-      {data.company.show_logo_on_event ? (
-        <img src={`/api/admin/empresas/${id}/logo`} alt="" className="mt-4 h-16 w-auto object-contain" />
-      ) : null}
-      {active === "respuestas" ? (
-        <ul className="mt-4">
-          {data.answers.map((row) => (
-            <li key={`${row.question_id}-${row.option_value}`}>
-              {row.question_id}: {row.option_value}
-            </li>
-          ))}
-        </ul>
-      ) : null}
-      {active === "pase" ? <p className="mt-4">{data.pass ? "Pase emitido." : "Sin pase."}</p> : null}
-    </DetailFrame>
+      <EmpresaTabs
+        active={active}
+        id={id}
+        sourceLabel={company.source_label}
+        acceptor={company.acceptor}
+        sectorSource={company.sector_source}
+        admittedAt={company.admitted_at}
+        hasLink={company.has_link}
+        employeeLabel={company.employee_label}
+        lines={lines}
+        issued={Boolean(data.pass)}
+      />
+    </main>
   );
 }
