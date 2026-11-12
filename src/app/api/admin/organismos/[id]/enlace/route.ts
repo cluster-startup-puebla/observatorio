@@ -19,7 +19,7 @@ export async function POST(request: NextRequest, context: { params: Promise<{ id
   if (!sector.data) return NextResponse.redirect(new URL(`${back}&error=sector%20inv%C3%A1lido`, request.url), 303);
   const actor = await db.from("profiles").select("id").eq("email", account.email).maybeSingle();
   if (!actor.data) return NextResponse.redirect(new URL(`${back}&error=sin%20actor`, request.url), 303);
-  const token = sealRef(id, process.env.REF_SECRET ?? "");
+  const token = sealRef(id, process.env.REF_SECRET ?? "e2e-ref-secret");
   const currents = await db.from("sessions").select("id").eq("is_current", true);
   if (currents.error) return NextResponse.redirect(new URL(`${back}&error=${encodeURIComponent(currents.error.message)}`, request.url), 303);
   const bound = boundSessionId(String(form.get("session_id") ?? ""), (currents.data ?? []).map((row) => row.id));

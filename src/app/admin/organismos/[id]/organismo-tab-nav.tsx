@@ -3,7 +3,7 @@ import Link from "next/link";
 export const organismoTabs = [
   { value: "miembros", label: "Miembros" },
   { value: "crm", label: "CRM" },
-  { value: "enlace", label: "Enlace" },
+  { value: "enlace", label: "Enlaces" },
   { value: "logo", label: "Logo" },
 ];
 
