@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { CrmChips } from "@/app/admin/crm/crm-chips";
-import { crmEstados, crmHref, crmOrigenes, type CrmVista } from "@/lib/admin/crm/query";
+import { crmEstados, crmHref, crmOrigenes, type CrmLink, type CrmVista } from "@/lib/admin/crm/query";
 import { crmLabel } from "@/lib/crm-label";
 
 const vistas: { value: CrmVista; label: string }[] = [
@@ -18,10 +18,12 @@ export function CrmToolbar({
   vista,
   estado,
   origen,
+  hrefFor = crmHref,
 }: {
   vista: CrmVista;
   estado: string;
   origen: string;
+  hrefFor?: (input: CrmLink) => string;
 }) {
   return (
     <div className="mb-6 grid gap-4">
@@ -31,7 +33,7 @@ export function CrmToolbar({
           return (
             <Link
               key={item.value}
-              href={crmHref({ vista: item.value, estado, origen })}
+              href={hrefFor({ vista: item.value, estado, origen })}
               aria-current={active ? "page" : undefined}
               className={
                 active
@@ -49,13 +51,13 @@ export function CrmToolbar({
           label="Estatus"
           current={estado}
           options={crmEstados.map((value) => ({ value, label: crmLabel(value) }))}
-          hrefFor={(value) => crmHref({ vista, estado: value, origen })}
+          hrefFor={(value) => hrefFor({ vista, estado: value, origen })}
         />
         <CrmChips
           label="Origen"
           current={origen}
           options={crmOrigenes.map((value) => ({ value, label: origenLabel[value] }))}
-          hrefFor={(value) => crmHref({ vista, estado, origen: value })}
+          hrefFor={(value) => hrefFor({ vista, estado, origen: value })}
         />
       </section>
     </div>

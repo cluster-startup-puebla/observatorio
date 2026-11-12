@@ -41,7 +41,7 @@ describe("páginas de una tabla", () => {
 
   it("el CRM cuenta la consulta filtrada y el pie usa ese total", () => {
     const list = readFileSync("src/lib/admin/crm/list.ts", "utf8");
-    const screen = readFileSync("src/app/admin/crm/crm-list.tsx", "utf8");
+    const screen = readFileSync("src/app/admin/crm/crm-board.tsx", "utf8");
     const page = readFileSync("src/app/admin/crm/page.tsx", "utf8");
     expect(list).toContain('{ count: "exact" }');
     expect(list).toContain("total: 0");

@@ -7,7 +7,7 @@ import { crmLabel } from "@/lib/crm-label";
 
 export async function listCrm(
   rawPage: string | undefined,
-  filters?: { estado?: string; origen?: string; all?: boolean },
+  filters?: { estado?: string; origen?: string; all?: boolean; organizationId?: string },
 ) {
   const page = pageQuery(rawPage);
   const estado = crmEstado(filters?.estado);
@@ -19,6 +19,7 @@ export async function listCrm(
     .from("crm_contacts")
     .select("id, nombre, empresa, email, source, organization_id", { count: "exact" })
     .order("created_at", { ascending: false });
+  if (filters?.organizationId) query = query.eq("organization_id", filters.organizationId);
   if (origen) query = query.eq("source", origen);
   if (estado) {
     const matched = await db.from("crm_contact_status").select("contact_id").eq("status", estado);

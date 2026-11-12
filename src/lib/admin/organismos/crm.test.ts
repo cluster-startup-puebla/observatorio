@@ -10,39 +10,33 @@ describe("crm de un organismo", () => {
     expect(crmSourceLabel("otro")).toBe("otro");
   });
 
-  it("la lista pagina los contactos de un organismo", () => {
-    const source = readFileSync("src/lib/admin/organismos/crm.ts", "utf8");
-    expect(source).toContain('.from("crm_contacts")');
-    expect(source).toContain('.eq("organization_id", orgId)');
-    expect(source).toContain('{ count: "exact" }');
-    expect(source).toContain(".range(page.from, page.to)");
-    expect(source).toContain("crm_contact_status");
-    expect(source).toContain("crmSourceLabel");
-    expect(source).toContain("crmLabel");
-    expect(source).toContain('|| "—"');
+  it("el CRM global puede limitarse a un organismo", () => {
+    const source = readFileSync("src/lib/admin/crm/list.ts", "utf8");
+    expect(source).toContain("organizationId");
+    expect(source).toContain('.eq("organization_id", filters.organizationId)');
   });
 
-  it("la pestaña CRM abre el contacto y conserva el tab", () => {
-    const tab = readFileSync("src/app/admin/organismos/[id]/crm-tab.tsx", "utf8");
+  it("la ficha reutiliza el tablero del CRM", () => {
     const page = readFileSync("src/app/admin/organismos/[id]/page.tsx", "utf8");
+    const board = readFileSync("src/app/admin/crm/crm-board.tsx", "utf8");
+    const header = readFileSync("src/app/admin/organismos/[id]/organismo-header.tsx", "utf8");
     const screen = readFileSync("src/app/admin/organismos/[id]/tabs.tsx", "utf8");
-    expect(tab).toContain("href={`/admin/crm/${row.original.id}`}");
-    expect(tab).toContain("Este organismo no tiene contactos.");
-    expect(tab).toContain("?tab=crm&page=");
-    expect(tab).not.toContain("deleteAction");
-    expect(page).toContain("listOrganismoCrm");
-    expect(page).toContain("OrganismoCrmTab");
+    expect(page).toContain("listCrm");
+    expect(page).toContain("organizationId: id");
+    expect(page).toContain('all: vista === "tarjetas"');
+    expect(board).toContain("CrmCards");
+    expect(board).toContain("CrmToolbar");
+    expect(board).toContain("CrmRowActions");
+    expect(header).toContain("Contactos");
     expect(screen).not.toContain("data.contacts");
   });
 
   it("el tab CRM muestra el total y no descarga todas las filas", () => {
     const detail = readFileSync("src/lib/admin/organismos/detail.ts", "utf8");
-    const frame = readFileSync("src/components/admin/detail-frame.tsx", "utf8");
-    const page = readFileSync("src/app/admin/organismos/[id]/page.tsx", "utf8");
+    const nav = readFileSync("src/app/admin/organismos/[id]/organismo-screen.tsx", "utf8");
     expect(detail).toContain('{ count: "exact", head: true }');
     expect(detail).toContain("contactCount");
     expect(detail).not.toContain("nombre, empresa, email, source");
-    expect(frame).toContain("tab.count");
-    expect(page).toContain("count: data.contactCount");
+    expect(nav).toContain("data.contactCount");
   });
 });

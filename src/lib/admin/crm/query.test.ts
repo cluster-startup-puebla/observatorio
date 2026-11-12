@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { crmHref, crmVista } from "./query";
+import { crmHref, crmVista, organismoCrmHref } from "./query";
 
 describe("consulta del CRM", () => {
   it("separa vista y filtros en la url", () => {
@@ -8,5 +8,8 @@ describe("consulta del CRM", () => {
       "/admin/crm?vista=tarjetas&estado=cargado&origen=excel",
     );
     expect(crmHref({})).toBe("/admin/crm");
+    expect(organismoCrmHref("org-1", { vista: "tarjetas", page: 2 })).toBe(
+      "/admin/organismos/org-1?vista=tarjetas&page=2&tab=crm",
+    );
   });
 });

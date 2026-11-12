@@ -16,20 +16,32 @@ export function crmOrigen(value: string | undefined) {
   return origenes.find((item) => item === value) ?? "";
 }
 
-export function crmHref(input: {
+export type CrmLink = {
   vista?: string;
   estado?: string;
   origen?: string;
   page?: number;
-}) {
+};
+
+export function crmSearch(input: CrmLink) {
   const params = new URLSearchParams();
   const vista = crmVista(input.vista);
   if (vista !== "tabla") params.set("vista", vista);
   if (input.estado) params.set("estado", input.estado);
   if (input.origen) params.set("origen", input.origen);
   if (input.page && input.page > 1) params.set("page", String(input.page));
-  const query = params.toString();
+  return params;
+}
+
+export function crmHref(input: CrmLink) {
+  const query = crmSearch(input).toString();
   return query ? `/admin/crm?${query}` : "/admin/crm";
+}
+
+export function organismoCrmHref(id: string, input: CrmLink) {
+  const params = crmSearch(input);
+  params.set("tab", "crm");
+  return `/admin/organismos/${id}?${params}`;
 }
 
 export const crmEstados = estados;
