@@ -35,5 +35,14 @@ describe("lista de empresas", () => {
     const name = screen.indexOf('{ key: "legal_name", label: "Razón social" }');
     expect(logo).toBeGreaterThan(-1);
     expect(logo).toBeLessThan(name);
+    expect(list).toContain('eq("source", "enlace")');
+    expect(list).toContain("organizations(name)");
+    expect(list).toContain("convenerByEmail");
+    expect(list).toContain("ownerEmail");
+    expect(list).not.toContain("crm_contacts(");
+    const convoco = screen.indexOf('{ key: "convoco", label: "Convocó" }');
+    const llegada = screen.indexOf('{ key: "llegada", label: "Llegada" }');
+    expect(convoco).toBeGreaterThan(-1);
+    expect(convoco).toBeLessThan(llegada);
   });
 });
