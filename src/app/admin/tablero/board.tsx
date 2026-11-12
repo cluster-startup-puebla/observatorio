@@ -38,8 +38,8 @@ export function TableroBoard({
 }) {
   const columns = logos.length > 0 ? "lg:grid-cols-[minmax(0,1fr)_18rem]" : "";
   return (
-    <div data-testid="tablero" className={`grid items-start gap-6 ${columns}`}>
-      <div className="grid gap-6">
+    <div data-testid="tablero" className={`grid min-w-0 items-start gap-6 ${columns}`}>
+      <div className="grid min-w-0 gap-6">
         <TableroKpis board={board} />
         {board.invitations > 0 ? <TableroSignals board={board} /> : null}
         <SessionSelect choices={choices} selectedId={cupos.session?.id ?? null} />
@@ -47,7 +47,7 @@ export function TableroBoard({
         <UnconvenedCard rows={cupos.omitidos} companies={cupos.companies} />
         <CupoAlerts rows={cupos.rows} />
         <SectorChart rows={cupos.rows} />
-        <div className="grid gap-6 lg:grid-cols-2">
+        <div className="grid min-w-0 gap-6 lg:grid-cols-2">
           <PaceChart rows={board.pace} />
           <LinkOrgChart rows={board.byLinkOrg} />
         </div>

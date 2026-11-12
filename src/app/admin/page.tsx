@@ -23,7 +23,7 @@ export default async function AdminHomePage({
     loadLatestLogos(),
   ]);
   return (
-    <main className="px-4 py-6 sm:px-8 sm:py-8">
+    <main className="min-w-0 px-4 py-6 sm:px-8 sm:py-8">
       <PanelHeader title="Convocatoria" lead={lectura(board)} crumbs={[homeCrumb]} testId="panel-superadmin" />
       <TableroBoard board={board} cupos={cupos} choices={choices} logos={logos} />
     </main>

@@ -4,6 +4,7 @@ import Link from "next/link";
 import type { ColumnDef } from "@tanstack/react-table";
 import { columnDef, type DataColumn, type DataRow } from "@/components/admin/data-columns";
 import { DataTable } from "@/components/ui/data-table";
+import { EmpresaMobileCard } from "@/app/admin/tablero/empresa-mobile-card";
 
 const columns: DataColumn[] = [
   { key: "logo", label: "Logo", image: true },
@@ -28,5 +29,13 @@ export function EmpresaTable({ rows }: { rows: DataRow[] }) {
       ),
     },
   ];
-  return <DataTable data={rows} columns={tableColumns} enablePagination={false} emptyMessage="Sin filas." />;
+  return (
+    <DataTable
+      data={rows}
+      columns={tableColumns}
+      enablePagination={false}
+      emptyMessage="Sin filas."
+      renderMobileCard={(row) => <EmpresaMobileCard row={row} />}
+    />
+  );
 }

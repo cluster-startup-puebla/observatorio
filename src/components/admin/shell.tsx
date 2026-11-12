@@ -14,11 +14,11 @@ export function AdminShell({ email, children }: { email: string; children: React
     <TooltipProvider>
       <SidebarProvider className="h-dvh min-h-0 overflow-hidden">
         <AppSidebar email={email} groups={adminGroups()} />
-        <SidebarInset className="min-h-0 overflow-hidden">
+        <SidebarInset className="min-h-0 min-w-0 overflow-hidden">
           <header className="flex h-12 shrink-0 items-center gap-2 border-b px-3">
             <SidebarTrigger className="size-8 rounded-lg text-ink-secondary hover:bg-surface-subtle hover:text-ink [&_svg]:size-4" />
           </header>
-          <div className="flex min-h-0 flex-1 flex-col overflow-y-auto">{children}</div>
+          <div className="flex min-h-0 min-w-0 flex-1 flex-col overflow-y-auto">{children}</div>
         </SidebarInset>
       </SidebarProvider>
     </TooltipProvider>

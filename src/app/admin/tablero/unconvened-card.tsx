@@ -7,7 +7,7 @@ export function UnconvenedCard({ rows, companies }: { rows: OmittedSector[]; com
   if (rows.length === 0) return null;
   const people = rows.reduce((sum, row) => sum + row.personas, 0);
   return (
-    <section className="rounded-2xl border border-line bg-elevated p-5" data-testid="tablero-sin-convocar">
+    <section className="min-w-0 rounded-2xl border border-line bg-elevated p-5" data-testid="tablero-sin-convocar">
       <details className="group">
         <summary className="cursor-pointer list-none [&::-webkit-details-marker]:hidden">
           <div className="flex items-start justify-between gap-4">
@@ -29,7 +29,7 @@ export function UnconvenedCard({ rows, companies }: { rows: OmittedSector[]; com
             ))}
           </ul>
         </summary>
-        <div className="mt-4">
+        <div className="mt-4 min-w-0">
           <EmpresaTable rows={companies} />
         </div>
       </details>
