@@ -10,7 +10,9 @@ export const operaLogos: MailLogo[] = [
 export const backingLogos: MailLogo[] = [
   { src: "/logos/logo-estado.svg", alt: "Gobierno del Estado de Puebla", width: 301, height: 126 },
   { src: "/logos/logo-sedetra.png", alt: "Secretaría de Desarrollo Económico y Trabajo", width: 1106, height: 253 },
-  { src: "/logos/logo-cinco-de-mayo.png", alt: "5 de Mayo", width: 333, height: 252 },
+  { src: "/logos/logo-secihti.png", alt: "Secretaría de Ciencia, Humanidades, Tecnología e Innovación", width: 501, height: 274 },
+  { src: "/logos/logo-por-amor-a-puebla.svg", alt: "Por amor a Puebla", width: 1470, height: 590 },
+  { src: "/logos/logo-transformar-en-grande.png", alt: "Transformar en Grande", width: 806, height: 251 },
 ];
 
 export const convenerLogos: MailLogo[] = conveners.map((logo) => ({
