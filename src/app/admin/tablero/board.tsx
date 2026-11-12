@@ -9,7 +9,7 @@ import { SectorChart } from "@/app/admin/tablero/sector-chart";
 import { SessionSelect } from "@/app/admin/tablero/session-select";
 import { TableroSignals } from "@/app/admin/tablero/signals";
 import { cupoSignals, type Signal } from "@/lib/admin/tablero/reading";
-import type { EventLogo } from "@/lib/admin/empresas/event-logos";
+import type { ShowableLogo } from "@/lib/admin/empresas/event-logos";
 import type { DataRow } from "@/components/admin/data-columns";
 import type { SessionChoice } from "@/lib/admin/tablero/session-choices";
 import type { OmittedSector, SectorFillRow } from "@/lib/admin/tablero/sector-fill";
@@ -34,7 +34,7 @@ export function TableroBoard({
   board: Tablero;
   cupos: Cupos;
   choices: SessionChoice[];
-  logos: EventLogo[];
+  logos: ShowableLogo[];
 }) {
   const columns = logos.length > 0 ? "lg:grid-cols-[minmax(0,1fr)_18rem]" : "";
   return (
