@@ -8,8 +8,8 @@ export async function GET(_request: Request, context: { params: Promise<{ id: st
   const { id } = await context.params;
   const db = await adminDb();
   if (!db) return new Response(null, { status: 404 });
-  const company = await db.from("companies").select("profile_id, show_logo_on_event").eq("id", id).maybeSingle();
-  if (!company.data?.show_logo_on_event) return new Response(null, { status: 404 });
+  const company = await db.from("companies").select("profile_id").eq("id", id).maybeSingle();
+  if (!company.data?.profile_id) return new Response(null, { status: 404 });
   const asset = await db
     .from("media_assets")
     .select("object_path, content_type")
