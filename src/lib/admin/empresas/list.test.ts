@@ -25,5 +25,15 @@ describe("lista de empresas", () => {
     expect(list).toContain('{ count: "exact" }');
     expect(route).toContain("await requireSuperadmin()");
     expect(route).not.toMatch(/export async function DELETE/);
+    expect(list).toContain("profile_id");
+    expect(list).toContain('.from("media_assets")');
+    expect(list).toContain('eq("purpose", "company_logo")');
+    expect(list).toContain("companyLogoSrc");
+    expect(list).not.toContain("media_assets(");
+    const screen = readFileSync("src/app/admin/empresas/empresas-list.tsx", "utf8");
+    const logo = screen.indexOf('{ key: "logo", label: "Logo", image: true }');
+    const name = screen.indexOf('{ key: "legal_name", label: "Razón social" }');
+    expect(logo).toBeGreaterThan(-1);
+    expect(logo).toBeLessThan(name);
   });
 });

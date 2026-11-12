@@ -24,6 +24,7 @@ export function EmpresasList({
       title="Empresas"
       lead="La empresa ligada a un empresario y su sector."
       columns={[
+        { key: "logo", label: "Logo", image: true },
         { key: "legal_name", label: "Razón social" },
         { key: "employee_band", label: "Tamaño" },
         { key: "sector_name", label: "Sector" },
