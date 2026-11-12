@@ -21,4 +21,17 @@ describe("crm de un organismo", () => {
     expect(source).toContain("crmLabel");
     expect(source).toContain('|| "—"');
   });
+
+  it("la pestaña CRM abre el contacto y conserva el tab", () => {
+    const tab = readFileSync("src/app/admin/organismos/[id]/crm-tab.tsx", "utf8");
+    const page = readFileSync("src/app/admin/organismos/[id]/page.tsx", "utf8");
+    const screen = readFileSync("src/app/admin/organismos/[id]/tabs.tsx", "utf8");
+    expect(tab).toContain("href={`/admin/crm/${row.original.id}`}");
+    expect(tab).toContain("Este organismo no tiene contactos.");
+    expect(tab).toContain("?tab=crm&page=");
+    expect(tab).not.toContain("deleteAction");
+    expect(page).toContain("listOrganismoCrm");
+    expect(page).toContain("OrganismoCrmTab");
+    expect(screen).not.toContain("data.contacts");
+  });
 });

@@ -2,7 +2,9 @@ import { notFound } from "next/navigation";
 import { DetailFrame } from "@/components/admin/detail-frame";
 import { tabQuery } from "@/lib/admin/tab-query";
 import { loadOrganismo } from "@/lib/admin/organismos/detail";
+import { listOrganismoCrm } from "@/lib/admin/organismos/crm";
 import { requireSuperadmin } from "@/lib/auth/require-superadmin";
+import { OrganismoCrmTab } from "@/app/admin/organismos/[id]/crm-tab";
 import { OrganismoTabs } from "@/app/admin/organismos/[id]/tabs";
 
 export const instant = false;
@@ -19,7 +21,7 @@ export default async function OrganismoDetailPage({
   searchParams,
 }: {
   params: Promise<{ id: string }>;
-  searchParams: Promise<{ tab?: string; error?: string; enlace?: string }>;
+  searchParams: Promise<{ tab?: string; error?: string; enlace?: string; page?: string }>;
 }) {
   await requireSuperadmin();
   const { id } = await params;
@@ -27,6 +29,7 @@ export default async function OrganismoDetailPage({
   const data = await loadOrganismo(id);
   if (!data) notFound();
   const active = tabQuery(query.tab, tabs.map((tab) => tab.value), "miembros");
+  const crm = active === "crm" ? await listOrganismoCrm(id, query.page) : null;
   return (
     <DetailFrame
       title={data.org.name ?? id}
@@ -47,7 +50,11 @@ export default async function OrganismoDetailPage({
       ) : (
         <p className="mb-4 text-small text-ink-secondary">Sin logo.</p>
       )}
-      <OrganismoTabs id={id} active={active} data={data} enlace={query.enlace} />
+      {crm ? (
+        <OrganismoCrmTab id={id} rows={crm.rows} page={crm.page} total={crm.total} />
+      ) : (
+        <OrganismoTabs id={id} active={active} data={data} enlace={query.enlace} />
+      )}
     </DetailFrame>
   );
 }

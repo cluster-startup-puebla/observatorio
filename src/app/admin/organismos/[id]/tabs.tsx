@@ -14,7 +14,6 @@ export function OrganismoTabs({
   enlace?: string;
   data: {
     members: { id: string; role: string; email: string | null }[];
-    contacts: { id: string; email: string | null; source: string }[];
     copies: { id: string }[];
     sectors: { id: string; name: string | null }[];
     sessions: { id: string; label: string }[];
@@ -27,17 +26,6 @@ export function OrganismoTabs({
         {data.members.map((row) => (
           <li key={row.id}>
             {row.role}: {row.email}
-          </li>
-        ))}
-      </ul>
-    );
-  }
-  if (active === "crm") {
-    return (
-      <ul className="mt-4">
-        {data.contacts.map((row) => (
-          <li key={row.id}>
-            {row.email} · {row.source}
           </li>
         ))}
       </ul>
