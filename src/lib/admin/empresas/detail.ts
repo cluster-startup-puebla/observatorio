@@ -3,6 +3,7 @@ import "server-only";
 import { adminDb } from "@/lib/admin/admin-db";
 import { bandLabel } from "./band-label";
 import { acceptorLabel, externalApprovalLabel } from "./external-approval";
+import { convenerLinks } from "./convener";
 import { loadLinkContacts } from "./link-contacts";
 import { sectorSourceLabel } from "./sector-source";
 
@@ -28,7 +29,7 @@ export async function loadEmpresa(id: string) {
     ? await db.from("profiles").select("email").eq("id", company.data.admitted_by).maybeSingle()
     : { data: null, error: null };
   if (admitter.error) throw new Error(admitter.error.message);
-  const owner = await db.from("profiles").select("email").eq("id", company.data.profile_id).maybeSingle();
+  const owner = await db.from("profiles").select("full_name, email, role").eq("id", company.data.profile_id).maybeSingle();
   if (owner.error) throw new Error(owner.error.message);
   const email = String(owner.data?.email ?? "").trim().toLowerCase();
   const links = await loadLinkContacts(db, email ? [email] : []);
@@ -44,6 +45,13 @@ export async function loadEmpresa(id: string) {
       admitted_by_email: admitter.data?.email ?? "",
       acceptor: acceptorLabel(convener, company.data.sector_source, admitter.data?.email ?? ""),
       has_link: links.convened.has(email),
+      conveners: convenerLinks(links.hrefs.get(email)),
+      member: {
+        id: company.data.profile_id,
+        name: String(owner.data?.full_name ?? ""),
+        email,
+        role: String(owner.data?.role ?? ""),
+      },
     },
     sector: sector.data,
     answers: answers.data ?? [],

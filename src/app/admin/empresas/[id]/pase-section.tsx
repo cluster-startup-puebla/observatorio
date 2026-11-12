@@ -1,7 +1,10 @@
-export function PaseSection({ issued }: { issued: boolean }) {
+export function PaseSection({ assetId }: { assetId: string | null }) {
+  if (!assetId) return <p className="text-sm text-ink-secondary">Sin pase.</p>;
   return (
-    <ul className="rounded-lg border border-line">
-      <li className="px-4 py-3 text-sm font-medium text-ink">{issued ? "Pase emitido." : "Sin pase."}</li>
-    </ul>
+    <img
+      src={`/api/admin/medios/${assetId}/archivo`}
+      alt="QR del pase"
+      className="h-48 w-48 rounded-lg border border-line bg-elevated object-contain"
+    />
   );
 }

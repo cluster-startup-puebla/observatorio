@@ -13,13 +13,16 @@ describe("ficha de empresa", () => {
     expect(lines[0].label).not.toBe("a");
   });
 
-  it("la tarjeta usa card, avatar, badge y el enlace al sector", () => {
+  it("la tarjeta usa card, un logo rectangular y el enlace al sector", () => {
     const header = readFileSync("src/app/admin/empresas/[id]/header-card.tsx", "utf8");
+    const mark = readFileSync("src/app/admin/empresas/[id]/company-mark.tsx", "utf8");
+    const pills = readFileSync("src/app/admin/empresas/[id]/approval-pills.tsx", "utf8");
     expect(header).toContain("Card");
-    expect(header).toContain("Avatar");
-    expect(header).toContain("Badge");
-    expect(header).toContain("Link");
+    expect(header).toContain("CompanyMark");
+    expect(mark).toContain("object-contain");
     expect(header).toContain("/admin/sectores/");
+    expect(pills).toContain("Aprobación:");
+    expect(pills).toContain("org.href");
   });
 
   it("las pestañas son la variante line y cada panel es una sección", () => {
@@ -28,7 +31,8 @@ describe("ficha de empresa", () => {
     expect(tabs).toContain("TabsList");
     expect(tabs).toContain("TabsTrigger");
     expect(tabs).toContain("data-testid={`tab-${value}`}");
-    for (const file of ["sector-section", "tamano-section", "respuestas-section", "pase-section"]) {
+    expect(readFileSync("src/app/admin/empresas/[id]/pase-section.tsx", "utf8")).toContain("/api/admin/medios/");
+    for (const file of ["sector-section", "tamano-section", "miembros-section", "respuestas-section", "pase-section"]) {
       expect(tabs).toContain(`./${file}`);
       expect(readFileSync(`src/app/admin/empresas/[id]/${file}.tsx`, "utf8").length).toBeGreaterThan(20);
     }

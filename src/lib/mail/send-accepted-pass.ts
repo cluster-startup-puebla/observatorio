@@ -2,6 +2,7 @@ import "server-only";
 
 import { Resend } from "resend";
 import { createSupabaseWithAccess } from "@/lib/supabase/auth-session";
+import { writePass } from "@/lib/onboarding/write-pass";
 import { mailFrom } from "./mail-from";
 import { paintMail } from "./paint-mail";
 import { resendPayload } from "./post-mail";
@@ -23,7 +24,9 @@ export async function sendAcceptedPass(accessToken: string, contactId: string) {
   const db = createSupabaseWithAccess(accessToken);
   const enqueued = await db.rpc("enqueue_accepted_pass", { contact_id: contactId });
   const row = one((enqueued.data ?? null) as PassRow | PassRow[] | null);
-  if (enqueued.error || !row || row.already_sent || !row.profile_id) return;
+  if (enqueued.error || !row || !row.profile_id) return;
+  await writePass(db, row.profile_id);
+  if (row.already_sent) return;
   const key = process.env.RESEND_API_KEY;
   const from = mailFrom(process.env.MAIL_FROM);
   if (!key || !from) {

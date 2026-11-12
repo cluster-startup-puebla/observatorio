@@ -6,7 +6,7 @@ import { companyTabs } from "./tabs";
 describe("detalle de empresas", () => {
   it("abre en sector y conserva tamaño, respuestas y pase", () => {
     const values = companyTabs.map((tab) => tab.value);
-    expect(values).toEqual(["sector", "tamano", "respuestas", "pase"]);
+    expect(values).toEqual(["sector", "tamano", "miembros", "respuestas", "pase"]);
     expect(tabQuery(undefined, values, "sector")).toBe("sector");
     expect(tabQuery("pase", values, "sector")).toBe("pase");
     expect(tabQuery("borrar", values, "sector")).toBe("sector");

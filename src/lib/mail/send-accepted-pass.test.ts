@@ -10,7 +10,8 @@ describe("envío del pase aceptado", () => {
     expect(source).toContain("mailFrom");
     expect(source).toContain('rpc("record_accepted_pass"');
     expect(source).toContain("already_sent");
-    expect(source.indexOf("enqueue_accepted_pass")).toBeLessThan(source.indexOf("emails.send"));
+    expect(source.indexOf("await writePass")).toBeLessThan(source.indexOf("if (row.already_sent)"));
+    expect(source.indexOf("if (row.already_sent)")).toBeLessThan(source.indexOf("emails.send"));
   });
 
   it("el organismo y el superadmin mandan el pase después de aceptar", () => {

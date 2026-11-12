@@ -1,4 +1,5 @@
 import { notFound } from "next/navigation";
+import { ApprovalPills } from "@/app/admin/empresas/[id]/approval-pills";
 import { EmpresaHeaderCard } from "@/app/admin/empresas/[id]/header-card";
 import { EmpresaTabs } from "@/app/admin/empresas/[id]/empresa-tabs";
 import { PanelHeader, parentLabel, trailCrumbs } from "@/components/admin/panel-header";
@@ -40,12 +41,11 @@ export default async function EmpresaDetailPage({
         sourceLabel={company.source_label}
         sectorId={company.sector_id ?? ""}
         sectorName={data.sector?.name ?? ""}
-        approvalLabel={company.approval_label}
-        acceptor={company.acceptor}
         employeeLabel={company.employee_label}
         referral={company.referral_source ?? ""}
         showLogo={Boolean(company.show_logo_on_event)}
       />
+      <ApprovalPills label={company.approval_label} conveners={company.conveners} />
       {notice ? (
         <Alert variant="destructive" className="mb-6">
           <AlertDescription>{notice}</AlertDescription>
@@ -56,12 +56,14 @@ export default async function EmpresaDetailPage({
         id={id}
         sourceLabel={company.source_label}
         acceptor={company.acceptor}
+        conveners={company.conveners}
         sectorSource={company.sector_source}
         admittedAt={company.admitted_at}
         hasLink={company.has_link}
         employeeLabel={company.employee_label}
+        member={company.member}
         lines={lines}
-        issued={Boolean(data.pass)}
+        assetId={data.pass?.image_asset_id ?? null}
       />
     </main>
   );

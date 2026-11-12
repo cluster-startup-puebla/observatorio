@@ -49,6 +49,17 @@ export function convenerHrefs(contacts: { email: string; name: string; id: strin
   );
 }
 
+export function convenerLinks(raw: string | undefined) {
+  if (!raw?.startsWith("[")) return [] as { name: string; href: string }[];
+  try {
+    const parsed = JSON.parse(raw) as { name?: string; href?: string }[];
+    if (!Array.isArray(parsed)) return [];
+    return parsed.flatMap((item) => (item?.name && item.href ? [{ name: item.name, href: item.href }] : []));
+  } catch {
+    return [];
+  }
+}
+
 export function convenerByEmail(contacts: { email: string; name: string }[]) {
   const grouped = new Map<string, string[]>();
   for (const contact of contacts) {

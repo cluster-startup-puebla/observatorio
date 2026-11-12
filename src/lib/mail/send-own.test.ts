@@ -14,7 +14,7 @@ describe("envío propio", () => {
     const done = readFileSync("src/lib/onboarding/complete-empresario.ts", "utf8");
     const issue = readFileSync("src/lib/onboarding/issue-confirmed-pass.ts", "utf8");
     const screen = readFileSync("src/app/onboarding/supabase-screen.tsx", "utf8");
-    const store = readFileSync("src/lib/onboarding/store-pass.ts", "utf8");
+    const store = readFileSync("src/lib/onboarding/write-pass.ts", "utf8");
     expect(send).toContain("enqueue_own_mail");
     expect(send).toContain("record_own_mail");
     expect(send).toContain("paintMail");
