@@ -17,7 +17,7 @@ describe("detalle de organismos", () => {
     expect(source).toContain('.from("profiles")');
     expect(source).toContain('.from("crm_contacts")');
     expect(source).toContain('.from("link_copies")');
-    expect(source).toContain("sectors(name, slug)");
+    expect(source).toContain("sectors(id, name, slug)");
     expect(source).toContain("sessions(venue, session_on, starts_local, ends_local)");
     expect(source).toContain("organization_logo");
     expect(route).toContain("await requireSuperadmin()");

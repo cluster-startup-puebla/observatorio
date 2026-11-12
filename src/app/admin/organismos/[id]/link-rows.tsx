@@ -1,4 +1,6 @@
+import Link from "next/link";
 import { CopyInviteLink } from "@/app/admin/organismos/[id]/copy-invite-link";
+import { LinkTimes } from "@/app/admin/organismos/[id]/link-times";
 import type { OrganismoLink } from "@/lib/admin/organismos/link-rows";
 
 export function LinkRows({ links }: { links: OrganismoLink[] }) {
@@ -11,7 +13,7 @@ export function LinkRows({ links }: { links: OrganismoLink[] }) {
         <tr className="border-b border-line text-ink-muted">
           <th className="py-2 font-medium">Sector</th>
           <th className="py-2 font-medium">Sesión</th>
-          <th className="py-2 font-medium">Creado</th>
+          <th className="py-2 font-medium">Generado</th>
           <th className="py-2 font-medium">
             <span className="sr-only">Copiar</span>
           </th>
@@ -20,9 +22,19 @@ export function LinkRows({ links }: { links: OrganismoLink[] }) {
       <tbody>
         {links.map((link) => (
           <tr key={link.id} className="border-b border-line">
-            <td className="py-2">{link.sector}</td>
+            <td className="py-2">
+              {link.sectorId ? (
+                <Link href={`/admin/sectores/${link.sectorId}`} className="underline decoration-line underline-offset-4">
+                  {link.sector}
+                </Link>
+              ) : (
+                link.sector
+              )}
+            </td>
             <td className="py-2">{link.session}</td>
-            <td className="py-2">{link.created}</td>
+            <td className="py-2">
+              <LinkTimes times={link.times} dates={link.dates} />
+            </td>
             <td className="py-2 text-right">{link.path ? <CopyInviteLink path={link.path} /> : "—"}</td>
           </tr>
         ))}

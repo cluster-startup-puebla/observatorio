@@ -19,7 +19,7 @@ export async function loadOrganismo(id: string) {
     db.from("crm_contacts").select("id", { count: "exact", head: true }).eq("organization_id", id),
     db
       .from("link_copies")
-      .select("id, created_at, session_id, sectors(name, slug), sessions(venue, session_on, starts_local, ends_local)")
+      .select("id, created_at, session_id, sectors(id, name, slug), sessions(venue, session_on, starts_local, ends_local)")
       .eq("organization_id", id)
       .order("created_at", { ascending: false }),
     db.from("media_assets").select("id, object_path, content_type").eq("organization_id", id).eq("purpose", "organization_logo").maybeSingle(),

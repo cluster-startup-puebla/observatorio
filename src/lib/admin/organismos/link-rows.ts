@@ -1,7 +1,7 @@
 import { eventPath } from "@/lib/admin/organismos/brand";
+import { createdLabel } from "@/lib/admin/organismos/created-label";
+import { foldLinks } from "@/lib/admin/organismos/fold-links";
 import { currentOption } from "@/lib/sessions/face";
-
-const months = ["ene", "feb", "mar", "abr", "may", "jun", "jul", "ago", "sep", "oct", "nov", "dic"];
 
 type SessionEmbed = {
   venue: string;
@@ -14,16 +14,22 @@ export type CopyRecord = {
   id: string;
   created_at: string;
   session_id: string | null;
-  sectors: { name: string | null; slug: string | null } | { name: string | null; slug: string | null }[] | null;
+  sectors: { id: string; name: string | null; slug: string | null } | { id: string; name: string | null; slug: string | null }[] | null;
   sessions: SessionEmbed | SessionEmbed[] | null;
 };
 
-export type OrganismoLink = {
+export type BuiltLink = {
   id: string;
+  sectorId: string;
   sector: string;
   session: string;
   created: string;
   path: string;
+};
+
+export type OrganismoLink = Omit<BuiltLink, "created"> & {
+  times: number;
+  dates: string[];
 };
 
 function one<T>(value: T | T[] | null) {
@@ -31,17 +37,10 @@ function one<T>(value: T | T[] | null) {
   return Array.isArray(value) ? (value[0] ?? null) : value;
 }
 
-export function createdLabel(iso: string) {
-  const match = /^(\d{4})-(\d{2})-(\d{2})/.exec(iso);
-  if (!match) return iso;
-  const month = months[Number(match[2]) - 1];
-  if (!month) return iso;
-  return `${Number(match[3])} ${month} ${match[1]}`;
-}
-
 export function linkRow(input: {
   id: string;
   createdAt: string;
+  sectorId: string;
   sectorName: string;
   sectorSlug: string;
   sessionLabel: string;
@@ -50,6 +49,7 @@ export function linkRow(input: {
 }) {
   return {
     id: input.id,
+    sectorId: input.sectorId,
     sector: input.sectorName,
     session: input.sessionLabel,
     created: createdLabel(input.createdAt),
@@ -58,17 +58,20 @@ export function linkRow(input: {
 }
 
 export function linksFromCopies(rows: CopyRecord[], token: string): OrganismoLink[] {
-  return rows.map((row) => {
-    const sector = one(row.sectors);
-    const session = one(row.sessions);
-    return linkRow({
-      id: row.id,
-      createdAt: row.created_at,
-      sectorName: sector?.name?.trim() || "Sector desconocido",
-      sectorSlug: sector?.slug ?? "",
-      sessionLabel: session ? currentOption(session).label : "Sin sesión",
-      token,
-      sessionId: row.session_id,
-    });
-  });
+  return foldLinks(
+    rows.map((row) => {
+      const sector = one(row.sectors);
+      const session = one(row.sessions);
+      return linkRow({
+        id: row.id,
+        createdAt: row.created_at,
+        sectorId: sector?.id ?? "",
+        sectorName: sector?.name?.trim() || "Sector desconocido",
+        sectorSlug: sector?.slug ?? "",
+        sessionLabel: session ? currentOption(session).label : "Sin sesión",
+        token,
+        sessionId: row.session_id,
+      });
+    }),
+  );
 }
