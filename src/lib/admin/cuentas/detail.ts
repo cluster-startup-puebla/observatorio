@@ -13,7 +13,7 @@ export async function loadCuenta(id: string) {
   if (profile.error) throw new Error(profile.error.message);
   if (!profile.data) return null;
   const [company, pass, answers, mail, orgs] = await Promise.all([
-    db.from("companies").select("legal_name, employee_band, sector_id").eq("profile_id", id).maybeSingle(),
+    db.from("companies").select("id, legal_name, employee_band, sector_id").eq("profile_id", id).maybeSingle(),
     db.from("passes").select("profile_id, issued_at, image_asset_id").eq("profile_id", id).maybeSingle(),
     db.from("response_choices").select("question_id, option_value, rank").eq("profile_id", id),
     db.from("outbox_messages").select("id, kind, subject, to_email, created_at").eq("profile_id", id),

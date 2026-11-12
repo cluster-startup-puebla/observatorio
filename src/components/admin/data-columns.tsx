@@ -1,3 +1,4 @@
+import type { ReactNode } from "react";
 import Link from "next/link";
 import type { ColumnDef } from "@tanstack/react-table";
 import { FallbackImage } from "@/components/admin/fallback-image";
@@ -9,6 +10,8 @@ export type DataColumn = {
   imageAltKey?: string;
   color?: boolean;
   links?: boolean;
+  className?: string;
+  render?: (row: DataRow) => ReactNode;
 };
 export type DataRow = Record<string, string>;
 
@@ -24,6 +27,11 @@ function linkItems(value: string) {
 }
 
 export function columnDef(column: DataColumn): ColumnDef<DataRow> {
+  const meta = column.className ? { className: column.className } : undefined;
+  if (column.render) {
+    const render = column.render;
+    return { id: column.key, header: column.label, meta, cell: ({ row }) => render(row.original) };
+  }
   if (column.links) {
     return {
       id: column.key,

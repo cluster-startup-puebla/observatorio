@@ -36,4 +36,18 @@ describe("detalle de cuentas", () => {
     expect(route).toContain("await requireSuperadmin()");
     expect(route).not.toMatch(/export async function DELETE/);
   });
+
+  it("la ficha comparte la tarjeta del contacto y separa el tipo de cuenta", () => {
+    const page = readFileSync("src/app/admin/cuentas/[id]/page.tsx", "utf8");
+    const header = readFileSync("src/app/admin/cuentas/[id]/cuenta-header.tsx", "utf8");
+    const contact = readFileSync("src/app/admin/crm/[id]/contacto-header.tsx", "utf8");
+    const kind = readFileSync("src/lib/admin/cuentas/account-kind.ts", "utf8");
+    expect(page).toContain("CuentaHeader");
+    expect(page).not.toContain("DetailFrame");
+    expect(header).toContain("PersonCard");
+    expect(contact).toContain("PersonCard");
+    expect(kind).toContain('"empresario"');
+    expect(kind).toContain('"organismo"');
+    expect(kind).toContain('"panel"');
+  });
 });

@@ -1,31 +1,9 @@
-import Link from "next/link";
-import type { LucideIcon } from "lucide-react";
 import { Briefcase, Building2, Factory, Globe, Landmark, Mail, MapPin, Megaphone, MessageCircle, MessageSquareText, Quote, Users } from "lucide-react";
 import { ContactoAcceso } from "@/app/admin/crm/[id]/contacto-acceso";
+import { FactCard } from "@/components/admin/fact-card";
 import type { ContactPass } from "@/lib/admin/crm/pass";
 import { whatsappHref } from "@/lib/admin/crm/whatsapp";
 import type { ContactPerson } from "@/lib/admin/crm/person";
-
-function Fact({ icon: Icon, label, value, href, wide }: { icon: LucideIcon; label: string; value: string; href?: string; wide?: boolean }) {
-  if (!value) return null;
-  const className = wide ? "sm:col-span-2" : "";
-  const text = href?.startsWith("http") || href?.startsWith("mailto:") ? (
-    <a href={href} className="text-sm font-medium break-words text-link">{value}</a>
-  ) : href ? (
-    <Link href={href} className="text-sm font-medium break-words text-link">{value}</Link>
-  ) : (
-    <div className="text-sm font-medium break-words text-ink">{value}</div>
-  );
-  return (
-    <div className={`flex items-start gap-3 rounded-xl border border-line bg-elevated p-3 ${className}`}>
-      <Icon className="mt-0.5 size-5 shrink-0 text-ink-secondary" />
-      <div className="min-w-0">
-        <div className="text-xs uppercase tracking-wide text-ink-secondary">{label}</div>
-        <div className="mt-1">{text}</div>
-      </div>
-    </div>
-  );
-}
 
 export function ContactoFicha({
   id,
@@ -59,7 +37,7 @@ export function ContactoFicha({
       <ContactoAcceso id={id} pass={pass} statusCode={statusCode} />
       <section className="grid gap-3 sm:grid-cols-2">
         {facts.map((fact) => (
-          <Fact key={fact.label} {...fact} />
+          <FactCard key={fact.label} {...fact} />
         ))}
       </section>
     </div>

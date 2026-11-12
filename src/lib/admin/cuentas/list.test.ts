@@ -1,6 +1,7 @@
 import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
 import { roleForSignup } from "@/lib/supabase/auth";
+import { cuentaDisplayName, cuentaMarkSrc, orgHasLogo } from "./cuenta-row";
 import { staffDraft } from "./staff-draft";
 
 describe("lista de cuentas", () => {
@@ -43,6 +44,23 @@ describe("lista de cuentas", () => {
     expect(route).not.toMatch(/export async function DELETE/);
     expect(create).toContain('rpc("create_staff_account"');
     expect(create).not.toContain("createSupabaseAdmin");
+    expect(list).toContain("display_name");
+    expect(list).toContain("orgHasLogo");
+    expect(list).toContain("media_assets(purpose)");
+    const screen = readFileSync("src/app/admin/cuentas/cuentas-list.tsx", "utf8");
+    expect(screen.indexOf('key: "logo"')).toBeLessThan(screen.indexOf('key: "display_name"'));
+    expect(screen).toContain("RolePillow");
+    expect(screen).toContain("CuentaMark");
+  });
+
+  it("sin nombre propio usa el del organismo y el logo solo si existe", () => {
+    expect(cuentaDisplayName("", "CANACINTRA Puebla")).toBe("CANACINTRA Puebla");
+    expect(cuentaDisplayName("Rubén Araujo", "CANACINTRA Puebla")).toBe("Rubén Araujo");
+    expect(cuentaDisplayName("  ", "")).toBe("—");
+    expect(orgHasLogo([{ purpose: "organization_logo" }])).toBe(true);
+    expect(orgHasLogo(null)).toBe(false);
+    expect(cuentaMarkSrc("org-1", true)).toBe("/api/admin/organismos/org-1/logo");
+    expect(cuentaMarkSrc("org-1", false)).toBe("");
   });
 });
 
