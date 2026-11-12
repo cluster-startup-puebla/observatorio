@@ -5,7 +5,7 @@ import type { Seat, SectorQuota } from "./sector-fill";
 type SectorEmbed = { name?: string | null; slug?: string | null };
 type ProfileEmbed = { role?: string | null; email?: string | null };
 
-export const companySeatColumns = `id, sector_source, admitted_at, sectors(name, slug), owner:${companyOwner}!inner(onboarded_at, role, email)`;
+export const companySeatColumns = `id, legal_name, employee_band, sector_id, sector_source, admitted_at, referral_source, profile_id, sectors(name, slug), owner:${companyOwner}!inner(onboarded_at, role, email)`;
 
 function one<T>(value: T | T[] | null | undefined) {
   if (!value) return null;

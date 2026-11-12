@@ -23,12 +23,11 @@ function shiftDay(day: string, delta: number) {
   return mexicoDay(new Date(Date.UTC(year, month - 1, date + delta, 18)));
 }
 
-export function paceBars(events: TableroEvent[], inviteIds: Set<string>, now: Date): PaceRow[] {
+export function paceBars(events: TableroEvent[], now: Date): PaceRow[] {
   const end = mexicoDay(now);
   const days = Array.from({ length: paceDays }, (_, index) => shiftDay(end, index - (paceDays - 1)));
   const counts = new Map(days.map((day) => [day, 0]));
   for (const event of events) {
-    if (!inviteIds.has(event.contactId)) continue;
     const parsed = new Date(event.occurredAt);
     if (Number.isNaN(parsed.getTime())) continue;
     const day = mexicoDay(parsed);

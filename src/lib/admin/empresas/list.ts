@@ -2,13 +2,10 @@ import "server-only";
 
 import { adminDb } from "@/lib/admin/admin-db";
 import { pageQuery } from "@/lib/admin/page-query";
-import { bandLabel } from "./band-label";
-import { companyLogoSrc } from "./company-logo-src";
 import { companyOwner } from "./company-owner";
 import { ownerEmail } from "./convener";
-import { externalApprovalLabel } from "./external-approval";
+import { toEmpresaRow, type EmpresaSource } from "./empresa-row";
 import { loadLinkContacts } from "./link-contacts";
-import { sectorSourceLabel } from "./sector-source";
 
 export async function listEmpresas(rawPage: string | undefined) {
   const page = pageQuery(rawPage);
@@ -37,24 +34,6 @@ export async function listEmpresas(rawPage: string | undefined) {
   return {
     page: page.page,
     total: result.count ?? 0,
-    rows: data.map((row) => {
-      const sector = row.sectors as { name?: string } | { name?: string }[] | null;
-      const name = Array.isArray(sector) ? sector[0]?.name : sector?.name;
-      const email = ownerEmail(row.owner as { email?: string } | { email?: string }[] | null);
-      return {
-        id: row.id,
-        logo: companyLogoSrc(row.id, withLogo.has(row.profile_id)),
-        legal_name: row.legal_name,
-        employee_band: bandLabel(row.employee_band),
-        band: row.employee_band,
-        sector_name: name ?? "",
-        sector_id: row.sector_id,
-        referral_source: row.referral_source ?? "",
-        sector_source: row.sector_source ?? "",
-        convoco: links.hrefs.get(email) ?? "—",
-        llegada: sectorSourceLabel(row.sector_source ?? ""),
-        aprobacion: externalApprovalLabel(row.sector_source ?? "", row.admitted_at, links.statuses.get(email) ?? []),
-      };
-    }),
+    rows: data.map((row) => toEmpresaRow(row as EmpresaSource, withLogo, links)),
   };
 }

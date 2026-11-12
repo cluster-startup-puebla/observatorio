@@ -6,7 +6,7 @@ import { ChartContainer, ChartTooltip, ChartTooltipContent, type ChartConfig } f
 import type { LinkOrgBar } from "@/lib/admin/tablero/types";
 
 const config = {
-  enlaces: { label: "Enlaces", color: "var(--brand-secondary)" },
+  registrados: { label: "Registrados", color: "var(--brand-primary)" },
   pendientes: { label: "Pendientes", color: "var(--warning)" },
 } satisfies ChartConfig;
 
@@ -24,7 +24,7 @@ export function LinkOrgChart({ rows }: { rows: LinkOrgBar[] }) {
               <XAxis type="number" allowDecimals={false} tickLine={false} axisLine={false} />
               <YAxis type="category" dataKey="organismo" width={128} tickLine={false} axisLine={false} tickFormatter={shortName} />
               <ChartTooltip content={<ChartTooltipContent />} />
-              <Bar dataKey="enlaces" fill="var(--color-enlaces)" radius={4} />
+              <Bar dataKey="registrados" fill="var(--color-registrados)" radius={4} />
               <Bar dataKey="pendientes" fill="var(--color-pendientes)" radius={4} />
             </BarChart>
           </ChartContainer>
@@ -37,7 +37,7 @@ export function LinkOrgChart({ rows }: { rows: LinkOrgBar[] }) {
 function LinkLegend() {
   return (
     <div className="mb-4 flex flex-wrap gap-4 text-small text-ink-secondary">
-      <span className="inline-flex items-center gap-2"><span className="size-2.5 rounded-sm bg-navy" />Enlaces</span>
+      <span className="inline-flex items-center gap-2"><span className="size-2.5 rounded-sm bg-brand" />Registrados</span>
       <span className="inline-flex items-center gap-2"><span className="size-2.5 rounded-sm bg-[var(--warning)]" />Pendientes</span>
     </div>
   );

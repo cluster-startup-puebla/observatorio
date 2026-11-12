@@ -12,7 +12,10 @@ describe("lista de empresas", () => {
   });
 
   it("la lista lee companies y el tamaño", () => {
-    const list = readFileSync("src/lib/admin/empresas/list.ts", "utf8");
+    const list = [
+      readFileSync("src/lib/admin/empresas/list.ts", "utf8"),
+      readFileSync("src/lib/admin/empresas/empresa-row.ts", "utf8"),
+    ].join("\n");
     const route = readFileSync("src/app/api/admin/empresas/route.ts", "utf8");
     expect(list).toContain('.from("companies")');
     expect(list).toContain("legal_name");

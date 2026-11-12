@@ -52,7 +52,7 @@ export function buildTablero(input: {
     funnel: stages.map((stage) => ({ etapa: stage.etapa, personas: counts.get(stage.status) ?? 0, fill: stage.fill })),
     byOrg: orgBars(invites, statusOf, input.orgs),
     byLinkOrg: linkOrgBars(links, statusOf, input.orgs),
-    pace: paceBars(input.confirmations, new Set(invites.map((row) => row.id)), input.now ?? new Date()),
+    pace: paceBars(input.confirmations, input.now ?? new Date()),
     pendingContact: counts.get("cargado") ?? 0,
     pendingConfirm: counts.get("contactado") ?? 0,
     pendingRegister: counts.get("confirmo") ?? 0,
@@ -65,9 +65,11 @@ function linkOrgBars(links: TableroContact[], statusOf: Map<string, string>, org
   const buckets = new Map<string, LinkOrgBar>();
   for (const row of links) {
     const organismo = names.get(row.organizationId) || "Sin organismo";
-    const bucket = buckets.get(row.organizationId) ?? { organismo, enlaces: 0, pendientes: 0 };
+    const bucket = buckets.get(row.organizationId) ?? { organismo, enlaces: 0, registrados: 0, pendientes: 0 };
+    const status = statusOf.get(row.id) ?? "";
     bucket.enlaces += 1;
-    if (statusOf.get(row.id) === "cargado") bucket.pendientes += 1;
+    if (status === "cargado") bucket.pendientes += 1;
+    if (status !== "" && isLinkAccepted(status)) bucket.registrados += 1;
     buckets.set(row.organizationId, bucket);
   }
   return [...buckets.values()]

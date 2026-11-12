@@ -11,7 +11,7 @@ const config = {
 
 export function PaceChart({ rows }: { rows: PaceRow[] }) {
   return (
-    <ChartPanel title="Confirmaciones por día" hint="Hechos de confirmar en los últimos 14 días.">
+    <ChartPanel title="Registros por día" hint="Quienes quedaron registrados en los últimos 14 días.">
       <ChartContainer config={config} className="aspect-auto h-72 w-full">
         <BarChart data={rows} margin={{ left: 0, right: 8 }}>
           <CartesianGrid vertical={false} />

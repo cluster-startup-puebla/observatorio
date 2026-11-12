@@ -1,17 +1,23 @@
 import type { Tablero } from "@/lib/admin/tablero/types";
 
-const cards = [
+const linkCards = [
+  { key: "linkSignups", testId: "tablero-enlace", label: "Por enlace", hint: "Llegaron con el enlace del organismo" },
+  { key: "linkAccepted", testId: "tablero-enlace-registrado", label: "Registrados", hint: "El organismo ya los aceptó" },
+  { key: "linkPending", testId: "tablero-enlace-pendiente", label: "Por aceptar", hint: "Llegaron por enlace y siguen pendientes" },
+] as const;
+
+const excelCards = [
   { key: "invitations", testId: "tablero-invitaciones", label: "Invitaciones", hint: "Excel y alta manual" },
   { key: "confirmations", testId: "tablero-confirmaciones", label: "Confirmaciones", hint: "Confirmaron, se registraron o llegaron" },
   { key: "rate", testId: "tablero-tasa", label: "Tasa", hint: "Confirmaciones entre invitaciones" },
-  { key: "linkSignups", testId: "tablero-enlace", label: "Por enlace", hint: "Se registraron con el enlace del organismo" },
-  { key: "linkPending", testId: "tablero-enlace-pendiente", label: "Por aceptar", hint: "Se registraron con el enlace y siguen pendientes" },
 ] as const;
+
+const cards = [...excelCards, ...linkCards] as const;
 
 export function TableroKpis({ board }: { board: Tablero }) {
   return (
-    <section className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
-      {cards.map((card) => (
+    <section className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
+      {(board.invitations > 0 ? cards : linkCards).map((card) => (
         <article key={card.key} className="rounded-2xl border border-line bg-elevated p-5" data-testid={card.testId}>
           <p className="text-small text-ink-secondary">{card.label}</p>
           <p className="mt-2 text-h2 text-ink tabular-nums">{figure(board, card.key)}</p>

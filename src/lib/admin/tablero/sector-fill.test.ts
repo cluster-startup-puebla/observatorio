@@ -34,6 +34,7 @@ describe("cupo por sector", () => {
     expect(result.ocupados).toBe(2);
     expect(result.pendientes).toBe(2);
     expect(result.fuera).toBe(1);
+    expect(result.omitidos).toEqual([{ sector: "Textil", slug: "textil", personas: 1, pendientes: 0 }]);
     expect(result.rows).toEqual([
       { sector: "Turismo", slug: "turismo", cupo: 2, ocupados: 1, pendientes: 2 },
       { sector: "Alimentos", slug: "alimentos", cupo: 1, ocupados: 1, pendientes: 0 },
@@ -46,6 +47,7 @@ describe("cupo por sector", () => {
       ocupados: 0,
       pendientes: 0,
       fuera: 1,
+      omitidos: [{ sector: "turismo", slug: "turismo", personas: 1, pendientes: 0 }],
       rows: [],
     });
   });
@@ -62,6 +64,16 @@ describe("cupo por sector", () => {
     expect(source).toContain("sectorFill");
     expect(source).toContain("sessionId");
     expect(source).toContain("attendance_cancellations");
+  });
+
+  it("cuenta a quien espera en un sector que no se convocó", () => {
+    const result = sectorFill(quotas, [
+      seat({ sectorSlug: "textil", sectorName: "Textil", linkPending: true }),
+      seat({ sectorSlug: "textil", sectorName: "Textil" }),
+    ]);
+    expect(result.fuera).toBe(1);
+    expect(result.ocupados).toBe(0);
+    expect(result.omitidos).toEqual([{ sector: "Textil", slug: "textil", personas: 2, pendientes: 1 }]);
   });
 
   it("quien canceló deja de ocupar", () => {

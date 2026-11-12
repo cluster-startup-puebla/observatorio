@@ -43,9 +43,9 @@ describe("tablero de la convocatoria", () => {
       { organismo: "Norte", invitaciones: 2, confirmaciones: 1 },
       { organismo: "Sur", invitaciones: 1, confirmaciones: 1 },
     ]);
-    expect(board.byLinkOrg).toEqual([{ organismo: "Sur", enlaces: 1, pendientes: 0 }]);
+    expect(board.byLinkOrg).toEqual([{ organismo: "Sur", enlaces: 1, registrados: 1, pendientes: 0 }]);
     expect(board.pace).toHaveLength(14);
-    expect(board.pace.at(-1)?.confirmaciones).toBe(1);
+    expect(board.pace.at(-1)?.confirmaciones).toBe(2);
     expect(board.pace.at(-2)?.confirmaciones).toBe(1);
     expect(lectura(board)).toBe("De 3 invitaciones, 2 ya confirmaron (67%).");
     expect(convocatoriaSignals(board).map((item) => item.label)).toEqual(["Enviar correo", "Revisar CRM"]);

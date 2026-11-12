@@ -3,6 +3,16 @@ import type { Tablero } from "@/lib/admin/tablero/types";
 
 export type Signal = { text: string; href: string; label: string };
 
+function linkReading(board: Tablero) {
+  if (board.linkSignups === 0) return "Carga la lista para ver cómo avanza la convocatoria.";
+  const total = board.linkSignups.toLocaleString("es-MX");
+  const registered = people(board.linkAccepted, "ya se registró", "ya se registraron");
+  const pending = people(board.linkPending, "sigue por aceptar", "siguen por aceptar");
+  if (board.linkPending === 0) return `Por enlace van ${total}: ${registered}.`;
+  if (board.linkAccepted === 0) return `Por enlace van ${total}: ${pending}.`;
+  return `Por enlace van ${total}: ${registered} y ${pending}.`;
+}
+
 function people(count: number, one: string, many: string) {
   return `${count.toLocaleString("es-MX")} ${count === 1 ? one : many}`;
 }
@@ -43,7 +53,7 @@ export function convocatoriaSignals(board: Tablero): Signal[] {
 }
 
 export function lectura(board: Tablero) {
-  if (board.invitations === 0) return "Carga la lista para ver cómo avanza la convocatoria.";
+  if (board.invitations === 0) return linkReading(board);
   const invites = people(board.invitations, "invitación", "invitaciones");
   if (board.confirmations === 0) return `De ${invites}, ninguna ha confirmado.`;
   const confirmed = people(board.confirmations, "ya confirmó", "ya confirmaron");
