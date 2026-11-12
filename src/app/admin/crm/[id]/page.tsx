@@ -1,17 +1,22 @@
 import { notFound } from "next/navigation";
-import { DetailFrame } from "@/components/admin/detail-frame";
-import { tabQuery } from "@/lib/admin/tab-query";
+import { ContactoFicha } from "@/app/admin/crm/[id]/contacto-ficha";
+import { ContactoHeader } from "@/app/admin/crm/[id]/contacto-header";
+import { ContactoTabs } from "@/app/admin/crm/[id]/contacto-tabs";
+import { HechosPanel } from "@/app/admin/crm/[id]/hechos-panel";
+import { PanelHeader, parentLabel, trailCrumbs } from "@/components/admin/panel-header";
+import { Alert, AlertDescription } from "@/components/ui/alert";
 import { loadCrm } from "@/lib/admin/crm/detail";
-import { seatFullCopy } from "@/lib/cupo/seat-full-copy";
+import { tabQuery } from "@/lib/admin/tab-query";
 import { requireSuperadmin } from "@/lib/auth/require-superadmin";
+import { seatFullCopy } from "@/lib/cupo/seat-full-copy";
+import { crmSourceLabel } from "@/lib/crm-label";
 
 export const instant = false;
 
 const tabs = [
   { value: "ficha", label: "Ficha" },
-  { value: "hechos", label: "Hechos" },
+  { value: "hechos", label: "Seguimiento" },
 ];
-const actions = ["contactar", "rechazar", "confirmar", "registrar", "llegar"];
 
 export default async function CrmDetailPage({
   params,
@@ -26,45 +31,26 @@ export default async function CrmDetailPage({
   const data = await loadCrm(id);
   if (!data) notFound();
   const active = tabQuery(query.tab, tabs.map((tab) => tab.value), "ficha");
+  const notice = seatFullCopy(query.error) || query.error || "";
+  const source = crmSourceLabel(data.contact.source);
+  const name = data.person.name;
   return (
-    <DetailFrame
-      title={data.contact.nombre}
-      backHref="/admin/crm"
-      facts={[
-        { label: "Empresa", value: data.contact.empresa },
-        { label: "Correo", value: data.contact.email },
-        { label: "Origen", value: data.contact.source },
-        { label: "Estatus", value: data.status },
-      ]}
-      tabs={tabs}
-      active={active}
-    >
-      {seatFullCopy(query.error) || query.error ? (
-        <p className="text-small text-mark">{seatFullCopy(query.error) || query.error}</p>
+    <main className="px-8 py-8">
+      <PanelHeader title={name} crumbs={trailCrumbs(parentLabel("/admin/crm"), "/admin/crm", name)} />
+      <ContactoHeader person={data.person} status={data.status} source={source} events={data.events.length} />
+      {notice ? (
+        <Alert variant="destructive" className="mt-6">
+          <AlertDescription>{notice}</AlertDescription>
+        </Alert>
       ) : null}
-      {active === "hechos" ? (
-        <div className="grid gap-4">
-          <ul>
-            {data.events.map((row) => (
-              <li key={row.id}>{row.event}</li>
-            ))}
-          </ul>
-          {data.contact.source === "enlace" && data.statusCode === "cargado" ? (
-            <form action={`/api/admin/crm/${id}/evento`} method="post">
-              <input type="hidden" name="event" value="aprobar" />
-              <button className="btn btn-primary" type="submit">Aceptar</button>
-            </form>
-          ) : null}
-          {actions.map((event) => (
-            <form key={event} action={`/api/admin/crm/${id}/evento`} method="post">
-              <input type="hidden" name="event" value={event} />
-              <button className="btn" type="submit">
-                {event}
-              </button>
-            </form>
-          ))}
-        </div>
-      ) : null}
-    </DetailFrame>
+      <ContactoTabs id={id} active={active} events={data.events.length} />
+      <div className="mt-6">
+        {active === "hechos" ? (
+          <HechosPanel id={id} source={data.contact.source} statusCode={data.statusCode} events={data.events} />
+        ) : (
+          <ContactoFicha id={id} person={data.person} source={source} pass={data.pass} statusCode={data.statusCode} />
+        )}
+      </div>
+    </main>
   );
 }

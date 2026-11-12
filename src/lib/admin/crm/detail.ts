@@ -1,6 +1,8 @@
 import "server-only";
 
 import { adminDb } from "@/lib/admin/admin-db";
+import { loadContactPass } from "@/lib/admin/crm/pass";
+import { loadContactPerson } from "@/lib/admin/crm/person";
 import { crmLabel } from "@/lib/crm-label";
 
 export async function loadCrm(id: string) {
@@ -19,8 +21,12 @@ export async function loadCrm(id: string) {
   ]);
   if (events.error) throw new Error(events.error.message);
   if (status.error) throw new Error(status.error.message);
+  const person = await loadContactPerson(db, contact.data);
+  const pass = await loadContactPass(db, person.profileId);
   return {
     contact: contact.data,
+    person,
+    pass,
     status: crmLabel(status.data?.status ?? ""),
     statusCode: (status.data?.status ?? null) as string | null,
     events: events.data ?? [],
