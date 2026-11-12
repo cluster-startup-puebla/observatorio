@@ -5,11 +5,11 @@ import { LandingMarks } from "./landing-marks";
 
 export function EventOpen({ reserveHref = "/register" }: { reserveHref?: string }) {
   return (
-    <section id="inicio" data-testid="bloque-objetivo" className="border-b border-line">
-      <div className="container-site grid gap-6 py-8">
-        <div className="grid max-w-3xl gap-4">
+    <section id="inicio" data-testid="bloque-objetivo" className="bg-surface-subtle">
+      <div className="container-site grid gap-6 py-8 lg:py-12">
+        <div className="grid max-w-3xl gap-5">
           <EventTitle />
-          <h1 className="text-balance text-[clamp(1.35rem,2vw,1.75rem)] leading-snug font-bold tracking-[-0.03em] text-ink">
+          <h1 className="max-w-3xl text-balance text-[clamp(2rem,3vw,2.5rem)] leading-[1.15] font-bold tracking-[-0.02em] text-ink">
             Lo que Puebla no sabe que necesita, tu empresa puede decirlo primero.
           </h1>
           <p className="text-body-lg max-w-2xl text-ink-secondary">

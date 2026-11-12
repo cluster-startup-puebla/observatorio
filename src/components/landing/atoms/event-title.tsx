@@ -5,7 +5,9 @@ export function EventTitle() {
   return (
     <div className="grid gap-2">
       <Kicker>{forumKicker}</Kicker>
-      <p className="text-h3 text-balance text-ink">Sesión Desayuno: Foro Puebla x Puebla</p>
+      <p className="text-balance text-xl leading-snug font-medium text-ink">
+        Sesión Desayuno: Foro Puebla x Puebla
+      </p>
     </div>
   );
 }

@@ -17,11 +17,11 @@ export function Hero({
     <section
       id="inicio"
       data-testid="bloque-objetivo"
-      className="flex min-h-[calc(100svh-4.5rem)] scroll-mt-24 flex-col border-b border-line"
+      className="flex min-h-[calc(100svh-4.5rem)] scroll-mt-24 flex-col bg-surface-subtle"
     >
       <div className="container-site flex flex-1 flex-col py-8 lg:py-12">
         <EventTitle />
-        <h1 className="mt-4 max-w-4xl text-balance text-[clamp(1.875rem,3.2vw,2.75rem)] leading-[1.08] font-bold tracking-[-0.03em] text-ink">
+        <h1 className="mt-4 max-w-3xl text-balance text-[clamp(2rem,3vw,2.5rem)] leading-[1.15] font-bold tracking-[-0.02em] text-ink">
           {message
             ? message.headline
             : "Lo que Puebla no sabe que necesita, tu empresa puede decirlo primero."}

@@ -1,20 +1,12 @@
-import Link from "next/link";
 import { forumSectors } from "@/content/forum-public";
 
 export function ForumSectors() {
   return (
     <div className="mt-12">
-      <p className="text-micro uppercase text-ink-muted">Sectores participantes · 13</p>
-      <ul className="mt-4 flex flex-wrap gap-3">
+      <p className="text-body text-ink">Estos 13 sectores están en el desayuno.</p>
+      <ul className="mt-4 flex flex-wrap gap-x-4 gap-y-2 text-body text-ink-secondary">
         {forumSectors.map((sector) => (
-          <li key={sector.href}>
-            <Link
-              href={sector.href}
-              className="inline-flex rounded-full border border-line px-4 py-2 text-small text-ink hover:bg-surface-subtle"
-            >
-              {sector.name}
-            </Link>
-          </li>
+          <li key={sector.name}>{sector.name}</li>
         ))}
       </ul>
     </div>
