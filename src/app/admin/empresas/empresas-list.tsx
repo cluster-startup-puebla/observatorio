@@ -7,12 +7,14 @@ import { DataList } from "@/components/admin/data-list";
 export function EmpresasList({
   rows,
   page,
+  total,
   error,
   sectors,
   profiles,
 }: {
   rows: Record<string, string>[];
   page: number;
+  total: number;
   error?: string;
   sectors: { id: string; name: string }[];
   profiles: { id: string; email: string }[];
@@ -30,6 +32,7 @@ export function EmpresasList({
       ]}
       rows={rows}
       page={page}
+      total={total}
       basePath="/admin/empresas"
       error={error}
       rowActions={(row) => <EmpresaRowActions row={row} sectors={sectors} />}

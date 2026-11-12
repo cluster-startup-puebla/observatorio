@@ -12,7 +12,7 @@ export default async function EmpresasPage({ searchParams }: { searchParams: Pro
   return (
     <EmpresasList
       rows={data.rows}
-      page={data.page}
+      page={data.page} total={data.total}
       error={params.error}
       sectors={choices.sectors}
       profiles={choices.profiles}

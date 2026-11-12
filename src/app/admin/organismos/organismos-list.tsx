@@ -9,10 +9,12 @@ type Row = Record<string, string>;
 export function OrganismosList({
   rows,
   page,
+  total,
   params,
 }: {
   rows: Row[];
   page: number;
+  total: number;
   params: { error?: string; name?: string; color?: string; edit?: string };
 }) {
   return (
@@ -27,6 +29,7 @@ export function OrganismosList({
       ]}
       rows={rows}
       page={page}
+      total={total}
       basePath="/admin/organismos"
       rowActions={(row) => (
         <OrganismoRowActions

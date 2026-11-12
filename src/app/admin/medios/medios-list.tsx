@@ -6,10 +6,12 @@ import { DataList } from "@/components/admin/data-list";
 export function MediosList({
   rows,
   page,
+  total,
   error,
 }: {
   rows: Record<string, string>[];
   page: number;
+  total: number;
   error?: string;
 }) {
   return (
@@ -25,6 +27,7 @@ export function MediosList({
       ]}
       rows={rows}
       page={page}
+      total={total}
       basePath="/admin/medios"
       error={error}
       rowActions={(row) => <MedioRowActions row={row} />}

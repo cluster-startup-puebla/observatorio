@@ -12,5 +12,5 @@ export default async function InnovacionPage({
   await requireSuperadmin();
   const params = await searchParams;
   const data = await listAcceptedInnovation(params.page);
-  return <InnovacionList rows={data.rows} page={data.page} />;
+  return <InnovacionList rows={data.rows} page={data.page} total={data.total} />;
 }

@@ -7,12 +7,14 @@ import { DataList } from "@/components/admin/data-list";
 export function SesionesList({
   rows,
   page,
+  total,
   error,
   sectors,
   quotasBySession,
 }: {
   rows: Record<string, string>[];
   page: number;
+  total: number;
   error?: string;
   sectors: { id: string; name: string; slug: string }[];
   quotasBySession: Record<string, Record<string, number>>;
@@ -31,6 +33,7 @@ export function SesionesList({
       ]}
       rows={rows}
       page={page}
+      total={total}
       basePath="/admin/sesiones"
       error={error}
       rowActions={(row) => (

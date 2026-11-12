@@ -7,11 +7,13 @@ import { DataList } from "@/components/admin/data-list";
 export function SectoresList({
   rows,
   page,
+  total,
   error,
   images,
 }: {
   rows: Record<string, string>[];
   page: number;
+  total: number;
   error?: string;
   images: { id: string }[];
 }) {
@@ -26,6 +28,7 @@ export function SectoresList({
       ]}
       rows={rows}
       page={page}
+      total={total}
       basePath="/admin/sectores"
       error={error}
       rowActions={(row) => <SectorRowActions row={row} images={images} />}

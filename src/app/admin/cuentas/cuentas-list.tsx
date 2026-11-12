@@ -7,11 +7,13 @@ import { DataList } from "@/components/admin/data-list";
 export function CuentasList({
   rows,
   page,
+  total,
   orgs,
   error,
 }: {
   rows: Record<string, string>[];
   page: number;
+  total: number;
   orgs: { id: string; name: string }[];
   error?: string;
 }) {
@@ -27,6 +29,7 @@ export function CuentasList({
       ]}
       rows={rows}
       page={page}
+      total={total}
       basePath="/admin/cuentas"
       error={error}
       rowActions={(row) => <CuentaRowActions row={row} orgs={orgs} />}

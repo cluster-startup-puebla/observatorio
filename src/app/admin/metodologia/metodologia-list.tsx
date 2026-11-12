@@ -8,10 +8,12 @@ import { Button } from "@/components/ui/button";
 export function MetodologiaList({
   rows,
   page,
+  total,
   error,
 }: {
   rows: Record<string, string>[];
   page: number;
+  total: number;
   error?: string;
 }) {
   return (
@@ -25,6 +27,7 @@ export function MetodologiaList({
       ]}
       rows={rows}
       page={page}
+      total={total}
       basePath="/admin/metodologia"
       error={error}
       rowActions={(row) => <MetodologiaRowActions row={row} />}

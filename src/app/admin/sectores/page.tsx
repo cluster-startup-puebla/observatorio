@@ -14,5 +14,5 @@ export default async function SectoresPage({
   const params = await searchParams;
   const data = await listSectores(params.page);
   const images = await listContentImages();
-  return <SectoresList rows={data.rows} page={data.page} error={params.error} images={images} />;
+  return <SectoresList rows={data.rows} page={data.page} total={data.total} error={params.error} images={images} />;
 }

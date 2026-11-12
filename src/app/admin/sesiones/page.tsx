@@ -16,7 +16,7 @@ export default async function SesionesPage({
   return (
     <SesionesList
       rows={data.rows}
-      page={data.page}
+      page={data.page} total={data.total}
       error={params.error}
       sectors={sectors}
       quotasBySession={data.quotasBySession}

@@ -12,5 +12,5 @@ export default async function BandejaPage({
   await requireSuperadmin();
   const params = await searchParams;
   const data = await listBandeja(params.page, params.kind);
-  return <BandejaList rows={data.rows} page={data.page} error={params.error} />;
+  return <BandejaList rows={data.rows} page={data.page} total={data.total} error={params.error} />;
 }

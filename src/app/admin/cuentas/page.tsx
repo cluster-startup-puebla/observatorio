@@ -12,5 +12,5 @@ export default async function CuentasPage({
   await requireSuperadmin();
   const params = await searchParams;
   const data = await listCuentas(params.page);
-  return <CuentasList rows={data.rows} page={data.page} orgs={data.orgs} error={params.error} />;
+  return <CuentasList rows={data.rows} page={data.page} total={data.total} orgs={data.orgs} error={params.error} />;
 }

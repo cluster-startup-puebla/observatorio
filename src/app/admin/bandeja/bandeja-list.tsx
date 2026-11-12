@@ -17,10 +17,12 @@ const filters = [
 export function BandejaList({
   rows,
   page,
+  total,
   error,
 }: {
   rows: Record<string, string>[];
   page: number;
+  total: number;
   error?: string;
 }) {
   return (
@@ -35,6 +37,7 @@ export function BandejaList({
       ]}
       rows={rows}
       page={page}
+      total={total}
       basePath="/admin/bandeja"
       error={error}
       rowActions={(row) => <BandejaRowActions row={row} />}

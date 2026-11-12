@@ -12,5 +12,5 @@ export default async function MediosPage({
   await requireSuperadmin();
   const params = await searchParams;
   const data = await listMedios(params.page);
-  return <MediosList rows={data.rows} page={data.page} error={params.error} />;
+  return <MediosList rows={data.rows} page={data.page} total={data.total} error={params.error} />;
 }

@@ -8,11 +8,13 @@ import { DataList } from "@/components/admin/data-list";
 export function InvitacionesList({
   rows,
   page,
+  total,
   error,
   orgs,
 }: {
   rows: Record<string, string>[];
   page: number;
+  total: number;
   error?: string;
   orgs: { id: string; name: string }[];
 }) {
@@ -28,6 +30,7 @@ export function InvitacionesList({
       ]}
       rows={rows}
       page={page}
+      total={total}
       basePath="/admin/invitaciones"
       error={error}
       rowActions={(row) => <InvitacionRowActions row={row} />}

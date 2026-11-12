@@ -3,7 +3,7 @@
 import { RowActions } from "@/components/admin/row-actions";
 import { DataList } from "@/components/admin/data-list";
 
-export function PasesList({ rows, page }: { rows: Record<string, string>[]; page: number }) {
+export function PasesList({ rows, page, total }: { rows: Record<string, string>[]; page: number; total: number }) {
   return (
     <DataList
       title="Pases y llegadas"
@@ -15,6 +15,7 @@ export function PasesList({ rows, page }: { rows: Record<string, string>[]; page
       ]}
       rows={rows}
       page={page}
+      total={total}
       basePath="/admin/pases"
       rowActions={(row) => (
         <RowActions

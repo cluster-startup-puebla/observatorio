@@ -12,5 +12,5 @@ export default async function MetodologiaPage({
   await requireSuperadmin();
   const params = await searchParams;
   const data = await listMetodologia(params.page);
-  return <MetodologiaList rows={data.rows} page={data.page} error={params.error} />;
+  return <MetodologiaList rows={data.rows} page={data.page} total={data.total} error={params.error} />;
 }

@@ -12,5 +12,5 @@ export default async function OrganismosPage({
   await requireSuperadmin();
   const params = await searchParams;
   const data = await listOrganismos(params.page);
-  return <OrganismosList rows={data.rows} page={data.page} params={params} />;
+  return <OrganismosList rows={data.rows} page={data.page} total={data.total} params={params} />;
 }

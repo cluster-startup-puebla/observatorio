@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { DataList } from "@/components/admin/data-list";
 
-export function InnovacionList({ rows, page }: { rows: Record<string, string>[]; page: number }) {
+export function InnovacionList({ rows, page, total }: { rows: Record<string, string>[]; page: number; total: number }) {
   return (
     <DataList
       title="Innovación abierta"
@@ -16,6 +16,7 @@ export function InnovacionList({ rows, page }: { rows: Record<string, string>[];
       ]}
       rows={rows}
       page={page}
+      total={total}
       basePath="/admin/innovacion"
       rowActions={(row) =>
         row.empresa_id ? (
