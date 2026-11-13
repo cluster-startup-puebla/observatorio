@@ -34,6 +34,7 @@ set search_path = ''
 as $$
 declare
   clean_email text := lower(btrim(email));
+  clean_whatsapp text := nullif(regexp_replace(coalesce(whatsapp, ''), '[^0-9]', '', 'g'), '');
   existing uuid;
 begin
   if length(btrim(full_name)) < 2 or length(btrim(job_title)) < 2 then
@@ -42,11 +43,13 @@ begin
   if clean_email !~ '^[^[:space:]@]+@[^[:space:]@]+\.[^[:space:]@]+$' then
     raise exception 'correo';
   end if;
-  select id into existing from public.public_registrations where public_registrations.email = clean_email;
-  if existing is not null then return existing; end if;
+  if clean_whatsapp is not null and clean_whatsapp !~ '^[0-9]{10,15}$' then
+    raise exception 'whatsapp';
+  end if;
   insert into public.public_registrations (email, full_name, job_title, whatsapp, sector_slug, invite_token)
-  values (clean_email, btrim(full_name), btrim(job_title), nullif(btrim(whatsapp), ''), nullif(btrim(sector_slug), ''), nullif(btrim(invite_token), ''))
-  returning id into existing;
+  values (clean_email, btrim(full_name), btrim(job_title), clean_whatsapp, nullif(btrim(sector_slug), ''), nullif(btrim(invite_token), ''))
+  on conflict (email) do nothing;
+  select id into existing from public.public_registrations where public_registrations.email = clean_email;
   return existing;
 end;
 $$;
