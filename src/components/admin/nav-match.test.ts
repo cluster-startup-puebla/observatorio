@@ -9,6 +9,7 @@ describe("nav match", () => {
   it("abre el grupo del listado en la ruta y en el detalle", () => {
     const cases = [
       ["/admin/cuentas", "Directorio", "/admin/cuentas"],
+      ["/admin/logo", "Directorio", "/admin/logo"],
       ["/admin/cuentas/360ab36d-9882-44c6-9b61-1010b9aab795", "Directorio", "/admin/cuentas"],
       ["/admin/metodologia/integral", "Contenido", "/admin/metodologia"],
       ["/admin/metodologia/abc", "Contenido", "/admin/metodologia"],

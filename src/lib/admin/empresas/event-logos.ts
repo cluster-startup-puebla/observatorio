@@ -1,5 +1,7 @@
 export type EventLogo = { companyId: string; name: string; profileId: string };
-export type ShowableLogo = EventLogo & { pending: boolean };
+export type ShowableLogo = EventLogo & { pending: boolean; createdAt: string };
+
+export const homeLogoCount = 5;
 
 export function visibleEventLogos(
   companies: { id: string; legalName: string; profileId: string; show: boolean }[],
@@ -33,5 +35,11 @@ export function showableLogos(
       name: company.legalName,
       profileId: company.profileId,
       pending: company.pending,
+      createdAt: company.createdAt,
     }));
+}
+
+export function takeLatest(logos: ShowableLogo[], limit = homeLogoCount) {
+  const latest = [...logos].sort((a, b) => b.createdAt.localeCompare(a.createdAt)).slice(0, limit);
+  return latest.sort((a, b) => Number(a.pending) - Number(b.pending) || b.createdAt.localeCompare(a.createdAt));
 }

@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { latestShowable, showableLogos, visibleEventLogos } from "./event-logos";
+import { latestShowable, showableLogos, takeLatest, visibleEventLogos } from "./event-logos";
 
 describe("logos del día", () => {
   it("deja fuera a quien no marcó el check o no tiene archivo", () => {
@@ -38,5 +38,16 @@ describe("logos del día", () => {
     );
     expect(rows.map((row) => row.companyId)).toEqual(["listo", "nuevo"]);
     expect(rows[1]?.pending).toBe(true);
+  });
+
+  it("el inicio se queda con los cinco más recientes", () => {
+    const logos = Array.from({ length: 7 }, (_, index) => ({
+      companyId: `c${index}`,
+      name: `Empresa ${index}`,
+      profileId: `p${index}`,
+      pending: index === 6,
+      createdAt: `2026-11-${String(index + 1).padStart(2, "0")}`,
+    }));
+    expect(takeLatest(logos).map((row) => row.companyId)).toEqual(["c5", "c4", "c3", "c2", "c6"]);
   });
 });
