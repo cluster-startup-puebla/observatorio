@@ -12,6 +12,8 @@ describe("envío del pase aceptado", () => {
     expect(source).toContain("already_sent");
     expect(source.indexOf("await writePass")).toBeLessThan(source.indexOf("if (row.already_sent)"));
     expect(source.indexOf("if (row.already_sent)")).toBeLessThan(source.indexOf("emails.send"));
+    expect(source).toContain("if (!written.ok)");
+    expect(source.indexOf("if (!written.ok)")).toBeLessThan(source.indexOf("emails.send"));
   });
 
   it("el organismo y el superadmin mandan el pase después de aceptar", () => {

@@ -25,7 +25,16 @@ export async function sendAcceptedPass(accessToken: string, contactId: string) {
   const enqueued = await db.rpc("enqueue_accepted_pass", { contact_id: contactId });
   const row = one((enqueued.data ?? null) as PassRow | PassRow[] | null);
   if (enqueued.error || !row || !row.profile_id) return;
-  await writePass(db, row.profile_id);
+  const written = await writePass(db, row.profile_id);
+  if (!written.ok) {
+    await db.rpc("record_accepted_pass", {
+      message_id: row.id,
+      provider: null,
+      failure: "No se pudo guardar el pase",
+      html: null,
+    });
+    return;
+  }
   if (row.already_sent) return;
   const key = process.env.RESEND_API_KEY;
   const from = mailFrom(process.env.MAIL_FROM);
