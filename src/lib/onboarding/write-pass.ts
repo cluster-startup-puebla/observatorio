@@ -11,7 +11,10 @@ async function qrAsset(db: SupabaseClient, profileId: string) {
   const bytes = Buffer.from(qr.content, "base64");
   const path = passObjectPath(profileId);
   const uploaded = await db.storage.from("pass-images").upload(path, bytes, { upsert: true, contentType: "image/png" });
-  if (uploaded.error) return null;
+  if (uploaded.error) {
+    console.error("writePass", uploaded.error.message);
+    return null;
+  }
   const media = await db
     .from("media_assets")
     .insert({
