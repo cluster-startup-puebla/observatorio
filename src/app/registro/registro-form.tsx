@@ -14,7 +14,7 @@ export function RegistroForm({ sector, invitacion }: { sector?: string; invitaci
   if (form.done) return <p className="text-body text-ink">Quedó registrado</p>;
 
   return (
-    <form className="grid gap-5" action={form.submit}>
+    <form className="grid gap-5" action={form.submit} noValidate>
       <RegistroPersonFields values={form.values} onChange={form.patch} />
       <RegistroCompanyFields values={form.values} onChange={form.patch} />
       <RegistroSectorField
