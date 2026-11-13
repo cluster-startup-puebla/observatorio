@@ -10,6 +10,7 @@ export const adminLinks: AdminLink[] = [
   { href: "/admin/organismos", label: "Organismos", group: "Directorio" },
   { href: "/admin/empresas", label: "Empresas", group: "Directorio" },
   { href: "/admin/crm", label: "CRM", group: "Directorio" },
+  { href: "/admin/registros", label: "Registros públicos", group: "Directorio" },
   { href: "/admin/invitaciones", label: "Invitaciones", group: "Directorio" },
   { href: "/admin/pases", label: "Pases y llegadas", group: "Directorio" },
   { href: "/admin/sectores", label: "Sectores", group: "Contenido" },
