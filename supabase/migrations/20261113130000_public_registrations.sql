@@ -56,3 +56,41 @@ $$;
 
 revoke all on function public.start_public_registration(text, text, text, text, text, text) from public;
 grant execute on function public.start_public_registration(text, text, text, text, text, text) to anon, authenticated;
+
+create or replace function public.finish_public_registration(
+  registration_id uuid,
+  company_name text,
+  market_size text,
+  employee_band text,
+  municipality text,
+  sector_slug text,
+  referral_source text,
+  session_interest text
+) returns void
+language plpgsql
+security definer
+set search_path = ''
+as $$
+begin
+  if length(btrim(company_name)) < 2 or length(btrim(referral_source)) < 2 then
+    raise exception 'datos incompletos';
+  end if;
+  if length(btrim(session_interest)) < 2 or length(btrim(session_interest)) > 500 then
+    raise exception 'interes';
+  end if;
+  update public.public_registrations set
+    company_name = btrim(company_name),
+    market_size = btrim(market_size),
+    employee_band = btrim(employee_band),
+    municipality = btrim(municipality),
+    sector_slug = coalesce(nullif(btrim(sector_slug), ''), public_registrations.sector_slug),
+    referral_source = btrim(referral_source),
+    session_interest = btrim(session_interest),
+    completed_at = now()
+  where id = registration_id and poured_at is null;
+  if not found then raise exception 'no se puede cerrar'; end if;
+end;
+$$;
+
+revoke all on function public.finish_public_registration(uuid, text, text, text, text, text, text, text) from public;
+grant execute on function public.finish_public_registration(uuid, text, text, text, text, text, text, text) to anon, authenticated;
