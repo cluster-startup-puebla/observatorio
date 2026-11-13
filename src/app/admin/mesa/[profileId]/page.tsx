@@ -17,7 +17,7 @@ export default async function MesaDetailPage({
   return (
     <section className="container-site py-10">
       <PanelHeader title="Llegada" crumbs={trailCrumbs("Mesa", mesaHref, "Llegada")} />
-      <p data-testid="bienvenida">Bienvenida, {query.nombre || profileId}</p>
+      <p data-testid="bienvenida">Hola, {query.nombre || profileId}</p>
       <p data-testid="estatus">Llegó</p>
     </section>
   );

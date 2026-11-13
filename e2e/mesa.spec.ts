@@ -16,7 +16,7 @@ test.beforeEach(async ({ request }) => {
 test("la mesa saluda a quien ya tiene QR", async ({ page }) => {
   await page.goto("/admin/mesa");
   await submitCode(page, "persona-registrada");
-  await expect(page.getByTestId("bienvenida")).toHaveText("Bienvenida, Ana López");
+  await expect(page.getByTestId("bienvenida")).toHaveText("Hola, Ana López");
   await expect(page.getByTestId("estatus")).toHaveText("Llegó");
 });
 

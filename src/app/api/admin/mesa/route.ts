@@ -1,3 +1,4 @@
+import { guestQuery, mesaGuest } from "@/lib/admin/mesa/guest";
 import { mesaHref } from "@/lib/admin/mesa/href";
 import { recordArrival } from "@/lib/admin/mesa/record";
 import { requireMesa } from "@/lib/auth/guards";
@@ -6,7 +7,7 @@ import { createSupabaseWithAccess, readAccessToken } from "@/lib/supabase/auth-s
 import { NextResponse, type NextRequest } from "next/server";
 
 function redirectTo(request: NextRequest, query: string) {
-  return NextResponse.redirect(new URL(`${mesaHref}?${query}`, request.url));
+  return NextResponse.redirect(new URL(`${mesaHref}?${query}`, request.url), 303);
 }
 
 export async function POST(request: NextRequest) {
@@ -44,11 +45,8 @@ export async function POST(request: NextRequest) {
       actor_id: account.id,
     });
   }
-  const profile = await db.from("profiles").select("full_name").eq("id", profileId).maybeSingle();
-  const query = new URLSearchParams({
-    codigo: profileId,
-    nombre: profile.data?.full_name ?? "",
-    estatus: "llego",
-  });
-  return NextResponse.redirect(new URL(`${mesaHref}?${query}`, request.url));
+  const listed = await db.rpc("mesa_guest", { guest_id: profileId });
+  if (listed.error) console.error("mesa_guest", listed.error.message);
+  const row = Array.isArray(listed.data) ? listed.data[0] : listed.data;
+  return redirectTo(request, guestQuery(profileId, mesaGuest(row ?? null)));
 }

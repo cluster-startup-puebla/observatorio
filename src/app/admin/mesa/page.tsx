@@ -10,11 +10,20 @@ export const instant = false;
 export default async function MesaPage({
   searchParams,
 }: {
-  searchParams: Promise<{ codigo?: string; nombre?: string; estatus?: string; error?: string }>;
+  searchParams: Promise<{
+    codigo?: string;
+    nombre?: string;
+    empresa?: string;
+    sector?: string;
+    invito?: string;
+    estatus?: string;
+    error?: string;
+  }>;
 }) {
   await requireMesa();
   const params = await searchParams;
-  const name = params.estatus === "llego" ? params.nombre : undefined;
+  const arrived = params.estatus === "llego";
+  const name = arrived ? params.nombre : undefined;
 
   return (
     <main className="flex h-full min-h-0 flex-col px-8 py-6">
@@ -27,6 +36,9 @@ export default async function MesaPage({
       <MesaDesk
         hold={params.codigo ?? ""}
         name={name}
+        company={arrived ? params.empresa : undefined}
+        sector={arrived ? params.sector : undefined}
+        invitedBy={arrived ? params.invito : undefined}
         error={params.error}
         action={usesSupabaseAuth() ? "/api/admin/mesa" : undefined}
       />

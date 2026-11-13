@@ -9,11 +9,17 @@ import { scanDeskAction } from "@/lib/flow-actions";
 export function MesaDesk({
   hold,
   name,
+  company,
+  sector,
+  invitedBy,
   error,
   action,
 }: {
   hold: string;
   name?: string;
+  company?: string;
+  sector?: string;
+  invitedBy?: string;
   error?: string;
   action?: string;
 }) {
@@ -26,7 +32,15 @@ export function MesaDesk({
         <input id="codigo" name="codigo" type="hidden" defaultValue="" />
         <MesaQrScanner hold={hold} paused={open} />
       </form>
-      <MesaArrivalDialog open={open} name={name} error={error} onClose={() => router.replace(mesaHref)} />
+      <MesaArrivalDialog
+        open={open}
+        name={name}
+        company={company}
+        sector={sector}
+        invitedBy={invitedBy}
+        error={error}
+        onClose={() => router.replace(mesaHref)}
+      />
     </>
   );
 }
