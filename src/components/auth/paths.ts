@@ -1,6 +1,8 @@
 export const authPaths = [
   "/login",
   "/register",
+  "/crear-cuenta",
+  "/registro",
   "/recuperar",
   "/restablecer",
   "/verificar",

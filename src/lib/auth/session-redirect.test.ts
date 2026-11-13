@@ -12,7 +12,16 @@ const roles: AccountRole[] = [
   "capturista",
   "invitador",
 ];
-const entries = ["/", "/login", "/register", "/verificar", "/recuperar", "/restablecer"];
+const entries = [
+  "/",
+  "/login",
+  "/register",
+  "/crear-cuenta",
+  "/registro",
+  "/verificar",
+  "/recuperar",
+  "/restablecer",
+];
 const stayed = [
   "/onboarding",
   "/metodologia",

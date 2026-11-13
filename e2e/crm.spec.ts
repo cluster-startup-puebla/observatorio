@@ -6,7 +6,7 @@ test.beforeEach(async ({ request }) => {
 });
 
 async function finishBrand(page: import("@playwright/test").Page, email: string) {
-  await page.goto("/register?cuenta=organismo");
+  await page.goto("/crear-cuenta?cuenta=organismo");
   await page.getByLabel("Correo").fill(email);
   await page.getByLabel("Contraseña", { exact: true }).fill("secreto-largo");
   await page.getByRole("button", { name: "Crear cuenta" }).click();

@@ -3,7 +3,7 @@ import { EventTitle } from "@/components/landing/atoms/event-title";
 import { ctaLabel } from "@/content/landing";
 import { LandingMarks } from "./landing-marks";
 
-export function EventOpen({ reserveHref = "/register" }: { reserveHref?: string }) {
+export function EventOpen({ reserveHref = "/registro" }: { reserveHref?: string }) {
   return (
     <section id="inicio" data-testid="bloque-objetivo" className="bg-surface-subtle">
       <div className="container-site grid gap-6 py-8 lg:py-12">

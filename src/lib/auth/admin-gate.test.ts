@@ -11,7 +11,16 @@ const roles: AccountRole[] = [
   "capturista",
   "invitador",
 ];
-const entries = ["/", "/login", "/register", "/verificar", "/recuperar", "/restablecer"];
+const entries = [
+  "/",
+  "/login",
+  "/register",
+  "/crear-cuenta",
+  "/registro",
+  "/verificar",
+  "/recuperar",
+  "/restablecer",
+];
 
 describe("adminLoginRedirect y adminSignupRedirect", () => {
   it("abierto: login va a signup y signup se queda", () => {

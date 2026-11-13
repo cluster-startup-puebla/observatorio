@@ -6,8 +6,7 @@ test.beforeEach(async ({ request }) => {
 });
 
 test("el empresario termina el perfil con el sector de la ruta", async ({ page }) => {
-  await page.goto("/automotriz-y-autopartes");
-  await page.getByRole("link", { name: "Reservar mi lugar" }).first().click();
+  await page.goto("/crear-cuenta?sector=automotriz-y-autopartes");
   await page.getByLabel("Correo").fill("ana@norte.mx");
   await page.getByLabel("Contraseña", { exact: true }).fill("secreto-largo");
   await page.getByRole("button", { name: "Crear cuenta" }).click();
@@ -21,7 +20,7 @@ test("el empresario termina el perfil con el sector de la ruta", async ({ page }
 });
 
 test("el organismo no invita hasta terminar su marca", async ({ page }) => {
-  await page.goto("/register?cuenta=organismo");
+  await page.goto("/crear-cuenta?cuenta=organismo");
   await page.getByLabel("Correo").fill("director@canacintra.mx");
   await page.getByLabel("Contraseña", { exact: true }).fill("secreto-largo");
   await page.getByRole("button", { name: "Crear cuenta" }).click();
@@ -39,16 +38,16 @@ test("el organismo no invita hasta terminar su marca", async ({ page }) => {
 });
 
 test("una contraseña corta no abre el perfil", async ({ page }) => {
-  await page.goto("/register");
+  await page.goto("/crear-cuenta");
   await page.getByLabel("Correo").fill("ana@norte.mx");
   await page.getByLabel("Contraseña", { exact: true }).fill("corta");
   await page.getByRole("button", { name: "Crear cuenta" }).click();
   await expect(page.getByText("Usa al menos 8 caracteres.")).toBeVisible();
-  await expect(page).toHaveURL(/\/register$/);
+  await expect(page).toHaveURL(/\/crear-cuenta$/);
 });
 
 test("sin tamaño de empresa no aparece el pase", async ({ page }) => {
-  await page.goto("/register?sector=turismo");
+  await page.goto("/crear-cuenta?sector=turismo");
   await page.getByLabel("Correo").fill("sin-tamano@norte.mx");
   await page.getByLabel("Contraseña", { exact: true }).fill("secreto-largo");
   await page.getByRole("button", { name: "Crear cuenta" }).click();

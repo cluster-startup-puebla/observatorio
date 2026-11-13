@@ -61,11 +61,9 @@ describe("sectors", () => {
   });
 
   it("el enlace de reserva conserva el sector de la ruta", () => {
-    expect(reserveHref("/automotriz-y-autopartes")).toBe(
-      "/register?sector=automotriz-y-autopartes",
-    );
-    expect(reserveHref("/")).toBe("/register");
-    expect(reserveHref("/sector-inventado")).toBe("/register");
-    expect(reserveHref("/turismo", "abc")).toBe("/register?sector=turismo&invitacion=abc");
+    expect(reserveHref("/automotriz-y-autopartes")).toBe("/registro?sector=automotriz-y-autopartes");
+    expect(reserveHref("/")).toBe("/registro");
+    expect(reserveHref("/sector-inventado")).toBe("/registro");
+    expect(reserveHref("/turismo", "abc")).toBe("/registro?sector=turismo&invitacion=abc");
   });
 });

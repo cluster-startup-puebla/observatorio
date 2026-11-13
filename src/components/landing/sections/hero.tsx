@@ -7,7 +7,7 @@ import { ConvenerRow } from "@/components/landing/atoms/convener-row";
 import { clusterLogo, ctaLabel } from "@/content/landing";
 
 export function Hero({
-  reserveHref = "/register",
+  reserveHref = "/registro",
   message = null,
 }: {
   reserveHref?: string;

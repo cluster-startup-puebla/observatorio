@@ -12,6 +12,8 @@ const sessionEntries = new Set<string>([
   "/",
   "/login",
   "/register",
+  "/crear-cuenta",
+  "/registro",
   "/verificar",
   "/recuperar",
   "/restablecer",

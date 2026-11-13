@@ -56,7 +56,7 @@ export default async function LoginPage({
         <Link href="/recuperar" className="text-link">
           Olvidé mi contraseña
         </Link>
-        <Link href="/register" className="text-link">
+        <Link href="/registro" className="text-link">
           ¿Aún no reservas? Reserva tu lugar
         </Link>
       </div>

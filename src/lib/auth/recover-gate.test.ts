@@ -1,10 +1,10 @@
 import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
 
-describe("register, recuperar y restablecer", () => {
+describe("crear-cuenta, recuperar y restablecer", () => {
   it("leen la cookie con instant apagado y llaman al helper", () => {
     const pages: [string, string][] = [
-      ["src/app/register/page.tsx", 'redirectIfSession("/register")'],
+      ["src/app/crear-cuenta/page.tsx", 'redirectIfSession("/crear-cuenta")'],
       ["src/app/recuperar/page.tsx", 'redirectIfSession("/recuperar")'],
       ["src/app/restablecer/page.tsx", 'redirectIfSession("/restablecer")'],
     ];
@@ -16,9 +16,9 @@ describe("register, recuperar y restablecer", () => {
     }
   });
 
-  it("register redirige antes del fallback de Suspense", () => {
-    const source = readFileSync("src/app/register/page.tsx", "utf8");
-    const call = source.indexOf('redirectIfSession("/register")');
+  it("crear-cuenta redirige antes del fallback de Suspense", () => {
+    const source = readFileSync("src/app/crear-cuenta/page.tsx", "utf8");
+    const call = source.indexOf('redirectIfSession("/crear-cuenta")');
     const suspense = source.indexOf("<Suspense");
     expect(call).toBeGreaterThan(-1);
     expect(call).toBeLessThan(suspense);

@@ -4,7 +4,7 @@ import { clusterEmail, clusterUrl } from "@/content/landing";
 const LINKS = [
   { label: "Convocan", href: "/#convocan" },
   { label: "La sesión", href: "/#sesion" },
-  { label: "Reservar", href: "/register" },
+  { label: "Reservar", href: "/registro" },
   { label: "Diagnóstico T-MEC", href: "/diagnostico-tmec-puebla" },
   { label: "Aviso de privacidad", href: "/aviso-de-privacidad" },
   { label: "Uso de datos", href: "/uso-de-datos" },
