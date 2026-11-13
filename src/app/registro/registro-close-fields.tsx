@@ -4,7 +4,7 @@ import { controlClass, Field } from "@/components/landing/molecules/field";
 import { SourceCombobox } from "@/components/landing/molecules/source-combobox";
 import { TermsAccept } from "@/components/onboarding/terms-accept";
 
-export function RegistroStepClose({
+export function RegistroCloseFields({
   referralSource,
   sessionInterest,
   terms,
@@ -20,14 +20,14 @@ export function RegistroStepClose({
   return (
     <div className="grid gap-4">
       <div className="grid gap-2">
-        <p className="text-small font-semibold text-ink">¿Cómo te enteraste?</p>
+        <p className="text-small font-semibold text-ink">Cómo te enteraste</p>
         <SourceCombobox
           compact
           value={referralSource}
           onChange={(next) => onChange({ referralSource: next })}
         />
       </div>
-      <Field id="sessionInterest" label="¿Qué te interesa de esta sesión?">
+      <Field id="sessionInterest" label="Qué te interesa">
         <textarea
           id="sessionInterest"
           name="sessionInterest"

@@ -7,7 +7,7 @@ type PersonValues = {
   whatsapp: string;
 };
 
-export function RegistroStepPerson({
+export function RegistroPersonFields({
   values,
   onChange,
 }: {
@@ -16,7 +16,7 @@ export function RegistroStepPerson({
 }) {
   return (
     <div className="grid gap-4">
-      <Field id="fullName" label="¿Cómo te llamas?">
+      <Field id="fullName" label="Nombre">
         <input
           id="fullName"
           name="fullName"
@@ -28,7 +28,7 @@ export function RegistroStepPerson({
           onChange={(event) => onChange({ fullName: event.target.value })}
         />
       </Field>
-      <Field id="jobTitle" label="¿Qué puesto tienes?">
+      <Field id="jobTitle" label="Puesto">
         <input
           id="jobTitle"
           name="jobTitle"

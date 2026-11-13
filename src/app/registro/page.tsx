@@ -1,11 +1,16 @@
 import type { Metadata } from "next";
-import { AuthShell } from "@/components/auth/auth-shell";
+import { AuthBack } from "@/components/auth/auth-back";
+import { Kicker } from "@/components/landing/atoms/kicker";
+import { SessionFacts } from "@/components/landing/sections/session-facts";
+import { forumKicker, forumName } from "@/content/forum-public";
 import { pageMetadata } from "@/lib/metadata";
 import { RegistroForm } from "./registro-form";
 
+const heading = `Desayuno ${forumName}`;
+
 export const metadata: Metadata = pageMetadata({
-  title: "Regístrate a la sesión",
-  description: "Regístrate a la sesión de tu sector. Sin cuenta.",
+  title: "Desayuno Foro Puebla x Puebla",
+  description: "Regístrate al desayuno. Sin cuenta.",
   path: "/registro",
 });
 
@@ -19,12 +24,16 @@ export default async function RegistroPage({ searchParams }: { searchParams: Sea
   const invitacion = typeof params.invitacion === "string" ? params.invitacion : undefined;
 
   return (
-    <AuthShell
-      kicker="Levantamiento de necesidades tecnológicas"
-      title="Regístrate a la sesión"
-      lead="La sesión de tu sector. Sin cuenta."
-    >
-      <RegistroForm sector={sector} invitacion={invitacion} />
-    </AuthShell>
+    <div className="container-site py-6 lg:py-10">
+      <AuthBack />
+      <header className="mt-8 grid gap-3">
+        <Kicker>{forumKicker}</Kicker>
+        <h1 className="text-h1 text-balance text-ink">{heading}</h1>
+      </header>
+      <SessionFacts />
+      <div className="mt-10 max-w-3xl">
+        <RegistroForm sector={sector} invitacion={invitacion} />
+      </div>
+    </div>
   );
 }

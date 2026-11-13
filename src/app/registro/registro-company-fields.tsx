@@ -12,7 +12,7 @@ type CompanyValues = {
   municipality: string;
 };
 
-export function RegistroStepCompany({
+export function RegistroCompanyFields({
   values,
   onChange,
 }: {
@@ -21,7 +21,7 @@ export function RegistroStepCompany({
 }) {
   return (
     <div className="grid gap-4">
-      <Field id="companyName" label="Nombre de la empresa">
+      <Field id="companyName" label="Empresa">
         <input
           id="companyName"
           name="companyName"
@@ -41,7 +41,7 @@ export function RegistroStepCompany({
       />
       <OnboardingSelect
         id="employeeBand"
-        label="Número de empleados"
+        label="Empleados"
         value={values.employeeBand}
         onChange={(employeeBand) => onChange({ employeeBand })}
         options={companySizes.map((size) => ({ value: size, label: size }))}
@@ -49,7 +49,7 @@ export function RegistroStepCompany({
       <FilterCombobox
         id="municipality"
         name="municipality"
-        label="Municipio de Puebla"
+        label="Municipio"
         value={values.municipality}
         placeholder="Busca tu municipio"
         options={pueblaMunicipios.map((name) => ({ value: name, label: name }))}
