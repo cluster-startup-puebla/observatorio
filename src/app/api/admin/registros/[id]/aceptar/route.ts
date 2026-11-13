@@ -17,7 +17,7 @@ function phrase(message: string) {
 function redirect(request: NextRequest, key: "error" | "ok", value: string) {
   const url = new URL(back, request.url);
   url.searchParams.set(key, value);
-  return NextResponse.redirect(url);
+  return NextResponse.redirect(url, 303);
 }
 
 export async function POST(request: NextRequest, context: { params: Promise<{ id: string }> }) {

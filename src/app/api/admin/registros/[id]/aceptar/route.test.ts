@@ -8,6 +8,7 @@ it("el superadmin acepta, vuelca y manda el pase", () => {
   expect(route).toContain("temporaryPassword");
   expect(route).toContain('rpc("accept_public_registration"');
   expect(route).toContain("sendPublicPass");
+  expect(route).toContain("NextResponse.redirect(url, 303)");
   expect(route).toContain("openRef");
   expect(route).not.toContain("SERVICE_ROLE");
 });
