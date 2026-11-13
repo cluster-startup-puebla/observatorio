@@ -39,4 +39,17 @@ describe("detalle de pases", () => {
     expect(source).toContain('.from("crm_events")');
     expect(source).toContain("arrivalPlan");
   });
+
+  it("el detalle lee persona y empresa y no adivina la sesión", () => {
+    const source = readFileSync("src/lib/admin/pases/detail.ts", "utf8");
+    const relations = readFileSync("src/lib/admin/pases/relations.ts", "utf8");
+    const joined = source + relations;
+    expect(joined).toContain('.from("companies")');
+    expect(joined).toContain('.from("sectors")');
+    expect(joined).toContain("scanned_by");
+    expect(joined).toContain("face");
+    expect(joined).toContain("Sin sesión");
+    expect(joined).not.toContain('.from("sessions")');
+    expect(joined).not.toContain("outbox_messages");
+  });
 });
