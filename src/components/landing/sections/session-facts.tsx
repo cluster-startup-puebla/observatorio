@@ -3,36 +3,46 @@ import { sessionFacts } from "@/content/landing";
 
 const quintaRealMap = "https://maps.app.goo.gl/Dzgq3VtHbAPJT4U58";
 
-export function SessionFacts() {
+const compactLabels = new Set(["Dónde", "Horario"]);
+
+export function SessionFacts({ compact = false }: { compact?: boolean }) {
+  const facts = compact ? sessionFacts.filter((fact) => compactLabels.has(fact.label)) : sessionFacts;
   return (
-    <dl className="mt-12 grid gap-px bg-line sm:grid-cols-2 lg:grid-cols-3">
-      {sessionFacts.map((fact) => (
-        <div key={fact.label} className="bg-surface-subtle p-6">
+    <dl className={listClass(compact)}>
+      {facts.map((fact) => (
+        <div key={fact.label} className={compact ? "min-w-0" : "min-w-0 bg-surface-subtle p-6"}>
           <dt className="text-micro uppercase text-ink-muted">{fact.label}</dt>
-          <dd
-            className={
-              fact.label === "Horario" || fact.label === "Grupo"
-                ? "text-h3 mt-2 text-balance text-ink"
-                : "text-body mt-2 text-ink"
-            }
-          >
-            {fact.label === "Dónde" ? (
-              <a
-                href={quintaRealMap}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-1 text-link"
-              >
-                {fact.value}
-                <ArrowUpRight size={16} aria-hidden />
-                <span className="sr-only">, se abre en otra pestaña</span>
-              </a>
-            ) : (
-              fact.value
-            )}
+          <dd className={valueClass(compact, fact.label)}>
+            {fact.label === "Dónde" ? <Place compact={compact} value={fact.value} /> : fact.value}
           </dd>
         </div>
       ))}
     </dl>
+  );
+}
+
+function listClass(compact: boolean) {
+  if (compact) return "mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2";
+  return "mt-12 grid gap-px bg-line sm:grid-cols-2 lg:grid-cols-3";
+}
+
+function valueClass(compact: boolean, label: string) {
+  if (compact) return "mt-1 text-small break-words text-ink";
+  if (label === "Horario" || label === "Grupo") return "mt-2 text-h3 text-balance text-ink";
+  return "mt-2 break-words text-body text-ink";
+}
+
+function Place({ compact, value }: { compact: boolean; value: string }) {
+  return (
+    <a
+      href={quintaRealMap}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="inline-flex max-w-full items-center gap-1 break-words text-link"
+    >
+      {value}
+      <ArrowUpRight size={compact ? 14 : 16} className="shrink-0" aria-hidden />
+      <span className="sr-only">, se abre en otra pestaña</span>
+    </a>
   );
 }

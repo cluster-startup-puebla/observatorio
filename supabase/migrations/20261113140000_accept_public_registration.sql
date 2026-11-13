@@ -1,9 +1,11 @@
+drop function if exists public.accept_public_registration(uuid, text, uuid);
+
 create or replace function public.accept_public_registration(
   registration_id uuid,
   account_password text,
   org_id uuid
 )
-returns table (profile_id uuid, guest_email text)
+returns table (guest_id uuid, guest_email text)
 language plpgsql
 security definer
 set search_path = ''
@@ -30,7 +32,7 @@ begin
     raise exception 'no está';
   end if;
   if row.poured_profile_id is not null then
-    profile_id := row.poured_profile_id;
+    guest_id := row.poured_profile_id;
     guest_email := row.email;
     return next;
     return;
@@ -39,14 +41,14 @@ begin
     raise exception 'incompleto';
   end if;
 
-  select id into sector from public.sectors where slug = row.sector_slug;
+  select sectors.id into sector from public.sectors as sectors where sectors.slug = row.sector_slug;
   if sector is null then
     raise exception 'sector';
   end if;
   band := case row.employee_band
-    when '1–10' then '1_10'::public.employee_band
-    when '11–50' then '11_50'::public.employee_band
-    when '51–250' then '51_250'::public.employee_band
+    when '1' || chr(8211) || '10' then '1_10'::public.employee_band
+    when '11' || chr(8211) || '50' then '11_50'::public.employee_band
+    when '51' || chr(8211) || '250' then '51_250'::public.employee_band
     when '250+' then '250_plus'::public.employee_band
     else null
   end;
@@ -61,8 +63,8 @@ begin
   end if;
 
   if clean_org is not null and not exists (
-    select 1 from public.organizations
-    where id = clean_org and brand_completed_at is not null
+    select 1 from public.organizations as organizations
+    where organizations.id = clean_org and organizations.brand_completed_at is not null
   ) then
     clean_org := null;
   end if;
@@ -97,17 +99,17 @@ begin
     );
   end if;
 
-  if exists (select 1 from public.companies where companies.profile_id = guest) then
+  if exists (select 1 from public.companies as company where company.profile_id = guest) then
     raise exception 'ya tiene cuenta';
   end if;
 
-  update public.profiles
+  update public.profiles as person
   set full_name = row.full_name,
       job_title = row.job_title,
       whatsapp = row.whatsapp,
-      onboarded_at = coalesce(onboarded_at, clock_timestamp()),
-      confidentiality_accepted_at = coalesce(confidentiality_accepted_at, clock_timestamp())
-  where id = guest and role = 'empresario';
+      onboarded_at = coalesce(person.onboarded_at, clock_timestamp()),
+      confidentiality_accepted_at = coalesce(person.confidentiality_accepted_at, clock_timestamp())
+  where person.id = guest and person.role = 'empresario';
   if not found then
     raise exception 'perfil';
   end if;
@@ -124,7 +126,7 @@ begin
     show_logo_on_event, admitted_at, admitted_by
   ) values (
     guest, row.company_name, sector,
-    case when clean_org is null then 'path' else 'link' end,
+    case when clean_org is null then 'path'::public.sector_source else 'link'::public.sector_source end,
     band, row.referral_source, row.market_size,
     nullif(row.municipality, ''), row.session_interest, false,
     case when clean_org is null then clock_timestamp() else null end,
@@ -132,9 +134,9 @@ begin
   );
 
   if clean_org is not null then
-    select id into contact
-    from public.crm_contacts
-    where organization_id = clean_org and email = row.email;
+    select contacts.id into contact
+    from public.crm_contacts as contacts
+    where contacts.organization_id = clean_org and contacts.email = row.email;
     if contact is null then
       insert into public.crm_contacts (organization_id, sector_id, nombre, empresa, email, source, profile_id)
       values (clean_org, sector, left(row.full_name, 120), left(row.company_name, 160), row.email, 'enlace', guest)
@@ -142,7 +144,7 @@ begin
       insert into public.crm_events (contact_id, event, actor_id, occurred_at)
       values (contact, 'cargar', auth.uid(), clock_timestamp());
     end if;
-    select case event
+    select case events.event
       when 'cargar' then 'cargado'
       when 'contactar' then 'contactado'
       when 'confirmar' then 'confirmo'
@@ -150,9 +152,9 @@ begin
       when 'llegar' then 'llego'
       else 'no'
     end into latest
-    from public.crm_events
-    where contact_id = contact
-    order by occurred_at desc, id desc
+    from public.crm_events as events
+    where events.contact_id = contact
+    order by events.occurred_at desc, events.id desc
     limit 1;
     if latest = 'cargado' or latest = 'contactado' then
       insert into public.crm_events (contact_id, event, actor_id, occurred_at)
@@ -166,7 +168,7 @@ begin
   set poured_at = clock_timestamp(), poured_profile_id = guest
   where registration.id = row.id and registration.poured_at is null;
 
-  profile_id := guest;
+  guest_id := guest;
   guest_email := row.email;
   return next;
 end;
@@ -174,3 +176,5 @@ $$;
 
 revoke all on function public.accept_public_registration(uuid, text, uuid) from public, anon;
 grant execute on function public.accept_public_registration(uuid, text, uuid) to authenticated;
+
+notify pgrst, 'reload schema';

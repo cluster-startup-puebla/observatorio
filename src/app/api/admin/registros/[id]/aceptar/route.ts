@@ -36,8 +36,12 @@ export async function POST(request: NextRequest, context: { params: Promise<{ id
     account_password: temporaryPassword,
     org_id: orgId,
   });
-  const profileId = Array.isArray(accepted.data) ? accepted.data[0]?.profile_id : accepted.data?.profile_id;
-  if (accepted.error || !profileId) return redirect(request, "error", phrase(accepted.error?.message ?? ""));
+  const acceptedRow = Array.isArray(accepted.data) ? accepted.data[0] : accepted.data;
+  const profileId = acceptedRow?.guest_id;
+  if (accepted.error || !profileId) {
+    console.error("accept_public_registration", accepted.error?.message ?? "sin perfil");
+    return redirect(request, "error", phrase(accepted.error?.message ?? ""));
+  }
   const sent = await sendPublicPass(token, profileId);
   if (!sent.ok) return redirect(request, "error", "La cuenta quedó lista. El pase no salió.");
   return redirect(request, "ok", "1");

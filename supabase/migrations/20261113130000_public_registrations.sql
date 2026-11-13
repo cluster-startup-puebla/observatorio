@@ -34,10 +34,14 @@ set search_path = ''
 as $$
 declare
   clean_email text := lower(btrim(email));
+  clean_name text := btrim(full_name);
+  clean_job text := btrim(job_title);
   clean_whatsapp text := nullif(regexp_replace(coalesce(whatsapp, ''), '[^0-9]', '', 'g'), '');
+  clean_sector text := nullif(btrim(sector_slug), '');
+  clean_invite text := nullif(btrim(invite_token), '');
   existing uuid;
 begin
-  if length(btrim(full_name)) < 2 or length(btrim(job_title)) < 2 then
+  if length(clean_name) < 2 or length(clean_job) < 2 then
     raise exception 'datos incompletos';
   end if;
   if clean_email !~ '^[^[:space:]@]+@[^[:space:]@]+\.[^[:space:]@]+$' then
@@ -47,9 +51,11 @@ begin
     raise exception 'whatsapp';
   end if;
   insert into public.public_registrations (email, full_name, job_title, whatsapp, sector_slug, invite_token)
-  values (clean_email, btrim(full_name), btrim(job_title), clean_whatsapp, nullif(btrim(sector_slug), ''), nullif(btrim(invite_token), ''))
-  on conflict (email) do nothing;
-  select id into existing from public.public_registrations where public_registrations.email = clean_email;
+  values (clean_email, clean_name, clean_job, clean_whatsapp, clean_sector, clean_invite)
+  on conflict on constraint public_registrations_email_key do nothing;
+  select registration.id into existing
+  from public.public_registrations as registration
+  where registration.email = clean_email;
   return existing;
 end;
 $$;
@@ -71,23 +77,31 @@ language plpgsql
 security definer
 set search_path = ''
 as $$
+declare
+  clean_company text := btrim(company_name);
+  clean_market text := btrim(market_size);
+  clean_band text := btrim(employee_band);
+  clean_municipality text := btrim(municipality);
+  clean_sector text := nullif(btrim(sector_slug), '');
+  clean_referral text := btrim(referral_source);
+  clean_interest text := btrim(session_interest);
 begin
-  if length(btrim(company_name)) < 2 or length(btrim(referral_source)) < 2 then
+  if length(clean_company) < 2 or length(clean_referral) < 2 then
     raise exception 'datos incompletos';
   end if;
-  if length(btrim(session_interest)) < 2 or length(btrim(session_interest)) > 500 then
+  if length(clean_interest) < 2 or length(clean_interest) > 500 then
     raise exception 'interes';
   end if;
-  update public.public_registrations set
-    company_name = btrim(company_name),
-    market_size = btrim(market_size),
-    employee_band = btrim(employee_band),
-    municipality = btrim(municipality),
-    sector_slug = coalesce(nullif(btrim(sector_slug), ''), public_registrations.sector_slug),
-    referral_source = btrim(referral_source),
-    session_interest = btrim(session_interest),
+  update public.public_registrations as registration set
+    company_name = clean_company,
+    market_size = clean_market,
+    employee_band = clean_band,
+    municipality = clean_municipality,
+    sector_slug = coalesce(clean_sector, registration.sector_slug),
+    referral_source = clean_referral,
+    session_interest = clean_interest,
     completed_at = now()
-  where id = registration_id and poured_at is null;
+  where registration.id = registration_id and registration.poured_at is null;
   if not found then raise exception 'no se puede cerrar'; end if;
 end;
 $$;

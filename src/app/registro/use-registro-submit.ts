@@ -1,7 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { submitRegistro } from "./actions";
+import { readRegistroDone, rememberRegistro } from "./registro-memory";
 
 const empty = {
   fullName: "",
@@ -20,11 +21,17 @@ const empty = {
 const fallback = "No se pudo guardar. Revisa los datos e intenta de nuevo.";
 
 export function useRegistroSubmit(sector: string, invitacion: string) {
+  const [ready, setReady] = useState(false);
   const [done, setDone] = useState(false);
   const [error, setError] = useState("");
   const [pending, setPending] = useState(false);
   const [terms, setTerms] = useState(false);
   const [values, setValues] = useState(empty);
+
+  useEffect(() => {
+    setDone(readRegistroDone());
+    setReady(true);
+  }, []);
 
   function patch(next: Partial<typeof empty>) {
     setError("");
@@ -51,6 +58,7 @@ export function useRegistroSubmit(sector: string, invitacion: string) {
         setError(result.error ?? fallback);
         return;
       }
+      rememberRegistro();
       setDone(true);
     } catch {
       setError(fallback);
@@ -59,5 +67,5 @@ export function useRegistroSubmit(sector: string, invitacion: string) {
     }
   }
 
-  return { done, error, pending, terms, acceptTerms, values, patch, submit };
+  return { ready, done, error, pending, terms, acceptTerms, values, patch, submit };
 }

@@ -18,7 +18,7 @@ export function RegistroCloseFields({
   onTerms: (terms: boolean) => void;
 }) {
   return (
-    <div className="grid gap-4">
+    <div className="grid min-w-0 gap-4">
       <div className="grid gap-2">
         <p className="text-small font-semibold text-ink">Cómo te enteraste</p>
         <SourceCombobox

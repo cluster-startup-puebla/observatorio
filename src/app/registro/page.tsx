@@ -24,14 +24,14 @@ export default async function RegistroPage({ searchParams }: { searchParams: Sea
   const invitacion = typeof params.invitacion === "string" ? params.invitacion : undefined;
 
   return (
-    <div className="container-site py-6 lg:py-10">
+    <div className="container-site max-w-full overflow-x-clip py-6 lg:py-10">
       <AuthBack />
-      <header className="mt-8 grid gap-3">
+      <header className="mt-6 grid max-w-xl gap-2">
         <Kicker>{forumKicker}</Kicker>
-        <h1 className="text-h1 text-balance text-ink">{heading}</h1>
+        <h1 className="text-h3 text-balance break-words text-ink">{heading}</h1>
       </header>
-      <SessionFacts />
-      <div className="mt-10 max-w-3xl">
+      <SessionFacts compact />
+      <div className="mt-8 max-w-xl min-w-0 [&_input]:text-base [&_select]:text-base [&_textarea]:text-base">
         <RegistroForm sector={sector} invitacion={invitacion} />
       </div>
     </div>

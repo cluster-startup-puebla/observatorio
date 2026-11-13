@@ -20,7 +20,7 @@ export function SourceMenu({
       id={listId}
       role="listbox"
       aria-label="¿Cómo te enteraste?"
-      className="absolute z-20 mt-2 max-h-60 w-full overflow-auto rounded-sm border border-line bg-elevated p-1 shadow-[var(--card-shadow)]"
+      className="absolute z-20 mt-2 max-h-60 w-full min-w-0 overflow-x-hidden overflow-y-auto rounded-sm border border-line bg-elevated p-1 shadow-[var(--card-shadow)]"
     >
       {sources.map((partner) => {
         const active = partner.alt === value;
@@ -31,12 +31,12 @@ export function SourceMenu({
               role="option"
               aria-selected={active}
               onClick={() => onPick(partner.alt)}
-              className={`flex w-full items-center gap-2 rounded-sm px-2 py-1.5 text-left text-small text-ink hover:bg-surface-subtle ${
+              className={`flex w-full min-w-0 items-center gap-2 overflow-hidden rounded-sm px-2 py-1.5 text-left text-small text-ink hover:bg-surface-subtle ${
                 active ? "bg-surface-subtle" : ""
               }`}
             >
               <SourceLogo src={partner.src} width={partner.width} height={partner.height} compact={compact} />
-              <span className="min-w-0">{partner.alt}</span>
+              <span className="min-w-0 truncate">{partner.alt}</span>
             </button>
           </li>
         );

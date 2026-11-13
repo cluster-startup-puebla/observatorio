@@ -31,7 +31,7 @@ export function FilterComboboxInput({
         aria-controls={listId}
         aria-autocomplete="list"
         autoComplete="off"
-        className="min-w-0 flex-1 bg-transparent outline-none"
+        className="min-w-0 flex-1 bg-transparent text-base outline-none"
         placeholder={placeholder}
         value={text}
         onFocus={() => onOpen(true)}

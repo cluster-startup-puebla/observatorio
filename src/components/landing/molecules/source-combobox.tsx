@@ -29,7 +29,7 @@ export function SourceCombobox({
   useComboboxDismiss(rootRef, setOpen);
 
   return (
-    <div ref={rootRef} className="relative">
+    <div ref={rootRef} className="relative min-w-0 max-w-full">
       <input type="hidden" name="fuente" value={value} />
       <button
         id="fuente"
@@ -40,7 +40,7 @@ export function SourceCombobox({
         aria-invalid={Boolean(error)}
         aria-describedby={error ? "fuente-error" : undefined}
         onClick={() => setOpen((current) => !current)}
-        className={`${controlClass} flex items-center justify-between gap-2 text-left`}
+        className={`${controlClass} flex min-w-0 items-center justify-between gap-2 overflow-hidden text-left`}
       >
         {selected ? (
           <span className="flex min-w-0 items-center gap-2">
