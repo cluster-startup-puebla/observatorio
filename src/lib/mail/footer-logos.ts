@@ -3,20 +3,24 @@ import { clusterLogo } from "@/content/landing";
 
 export type MailLogo = { src: string; alt: string; width: number; height: number };
 
+function correoSrc(src: string) {
+  return src.replace(/^\/logos\//, "/logos/correo/").replace(/\.(webp|svg)$/, ".png");
+}
+
 export const operaLogos: MailLogo[] = [
-  { src: clusterLogo.src, alt: clusterLogo.alt, width: clusterLogo.width, height: clusterLogo.height },
+  { src: correoSrc(clusterLogo.src), alt: clusterLogo.alt, width: clusterLogo.width, height: clusterLogo.height },
 ];
 
 export const backingLogos: MailLogo[] = [
-  { src: "/logos/logo-estado.svg", alt: "Gobierno del Estado de Puebla", width: 301, height: 126 },
-  { src: "/logos/logo-sedetra.png", alt: "Secretaría de Desarrollo Económico y Trabajo", width: 1106, height: 253 },
-  { src: "/logos/logo-secihti.png", alt: "Secretaría de Ciencia, Humanidades, Tecnología e Innovación", width: 501, height: 274 },
-  { src: "/logos/logo-por-amor-a-puebla.svg", alt: "Por amor a Puebla", width: 1470, height: 590 },
-  { src: "/logos/logo-transformar-en-grande.png", alt: "Transformar en Grande", width: 806, height: 251 },
+  { src: correoSrc("/logos/logo-estado.svg"), alt: "Gobierno del Estado de Puebla", width: 301, height: 126 },
+  { src: correoSrc("/logos/logo-sedetra.png"), alt: "Secretaría de Desarrollo Económico y Trabajo", width: 1106, height: 253 },
+  { src: correoSrc("/logos/logo-secihti.png"), alt: "Secretaría de Ciencia, Humanidades, Tecnología e Innovación", width: 501, height: 274 },
+  { src: correoSrc("/logos/logo-por-amor-a-puebla.svg"), alt: "Por amor a Puebla", width: 147, height: 59 },
+  { src: correoSrc("/logos/logo-transformar-en-grande.png"), alt: "Transformar en Grande", width: 806, height: 251 },
 ];
 
 export const convenerLogos: MailLogo[] = conveners.map((logo) => ({
-  src: logo.src,
+  src: correoSrc(logo.src),
   alt: logo.alt,
   width: logo.width,
   height: logo.height,

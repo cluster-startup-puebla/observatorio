@@ -9,19 +9,21 @@ describe("pie de logos", () => {
         <p>Cuerpo</p>
       </MailShell>,
     );
-    expect(html).toContain("https://observatorio.example/logos/logo-cluster.webp");
-    expect(html).toContain("https://observatorio.example/logos/logo-estado.svg");
-    expect(html).toContain("https://observatorio.example/logos/logo-sedetra.png");
-    expect(html).toContain("https://observatorio.example/logos/logo-secihti.png");
-    expect(html).toContain("https://observatorio.example/logos/logo-por-amor-a-puebla.svg");
-    expect(html).toContain("https://observatorio.example/logos/logo-transformar-en-grande.png");
+    expect(html).toContain("https://observatorio.example/logos/correo/logo-cluster.png");
+    expect(html).toContain("https://observatorio.example/logos/correo/logo-estado.png");
+    expect(html).toContain("https://observatorio.example/logos/correo/logo-sedetra.png");
+    expect(html).toContain("https://observatorio.example/logos/correo/logo-secihti.png");
+    expect(html).toContain("https://observatorio.example/logos/correo/logo-por-amor-a-puebla.png");
+    expect(html).toContain("https://observatorio.example/logos/correo/logo-transformar-en-grande.png");
     expect(html).not.toContain("logo-cinco-de-mayo.png");
-    expect(html).toContain("https://observatorio.example/logos/convocantes/cluster-agroalimentario-puebla.webp");
-    expect(html).toContain("https://observatorio.example/logos/convocantes/citex-puebla-tlaxcala.webp");
+    expect(html).not.toContain(".webp");
+    expect(html).not.toContain(".svg");
+    expect(html).toContain("https://observatorio.example/logos/correo/convocantes/cluster-agroalimentario-puebla.png");
+    expect(html).toContain("https://observatorio.example/logos/correo/convocantes/citex-puebla-tlaxcala.png");
     expect(html.match(/observatorio\.example\/logos\//g)?.length).toBe(22);
-    expect(html).toContain("https://observatorio.example/logos/convocantes/cluster-educacion-desarrollo-talento.webp");
-    expect(html).toContain("https://observatorio.example/logos/convocantes/canagraf.webp");
-    expect(html).toContain("https://observatorio.example/logos/convocantes/puebla-care.webp");
+    expect(html).toContain("https://observatorio.example/logos/correo/convocantes/cluster-educacion-desarrollo-talento.png");
+    expect(html).toContain("https://observatorio.example/logos/correo/convocantes/canagraf.png");
+    expect(html).toContain("https://observatorio.example/logos/correo/convocantes/puebla-care.png");
     expect(html).toContain("Opera");
     expect(html).toContain("Con el respaldo de");
     expect(html).toContain("Convocan");
