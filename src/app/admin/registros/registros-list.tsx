@@ -1,8 +1,9 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, type ReactNode } from "react";
 import { useRouter } from "next/navigation";
 import type { ColumnDef } from "@tanstack/react-table";
+import { AcceptRegistro } from "@/app/admin/registros/accept-registro";
 import { columnDef, type DataColumn, type DataRow } from "@/components/admin/data-columns";
 import { listCrumbs, PanelHeader } from "@/components/admin/panel-header";
 import { DataTable } from "@/components/ui/data-table";
@@ -15,9 +16,26 @@ const columns: DataColumn[] = [
   { key: "sector_slug", label: "Sector" },
   { key: "estado", label: "Estado", render: (row) => (row.completed_at ? "Completo" : "A medias") },
   { key: "cuenta", label: "Cuenta", render: (row) => (row.poured_at ? "Ya tiene cuenta" : "") },
+  {
+    key: "aceptar",
+    label: "",
+    render: (row) => <AcceptRegistro id={row.id} completed={row.completed_at} poured={row.poured_at} />,
+  },
 ];
 
-export function RegistrosList({ rows, page, total }: { rows: DataRow[]; page: number; total: number }) {
+export function RegistrosList({
+  rows,
+  page,
+  total,
+  notice,
+  banner,
+}: {
+  rows: DataRow[];
+  page: number;
+  total: number;
+  notice: string;
+  banner?: ReactNode;
+}) {
   const router = useRouter();
   const pages = pageCount(total);
   const tableColumns: ColumnDef<DataRow>[] = columns.map((column) => columnDef(column));
@@ -30,9 +48,10 @@ export function RegistrosList({ rows, page, total }: { rows: DataRow[]; page: nu
     <main className="px-8 py-8">
       <PanelHeader
         title="Registros públicos"
-        lead="Quienes empezaron el registro público, antes de crear su cuenta."
+        lead="Registros completos listos para aceptar. Al aceptar se crea la cuenta y sale el pase."
         crumbs={listCrumbs("Registros públicos", "/admin/registros")}
       />
+      {notice ? banner : null}
       <DataTable
         data={rows}
         columns={tableColumns}

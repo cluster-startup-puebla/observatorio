@@ -9,7 +9,7 @@ export async function listRegistros(rawPage: string | undefined) {
   if (!db) return { page: page.page, rows: [] as Record<string, string>[], total: 0 };
   const result = await db
     .from("public_registrations")
-    .select("full_name, company_name, email, sector_slug, completed_at, poured_at", { count: "exact" })
+    .select("id, full_name, company_name, email, sector_slug, completed_at, poured_at", { count: "exact" })
     .order("created_at", { ascending: false })
     .range(page.from, page.to);
   if (result.error) throw new Error(result.error.message);
@@ -17,6 +17,7 @@ export async function listRegistros(rawPage: string | undefined) {
     page: page.page,
     total: result.count ?? 0,
     rows: (result.data ?? []).map((row) => ({
+      id: row.id ?? "",
       full_name: row.full_name ?? "",
       company_name: row.company_name ?? "",
       email: row.email ?? "",
