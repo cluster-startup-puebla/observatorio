@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, type ReactNode } from "react";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import type { ColumnDef } from "@tanstack/react-table";
 import { AcceptRegistro } from "@/app/admin/registros/accept-registro";
@@ -9,11 +10,21 @@ import { listCrumbs, PanelHeader } from "@/components/admin/panel-header";
 import { DataTable } from "@/components/ui/data-table";
 import { pageCount, pageSize } from "@/lib/admin/page-query";
 
+function detailLink(label: string, href: string) {
+  if (!label || !href) return label;
+  return (
+    <Link className="text-link" href={href}>
+      {label}
+    </Link>
+  );
+}
+
 const columns: DataColumn[] = [
-  { key: "full_name", label: "Nombre" },
-  { key: "company_name", label: "Empresa" },
+  { key: "full_name", label: "Nombre", render: (row) => detailLink(row.full_name, row.profile_id ? `/admin/cuentas/${row.profile_id}` : "") },
+  { key: "company_name", label: "Empresa", render: (row) => detailLink(row.company_name, row.company_id ? `/admin/empresas/${row.company_id}` : "") },
   { key: "email", label: "Correo" },
   { key: "sector_slug", label: "Sector" },
+  { key: "referral_source", label: "Se enteró por" },
   { key: "estado", label: "Estado", render: (row) => (row.completed_at ? "Completo" : "A medias") },
   { key: "cuenta", label: "Cuenta", render: (row) => (row.poured_at ? "Ya tiene cuenta" : "") },
   {
