@@ -6,6 +6,7 @@ import { inviteMetadata } from "@/lib/auth/invite-carry";
 import { isMicrosoftMailbox } from "@/lib/auth/microsoft-mailbox";
 import { sendOwnMail } from "@/lib/mail/send-own";
 import { signupErrorCode } from "@/lib/organismo/signup-back";
+import { pourRegistration } from "@/lib/registro/pour";
 import { createSupabaseAnon, writeSupabaseSession } from "@/lib/supabase/auth-session";
 
 function nextPath(sector: string, invite: string, base = "/onboarding") {
@@ -29,7 +30,8 @@ async function skipConfirm(anon: SupabaseClient, email: string, password: string
   await writeSupabaseSession(logged.data.session);
   await anon.auth.updateUser({ data: inviteMetadata(sector, invite) });
   await sendOwnMail(logged.data.session.access_token, "welcome");
-  return { next: nextPath(sector, invite) };
+  const poured = await pourRegistration(logged.data.session.access_token, logged.data.session.user.id, email);
+  return { next: poured ? "/onboarding" : nextPath(sector, invite) };
 }
 
 export async function signupEmpresarioAndSession(email: string, password: string, sector: string, invite: string) {
@@ -63,5 +65,6 @@ export async function signupEmpresarioAndSession(email: string, password: string
   if (!session) return { error: "auth" };
   await writeSupabaseSession(session);
   await sendOwnMail(session.access_token, "welcome");
-  return { next: nextPath(sector, invite) };
+  const poured = await pourRegistration(session.access_token, session.user.id, normalized);
+  return { next: poured ? "/onboarding" : nextPath(sector, invite) };
 }

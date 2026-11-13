@@ -94,3 +94,73 @@ $$;
 
 revoke all on function public.finish_public_registration(uuid, text, text, text, text, text, text, text) from public;
 grant execute on function public.finish_public_registration(uuid, text, text, text, text, text, text, text) to anon, authenticated;
+
+create or replace function public.take_public_registration()
+returns table (
+  full_name text,
+  job_title text,
+  whatsapp text,
+  company_name text,
+  market_size text,
+  employee_band text,
+  municipality text,
+  sector_slug text,
+  referral_source text,
+  session_interest text,
+  invite_token text
+)
+language plpgsql
+security definer
+set search_path = ''
+as $$
+declare
+  clean_email text := lower(coalesce(auth.jwt() ->> 'email', ''));
+begin
+  if clean_email = '' then
+    return;
+  end if;
+  return query
+    select
+      registration.full_name,
+      registration.job_title,
+      registration.whatsapp,
+      registration.company_name,
+      registration.market_size,
+      registration.employee_band,
+      registration.municipality,
+      registration.sector_slug,
+      registration.referral_source,
+      registration.session_interest,
+      registration.invite_token
+    from public.public_registrations as registration
+    where registration.email = clean_email
+      and registration.completed_at is not null
+      and registration.poured_at is null;
+end;
+$$;
+
+revoke all on function public.take_public_registration() from public, anon;
+grant execute on function public.take_public_registration() to authenticated;
+
+create or replace function public.mark_public_registration_poured(profile_id uuid)
+returns void
+language plpgsql
+security definer
+set search_path = ''
+as $$
+declare
+  clean_email text := lower(coalesce(auth.jwt() ->> 'email', ''));
+begin
+  update public.public_registrations
+  set poured_at = now(), poured_profile_id = profile_id
+  where email = clean_email
+    and completed_at is not null
+    and poured_at is null;
+  if not found then
+    raise exception 'no se puede volcar';
+  end if;
+end;
+$$;
+
+revoke all on function public.mark_public_registration_poured(uuid) from public, anon;
+grant execute on function public.mark_public_registration_poured(uuid) to authenticated;
