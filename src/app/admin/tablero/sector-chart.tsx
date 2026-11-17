@@ -1,5 +1,6 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import { Bar, BarChart, CartesianGrid, XAxis, YAxis } from "recharts";
 import { ChartPanel } from "@/app/admin/tablero/chart-panel";
 import { ChartContainer, ChartTooltip, ChartTooltipContent, type ChartConfig } from "@/components/ui/chart";
@@ -13,7 +14,13 @@ const config = {
 } satisfies ChartConfig;
 
 export function SectorChart({ rows, outside }: { rows: SectorFillRow[]; outside: OmittedSector[] }) {
+  const router = useRouter();
   const data = sectorChartRows(rows, outside);
+  const hrefs = new Map(data.map((row) => [row.sector, `/admin/${row.slug}`]));
+  function openSector(entry: unknown) {
+    const slug = sectorSlug(entry);
+    if (slug) router.push(`/admin/${slug}`);
+  }
   return (
     <ChartPanel
       title="Por sector"
@@ -28,11 +35,11 @@ export function SectorChart({ rows, outside }: { rows: SectorFillRow[]; outside:
             <BarChart data={data} layout="vertical" margin={{ left: 4, right: 8 }}>
               <CartesianGrid horizontal={false} />
               <XAxis type="number" allowDecimals={false} tickLine={false} axisLine={false} />
-              <YAxis type="category" dataKey="sector" width={128} tickLine={false} axisLine={false} tickFormatter={shortName} />
+              <YAxis type="category" dataKey="sector" width={128} tickLine={false} axisLine={false} tick={(props) => <SectorName {...props} hrefs={hrefs} />} />
               <ChartTooltip content={<ChartTooltipContent />} />
-              <Bar dataKey="cupo" fill="var(--color-cupo)" radius={4} />
-              <Bar dataKey="ocupados" fill="var(--color-ocupados)" radius={4} />
-              <Bar dataKey="pendientes" fill="var(--color-pendientes)" radius={4} />
+              <Bar dataKey="cupo" fill="var(--color-cupo)" radius={4} cursor="pointer" onClick={openSector} />
+              <Bar dataKey="ocupados" fill="var(--color-ocupados)" radius={4} cursor="pointer" onClick={openSector} />
+              <Bar dataKey="pendientes" fill="var(--color-pendientes)" radius={4} cursor="pointer" onClick={openSector} />
             </BarChart>
           </ChartContainer>
         </>
@@ -51,6 +58,31 @@ function SectorLegend() {
   );
 }
 
-function shortName(value: string) {
-  return value.length > 18 ? `${value.slice(0, 17)}…` : value;
+function SectorName({
+  x = 0,
+  y = 0,
+  payload,
+  hrefs,
+}: {
+  x?: number;
+  y?: number;
+  payload?: { value?: string };
+  hrefs: Map<string, string>;
+}) {
+  const name = String(payload?.value ?? "");
+  const label = name.length > 18 ? `${name.slice(0, 17)}…` : name;
+  return (
+    <a href={hrefs.get(name)}>
+      <text x={x} y={y} dy={4} textAnchor="end" fill="currentColor" fontSize={12} className="cursor-pointer">
+        {label}
+      </text>
+    </a>
+  );
+}
+
+function sectorSlug(entry: unknown) {
+  if (!entry || typeof entry !== "object") return "";
+  const row = entry as { slug?: unknown; payload?: { slug?: unknown } };
+  const slug = row.slug ?? row.payload?.slug;
+  return typeof slug === "string" ? slug : "";
 }
