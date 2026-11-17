@@ -21,11 +21,12 @@ describe("pie de logos", () => {
     expect(html).not.toContain(".svg");
     expect(html).toContain("https://observatorio.example/logos/correo/convocantes/cluster-agroalimentario-puebla.png");
     expect(html).toContain("https://observatorio.example/logos/correo/convocantes/citex-puebla-tlaxcala.png");
-    expect(html.match(/observatorio\.example\/logos\//g)?.length).toBe(24);
+    expect(html.match(/observatorio\.example\/logos\//g)?.length).toBe(25);
     expect(html).toContain("https://observatorio.example/logos/correo/convocantes/cluster-educacion-desarrollo-talento.png");
     expect(html).toContain("https://observatorio.example/logos/correo/convocantes/canagraf.png");
     expect(html).toContain("https://observatorio.example/logos/correo/convocantes/puebla-care.png");
     expect(html).toContain("https://observatorio.example/logos/correo/convocantes/cluster-quimica-farmaceutica.png");
+    expect(html).toContain("https://observatorio.example/logos/correo/convocantes/canacine.png");
     expect(html).toContain("Opera");
     expect(html).toContain("Con el respaldo de");
     expect(html).toContain("Convocan");
