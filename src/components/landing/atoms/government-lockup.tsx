@@ -1,36 +1,18 @@
 import { opticalLogoHeight, ThemedLogo } from "@/components/landing/atoms/partner-mark";
 
-const institutional = [
-  {
-    src: "/logos/logo-estado.svg",
-    alt: "Gobierno del Estado de Puebla",
-    width: 301,
-    height: 126,
-  },
-  {
-    src: "/logos/logo-sedetra.png",
-    alt: "Secretaría de Desarrollo Económico y Trabajo",
-    width: 1106,
-    height: 253,
-  },
-  {
-    src: "/logos/logo-secihti.png",
-    alt: "Secretaría de Ciencia, Humanidades, Tecnología e Innovación",
-    width: 501,
-    height: 274,
-  },
-  {
-    src: "/logos/logo-por-amor-a-puebla.svg",
-    alt: "Por amor a Puebla",
-    width: 1470,
-    height: 590,
-  },
-  {
-    src: "/logos/logo-transformar-en-grande.png",
-    alt: "Transformar en Grande",
-    width: 806,
-    height: 251,
-  },
+type Mark = { src: string; alt: string; width: number; height: number };
+
+function mark(src: string, alt: string, width: number, height: number): Mark {
+  return { src, alt, width, height };
+}
+
+const groups: Mark[][] = [
+  [mark("/logos/logo-estado.svg", "Gobierno del Estado de Puebla", 301, 126)],
+  [mark("/logos/logo-sedetra.png", "Secretaría de Desarrollo Económico y Trabajo", 1106, 253)],
+  [mark("/logos/logo-secihti.png", "Secretaría de Ciencia, Humanidades, Tecnología e Innovación", 469, 242)],
+  [mark("/logos/logo-por-amor-a-puebla.png", "Por amor a Puebla", 743, 274)],
+  [mark("/logos/logo-transformar-en-grande.png", "Transformar en Grande", 773, 219)],
+  [mark("/logos/logo-museos-puebla.png", "Museos Puebla", 478, 123)],
 ];
 
 function markScale(src: string) {
@@ -41,17 +23,20 @@ function markScale(src: string) {
 export function GovernmentLockup({ optical = false }: { optical?: boolean }) {
   const target = optical ? 44 : 36;
   return (
-    <ul className="flex w-full min-w-0 flex-nowrap items-center justify-center [--gov:0.56] min-[23rem]:[--gov:0.68] sm:[--gov:1]">
-      {institutional.map((logo, index) => (
-        <li key={logo.src} className="flex shrink-0 items-center">
-          <ThemedLogo
-            src={logo.src}
-            alt={logo.alt}
-            width={logo.width}
-            height={logo.height}
-            className="w-auto object-contain"
-            style={{ height: `calc(${logoHeight(logo, target)}px * var(--gov))` }}
-          />
+    <ul className="flex w-full min-w-0 flex-nowrap items-center justify-center [--gov:0.38] min-[23rem]:[--gov:0.52] sm:[--gov:0.61] md:[--gov:0.86]">
+      {groups.map((group, index) => (
+        <li key={group[0].src} className="flex shrink-0 items-center gap-1">
+          {group.map((logo) => (
+            <ThemedLogo
+              key={logo.src}
+              src={logo.src}
+              alt={logo.alt}
+              width={logo.width}
+              height={logo.height}
+              className="w-auto object-contain"
+              style={{ height: `calc(${logoHeight(logo, target)}px * var(--gov))` }}
+            />
+          ))}
           <Bar index={index} />
         </li>
       ))}
@@ -59,11 +44,11 @@ export function GovernmentLockup({ optical = false }: { optical?: boolean }) {
   );
 }
 
-function logoHeight(logo: (typeof institutional)[number], target: number) {
+function logoHeight(logo: Mark, target: number) {
   return Math.round(opticalLogoHeight(logo.width, logo.height, target) * markScale(logo.src));
 }
 
 function Bar({ index }: { index: number }) {
-  if (index >= institutional.length - 1) return null;
+  if (index >= groups.length - 1) return null;
   return <span aria-hidden className="px-1 leading-none text-ink-muted sm:px-2.5">|</span>;
 }

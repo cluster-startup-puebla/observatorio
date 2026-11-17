@@ -9,6 +9,7 @@ export const conveners = [
   mark("vive-puebla-cluster-industria-reuniones", "Vive Puebla, Clúster de la Industria de Reuniones", 600, 201),
   mark("cluster-chignahuapan-zacatlan", "Clúster Chignahuapan-Zacatlán", 539, 629),
   mark("cluster-educacion-desarrollo-talento", "Clúster de Educación y Desarrollo de Talento", 536, 422),
+  mark("cluster-quimica-farmaceutica", "Clúster Química y Farmacéutica Puebla", 578, 531),
   mark("cce-puebla", "Consejo Coordinador Empresarial Puebla", 568, 145),
   mark("canacintra-puebla", "CANACINTRA Puebla", 600, 140),
   mark("coparmex-puebla", "COPARMEX Puebla", 600, 369),

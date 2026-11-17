@@ -9,27 +9,10 @@ import { SessionFacts } from "./session-facts";
 const icons: Record<NonNullable<ProgramSlot["icon"]>, LucideIcon> = { qr: QrCode, mic: Mic, users: Users };
 
 function GroupFaces({ faces }: { faces: (string | null)[] }) {
-  const pair = faces.length > 1;
   return (
-    <span className={`flex items-center ${pair ? "flex-col gap-1.5 sm:flex-row sm:gap-0" : ""}`} aria-hidden="true">
-      {faces.map((src, index) =>
-        src ? (
-          <img
-            key={index}
-            src={src}
-            alt=""
-            className={
-              pair
-                ? `size-10 rounded-full border-2 border-elevated bg-surface-subtle object-contain p-1 ring-1 ring-line sm:h-12 sm:w-14 sm:rounded-none sm:border-0 sm:bg-transparent sm:p-0 sm:ring-0 ${index ? "sm:-ml-3" : ""}`
-                : "h-12 w-14 object-contain"
-            }
-          />
-        ) : (
-          <span
-            key={index}
-            className={`rounded-full border-2 border-elevated bg-surface-subtle ring-1 ring-line ${pair ? "size-10 sm:size-14" : "size-14"} ${pair && index ? "sm:-ml-5" : ""}`}
-          />
-        ),
+    <span className="flex flex-col items-center gap-1" aria-hidden="true">
+      {faces.map((src) =>
+        src ? <img key={src} src={src} alt="" className="h-8 w-16 object-contain sm:h-9 sm:w-20" /> : null,
       )}
     </span>
   );
@@ -66,7 +49,7 @@ export function Session() {
         {program.map((item) => (
           <li
             key={item.time}
-            className="grid grid-cols-[auto_minmax(0,1fr)] items-center gap-x-4 gap-y-0.5 border-b border-line py-4 sm:grid-cols-[8.5rem_6.5rem_minmax(0,1fr)] sm:gap-6 sm:py-6"
+            className="grid grid-cols-[auto_minmax(0,1fr)] items-center gap-x-4 gap-y-0.5 border-b border-line py-4 sm:grid-cols-[8.5rem_auto_minmax(0,1fr)] sm:gap-6 sm:py-6"
           >
             <p className="col-start-2 text-small font-semibold text-ink sm:col-start-1 sm:row-start-1">{item.time}</p>
             <div className="col-start-1 row-span-2 sm:col-start-2 sm:row-span-1 sm:row-start-1">

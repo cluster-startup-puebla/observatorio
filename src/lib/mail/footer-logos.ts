@@ -14,9 +14,10 @@ export const operaLogos: MailLogo[] = [
 export const backingLogos: MailLogo[] = [
   { src: correoSrc("/logos/logo-estado.svg"), alt: "Gobierno del Estado de Puebla", width: 301, height: 126 },
   { src: correoSrc("/logos/logo-sedetra.png"), alt: "Secretaría de Desarrollo Económico y Trabajo", width: 1106, height: 253 },
-  { src: correoSrc("/logos/logo-secihti.png"), alt: "Secretaría de Ciencia, Humanidades, Tecnología e Innovación", width: 501, height: 274 },
-  { src: correoSrc("/logos/logo-por-amor-a-puebla.svg"), alt: "Por amor a Puebla", width: 147, height: 59 },
-  { src: correoSrc("/logos/logo-transformar-en-grande.png"), alt: "Transformar en Grande", width: 806, height: 251 },
+  { src: correoSrc("/logos/logo-secihti.png"), alt: "Secretaría de Ciencia, Humanidades, Tecnología e Innovación", width: 469, height: 242 },
+  { src: correoSrc("/logos/logo-por-amor-a-puebla.png"), alt: "Por amor a Puebla", width: 743, height: 274 },
+  { src: correoSrc("/logos/logo-transformar-en-grande.png"), alt: "Transformar en Grande", width: 773, height: 219 },
+  { src: correoSrc("/logos/logo-museos-puebla.png"), alt: "Museos Puebla", width: 478, height: 123 },
 ];
 
 export const convenerLogos: MailLogo[] = conveners.map((logo) => ({
