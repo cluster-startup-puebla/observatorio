@@ -1,5 +1,5 @@
-function mark(file: string, alt: string, width: number, height: number, scale = 1) {
-  return { src: `/logos/convocantes/${file}.webp`, alt, width, height, scale };
+function mark(file: string, alt: string, width: number, height: number) {
+  return { src: `/logos/convocantes/${file}.webp`, alt, width, height };
 }
 
 export const conveners = [
@@ -12,7 +12,7 @@ export const conveners = [
   mark("cluster-quimica-farmaceutica", "Clúster Química y Farmacéutica Puebla", 578, 531),
   mark("cce-puebla", "Consejo Coordinador Empresarial Puebla", 568, 145),
   mark("canacintra-puebla", "CANACINTRA Puebla", 600, 140),
-  mark("canacine", "CANACINE", 1332, 640, 1.65),
+  mark("canacine", "CANACINE", 1332, 640),
   mark("coparmex-puebla", "COPARMEX Puebla", 600, 369),
   mark("ammje-angelopolis", "AMMJE Angelópolis", 331, 178),
   mark("canirac-puebla", "CANIRAC Puebla", 600, 151),
