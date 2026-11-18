@@ -17,6 +17,9 @@ const one: Record<string, string> = {
   "artes-graficas-y-empaque": "artes-graficas",
   quimica: "quimica",
   "tecnologia-y-servicios-de-ti": "tics",
+  educacion: "educacion",
+  inmobiliario: "inmobiliario",
+  "servicios-financieros": "sofom",
 };
 
 export function instrumentChoice(slug: string): InstrumentChoice {

@@ -85,6 +85,6 @@ export async function loadRun(): Promise<LoadedRun> {
     instrumentId: chosen?.id ?? "",
     packs,
     disclaimerAcceptedAt: signed.disclaimerAcceptedAt,
-    brought: sectors.find((item) => item.slug === signed.slug)?.name ?? signed.slug,
+    brought: signed.name || sectors.find((item) => item.slug === signed.slug)?.name || signed.slug,
   };
 }

@@ -10,11 +10,12 @@ import { createSupabaseWithAccess, readAccessToken, usesSupabaseAuth } from "@/l
 export type SignedSector = {
   profileId: string;
   slug: string;
+  name: string;
   remote: RunRow | null;
   disclaimerAcceptedAt: string | null;
 };
 
-const empty: SignedSector = { profileId: "", slug: "", remote: null, disclaimerAcceptedAt: null };
+const empty: SignedSector = { profileId: "", slug: "", name: "", remote: null, disclaimerAcceptedAt: null };
 const runColumns =
   "instrument_id, answers, cursor, phase, started_at, finished_at, score, updated_at";
 
@@ -35,6 +36,7 @@ async function readMemory(): Promise<SignedSector> {
   return {
     profileId: account?.id ?? profileId,
     slug: account?.sectorSlug ?? "",
+    name: sectors.find((item) => item.slug === account?.sectorSlug)?.name ?? account?.sectorSlug ?? "",
     remote: memoryRuns().get(profileId) ?? null,
     disclaimerAcceptedAt: accepted,
   };
@@ -67,6 +69,7 @@ async function readSupabase(): Promise<SignedSector> {
     ? await db.from("sectors").select("name").eq("id", sectorId).maybeSingle()
     : null;
   if (sector?.error) throw new Error(sector.error.message);
+  const sectorName = String(sector?.data?.name ?? "");
 
   const run = await db.from("methodology_v2_runs").select(runColumns).eq("profile_id", profileId).maybeSingle();
   if (run.error) throw new Error(run.error.message);
@@ -79,7 +82,8 @@ async function readSupabase(): Promise<SignedSector> {
   const accepted = profile.data?.methodology_confidentiality_accepted_at;
   return {
     profileId,
-    slug: slugFromName(String(sector?.data?.name ?? "")),
+    slug: slugFromName(sectorName),
+    name: sectorName,
     remote: asRow(run.data),
     disclaimerAcceptedAt: typeof accepted === "string" ? accepted : null,
   };
