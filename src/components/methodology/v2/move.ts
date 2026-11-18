@@ -1,5 +1,5 @@
 import type { V2Draft } from "@/lib/methodology/v2/draft";
-import type { V2Answer } from "@/lib/methodology/v2/types";
+import type { V2Answer, V2Question } from "@/lib/methodology/v2/types";
 
 const sectorQuestionId = "MOD0-WEB-01";
 
@@ -30,6 +30,17 @@ export function touch(draft: V2Draft, patch: Partial<V2Draft>): V2Draft {
     updatedAt: new Date().toISOString(),
     sentAt: draft.sentAt,
   };
+}
+
+export function stepDraft(draft: V2Draft, questions: V2Question[], direction: 1 | -1): V2Draft {
+  const nextIndex = draft.index + direction;
+  if (nextIndex < 0) return draft;
+  const current = questions[draft.index];
+  const next = questions[nextIndex];
+  if (direction > 0 && current?.level === "n1" && next?.level === "n2") {
+    return touch(draft, { index: nextIndex, phase: "curtain" });
+  }
+  return touch(draft, { index: nextIndex });
 }
 
 export function withAnswer(draft: V2Draft, questionId: string, answer: V2Answer): V2Draft {

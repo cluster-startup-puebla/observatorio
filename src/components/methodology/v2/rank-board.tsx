@@ -48,14 +48,14 @@ export function RankBoard({
               aria-pressed={rank != null}
               onClick={() => toggle(factor.id)}
               className={cn(
-                "flex items-start gap-3 rounded-lg border px-3 py-3 text-left text-body leading-relaxed",
+                "flex w-full min-w-0 items-start gap-3 rounded-lg border px-3 py-3 text-left text-sm leading-relaxed",
                 optionClass(tone, rank != null),
               )}
             >
               <span className="mt-0.5 flex size-6 shrink-0 items-center justify-center rounded-full border border-current text-small">
                 {rank ?? "·"}
               </span>
-              <span>{factor.label}</span>
+              <span className="min-w-0 flex-1 break-words">{factor.label}</span>
             </button>
           );
         })}

@@ -57,6 +57,7 @@ export function ScreenView({
         instrumentId={pack.id}
         questions={pack.questions}
         initial={draft}
+        onCommit={onPull}
       />
     </div>
   );

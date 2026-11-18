@@ -13,6 +13,14 @@
   --brand-primary-light: #ff4d93;
   --brand-secondary: #16284f;
   --brand-secondary-light: #28406f;
+  --medal-bronce: #8c5a2b;
+  --medal-bronce-wash: #f6e7d6;
+  --medal-plata: #5f6b7a;
+  --medal-plata-wash: #eef1f4;
+  --medal-oro: #8a6a12;
+  --medal-oro-wash: #fbf3d0;
+  --medal-platino: #3e4c5e;
+  --medal-platino-wash: #e7eef5;
   --brand-gradient: linear-gradient(135deg, #e8186a 0%, #16284f 100%);
 }
 

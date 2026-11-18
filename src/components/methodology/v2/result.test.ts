@@ -7,7 +7,7 @@ it("el resultado se calcula en el teléfono y se puede reintentar el envío", ()
   expect(source).toContain("scoreLive");
   expect(source).toContain("buildReport");
   expect(source).toContain("Reintentar envío");
-  expect(source).not.toContain("confetti");
+  expect(source).toContain("FinishConfetti");
   expect(source).not.toContain("V2_EXAMPLES");
   expect(source).not.toContain("Volver a empezar");
 });

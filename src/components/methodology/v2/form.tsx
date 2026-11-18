@@ -2,11 +2,12 @@
 
 import { useState } from "react";
 import { QuestionBody } from "@/components/methodology/v2/body";
-import { openDraft, touch, withAnswer } from "@/components/methodology/v2/move";
+import { openDraft, stepDraft, withAnswer } from "@/components/methodology/v2/move";
 import { QuestionFrame } from "@/components/methodology/v2/question-frame";
 import { scheduleFlush } from "@/components/methodology/v2/sync";
 import { complete } from "@/lib/methodology/v2/complete";
 import { writeDraft, type V2Draft } from "@/lib/methodology/v2/draft";
+import { modulePlace } from "@/lib/methodology/v2/modules";
 import type { V2Answer, V2Question } from "@/lib/methodology/v2/types";
 
 export function V2Form({
@@ -14,11 +15,13 @@ export function V2Form({
   instrumentId,
   questions,
   initial,
+  onCommit,
 }: {
   profileId: string;
   instrumentId: string;
   questions: V2Question[];
   initial: V2Draft | null;
+  onCommit?: () => void;
 }) {
   const [draft, setDraft] = useState(() => openDraft(initial, instrumentId));
   const question = questions[draft.index];
@@ -27,28 +30,28 @@ export function V2Form({
     writeDraft(localStorage, profileId, next);
     setDraft(next);
     scheduleFlush(next, "answer");
+    onCommit?.();
   }
 
   if (!question) return null;
 
   const answer = draft.answers[question.id];
+  const place = modulePlace(questions, draft.index);
 
   return (
     <QuestionFrame
       tone={question.level === "n1" ? "brand" : "navy"}
-      progress={((draft.index + 1) / questions.length) * 100}
-      kicker={question.section}
-      kickerMeta={`${draft.index + 1}/${questions.length}`}
+      progress={place.progress}
+      kicker={place.label}
+      kickerMeta={place.meta}
+      trail={question.level === "n1" ? "General" : "Específico de tu sector"}
       title={question.prompt || question.title}
       canContinue={complete(question, answer)}
-      continueLabel="Continuar"
-      onBack={() => {
-        if (draft.index < 1) return;
-        commit(touch(draft, { index: draft.index - 1 }));
-      }}
+      continueLabel={draft.index === questions.length - 1 ? "Cerrar" : "Continuar"}
+      onBack={() => commit(stepDraft(draft, questions, -1))}
       onContinue={() => {
         if (!complete(question, answer)) return;
-        commit(touch(draft, { index: draft.index + 1 }));
+        commit(stepDraft(draft, questions, 1));
       }}
     >
       <QuestionBody

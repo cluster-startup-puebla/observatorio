@@ -34,7 +34,7 @@ export function ChoiceList({
             aria-pressed={selected}
             onClick={() => onChange(option.value)}
             className={cn(
-              "rounded-lg border px-4 py-2.5 text-left text-body leading-snug transition-colors",
+              "w-full min-w-0 break-words rounded-lg border px-4 py-2.5 text-left text-sm leading-snug transition-colors",
               optionClass(tone, selected),
             )}
           >

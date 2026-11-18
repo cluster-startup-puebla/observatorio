@@ -39,6 +39,15 @@ it("scoreLive: unanswered ED item throws naming the id; unanswered TECH-06 is re
   expect(partial.band).toBeNull();
 });
 
+it("scoreLive: a TECH option that cannot be scored stays missing and keeps nivel 1", () => {
+  const { questions, answers } = liveSession();
+  const broken = { ...answers, "AU-TECH-07": { kind: "single" as const, optionValue: "opt-out-of-range" } };
+  const score = scoreLive(questions, broken);
+  expect(score.missing).toContain("AU-TECH-07");
+  expect(score.ismsNivel1).toBe(62.68);
+  expect(score.ismsNivel2).toBeNull();
+});
+
 it("scoreLive: synthetic ids with scored options behave like scoreV2 for nivel 1", () => {
   const { questions, answers } = syntheticFixture();
   const live = scoreLive(questions, answers);

@@ -1,33 +1,39 @@
 import type { V2LiveScore } from "@/lib/methodology/v2/live";
 
-const ROWS: { key: keyof Pick<V2LiveScore, "estadoDerecho" | "innovacion" | "comercial" | "satNivel2">; label: string; hint: string }[] = [
-  { key: "estadoDerecho", label: "Entorno", hint: "Trámites, seguridad, autoridad, servicios y justicia." },
-  { key: "innovacion", label: "Innovación", hint: "Cuánto renuevas equipo, procesos o la forma de dar el servicio." },
-  { key: "comercial", label: "Comercial", hint: "Qué tan propio es lo que vendes y qué tan exigente es quien te compra." },
-  { key: "satNivel2", label: "Uso de tecnología", hint: "Qué tanto aprovechas la tecnología que ya tienes." },
+const ROWS: {
+  key: keyof Pick<V2LiveScore, "estadoDerecho" | "innovacion" | "comercial" | "satNivel2">;
+  label: string;
+  hint: string;
+  tone: string;
+}[] = [
+  { key: "estadoDerecho", label: "Entorno", hint: "Trámites, seguridad, autoridad y justicia.", tone: "var(--brand-primary)" },
+  { key: "innovacion", label: "Innovación", hint: "Cuánto renuevas equipo o procesos.", tone: "var(--success)" },
+  { key: "comercial", label: "Comercial", hint: "Qué tan exigente es quien te compra.", tone: "var(--warning)" },
+  { key: "satNivel2", label: "Tecnología", hint: "Qué tanto aprovechas lo que ya tienes.", tone: "var(--info)" },
 ];
 
 export function ScoreBars({ score }: { score: V2LiveScore }) {
   return (
-    <section className="space-y-4">
-      <h2 className="text-body font-semibold text-ink">De dónde sale</h2>
-      {ROWS.map((row) => {
-        const value = score[row.key];
-        if (value === null) return null;
-        const width = Math.max(0, Math.min(100, value));
-        return (
-          <div key={row.label}>
-            <div className="flex items-baseline justify-between gap-3">
-              <p className="text-body font-medium text-ink">{row.label}</p>
-              <p className="text-body font-semibold tabular-nums text-ink">{value.toFixed(2)}</p>
-            </div>
-            <div className="mt-1.5 h-2 overflow-hidden rounded-full bg-line">
-              <div className="h-full rounded-full bg-brand" style={{ width: `${width}%` }} />
-            </div>
-            <p className="mt-1 text-small leading-snug text-ink-secondary">{row.hint}</p>
-          </div>
-        );
-      })}
+    <section className="space-y-3">
+      <p className="text-xs font-semibold tracking-wide text-brand uppercase">La nota</p>
+      <h2 className="text-base font-semibold text-ink">De dónde sale</h2>
+      <div className="grid grid-cols-2 gap-3">
+        {ROWS.map((row) => {
+          const value = score[row.key];
+          if (value === null) return null;
+          const width = Math.max(0, Math.min(100, value));
+          return (
+            <article key={row.label} className="rounded-2xl border border-line bg-elevated p-3">
+              <p className="text-sm text-ink-secondary">{row.label}</p>
+              <p className="mt-1 text-2xl font-semibold tabular-nums text-ink">{value.toFixed(0)}</p>
+              <div className="mt-2 h-1.5 overflow-hidden rounded-full bg-line">
+                <div className="h-full rounded-full" style={{ width: `${width}%`, backgroundColor: row.tone }} />
+              </div>
+              <p className="mt-2 text-xs leading-snug text-ink-secondary">{row.hint}</p>
+            </article>
+          );
+        })}
+      </div>
     </section>
   );
 }

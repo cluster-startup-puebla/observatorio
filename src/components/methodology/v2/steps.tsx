@@ -40,12 +40,13 @@ export function Steps({ step, signals }: { step: V2LevelStep | null; signals: st
   const empty = signals.length + groups.own.length + groups.shared.length + groups.plain.length === 0;
   if (empty) return null;
   return (
-    <section className="space-y-3 border-t border-line pt-8">
-      <h2 className="text-center text-body font-semibold text-ink">Siguientes pasos</h2>
+    <section className="space-y-3 rounded-2xl border border-line bg-elevated px-4 py-5">
+      <p className="text-xs font-semibold tracking-wide text-brand uppercase">Después</p>
+      <h2 className="text-base font-semibold text-ink">Siguientes pasos</h2>
       <List items={signals} />
       <List items={groups.plain} />
       <Group title="En tu empresa" items={groups.own} />
-      <Group title="Con otras empresas" items={groups.shared} />
+      <Group title="Con otras empresas de la región" items={groups.shared} />
     </section>
   );
 }

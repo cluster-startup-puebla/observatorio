@@ -51,8 +51,20 @@ export function satItemScore(
   return index < FIVE_STEP.length ? FIVE_STEP[index] : null;
 }
 
+export function satItemScoreOrMissing(
+  question: V2Question,
+  answer: V2Answer | undefined,
+  slot: number,
+): number | null {
+  try {
+    return satItemScore(question, answer, slot);
+  } catch {
+    return null;
+  }
+}
+
 export function techItemScore(question: V2Question, answer: V2Answer | undefined): number | null {
   const slot = satSlot(question.id);
   if (slot === null) return null;
-  return satItemScore(question, answer, slot);
+  return satItemScoreOrMissing(question, answer, slot);
 }

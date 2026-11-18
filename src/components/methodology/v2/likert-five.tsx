@@ -2,12 +2,11 @@
 
 import type { V2Option } from "@/lib/methodology/v2/types";
 import { cn } from "@/lib/utils";
-import { optionClass, type WidgetTone } from "./choice-list";
+import type { WidgetTone } from "./choice-list";
 
 export function LikertFive({
   options,
   value,
-  tone,
   onChange,
 }: {
   options: V2Option[];
@@ -23,6 +22,7 @@ export function LikertFive({
       {ordered.map((option, index) => {
         const selected = option.value === value;
         const amount = last === 0 ? 1 : 1 - index / last;
+        const face = faceTone(index, last);
         return (
           <button
             key={option.value}
@@ -31,12 +31,13 @@ export function LikertFive({
             aria-pressed={selected}
             onClick={() => onChange(option.value)}
             className={cn(
-              "flex w-full items-start gap-3 rounded-lg border px-3 py-2.5 text-left transition-colors",
-              optionClass(tone, selected),
+              "flex w-full min-w-0 items-start gap-3 rounded-lg border px-3 py-2.5 text-left transition-colors",
+              selected ? "border-transparent" : "border-line bg-surface",
             )}
+            style={selected ? { backgroundColor: face.wash, color: face.ink } : undefined}
           >
-            <Face amount={amount} />
-            <span className="flex-1 text-body leading-snug">{option.label}</span>
+            <Face amount={amount} color={face.dot} />
+            <span className="min-w-0 flex-1 break-words text-sm leading-snug">{option.label}</span>
           </button>
         );
       })}
@@ -44,12 +45,22 @@ export function LikertFive({
   );
 }
 
-function Face({ amount }: { amount: number }) {
+function faceTone(index: number, last: number) {
+  const amount = last === 0 ? 1 : 1 - index / last;
+  const hue = 4 + amount * 138;
+  return {
+    dot: `hsl(${hue} 78% 46%)`,
+    wash: `hsl(${hue} 82% 93%)`,
+    ink: `hsl(${hue} 48% 24%)`,
+  };
+}
+
+function Face({ amount, color }: { amount: number; color: string }) {
   const smile = amount * 2 - 1;
   const y = 15.2 - smile * 1.1;
   const bend = smile * 2.1;
   return (
-    <svg viewBox="0 0 24 24" className="mt-0.5 size-6 shrink-0" aria-hidden>
+    <svg viewBox="0 0 24 24" className="mt-0.5 size-6 shrink-0" style={{ color }} aria-hidden>
       <circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" strokeWidth="1.6" />
       <circle cx="9" cy="10" r="1" fill="currentColor" />
       <circle cx="15" cy="10" r="1" fill="currentColor" />

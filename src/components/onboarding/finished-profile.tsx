@@ -39,6 +39,9 @@ export function FinishedProfile({
     <div className="grid gap-4">
       <ConfidentialityNote />
       <AccessPass code={accountId} />
+      <a href="/metodologia" className="btn btn-primary w-fit">
+        Ir al diagnóstico
+      </a>
       {logo}
     </div>
   );

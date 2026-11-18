@@ -24,7 +24,7 @@ export function ChoiceWithText({
   const showText = textOptionValue == null || value === textOptionValue;
 
   return (
-    <div className="space-y-3">
+    <div className="min-w-0 space-y-3 overflow-x-clip">
       <ChoiceList
         options={options}
         value={value}

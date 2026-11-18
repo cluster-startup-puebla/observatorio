@@ -1,6 +1,6 @@
 import { bandFor, type V2Band } from "./bands";
 import { ordinalScore } from "./ordinal";
-import { satItemScore, satSlot, selectedOption } from "./sat";
+import { satItemScoreOrMissing, satSlot, selectedOption } from "./sat";
 import type { V2Answers, V2Question } from "./types";
 
 export interface V2LiveScore {
@@ -59,7 +59,7 @@ export function scoreLive(questions: V2Question[], answers: V2Answers): V2LiveSc
   for (const question of questions) {
     const slot = satSlot(question.id);
     if (slot === null) continue;
-    const score = satItemScore(question, answers[question.id], slot);
+    const score = satItemScoreOrMissing(question, answers[question.id], slot);
     if (score === null) {
       missing.push(question.id);
       continue;

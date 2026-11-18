@@ -28,6 +28,7 @@ export type LoadedRun = {
   profileId: string;
   instrumentId: string;
   packs: InstrumentPack[];
+  disclaimerAcceptedAt: string | null;
 };
 
 function remoteDraft(row: RunRow | null): V2Draft | null {
@@ -81,5 +82,6 @@ export async function loadRun(): Promise<LoadedRun> {
     profileId: signed.profileId,
     instrumentId: chosen?.id ?? "",
     packs,
+    disclaimerAcceptedAt: signed.disclaimerAcceptedAt,
   };
 }

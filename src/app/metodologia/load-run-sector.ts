@@ -1,5 +1,7 @@
+import { cookies } from "next/headers";
 import { getDirectory } from "@/lib/memory-directory";
 import type { RunRow } from "@/lib/methodology/v2/apply-run";
+import { disclaimerCookie } from "@/lib/methodology/v2/disclaimer-gate";
 import { memoryRuns } from "@/lib/methodology/v2/memory-runs";
 import { sectorSlug, sectors } from "@/lib/sectors";
 import { readAccountId } from "@/lib/session";
@@ -9,9 +11,10 @@ export type SignedSector = {
   profileId: string;
   slug: string;
   remote: RunRow | null;
+  disclaimerAcceptedAt: string | null;
 };
 
-const empty: SignedSector = { profileId: "", slug: "", remote: null };
+const empty: SignedSector = { profileId: "", slug: "", remote: null, disclaimerAcceptedAt: null };
 const runColumns =
   "instrument_id, answers, cursor, phase, started_at, finished_at, score, updated_at";
 
@@ -28,10 +31,12 @@ async function readMemory(): Promise<SignedSector> {
   const profileId = (await readAccountId()) ?? "";
   if (!profileId) return empty;
   const account = await getDirectory().getAccount(profileId);
+  const accepted = (await cookies()).get(disclaimerCookie)?.value ?? null;
   return {
     profileId: account?.id ?? profileId,
     slug: account?.sectorSlug ?? "",
     remote: memoryRuns().get(profileId) ?? null,
+    disclaimerAcceptedAt: accepted,
   };
 }
 
@@ -65,9 +70,17 @@ async function readSupabase(): Promise<SignedSector> {
 
   const run = await db.from("methodology_v2_runs").select(runColumns).eq("profile_id", profileId).maybeSingle();
   if (run.error) throw new Error(run.error.message);
+  const profile = await db
+    .from("profiles")
+    .select("methodology_confidentiality_accepted_at")
+    .eq("id", profileId)
+    .maybeSingle();
+  if (profile.error) throw new Error(profile.error.message);
+  const accepted = profile.data?.methodology_confidentiality_accepted_at;
   return {
     profileId,
     slug: slugFromName(String(sector?.data?.name ?? "")),
     remote: asRow(run.data),
+    disclaimerAcceptedAt: typeof accepted === "string" ? accepted : null,
   };
 }

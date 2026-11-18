@@ -5,6 +5,12 @@ test.beforeEach(async ({ request }) => {
   expect(response.ok()).toBeTruthy();
 });
 
+async function abrir(page: import("@playwright/test").Page) {
+  await page.goto("/metodologia");
+  const aviso = page.getByRole("button", { name: "Entiendo y empiezo" });
+  if (await aviso.isVisible()) await aviso.click();
+}
+
 async function empresario(page: import("@playwright/test").Page, sector: string) {
   await page.goto(`/crear-cuenta?sector=${sector}`);
   await page.getByLabel("Correo").fill(`desayuno-${sector}@norte.mx`);
@@ -19,7 +25,7 @@ test("recargar conserva la pregunta y el tablero cuenta un empezado", async ({ b
   const guest = await browser.newContext();
   const page = await guest.newPage();
   await empresario(page, "alimentos-y-bebidas");
-  await page.goto("/metodologia");
+  await abrir(page);
   const first = await page.getByTestId("pregunta-v2").textContent();
   await page.getByTestId("opcion-v2").first().click();
   await page.getByRole("button", { name: "Continuar" }).click();
@@ -50,7 +56,7 @@ test("recargar conserva la pregunta y el tablero cuenta un empezado", async ({ b
 
 test("sin red se sigue contestando y no se abre otra fila", async ({ page }) => {
   await empresario(page, "alimentos-y-bebidas");
-  await page.goto("/metodologia");
+  await abrir(page);
   await page.getByTestId("opcion-v2").first().click();
   await page.getByRole("button", { name: "Continuar" }).click();
   await page.context().setOffline(true);
@@ -71,11 +77,11 @@ test("sin red se sigue contestando y no se abre otra fila", async ({ page }) => 
 
 test("textil elige entre dos y minerales no abre preguntas", async ({ page, request }) => {
   await empresario(page, "textil-y-confeccion");
-  await page.goto("/metodologia");
+  await abrir(page);
   await expect(page.getByRole("button", { name: /Hilados|Confección/ })).toHaveCount(2);
   expect((await request.post("/test/reset")).ok()).toBeTruthy();
   await empresario(page, "minerales-no-metalicos");
-  await page.goto("/metodologia");
+  await abrir(page);
   await expect(page.getByText("Este sector todavía no tiene diagnóstico")).toBeVisible();
   await expect(page.getByTestId("pregunta-v2")).toHaveCount(0);
 });
