@@ -19,8 +19,8 @@ export const program: ProgramSlot[] = [
   {
     time: "09:50–10:30",
     name: "Construcción del observatorio tecnológico por las empresas asistentes",
-    host: "Participantes",
-    icon: "users",
+    host: "Clúster de Startups",
+    mark: "/logos/logo-cluster.webp",
   },
   {
     time: "10:30–11:00",

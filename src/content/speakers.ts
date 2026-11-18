@@ -1,3 +1,5 @@
+import { confirmedSpeakers } from "@/content/confirmed-speakers";
+
 export type Speaker = {
   name: string;
   position: string;
@@ -11,6 +13,7 @@ export type Speaker = {
 const photo = (file: string) => `/ponentes/${file}.webp`;
 
 export const speakers: Speaker[] = [
+  ...confirmedSpeakers,
   {
     name: "Alejandro Preinfalk",
     position: "Presidente y CEO",
@@ -20,15 +23,6 @@ export const speakers: Speaker[] = [
       "Competitividad industrial: de la necesidad tecnológica a una implementación que mejore productividad, resiliencia y capacidad de escalar",
     photo: photo("alejandro-preinfalk"),
     confirmed: false,
-  },
-  {
-    name: "Fausto López Aguilar",
-    position: "Gerente de Tratados Internacionales · Vicepresidente COMCE Sur",
-    company: "Volkswagen de México / COMCE Sur",
-    slot: "Ponente · 11:00–11:30",
-    topic: "Ventajas de la adopción tecnológica para la industria poblana ante el T-MEC",
-    photo: photo("fausto-lopez-aguilar"),
-    confirmed: true,
   },
   {
     name: "Francisco Corona",

@@ -22,7 +22,13 @@ function ProgramMark({ item }: { item: ProgramSlot }) {
   if (item.faces?.length) return <GroupFaces faces={item.faces} />;
   if (item.mark) {
     const portrait = item.mark.includes("/ponentes/");
-    return <img src={item.mark} alt="" className={portrait ? "size-14 rounded-full object-cover" : "h-12 w-14 object-contain"} />;
+    return (
+      <img
+        src={item.mark}
+        alt=""
+        className={portrait ? "size-14 rounded-full object-cover" : "h-16 w-36 object-contain"}
+      />
+    );
   }
   const Icon = item.icon ? icons[item.icon] : null;
   if (!Icon) return <span className="hidden size-14 sm:block" aria-hidden="true" />;
