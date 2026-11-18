@@ -13,6 +13,7 @@ export async function listRegistros(rawPage: string | undefined) {
       "id, full_name, company_name, email, sector_slug, referral_source, completed_at, poured_at, poured_profile_id",
       { count: "exact" },
     )
+    .order("poured_at", { ascending: false, nullsFirst: true })
     .order("created_at", { ascending: false })
     .range(page.from, page.to);
   if (result.error) throw new Error(result.error.message);

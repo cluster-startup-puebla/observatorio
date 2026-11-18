@@ -8,6 +8,7 @@ it("la lista la lee el superadmin", () => {
   expect(source).toContain("id, full_name");
   expect(source).toContain("referral_source");
   expect(source).toContain("poured_profile_id");
+  expect(source).toContain('order("poured_at", { ascending: false, nullsFirst: true })');
   expect(source).toContain('from("companies")');
   expect(source).not.toContain("SERVICE_ROLE");
   const screen = readFileSync("src/app/admin/registros/registros-list.tsx", "utf8");
