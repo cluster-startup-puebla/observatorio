@@ -60,8 +60,8 @@ export function acceptedIndustry(value: string) {
 export function reserveHref(pathname: string, token?: string | null): string {
   const slug = pathname.split("/").filter(Boolean)[0] ?? "";
   const resolved = resolveSector({ pathSector: slug });
-  if (!resolved.slug) return "/registro";
+  if (!resolved.slug) return "/crear-cuenta";
   const query = new URLSearchParams({ sector: resolved.slug });
   if (token) query.set("invitacion", token);
-  return `/registro?${query.toString()}`;
+  return `/crear-cuenta?${query.toString()}`;
 }

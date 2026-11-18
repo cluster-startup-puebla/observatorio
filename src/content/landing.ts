@@ -1,10 +1,10 @@
-export const ctaLabel = "Reservar mi lugar";
+export const ctaLabel = "Crear cuenta";
 
 export const navItems = [
   { label: "Convocan", href: "/#convocan" },
   { label: "La sesión", href: "/#sesion" },
   { label: "Ponentes", href: "/#ponentes" },
-  { label: "Reservar", href: "/#registro" },
+  { label: "Crear cuenta", href: "/crear-cuenta" },
 ];
 
 export const pains = [

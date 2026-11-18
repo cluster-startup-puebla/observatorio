@@ -44,7 +44,7 @@ export function InvitePreview({
           del estado.
         </p>
         <span className="btn btn-primary pointer-events-none w-fit" aria-hidden="true">
-          Reservar mi lugar
+          Crear cuenta
         </span>
       </article>
       {href ? (

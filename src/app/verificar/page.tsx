@@ -35,8 +35,8 @@ export default async function VerifyPage({
           <Link href="/login" className="text-link">
             Entrar
           </Link>
-          <Link href="/registro" className="text-link">
-            Reservar mi lugar
+          <Link href="/crear-cuenta" className="text-link">
+            Crear cuenta
           </Link>
         </>
       }

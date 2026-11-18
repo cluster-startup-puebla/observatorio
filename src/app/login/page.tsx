@@ -56,8 +56,8 @@ export default async function LoginPage({
         <Link href="/recuperar" className="text-link">
           Olvidé mi contraseña
         </Link>
-        <Link href="/registro" className="text-link">
-          ¿Aún no reservas? Reserva tu lugar
+        <Link href="/crear-cuenta" className="text-link">
+          Crear cuenta
         </Link>
       </div>
     </AuthSplit>

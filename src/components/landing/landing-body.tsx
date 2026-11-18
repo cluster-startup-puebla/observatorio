@@ -15,7 +15,7 @@ import { Topics } from "@/components/landing/sections/topics";
 import { Vision } from "@/components/landing/sections/vision";
 
 export function LandingBody({
-  reserveHref = "/registro",
+  reserveHref = "/crear-cuenta",
   selected,
   brand,
   message,

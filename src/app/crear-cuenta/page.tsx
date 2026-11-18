@@ -10,8 +10,8 @@ import { registerError } from "@/lib/organismo/register-error";
 import { pageMetadata } from "@/lib/metadata";
 
 export const metadata: Metadata = pageMetadata({
-  title: "Reserva tu lugar",
-  description: "La sesión de tu sector. Sin costo. Cupo de 15 a 30 empresas.",
+  title: "Crear cuenta",
+  description: "El registro ya cerró. Con tu cuenta entras al pase y al formulario.",
   path: "/crear-cuenta",
 });
 
@@ -32,8 +32,8 @@ export default async function CrearCuentaPage({ searchParams }: { searchParams: 
       fallback={
         <AuthShell
           kicker="Levantamiento de necesidades tecnológicas"
-          title="Reserva tu lugar"
-          lead="La sesión de tu sector. Sin costo. Cupo de 15 a 30 empresas."
+          title="Crea tu cuenta"
+          lead="El registro ya cerró. Con tu cuenta entras al pase y al formulario."
           links={loginLink}
         />
       }
@@ -61,12 +61,12 @@ async function CrearCuentaScreen({ searchParams }: { searchParams: Search }) {
           ? "Regístrate y descarga el diagnóstico"
           : organismo
             ? "Crea la cuenta de tu organismo"
-            : "Reserva tu lugar"
+            : "Crea tu cuenta"
       }
       lead={
         withDiagnostic
-          ? "Reservas tu lugar en la sesión y, al terminar, se descarga el análisis integral de VIA Partners."
-          : "La sesión de tu sector. Sin costo. Cupo de 15 a 30 empresas."
+          ? "Creas tu cuenta y, al terminar, se descarga el análisis integral de VIA Partners."
+          : "El registro ya cerró. Con tu cuenta entras al pase y al formulario."
       }
       links={loginLink}
     >

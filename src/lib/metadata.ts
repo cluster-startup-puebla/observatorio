@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 export const siteName = "Observatorio Tecnológico de Puebla";
 
 export const siteDescription =
-  "Reserva tu lugar en la sesión de tu sector y ayuda a construir el primer Observatorio Tecnológico del estado.";
+  "Crea tu cuenta para la sesión de tu sector y ayuda a construir el primer Observatorio Tecnológico del estado.";
 
 export const ogImage = {
   url: "/og.png",
