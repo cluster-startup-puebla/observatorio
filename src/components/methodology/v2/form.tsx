@@ -4,6 +4,7 @@ import { useState } from "react";
 import { QuestionBody } from "@/components/methodology/v2/body";
 import { openDraft, touch, withAnswer } from "@/components/methodology/v2/move";
 import { QuestionFrame } from "@/components/methodology/v2/question-frame";
+import { scheduleFlush } from "@/components/methodology/v2/sync";
 import { complete } from "@/lib/methodology/v2/complete";
 import { writeDraft, type V2Draft } from "@/lib/methodology/v2/draft";
 import type { V2Answer, V2Question } from "@/lib/methodology/v2/types";
@@ -25,6 +26,7 @@ export function V2Form({
   function commit(next: V2Draft) {
     writeDraft(localStorage, profileId, next);
     setDraft(next);
+    scheduleFlush(next, "answer");
   }
 
   if (!question) return null;
