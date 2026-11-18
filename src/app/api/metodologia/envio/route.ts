@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { applyRun, type RunInput, type RunRow } from "@/lib/methodology/v2/apply-run";
 import { memoryRuns, saveRun } from "@/lib/methodology/v2/memory-runs";
 import { readAccountId } from "@/lib/session";
-import { createSupabaseWithAccess, readAccessToken } from "@/lib/supabase/auth-session";
+import { createSupabaseWithAccess, readAccessToken, usesSupabaseAuth } from "@/lib/supabase/auth-session";
 
 const columns =
   "started_at, updated_at, finished_at, score, answers, cursor, phase, instrument_id, profile_id";
@@ -44,7 +44,7 @@ export async function POST(request: Request) {
   if (!input) return NextResponse.json({ error: "cuerpo inválido" }, { status: 400 });
   const now = new Date().toISOString();
 
-  if (process.env.DIRECTORY === "memory") {
+  if (!usesSupabaseAuth()) {
     const profileId = await readAccountId();
     if (!profileId) return denied();
     const current = memoryRuns().get(profileId) ?? null;

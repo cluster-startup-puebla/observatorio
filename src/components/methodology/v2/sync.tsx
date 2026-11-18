@@ -65,6 +65,7 @@ export function scheduleFlush(draft: V2Draft, entering: Entering, score?: FlushS
   };
   fetch("/api/metodologia/envio", {
     method: "POST",
+    keepalive: true,
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(body),
   })

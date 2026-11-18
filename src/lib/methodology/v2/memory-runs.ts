@@ -1,15 +1,23 @@
 import type { RunRow } from "./apply-run";
 
-const runs = new Map<string, RunRow>();
+const globalKey = "__observatorioMethodologyV2Runs";
+
+type Bag = typeof globalThis & { [globalKey]?: Map<string, RunRow> };
+
+function runs() {
+  const bag = globalThis as Bag;
+  if (!bag[globalKey]) bag[globalKey] = new Map();
+  return bag[globalKey];
+}
 
 export function memoryRuns() {
-  return runs;
+  return runs();
 }
 
 export function resetMemoryRuns() {
-  runs.clear();
+  runs().clear();
 }
 
 export function saveRun(profileId: string, result: { wrote: boolean; row: RunRow }) {
-  if (result.wrote) runs.set(profileId, result.row);
+  if (result.wrote) runs().set(profileId, result.row);
 }

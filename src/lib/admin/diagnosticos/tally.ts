@@ -1,5 +1,5 @@
 import { memoryRuns } from "@/lib/methodology/v2/memory-runs";
-import { createSupabaseWithAccess, readAccessToken } from "@/lib/supabase/auth-session";
+import { createSupabaseWithAccess, readAccessToken, usesSupabaseAuth } from "@/lib/supabase/auth-session";
 
 function fromMemory() {
   const runs = memoryRuns();
@@ -11,7 +11,7 @@ function fromMemory() {
 }
 
 export async function tally() {
-  if (process.env.DIRECTORY === "memory") return fromMemory();
+  if (!usesSupabaseAuth()) return fromMemory();
 
   const token = await readAccessToken();
   if (!token) throw new Error("Falta la sesión del superadmin");

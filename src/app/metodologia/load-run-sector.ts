@@ -16,8 +16,6 @@ const runColumns =
   "instrument_id, answers, cursor, phase, started_at, finished_at, score, updated_at";
 
 function memorySession() {
-  if (process.env.DIRECTORY === "memory") return true;
-  if (process.env.AUTH_PROVIDER === "memory") return true;
   return !usesSupabaseAuth();
 }
 

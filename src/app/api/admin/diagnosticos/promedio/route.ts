@@ -18,7 +18,7 @@ function note(value: unknown): ClosedRun["score"] {
 
 export async function GET() {
   await requireSuperadmin();
-  if (process.env.DIRECTORY === "memory" || !usesSupabaseAuth()) {
+  if (!usesSupabaseAuth()) {
     return NextResponse.json(summarize(memoryNotes()));
   }
   const token = await readAccessToken();

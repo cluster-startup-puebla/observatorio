@@ -1,6 +1,6 @@
 import { applyCrmEvent } from "../crm-status";
 import type { Directory } from "../directory";
-import { memoryStore } from "./store";
+import { memoryStore, nextPersonId } from "./store";
 
 function accountByPassword(input: { email: string; password: string }) {
   const email = input.email.trim().toLowerCase();
@@ -24,9 +24,8 @@ export function accountMethods(): Pick<
       const email = input.email.trim().toLowerCase();
       let account = state.people.find((person) => person.email === email && !person.orgId);
       if (!account) {
-        state.seq += 1;
         account = {
-          id: `p${state.seq}`,
+          id: nextPersonId(),
           email,
           role: input.role,
           onboarded: false,
@@ -52,16 +51,16 @@ export function accountMethods(): Pick<
         return { ok: false as const, reason: "ya existe" as const };
       }
       const email = input.email.trim().toLowerCase();
-      state.seq += 1;
+      const id = nextPersonId();
       state.people.push({
-        id: `p${state.seq}`,
+        id,
         email,
         role: "superadmin",
         onboarded: true,
         password: input.password,
         status: null,
       });
-      return { ok: true as const, id: `p${state.seq}` };
+      return { ok: true as const, id };
     },
 
     async loginAccount(input) {

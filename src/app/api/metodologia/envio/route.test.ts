@@ -9,6 +9,8 @@ it("hace un upsert con applyRun y no calcula la nota en el servidor", () => {
   expect(source).toContain("saveRun");
   expect(source).toContain("createSupabaseWithAccess");
   expect(source).toContain("readAccessToken");
+  expect(source).toContain("usesSupabaseAuth");
+  expect(source).not.toContain('DIRECTORY === "memory"');
   expect(source).toContain("methodology_v2_runs");
   expect(source).not.toContain("profile_id: body");
 });

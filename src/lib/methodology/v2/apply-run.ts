@@ -43,7 +43,7 @@ export function applyRun(current: RunRow | null, input: RunInput, now: string) {
     started_at: current ? current.started_at : now,
     finished_at: close.finished_at,
     score: close.score,
-    updated_at: now,
+    updated_at: input.updatedAt,
   };
   return { wrote: true, row };
 }

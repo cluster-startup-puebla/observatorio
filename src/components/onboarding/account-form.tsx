@@ -1,7 +1,7 @@
 "use client";
 
 import { useActionState, useEffect } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { PasswordInput } from "@/components/auth/password-input";
 import { PendingSubmit } from "@/components/auth/pending-submit";
 import { Field, controlClass } from "@/components/landing/molecules/field";
@@ -21,6 +21,10 @@ export function AccountForm({
   error?: string;
 }) {
   const router = useRouter();
+  const params = useSearchParams();
+  const liveSector = params.get("sector") ?? sector ?? "";
+  const liveCuenta = params.get("cuenta") ?? cuenta ?? "";
+  const liveInvite = params.get("invitacion") ?? invitacion ?? "";
   const [state, action] = useActionState<AccountFormState, FormData>(createAccountAction, null);
   const notice = state?.error ? registerError(state.error) : error;
 
@@ -35,9 +39,9 @@ export function AccountForm({
           <AlertDescription>{notice}</AlertDescription>
         </Alert>
       ) : null}
-      <input type="hidden" name="sector" value={sector ?? ""} />
-      <input type="hidden" name="cuenta" value={cuenta ?? ""} />
-      <input type="hidden" name="invitacion" value={invitacion ?? ""} />
+      <input type="hidden" name="sector" value={liveSector} />
+      <input type="hidden" name="cuenta" value={liveCuenta} />
+      <input type="hidden" name="invitacion" value={liveInvite} />
       <Field id="correo" label="Correo" error={state?.errors?.email}>
         <input id="correo" name="correo" type="email" autoComplete="email" className={controlClass} />
       </Field>

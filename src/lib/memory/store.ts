@@ -49,6 +49,17 @@ export type MemoryStore = {
 
 const globalKey = "__observatorioDirectory";
 
+export function nextPersonId() {
+  const state = memoryStore();
+  let floor = state.seq;
+  for (const person of state.people) {
+    const match = /^p(\d+)$/.exec(person.id);
+    if (match) floor = Math.max(floor, Number(match[1]));
+  }
+  state.seq = floor + 1;
+  return `p${state.seq}`;
+}
+
 export function emptyStore(): MemoryStore {
   return {
     seq: 0, people: [], answers: {}, copies: {}, registrations: {}, attributed: [],

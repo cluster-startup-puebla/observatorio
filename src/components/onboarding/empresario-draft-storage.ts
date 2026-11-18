@@ -14,7 +14,13 @@ export function readEmpresarioDraft(storage: Store, accountId: string, sectorSlu
   const raw = storage.getItem(keyFor(accountId));
   if (!raw) return emptyEmpresarioValues(sectorSlug);
   try {
-    return { ...emptyEmpresarioValues(sectorSlug), ...JSON.parse(raw), hasLogo: false };
+    const saved = JSON.parse(raw) as EmpresarioValues;
+    return {
+      ...emptyEmpresarioValues(sectorSlug),
+      ...saved,
+      sectorSlug: sectorSlug || saved.sectorSlug,
+      hasLogo: false,
+    };
   } catch {
     return emptyEmpresarioValues(sectorSlug);
   }
