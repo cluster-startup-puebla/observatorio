@@ -1,7 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { toast } from "sonner";
+import { AverageDetail } from "./average-detail";
 
 type Summary = {
   average: number | null;
@@ -18,7 +19,7 @@ async function loadSummary() {
 
 export function Averages() {
   const [summary, setSummary] = useState<Summary | null>(null);
-  const [pending, setPending] = useState(false);
+  const [pending, setPending] = useState(true);
 
   async function refresh() {
     setPending(true);
@@ -31,36 +32,28 @@ export function Averages() {
     }
   }
 
-  if (!summary) {
-    return (
-      <button className="btn btn-secondary" type="button" disabled={pending} onClick={() => void refresh()}>
-        Ver promedios
-      </button>
-    );
-  }
+  useEffect(() => {
+    void refresh();
+  }, []);
+
+  const width = summary?.average === null || summary?.average === undefined ? 0 : Math.max(0, Math.min(100, summary.average));
 
   return (
-    <section className="space-y-3 border border-line bg-surface-subtle p-4 text-ink">
-      <p className="text-body">Promedio: {summary.average ?? "—"}</p>
-      <p className="text-small text-ink-secondary">Bandas</p>
-      <ul className="text-small">
-        {Object.entries(summary.bands).map(([band, count]) => (
-          <li key={band}>
-            {band}: {count}
-          </li>
-        ))}
-      </ul>
-      <p className="text-small text-ink-secondary">Por instrumento</p>
-      <ul className="text-small">
-        {summary.byInstrument.map((row) => (
-          <li key={row.instrumentId}>
-            {row.instrumentId}: {row.average}
-          </li>
-        ))}
-      </ul>
-      <button className="btn btn-secondary" type="button" disabled={pending} onClick={() => void refresh()}>
-        Actualizar promedios
-      </button>
+    <section className="mt-4 rounded-2xl border border-line bg-elevated p-6">
+      <div className="flex items-end justify-between gap-4">
+        <div>
+          <p className="text-xs font-semibold tracking-wide text-brand uppercase">Nota</p>
+          <p className="mt-2 text-h2 text-ink tabular-nums">{summary?.average ?? "—"}</p>
+          <p className="mt-1 text-sm text-ink-secondary">Promedio de quienes cerraron</p>
+        </div>
+        <button className="btn btn-primary" type="button" disabled={pending} onClick={() => void refresh()}>
+          {pending ? "Actualizando…" : "Actualizar promedios"}
+        </button>
+      </div>
+      <div className="mt-5 h-2 overflow-hidden rounded-full bg-line">
+        <div className="h-full rounded-full bg-brand transition-[width] duration-500" style={{ width: `${width}%` }} />
+      </div>
+      {summary ? <AverageDetail bands={summary.bands} rows={summary.byInstrument} /> : null}
     </section>
   );
 }
