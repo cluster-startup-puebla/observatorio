@@ -1,0 +1,756 @@
+{
+  "sectorId": "alimentos",
+  "label": "03. Alimentos Empacados y Procesados",
+  "questions": [
+    {
+      "id": "AL-01",
+      "level": "n2",
+      "sectorId": "alimentos",
+      "section": "MÓDULO 0: PERFILADO DEL ESLABÓN Y LOCALIZACIÓN TERRITORIAL (HEREDADO DE NIVEL 1)",
+      "widget": "Tarjeta de Selección Única (Pre-poblado)",
+      "title": "Sub-eslabón Dominante en la Procesadora de Alimentos",
+      "prompt": "¿En cuál de los siguientes sub-eslabones procesados se concentra la mayor proporción de la producción y facturación de su planta?",
+      "microcopy": "El sub-eslabón determina los requerimientos de autoclave/pasteurización, etiquetado NOM-051 y protocolos sanitarios COFEPRIS.",
+      "type": "single_select",
+      "prefilled": true,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Conservas, Mermeladas, Salsas y Aderezos: Embotellado o envasado térmico de salsas, aderezos, vegetales en conserva, mermeladas y mieles.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Botanas, Botanas Saludables y Alimentos Preparados: Fritura, horneado, extrusión o ensamble de botanas, alimentos listos para consumir (Ready-to-Eat).",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Bebidas, Jugos y Lácteos Procesados: Pasteurización, envasado aséptico o embotellado de jugos, lácteos, bebidas funcionales o fermentados.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Panificación, Galletas, Ingredientes y Aditivos: Elaboración a escala industrial de pan de caja, galletas, harinas preparadas, condimentos o mezcla de aditivos.",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "AL-02",
+      "level": "n2",
+      "sectorId": "alimentos",
+      "section": "MÓDULO 0: PERFILADO DEL ESLABÓN Y LOCALIZACIÓN TERRITORIAL (HEREDADO DE NIVEL 1)",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Corredor Industrial o Nodo Agroindustrial de Operación",
+      "prompt": "¿En qué parque industrial o nodo procesador de la región Puebla - Tlaxcala se localiza la principal planta de su empresa?",
+      "microcopy": "La ubicación determina el acceso a agua potable/tratada de calidad, red de gas natural para calderas y logística de distribución.",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Corredor 1: Tehuacán, Ajalpan y Tepanco (Puebla Sur): Nodo agroindustrial especializado en bebidas, botanas, derivados de ave/huevo y conservas.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Corredor 2: Puebla Metropolitano / Resurrección / Chachapa / FINSA: Zona central con alta densidad de plantas procesadoras, panificación y lácteos.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Corredor 3: San Martín Texmelucan - Huejotzingo (Corredor Poniente): Procesamiento de hortalizas, empaques flexibles y conservas.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Corredor 4: Huamantla - Apizaco - Calpulalpan (Tlaxcala): Procesamiento de granos, maltas, alimentos balanceados y empaques alimentarios.",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "AL-03",
+      "level": "n2",
+      "sectorId": "alimentos",
+      "section": "MÓDULO 0: PERFILADO DEL ESLABÓN Y LOCALIZACIÓN TERRITORIAL (HEREDADO DE NIVEL 1)",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Certificación de Inocuidad y Estándar Alimentario Vigente",
+      "prompt": "¿Cuál es el nivel formal de certificación en inocuidad alimentaria que ostenta su planta procesadora?",
+      "microcopy": "Las certificaciones GFSI son indispensables para ingresar a supermercados de autoservicio y exportar a EE.UU. (FDA/FSMA).",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Básico / NOM-251-SSA1 Obligatoria: Cumplimiento de prácticas de higiene para proceso de alimentos sin auditorías de esquemas avanzados.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Certificación HACCP Formal: Sistema de Análisis de Peligros y Puntos Críticos de Control auditado y certificado por organismo acreditado.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Esquema Internacional GFSI (FSSC 22000 / SQF / BRCGS): Certificación internacional de alto nivel aprobada por la Global Food Safety Initiative.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Registro FDA / FSMA Aprobado para Exportación a EE.UU.: Cumplimiento verificado de la Ley de Modernización de la Inocuidad Alimentaria de EE.UU.",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "R00-ALIM-PROD",
+      "level": "n2",
+      "sectorId": "alimentos",
+      "section": "SECCIÓN I: ROMPEHIELOS DE SEVERIDAD OPERATIVA (MÉTODO DE BORDA)",
+      "widget": "Rompehielos de Jerarquización (1 al 8)",
+      "title": "Jerarquización de Fricciones en Proceso de Envasado y Planta",
+      "prompt": "Ordene del 1 al 8 las siguientes fricciones según el impacto económico negativo y la frecuencia con que afectan su planta (1 = Mayor impacto / Máxima gravedad; 8 = Menor impacto)",
+      "microcopy": "Permite priorizar la causa raíz del desperdicio alimentario y los cuellos de botella de envasado.",
+      "type": "rank",
+      "prefilled": false,
+      "factorCount": 8,
+      "factors": [
+        {
+          "id": "f1",
+          "label": "Mermas y pérdidas de producto por vencimiento de vida de anaquel o caducidad temprana."
+        },
+        {
+          "id": "f2",
+          "label": "Paros no programados en líneas de llenado, dosificación, dosificado o sellado térmico."
+        },
+        {
+          "id": "f3",
+          "label": "Riesgo de contaminación cruzada y paros prolongados por limpieza y sanitización (CIP/COP)."
+        },
+        {
+          "id": "f4",
+          "label": "Variabilidad en la formulación, viscosidad o densidad que afecta el peso neto declarado."
+        },
+        {
+          "id": "f5",
+          "label": "Escasez, alta rotación y falta de capacitación del personal operativo en inocuidad/HACCP."
+        },
+        {
+          "id": "f6",
+          "label": "Cuellos de botella y limitación de capacidad en autoclaves, esterilizadores o túneles IQF."
+        },
+        {
+          "id": "f7",
+          "label": "Registro manual en papel de bitácoras de temperatura, pH, Grados Brix y puntos críticos (PCC)."
+        },
+        {
+          "id": "f8",
+          "label": "Rechazos de lotes por empaque defectuoso (fugas de sellado, arrugas en etiqueta, código ilegible)."
+        }
+      ]
+    },
+    {
+      "id": "R00-ALIM-SOURCING-MAT",
+      "level": "n2",
+      "sectorId": "alimentos",
+      "section": "SECCIÓN I: ROMPEHIELOS DE SEVERIDAD OPERATIVA (MÉTODO DE BORDA)",
+      "widget": "Rompehielos de Jerarquización (1 al 6)",
+      "title": "Jerarquización de Riesgos en Sourcing de Materias Primas e Insumos",
+      "prompt": "Ordene del 1 al 6 las restricciones que mayor volatilidad causan en su suministro de insumos y materiales (1 = Mayor impacto negativo; 6 = Menor impacto)",
+      "microcopy": "Mide la vulnerabilidad ante fluctuaciones de commodities agrícolas y materiales de empaque barrera.",
+      "type": "rank",
+      "prefilled": false,
+      "factorCount": 6,
+      "factors": [
+        {
+          "id": "f1",
+          "label": "Sobrecostos y alta volatilidad en materias primas básicas (azúcares, aceites, harinas, almidones)."
+        },
+        {
+          "id": "f2",
+          "label": "Escasez y tiempo de entrega prolongado de empaque primario (latas, frascos de vidrio, bolsa Doypack)."
+        },
+        {
+          "id": "f3",
+          "label": "Incremento en costo de aditivos especializados, conservadores, colorantes y saborizantes."
+        },
+        {
+          "id": "f4",
+          "label": "Restricciones en la disponibilidad y calidad bacteriológica/química del agua de proceso."
+        },
+        {
+          "id": "f5",
+          "label": "Volatilidad en la calidad y frescura de la materia prima agrícola/pecuaria entregada por proveedores."
+        },
+        {
+          "id": "f6",
+          "label": "Falta de refacciones oportunas y mantenimiento para dosificadoras y envasadoras importadas."
+        }
+      ]
+    },
+    {
+      "id": "R00-ALIM-SOURCING-SERV",
+      "level": "n2",
+      "sectorId": "alimentos",
+      "section": "SECCIÓN I: ROMPEHIELOS DE SEVERIDAD OPERATIVA (MÉTODO DE BORDA)",
+      "widget": "Rompehielos de Jerarquización (1 al 6)",
+      "title": "Jerarquización de Deficiencias en Servicios e Infraestructura",
+      "prompt": "Ordene del 1 al 6 las mayores deficiencias en servicios externos que frenan la competitividad de su planta (1 = Mayor impacto negativo; 6 = Menor impacto)",
+      "microcopy": "Mide las fallas de mercado en servicios de inocuidad y logística de distribución en Puebla-Tlaxcala.",
+      "type": "rank",
+      "prefilled": false,
+      "factorCount": 6,
+      "factors": [
+        {
+          "id": "f1",
+          "label": "Falta de laboratorios locales acreditados para análisis microbiológicos, bromatológicos y vida de anaquel."
+        },
+        {
+          "id": "f2",
+          "label": "Robos de producto terminado en transporte carretero regional (Autopista 150D, Arco Norte)."
+        },
+        {
+          "id": "f3",
+          "label": "Tarifas elevadas de energía eléctrica y gas natural para calderas y autoclaves de esterilización."
+        },
+        {
+          "id": "f4",
+          "label": "Indisponibilidad y alto costo de fletes refrigerados o secos consolidados para distribución."
+        },
+        {
+          "id": "f5",
+          "label": "Tramitología lenta e incertidumbre en trámites ante COFEPRIS, licencias sanitarias y registro FDA."
+        },
+        {
+          "id": "f6",
+          "label": "Escasez de asesores y auditores capacitados en esquemas GFSI (FSSC 22000 / SQF) en la región."
+        }
+      ]
+    },
+    {
+      "id": "AL-TECH-01",
+      "level": "n2",
+      "sectorId": "alimentos",
+      "section": "SECCIÓN II: AUDITORÍA TÉCNICA DIRECTA Y ABSORCIÓN TECNOLÓGICA (P1 A P5 CONTEXTUALIZADAS)",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Absorción Tecnológica P1: Tecnologías de Sourcing Crítico",
+      "prompt": "¿Cuál de las siguientes tecnologías o equipos de procesamiento requiere adquirir su planta pero enfrenta sobrecostos o falta de proveedores locales calificados?",
+      "microcopy": "Identifica la tecnología de inocuidad/envasado de mayor valor con falla de proveeduría en la región.",
+      "type": "single_select_text",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Envasadoras en Atmósfera Modificada (MAP) y Termoformadoras de Alta Barrera: Equipos para inyección de gases inertes y sellado hermético alimentario.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Autoclaves de Esterilización Continua / Retort para Alimentos Envasados: Sistemas programables de contrapresión para esterilización de bolsas y latas.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Detectores de Rayos X e Inspección por Visión Artificial para Contaminantes: Equipos de inspección en línea para detección de metales, vidrio, hueso o plásticos.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Túneles de Congelado Rápido Individual (IQF) / Abatidores Térmicos de Nitrógeno/Mecánicos: Congelación ultrarrápida para preservar textura e inocuidad.",
+          "score": null
+        },
+        {
+          "value": "opt5",
+          "label": "Sistemas CIP (Clean-in-Place) Automatizados para Lavado de Tuberías y Tanques: Lavado circulante programado sin desmontar líneas de proceso.",
+          "score": null
+        },
+        {
+          "value": "opt6",
+          "label": "Otro",
+          "score": null
+        }
+      ],
+      "text": {
+        "maxLength": 100,
+        "optionValue": "opt6"
+      }
+    },
+    {
+      "id": "AL-TECH-02",
+      "level": "n2",
+      "sectorId": "alimentos",
+      "section": "SECCIÓN II: AUDITORÍA TÉCNICA DIRECTA Y ABSORCIÓN TECNOLÓGICA (P1 A P5 CONTEXTUALIZADAS)",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Absorción Tecnológica P2: Subaprovechamiento de Tecnologías Instaladas",
+      "prompt": "¿Qué tecnología o sistema de envasado/inocuidad ya tiene instalado en su planta pero NO funciona como desearía o se encuentra subaprovechado?",
+      "microcopy": "Mide la falla de absorción por falta de capacitación, software no integrado o fallas de calibración.",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Detectores de metales o Rayos X descalibrados o que generan falsos rechazos constantes por mal ajuste de producto.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "ERP / Sistema de Control de Producción sin módulo de lotificación y recetas, llevándose en hojas de Excel separadas.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Sistema CIP de limpieza automatizado que se opera en modo manual por desconfianza en los sensores de conductividad.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Termoformadoras o empacadoras automáticas con alto desperdicio de película por falta de ajuste de fotocelda.",
+          "score": null
+        },
+        {
+          "value": "opt5",
+          "label": "Autoclaves o marmitas con registro de temperatura/presión en gráficos de papel sin digitalización de datos.",
+          "score": null
+        },
+        {
+          "value": "opt6",
+          "label": "Ninguno / Todas las tecnologías instaladas operan a su máximo rendimiento.",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "AL-TECH-03",
+      "level": "n2",
+      "sectorId": "alimentos",
+      "section": "SECCIÓN II: AUDITORÍA TÉCNICA DIRECTA Y ABSORCIÓN TECNOLÓGICA (P1 A P5 CONTEXTUALIZADAS)",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Absorción Tecnológica P3: Brecha con la Frontera Internacional",
+      "prompt": "¿Qué tecnología utilizan las multinacionales procesadoras líderes que las hace significativamente más competitivas que las empresas del sector en la región?",
+      "microcopy": "Evalúa la distancia a la frontera tecnológica global (Benchmark Aghion / OMPI 2026).",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Pasteurización en frío por presión extrema para conservar sabor y nutrientes frescos.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Conservación continua ultrarrápida para líquidos y purés de alta calidad.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Sensores integrados al empaque que notifican frescura real.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Rastreo transparente e inmutable de ingredientes desde el rancho hasta el código QR de anaquel.",
+          "score": null
+        },
+        {
+          "value": "opt5",
+          "label": "Proceso estéril que elimina la necesidad de refrigeración.",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "AL-TECH-04",
+      "level": "n2",
+      "sectorId": "alimentos",
+      "section": "SECCIÓN II: AUDITORÍA TÉCNICA DIRECTA Y ABSORCIÓN TECNOLÓGICA (P1 A P5 CONTEXTUALIZADAS)",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Absorción Tecnológica P4: Tecnología Revolucionaria / Apuesta Transformacional",
+      "prompt": "¿Qué tecnología transformacional o proyecto de gran calado revolucionaría la productividad e inocuidad de su planta en los próximos 2 a 3 años?",
+      "microcopy": "Mide el potencial de salto en el espacio de productos e Índice de Complejidad Potencial (ICPO).",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Automatización Robótica Completa de Empaque, Paletizado y Control Digital de PCC con IA.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Conversión a Planta Certificada GFSI / FDA con Tecnología de Pasteurización HPP / Retort Avanzada.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Liofilización Industrial para la Creación de Ingredientes Nutracéuticos y Snacks de Alto Valor.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Implementación de Empaques 100% Biodegradables de Alta Barrera al Oxígeno y Humedad.",
+          "score": null
+        },
+        {
+          "value": "opt5",
+          "label": "Desarrollo de Línea de Alimentos Funcionales / Reformulados de Etiqueta Limpia (Clean Label).",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "AL-TECH-05",
+      "level": "n2",
+      "sectorId": "alimentos",
+      "section": "SECCIÓN II: AUDITORÍA TÉCNICA DIRECTA Y ABSORCIÓN TECNOLÓGICA (P1 A P5 CONTEXTUALIZADAS)",
+      "widget": "Tarjeta de Selección Única + Texto Libre",
+      "title": "Absorción Tecnológica P5: Demanda Explícita de Proyectos Tecnológicos Inmediatos",
+      "prompt": "¿Hay algún proyecto tecnológico específico o necesidad prioritaria que requiera abordar a la brevedad para su empresa?",
+      "microcopy": "Captura la demanda real para asignación inmediata a programas de apoyo de Bienes de Club.",
+      "type": "single_select_text",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Proyecto 1: Certificación en Esquema GFSI (FSSC 22000 / SQF) o Auditoría de Cumplimiento FDA/FSMA.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Proyecto 2: Implementación de Laboratorio Interno de Microbiología Rápida y Control Bromatológico.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Proyecto 3: Adquisición o Maquila de Envasado en Atmósfera Modificada (MAP) o Esterilización Retort.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Proyecto 4: Sistema de Trazabilidad por Código GS1 128 / DataMatrix e Integración a ERP de Formulación.",
+          "score": null
+        },
+        {
+          "value": "opt5",
+          "label": "Un proyecto propio",
+          "score": null
+        }
+      ],
+      "text": {
+        "maxLength": 100,
+        "optionValue": "opt5"
+      }
+    },
+    {
+      "id": "AL-TECH-06",
+      "level": "n2",
+      "sectorId": "alimentos",
+      "section": "SECCIÓN II: AUDITORÍA TÉCNICA DIRECTA Y ABSORCIÓN TECNOLÓGICA (P1 A P5 CONTEXTUALIZADAS)",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Control de Merma en Formulación, Llenado y Peso Neto Declara (Cpk / PCC)",
+      "prompt": "¿Cuál es el nivel de precisión en la dosificación/llenado y el porcentaje de merma en su línea de proceso?",
+      "microcopy": "Mide la disciplina operacional en control estadístico y el cumplimiento de la NOM-002-SCFI (contenido neto).",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Variabilidad en llenado manual; ajuste empírico por operador; merma de insumos > 5%.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Llenadoras automáticas con pesaje por muestreo periódico; merma controlada entre 2.5% y 5%.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Dosificación automática con balanza de comprobación en línea (Checkweigher); merma entre 1% y 2.4%.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Dosificación multi-cabezal con ajuste en tiempo real por celda de carga (Cpk >= 1.33).",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "AL-TECH-07",
+      "level": "n2",
+      "sectorId": "alimentos",
+      "section": "SECCIÓN II: AUDITORÍA TÉCNICA DIRECTA Y ABSORCIÓN TECNOLÓGICA (P1 A P5 CONTEXTUALIZADAS)",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Trazabilidad Digital de Lote, Bitácoras de Inocuidad y LIMS/ERP",
+      "prompt": "¿Qué nivel de trazabilidad de ingredientes y lote de producto terminado utiliza su empresa para responder ante una alerta sanitaria?",
+      "microcopy": "La trazabilidad digital permite rastrear y aislar un lote contaminado en menos de 30 minutos.",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Registro físico de lotes de materia prima y producción; rastreo de lote toma más de 24 horas.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Registro de lotes y fechas de caducidad en archivos Excel sin conexión automática a almacén.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Impresión automática de etiquetas de lote vinculadas al sistema de almacén.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Trazabilidad bidireccional inmediata (< 15 minutos) desde materia prima hasta cliente.",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "CP-AL-01",
+      "level": "n2",
+      "sectorId": "alimentos",
+      "section": "SECCIÓN III: SOFISTICACIÓN PRODUCTIVA Y ESPACIO DE PRODUCTOS (CIDE / HARVARD)",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Reconversión hacia la 'Fruta Madura' Procesada (Alta Densidad ω_j > 0.65)",
+      "prompt": "Considerando su equipo de cocción, mezclado y envasado, ¿hacia qué producto de mayor valor podría reconvertirse en menos de 12 meses?",
+      "microcopy": "Mide la capacidad de salto hacia adyacencias alimentarias de mayor margen con inversión moderada.",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Transición de Salsas/Mermeladas Tradicionales a Formatos Doypack Stand-up Pouch de Alta Barrera.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Reconversión a Botanas Saludables Horneadas / Botanas Extruidas de Leguminosas (Garbanzo, Frijol, Amanto).",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Desarrollo de Conservas Gourmet en Frasco de Vidrio con Certificación de Inocuidad FSSC 22000.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Elaboración de Aderezos y Untables de Etiqueta Limpia (Clean Label sin conservadores artificiales).",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "CP-AL-02",
+      "level": "n2",
+      "sectorId": "alimentos",
+      "section": "SECCIÓN III: SOFISTICACIÓN PRODUCTIVA Y ESPACIO DE PRODUCTOS (CIDE / HARVARD)",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Apuestas Estratégicas y Alimentos Funcionales / Nutracéuticos (Alto ICPO)",
+      "prompt": "En un horizonte de 2 a 3 años con coinversión y tecnología, ¿qué línea alimentaria de alta complejidad podría desarrollar su planta?",
+      "microcopy": "Evalúa la capacidad de diversificación hacia la biotecnología alimentaria de alto valor agregado.",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Desarrollo de Alimentos Funcionales / Nutracéuticos (Enriquecidos con Probióticos, Proteína Vegetal o Extractos).",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Producción de Snacks y Platos Preparados Liofilizados para Excursión, Emergencia o Exportación Premium.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Extracción y Purificación de Bioactivos, Colorantes Naturales y Saborizantes a partir de Subproductos.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Línea de Platos Preparados Larga Vida en Envase Retortable / Pasteurizado HPP sin Necesidad de Refrigeración.",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "CP-AL-03",
+      "level": "n2",
+      "sectorId": "alimentos",
+      "section": "SECCIÓN III: SOFISTICACIÓN PRODUCTIVA Y ESPACIO DE PRODUCTOS (CIDE / HARVARD)",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Sostenibilidad, Empaque Sustentable y Eficiencia Energética Térmica",
+      "prompt": "¿Qué nivel de avance tiene su planta en la reducción de empaque plástico, eficiencia de calderas y tratamiento de efluentes?",
+      "microcopy": "La sostenibilidad y gestión de efluentes son prioritarias para la licencia social y ambiental en Puebla-Tlaxcala.",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Cumplimiento Básico: Uso de empaque plástico convencional; calderas sin economizador; descarga de efluentes a red municipal.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Prácticas Sostenibles Iniciales: Recuperación de condensados en calderas; reducción de calibre en bolsas plásticas; separación de mermas.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Eficiencia Térmica y Empaque Reciclable: Economizadores instalados en calderas; empaques monoprobables reciclables; Planta PTAR propia.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Planta Alimentaria de Residuo Cero / Biogás: Digestión anaerobia de mermas orgánicas; empaque compostable; 100% reúso de agua.",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "COL-AL01",
+      "level": "n2",
+      "sectorId": "alimentos",
+      "section": "SECCIÓN IV: SOLUCIONES COLABORATIVAS ANTE LA FALLA DE ESCALA (BIENES DE CLUB)",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Centro Comunitario de Maquila de Empaque Barrera (MAP/Retort) y Pasteurización HPP",
+      "prompt": "¿Cuál sería la disposición de su empresa para maquilar o utilizar un Centro Comunitario de Empaque de Alta Tecnología bajo esquema Pay-per-Use?",
+      "microcopy": "Permite a las PyMEs procesadoras acceder a tecnología HPP/Retort sin realizar inversiones millonarias de CAPEX.",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Alto Interés / Usuario Frecuente: Maquilaría envasado en atmósfera modificada (MAP) o pasteurización HPP pagando por pieza/lote.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Interés Moderado / Co-inversionista: Dispuesto a comprometer volumen mensual de producción para justificar la planta comunitaria.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Uso de Envasado Retort / Autoclave: Utilizaría el centro únicamente para procesos de esterilización de conservas en bolsa retortable.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Sin Interés: Cuenta con equipos propios de envasado térmico o su volumen no justifica maquila externa.",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "COL-AL02",
+      "level": "n2",
+      "sectorId": "alimentos",
+      "section": "SECCIÓN IV: SOLUCIONES COLABORATIVAS ANTE LA FALLA DE ESCALA (BIENES DE CLUB)",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Laboratorio Comunitario Acreditado ISO 17025 de Microbiología, Bromatología y Vida de Anaquel",
+      "prompt": "¿Cómo participaría su empresa en la creación de un Laboratorio Regional Acreditado en Cuádruple Hélice para la industria alimentaria?",
+      "microcopy": "Abate los costos de análisis de inocuidad en un 50% y reduce los tiempos de entrega de resultados de 10 días a 48 horas.",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Usuario Frecuente: Enviaría muestras semanales/mensuales de producto para análisis microbiológico, fisicoquímico y vida de anaquel.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Pruebas de Retención de Tabla Nutricional y NOM-051: Utilizaría el laboratorio para validación de sellos de advertencia y etiquetado.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Desarrollo de Vida de Anaquel Acelerada: Contrataría estudios de vida de anaquel y estabilidad para nuevos productos.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Sin Interés: Realiza sus análisis en laboratorios privados externos o cuenta con laboratorio acreditado propio.",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "COL-AL03",
+      "level": "n2",
+      "sectorId": "alimentos",
+      "section": "SECCIÓN IV: SOLUCIONES COLABORATIVAS ANTE LA FALLA DE ESCALA (BIENES DE CLUB)",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Consorcio de Compras Consolidadas de Materiales de Empaque e Insumos Clave",
+      "prompt": "¿Qué grado de apertura tiene su empresa para integrarse a un Consorcio de Compras Consolidadas de empaque barrera, frascos y aditivos?",
+      "microcopy": "Permite obtener precios de escala de gran corporativo reduciendo el costo de empaque entre 12% y 20%.",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Compra Consolidada de Empaque Primario (Frascos de Vidrio, Latas, Bolsas Doypack): Agrupar volumen de compra con fabricantes masivos.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Consorcio de Cajas de Cartón, Tarimas y Película Semiestirable: Comprar empaque secundario y paletizado de forma consolidada.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Compra Conjunta de Insumos / Aditivos Básicos (Azúcar, Aceites, Conservadores, Especias): Consolidar materias primas commodities.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Sin Interés: Prefiere mantener negociaciones individuales directas con sus proveedores actuales.",
+          "score": null
+        }
+      ]
+    }
+  ],
+  "roadmap": [
+    {
+      "band": "platino",
+      "min": 75.0,
+      "max": null,
+      "actions": [
+        "Capa A (Digital/TI): Implementación de LIMS de inocuidad en nube con IA predictiva de vida de anaquel y visión artificial de empaque.",
+        "Capa B (Bienes de Club): Liderazgo en el Consorcio de Exportación y adopción de tecnología de Pasteurización HPP."
+      ]
+    },
+    {
+      "band": "oro",
+      "min": 55.0,
+      "max": 75.0,
+      "actions": [
+        "Capa A (Digital/TI): Digitalización de bitácoras de PCC en tablets, código GS1-128 por caja e integración de dosificación a ERP.",
+        "Capa B (Bienes de Club): Maquila de empaque especial en el Centro Comunitario MAP/Retort para picos de demanda."
+      ]
+    },
+    {
+      "band": "plata",
+      "min": 35.0,
+      "max": 55.0,
+      "actions": [
+        "Capa A (Digital/TI): Instalación de balanza Checkweigher digital en línea y app de registro de puntos críticos de inocuidad.",
+        "Capa B (Bienes de Club): Análisis de inocuidad y vida de anaquel en el Laboratorio Comunitario ISO 17025."
+      ]
+    },
+    {
+      "band": "bronce",
+      "min": 0.0,
+      "max": 35.0,
+      "actions": [
+        "Capa A (Digital/TI): Capacitación básica en Buenas Prácticas de Higiene (NOM-251), costeo digital de recetas y control de lotes.",
+        "Capa B (Bienes de Club): Incorporación al Consorcio de Compras Consolidadas de Frascos, Latas y Bolsas."
+      ]
+    }
+  ]
+}

@@ -1,0 +1,756 @@
+{
+  "sectorId": "turismo",
+  "label": "09. Turismo y Servicios de Hospitalidad",
+  "questions": [
+    {
+      "id": "TR-01",
+      "level": "n2",
+      "sectorId": "turismo",
+      "section": "MÓDULO 0: PERFILADO DEL ESLABÓN Y LOCALIZACIÓN TERRITORIAL (HEREDADO DE NIVEL 1)",
+      "widget": "Tarjeta de Selección Única (Pre-poblado)",
+      "title": "Sub-eslabón Dominante en Turismo y Hospitalidad",
+      "prompt": "¿En cuál de los siguientes sub-eslabones de hospitalidad y turismo se concentra la mayor proporción de los ingresos de su establecimiento?",
+      "microcopy": "El sub-eslabón determina los requerimientos de licenciamiento (RNT), los sistemas de gestión de reservaciones (PMS) y los estándares sanitarios aplicables.",
+      "type": "single_select",
+      "prefilled": true,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Hotelería Urbana y de Negocios / MICE: Hoteles ejecutivos, centros de convenciones y alojamientos orientados a viajes corporativos e industria.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Hotelería Boutique, Pueblos Mágicos y Patrimonio: Hoteles con valor histórico/arquitectónico, villas, haciendas y hospedaje con enfoque en cultura y experiencia local.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Ecoturismo, Aventura y Turismo Rural: Cabañas, glamping, centros ecoturísticos, parques de aventura y actividades de contacto con la naturaleza.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Servicios de Hospitalidad, Banquetes y Recintos de Eventos: Salones de fiestas, centros de eventos sociales, banquetes y complejos de hospitalidad integrada.",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "TR-02",
+      "level": "n2",
+      "sectorId": "turismo",
+      "section": "MÓDULO 0: PERFILADO DEL ESLABÓN Y LOCALIZACIÓN TERRITORIAL (HEREDADO DE NIVEL 1)",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Corredor o Nodo Turístico de Operación en Puebla - Tlaxcala",
+      "prompt": "¿En qué corredor o nodo turístico de la región se ubica la propiedad o instalación principal de su establecimiento?",
+      "microcopy": "La localización geográfica condiciona el perfil del visitante (nacional vs internacional), los canales directos vs OTAs y la estacionalidad semanal.",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Corredor 1: ZMPT / Puebla Centro Histórico - Angelópolis - Cholula: Nodo de alta densidad de hospedaje urbano, turismo cultural, gastronómico y negocios.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Corredor 2: Pueblos Mágicos de Puebla (Atlixco, Zacatlán, Chignahuapan, Cuetzalan, Huauchinango): Turismo de fin de semana, naturaleza, aventura y tradiciones.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Corredor 3: Tlaxcala Capital - Val'Quirico - Huamantla - Tlaxco - Nanacamilpa: Turismo de haciendas, toros, luciérnagas, patrimonio colonial y desarrollo inmobiliario turístico.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Corredor 4: Tehuacán y Nodo Sur (ZMTH / Biosfera Tehuacán-Cuicatlán): Ecoturismo, salud, patrimonio paleontológico y logística gastronómica.",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "TR-03",
+      "level": "n2",
+      "sectorId": "turismo",
+      "section": "MÓDULO 0: PERFILADO DEL ESLABÓN Y LOCALIZACIÓN TERRITORIAL (HEREDADO DE NIVEL 1)",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Certificación de Calidad, Inocuidad y Registro Turístico",
+      "prompt": "¿Cuál es el nivel formal de certificación turística, ambiental e higiene que ostenta su establecimiento?",
+      "microcopy": "Las certificaciones oficiales otorgan certeza al visitante y son requisito para integrar catálogos de promoción institucional y corporativa.",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Básico / Registro Nacional de Turismo (RNT): Cumplimiento legal ante la SECTUR y padrón municipal sin distintivos de calidad auditados.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Distintivos de Calidad Nacional (Distintivo H / M / Punto Limpio / Código de Conducta): Certificación formal emitida por SECTUR en inocuidad de alimentos (H), gestión empresarial (M) o higiene (Punto Limpio).",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Certificación Sustentable o Ambiental (Green Key / EarthCheck / ISO 14001 / Biosphere): Auditoría ambiental formal en uso eficiente de energía, agua y residuos.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Estándar Internacional / Cadena Global (AAA 4-5 Diamantes / Relais & Châteaux / ISO 9001): Certificación de excelencia en lujo, servicio e infraestructura auditada internacionalmente.",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "R00-TUR-PROD",
+      "level": "n2",
+      "sectorId": "turismo",
+      "section": "SECCIÓN I: ROMPEHIELOS DE SEVERIDAD OPERATIVA (MÉTODO DE BORDA)",
+      "widget": "Rompehielos de Jerarquización (1 al 8)",
+      "title": "Jerarquización de Fricciones en Operación y Servicio de Hospitalidad",
+      "prompt": "Ordene del 1 al 8 las siguientes fricciones según el impacto económico negativo y la frecuencia con que afectan su establecimiento (1 = Mayor impacto / Máxima gravedad; 8 = Menor impacto)",
+      "microcopy": "Permite priorizar la causa raíz de las ineficiencias de hospitalidad antes del análisis tecnológico de detalle.",
+      "type": "rank",
+      "prefilled": false,
+      "factorCount": 8,
+      "factors": [
+        {
+          "id": "f1",
+          "label": "Alta estacionalidad con bajas tasas de ocupación entre semana (lunes a jueves en Pueblos Mágicos o fin de semana en corporativos)."
+        },
+        {
+          "id": "f2",
+          "label": "Paros y fallas en sistemas críticos de infraestructura (aire acondicionado/HVAC, calderas de agua caliente, elevadores)."
+        },
+        {
+          "id": "f3",
+          "label": "Desperdicio de alimentos en bufés/restaurantes y mermas por sobrecompra o mala rotación de inventario."
+        },
+        {
+          "id": "f4",
+          "label": "Escasez, alta rotación y falta de capacitación del personal en servicio al cliente, idiomas y estándares de atención."
+        },
+        {
+          "id": "f5",
+          "label": "Falta de visibilidad en tiempo real del RevPAR, ADR (Tarifa Promedio Diaria) y margen operativo por habitación/servicio."
+        },
+        {
+          "id": "f6",
+          "label": "Ineficiencias en el canal de reservaciones que provocan sobreventa (overbooking) o duplicación de tarifas."
+        },
+        {
+          "id": "f7",
+          "label": "Tiempos de espera prolongados en check-in / check-out que generan quejas y valoraciones negativas en plataformas digitales."
+        },
+        {
+          "id": "f8",
+          "label": "Reclamaciones de huéspedes por falta de mantenimiento en habitaciones, ruido o deficiencias en limpieza."
+        }
+      ]
+    },
+    {
+      "id": "R00-TUR-SOURCING-MAT",
+      "level": "n2",
+      "sectorId": "turismo",
+      "section": "SECCIÓN I: ROMPEHIELOS DE SEVERIDAD OPERATIVA (MÉTODO DE BORDA)",
+      "widget": "Rompehielos de Jerarquización (1 al 6)",
+      "title": "Jerarquización de Riesgos en Sourcing de Insumos y Servicios Internos",
+      "prompt": "Ordene del 1 al 6 las restricciones que mayor volatilidad o sobrecosto causan en el abastecimiento de su propiedad (1 = Mayor impacto negativo; 6 = Menor impacto)",
+      "microcopy": "Mide la vulnerabilidad del establecimiento ante el incremento en costos de insumos operativos clave.",
+      "type": "rank",
+      "prefilled": false,
+      "factorCount": 6,
+      "factors": [
+        {
+          "id": "f1",
+          "label": "Sobrecostos y volatilidad de precios en insumos perecederos de alta calidad para alimentos y bebidas."
+        },
+        {
+          "id": "f2",
+          "label": "Escasez y alto costo de blancos (sábanas/toallas) de alto hilos, amenidades ecológicas e insumos de lavandería."
+        },
+        {
+          "id": "f3",
+          "label": "Tarifas elevadas e incremento en costos de energía eléctrica y gas L.P. para calentamiento de agua y aire acondicionado."
+        },
+        {
+          "id": "f4",
+          "label": "Licencias y cuotas mensuales elevadas en sistemas de software hotelero (PMS, Motor de Reservas, Channel Manager)."
+        },
+        {
+          "id": "f5",
+          "label": "Sobrecosto de materiales de empaque, desechables biodegradables e insumos para room service y eventos."
+        },
+        {
+          "id": "f6",
+          "label": "Falta de refacciones oportunas y servicios técnicos especializados para equipos importados de cocina/HVAC."
+        }
+      ]
+    },
+    {
+      "id": "R00-TUR-SOURCING-SERV",
+      "level": "n2",
+      "sectorId": "turismo",
+      "section": "SECCIÓN I: ROMPEHIELOS DE SEVERIDAD OPERATIVA (MÉTODO DE BORDA)",
+      "widget": "Rompehielos de Jerarquización (1 al 6)",
+      "title": "Jerarquización de Deficiencias en Infraestructura y Plataformas",
+      "prompt": "Ordene del 1 al 6 las mayores deficiencias en servicios externos y plataformas comerciales que frenan su rentabilidad (1 = Mayor impacto negativo; 6 = Menor impacto)",
+      "microcopy": "Mide las fallas de mercado y entorno comercial en el ecosistema turístico regional.",
+      "type": "rank",
+      "prefilled": false,
+      "factorCount": 6,
+      "factors": [
+        {
+          "id": "f1",
+          "label": "Altas comisiones cobradas por agencias de viajes en línea (OTAs como Booking, Expedia: 15% a 25% por reserva)."
+        },
+        {
+          "id": "f2",
+          "label": "Deficiente ancho de banda y fallas constantes en el servicio de Wi-Fi comercial en la zona turística."
+        },
+        {
+          "id": "f3",
+          "label": "Percepción de inseguridad y eventos delictivos en carreteras de acceso a corredores turísticos y Pueblos Mágicos."
+        },
+        {
+          "id": "f4",
+          "label": "Escasez de consultores y laboratorios locales acreditados para certificar Distintivo H, M o Punto Limpio."
+        },
+        {
+          "id": "f5",
+          "label": "Dificultad para contratar agencias de marketing digital y posicionamiento que generen venta directa sin intermediarios."
+        },
+        {
+          "id": "f6",
+          "label": "Tramitología municipal lenta e inspecciones complejas de Protección Civil, licencias de funcionamiento y agua."
+        }
+      ]
+    },
+    {
+      "id": "TR-TECH-01",
+      "level": "n2",
+      "sectorId": "turismo",
+      "section": "SECCIÓN II: AUDITORÍA TÉCNICA DIRECTA Y ABSORCIÓN TECNOLÓGICA (P1 A P5 CONTEXTUALIZADAS)",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Absorción Tecnológica P1: Tecnologías de Sourcing Crítico",
+      "prompt": "¿Cuál de las siguientes tecnologías o sistemas especializados requiere adquirir o modernizar su establecimiento pero enfrenta sobrecostos o falta de proveedores locales calificados?",
+      "microcopy": "Identifica la herramienta tecnológica de mayor impacto comercial y operativo con falla de proveeduría en la región.",
+      "type": "single_select_text",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Property Management System (PMS) en la Nube con Channel Manager e Integración a Motor de Reservas Directas.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Sistemas Climatización (HVAC Inverter) de Alta Eficiencia y Bombas de Calor para Agua Caliente Sanitaria.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Cerraduras Digitales e Inteligentes (Smart Locks) con apertura por Smartphone (BLE/NFC) o Código QR.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Sistemas de Gestón Energética de Habitación (EMS / Termostatos Inteligentes con sensores de presencia).",
+          "score": null
+        },
+        {
+          "value": "opt5",
+          "label": "Equipamiento Industrial de Cocina/Lavandería de Bajo Consumo Hídrico y Energético.",
+          "score": null
+        },
+        {
+          "value": "opt6",
+          "label": "Otro",
+          "score": null
+        }
+      ],
+      "text": {
+        "maxLength": 100,
+        "optionValue": "opt6"
+      }
+    },
+    {
+      "id": "TR-TECH-02",
+      "level": "n2",
+      "sectorId": "turismo",
+      "section": "SECCIÓN II: AUDITORÍA TÉCNICA DIRECTA Y ABSORCIÓN TECNOLÓGICA (P1 A P5 CONTEXTUALIZADAS)",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Absorción Tecnológica P2: Subaprovechamiento de Tecnologías Instaladas",
+      "prompt": "¿Qué tecnología o sistema ya tiene instalado en su hotel o restaurante pero NO funciona como desearía o se encuentra subaprovechado?",
+      "microcopy": "Mide la falla de absorción por falta de capacitación, conectividad o software no configurado adecuadamente.",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "PMS Hotelero utilizado únicamente como 'libro de caja' o registro básico, sin módulos de Revenue Management ni analítica.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Channel Manager no sincronizado en tiempo real que exige cierres manuales de inventario de habitaciones.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Red Wi-Fi de alta velocidad instalada que no cuenta con portal cautivo para captura de datos y remarketing.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Termostatos/EMS inteligentes en habitaciones desprogramados o desconectados que operan como controles manuales.",
+          "score": null
+        },
+        {
+          "value": "opt5",
+          "label": "Motor de Reservas en sitio web propio que carece de pasarela de pagos automatizada o certificación SSL.",
+          "score": null
+        },
+        {
+          "value": "opt6",
+          "label": "Ninguno / Todas las tecnologías instaladas operan a su máximo rendimiento.",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "TR-TECH-03",
+      "level": "n2",
+      "sectorId": "turismo",
+      "section": "SECCIÓN II: AUDITORÍA TÉCNICA DIRECTA Y ABSORCIÓN TECNOLÓGICA (P1 A P5 CONTEXTUALIZADAS)",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Absorción Tecnológica P3: Brecha con la Frontera Internacional",
+      "prompt": "¿Qué tecnología utilizan las cadenas u hoteles internacionales líderes que los hace significativamente más competitivos que los establecimientos de la región?",
+      "microcopy": "Evalúa la distancia a la frontera tecnológica global en servicios de hospitalidad (Benchmark Aghion / OMPI 2026).",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Revenue Management System (RMS) con Inteligencia Artificial predictiva que ajusta tarifas dinámicamente cada hora.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Autogestión 100% Digital del Huésped: Check-in/out vía App móvil, Kioscos de autoservicio y Ilave virtual en smartphone.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Habitaciones Inteligentes IoT con Control por Voz (Alexa/Google), iluminación domótica y personalización de escena.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Plataforma de Medición de Huella de Carbono del Huésped en Tiempo Real con opción de compensación voluntaria.",
+          "score": null
+        },
+        {
+          "value": "opt5",
+          "label": "Experiencias Turísticas en Realidad Aumentada (AR / VR) integradas a la guía de estancia y comercialización.",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "TR-TECH-04",
+      "level": "n2",
+      "sectorId": "turismo",
+      "section": "SECCIÓN II: AUDITORÍA TÉCNICA DIRECTA Y ABSORCIÓN TECNOLÓGICA (P1 A P5 CONTEXTUALIZADAS)",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Absorción Tecnológica P4: Tecnología Revolucionaria / Apuesta Transformacional",
+      "prompt": "¿Qué proyecto tecnológico de gran calado revolucionaría la rentabilidad y sostenibilidad de su empresa en los próximos 2 a 3 años?",
+      "microcopy": "Mide el potencial de salto en sofisticación de la propiedad y diferenciación competitiva (CIDE / Harvard).",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Reconversión Completa a Hotel Sustentable Certificado Cero Carbono (Zero Net Carbon / EarthCheck / Green Key).",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Desarrollo de Plataforma Propia de Comercialización Digital con Inteligencia Artificial para Venta Directa Omnicanal.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Rediseño de la Propiedad para Ecoturismo/Wellness de Alta Gama con Autonomía Energética e Hídrica Off-Grid.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Habilitación de Infraestructura y Certificación para Turismo Médico / Quirúrgico y de Recuperación de Alto Valor.",
+          "score": null
+        },
+        {
+          "value": "opt5",
+          "label": "Integración Completa de Operación Domótica e IoT 4.0 en el 100% de las Habitaciones y Áreas Comunes.",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "TR-TECH-05",
+      "level": "n2",
+      "sectorId": "turismo",
+      "section": "SECCIÓN II: AUDITORÍA TÉCNICA DIRECTA Y ABSORCIÓN TECNOLÓGICA (P1 A P5 CONTEXTUALIZADAS)",
+      "widget": "Tarjeta de Selección Única + Texto Libre",
+      "title": "Absorción Tecnológica P5: Demanda Explícita de Proyectos Tecnológicos Inmediatos",
+      "prompt": "¿Hay algún proyecto tecnológico específico o necesidad prioritaria que requiera abordar a la brevedad para su establecimiento?",
+      "microcopy": "Captura la demanda real de acompañamiento técnico para asignación inmediata a programas de apoyo e inversión.",
+      "type": "single_select_text",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Proyecto 1: Implementación de PMS Cloud + Channel Manager + Motor de Reservas Directo sin comisiones.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Proyecto 2: Certificación y Auditoría de Calidad/Inocuidad (Distintivo H / M / Punto Limpio / Green Key).",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Proyecto 3: Instalación de Bombas de Calor, Enfriadores Inverter y Paneles Solares para Agua Caliente.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Proyecto 4: Capacitación Intensiva del Personal en Servicio de Excelencia, Idiomas y Revenue Management.",
+          "score": null
+        },
+        {
+          "value": "opt5",
+          "label": "Un proyecto propio",
+          "score": null
+        }
+      ],
+      "text": {
+        "maxLength": 100,
+        "optionValue": "opt5"
+      }
+    },
+    {
+      "id": "TR-TECH-06",
+      "level": "n2",
+      "sectorId": "turismo",
+      "section": "SECCIÓN II: AUDITORÍA TÉCNICA DIRECTA Y ABSORCIÓN TECNOLÓGICA (P1 A P5 CONTEXTUALIZADAS)",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Control de Ocupación Promedio (RevPAR / ADR) y Gestión de Mermas en Alimentos",
+      "prompt": "¿Cuál es la tasa de ocupación promedio anual de su establecimiento y cómo gestiona el indicador RevPAR y mermas en alimentos?",
+      "microcopy": "Mide la eficiencia comercial en la venta de inventario de noches/mesas y el control de mermas operativas.",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Gestión Básica / Ocupación Baja (< 35%): Sin cálculo de RevPAR ni ADR; ocupación promedio anual por debajo del 35%; mermas en restaurantes > 12%.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Gestión Moderada / Ocupación Media (35% a 55%): Registro mensual de ocupación y tarifa promedio; mermas en alimentos entre 6% y 12%.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Gestión Avanzada / Ocupación Alta (55% a 72%): Control semanal de RevPAR por canal; ajuste dinámico manual de tarifas; mermas de alimentos entre 3% y 6%.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Excelencia Turística / Ocupación Superior (> 72%): Optimización diaria de RevPAR con algoritmos; mermas de alimentos < 3% con control por receta estándar.",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "TR-TECH-07",
+      "level": "n2",
+      "sectorId": "turismo",
+      "section": "SECCIÓN II: AUDITORÍA TÉCNICA DIRECTA Y ABSORCIÓN TECNOLÓGICA (P1 A P5 CONTEXTUALIZADAS)",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Trazabilidad Digital del Huésped (CRM Turístico), Check-in Digital y Plataforma Integrada",
+      "prompt": "¿Qué nivel de integración digital de datos de clientes y automatización de procesos de recepción utiliza su empresa?",
+      "microcopy": "El CRM turístico permite personalizar la experiencia, incrementar las ventas cruzadas (upselling) y fidelizar al huésped sin depender de OTAs.",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Registro Manual / Libro de Actas en Recepción: Bitácoras en papel o Excel básico sin historial estructurado de preferencias del huésped.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "PMS Aislado sin CRM: Registro digital de check-in pero sin seguimiento post-estancia ni automatización de encuestas o promociones.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "PMS Integrado a CRM con Check-in Digital Semipresencial: Captura de datos previa vía link web; CRM con emails de seguimiento automatizados.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Ecosistema Digital 4.0 Integrado (PMS + CRM + App Huésped + Pasarela de Pagos): Experiencia 100% fluida, reconocimiento de preferencias y remarketing directo.",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "CP-TR-01",
+      "level": "n2",
+      "sectorId": "turismo",
+      "section": "SECCIÓN III: SOFISTICACIÓN PRODUCTIVA Y ESPACIO DE PRODUCTOS (CIDE / HARVARD)",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Reconversión hacia la 'Fruta Madura' Turística (Alta Densidad ω_j > 0.65)",
+      "prompt": "Considerando su infraestructura y ubicación actual, ¿hacia qué segmento de mercado de mayor margen podría diversificarse en menos de 12 meses?",
+      "microcopy": "Mide la capacidad de salto hacia ofertas turísticas adyacentes de menor riesgo y rápida implementación.",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Desarrollo de Experiencias Gastronómicas Tradicionales y Rutas Identitarias de Alta Gama (Pueblos Mágicos).",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Adaptación de Instalaciones para Turismo de Negocios, Banquetes Ejecutivos y Eventos MICE de Pequeño Formato.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Habilitación de Oferta Wellness / Salud y Bienestar (Spa, Masajes, Alimentación Saludable, Retiros).",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Conversión a Hospedaje Boutique / Experiencial con Diseño de Autor y Atención Personalizada.",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "CP-TR-02",
+      "level": "n2",
+      "sectorId": "turismo",
+      "section": "SECCIÓN III: SOFISTICACIÓN PRODUCTIVA Y ESPACIO DE PRODUCTOS (CIDE / HARVARD)",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Apuestas Estratégicas y Productos Turísticos de Alta Complejidad (Alto ICPO)",
+      "prompt": "En un horizonte de 2 a 3 años con coinversión y tecnología, ¿qué línea turística de alta sofisticación podría desarrollar su empresa?",
+      "microcopy": "Evalúa la capacidad de diversificación hacia segmentos turísticos de alto impacto económico (Índice de Complejidad Potencial ICPO).",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Infraestructura Acreditada para Turismo Médico / Quirúrgico y de Recuperación en Alianza con Hospitales.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Hub de Convenciones Híbridas de Frontera con Salas de Realidad Inmersiva y Transmisión Global 4K.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Complejo Ecoturístico Sustentable Autónomo Off-Grid (Energía Solar, Captación Pluvial, Zero Waste).",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Desarrollo de Red de Alojamientos Temáticos / Haciendas Históricas con Trazabilidad de Patrimonio.",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "CP-TR-03",
+      "level": "n2",
+      "sectorId": "turismo",
+      "section": "SECCIÓN III: SOFISTICACIÓN PRODUCTIVA Y ESPACIO DE PRODUCTOS (CIDE / HARVARD)",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Eficiencia Hídrica, Sustentabilidad Energética y Basura Cero en Hospitalidad",
+      "prompt": "¿Qué nivel de avance tiene su empresa en la adopción de prácticas sostenibles, conservación de agua y gestión de residuos?",
+      "microcopy": "La sostenibilidad ambiental es un factor decisivo para la atracción de turismo internacional y la reducción de costos fijos.",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Cumplimiento Básico: Prácticas convencionales sin medición de consumo de agua o energía; separación básica de residuos.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Prácticas de Conservación: Aireadores en grifos y regaderas de bajo flujo; cambio gradual a iluminación LED y programa de reutilización de toallas.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Eficiencia Energética e Hídrica Medida: Calentamiento solar de agua en > 50% de habitaciones; tratamiento/reutilización de aguas grises en jardines.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Establecimiento Neutro en Carbono / Certificación Ambiental: Generación fotovoltaica propia; eliminación 100% de plásticos de un solo uso; certificación Green Key/EarthCheck.",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "COL-TR01",
+      "level": "n2",
+      "sectorId": "turismo",
+      "section": "SECCIÓN IV: SOLUCIONES COLABORATIVAS ANTE LA FALLA DE ESCALA (BIENES DE CLUB)",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Hospitality Tech & Revenue Management Hub Comunitario",
+      "prompt": "¿Cuál sería la disposición de su establecimiento para integrarse a una Plataforma Tecnológica Turística Regional compartida bajo esquema Pay-per-Use?",
+      "microcopy": "Permite acceder a herramientas de nivel cadena internacional (RMS con IA, Motor de Reservas sin comisión) a una fracción del costo.",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Alto Interés / Usuario Activo: Utilizaría el Motor de Reservas Colectivo y el algoritmo de Revenue Management regional pagando solo por reserva efectiva.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Interés en Canal Directo: Participaría en la plataforma para ofrecer sus habitaciones y experiencias reduciendo la dependencia de OTAs.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Interés en Analítica de Datos: Aportaría datos de ocupación anónimos para recibir reportes predictivos de demanda turística regional.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Sin Interés: Cuenta con sistemas propios suficientes o prefiere negociar individualmente con OTAs.",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "COL-TR02",
+      "level": "n2",
+      "sectorId": "turismo",
+      "section": "SECCIÓN IV: SOLUCIONES COLABORATIVAS ANTE LA FALLA DE ESCALA (BIENES DE CLUB)",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Centro Comunitario de Capacitación, Calidad e Inocuidad Turística (Cuádruple Hélice)",
+      "prompt": "¿Cómo participaría su empresa en la creación de un Centro de Capacitación y Certificación Turística Regional en alianza con Universidades y Gobierno?",
+      "microcopy": "Resuelve la falta de personal capacitado y reduce los costos de obtención de Distintivos H, M y Punto Limpio hasta en un 50%.",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Usuario Frecuente: Inscribiría a su personal de cocina, recepción y servicio a programas continuos de certificación a tarifas preferenciales.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Sede de Prácticas y Dual: Recibiría estudiantes y pasantes universitarios en esquemas de formación dual para el sector hospitalidad.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Participante en Certificación Colectiva: Formaría parte de paquetes grupales de auditoría para la obtención de Distintivos H / M / Green Key.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Sin Interés: Realiza su capacitación de forma interna o con consultores privados independientes.",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "COL-TR03",
+      "level": "n2",
+      "sectorId": "turismo",
+      "section": "SECCIÓN IV: SOLUCIONES COLABORATIVAS ANTE LA FALLA DE ESCALA (BIENES DE CLUB)",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Consorcio de Compras Consolidadas de Insumos Hoteleros y Promoción Conjunta",
+      "prompt": "¿Qué grado de apertura tiene su empresa para asociarse a un Consorcio de Compras Consolidadas de insumos hoteleros y campañas de promoción?",
+      "microcopy": "La consolidación de demanda permite abatir costos en blancos, amenidades ecológicas y energía de un 15% a un 25%.",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Compra Consolidada de Blancos, Amenidades y Detergentes: Comprar en volumen directo con fabricantes para reducir costo por habitación.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Compra Consolidada de Insumos de Alimentos y Bebidas: Integrarse a una red regional de abastecimiento directo con productores locales de Puebla-Tlaxcala.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Campañas Colectivas de Promoción Turística Internacional: Aportar a un fondo común para campañas de marketing en mercados emisores clave.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Sin Interés: Prefiere mantener compras y promociones de manera 100% individual.",
+          "score": null
+        }
+      ]
+    }
+  ],
+  "roadmap": [
+    {
+      "band": "platino",
+      "min": 75.0,
+      "max": null,
+      "actions": [
+        "Capa A (Digital/TI): Implementación de RMS con IA predictiva, check-in 100% digital vía App y domótica en habitaciones.",
+        "Capa B (Bienes de Club): Liderazgo en el Hospitality Tech Hub y campañas internacionales de promoción conjunta."
+      ]
+    },
+    {
+      "band": "oro",
+      "min": 55.0,
+      "max": 75.0,
+      "actions": [
+        "Capa A (Digital/TI): Integración de Channel Manager en tiempo real, motor de ventas directas en web propia y CRM turístico.",
+        "Capa B (Bienes de Club): Integración al Centro de Capacitación Turística y compras consolidadas de amenidades."
+      ]
+    },
+    {
+      "band": "plata",
+      "min": 35.0,
+      "max": 55.0,
+      "actions": [
+        "Capa A (Digital/TI): Migración a PMS Cloud económico, portal cautivo Wi-Fi para captura de clientes y app móvil de bitácoras.",
+        "Capa B (Bienes de Club): Paquete de auditoría grupal para Distintivo H/M y vinculación a laboratorios de alimentos."
+      ]
+    },
+    {
+      "band": "bronce",
+      "min": 0.0,
+      "max": 35.0,
+      "actions": [
+        "Capa A (Digital/TI): Capacitación básica en control digital de reservas, costos por habitación y Buenas Prácticas de Higiene.",
+        "Capa B (Bienes de Club): Incorporación al Consorcio de Compras Consolidadas de Blancos y Energéticos."
+      ]
+    }
+  ]
+}

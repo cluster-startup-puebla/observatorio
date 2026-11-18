@@ -1,0 +1,739 @@
+{
+  "sectorId": "quimica",
+  "label": "17. Industria Química, Petroquímica y Resinas Sintéticas",
+  "questions": [
+    {
+      "id": "QM-01",
+      "level": "n2",
+      "sectorId": "quimica",
+      "section": "Inicio",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Eslabón Dominante en la Cadena Químico-Petroquímica",
+      "prompt": "¿En cuál de los siguientes eslabones se concentra la mayor proporción de la facturación de su planta?",
+      "microcopy": "Define las normativas ambientales/sanitarias (SEMARNAT, COFEPRIS, PSM OSHA), el nivel de riesgo químico y la integración industrial.",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Petroquímica Básica y Secundaria / Resinas Sintéticas: Producción de polímeros base, monómeros, plásticos primarios y derivados del gas/petróleo.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Química de Especialidades y Formulaciones Industriales: Aditivos, colorantes, pigmentos, catalizadores, recubrimientos y productos químicos finos.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Agroquímicos, Fertilizantes y Plaguicidas: Formulación de fertilizantes nitrogenados/fosfatados, plaguicidas y acondicionadores de suelo.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Productos Químicos de Consumo / Limpieza Industrial y Cosmética: Jabones, detergentes, sanitizantes, desinfectantes y productos para el hogar/industria.",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "QM-02",
+      "level": "n2",
+      "sectorId": "quimica",
+      "section": "Inicio",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Corredor Industrial y Parque de Operaciones Químicas",
+      "prompt": "¿En qué parque industrial o corredor de la cuenca Puebla - Tlaxcala opera su planta principal?",
+      "microcopy": "Determina la logística de transporte de materiales peligrosos (Hazmat), el acceso a ductos/gas natural y la disponibilidad de plantas de tratamiento (PTAR).",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Corredor San Martín Texmelucan - Huejotzingo / Autopista 150D: Complejo Petroquímico, Parques Industriales Quimtex y Corredor Industrial.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Corredor Industrial Tlaxcala (Xaloztoc / Apizaco / CIX I, II y III - Tetla): Clúster químico-textil y de resinas sintéticas en Tlaxcala.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Zona Metropolitana de Puebla (Resurrección / Chachapa / Puebla 2000): Plantas de formulación química, pintura y productos de limpieza urbana.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Nodo Ixtacuixtla - Tepetitla - Natívitas: Zona agroquímica e industrial de productos químicos especiales en la frontera Puebla-Tlaxcala.",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "QM-03",
+      "level": "n2",
+      "sectorId": "quimica",
+      "section": "Inicio",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Certificación de Calidad, Seguridad y Responsabilidad Ambiental",
+      "prompt": "¿Cuál es el nivel más alto de certificación formal de calidad, gestión ambiental y seguridad de procesos que ostenta su planta?",
+      "microcopy": "La certificación de seguridad química y gestión ambiental es la licencia social y normativa indispensable para operar y exportar.",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Cumplimiento Normativo Básico STPS / SEMARNAT: Licencia Ambiental Única (LAU) y planes de protección civil sin certificación ISO formal.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Certificación ISO 9001:2015 o Industria Limpia PROFEPA: Sistema de gestión de calidad formal o acreditación ambiental estatal/federal.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Multicertificación Integrada (ISO 9001 + ISO 14001 + ISO 45001): Sistema de Gestión Integral de Calidad, Medio Ambiente y Salud/Seguridad Ocupacional.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Programa Responsabilidad Integral (Responsible Care) + PSM OSHA 1910.119 / ISO 50001: Máximo estándar de Seguridad de Procesos Químicos y Gestión Energética.",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "R00-QM-PROD",
+      "level": "n2",
+      "sectorId": "quimica",
+      "section": "Inicio",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Jerarquización de Fricciones en Operación y Proceso Químico (Jerarquización 1 al 8)",
+      "prompt": "Ordene del 1 al 8 los siguientes problemas operativos según el impacto económico negativo en su planta (1 = Mayor fricción; 8 = Menor fricción)",
+      "microcopy": "Permite priorizar la agenda de intervención operativa e ingeniería de procesos mediante el método de Borda Inverso.",
+      "type": "rank",
+      "prefilled": false,
+      "factorCount": 8,
+      "factors": [
+        {
+          "id": "f1",
+          "label": "1. Inestabilidad en el suministro de gas natural, vapor o energía eléctrica que causa paros no programados de reactores."
+        },
+        {
+          "id": "f2",
+          "label": "2. Variabilidad en la pureza de materias primas y monómeros importados que desajusta la estequiometría de reacción."
+        },
+        {
+          "id": "f3",
+          "label": "3. Alto costo y complejidad en el tratamiento y disposición final de efluentes líquidos complejos y residuos peligrosos."
+        },
+        {
+          "id": "f4",
+          "label": "4. Desgastador tiempo de cambio de producto (changeover) y limpieza de reactores, tanques y tuberías de proceso."
+        },
+        {
+          "id": "f5",
+          "label": "5. Escasez de ingenieros químicos de proceso, operadores de planta química y técnicos de laboratorio analítico calificados."
+        },
+        {
+          "id": "f6",
+          "label": "6. Retardos en trámites, permisos y autorizaciones regulatorias ante SEMARNAT, COFEPRIS y ASEA."
+        },
+        {
+          "id": "f7",
+          "label": "7. Inseguridad y robo de autotanques (pipas) y contenedores de productos químicos en tramos carreteros regionales (150D / Arco Norte)."
+        },
+        {
+          "id": "f8",
+          "label": "8. Falta de instrumentación digital y sensores en tiempo real para monitoreo de temperatura, presión y pH en recipientes sujetos a presión."
+        }
+      ]
+    },
+    {
+      "id": "R00-QM-SOURCING-MAT",
+      "level": "n2",
+      "sectorId": "quimica",
+      "section": "Inicio",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Jerarquización de Riesgos en Insumos y Materias Primas Críticas (Jerarquización 1 al 6)",
+      "prompt": "Ordene del 1 al 6 los mayores riesgos en el abastecimiento de insumos químicos (1 = Mayor riesgo; 6 = Menor riesgo)",
+      "microcopy": "Mide la vulnerabilidad de la cadena de suministro de insumos petroquímicos y reactivos base.",
+      "type": "rank",
+      "prefilled": false,
+      "factorCount": 6,
+      "factors": [
+        {
+          "id": "f1",
+          "label": "1. Volatilidad extrema de precios internacionales en resinas, monómeros, solventes y reactivos derivados del petróleo."
+        },
+        {
+          "id": "f2",
+          "label": "2. Tiempos de entrega extendidos (lead time) e incertidumbre logística en la importación de aditivos y catalizadores especiales."
+        },
+        {
+          "id": "f3",
+          "label": "3. Exigencia de pago de contado o plazos de crédito reducidos por parte de distribuidores mayoristas de insumos químicos."
+        },
+        {
+          "id": "f4",
+          "label": "4. Incumplimiento de especificaciones en Certificados de Análisis (COA) emitidos por distribuidores locales intermediarios."
+        },
+        {
+          "id": "f5",
+          "label": "5. Dependencia de un único proveedor para catalizadores o reactivos clave sin alternativa de suministro local o regional."
+        },
+        {
+          "id": "f6",
+          "label": "6. Sobrecosto en empaques especializados (porrones, contenedores IBC/Tote, tambores certificados UN/DOT) para sustancias peligrosas."
+        }
+      ]
+    },
+    {
+      "id": "R00-QM-SOURCING-SERV",
+      "level": "n2",
+      "sectorId": "quimica",
+      "section": "Inicio",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Jerarquización de Deficiencias en Servicios de Apoyo e Infraestructura (Jerarquización 1 al 6)",
+      "prompt": "Ordene del 1 al 6 las mayores limitaciones en servicios de apoyo externo en Puebla-Tlaxcala (1 = Mayor limitación; 6 = Menor limitación)",
+      "microcopy": "Identifica los cuellos de botella del entorno de servicios técnicos, analíticos y de infraestructura ambiental.",
+      "type": "rank",
+      "prefilled": false,
+      "factorCount": 6,
+      "factors": [
+        {
+          "id": "f1",
+          "label": "1. Escasez de laboratorios de ensayo acreditados ISO/IEC 17025 para análisis químico avanzado (Cromatografía GC-MS, HPLC, Espectrometría FTIR/AAS)."
+        },
+        {
+          "id": "f2",
+          "label": "2. Alto costo y lenta respuesta en servicios de mantenimiento especializado de bombas de proceso, sellos mecánicos y reactores vidriados."
+        },
+        {
+          "id": "f3",
+          "label": "3. Retardos y restricciones en el transporte certificado de materiales peligrosos (Hazmat) en la región."
+        },
+        {
+          "id": "f4",
+          "label": "4. Falta de consultoría especializada local en Seguridad de Procesos Químicos (PSM), estudios HAZOP y análisis de consecuencias."
+        },
+        {
+          "id": "f5",
+          "label": "5. Deficiente infraestructura de tratamiento comunitario de agua industrial y recarga de acuíferos en los parques químicos."
+        },
+        {
+          "id": "f6",
+          "label": "6. Escasos programas de capacitación técnica especializada en manejo seguro de sustancias químicas y respuesta a emergencias."
+        }
+      ]
+    },
+    {
+      "id": "QM-TECH-01",
+      "level": "n2",
+      "sectorId": "quimica",
+      "section": "Inicio",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Absorción Tecnológica P1: Cobertura de Equipamiento y Sourcing Tecnológico",
+      "prompt": "¿Con cuáles de las siguientes tecnologías e instrumentos de proceso cuenta su planta actualmente?",
+      "microcopy": "Suma +20.0 pts por casilla seleccionada hasta un máximo de 100.0 pts. Evalúa la densidad tecnológica instalada.",
+      "type": "multi_select",
+      "prefilled": false,
+      "factorCount": 5,
+      "factors": [
+        {
+          "id": "f1",
+          "label": "Sistema de Control Distribuido (DCS / SCADA) para automatización continua de reactores, temperatura y presión."
+        },
+        {
+          "id": "f2",
+          "label": "Instrumental Analítico de Laboratorio Propio (Cromatografía GC/HPLC, Espectrofotometría FTIR o Viscosimetría Digital)."
+        },
+        {
+          "id": "f3",
+          "label": "Sistema de Seguridad Instrumentado (SIS) con Válvulas de Alivio Automatizadas y Monitoreo LEL de Gases Explosivos."
+        },
+        {
+          "id": "f4",
+          "label": "Software de Gestión ERP / LIMS (Laboratory Information Management System) conectado para control de lotes e inventario."
+        },
+        {
+          "id": "f5",
+          "label": "Planta de Tratamiento de Aguas Residuales Industriales (PTAR) propia con monitoreo continuo de DQO/DBO y pH."
+        }
+      ]
+    },
+    {
+      "id": "QM-TECH-02",
+      "level": "n2",
+      "sectorId": "quimica",
+      "section": "Inicio",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Absorción Tecnológica P2: Subutilización Tecnológica (Índice IST)",
+      "prompt": "De las tecnologías, módulos software o equipos analíticos instalados en su planta, ¿cuántos operan por debajo de su capacidad o son ignorados por el personal?",
+      "microcopy": "Calcula el Índice de Subutilización Tecnológica (IST). Score_P2 = 100 - IST.",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Todas las funciones del DCS, LIMS y equipos de laboratorio son aprovechadas al 100%.",
+          "score": 100
+        },
+        {
+          "value": "opt2",
+          "label": "1 función desaprovechada (ej. LIMS usado solo como archivo pero sin gráficos de tendencia).",
+          "score": 80
+        },
+        {
+          "value": "opt3",
+          "label": "2 funciones desaprovechadas (ej. DCS operado en manual sin lazos PID automáticos).",
+          "score": 60
+        },
+        {
+          "value": "opt4",
+          "label": "3 o más funciones desaprovechadas por falta de capacitación del personal operativo.",
+          "score": 40
+        },
+        {
+          "value": "opt5",
+          "label": "Equipos analíticos o software automatizado fuera de servicio o ignorados.",
+          "score": 20
+        }
+      ]
+    },
+    {
+      "id": "QM-TECH-03",
+      "level": "n2",
+      "sectorId": "quimica",
+      "section": "Inicio",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Absorción Tecnológica P3: Brecha con la Frontera Tecnológica Internacional (Benchmark Aghion)",
+      "prompt": "¿Qué nivel de tecnología utilizan los fabricantes químicos internacionales líderes frente al equipamiento de su planta?",
+      "microcopy": "Evalúa la brecha tecnológica internacional (Δ = 100 - Score_P3).",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Procesos por lotes (batch) totalmente manuales sin registro digital de variables de reacción.",
+          "score": 20
+        },
+        {
+          "value": "opt2",
+          "label": "Control semiautomático mediante PLC aislado sin integración a red central ni LIMS.",
+          "score": 40
+        },
+        {
+          "value": "opt3",
+          "label": "DCS automatizado en reactores y laboratorio analítico con control estadístico de calidad.",
+          "score": 60
+        },
+        {
+          "value": "opt4",
+          "label": "Micro-reactores de flujo continuo, dosificación automatizada por masa y control predictivo de proceso.",
+          "score": 80
+        },
+        {
+          "value": "opt5",
+          "label": "Planta química inteligente con gemelos digitales (Digital Twin), análisis NIR en línea e IA optimizadora.",
+          "score": 100
+        }
+      ]
+    },
+    {
+      "id": "QM-TECH-04",
+      "level": "n2",
+      "sectorId": "quimica",
+      "section": "Inicio",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Absorción Tecnológica P4: Apuesta Transformacional a 24--36 Meses (ICPO)",
+      "prompt": "¿En qué etapa se encuentra su proyecto de inversión para reconversión tecnológica o química verde a mediano plazo?",
+      "microcopy": "Mide la preparación de la firma para proyectos CAPEX de transformación productiva.",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "No se contemplan proyectos de reconversión tecnológica en los próximos 3 años.",
+          "score": 20
+        },
+        {
+          "value": "opt2",
+          "label": "Cotización preliminar de reactores de mayor eficiencia o sistemas de recuperación de solventes.",
+          "score": 40
+        },
+        {
+          "value": "opt3",
+          "label": "Plan de inversión formalizado para automatización DCS o formulaciones de bajo impacto ambiental.",
+          "score": 60
+        },
+        {
+          "value": "opt4",
+          "label": "Instalación de nuevas líneas de reacción continua o sistemas avanzados de filtración.",
+          "score": 80
+        },
+        {
+          "value": "opt5",
+          "label": "Nueva línea de química verde o bioplásticos plenamente operativa y comercializada.",
+          "score": 100
+        }
+      ]
+    },
+    {
+      "id": "QM-TECH-05",
+      "level": "n2",
+      "sectorId": "quimica",
+      "section": "Inicio",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Absorción Tecnológica P5: Demanda Explícita de Proyectos Tecnológicos Inmediatos",
+      "prompt": "¿Hay algún proyecto tecnológico específico o necesidad prioritaria que requiera abordar a la brevedad en su planta química?",
+      "microcopy": "Captura la demanda real de proyectos de inversión. Asigna puntaje neutro constante de control Score_P5 = 60.0 pts.",
+      "type": "single_select_text",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Proyecto 1: Implementación / Optimización de Sistema de Control Distribuido (DCS) y lazos de control automático de temperatura/presión.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Proyecto 2: Certificación / Auditoría en Seguridad de Procesos Químicos (PSM OSHA / Responsible Care) y estudios HAZOP.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Proyecto 3: Modernización del Laboratorio de Calidad con LIMS e instrumental para Certificados de Análisis (COA) digitales.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Proyecto 4: Instalación de Sistema de Recuperación de Solventes, Eficiencia Energética en Calderas y Tratamiento de Efluentes PTAR.",
+          "score": null
+        },
+        {
+          "value": "opt5",
+          "label": "Un proyecto propio",
+          "score": null
+        }
+      ],
+      "text": {
+        "maxLength": 100,
+        "optionValue": "opt5"
+      }
+    },
+    {
+      "id": "QM-TECH-06",
+      "level": "n2",
+      "sectorId": "quimica",
+      "section": "Inicio",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Control Estadístico de Proceso, Rendimiento y Gestión de Mermas",
+      "prompt": "¿Cómo mide y controla su planta el rendimiento estequiométrico de reacción, la tasa de mermas y los lotes rechazados?",
+      "microcopy": "Métrica dura de calidad química y eficiencia del proceso de conversión.",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Pruebas manuales esporádicas; rendimiento no calculado; rechazos de lotes > 5%; mermas sin registrar.",
+          "score": 25
+        },
+        {
+          "value": "opt2",
+          "label": "Análisis de laboratorio por lote; rendimiento de reacción entre 85% y 92%; rechazos de lotes entre 2% y 5%.",
+          "score": 50
+        },
+        {
+          "value": "opt3",
+          "label": "Control Estadístico de Calidad (SPC) en laboratorio; rendimiento > 93%; rechazos de lotes < 2%; mermas < 1.5%.",
+          "score": 75
+        },
+        {
+          "value": "opt4",
+          "label": "Monitoreo de calidad en línea en tiempo real (PAT/NIR); rendimiento > 97%; rechazos < 0.5%.",
+          "score": 100
+        }
+      ]
+    },
+    {
+      "id": "QM-TECH-07",
+      "level": "n2",
+      "sectorId": "quimica",
+      "section": "Inicio",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Trazabilidad Digital de Lotes, COA y Conectividad ERP/DCS",
+      "prompt": "¿Qué nivel de trazabilidad digital por lote de materia prima y producto terminado utiliza su planta?",
+      "microcopy": "La trazabilidad digital de lotes es indispensable para emitir Certificados de Análisis (COA) auditables y gestionar retiradas en < 1 hr.",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Registros de lote en libretas o carpetas físicas; Certificados de Análisis elaborados a mano.",
+          "score": 25
+        },
+        {
+          "value": "opt2",
+          "label": "Captura posterior en hojas de cálculo; el ERP no está conectado con los instrumentos del laboratorio.",
+          "score": 50
+        },
+        {
+          "value": "opt3",
+          "label": "LIMS emite COA digital vinculando el lote de materia prima con la orden de producción.",
+          "score": 75
+        },
+        {
+          "value": "opt4",
+          "label": "Trazabilidad automatizada en tiempo real con firma digital, conforme a estándares internacionales.",
+          "score": 100
+        }
+      ]
+    },
+    {
+      "id": "CP-QM-01",
+      "level": "n2",
+      "sectorId": "quimica",
+      "section": "Inicio",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Reconexión hacia la 'Fruta Madura' Químico-Petroquímica (Alta Densidad ω_j > 0.65)",
+      "prompt": "¿Hacia qué productos de mayor valor agregado podría reconvertirse su planta en < 12 meses utilizando su capacidad instalada actual?",
+      "microcopy": "Evalúa la viabilidad de salto en el espacio de productos hacia especialidades de alta densidad tecnológica.",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Formulaciones químicas especializadas de alto margen (aditivos, surfactantes biodegradables, dispersantes).",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Resinas sintéticas modificadas y compuestos poliméricos avanzados para la industria automotriz y médica.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Soluciones de química verde, biopolímeros y solventes de origen vegetal o reciclado.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Productos de limpieza concentrada e higiene de grado institucional / farmacéutico.",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "CP-QM-02",
+      "level": "n2",
+      "sectorId": "quimica",
+      "section": "Inicio",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Apuestas Estratégicas y Productos Químicos de Alto Valor Agregado (Alto ICPO)",
+      "prompt": "En un horizonte de 2 a 3 años con inversión o asociación, ¿hacia qué segmento de alta complejidad química proyecta diversificarse?",
+      "microcopy": "Mide la ambición de innovación transformacional en química fina y materiales avanzados.",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Síntesis de químicos finos e ingredientes activos para la industria farmacéutica y cosmética.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Materiales poliméricos autorregenerables, nanomateriales y catalizadores de alta eficiencia.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Fertilizantes de liberación controlada y bioinsumos agrícolas de alta precisión.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Reactivos químicos de alta pureza para la industria electrónica de semiconductores.",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "CP-QM-03",
+      "level": "n2",
+      "sectorId": "quimica",
+      "section": "Inicio",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Sostenibilidad, Química Verde, Economía Circular y Descarbonización",
+      "prompt": "¿Qué nivel de avance tiene su planta en descarbonización, sustitución de insumos tóxicos y valorización de subproductos?",
+      "microcopy": "Evalúa la alineación de la planta con los objetivos ESG y la química verde.",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Cumplimiento ambiental básico sin iniciativas de química verde o reciclaje de solventes.",
+          "score": 25
+        },
+        {
+          "value": "opt2",
+          "label": "Recuperación interna de solventes y reducción gradual de emisiones de compuestos orgánicos volátiles (COVs).",
+          "score": 50
+        },
+        {
+          "value": "opt3",
+          "label": "Sustitución activa de insumos peligrosos por alternativas biodegradables y plan de reducción de huella de carbono Scope 1/2.",
+          "score": 75
+        },
+        {
+          "value": "opt4",
+          "label": "Planta Química Verde Certificada: Proceso de cero efluentes no tratados (ZDL), ciclo cerrado de solventes y neutralidad de carbono.",
+          "score": 100
+        }
+      ]
+    },
+    {
+      "id": "COL-QM01",
+      "level": "n2",
+      "sectorId": "quimica",
+      "section": "Inicio",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Hub Comunitario de Espectrometría Avanzada, Cromatografía y Caracterización de Materiales",
+      "prompt": "¿Cuál sería el interés de su empresa en participar en un Centro Comunitario de Análisis Químico Acreditado ISO/IEC 17025?",
+      "microcopy": "Evalúa la viabilidad económica del proyecto asociativo IAIC (IAIC = Gasto Individual / Cuota Hub).",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Sin Interés / Análisis Independiente: Continuar pagando servicios analíticos foráneos a costo pleno.",
+          "score": 25
+        },
+        {
+          "value": "opt2",
+          "label": "Uso Eventual por Tarifa Preferencial: Utilizar el laboratorio comunitario para ensayos esporádicos de verificación.",
+          "score": 50
+        },
+        {
+          "value": "opt3",
+          "label": "Suscripción Anual de Servicios Analíticos: Integrarse como usuario fundador con volumen garantizado de pruebas COA.",
+          "score": 75
+        },
+        {
+          "value": "opt4",
+          "label": "Co-Inversión y Gobernanza del Hub Analítico: Participar como socio industrial en el equipamiento y acreditación del centro.",
+          "score": 100
+        }
+      ]
+    },
+    {
+      "id": "COL-QM02",
+      "level": "n2",
+      "sectorId": "quimica",
+      "section": "Inicio",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Planta Comunitaria de Tratamiento de Efluentes Complejos (PTAR) y Manejo de Residuos Peligrosos",
+      "prompt": "¿Cómo participaría su planta en una infraestructura compartida de tratamiento terciario de agua y gestión de residuos químicos?",
+      "microcopy": "Mide la viabilidad de reducción de costos ambientales (IFET).",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Tratamiento Individual en Planta: Mantener la gestión interna de efluentes sin integrarse a redes del parque industrial.",
+          "score": 25
+        },
+        {
+          "value": "opt2",
+          "label": "Conexión a Red Comunitarias de Pre-Tratamiento: Descarga de efluentes pre-tratados hacia la planta colectiva del parque industrial.",
+          "score": 50
+        },
+        {
+          "value": "opt3",
+          "label": "Alianza para Reciclaje de Solventes y Reuso de Agua: Participar en un circuito cerrado comunitario de recuperación de insumos.",
+          "score": 75
+        },
+        {
+          "value": "opt4",
+          "label": "Co-Inversión en Infraestructura PTAR de Cero Descargas (ZDL): Cofinanciar planta modular de evaporación y cristalización conjunta.",
+          "score": 100
+        }
+      ]
+    },
+    {
+      "id": "COL-QM03",
+      "level": "n2",
+      "sectorId": "quimica",
+      "section": "Inicio",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Consorcio de Compras Consolidadas de Monómeros, Solventes e Insumos Químicos Base",
+      "prompt": "¿Qué grado de apertura tiene su empresa para asociarse en un consorcio de compras de insumos químicos a escala de contenedor/buque?",
+      "microcopy": "Mide el ahorro potencial en precios de adquisición de insumos base (IPCA).",
+      "type": "rank",
+      "prefilled": false,
+      "factorCount": 4,
+      "factors": [
+        {
+          "id": "f1",
+          "label": "Digitalización de lotes y automatización de Certificados de Análisis (COA)."
+        },
+        {
+          "id": "f2",
+          "label": "Auditoría de Seguridad de Procesos Químicos (PSM) y estudio HAZOP."
+        },
+        {
+          "id": "f3",
+          "label": "Suscripción al Hub Comunitario de Espectrometría y Cromatografía ISO 17025."
+        },
+        {
+          "id": "f4",
+          "label": "Integración al Consorcio de Compras Consolidadas de Insumos Químicos."
+        }
+      ]
+    }
+  ],
+  "roadmap": [
+    {
+      "band": "platino",
+      "min": 85.0,
+      "max": null,
+      "actions": [
+        "Implementar arquitectura de Gemelo Digital (Digital Twin) en reactores principales.",
+        "Desarrollar catalizadores propietarios y patentes de formulación.",
+        "Liderar el Consorcio de Compras Consolidadas y exportaciones T-MEC."
+      ]
+    },
+    {
+      "band": "oro",
+      "min": 70.0,
+      "max": 85.0,
+      "actions": [
+        "Integrar lazos de control PID automáticos en el DCS de reactores.",
+        "Implementar control estadístico SPC en tiempo real con sensores NIR en línea.",
+        "Adherirse al Hub Comunitario de Análisis Químico ISO 17025."
+      ]
+    },
+    {
+      "band": "plata",
+      "min": 50.0,
+      "max": 70.0,
+      "actions": [
+        "Digitalización inmediata de bitácoras de lote y automatización de COA.",
+        "Capacitación del personal operativo en Seguridad de Procesos (PSM).",
+        "Conexión a la Planta Comunitaria de Tratamiento de Efluentes (PTAR)."
+      ]
+    },
+    {
+      "band": "bronce",
+      "min": 0.0,
+      "max": 50.0,
+      "actions": [
+        "Implementación de protocolo básico de seguridad química y almacenamiento Hazmat.",
+        "Estandarización de fórmulas en hojas de proceso y calibración de básculas.",
+        "Integración urgente al Consorcio de Compras Consolidadas de insumos."
+      ]
+    }
+  ]
+}

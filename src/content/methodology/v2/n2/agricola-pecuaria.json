@@ -1,0 +1,756 @@
+{
+  "sectorId": "agricola-pecuaria",
+  "label": "02. Producción Agrícola y Pecuaria Tecnificada",
+  "questions": [
+    {
+      "id": "AG-01",
+      "level": "n2",
+      "sectorId": "agricola-pecuaria",
+      "section": "MÓDULO 0: PERFILADO DEL ESLABÓN Y LOCALIZACIÓN TERRITORIAL (HEREDADO DE NIVEL 1)",
+      "widget": "Tarjeta de Selección Única (Pre-poblado)",
+      "title": "Sub-eslabón Dominante en la Cadena Agropecuaria",
+      "prompt": "¿En cuál de los siguientes sub-eslabones se concentra la mayor proporción de la producción y facturación de su establecimiento?",
+      "microcopy": "El sub-eslabón determina los esquemas de inocuidad, normas fitosanitarias/zoosanitarias (SENASICA/SADER) y requerimientos de infraestructura hídrica/térmica.",
+      "type": "single_select",
+      "prefilled": true,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Agricultura Protegida y Horticultura Intensiva: Invernaderos, mallasombra, macrotúneles e hidroponía para hortalizas (jitomate, pimiento, pepino) y berries.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Fruticultura y Cultivos de Campo Abierto: Producción a cielo abierto de cítricos, aguacate, manzana, durazno, hortalizas de estación y granos (maíz, cebada, trigo).",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Producción Pecuaria e Intensiva: Granjas y establos dedicados a la avicultura (huevo/pollo), porcinocultura, ganadería bovina (leche/carne) u ovinocultura.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Agroindustria Primaria, Viveros y Agrotechnology: Producción de plántula certificada, bioproyectos, cultivo de tejidos, alimentos balanceados o servicios de mecanización agrícola.",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "AG-02",
+      "level": "n2",
+      "sectorId": "agricola-pecuaria",
+      "section": "MÓDULO 0: PERFILADO DEL ESLABÓN Y LOCALIZACIÓN TERRITORIAL (HEREDADO DE NIVEL 1)",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Valle o Nodo Agrícola-Pecuario de Operación",
+      "prompt": "¿En qué valle agrícola o nodo pecuario de la región Puebla - Tlaxcala se localiza la principal unidad de producción o rancho?",
+      "microcopy": "La localización geográfica determina el acceso a acuíferos/concesiones CONAGUA, riesgo de heladas/granizo y calidad de caminos saca-cosechas.",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Corredor 1: Valle de Tehuacán, Ajalpan y Tepanco (Puebla Sur): Nodo agroindustrial avícola, porcino, hortalizas de riego y plantas procesadoras.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Corredor 2: Valle de Libres - Huamantla - El Carmen Tequexquitla (Puebla-Tlaxcala Este): Granos comerciales (maíz, cebada), hortalizas en agricultura protegida y papa.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Corredor 3: Valles Altos, Tecamachalco - Palmar de Bravo - Quecholac (Triángulo Agrícola): Producción intensiva de hortalizas de hoja, brócoli, coliflor y empaques.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Corredor 4: Sierra Norte / Nororiental y Valles Centrales (Atlixco, Izúcar, Huauchinango, Cuetzalan): Caña de azúcar, café, frutales, floricultura y ganadería.",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "AG-03",
+      "level": "n2",
+      "sectorId": "agricola-pecuaria",
+      "section": "MÓDULO 0: PERFILADO DEL ESLABÓN Y LOCALIZACIÓN TERRITORIAL (HEREDADO DE NIVEL 1)",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Certificación de Inocuidad, Sanidad y Calidad Agropecuaria",
+      "prompt": "¿Cuál es el nivel formal de certificación fitosanitaria, zoosanitaria o de inocuidad alimentaria que ostenta su unidad de producción?",
+      "microcopy": "Las certificaciones internacionales son el pasaporte indispensable para ingresar a cadenas de retail (Walmart, HEB) y mercados de exportación (EE.UU./Canadá FSMA).",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Básico / Registro SADER-SENASICA: Padrón de productor o registro de unidad de producción básica sin auditorías formales de Buenas Prácticas Agrícolas/Pecuarias.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Buenas Prácticas Agrícolas / Pecuarias (BPA/BPP SENASICA): Certificado nacional emitido por SENASICA en inocuidad, uso responsable de agroquímicos y sanidad.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Certificación Internacional de Inocuidad (GlobalGAP / PrimusGFS / SQF): Auditoría internacional vigente aprobada para exportación directa o suministro a grandes cadenas.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Certificación Orgánica / Comercio Justo / Regenerativa (USDA Organic / FairTrade): Certificación especializada de alto valor agregado para mercados de nicho e internacionales.",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "R00-AGRO-PROD",
+      "level": "n2",
+      "sectorId": "agricola-pecuaria",
+      "section": "SECCIÓN I: ROMPEHIELOS DE SEVERIDAD OPERATIVA (MÉTODO DE BORDA)",
+      "widget": "Rompehielos de Jerarquización (1 al 8)",
+      "title": "Jerarquización de Fricciones en Campo, Granja y Proceso",
+      "prompt": "Ordene del 1 al 8 las siguientes fricciones según el impacto económico negativo y la frecuencia con que afectan su unidad productiva (1 = Mayor impacto / Máxima gravedad; 8 = Menor impacto)",
+      "microcopy": "Permite priorizar la causa raíz de las pérdidas agropecuarias antes del análisis técnico en profundidad.",
+      "type": "rank",
+      "prefilled": false,
+      "factorCount": 8,
+      "factors": [
+        {
+          "id": "f1",
+          "label": "Mermas poscosecha elevadas y pérdidas de producto por heladas, granizo o estrés hídrico."
+        },
+        {
+          "id": "f2",
+          "label": "Paros y fallas no programadas en sistemas de riego, pozos profundos o equipos de bombeo."
+        },
+        {
+          "id": "f3",
+          "label": "Incidencia de plagas fitosanitarias o brotes infecciosos pecuarios que reducen rendimiento."
+        },
+        {
+          "id": "f4",
+          "label": "Alta variabilidad en el rendimiento por hectárea o pesaje/conversión alimenticia por animal."
+        },
+        {
+          "id": "f5",
+          "label": "Escasez, alta rotación y falta de capacitación de jornaleros y operadores de maquinaria."
+        },
+        {
+          "id": "f6",
+          "label": "Cuellos de botella y falta de capacidad en infraestructura de pre-enfriamiento y almacén frío."
+        },
+        {
+          "id": "f7",
+          "label": "Deficiencia en el registro manual de bitácoras de campo/cuadro y falta de trazabilidad de lote."
+        },
+        {
+          "id": "f8",
+          "label": "Reclamaciones de compradores por variabilidad de calibre, madurez o daños mecánicos en empaque."
+        }
+      ]
+    },
+    {
+      "id": "R00-AGRO-SOURCING-MAT",
+      "level": "n2",
+      "sectorId": "agricola-pecuaria",
+      "section": "SECCIÓN I: ROMPEHIELOS DE SEVERIDAD OPERATIVA (MÉTODO DE BORDA)",
+      "widget": "Rompehielos de Jerarquización (1 al 6)",
+      "title": "Jerarquización de Riesgos en Sourcing de Insumos y Semillas",
+      "prompt": "Ordene del 1 al 6 las restricciones que mayor volatilidad o desabasto causan en su suministro de insumos productivos (1 = Mayor impacto negativo; 6 = Menor impacto)",
+      "microcopy": "Mide la vulnerabilidad de la unidad productiva ante choques de precios o escasez de agroinsumos clave.",
+      "type": "rank",
+      "prefilled": false,
+      "factorCount": 6,
+      "factors": [
+        {
+          "id": "f1",
+          "label": "Sobrecostos y alta volatilidad en precios de fertilizantes químicos importados y agroquímicos."
+        },
+        {
+          "id": "f2",
+          "label": "Escasez y alto costo de semilla certificada, plántula de alta calidad o pie de cría genético."
+        },
+        {
+          "id": "f3",
+          "label": "Incremento desmedido en el costo de alimento balanceado, forrajes y granos forrajeros."
+        },
+        {
+          "id": "f4",
+          "label": "Restricciones en la disponibilidad y calidad del agua de riego de pozo o canal de veda."
+        },
+        {
+          "id": "f5",
+          "label": "Volatilidad en el costo de materiales de empaque agrícola (cajas de cartón, tarimas, clamshells)."
+        },
+        {
+          "id": "f6",
+          "label": "Falta de refacciones oportunas y mantenimiento especializado para tractores e implementos."
+        }
+      ]
+    },
+    {
+      "id": "R00-AGRO-SOURCING-SERV",
+      "level": "n2",
+      "sectorId": "agricola-pecuaria",
+      "section": "SECCIÓN I: ROMPEHIELOS DE SEVERIDAD OPERATIVA (MÉTODO DE BORDA)",
+      "widget": "Rompehielos de Jerarquización (1 al 6)",
+      "title": "Jerarquización de Deficiencias en Infraestructura y Servicios",
+      "prompt": "Ordene del 1 al 6 las mayores deficiencias en servicios técnicos y entorno regional que frenan su crecimiento (1 = Mayor impacto negativo; 6 = Menor impacto)",
+      "microcopy": "Mide las fallas de mercado exógenas en la cuenca agrícola-pecuaria Puebla-Tlaxcala.",
+      "type": "rank",
+      "prefilled": false,
+      "factorCount": 6,
+      "factors": [
+        {
+          "id": "f1",
+          "label": "Altas tarifas y deficiente calidad en el suministro de energía eléctrica para bombeo de riego."
+        },
+        {
+          "id": "f2",
+          "label": "Robos de insumos, maquinaria, ganado (abigeato) y producto en carreteras regionales (150D, Libres)."
+        },
+        {
+          "id": "f3",
+          "label": "Falta de laboratorios locales acreditados para análisis de suelo, agua, foliar y residuos de plaguicidas."
+        },
+        {
+          "id": "f4",
+          "label": "Escasez de servicios veterinarios, fitosanitarios y asesores técnicos especializados en la zona."
+        },
+        {
+          "id": "f5",
+          "label": "Costo elevado e indisponibilidad de fletes refrigerados consolidados para pequeños y medianos lotes."
+        },
+        {
+          "id": "f6",
+          "label": "Tramitología lenta e incertidumbre en concesiones de agua ante CONAGUA y licencias ambientales."
+        }
+      ]
+    },
+    {
+      "id": "AG-TECH-01",
+      "level": "n2",
+      "sectorId": "agricola-pecuaria",
+      "section": "SECCIÓN II: AUDITORÍA TÉCNICA DIRECTA Y ABSORCIÓN TECNOLÓGICA (P1 A P5 CONTEXTUALIZADAS)",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Absorción Tecnológica P1: Tecnologías de Sourcing Crítico",
+      "prompt": "¿Cuál de las siguientes tecnologías o equipos especializados requiere adquirir o modernizar su unidad productiva pero enfrenta sobrecostos o falta de proveedores locales calificados?",
+      "microcopy": "Identifica la tecnología de mayor valor con falla de proveeduría local en la cuenca agropecuaria.",
+      "type": "single_select_text",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Sistemas de Fertirriego Automatizado y Riego por Goteo de Alta Precisión: Cabezales de riego programables, inyección de fertilizantes por conductividad/pH y sensores de humedad.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Invernaderos Hidropónicos Tecnificados y Mallasombra Automatizada: Estructuras de alta tecnología con control de clima, pantallas térmicas y sistemas recirculantes.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Estaciones Meteorológicas IoT y Sensores de Suelo / Clima: Red de sensores en tiempo real para predicción de heladas, punto de rocío y humedad de suelo.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Maquinaria Agrícola de Precisión con GPS / RTK: Tractores, cosechadoras o sembradoras equipadas con autoguiado satelital y mapeo de rendimiento.",
+          "score": null
+        },
+        {
+          "value": "opt5",
+          "label": "Sistemas de Pre-enfriamiento Rápido y Cadena de Frío (Hydrocooling / Vacuum Cooling / IQF): Infraestructura de frío para romper calor de campo en menos de 2 horas post-cosecha.",
+          "score": null
+        },
+        {
+          "value": "opt6",
+          "label": "Otro",
+          "score": null
+        }
+      ],
+      "text": {
+        "maxLength": 100,
+        "optionValue": "opt6"
+      }
+    },
+    {
+      "id": "AG-TECH-02",
+      "level": "n2",
+      "sectorId": "agricola-pecuaria",
+      "section": "SECCIÓN II: AUDITORÍA TÉCNICA DIRECTA Y ABSORCIÓN TECNOLÓGICA (P1 A P5 CONTEXTUALIZADAS)",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Absorción Tecnológica P2: Subaprovechamiento de Tecnologías Instaladas",
+      "prompt": "¿Qué tecnología o sistema ya tiene instalado en su rancho o planta pero NO funciona como desearía o se encuentra subaprovechado?",
+      "microcopy": "Mide la falla de absorción por falta de capacitación, software no integrado o soporte deficiente.",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Sistema de Riego Automatizado instalado que se opera manualmente por falta de programación o sensores dañados.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Tractores o Maquinaria con GPS/Telemetría subutilizada (solo se usa para tracción, sin registro de datos de rendimiento).",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Software de Gestión Agrícola / ERP de Campo que no se actualiza continuamente y se sigue llevando en cuadernos/Excel.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Protocolos de Bioseguridad o Automatización de Alimentación en granjas que fallan por falta de mantenimiento.",
+          "score": null
+        },
+        {
+          "value": "opt5",
+          "label": "Infraestructura de Empaque o Enfriamiento que opera por debajo de su capacidad por falta de calibración o personal calificado.",
+          "score": null
+        },
+        {
+          "value": "opt6",
+          "label": "Ninguno / Todas las tecnologías instaladas operan a su máximo rendimiento.",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "AG-TECH-03",
+      "level": "n2",
+      "sectorId": "agricola-pecuaria",
+      "section": "SECCIÓN II: AUDITORÍA TÉCNICA DIRECTA Y ABSORCIÓN TECNOLÓGICA (P1 A P5 CONTEXTUALIZADAS)",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Absorción Tecnológica P3: Brecha con la Frontera Internacional",
+      "prompt": "¿Qué tecnología utilizan los productores internacionales líderes que los hace significativamente más competitivos que las empresas de su sector en la región?",
+      "microcopy": "Evalúa la distancia a la frontera tecnológica global (Benchmark Aghion / OMPI 2026).",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Agricultura de Precisión con Drones Multiespectrales e Inteligencia Artificial: Monitoreo aéreo con imágenes térmicas/multiespectrales para aplicación variable de insumos.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Ambientes Controlados 100% Automatizados (Vertical Farming / Plant Factories): Producción vertical en ambientes estériles con iluminación LED especializada sin uso de suelo.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Selección Genómica y Biotecnología de Vanguardia: Semillas o reproductores seleccionados por marcadores moleculares para máxima resistencia al estrés hídrico.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Monitoreo Telemático de Cadena de Frío en Tiempo Real con Sensores IoT / RFID: Trazabilidad contínua de temperatura y humedad desde el empaque hasta el punto de venta final.",
+          "score": null
+        },
+        {
+          "value": "opt5",
+          "label": "Biocontroladores de Última Generación y Biofertilizantes Organominerales Avanzados: Sustitución total de agroquímicos síntéticos por biológicos de alta eficiencia.",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "AG-TECH-04",
+      "level": "n2",
+      "sectorId": "agricola-pecuaria",
+      "section": "SECCIÓN II: AUDITORÍA TÉCNICA DIRECTA Y ABSORCIÓN TECNOLÓGICA (P1 A P5 CONTEXTUALIZADAS)",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Absorción Tecnológica P4: Tecnología Revolucionaria / Apuesta Transformacional",
+      "prompt": "¿Qué tecnología transformacional o proyecto de gran calado revolucionaría la productividad y sostenibilidad de su empresa en los próximos 2 a 3 años?",
+      "microcopy": "Mide el potencial de salto en el espacio de productos y complejidad agroindustrial (CIDE / Harvard).",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Conversión Completa a Agricultura / Ganadería de Precisión Inteligente (IoT, Drones y Fertirriego Autónomo).",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Construcción de Planta Agroindustrial de Procesamiento y Valor Agregado (Congelado IQF, Liofilizado o Extractos).",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Instalación de Planta de Biodigestión Biogás / Biofertilizante a partir de Excretas Pecuarias y Residuos.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Implementación de Red Comunitarias de Invernaderos de Alta Tecnología con Trazabilidad Blockchain/GS1.",
+          "score": null
+        },
+        {
+          "value": "opt5",
+          "label": "Reconversión Total a Producción Certificada Orgánica / Regenerativa de Exportación.",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "AG-TECH-05",
+      "level": "n2",
+      "sectorId": "agricola-pecuaria",
+      "section": "SECCIÓN II: AUDITORÍA TÉCNICA DIRECTA Y ABSORCIÓN TECNOLÓGICA (P1 A P5 CONTEXTUALIZADAS)",
+      "widget": "Tarjeta de Selección Única + Texto Libre",
+      "title": "Absorción Tecnológica P5: Demanda Explícita de Proyectos Tecnológicos Inmediatos",
+      "prompt": "¿Hay algún proyecto tecnológico específico o necesidad prioritaria que requiera abordar a la brevedad para su empresa?",
+      "microcopy": "Captura la demanda real de acompañamiento técnico para asignación inmediata a programas de apoyo.",
+      "type": "single_select_text",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Proyecto 1: Certificación e Implementación de Inocuidad Fitosanitaria / Zoosanitaria (GlobalGAP / PrimusGFS / SENASICA).",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Proyecto 2: Instalación de Kit de Telemetría, Estación Meteorológica y Sensores de Riego por Goteo.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Proyecto 3: Modernización de Equipos de Pre-enfriamiento, Empaque y Cadena de Frío Poscosecha.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Proyecto 4: Capacitación Intensiva en Manejo Integrado de Plagas, Bioinsumos y Conservación de Suelos.",
+          "score": null
+        },
+        {
+          "value": "opt5",
+          "label": "Un proyecto propio",
+          "score": null
+        }
+      ],
+      "text": {
+        "maxLength": 100,
+        "optionValue": "opt5"
+      }
+    },
+    {
+      "id": "AG-TECH-06",
+      "level": "n2",
+      "sectorId": "agricola-pecuaria",
+      "section": "SECCIÓN II: AUDITORÍA TÉCNICA DIRECTA Y ABSORCIÓN TECNOLÓGICA (P1 A P5 CONTEXTUALIZADAS)",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Control de Rendimiento por Hectárea/UBA, Mermas y Eficiencia Agropecuaria",
+      "prompt": "¿Cuál es el porcentaje promedio de mermas poscosecha/muerte pecuaria y el nivel de control de rendimiento en su unidad productiva?",
+      "microcopy": "Mide la eficiencia técnica de cosecha/producción y la gestión del desperdicio alimentario.",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Sin medición precisa de rendimiento por cuadro/cuartel; mermas poscosecha o pérdidas superiores al 15%.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Registro manual de rendimiento por cosecha/lote; mermas controladas entre el 8% y 15%.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Registro digital de rendimiento por hectárea o pesaje automatizado; mermas poscosecha entre 3% y 7%.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Medición en tiempo real por sensor/maquinaria; mermas por debajo del 3% con clasificación automatizada.",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "AG-TECH-07",
+      "level": "n2",
+      "sectorId": "agricola-pecuaria",
+      "section": "SECCIÓN II: AUDITORÍA TÉCNICA DIRECTA Y ABSORCIÓN TECNOLÓGICA (P1 A P5 CONTEXTUALIZADAS)",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Trazabilidad Digital de Lote/Cuadro, Bitácora Electrónica y ERP Agrícola",
+      "prompt": "¿Qué nivel de trazabilidad digital e integración de información utiliza su unidad de producción para rastrear la historia de cada lote o hato?",
+      "microcopy": "La trazabilidad digital es indispensable para certificar la inocuidad y responder ante alertas sanitarias en menos de 1 hora.",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Bitácoras de aplicación de agroquímicos/vacunas llevadas a mano; sin trazabilidad digital de lote.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Captura posterior en Excel de lotes de cosecha, aplicación de fertirriego y ventas.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Código QR en cada tarima o lote de empaque vinculado a la bitácora de campo.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Rastreabilidad total desde la semilla/parición hasta el punto de entrega mediante ERP y sensores.",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "CP-AG-01",
+      "level": "n2",
+      "sectorId": "agricola-pecuaria",
+      "section": "SECCIÓN III: SOFISTICACIÓN PRODUCTIVA Y ESPACIO DE PRODUCTOS (CIDE / HARVARD)",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Reconversión hacia la 'Fruta Madura' Agropecuaria (Alta Densidad ω_j > 0.65)",
+      "prompt": "Considerando su suelo, agua y capacidades actuales, ¿hacia qué cultivo o producto de mayor valor agregado podría reconvertirse en menos de 12 meses?",
+      "microcopy": "Mide la capacidad de salto hacia adyacencias agrícolas de menor riesgo y mayor rentabilidad.",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Transición de Granos / Cultivos Tradicionales a Hortalizas de Riego en Agricultura Protegida (Jitomate, Pimiento, Pepino).",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Reconversión a Frutales de Alto Valor Agregado (Aguacate, Berries, Cítricos Certificados o Higo).",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Habilitación de Empaque Primario y Lavado / Calibrado de Hortalizas en Fresco (Fresh-cut ready to eat).",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Transición de Ganadería Extensiva a Producción Pecuaria Tecnificada con Bioseguridad y Razas Certificadas.",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "CP-AG-02",
+      "level": "n2",
+      "sectorId": "agricola-pecuaria",
+      "section": "SECCIÓN III: SOFISTICACIÓN PRODUCTIVA Y ESPACIO DE PRODUCTOS (CIDE / HARVARD)",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Apuestas Estratégicas y Procesamiento Agroindustrial Avanzado (Alto ICPO)",
+      "prompt": "En un horizonte de 2 a 3 años con coinversión y tecnología, ¿qué línea de alta complejidad agroindustrial podría desarrollar su empresa?",
+      "microcopy": "Evalúa la capacidad de diversificación hacia la agroindustria de alto valor agregado (Índice de Complejidad Potencial ICPO).",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Instalación de Planta de Congelado Rápido Individual (IQF) para frutas, verduras y berries de exportación.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Procesamiento de Extractos, Aceites Esenciales, Liofilizados o Pulpas Concentradas para la industria alimentaria/médica.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Vivero Tecnificado de Producción de Plántula Certificada / Laboratorio de Cultivo de Tejidos Vegetales.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Procesamiento Pecuario con Valor Agregado (Cortes Especializados, Empaque al Vacío, Lácteos Madurados).",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "CP-AG-03",
+      "level": "n2",
+      "sectorId": "agricola-pecuaria",
+      "section": "SECCIÓN III: SOFISTICACIÓN PRODUCTIVA Y ESPACIO DE PRODUCTOS (CIDE / HARVARD)",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Eficiencia Hídrica, Bioseguridad y Descarbonización Agrícola",
+      "prompt": "¿Qué nivel de avance tiene su empresa en la adopción de prácticas sostenibles, manejo de aguas y economía circular?",
+      "microcopy": "La sostenibilidad y eficiencia hídrica son la máxima prioridad normativa en la región Puebla-Tlaxcala.",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Cumplimiento Básico: Uso tradicional de agua de pozo/canal sin medición de huella hídrica; manejo convencional de envases de agroquímicos.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Prácticas de Conservación: Riego por goteo en parte del rancho; programa Campo Limpio de recolección de envases vacíos de agroquímicos.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Eficiencia Hídrica y Manejo Organomineral: Riego 100% localizado con medición de volumen; uso systematico de compostas y coberturas vegetales.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Rancho Neutro en Carbono / Economía Circular: Biodigestor para generación de energía/bioabono a partir de excretas; riego solar y certificación sustentable.",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "COL-AG01",
+      "level": "n2",
+      "sectorId": "agricola-pecuaria",
+      "section": "SECCIÓN IV: SOLUCIONES COLABORATIVAS ANTE LA FALLA DE ESCALA (BIENES DE CLUB)",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Centro Comunitario de Empaque, Pre-enfriamiento y Cadena de Frío Regional",
+      "prompt": "¿Cuál sería la disposición de su empresa para participar en un Centro Comunitario de Empaque y Frío compartido bajo esquema Pay-per-Use?",
+      "microcopy": "Resuelve la falla de escala en infraestructura poscosecha para pequeños y medianos productores.",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Alto Interés / Usuario Activo: Maquilaría o maquilaría empaque y pre-enfriamiento pagando exclusivamente por tonelada/caja procesada.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Interés Moderado / Co-inversionista: Dispuesto a aportar capital o comprometer volumen de cosecha para la construcción del centro.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Solo Servicio de Almacén: Utilizaría únicamente las cámaras frigoríficas de almacenamiento temporal en épocas de pico de cosecha.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Sin Interés: Cuenta con infraestructura propia suficiente o su modelo no requiere cadena de frío.",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "COL-AG02",
+      "level": "n2",
+      "sectorId": "agricola-pecuaria",
+      "section": "SECCIÓN IV: SOLUCIONES COLABORATIVAS ANTE LA FALLA DE ESCALA (BIENES DE CLUB)",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Laboratorio Comunitario de Análisis de Suelo, Agua y Fitosaniatario (ISO 17025)",
+      "prompt": "¿Cómo participaría su empresa en la creación de un Laboratorio Regional Acreditado de Análisis Agrícolas en Cuádruple Hélice?",
+      "microcopy": "Permite reducir costos de laboratorio hasta en un 60% y obtener resultados de fertilidad/residuos en menos de 48 horas.",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Usuario Frecuente: Enviaría muestras periódicas de suelo, agua de riego, tejido foliar y diagnóstico de plagas a tarifas preferenciales.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Participante en Ensayos de Inocuidad: Utilizaría el laboratorio para certificar la ausencia de residuos de plaguicidas y patógenos (E. coli, Salmonella).",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Socio de Vinculación Universitaria: Dispuesto a colaborar con universidades locales para desarrollo de bioinsumos y pruebas de campo.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Sin Interés: Realiza sus análisis en laboratorios privados externos fuera de la región.",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "COL-AG03",
+      "level": "n2",
+      "sectorId": "agricola-pecuaria",
+      "section": "SECCIÓN IV: SOLUCIONES COLABORATIVAS ANTE LA FALLA DE ESCALA (BIENES DE CLUB)",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Consorcio de Compras Consolidadas de Agroinsumos y Comercialización Conjunta",
+      "prompt": "¿Qué grado de apertura tiene su empresa para integrarse a un Consorcio de Compras Consolidadas de fertilizantes, semillas y empaque?",
+      "microcopy": "La consolidación de demanda permite abatir costos de insumos entre 15% y 25% frente a compras individuales.",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Compra Consolidada de Fertilizantes y Agroquímicos: Sumar volumen de compra directo con fabricantes de fertilizantes y moléculas.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Consorcio de Semillas, Plántula y Material de Empaque: Comprar de forma conjunta cajas, tarimas, cintas de riego y plástico de invernadero.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Comercialización Conjunta y Marca Regional: Consolidar oferta de volumen para vender directamente a cadenas de autoservicio o exportación.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Sin Interés: Prefiere mantener negociaciones directas e individuales con sus proveedores actuales.",
+          "score": null
+        }
+      ]
+    }
+  ],
+  "roadmap": [
+    {
+      "band": "platino",
+      "min": 75.0,
+      "max": null,
+      "actions": [
+        "Capa A (Digital/TI): Implementación de ERP Agrícola con módulo de IA predictiva de cosecha y fertirriego autónomo.",
+        "Capa B (Bienes de Club): Liderazgo en el Consorcio de Comercialización Conjunta y exportación directa."
+      ]
+    },
+    {
+      "band": "oro",
+      "min": 55.0,
+      "max": 75.0,
+      "actions": [
+        "Capa A (Digital/TI): Digitalización de bitácoras de campo en tablets, código QR por lote y software SPC de fertirriego.",
+        "Capa B (Bienes de Club): Integración al Centro Comunitario de Empaque y Frío para picos de producción."
+      ]
+    },
+    {
+      "band": "plata",
+      "min": 35.0,
+      "max": 55.0,
+      "actions": [
+        "Capa A (Digital/TI): Kit de sensores IoT de bajo costo para humedad de suelo y app móvil para registro de fertilización.",
+        "Capa B (Bienes de Club): Vinculación al Laboratorio Comunitario ISO 17025 para análisis de suelo y recetas organominerales."
+      ]
+    },
+    {
+      "band": "bronce",
+      "min": 0.0,
+      "max": 35.0,
+      "actions": [
+        "Capa A (Digital/TI): Capacitación básica en registro digital de costos, control de insumos y Buenas Prácticas Agrícolas.",
+        "Capa B (Bienes de Club): Incorporación al Consorcio de Compras Consolidadas de Fertilizantes y Semillas."
+      ]
+    }
+  ]
+}

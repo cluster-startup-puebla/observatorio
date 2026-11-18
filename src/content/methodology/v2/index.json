@@ -1,0 +1,264 @@
+{
+  "instrumentVersion": "n1-web-8.0",
+  "region": "puebla-tlaxcala",
+  "generatedFrom": "docs/metodologia/v2",
+  "scoring": null,
+  "sectorQuestionId": "MOD0-WEB-01",
+  "counts": {
+    "n1": 22,
+    "n2": 399
+  },
+  "groups": [
+    {
+      "id": "automotriz",
+      "label": "Automotriz, autopartes y electromovilidad",
+      "instruments": [
+        "automotriz"
+      ]
+    },
+    {
+      "id": "agro",
+      "label": "Agro",
+      "instruments": [
+        "agricola-pecuaria",
+        "alimentos"
+      ]
+    },
+    {
+      "id": "plasticos",
+      "label": "Plásticos, polímeros y economía circular",
+      "instruments": [
+        "plasticos"
+      ]
+    },
+    {
+      "id": "metalmecanica",
+      "label": "Metalmecánica, estructuras y maquinados",
+      "instruments": [
+        "metalmecanica"
+      ]
+    },
+    {
+      "id": "textil",
+      "label": "Textil",
+      "instruments": [
+        "textiles",
+        "confeccion"
+      ]
+    },
+    {
+      "id": "muebles",
+      "label": "Muebles, madera y herrajes",
+      "instruments": [
+        "muebles"
+      ]
+    },
+    {
+      "id": "turismo",
+      "label": "Turismo",
+      "instruments": [
+        "turismo",
+        "agencias"
+      ]
+    },
+    {
+      "id": "gastronomia",
+      "label": "Gastronomía, comisariatos y catering",
+      "instruments": [
+        "gastronomia"
+      ]
+    },
+    {
+      "id": "salud",
+      "label": "Salud",
+      "instruments": [
+        "medico-hospitalario",
+        "dispositivos"
+      ]
+    },
+    {
+      "id": "construccion",
+      "label": "Construcción, obra civil y materiales",
+      "instruments": [
+        "construccion"
+      ]
+    },
+    {
+      "id": "logistica",
+      "label": "Logística, transporte y última milla",
+      "instruments": [
+        "logistica"
+      ]
+    },
+    {
+      "id": "artes-graficas",
+      "label": "Artes gráficas, impresión y empaques",
+      "instruments": [
+        "artes-graficas"
+      ]
+    },
+    {
+      "id": "quimica",
+      "label": "Industria química, petroquímica y resinas sintéticas",
+      "instruments": [
+        "quimica"
+      ]
+    },
+    {
+      "id": "tics",
+      "label": "Tecnologías de la información, software y servicios digitales",
+      "instruments": [
+        "tics"
+      ]
+    },
+    {
+      "id": "inmobiliario",
+      "label": "Desarrollo e intermediación inmobiliaria",
+      "instruments": [
+        "inmobiliario"
+      ]
+    },
+    {
+      "id": "sofom",
+      "label": "SOFOMES y servicios financieros",
+      "instruments": [
+        "sofom"
+      ]
+    },
+    {
+      "id": "educacion",
+      "label": "Educación superior y profesional",
+      "instruments": [
+        "educacion"
+      ]
+    }
+  ],
+  "instruments": [
+    {
+      "id": "agricola-pecuaria",
+      "label": "02. Producción Agrícola y Pecuaria Tecnificada",
+      "questionCount": 19,
+      "file": "n2/agricola-pecuaria.json"
+    },
+    {
+      "id": "alimentos",
+      "label": "03. Alimentos Empacados y Procesados",
+      "questionCount": 19,
+      "file": "n2/alimentos.json"
+    },
+    {
+      "id": "agencias",
+      "label": "10. Agencias de Viaje y Operadores de Turismo",
+      "questionCount": 19,
+      "file": "n2/agencias.json"
+    },
+    {
+      "id": "artes-graficas",
+      "label": "16. Artes Gráficas, Impresión Digital, Offset y Empaques",
+      "questionCount": 19,
+      "file": "n2/artes-graficas.json"
+    },
+    {
+      "id": "automotriz",
+      "label": "01. Automotriz, Autopartes y Electromovilidad",
+      "questionCount": 19,
+      "file": "n2/automotriz.json"
+    },
+    {
+      "id": "confeccion",
+      "label": "07. Diseño, Confección y Maquila de Prendas",
+      "questionCount": 19,
+      "file": "n2/confeccion.json"
+    },
+    {
+      "id": "construccion",
+      "label": "14. Construcción, Obra Civil y Proveedores de Materiales",
+      "questionCount": 19,
+      "file": "n2/construccion.json"
+    },
+    {
+      "id": "dispositivos",
+      "label": "13. Dispositivos Médicos y Tecnología Sanitaria",
+      "questionCount": 19,
+      "file": "n2/dispositivos.json"
+    },
+    {
+      "id": "gastronomia",
+      "label": "11. Gastronomía, Comisariatos y Catering Industrial",
+      "questionCount": 19,
+      "file": "n2/gastronomia.json"
+    },
+    {
+      "id": "logistica",
+      "label": "15. Logística, Transporte, Almacenaje y Última Milla",
+      "questionCount": 19,
+      "file": "n2/logistica.json"
+    },
+    {
+      "id": "medico-hospitalario",
+      "label": "12. Servicios Médicos, Hospitalarios y Laboratorios",
+      "questionCount": 19,
+      "file": "n2/medico-hospitalario.json"
+    },
+    {
+      "id": "metalmecanica",
+      "label": "05. Metalmecánica, Estructuras y Maquinados de Precisión",
+      "questionCount": 19,
+      "file": "n2/metalmecanica.json"
+    },
+    {
+      "id": "muebles",
+      "label": "08. Muebles, Madera y Herrajes",
+      "questionCount": 19,
+      "file": "n2/muebles.json"
+    },
+    {
+      "id": "plasticos",
+      "label": "04. Plásticos, Polímeros y Economía Circular",
+      "questionCount": 19,
+      "file": "n2/plasticos.json"
+    },
+    {
+      "id": "textiles",
+      "label": "06. Textiles, Hilados y Tejidos",
+      "questionCount": 19,
+      "file": "n2/textiles.json"
+    },
+    {
+      "id": "turismo",
+      "label": "09. Turismo y Servicios de Hospitalidad",
+      "questionCount": 19,
+      "file": "n2/turismo.json"
+    },
+    {
+      "id": "quimica",
+      "label": "17. Industria Química, Petroquímica y Resinas Sintéticas",
+      "questionCount": 19,
+      "file": "n2/quimica.json"
+    },
+    {
+      "id": "tics",
+      "label": "18. Tecnologías de la Información, Software y Servicios Digitales",
+      "questionCount": 19,
+      "file": "n2/tics.json"
+    },
+    {
+      "id": "inmobiliario",
+      "label": "19. Desarrollo e Intermediación Inmobiliaria",
+      "questionCount": 19,
+      "file": "n2/inmobiliario.json"
+    },
+    {
+      "id": "sofom",
+      "label": "20. SOFOMES y Servicios Financieros no Bancarios",
+      "questionCount": 19,
+      "file": "n2/sofom.json"
+    },
+    {
+      "id": "educacion",
+      "label": "21. Educación Superior y Profesional",
+      "questionCount": 19,
+      "file": "n2/educacion.json"
+    }
+  ]
+}

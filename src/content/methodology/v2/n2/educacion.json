@@ -1,0 +1,752 @@
+{
+  "sectorId": "educacion",
+  "label": "21. Educación Superior y Profesional",
+  "questions": [
+    {
+      "id": "ED-01",
+      "level": "n2",
+      "sectorId": "educacion",
+      "section": "Inicio",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Eslabón Dominante en la Cadena de Educación Superior",
+      "prompt": "¿En cuál de las siguientes modalidades institucionales se ubica la mayor proporción de la matrícula y presupuesto de su institución?",
+      "microcopy": "Establece el marco normativo (SEP/RVOE/CONAHCYT), la estructura de financiamiento y la gobernanza académica.",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Universidad Pública Autónoma o Estatal (BUAP, UATx, etc.): Institución pública descentralizada con oferta multidisciplinaria y fondos de financiamiento público.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Universidad Tecnológica o Politécnica (UTT, UTP, etc.): Modelo intensivo de Formación Práctica y Técnico Superior Universitario (TSU) / Licenciaturas Tecnológicas.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Universidad Privada Consolidada / Sistema Nacional (UDLAP, UPAEP, Tec de Monterrey, IBERO): Institución privada con acreditaciones FIMPES/internacionales y enfoque en investigación/innovación.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Instituto Tecnológico Federal o Descentralizado (ITP, IT Apizaco, etc.): Enfoque prioritario en ingenierías y ciencias aplicadas bajo la DNETP / TecNM.",
+          "score": null
+        },
+        {
+          "value": "opt5",
+          "label": "Escuela de Posgrado, Centro de Investigación o Institución Especializada: Enfoque exclusivo en posgrados de calidad (SNP CONAHCYT), formación ejecutiva o especialización sectorial.",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "ED-02",
+      "level": "n2",
+      "sectorId": "educacion",
+      "section": "Inicio",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Corredor Territorial y Hub Educativo de Operación",
+      "prompt": "¿En qué nodo urbano o corredor universitario de la región Puebla - Tlaxcala se localiza el campus principal o sede operativa de su institución?",
+      "microcopy": "Evalúa la cercanía a parques industriales, ecosistemas de startups y zonas de desarrollo urbano regional.",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Corredor Universitario Cholula - San Andrés / UDLAP: Hub de universidades privadas, agencias de innovación y centros de desarrollo urbano.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Distrito Universitario Puebla Capital (CU BUAP / Angelópolis / Zona Centro): Concentración masiva de matrícula universitaria y centros de investigación pública y privada.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Corredor Industrial y Tecnológico Cuautlancingo - Huejotzingo - San Martín: Instituciones tecnológicas vinculadas directamente al clúster automotriz e industrial.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Nodo Tlaxcala (Capital / Apizaco / CIX Huamantla / UATx / IPN): Campus universitarios y tecnológicos articulados a la cuenca industrial de Tlaxcala.",
+          "score": null
+        },
+        {
+          "value": "opt5",
+          "label": "Sistema Multi-campus Regional / Modalidad Híbrida Expandida: Presencia universitaria distribuida en múltiples municipios de Puebla y Tlaxcala con campus virtuales.",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "ED-03",
+      "level": "n2",
+      "sectorId": "educacion",
+      "section": "Inicio",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Certificación de Calidad y Estatus de Acreditación Institucional",
+      "prompt": "¿Cuál es el nivel más alto de acreditación formal de calidad académica e institucional que ostenta su universidad?",
+      "microcopy": "Las acreditaciones normativas son el sello de garantía de calidad asistencial y empleabilidad de los egresados.",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "RVOE Estatal/Federal Básico / Registro SEP: Cumplimiento normativo mínimo legal sin acreditación de calidad por organismos pares.",
+          "score": 25
+        },
+        {
+          "value": "opt2",
+          "label": "Programas Evaluados / Acreditados por CIEES o COPAES: Acreditación nacional de calidad en programas de licenciatura por comités evaluadores.",
+          "score": 50
+        },
+        {
+          "value": "opt3",
+          "label": "Acreditación Internacional de Programas (ABET / AACSB / FIMPES de Excelencia): Programas de ingeniería, negocios o salud con homologación internacional directa.",
+          "score": 75
+        },
+        {
+          "value": "opt4",
+          "label": "Multi-acreditación de Frontera (ISO 21001 + ABET/AACSB + SNP CONAHCYT + FIMPES 4.0): Máxima certificación de gestión educativa y posgrados de investigación.",
+          "score": 100
+        }
+      ]
+    },
+    {
+      "id": "R00-EDU-PROD",
+      "level": "n2",
+      "sectorId": "educacion",
+      "section": "Inicio",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Jerarquización de Fricciones en Operación Docente, Investigación y Matrícula",
+      "prompt": "Ordene del 1 al 8 los siguientes problemas operativos según el impacto negativo que generan en el crecimiento y calidad de su institución educativa",
+      "microcopy": "Identifica si el cuello de botella se ubica en el currículo, la deserción, la carga administrativa o el financiamiento.",
+      "type": "rank",
+      "prefilled": false,
+      "factorCount": 8,
+      "factors": [
+        {
+          "id": "f1",
+          "label": "Desacoplamiento entre planes de estudio y requerimientos de la industria regional (T-MEC / 4.0 / Electromovilidad / IA)."
+        },
+        {
+          "id": "f2",
+          "label": "Alta deserción estudiantil en primeros semestres y desinterés de aspirantes en carreras de ingeniería y STEM."
+        },
+        {
+          "id": "f3",
+          "label": "Excesiva carga administrativa sobre la planta docente e investigadora en detrimento de la enseñanza y la R&D."
+        },
+        {
+          "id": "f4",
+          "label": "Infraestructura de laboratorios obsoleta, insuficiente o sin mantenimiento preventivo especializado."
+        },
+        {
+          "id": "f5",
+          "label": "Escasa vinculación formal con el sector productivo para residencias profesionales, proyectos de R&D y educación dual."
+        },
+        {
+          "id": "f6",
+          "label": "Tiempos lentos de actualización curricular y burocracia en la aprobación de nuevos programas ante SEP / autoridades."
+        },
+        {
+          "id": "f7",
+          "label": "Baja tasa de egresados titulados con dominio verificado del idioma inglés y certificaciones técnicas internacionales."
+        },
+        {
+          "id": "f8",
+          "label": "Presupuesto limitado para financiamiento de proyectos de investigación aplicada, patentes y publicaciones de alto impacto."
+        }
+      ]
+    },
+    {
+      "id": "R00-EDU-SOURCING-MAT",
+      "level": "n2",
+      "sectorId": "educacion",
+      "section": "Inicio",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Jerarquización de Riesgos en Insumos, Software y Tecnología Educativa",
+      "prompt": "Ordene del 1 al 6 los mayores riesgos o sobrecostos en el abastecimiento de insumos tecnológicos y educativos",
+      "microcopy": "Mide la vulnerabilidad presupuestal ante software corporativo, insumos de laboratorio y licencias.",
+      "type": "rank",
+      "prefilled": false,
+      "factorCount": 6,
+      "factors": [
+        {
+          "id": "f1",
+          "label": "Alto costo de licencias de software especializado (CAD/CAM, MATLAB, ERP, simulación) por alumno o campus."
+        },
+        {
+          "id": "f2",
+          "label": "Tiempos de entrega prolongados e incertidumbre en reactivos, insumos de laboratorio y equipamiento importado."
+        },
+        {
+          "id": "f3",
+          "label": "Volatilidad e incremento en costos de mantenimiento de plataformas LMS Cloud, servidores y licencias videoconferencia."
+        },
+        {
+          "id": "f4",
+          "label": "Escasez y sobrecosto de material bibliográfico especializado y suscripciones a bases de datos científicas internacionales."
+        },
+        {
+          "id": "f5",
+          "label": "Restricciones presupuestales para actualización periódica de infraestructura de cómputo y redes WiFi 6 campus."
+        },
+        {
+          "id": "f6",
+          "label": "Exigencia de pago de contado o plazos rígidos de crédito por parte de proveedores de equipo laboratorio y tecnología."
+        }
+      ]
+    },
+    {
+      "id": "R00-EDU-SOURCING-SERV",
+      "level": "n2",
+      "sectorId": "educacion",
+      "section": "Inicio",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Jerarquización de Deficiencias en Servicios de Apoyo y Ecosistema Regional",
+      "prompt": "Ordene del 1 al 6 las mayores limitaciones en servicios externos y ecosistema de soporte universitario en Puebla-Tlaxcala",
+      "microcopy": "Identifica las fallas de mercado en transferencia de tecnología, trámites y aceleración de startups.",
+      "type": "rank",
+      "prefilled": false,
+      "factorCount": 6,
+      "factors": [
+        {
+          "id": "f1",
+          "label": "Falta de agencias o despachos locales especializados en transferencia de tecnología, valuación de IP y patentes."
+        },
+        {
+          "id": "f2",
+          "label": "Escasez de mentores e inversionistas ángel para la incubación y aceleración de startups universitarias y spin-offs."
+        },
+        {
+          "id": "f3",
+          "label": "Retardos burocráticos y complejidad en trámites de titulación electrónica, cédulas y RVOEs estatales/federales."
+        },
+        {
+          "id": "f4",
+          "label": "Falta de convenios marco estandarizados y ágiles entre universidades y clústeres industriales regionales."
+        },
+        {
+          "id": "f5",
+          "label": "Ausencia de laboratorios o centros comunitarios de prueba acreditados ISO 17025 para R&D compartida universidad-industria."
+        },
+        {
+          "id": "f6",
+          "label": "Deficiente oferta de capacitación pedagógica continua en herramientas de IA generativa y metodologías EdTech."
+        }
+      ]
+    },
+    {
+      "id": "ED-TECH-01",
+      "level": "n2",
+      "sectorId": "educacion",
+      "section": "Inicio",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Absorción Tecnológica P1: Cobertura de Equipamiento y Sourcing Tecnológico",
+      "prompt": "¿Cuáles de las siguientes 5 tecnologías tiene implementadas y operativas su institución? (Marque todas las que apliquen)",
+      "microcopy": "Cada casilla seleccionada suma +20.0 pts al Score P1 (Máximo 100.0 pts). Mide la infraestructura digital instalada.",
+      "type": "multi_select",
+      "prefilled": false,
+      "factorCount": 5,
+      "factors": [
+        {
+          "id": "f1",
+          "label": "Plataforma LMS en la Nube (Canvas / Moodle / Blackboard) para gestión 100% digital de asignaturas y evaluaciones."
+        },
+        {
+          "id": "f2",
+          "label": "Software Especializado de Simulación, CAD/CAM, Análisis de Datos o Laboratorios Virtuales por carrera STEM."
+        },
+        {
+          "id": "f3",
+          "label": "Aulas Híbridas / Smart Classrooms equipadas con cámaras de seguimiento por IA, pantallas interactivas y audio en nube."
+        },
+        {
+          "id": "f4",
+          "label": "Sistema ERP Académico y Administrativo Integrado (Control escolar, admisiones, caja, nómina, finanzas)."
+        },
+        {
+          "id": "f5",
+          "label": "Repositorio Digital Institucional y Acceso Unificado a Bases de Datos Científicas Internacionales (IEEE, Scopus, Springer)."
+        }
+      ]
+    },
+    {
+      "id": "ED-TECH-02",
+      "level": "n2",
+      "sectorId": "educacion",
+      "section": "Inicio",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Absorción Tecnológica P2: Subutilización Tecnológica (Índice IST)",
+      "prompt": "De los módulos del sistema ERP/LMS institucional, ¿cuántos están adquiridos o instalados pero NO son utilizados adecuadamente por docentes y administrativos?",
+      "microcopy": "Fórmula: IST = (Funciones Ignoradas / 5) * 100% => Score P2 = 100 - IST. Diagnostica el desuso tecnológico.",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "0 Módulos ignorados: El 100% de los módulos del ERP/LMS se explotan con capacitación continua y uso obligatorio.",
+          "score": 100
+        },
+        {
+          "value": "opt2",
+          "label": "1 Módulo ignorado: Subutilización menor (ej. el módulo de Analítica de Aprendizaje o Analytics no se explota).",
+          "score": 80
+        },
+        {
+          "value": "opt3",
+          "label": "2 Módulos ignorados: Subutilización moderada (ej. sin uso de Portal de Egresados ni Módulo de Vinculación Dual).",
+          "score": 60
+        },
+        {
+          "value": "opt4",
+          "label": "3 Módulos ignorados: Subutilización severa (ej. sin seguimiento de Investigación, sin Firma Electrónica, sin Analytics).",
+          "score": 40
+        },
+        {
+          "value": "opt5",
+          "label": "4 o más Módulos ignorados: El sistema ERP/LMS opera como simple repositorio estático o bitácora de calificaciones.",
+          "score": 20
+        }
+      ]
+    },
+    {
+      "id": "ED-TECH-03",
+      "level": "n2",
+      "sectorId": "educacion",
+      "section": "Inicio",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Absorción Tecnológica P3: Brecha con la Frontera Internacional (Benchmark Aghion)",
+      "prompt": "¿Qué tecnología pedagógica o de investigación avanzada utilizan las universidades internacionales líderes de la cual su institución aún carece?",
+      "microcopy": "Evalúa la distancia tecnológica con la frontera global (Brecha Delta = 100 - P3).",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Tutoría Adaptativa por Inteligencia Artificial y Generación Automática de Rutas de Aprendizaje Personalizadas.",
+          "score": 20
+        },
+        {
+          "value": "opt2",
+          "label": "Laboratorios de Realidad Inmersiva / VR / AR para simulación médica, quirúrgica y de ensambles industriales complejos.",
+          "score": 40
+        },
+        {
+          "value": "opt3",
+          "label": "Gemelos Digitales (Digital Twins) de Plantas Industriales y celdas robotizadas conectadas a laboratorios universitarios.",
+          "score": 60
+        },
+        {
+          "value": "opt4",
+          "label": "Cluster de Cómputo de Alto Desempeño (HPC) / GPUs dedicadas para entrenamiento de modelos propios de IA y Bioinformática.",
+          "score": 80
+        },
+        {
+          "value": "opt5",
+          "label": "Ecosistema de Microcredenciales Verificables en Blockchain integradas al perfil profesional del estudiante.",
+          "score": 100
+        }
+      ]
+    },
+    {
+      "id": "ED-TECH-04",
+      "level": "n2",
+      "sectorId": "educacion",
+      "section": "Inicio",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Absorción Tecnológica P4: Apuesta Transformacional a 24--36 Meses (ICPO)",
+      "prompt": "¿Qué proyecto de reconversión académica o tecnológica está ejecutando su institución para adaptarse a las megatendencias 2030?",
+      "microcopy": "Mide la capacidad de inversión (CAPEX) y visión estratégica de mediano plazo.",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Nula preparación: Sin proyectos de actualización curricular ni incorporación de tecnologías emergentes a 3 años.",
+          "score": 20
+        },
+        {
+          "value": "opt2",
+          "label": "Prospección / Análisis: Estudios de factibilidad para apertura de nuevas carreras en IA, Electromovilidad o Ciberseguridad.",
+          "score": 40
+        },
+        {
+          "value": "opt3",
+          "label": "Planeación Aprobada: Proyecto formalizado con presupuesto asignado para rediseño curricular y laboratorios EdTech.",
+          "score": 60
+        },
+        {
+          "value": "opt4",
+          "label": "En Transición Activa: Construcción o equipamiento en proceso de celdas 4.0, aulas inmersivas y certificación docente en IA.",
+          "score": 80
+        },
+        {
+          "value": "opt5",
+          "label": "Liderazgo Transformacional: Oferta educativa de nueva generación 100% operativa, acreditada y generando egresados cotizados.",
+          "score": 100
+        }
+      ]
+    },
+    {
+      "id": "ED-TECH-05",
+      "level": "n2",
+      "sectorId": "educacion",
+      "section": "Inicio",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Absorción Tecnológica P5: Demanda Explícita de Proyectos Tecnológicos Inmediatos",
+      "prompt": "¿Hay algún proyecto específico o necesidad prioritaria que su institución requiera abordar a la brevedad con apoyo técnico o asociativo?",
+      "microcopy": "Reactivo Híbrido: Asigna un puntaje neutro constante de control (Score P5-pts = 60.0 pts) mientras el insumo textual/tarjeta alimenta la Hoja de Ruta.",
+      "type": "single_select_text",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Proyecto 1: Obtención de Acreditación Internacional (ABET / AACSB / FIMPES) o Certificación ISO 21001.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Proyecto 2: Implementación de Campus Digital 4.0, Sistema ERP/LMS Cloud Interoperable y Títulos Electrónicos.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Proyecto 3: Modernización de Laboratorios STEM con Equipamiento de Electromovilidad, Robótica e Inteligencia Artificial.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Proyecto 4: Creación de la Oficina de Transferencia Tecnológica (OTT), Incubadora de Spin-offs y Acreditación ISO 17025.",
+          "score": null
+        },
+        {
+          "value": "opt5",
+          "label": "Un proyecto propio",
+          "score": null
+        }
+      ],
+      "text": {
+        "maxLength": 100,
+        "optionValue": "opt5"
+      }
+    },
+    {
+      "id": "ED-TECH-06",
+      "level": "n2",
+      "sectorId": "educacion",
+      "section": "Inicio",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Métrica Dura: Eficiencia de Titulación, Empleabilidad a 6 Meses y Deserción Estudiantil",
+      "prompt": "¿Cuáles son los indicadores consolidados de deserción en primer año y tasa de empleabilidad formal de sus egresados a 6 meses de graduarse?",
+      "microcopy": "Mide el desempeño operativo duro de la calidad académica e inserción laboral.",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Deserción en 1.er año > 15%; Tasa de empleabilidad formal a 6 meses < 50%; titulación lenta (> 18 meses).",
+          "score": 25
+        },
+        {
+          "value": "opt2",
+          "label": "Deserción entre 10% y 15%; Empleabilidad formal a 6 meses entre 50% y 70%; titulación entre 12 y 18 meses.",
+          "score": 50
+        },
+        {
+          "value": "opt3",
+          "label": "Deserción entre 5% y 10%; Empleabilidad formal a 6 meses entre 70% y 85%; titulación entre 6 y 12 meses.",
+          "score": 75
+        },
+        {
+          "value": "opt4",
+          "label": "Deserción < 5%; Empleabilidad formal a 6 meses > 85%; Titulación electrónica automática en < 6 meses.",
+          "score": 100
+        }
+      ]
+    },
+    {
+      "id": "ED-TECH-07",
+      "level": "n2",
+      "sectorId": "educacion",
+      "section": "Inicio",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Métrica Dura: Trazabilidad Digital del Estudiante, Título Electrónico XML y Conectividad ERP/LMS",
+      "prompt": "¿Qué nivel de integración de datos y trazabilidad digital utiliza su institución desde el expediente de admisión hasta la emisión del título profesional?",
+      "microcopy": "Mide la madurez de la gobernanza de datos y la automatización administrativa.",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Expediente Físico en Papel: Registros académicos en carpetas manuales; emisión de títulos mediante trámites impresos tradicionales.",
+          "score": 25
+        },
+        {
+          "value": "opt2",
+          "label": "Registros Semidigitales Desintegrados: Control de calificaciones en Excel o sistema local aislado; título XML generado por proveedor externo.",
+          "score": 50
+        },
+        {
+          "value": "opt3",
+          "label": "Sistema ERP/LMS Integrado con Título Electrónico Verificado: Expediente digital del alumno conectado a plataforma escolar y SEP.",
+          "score": 75
+        },
+        {
+          "value": "opt4",
+          "label": "Ecosistema EdTech 4.0 Integrado (ERP + LMS + Blockchain + Analytics): Trazabilidad instantánea del historial de aprendizaje y credenciales digitales.",
+          "score": 100
+        }
+      ]
+    },
+    {
+      "id": "CP-ED-01",
+      "level": "n2",
+      "sectorId": "educacion",
+      "section": "Inicio",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Reconexión hacia la 'Fruta Madura' Educativa (Alta Densidad ω_j > 0.65)",
+      "prompt": "¿Hacia qué nuevas ofertas o formatos educativos podría reconvertirse su institución en < 12 meses aprovechando su infraestructura actual?",
+      "microcopy": "Mide la agilidad para lanzar programas de ciclo corto, diplomados y TSU requeridos por los clústeres locales.",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Lanzamiento de Microcredenciales y Bootcamps Técnicos en Inteligencia Artificial, Programación CNC y Electromovilidad.",
+          "score": 25
+        },
+        {
+          "value": "opt2",
+          "label": "Creación de Licenciaturas Híbridas / Licenciaturas Ejecutivas para trabajadores de la industria con acreditación de competencias.",
+          "score": 50
+        },
+        {
+          "value": "opt3",
+          "label": "Apertura de Programas de Técnico Superior Universitario (TSU) articulados con universidades tecnológicas y empresas Tier 1/2.",
+          "score": 75
+        },
+        {
+          "value": "opt4",
+          "label": "Rediseño Total de Planes de Estudio bajo el modelo de Educación Dual con inmersión de 1 año en planta industrial.",
+          "score": 100
+        }
+      ]
+    },
+    {
+      "id": "CP-ED-02",
+      "level": "n2",
+      "sectorId": "educacion",
+      "section": "Inicio",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Apuestas Estratégicas y Riesgo de Obsolescencia de la Oferta Académica (IRAT)",
+      "prompt": "¿Qué porcentaje de su matrícula actual se concentra en carreras tradicionales de baja demanda tecnológica o en riesgo de saturación laboral?",
+      "microcopy": "Evalúa la vulnerabilidad de la institución ante la caída de demanda de profesiones automatizables.",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Más del 60% de la matrícula en carreras tradicionales saturadas (Riesgo Crítico de Obsolescencia).",
+          "score": 25
+        },
+        {
+          "value": "opt2",
+          "label": "Entre 40% y 60% de la matrícula en programas vulnerables sin actualización de mapa curricular.",
+          "score": 50
+        },
+        {
+          "value": "opt3",
+          "label": "Entre 20% y 40% de la matrícula en oferta tradicional; el resto en ingenierías, ciencia de datos y posgrados STEM.",
+          "score": 75
+        },
+        {
+          "value": "opt4",
+          "label": "Menos del 20% en riesgo; oferta académica diversificada centrada en tecnologías de frontera, salud y sustentabilidad.",
+          "score": 100
+        }
+      ]
+    },
+    {
+      "id": "CP-ED-03",
+      "level": "n2",
+      "sectorId": "educacion",
+      "section": "Inicio",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Sostenibilidad, Campus Verde, Economía Circular e Inclusión Social (ITS)",
+      "prompt": "¿Qué nivel de avance tiene su institución en programas de sustentabilidad ambiental, eficiencia energética y equidad en el campus?",
+      "microcopy": "Mide el compromiso institucional con la agenda ESG (Environmental, Social, Governance) y la Responsabilidad Social Universitaria.",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Nulo / Básico: Sin medición de huella de carbono, sin paneles solares y sin políticas formales de reciclaje en campus.",
+          "score": 25
+        },
+        {
+          "value": "opt2",
+          "label": "Moderado: Separación de residuos urbanos y campañas de concientización ambiental; becas de inclusión limitadas.",
+          "score": 50
+        },
+        {
+          "value": "opt3",
+          "label": "Avanzado: Instalación de plantas solares fotovoltaicas en edificios; tratamiento de aguas residuales y programa de becas > 20% de matrícula.",
+          "score": 75
+        },
+        {
+          "value": "opt4",
+          "label": "Excelencia Campus Verde (UI GreenMetric / ISO 14001): Campus 100% sustentable, carbono neutral y programa integral de equidad e inclusión.",
+          "score": 100
+        }
+      ]
+    },
+    {
+      "id": "COL-ED01",
+      "level": "n2",
+      "sectorId": "educacion",
+      "section": "Inicio",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Hub Comunitario de Laboratorios Avanzados de Ensayos Industriales, Prototipado 3D y Metrología CMM",
+      "prompt": "¿Cuál sería el interés de su institución en integrar una Red Universitaria de Laboratorios Compartidos para prestar servicios de R&D a la industria regional?",
+      "microcopy": "Calcula el Índice de Atractivo de Inversión Conjunta (IAIC = Beneficio Estimado / Cuota Comunitario).",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Nulo Interés: Preferir mantener los laboratorios para uso exclusivo docente sin apertura a la industria.",
+          "score": 25
+        },
+        {
+          "value": "opt2",
+          "label": "Interés Bajo: Prestar servicios esporádicos de prueba a empresas locales bajo convenios individuales.",
+          "score": 50
+        },
+        {
+          "value": "opt3",
+          "label": "Interés Alto: Integrar los equipos especializados a un catálogo regional compartido para facturar servicios de calibración y R&D.",
+          "score": 75
+        },
+        {
+          "value": "opt4",
+          "label": "Co-fundación Activa: Participar como nodo fundador en el Consorcio Regional de Laboratorios Acreditados ISO 17025.",
+          "score": 100
+        }
+      ]
+    },
+    {
+      "id": "COL-ED02",
+      "level": "n2",
+      "sectorId": "educacion",
+      "section": "Inicio",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Centro Comunitario de Transferencia Tecnológica, Patentamiento y Oficina de Valoración de Propiedad Intelectual",
+      "prompt": "¿Qué grado de apertura tiene su universidad para asociarse en una Oficina Regional de Transferencia Tecnológica (OTT) compartida?",
+      "microcopy": "Calcula el Índice de Fricción por Escasa Transferencia (IFET). Articula la comercialización de licencias e invenciones.",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Mantener gestiones de patentes de forma interna e independiente sin apoyo de redes externas.",
+          "score": 25
+        },
+        {
+          "value": "opt2",
+          "label": "Participar en ferias de patentes y concursos universitarios de innovación sin estructura de comercialización.",
+          "score": 50
+        },
+        {
+          "value": "opt3",
+          "label": "Compartir la cartera de patentes de la institución en el Catálogo Regional de Invenciones Comercializables.",
+          "score": 75
+        },
+        {
+          "value": "opt4",
+          "label": "Co-financiar la OTT Regional para acelerar el licenciamiento de invenciones universitarias a clústeres industriales.",
+          "score": 100
+        }
+      ]
+    },
+    {
+      "id": "COL-ED03",
+      "level": "n2",
+      "sectorId": "educacion",
+      "section": "Inicio",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Consorcio de Compras Consolidadas de Licencias EdTech, Software Especializado y Accesos a Bases Científicas",
+      "prompt": "¿Qué grado de interés tiene su institución en unirse a un Consorcio Universitario de Compras Consolidadas de Software y Bases de Datos?",
+      "microcopy": "Calcula el Índice de Ahorro Potencial por Consorcio (IPCA = (Costo Individual - Costo Consorcio) / Costo Individual).",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Negociar y renovar licencias de software (MATLAB, Autodesk, IEEE, Canvas) de forma individual.",
+          "score": 25
+        },
+        {
+          "value": "opt2",
+          "label": "Sumarse a compras consolidadas solo para paquetes básicos de ofimática o videoconferencia.",
+          "score": 50
+        },
+        {
+          "value": "opt3",
+          "label": "Participar activamente en la licitación agrupada de bases de datos científicas y software especializado.",
+          "score": 75
+        },
+        {
+          "value": "opt4",
+          "label": "Liderar la red interuniversitaria de compras tecnológicas para maximizar el poder de negociación y lograr ahorros > 20%.",
+          "score": 100
+        }
+      ]
+    }
+  ],
+  "roadmap": [
+    {
+      "band": "platino",
+      "min": 75.0,
+      "max": null,
+      "actions": [
+        "Implementar tutoría adaptativa por IA y simuladores VR.",
+        "Crear fondo de inversión para spin-offs universitarias.",
+        "Expandir alianzas de doble titulación internacional."
+      ]
+    },
+    {
+      "band": "oro",
+      "min": 55.0,
+      "max": 75.0,
+      "actions": [
+        "Activar módulos ignorados del ERP/LMS (Analytics/Dual).",
+        "Certificar laboratorios clave bajo ISO 17025.",
+        "Crear programas de microcredenciales con la industria."
+      ]
+    },
+    {
+      "band": "plata",
+      "min": 35.0,
+      "max": 55.0,
+      "actions": [
+        "Digitalización inmediata de expedientes y títulos XML.",
+        "Rediseño curricular express hacia competencias STEM/4.0.",
+        "Adhesión al Consorcio de Compras de Licencias EdTech."
+      ]
+    },
+    {
+      "band": "bronce",
+      "min": 0.0,
+      "max": 35.0,
+      "actions": [
+        "Plan de emergencia de contención de deserción estudiantil.",
+        "Implementación de LMS Cloud de código abierto (Moodle).",
+        "Alianza con la OTT comunitaria para rescatar proyectos."
+      ]
+    }
+  ]
+}

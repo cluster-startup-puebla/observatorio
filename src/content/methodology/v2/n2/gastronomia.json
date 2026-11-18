@@ -1,0 +1,756 @@
+{
+  "sectorId": "gastronomia",
+  "label": "11. Gastronomía, Comisariatos y Catering Industrial",
+  "questions": [
+    {
+      "id": "GC-01",
+      "level": "n2",
+      "sectorId": "gastronomia",
+      "section": "MÓDULO 0: PERFILADO DEL ESLABÓN Y LOCALIZACIÓN TERRITORIAL (HEREDADO DE NIVEL 1)",
+      "widget": "Tarjeta de Selección Única (Pre-poblado)",
+      "title": "Sub-eslabón Dominante en Gastronomía y Catering",
+      "prompt": "¿En cuál de los siguientes sub-eslabones se concentra la mayor proporción de las ventas y operación de su empresa?",
+      "microcopy": "El sub-eslabón determina los requerimientos de equipamiento de cocina industrial, certificaciones sanitarias (Distintivo H / NOM-251) y modelo de logística A&B.",
+      "type": "single_select",
+      "prefilled": true,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Restaurantes Tradicionales, Alta Cocina y Gastronomía de Autor: Establecimientos de servicio a la mesa en zonas urbanas o Pueblos Mágicos con enfoque experiencial.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Catering Industrial, Comedores Ejecutivos y Banquetes: Servicio masivo de alimentos para empresas, plantas industriales, hospitales y eventos sociales/corporativos.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Franquicias, Dark Kitchens y Fast Casual: Conceptos de servicio rápido, cocinas ocultas dedicadas exclusivamente a delivery o cadenas multipunto estandarizadas.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Servicios Agroindustriales de Alimentos Preparados y Comisariatos: Fabricación de platillos o insumos precocinados empacados al vacío para terceros.",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "GC-02",
+      "level": "n2",
+      "sectorId": "gastronomia",
+      "section": "MÓDULO 0: PERFILADO DEL ESLABÓN Y LOCALIZACIÓN TERRITORIAL (HEREDADO DE NIVEL 1)",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Corredor Gastronómico o Nodo Regional de Operación",
+      "prompt": "¿En qué corredor gastronómico o nodo regional de Puebla - Tlaxcala se localiza la cocina principal o matriz de su negocio?",
+      "microcopy": "La localización determina la densidad de demanda, el perfil del comensal (turista vs. corporativo) y la logística de proveeduría fresca.",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Corredor 1: ZMPT Centro Histórico, Avenida Juárez y Angelópolis (Puebla Capital): Alta densidad turística, corporativa y gastronomía de autor.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Corredor 2: Corredor Gastronómico Cholula - Atlixco (Puebla Metropolitano): Conceptos gastronómicos al aire libre, maridaje y turismo de fin de semana.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Corredor 3: Pueblos Mágicos de la Sierra y Valles (Zacatlán, Chignahuapan, Cuetzalan, Tehuacán): Gastronomía tradicional regional e insumos artesanales.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Corredor 4: Tlaxcala Capital, Val'Quirico y Nodo Huamantla-Apizaco: Cocina patrimonial tlaxcalteca, haciendas banqueteras y comedores industriales.",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "GC-03",
+      "level": "n2",
+      "sectorId": "gastronomia",
+      "section": "MÓDULO 0: PERFILADO DEL ESLABÓN Y LOCALIZACIÓN TERRITORIAL (HEREDADO DE NIVEL 1)",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Certificación Sanitaria, Inocuidad y Calidad en Alimentos",
+      "prompt": "¿Cuál es el nivel formal de certificación de inocuidad alimentaria y calidad en servicio que ostenta su cocina o establecimiento?",
+      "microcopy": "Las certificaciones oficiales garantizan la seguridad alimentaria, previenen brotes epidemiológicos y son requisito obligatorio para catering industrial.",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Básico / Licencia de Funcionamiento Municipal: Registro básico de salud y municipal sin certificaciones de inocuidad alimentaria.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Cumplimiento Obligatorio NOM-251-SSA1-2009: Prácticas de higiene aplicadas en el proceso de alimentos sin auditoría formal para Distintivo H.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Certificación Distintivo H / Punto Limpio / Distintivo M Vigente: Certificado otorgado por SECTUR / SSA tras auditoría de un consultor acreditado.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Certificación Internacional de Inocuidad (ServSafe / ISO 22000 / HACCP): Estándar internacional acreditado para comedores industriales y exportación.",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "R00-GAST-PROD",
+      "level": "n2",
+      "sectorId": "gastronomia",
+      "section": "SECCIÓN I: ROMPEHIELOS DE SEVERIDAD OPERATIVA (MÉTODO DE BORDA)",
+      "widget": "Rompehielos de Jerarquización (1 al 8)",
+      "title": "Jerarquización de Fricciones en Cocina, Servicio y Operación",
+      "prompt": "Ordene del 1 al 8 las siguientes fricciones según el impacto económico negativo y la frecuencia con que afectan su empresa (1 = Mayor impacto / Máxima gravedad; 8 = Menor impacto)",
+      "microcopy": "Permite priorizar la causa raíz de las ineficiencias en cocina y servicio antes del análisis de detalle.",
+      "type": "rank",
+      "prefilled": false,
+      "factorCount": 8,
+      "factors": [
+        {
+          "id": "f1",
+          "label": "Mermas elevadas de materias primas por caducidad, mal almacenamiento o porcionamiento no estandarizado."
+        },
+        {
+          "id": "f2",
+          "label": "Variabilidad en sabor, temperatura y presentación de platillos por falta de fichas técnicas estandarizadas."
+        },
+        {
+          "id": "f3",
+          "label": "Paros y fallas no programadas en equipos de cocina (estufas, hornos combi, campanas de extracción, refrigeradores)."
+        },
+        {
+          "id": "f4",
+          "label": "Alta rotación, ausentismo y falta de capacitación de cocineros, ayudantes de cocina y meseros."
+        },
+        {
+          "id": "f5",
+          "label": "Tiempos excesivos de espera en la preparación de platillos y lentitud en la salida de comandas."
+        },
+        {
+          "id": "f6",
+          "label": "Sobrecostos y mermas en eventos o buffets por cálculo inexacto de volúmenes y desperdicio en mesa."
+        },
+        {
+          "id": "f7",
+          "label": "Registro manual en papel de bitácoras de inocuidad (temperaturas de cámaras, desinfección) vulnerable a fallas."
+        },
+        {
+          "id": "f8",
+          "label": "Reclamaciones de comensales o clientes corporativos por lentitud en el servicio o sospecha de contaminación."
+        }
+      ]
+    },
+    {
+      "id": "R00-GAST-SOURCING-MAT",
+      "level": "n2",
+      "sectorId": "gastronomia",
+      "section": "SECCIÓN I: ROMPEHIELOS DE SEVERIDAD OPERATIVA (MÉTODO DE BORDA)",
+      "widget": "Rompehielos de Jerarquización (1 al 6)",
+      "title": "Jerarquización de Riesgos en Sourcing de Alimentos y Equipamiento",
+      "prompt": "Ordene del 1 al 6 las restricciones que mayor volatilidad o desabasto causan en su suministro de insumos (1 = Mayor impacto negativo; 6 = Menor impacto)",
+      "microcopy": "Mide la vulnerabilidad de la empresa ante choques de precios o escasez de insumos gastronómicos clave.",
+      "type": "rank",
+      "prefilled": false,
+      "factorCount": 6,
+      "factors": [
+        {
+          "id": "f1",
+          "label": "Volatilidad extrema de precios en carne, aves, pescados, lácteos y vegetales de temporada."
+        },
+        {
+          "id": "f2",
+          "label": "Escasez o falta de consistencia en la calidad de insumos regionales o ingredientes de especialidad."
+        },
+        {
+          "id": "f3",
+          "label": "Sobrecostos de empaques biodegradables, domos de desechable y bolsas de entrega para delivery."
+        },
+        {
+          "id": "f4",
+          "label": "Desabasto o alto costo de productos de limpieza y desinfección aprobados por la NOM-251 / Distintivo H."
+        },
+        {
+          "id": "f5",
+          "label": "Tarifas elevadas de gas L.P. / natural y energía eléctrica para operar equipos de cocina y HVAC."
+        },
+        {
+          "id": "f6",
+          "label": "Larga espera y refacciones costosas para hornos combi, abatidores y refrigeración industrial importada."
+        }
+      ]
+    },
+    {
+      "id": "R00-GAST-SOURCING-SERV",
+      "level": "n2",
+      "sectorId": "gastronomia",
+      "section": "SECCIÓN I: ROMPEHIELOS DE SEVERIDAD OPERATIVA (MÉTODO DE BORDA)",
+      "widget": "Rompehielos de Jerarquización (1 al 6)",
+      "title": "Jerarquización de Deficiencias en Infraestructura y Servicios",
+      "prompt": "Ordene del 1 al 6 las mayores deficiencias en servicios externos y entorno regional que frenan su rentabilidad (1 = Mayor impacto negativo; 6 = Menor impacto)",
+      "microcopy": "Mide las fallas de mercado exógenas en la cuenca gastronómica Puebla-Tlaxcala.",
+      "type": "rank",
+      "prefilled": false,
+      "factorCount": 6,
+      "factors": [
+        {
+          "id": "f1",
+          "label": "Comisiones excesivas de plataformas de Delivery (Rappi, UberEats: 25% a 35%) que erosionan el margen."
+        },
+        {
+          "id": "f2",
+          "label": "Falta de laboratorios regionales accesibles para análisis microbiológicos de alimentos, agua y congelados."
+        },
+        {
+          "id": "f3",
+          "label": "Tramitología compleja y costos elevados en licencias de funcionamiento, alcoholes y Protección Civil."
+        },
+        {
+          "id": "f4",
+          "label": "Escasez de consultores capacitados para auditoría e implementación de Distintivo H / Punto Limpio."
+        },
+        {
+          "id": "f5",
+          "label": "Licencias costosas y falta de soporte local para sistemas POS de punto de venta y comanderas digitales."
+        },
+        {
+          "id": "f6",
+          "label": "Percepción de inseguridad o falta de estacionamiento que inhibe la afluencia de comensales."
+        }
+      ]
+    },
+    {
+      "id": "GC-TECH-01",
+      "level": "n2",
+      "sectorId": "gastronomia",
+      "section": "SECCIÓN II: AUDITORÍA TÉCNICA DIRECTA Y ABSORCIÓN TECNOLÓGICA (P1 A P5 CONTEXTUALIZADAS)",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Absorción Tecnológica P1: Tecnologías de Sourcing Crítico",
+      "prompt": "¿Cuál de las siguientes tecnologías o equipos de cocina requiere adquirir o modernizar su empresa pero enfrenta sobrecostos o falta de proveedores locales?",
+      "microcopy": "Identifica la tecnología gastronómica de mayor impacto con falla de proveeduría en la región.",
+      "type": "single_select_text",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Hornos Mixtos Combis Inteligentes: Cocción con vapor y aire caliente programable con recetas digitales y autolavado.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Abatidores de Temperatura Industriales (Blast Chillers): Reducción rápida de temperatura (+90°C a +3°C en <90 min) para inocuidad.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Empacadoras al Vacío de Cámara y Cocción Sous-Vide: Sellado al vacío profesional para conservación, marinado acelerado y cocción a baja temperatura.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Sistema POS Cloud con Comanderas Móviles en Tablet y KDS (Kitchen Display System): Digitalización total del flujo comanda-cocina sin papel.",
+          "score": null
+        },
+        {
+          "value": "opt5",
+          "label": "Lavavajillas Industriales de Alta Temperatura / Sanitización Automática: Lavado continuo a 82°C para cumplimiento de Distintivo H.",
+          "score": null
+        },
+        {
+          "value": "opt6",
+          "label": "Otro",
+          "score": null
+        }
+      ],
+      "text": {
+        "maxLength": 100,
+        "optionValue": "opt6"
+      }
+    },
+    {
+      "id": "GC-TECH-02",
+      "level": "n2",
+      "sectorId": "gastronomia",
+      "section": "SECCIÓN II: AUDITORÍA TÉCNICA DIRECTA Y ABSORCIÓN TECNOLÓGICA (P1 A P5 CONTEXTUALIZADAS)",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Absorción Tecnológica P2: Subaprovechamiento de Tecnologías Instaladas",
+      "prompt": "¿Qué tecnología o sistema de software ya tiene instalado en su restaurante o cocina pero NO se utiliza a su máxima capacidad?",
+      "microcopy": "Mide la falla de absorción por falta de capacitación, resistencia del personal o software incompleto.",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Sistema POS instalado que solo se usa como caja registradora, sin cargar recetas estandarizadas ni descontar inventario.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Hornos Combis Inteligentes operados manualmente por falta de programación de programas de cocción.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Pantallas KDS en cocina ignoradas por los cocineros, quienes siguen exigiendo la comanda impresa en papel.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Abatidor de Temperatura o Empacadora al Vacío en desuso por falta de capacitación en técnicas de ensamblaje en frío.",
+          "score": null
+        },
+        {
+          "value": "opt5",
+          "label": "Módulo de Reportes de Food Cost % y Mermas del software que nunca se revisa por la gerencia.",
+          "score": null
+        },
+        {
+          "value": "opt6",
+          "label": "Ninguno / Todas las tecnologías instaladas operan a su máximo rendimiento.",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "GC-TECH-03",
+      "level": "n2",
+      "sectorId": "gastronomia",
+      "section": "SECCIÓN II: AUDITORÍA TÉCNICA DIRECTA Y ABSORCIÓN TECNOLÓGICA (P1 A P5 CONTEXTUALIZADAS)",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Absorción Tecnológica P3: Brecha con la Frontera Internacional",
+      "prompt": "¿Qué tecnología utilizan los grupos gastronómicos o empresas de catering internacionales que los hace significativamente más eficientes que los negocios locales?",
+      "microcopy": "Evalúa la distancia a la frontera tecnológica global (Benchmark Aghion / OMPI 2026).",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Recomendaciones personalizadas según alergias, maridajes e historial.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Registros continuos sin papel y alarmas ante fallas de temperatura.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Cero uso de gas, ambiente de trabajo fresco y reducción de emisiones.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Higienización profunda con mínimo consumo de agua y detergente.",
+          "score": null
+        },
+        {
+          "value": "opt5",
+          "label": "Transparencia total del origen del ingrediente desde la granja a la mesa.",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "GC-TECH-04",
+      "level": "n2",
+      "sectorId": "gastronomia",
+      "section": "SECCIÓN II: AUDITORÍA TÉCNICA DIRECTA Y ABSORCIÓN TECNOLÓGICA (P1 A P5 CONTEXTUALIZADAS)",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Absorción Tecnológica P4: Tecnología Revolucionaria / Apuesta Transformacional",
+      "prompt": "¿Qué proyecto transformacional o innovación disruptiva revolucionaría la competitividad de su empresa gastronómica en los próximos 2 a 3 años?",
+      "microcopy": "Mide el potencial de salto en el espacio de productos y complejidad de servicio (CIDE / Harvard).",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Creación de Comisariato Centralizado Robotizado para abastecer múltiples sucursales o franquicias con platillos precocinados al vacío.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Reconversión Total a Restaurante / Catering Sustentable Certificado Zero Waste (Residuo Cero a Relleno Sanitario).",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Implementación de Hub de Dark Kitchens Automatizadas Multi-marca con entrega propia optimizada por IA.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Desarrollo de Línea Agroindustrial Propia de Salsas/Aderezos Tradicionales Embotellados para Venta en Cadenas de Retail.",
+          "score": null
+        },
+        {
+          "value": "opt5",
+          "label": "Transformación a Complejo Gastronómico-Cultural Inmersivo con Realidad Aumentada y Maridaje Interactivo.",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "GC-TECH-05",
+      "level": "n2",
+      "sectorId": "gastronomia",
+      "section": "SECCIÓN II: AUDITORÍA TÉCNICA DIRECTA Y ABSORCIÓN TECNOLÓGICA (P1 A P5 CONTEXTUALIZADAS)",
+      "widget": "Tarjeta de Selección Única + Texto Libre",
+      "title": "Absorción Tecnológica P5: Demanda Explícita de Proyectos Tecnológicos Inmediatos",
+      "prompt": "¿Hay algún proyecto tecnológico específico o necesidad prioritaria que requiera abordar a la brevedad en su empresa?",
+      "microcopy": "Captura la demanda real de acompañamiento técnico para asignación inmediata a programas de apoyo.",
+      "type": "single_select_text",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Proyecto 1: Certificación u Obtención de Distintivo H / Punto Limpio / NOM-251 con auditoría previa.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Proyecto 2: Estandarización de Fichas Técnicas de Recetas y Sistema de Costeo en Tiempo Real (Food Cost %).",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Proyecto 3: Adquisición de Kit de Cocción Eficiente: Horno Combi + Abatidor de Temperatura + Empacadora al Vacío.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Proyecto 4: Implementación de POS Cloud + KDS en Cocina + Menú QR Interactivo con cobro digital.",
+          "score": null
+        },
+        {
+          "value": "opt5",
+          "label": "Un proyecto propio",
+          "score": null
+        }
+      ],
+      "text": {
+        "maxLength": 100,
+        "optionValue": "opt5"
+      }
+    },
+    {
+      "id": "GC-TECH-06",
+      "level": "n2",
+      "sectorId": "gastronomia",
+      "section": "SECCIÓN II: AUDITORÍA TÉCNICA DIRECTA Y ABSORCIÓN TECNOLÓGICA (P1 A P5 CONTEXTUALIZADAS)",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Control de Costo de Alimentos (Food Cost %), Porcionamiento y Mermas",
+      "prompt": "¿Cuál es el porcentaje promedio de costo de materia prima (Food Cost %) y el nivel de control de mermas en su cocina?",
+      "microcopy": "El Food Cost % es el indicador financiero clave que determina la supervivencia y rentabilidad de un negocio gastronómico.",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Sin fichas técnicas de recetas; porcionamiento al tanteo; mermas elevadas sin registro.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Costeo manual en Excel actualizado esporádicamente; mermas registradas solo en pérdidas mayores.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Fichas técnicas digitales con porcionamiento exacto (báscula); Food Cost monitoreado semanalmente.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Descuento automático de inventario por POS; mermas mermadas < 1.5%; auditoría diaria de variaciones.",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "GC-TECH-07",
+      "level": "n2",
+      "sectorId": "gastronomia",
+      "section": "SECCIÓN II: AUDITORÍA TÉCNICA DIRECTA Y ABSORCIÓN TECNOLÓGICA (P1 A P5 CONTEXTUALIZADAS)",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Trazabilidad Digital de Insumos, Bitácoras de Inocuidad y POS/ERP Gastronómico",
+      "prompt": "¿Qué nivel de digitalización e integración utiliza su negocio para gestionar comandes, compras y registros sanitarios?",
+      "microcopy": "La digitalización del flujo comanda-cocina-inventario elimina errores, acelera el servicio y garantiza la inocuidad.",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Proceso 100% Manual / Papel: Comandas escritas a mano; bitácoras de temperatura en cuadernos; compras por llamadas sin ERP.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "POS Básico de Caja: Punto de venta solo para cobro e impresión de tickets; bitácoras de inocuidad en carpetas físicas.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "POS Cloud Integrado a Comanderas en Tablets: Salida directa de comandas a cocina; recetas registradas en sistema.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Sistema Gastronómico Integrado 4.0 (POS Cloud + KDS + ERP + Bitácoras Digitales IoT): Flujo totalmente digitalizado en tiempo real.",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "CP-GC-01",
+      "level": "n2",
+      "sectorId": "gastronomia",
+      "section": "SECCIÓN III: SOFISTICACIÓN PRODUCTIVA Y ESPACIO DE PRODUCTOS (CIDE / HARVARD)",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Reconversión hacia la 'Fruta Madura' Gastronómica (Alta Densidad ω_j > 0.65)",
+      "prompt": "Considerando su cocina y equipo actual, ¿hacia qué servicio gastronómico de mayor margen podría expandirse en menos de 12 meses?",
+      "microcopy": "Mide la capacidad de salto hacia adyacencias de menor costo de inversión y alto retorno.",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Servicio de Catering Corporativo y Comedores Ejecutivos para parques industriales de la zona.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Producción de Platillos Embalados al Vacío Listos para Calentar (Ready-to-Eat) para venta en minisupers o delivery.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Desarrollo de Experiencia Gastronómica Tradicional de Autor con Maridaje Regional para turismo de alto poder adquisitivo.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Servicio Especializado de Banquetes y Eventos Temáticos en Haciendas o Recintos Históricos.",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "CP-GC-02",
+      "level": "n2",
+      "sectorId": "gastronomia",
+      "section": "SECCIÓN III: SOFISTICACIÓN PRODUCTIVA Y ESPACIO DE PRODUCTOS (CIDE / HARVARD)",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Apuestas Estratégicas y Procesamiento Gastronómico Avanzado (Alto ICPO)",
+      "prompt": "En un horizonte de 2 a 3 años con coinversión y tecnología, ¿qué negocio gastronómico de alta complejidad podría desarrollar su empresa?",
+      "microcopy": "Evalúa la capacidad de diversificación hacia la agroindustria gastronómica de alto valor (Índice de Complejidad Potencial ICPO).",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Comisariato Industrial de Platillos Ultracongelados IQF para cadenas hoteleras o exportación a EE.UU.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Embotellado y Comercialización Nacional de Salsas, Moles o Aderezos Regionales con marca propia.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Centro Gastronómico de Capacitación e Innovación Culinaria con restaurante laboratorio de pruebas.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Red Franquiciada de Conceptos Gastronómicos Tecnificados con control remoto centralizado.",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "CP-GC-03",
+      "level": "n2",
+      "sectorId": "gastronomia",
+      "section": "SECCIÓN III: SOFISTICACIÓN PRODUCTIVA Y ESPACIO DE PRODUCTOS (CIDE / HARVARD)",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Eficiencia Energética, Trampas de Grasa y Gestión de Residuos",
+      "prompt": "¿Qué nivel de avance tiene su negocio en la adopción de prácticas ambientales y manejo responsable de residuos alimentarios?",
+      "microcopy": "La sostenibilidad y la correcta disposición de aceites/grasas son la máxima exigencia ambiental y sanitaria en la región.",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Cumplimiento Básico: Disposición convencional de basura; sin trampa de grasa o con mantenimiento irregular.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Prácticas de Control: Trampa de grasa normada con limpieza periódica por empresa autorizada; recolección de aceite vegetal usado.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Separación y Eficiencia: Separación rigurosa de residuos orgánicos para composta; equipos de cocina Inverter de bajo consumo.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Cocina Sustentable Zero Waste: Cero plásticos de un solo uso; biodigestión/composta propia de orgánicos; iluminación solar y agua reciclada.",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "COL-GC01",
+      "level": "n2",
+      "sectorId": "gastronomia",
+      "section": "SECCIÓN IV: SOLUCIONES COLABORATIVAS ANTE LA FALLA DE ESCALA (BIENES DE CLUB)",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Culinary Kitchen & Commissary Hub Comunitario",
+      "prompt": "¿Cuál sería la disposición de su empresa para utilizar una Cocina Industrial Centralizada y Comisariato compartido bajo esquema Pay-per-Use?",
+      "microcopy": "Resuelve la falla de escala en infraestructura de cocción pesada, abatimiento y empaque al vacío para PyMEs gastronómicas.",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Alto Interés / Usuario Frecuente: Rentaría turnos de cocina equipada (hornos combi, abatidores, empacadoras) para preparar producción de volumen.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Interés en Maquila de Empaque: Enviaría sus platillos o bases para empaque al vacío profesional y pasteurización Sous-Vide.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Socio Co-inversionista: Dispuesto a aportar capital para el equipamiento de la cocina comunitaria a cambio de tarifas preferenciales.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Sin Interés: Cuenta con cocina industrial propia con capacidad sobrante.",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "COL-GC02",
+      "level": "n2",
+      "sectorId": "gastronomia",
+      "section": "SECCIÓN IV: SOLUCIONES COLABORATIVAS ANTE LA FALLA DE ESCALA (BIENES DE CLUB)",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Centro Comunitario de Capacitación, Calidad e Inocuidad Gastronómica",
+      "prompt": "¿Cómo participaría su empresa en un Centro Regional de Capacitación en Distintivo H, Costeo de Recetas e Inocuidad en Cuádruple Hélice?",
+      "microcopy": "Abate los costos de consultoría en inocuidad y resuelve la escasez de personal capacitado en cocina y servicio.",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Capacitación de Personal: Enviaría a sus cocineros, meseros y gerentes a cursos continuos de inocuidad (Distintivo H) y servicio.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Consultoría en Estandarización: Contrataría servicios del centro para la estandarización de recetas y fichas técnicas de su menú.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Sede de Prácticas: Recibiría estudiantes y practicantes de escuelas de gastronomía vinculadas al centro.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Sin Interés: Realiza sus capacitaciones y auditorías de inocuidad de forma interna.",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "COL-GC03",
+      "level": "n2",
+      "sectorId": "gastronomia",
+      "section": "SECCIÓN IV: SOLUCIONES COLABORATIVAS ANTE LA FALLA DE ESCALA (BIENES DE CLUB)",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Consorcio de Compras Consolidadas de A&B y Red Directa con Productores",
+      "prompt": "¿Qué grado de apertura tiene su empresa para integrarse a un Consorcio de Compras Consolidadas de Alimentos, Bebidas y Empaques?",
+      "microcopy": "La consolidación de compras de insumos perecederos y secos abate costos de materia prima entre 12% y 20%.",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Compra Consolidada de Proteínas y A&B: Sumar volumen de compra directo con rastros, empacadoras y distribuidoras de alimentos.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Compras Directas al Campo (Farm-to-Table): Comprar frutas, hortalizas y quesos directo a cooperativas agrícolas regionales sin coyotes.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Consorcio de Empaques Biodegradables y Desechables: Comprar por volumen bolsas, domos y cajas de delivery a costo preferencial.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Sin Interés: Prefiere mantener sus proveedores actuales de forma independiente.",
+          "score": null
+        }
+      ]
+    }
+  ],
+  "roadmap": [
+    {
+      "band": "platino",
+      "min": 75.0,
+      "max": null,
+      "actions": [
+        "Capa A (Digital/TI): Implementación de CRM de lealtad con IA y motor de reservas propio sin comisión; control automatizado de inventarios por recetario.",
+        "Capa B (Bienes de Club): Liderazgo en el Consorcio de Compras Directas al Campo (Farm-to-Table) y red de comisariatos."
+      ]
+    },
+    {
+      "band": "oro",
+      "min": 55.0,
+      "max": 75.0,
+      "actions": [
+        "Capa A (Digital/TI): Migración a POS Cloud con comanderas móviles en tablets, pantalla KDS en cocina y menú QR dinámico.",
+        "Capa B (Bienes de Club): Uso del Culinary Commissary Hub para procesos de empacado al vacío y abatimiento de volumen."
+      ]
+    },
+    {
+      "band": "plata",
+      "min": 35.0,
+      "max": 55.0,
+      "actions": [
+        "Capa A (Digital/TI): Software POS básico en nube, estandarización digital de fichas técnicas de platillos y app de bitácoras sanitarias en tablet.",
+        "Capa B (Bienes de Club): Acreditación de Distintivo H a través del Centro Comunitario de Capacitación e Inocuidad."
+      ]
+    },
+    {
+      "band": "bronce",
+      "min": 0.0,
+      "max": 35.0,
+      "actions": [
+        "Capa A (Digital/TI): Capacitación básica en costeo de recetas, porcionamiento exacto con báscula y control digital de caja/compras.",
+        "Capa B (Bienes de Club): Integración al Consorcio de Compras Consolidadas de Insumos Básicos y Alimentos."
+      ]
+    }
+  ]
+}

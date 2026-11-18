@@ -1,0 +1,756 @@
+{
+  "sectorId": "agencias",
+  "label": "10. Agencias de Viaje y Operadores de Turismo",
+  "questions": [
+    {
+      "id": "AV-01",
+      "level": "n2",
+      "sectorId": "agencias",
+      "section": "MÓDULO 0: PERFILADO DEL ESLABÓN Y LOCALIZACIÓN TERRITORIAL (HEREDADO DE NIVEL 1)",
+      "widget": "Tarjeta de Selección Única (Pre-poblado)",
+      "title": "Sub-eslabón Dominante en Comercialización Turística",
+      "prompt": "¿En cuál de los siguientes modelos de negocio turísticos se concentra la mayor proporción de la facturación y venta de su empresa?",
+      "microcopy": "El sub-eslabón define los sistemas de inventario GDS/API, las pólizas de seguro de responsabilidad civil y las licencias de operación SECTUR.",
+      "type": "single_select",
+      "prefilled": true,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Agencia Receptiva / Destination Management Company (DMC): Operación directa de turismo receptivo para grupos, MICE y turismo internacional en Puebla y Tlaxcala.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Agencia E-Commerce / OTA Regional (Online Travel Agency): Comercialización 100% digital a través de sitio web, app móvil o pasarelas de reserva en línea B2C.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Operador de Ecoturismo, Aventura y Naturaleza: Diseño y ejecución de rutas de senderismo, avistamiento (luciérnagas/aves), escalada y experiencias de naturaleza.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Agencia de Viajes Tradicional / Outbound: Emisión de boletos de avión, paquetes vacacionales nacionales/internacionales y cruceros para viajeros locales.",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "AV-02",
+      "level": "n2",
+      "sectorId": "agencias",
+      "section": "MÓDULO 0: PERFILADO DEL ESLABÓN Y LOCALIZACIÓN TERRITORIAL (HEREDADO DE NIVEL 1)",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Corredor o Nodo Principal de Operación Turística",
+      "prompt": "¿En qué nodo o corredor turístico de la región Puebla - Tlaxcala se localiza la oficina matriz o centro operativo de su empresa?",
+      "microcopy": "La localización territorial determina la conectividad con atractivos clave, acceso a mercados emisores y oferta de transporte turístico.",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Corredor 1: ZMPT / Centro Histórico de Puebla / Angelópolis (Puebla Metropolitano): Turismo de negocios, MICE, patrimonio cultural y turismo médico.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Corredor 2: Pueblos Mágicos de Puebla (Atlixco, Cholula, Zacatlán, Chignahuapan, Cuetzalan): Turismo cultural, gastronómico, fin de semana y naturaleza.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Corredor 3: Tlaxcala Capital / Val'Quirico / Huamantla / Tlaxco: Turismo de haciendas, Pueblos Mágicos, santuario de luciérnagas y cultura taurina/pulquera.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Corredor 4: Tehuacán y Sierra Norte / Nororiental (Huauchinango, Xicotepec, Teziutlán): Ecoturismo de aventura, Reserva de la Biósfera Tehuacán-Cuicatlán y turismo de naturaleza.",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "AV-03",
+      "level": "n2",
+      "sectorId": "agencias",
+      "section": "MÓDULO 0: PERFILADO DEL ESLABÓN Y LOCALIZACIÓN TERRITORIAL (HEREDADO DE NIVEL 1)",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Certificación de Calidad, Registro y Normatividad Turística",
+      "prompt": "¿Cuál es el nivel formal de certificación, registro oficial y cumplimiento normativo que ostenta su agencia u operadora?",
+      "microcopy": "Las certificaciones oficiales otorgan certeza jurídica al cliente y son indispensables para licitar servicios gubernamentales o de grandes empresas.",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Registro Básico SECTUR (Registro Nacional de Turismo RNT): Cédula de RNT vigente ante SECTUR federal sin sellos de calidad adicionales.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Certificación de Calidad Nacional (Distintivo M / Punto Limpio / Cédula SECTUR Estatal): Certificación en gestión administrativa (Moderniza) e higiene operativa.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Certificación de Especialización / Gremial (IATA / ATTA / SECTUR NOM-08/09): Registro IATA para emisión de boletos, o guías certificados bajo NOM-08/09-TUR.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Certificación Internacional Sustentable (GSTC / ISO 9001 / Travelife / Rainforest Alliance): Acreditación internacional en turismo sustentable y gestión de calidad.",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "R00-AGAV-PROD",
+      "level": "n2",
+      "sectorId": "agencias",
+      "section": "SECCIÓN I: ROMPEHIELOS DE SEVERIDAD OPERATIVA (MÉTODO DE BORDA)",
+      "widget": "Rompehielos de Jerarquización (1 al 8)",
+      "title": "Jerarquización de Fricciones en Operación y Ventas",
+      "prompt": "Ordene del 1 al 8 las siguientes fricciones según el impacto económico negativo y la frecuencia con que afectan su empresa (1 = Mayor impacto / Máxima gravedad; 8 = Menor impacto)",
+      "microcopy": "Permite priorizar la causa raíz de las ineficiencias comerciales y de servicio antes de la evaluación de detalle.",
+      "type": "rank",
+      "prefilled": false,
+      "factorCount": 8,
+      "factors": [
+        {
+          "id": "f1",
+          "label": "Margen de intermediación reducido y disminución en comisiones de aerolíneas y proveedores."
+        },
+        {
+          "id": "f2",
+          "label": "Cancelaciones, modificaciones y reembolsos tardíos por parte de proveedores turísticos (hoteles/fletes)."
+        },
+        {
+          "id": "f3",
+          "label": "Falta de integración digital entre el sitio web/CRM y los motores de reserva de proveedores (GDS/API)."
+        },
+        {
+          "id": "f4",
+          "label": "Alta rotación de asesores de viaje, falta de guías bilingües y desbalanceo en atención en picos."
+        },
+        {
+          "id": "f5",
+          "label": "Bitácoras manuales en Excel para armado de cotizaciones e itinerarios, generando lentitud de respuesta."
+        },
+        {
+          "id": "f6",
+          "label": "Retrasos en la confirmación y emisión de vouchers, boletos o facturas digitales a clientes."
+        },
+        {
+          "id": "f7",
+          "label": "Fallas y contratiempos en pasarelas de pago digitales (contracargos, rechazos de tarjetas internacionales)."
+        },
+        {
+          "id": "f8",
+          "label": "Reclamaciones de clientes por incumplimiento o variación en la calidad de servicios en destino."
+        }
+      ]
+    },
+    {
+      "id": "R00-AGAV-SOURCING-MAT",
+      "level": "n2",
+      "sectorId": "agencias",
+      "section": "SECCIÓN I: ROMPEHIELOS DE SEVERIDAD OPERATIVA (MÉTODO DE BORDA)",
+      "widget": "Rompehielos de Jerarquización (1 al 6)",
+      "title": "Jerarquización de Riesgos en Sourcing de Licencias y Proveedores",
+      "prompt": "Ordene del 1 al 6 las restricciones que mayor volatilidad o sobrecosto generan en sus insumos y servicios de soporte (1 = Mayor impacto negativo; 6 = Menor impacto)",
+      "microcopy": "Mide la vulnerabilidad de la agencia ante costos de licencias tecnológicas y acuerdos comerciales con prestadores.",
+      "type": "rank",
+      "prefilled": false,
+      "factorCount": 6,
+      "factors": [
+        {
+          "id": "f1",
+          "label": "Sobrecostos de licencias GDS (Amadeus, Sabre) y software de armado de itinerarios (Wetu, Travefy)."
+        },
+        {
+          "id": "f2",
+          "label": "Tarifas netas poco competitivas impuestas por cadenas hoteleras y transportistas frente a OTAs."
+        },
+        {
+          "id": "f3",
+          "label": "Escasez y alto costo de contratación de guías de turistas certificados bilingües en la región."
+        },
+        {
+          "id": "f4",
+          "label": "Comisiones elevadas de pasarelas de pago en línea (Stripe, PayPal, MercadoPago 3% a 5%)."
+        },
+        {
+          "id": "f5",
+          "label": "Incremento en primas de seguro de viajero y pólizas de responsabilidad civil para turismo de aventura."
+        },
+        {
+          "id": "f6",
+          "label": "Elevado costo de diseño, impresión de material promocional y kits físicos de bienvenida."
+        }
+      ]
+    },
+    {
+      "id": "R00-AGAV-SOURCING-SERV",
+      "level": "n2",
+      "sectorId": "agencias",
+      "section": "SECCIÓN I: ROMPEHIELOS DE SEVERIDAD OPERATIVA (MÉTODO DE BORDA)",
+      "widget": "Rompehielos de Jerarquización (1 al 6)",
+      "title": "Jerarquización de Deficiencias en Entorno y Servicios de Apoyo",
+      "prompt": "Ordene del 1 al 6 las mayores deficiencias en servicios externos y entorno regional que frenan la atracción de turistas (1 = Mayor impacto negativo; 6 = Menor impacto)",
+      "microcopy": "Mide las fallas de mercado exógenas en la cadena de comercialización turística de Puebla-Tlaxcala.",
+      "type": "rank",
+      "prefilled": false,
+      "factorCount": 6,
+      "factors": [
+        {
+          "id": "f1",
+          "label": "Percepción de inseguridad y asaltos en carreteras de acceso a zonas turísticas regionales."
+        },
+        {
+          "id": "f2",
+          "label": "Dominio y competencia desleal de OTAs internacionales que absorben el mercado sin beneficio local."
+        },
+        {
+          "id": "f3",
+          "label": "Deficiente conectividad de telefonía e internet móvil en rutas ecoturísticas y Pueblos Mágicos."
+        },
+        {
+          "id": "f4",
+          "label": "Falta de apoyos gubernamentales (SECTUR) para participación conjunta en ferias turísticas internacionales."
+        },
+        {
+          "id": "f5",
+          "label": "Tramitología lenta para licencias municipales de funcionamiento, uso de suelo y Protección Civil."
+        },
+        {
+          "id": "f6",
+          "label": "Escasez de programas locales de capacitación en marketing digital turístico y Revenue Management."
+        }
+      ]
+    },
+    {
+      "id": "AV-TECH-01",
+      "level": "n2",
+      "sectorId": "agencias",
+      "section": "SECCIÓN II: AUDITORÍA TÉCNICA DIRECTA Y ABSORCIÓN TECNOLÓGICA (P1 A P5 CONTEXTUALIZADAS)",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Absorción Tecnológica P1: Tecnologías de Comercialización y Sourcing Crítico",
+      "prompt": "¿Cuál de las siguientes plataformas o herramientas de software requiere implementar o modernizar su empresa pero enfrenta sobrecostos o falta de proveedores locales?",
+      "microcopy": "Identifica la solución digital de mayor valor con falla de proveeduría o soporte local en el sector agencias.",
+      "type": "single_select_text",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Motor de Reservas B2B / B2C Integrado por API con Confirmación Instantánea: Plataforma web que permite cotizar y reservar hoteles, tours y transportes directamente en tiempo real.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Software de Creador de Itinerarios Digitales Inmersivos (Wetu / Travefy / Custom App): Herramienta para generar itinerarios interactivos móviles con mapas, fotos 360°, videos y PDF dinámicos.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "CRM Turístico Automático y Gestión de Leads (HubSpot / Salesforce / ZoHo Travel): Sistema de seguimiento de prospectos con automatización de WhatsApp, correo y canalización de ventas.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Pasarelas de Pago Multi-divisa y Antifraude (Stripe / Adyen / MercadoPago B2B): Sistema de cobro digital seguro en múltiples monedas con protección contra contracargos.",
+          "score": null
+        },
+        {
+          "value": "opt5",
+          "label": "App Móvil de Logística de Ruta y Control de Guías / Transporte: Aplicación móvil para seguimiento por GPS del transporte turístico, pase de lista de pasajeros y asignación de guías en tiempo real.",
+          "score": null
+        },
+        {
+          "value": "opt6",
+          "label": "Otro",
+          "score": null
+        }
+      ],
+      "text": {
+        "maxLength": 100,
+        "optionValue": "opt6"
+      }
+    },
+    {
+      "id": "AV-TECH-02",
+      "level": "n2",
+      "sectorId": "agencias",
+      "section": "SECCIÓN II: AUDITORÍA TÉCNICA DIRECTA Y ABSORCIÓN TECNOLÓGICA (P1 A P5 CONTEXTUALIZADAS)",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Absorción Tecnológica P2: Subaprovechamiento de Tecnologías Instaladas",
+      "prompt": "¿Qué software o herramienta digital ya tiene contratada o instalada en su empresa pero NO funciona como desearía o se encuentra subaprovechada?",
+      "microcopy": "Mide la falla de absorción por falta de capacitación, conectividad o integración de sistemas.",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "CRM Turístico contratado que solo se usa como agenda de contactos, sin automatización de embudos ni remarketing.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Sitio Web con formulario de contacto desactualizado que no permite reservas directas y requiere confirmación telefónica manual.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Software de Itinerarios Digitales que no se personaliza por cliente y se sigue enviando como cotización estática en Word/Excel.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "GDS (Amadeus / Sabre) u Operadora Mayorista conectada que no está integrada con el sistema de facturación y contabilidad.",
+          "score": null
+        },
+        {
+          "value": "opt5",
+          "label": "Base de datos de clientes y pasarela de pago que operan de forma aislada sin historial unificado de consumo.",
+          "score": null
+        },
+        {
+          "value": "opt6",
+          "label": "Ninguno / Todas las herramientas digitales contratadas se aprovechan a su máximo potencial.",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "AV-TECH-03",
+      "level": "n2",
+      "sectorId": "agencias",
+      "section": "SECCIÓN II: AUDITORÍA TÉCNICA DIRECTA Y ABSORCIÓN TECNOLÓGICA (P1 A P5 CONTEXTUALIZADAS)",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Absorción Tecnológica P3: Brecha con la Frontera Internacional",
+      "prompt": "¿Qué tecnología utilizan las agencias y touroperadores internacionales líderes que las hace significativamente más competitivas que las empresas locales?",
+      "microcopy": "Evalúa la distancia a la frontera tecnológica global en turismo (Benchmark OMPI 2026 / World Tourism Organization).",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Asistentes de Viaje con Inteligencia Artificial Generativa 24/7: Chatbots de IA entrenados para armar cotizaciones complejas e itinerarios a la medida en segundos.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Itinerarios Interactivos en App Móvil con Realidad Aumentada (AR): Apps que guían al viajero en destino con información histórica inmersiva y navegación AR.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Motores de Reserva B2C Dinámicos con Empaquetado Automático (Dynamic Packaging): Sistemas que combinan vuelos, hoteles, experiencias y traslados con precio optimizado al instante.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Pagos Digitales Internacionales y Cripto/Fintech: Procesamiento de cobros internacionales sin comisión cambiaria y pagos fraccionados Buy Now Pay Later (BNPL).",
+          "score": null
+        },
+        {
+          "value": "opt5",
+          "label": "Monitoreo Digital de Huella de Carbono del Viaje y Certificación Blockchain: Medición exacta y neutralización garantizada del impacto ambiental del itinerario.",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "AV-TECH-04",
+      "level": "n2",
+      "sectorId": "agencias",
+      "section": "SECCIÓN II: AUDITORÍA TÉCNICA DIRECTA Y ABSORCIÓN TECNOLÓGICA (P1 A P5 CONTEXTUALIZADAS)",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Absorción Tecnológica P4: Tecnología Revolucionaria / Apuesta Transformacional",
+      "prompt": "¿Qué proyecto transformacional o cambio tecnológico revolucionaría el alcance comercial y rentabilidad de su empresa en los próximos 2 a 3 años?",
+      "microcopy": "Mide el potencial de salto hacia servicios turísticos de alta complejidad y diversificación (CIDE / Harvard).",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Lanzamiento de Plataforma D2C Omnicanal Propia de Experiencias Turísticas de Autor con Venta Directa Internacional.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Integración 100% Automatizada API entre GDS + Proveedores Locales + CRM + ERP Contable sin intervención manual.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Reconversión Completa a Touroperadora Sustentable Certificada Neutra en Carbono (GSTC / Travelife).",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Creación de Agencia 100% Digital Cloud (Sin local físico tradicional, operando con red de asesores remotos equipados con IA).",
+          "score": null
+        },
+        {
+          "value": "opt5",
+          "label": "Desarrollo de Producto Especializado de Alto Valor Agregado (Turismo Médico / Eventos MICE Internacionales / Expediciones Biológicas).",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "AV-TECH-05",
+      "level": "n2",
+      "sectorId": "agencias",
+      "section": "SECCIÓN II: AUDITORÍA TÉCNICA DIRECTA Y ABSORCIÓN TECNOLÓGICA (P1 A P5 CONTEXTUALIZADAS)",
+      "widget": "Tarjeta de Selección Única + Texto Libre",
+      "title": "Absorción Tecnológica P5: Demanda Explícita de Proyectos Tecnológicos Inmediatos",
+      "prompt": "¿Hay algún proyecto tecnológico específico o necesidad prioritaria que requiera abordar a la brevedad para su empresa?",
+      "microcopy": "Captura la demanda real de acompañamiento técnico para asignación inmediata a programas de apoyo.",
+      "type": "single_select_text",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Proyecto 1: Implementación de CRM Turístico (HubSpot/Zoho) + Motor de Reservas Directo Web.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Proyecto 2: Certificación Oficial RNT / Distintivo M / Acreditación GSTC en Turismo Sustentable.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Proyecto 3: Programa Intensivo de Capacitación en Marketing Digital Turístico, Pauta y Revenue Management.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Proyecto 4: Adopción de Software de Itinerarios Digitales Móviles (Wetu/Travefy) y Diseño de Experiencias.",
+          "score": null
+        },
+        {
+          "value": "opt5",
+          "label": "Un proyecto propio",
+          "score": null
+        }
+      ],
+      "text": {
+        "maxLength": 100,
+        "optionValue": "opt5"
+      }
+    },
+    {
+      "id": "AV-TECH-06",
+      "level": "n2",
+      "sectorId": "agencias",
+      "section": "SECCIÓN II: AUDITORÍA TÉCNICA DIRECTA Y ABSORCIÓN TECNOLÓGICA (P1 A P5 CONTEXTUALIZADAS)",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Control de Tasa de Conversión de Cotizaciones, Cancelaciones y Calidad de Servicio",
+      "prompt": "¿Cuál es el porcentaje promedio de conversión de cotizaciones a ventas cerradas y la tasa de cancelaciones o quejas en su empresa?",
+      "microcopy": "Mide la eficiencia del proceso de comercialización y la efectividad del equipo de ventas.",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Sin registro sistemático de prospectos; tasa de conversión por debajo del 8% y cancelaciones > 10%.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Seguimiento manual en Excel; conversión entre 8% y 15%; tasa de cancelaciones entre 5% y 10%.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Registro en CRM con embudo definido; conversión entre 16% y 25%; cancelaciones < 5%.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Automatización de seguimiento con IA; conversión superior al 25%; cancelaciones < 2%.",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "AV-TECH-07",
+      "level": "n2",
+      "sectorId": "agencias",
+      "section": "SECCIÓN II: AUDITORÍA TÉCNICA DIRECTA Y ABSORCIÓN TECNOLÓGICA (P1 A P5 CONTEXTUALIZADAS)",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Trazabilidad Digital del Cliente, CRM y Confirmación Electrónica",
+      "prompt": "¿Qué nivel de trazabilidad digital e integración de datos utiliza su empresa para gestionar la historia y preferencias de cada cliente?",
+      "microcopy": "La trazabilidad digital del cliente permite personalizar la oferta, automatizar el remarketing y elevar el valor de vida del cliente (CLV).",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Registros Manuales en Cuadernos / Carpetas físicas: Datos del cliente y vouchers archivados en papel o correos aislados.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Hojas de Cálculo (Excel) Desconectadas: Listas de clientes en Excel sin historial de compras ni automatización de seguimiento.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "CRM Turístico o Sistema de Reservas con Ficha Única de Cliente: Registro digital de itinerarios consumidos, preferencias y fechas clave.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Ecosistema Digital Integrado 4.0 (CRM + ERP + Vouchers QR + App Móvil): Trazabilidad omnicanal con acceso del cliente a su viaje desde App móvil.",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "CP-AV-01",
+      "level": "n2",
+      "sectorId": "agencias",
+      "section": "SECCIÓN III: SOFISTICACIÓN PRODUCTIVA Y ESPACIO DE PRODUCTOS (CIDE / HARVARD)",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Reconversión hacia la 'Fruta Madura' en Servicios Turísticos (Alta Densidad ω_j > 0.65)",
+      "prompt": "Considerando su catálogo de servicios y contactos actuales, ¿hacia qué producto turístico de mayor valor agregado podría reconvertirse en menos de 12 meses?",
+      "microcopy": "Mide la capacidad de salto hacia adyacencias turísticas de menor riesgo y mayor margen.",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Desarrollo de Rutas Gastronómicas y Culturales de Nicho (Ruta del Mole, Mezcal, Talavera o Pulque).",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Especialización en Turismo MICE de Pequeño y Mediano Formato (Viajes de incentivo corporativo y workshops).",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Creación de Paquetes Ecoturísticos de Día Completo (Day Trips) con transporte privado y guías certificados.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Turismo Religioso y Patrimonial Especializado para grupos de tercera edad y asociaciones.",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "CP-AV-02",
+      "level": "n2",
+      "sectorId": "agencias",
+      "section": "SECCIÓN III: SOFISTICACIÓN PRODUCTIVA Y ESPACIO DE PRODUCTOS (CIDE / HARVARD)",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Apuestas Estratégicas y Productos Turísticos de Alta Complejidad (Alto ICPO)",
+      "prompt": "En un horizonte de 2 a 3 años con coinversión y alianzas tecnológicas, ¿qué línea de servicios de alta complejidad podría desarrollar su empresa?",
+      "microcopy": "Evalúa la capacidad de diversificación hacia productos de alto valor agregado e impacto regional (Índice de Complejidad Potencial ICPO).",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Operación Receptiva Especializada en Turismo Médico, Quirúrgico y de Recuperación en Alianza con Hospitales.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Expediciones de Naturaleza de Alto Nivel (Avistamiento de Luciérnagas / Fotografía de Aves) con Sello GSTC.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Diseño y Comercialización de Viajes Inmersivos de Lujo Personalizados (Luxury Tailor-Made) para Mercado Emisor Internacional.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Operadora de Eventos e Híbridos Inmersivos Internacionales con Logística Multilingüe Integral.",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "CP-AV-03",
+      "level": "n2",
+      "sectorId": "agencias",
+      "section": "SECCIÓN III: SOFISTICACIÓN PRODUCTIVA Y ESPACIO DE PRODUCTOS (CIDE / HARVARD)",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Sostenibilidad, Descarbonización y Código de Conducta Turística",
+      "prompt": "¿Qué nivel de avance tiene su empresa en la adopción de prácticas de turismo sustentable, compensación de carbono y responsabilidad social?",
+      "microcopy": "La sostenibilidad certificada es una exigencia creciente de viajeros internacionales y touroperadores globales.",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Cumplimiento Básico: Respeto a reglamentos locales sin programas formales de medición ambiental o responsabilidad social.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Prácticas de Reducción: Digitalización parcial de documentos (menos papel) y preferencia por proveedores locales.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Turismo Responsable Estructurado: Medición de la huella de carbono de paquetes y código de conducta ambiental/social firmado.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Certificación Internacional Sustentable (GSTC / Travelife): Neutralización del 100% de emisiones de itinerarios y certificación formal auditada.",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "COL-AV01",
+      "level": "n2",
+      "sectorId": "agencias",
+      "section": "SECCIÓN IV: SOLUCIONES COLABORATIVAS ANTE LA FALLA DE ESCALA (BIENES DE CLUB)",
+      "widget": "Tarjeta de Selección Única",
+      "title": "TravelTech & B2B Marketplace Hub Comunitario Regional",
+      "prompt": "¿Cuál sería la disposición de su empresa para integrarse a una Plataforma B2B/B2C compartida con inventario regional unificado bajo esquema Pay-per-Use?",
+      "microcopy": "Resuelve la falla de escala tecnológica y permite a pequeñas agencias competir con grandes OTAs internacionales.",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Alto Interés / Usuario Activo: Comercializaría sus paquetes y utilizaría el motor B2B/B2C pagando una comisión mínima por transacción.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Interés Moderado / Proveedor de Inventario: Aportaría su catálogo de tours y servicios para ser comercializado por otras agencias de la red.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Usuario de Tecnología: Utilizaría la plataforma exclusivamente para contratar pasarelas de pago y motores de reserva a tarifas consolidadas.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Sin Interés: Cuenta con tecnología propia o prefiere comercializar de forma independiente.",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "COL-AV02",
+      "level": "n2",
+      "sectorId": "agencias",
+      "section": "SECCIÓN IV: SOLUCIONES COLABORATIVAS ANTE LA FALLA DE ESCALA (BIENES DE CLUB)",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Centro Comunitario de Capacitación Digital y Guiado Turístico Certificado",
+      "prompt": "¿Cómo participaría su empresa en la creación de un Centro de Capacitación Turística Continua en Cuádruple Hélice?",
+      "microcopy": "Permite profesionalizar al personal en idiomas, marketing digital y guías certificados bajo normas NOM-08/09 a costo accesible.",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Usuario Frecuente de Capacitación: Enviarías a sus asesores y guías a cursos de certificación bilingüe, digital y turismo sustentable.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Co-diseñador de Contenidos: Participaría en la definición de programas de estudio según las necesidades reales del mercado.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Espacio de Prácticas: Ofrecería plazas de prácticas profesionales para alumnos destacados del centro.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Sin Interés: Realiza sus capacitaciones con personal interno o proveedores externos de forma individual.",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "COL-AV03",
+      "level": "n2",
+      "sectorId": "agencias",
+      "section": "SECCIÓN IV: SOLUCIONES COLABORATIVAS ANTE LA FALLA DE ESCALA (BIENES DE CLUB)",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Consorcio de Compras Consolidadas de Licencias y Promoción Internacional",
+      "prompt": "¿Qué grado de apertura tiene su empresa para asociarse en un Consorcio de Compras de software turísticos y representación colectiva en ferias?",
+      "microcopy": "La consolidación de demanda permite abatir costos de licencias de software y estar presente en ferias internacionales (FITUR, Tianguis).",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Compras Consolidadas de Licencias de Software: Sumar licencias para obtener descuentos en CRM, GDS y pasarelas de pago.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Representación Conjunta en Ferias Turísticas: Compartir stand y gastos de representación en Tianguis Turístico, FITUR o WTM.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Campañas Colectivas de Marketing Digital: Fondo común para campañas de pauta digital promocionando los destinos Puebla-Tlaxcala.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Sin Interés: Prefiere mantener negociaciones y promociones individuales.",
+          "score": null
+        }
+      ]
+    }
+  ],
+  "roadmap": [
+    {
+      "band": "platino",
+      "min": 75.0,
+      "max": null,
+      "actions": [
+        "Capa A (Digital/TI): Implementación de Asistente de Viaje con IA generativa 24/7 y empaquetado dinámico en tiempo real.",
+        "Capa B (Bienes de Club): Liderazgo en el Marketplace TravelTech y representación en ferias internacionales."
+      ]
+    },
+    {
+      "band": "oro",
+      "min": 55.0,
+      "max": 75.0,
+      "actions": [
+        "Capa A (Digital/TI): Integración de motor de reservas B2C en sitio web con pasarela multi-divisa y software de itinerarios móviles QR.",
+        "Capa B (Bienes de Club): Conexión al TravelTech Hub para acceso a inventario regional e integración API."
+      ]
+    },
+    {
+      "band": "plata",
+      "min": 35.0,
+      "max": 55.0,
+      "actions": [
+        "Capa A (Digital/TI): Adopción de CRM turísticos en nube (HubSpot/ZoHo) y software de armado rápido de itinerarios.",
+        "Capa B (Bienes de Club): Capacitación digital y certificación de guías en el Centro Comunitario."
+      ]
+    },
+    {
+      "band": "bronce",
+      "min": 0.0,
+      "max": 35.0,
+      "actions": [
+        "Capa A (Digital/TI): Capacitación básica en registro digital de clientes, diseño de marca y cobro con pasarelas digitales móviles.",
+        "Capa B (Bienes de Club): Incorporación al Consorcio de Compras Consolidadas de Licencias y Registro RNT."
+      ]
+    }
+  ]
+}

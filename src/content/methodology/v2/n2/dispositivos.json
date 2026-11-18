@@ -1,0 +1,756 @@
+{
+  "sectorId": "dispositivos",
+  "label": "13. Dispositivos Médicos y Tecnología Sanitaria",
+  "questions": [
+    {
+      "id": "DM-01",
+      "level": "n2",
+      "sectorId": "dispositivos",
+      "section": "MÓDULO 0: PERFILADO DEL ESLABÓN Y LOCALIZACIÓN TERRITORIAL (HEREDADO DE NIVEL 1)",
+      "widget": "Tarjeta de Selección Única (Pre-poblado)",
+      "title": "Sub-eslabón Dominante en Dispositivos Médicos",
+      "prompt": "¿En cuál de los siguientes sub-eslabones de la industria sanitaria se concentra la mayor proporción de la producción y facturación de su planta?",
+      "microcopy": "El sub-eslabón define la clasificación de riesgo sanitario (Clase I, II o III COFEPRIS / FDA) y los requisitos microbiológicos de planta.",
+      "type": "single_select",
+      "prefilled": true,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Consumibles y Material de Curación Estéril: Catéteres, bolsas de suero, jeringas, suturas, gasas, cubrebocas y ropa quirúrgica no-tejida.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Dispositivos Electro-médicos y Equipos Activos: Monitores de signos vitales, bombas de infusión, nebulizadores, electrocardiógrafos y sensores.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Implantes y Prótesis Biocompatibles: Implantes ortopédicos, dentales, mallas quirúrgicas, stents vasculares y prótesis a la medida.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Reactivos y Kits de Diagnóstico In Vitro (IVD): Tiras reactivas, cartuchos de prueba rápida, reactivos bioquímicos y kits de laboratorio PCR.",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "DM-02",
+      "level": "n2",
+      "sectorId": "dispositivos",
+      "section": "MÓDULO 0: PERFILADO DEL ESLABÓN Y LOCALIZACIÓN TERRITORIAL (HEREDADO DE NIVEL 1)",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Parque Industrial o Nodo de Operación en Puebla-Tlaxcala",
+      "prompt": "¿En qué parque industrial o cuenca de manufactura de la región Puebla - Tlaxcala se localiza su planta principal?",
+      "microcopy": "La ubicación determina el acceso a infraestructura de cuartos limpios, suministro ininterrumpido de energía y conectividad logística.",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Nodo 1: ZMPT / Cuautlancingo / FINSA / Chachapa: Corredor de alta densidad con acceso a insumos plásticos y laboratorios de prueba.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Nodo 2: San Martín Texmelucan / Huejotzingo (Puebla Oeste): Proximidad al Aeropuerto Hermanos Serdán y autopista 150D.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Nodo 3: Tlaxcala Sur / Papalotla / CIX I, II y III (Huamantla-Apizaco): Conectividad transnacional y cluster manufacturero especializado.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Nodo 4: Tehuacán / Tehuacán Sur: Enlace especializado agroindustrial y de empaque médico.",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "DM-03",
+      "level": "n2",
+      "sectorId": "dispositivos",
+      "section": "MÓDULO 0: PERFILADO DEL ESLABÓN Y LOCALIZACIÓN TERRITORIAL (HEREDADO DE NIVEL 1)",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Certificación Sanitaria y Normativa Vigente",
+      "prompt": "¿Cuál es el nivel de cumplimiento regulatorio y certificación formal de calidad que ostenta su planta de dispositivos médicos?",
+      "microcopy": "Las certificaciones internacionales (ISO 13485, MDSAP, FDA) son indispensables para abastecer a multinacionales y exportar.",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Aviso de Funcionamiento COFEPRIS Básico: Registro sanitario inicial sin sistema formal auditado ISO 13485.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Licencia Sanitaria COFEPRIS Vigente: Planta autorizada para la fabricación/empaque de dispositivos médicos con Buenas Prácticas de Fabricación (NOM-241).",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Certificado ISO 13485:2016 Vigente: Sistema de gestión de calidad específico para dispositivos médicos auditado por organismo notificado.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Multicertificación Global (ISO 13485 + MDSAP / FDA 510k / Marcado CE MDR): Aprobación para exportación a EE.UU., Canadá, Japón y Europa.",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "R00-DMED-PROD",
+      "level": "n2",
+      "sectorId": "dispositivos",
+      "section": "SECCIÓN I: ROMPEHIELOS DE SEVERIDAD OPERATIVA (MÉTODO DE BORDA)",
+      "widget": "Rompehielos de Jerarquización (1 al 8)",
+      "title": "Jerarquización de Fricciones en Piso de Planta y Cuarto Limpio",
+      "prompt": "Ordene del 1 al 8 los siguientes problemas operativos según el impacto económico negativo y la frecuencia con que afectan su planta (1 = Mayor impacto / Máxima gravedad; 8 = Menor impacto)",
+      "microcopy": "Permite priorizar la causa raíz de las ineficiencias en manufactura sanitaria antes de la auditoría detallada.",
+      "type": "rank",
+      "prefilled": false,
+      "factorCount": 8,
+      "factors": [
+        {
+          "id": "f1",
+          "label": "Rechazos de lote por contaminación microbiológica o partículas fuera de norma en Cuarto Limpio (ISO 14644)."
+        },
+        {
+          "id": "f2",
+          "label": "Paros e ineficiencias en máquinas de sellado hermético de blister estéril y empacadoras Tyvek (ISO 11607)."
+        },
+        {
+          "id": "f3",
+          "label": "Descalibración o desgaste prematuro de moldes de inyección micro-médica o boquillas de extrusión de grado médico."
+        },
+        {
+          "id": "f4",
+          "label": "Tiempos de espera y variabilidad en la obtención de resultados de pruebas de esterilidad y bioburden (ISO 11737)."
+        },
+        {
+          "id": "f5",
+          "label": "Alta rotación y tiempo prolongado de capacitación para operarios e inspectores de calidad en Cuarto Limpio."
+        },
+        {
+          "id": "f6",
+          "label": "Tiempos de ciclo largos y cuellos de botella en el proceso de esterilización por Óxido de Etileno (ETO) o Rayos Gamma."
+        },
+        {
+          "id": "f7",
+          "label": "Captura manual de bitácoras de lote (Device History Record - DHR) y lentitud en la trazabilidad ante auditorías."
+        },
+        {
+          "id": "f8",
+          "label": "Reclamos de clientes o no conformidades en pruebas de biocompatibilidad (ISO 10993) o lixiviables."
+        }
+      ]
+    },
+    {
+      "id": "R00-DMED-SOURCING-MAT",
+      "level": "n2",
+      "sectorId": "dispositivos",
+      "section": "SECCIÓN I: ROMPEHIELOS DE SEVERIDAD OPERATIVA (MÉTODO DE BORDA)",
+      "widget": "Rompehielos de Jerarquización (1 al 6)",
+      "title": "Jerarquización de Riesgos en Sourcing de Materias Primas de Grado Médico",
+      "prompt": "Ordene del 1 al 6 las restricciones que mayor volatilidad o desabasto causan en su suministro de insumos sanitarios (1 = Mayor impacto negativo; 6 = Menor impacto)",
+      "microcopy": "Mide la vulnerabilidad de la planta ante la escasez de polímeros y metales de grado médico homologados.",
+      "type": "rank",
+      "prefilled": false,
+      "factorCount": 6,
+      "factors": [
+        {
+          "id": "f1",
+          "label": "Volatilidad de precios y desabasto de polímeros de grado médico importados (PEEK, Silicona Médica, PP/PEAD USP Clase VI)."
+        },
+        {
+          "id": "f2",
+          "label": "Escasez y largos tiempos de entrega de metales de alta pureza (Titanio Grado 5 ELI, Acero Inoxidable 316LVM quirúrgico)."
+        },
+        {
+          "id": "f3",
+          "label": "Sobrecostos e inconsistencia en materiales de empaque primario estéril (Bolsas Tyvek, película termoformable multicapa)."
+        },
+        {
+          "id": "f4",
+          "label": "Tardanza en la entrega de reactivos de prueba de laboratorio QC e indicadores biológicos para validación de esterilidad."
+        },
+        {
+          "id": "f5",
+          "label": "Elevado costo y desabasto de refacciones originales para maquinaria europea/estadounidense de Cuarto Limpio."
+        },
+        {
+          "id": "f6",
+          "label": "Falta de certificados de análisis de lote (CoA) y homologación de resinas/insumos por parte de proveedores."
+        }
+      ]
+    },
+    {
+      "id": "R00-DMED-SOURCING-SERV",
+      "level": "n2",
+      "sectorId": "dispositivos",
+      "section": "SECCIÓN I: ROMPEHIELOS DE SEVERIDAD OPERATIVA (MÉTODO DE BORDA)",
+      "widget": "Rompehielos de Jerarquización (1 al 6)",
+      "title": "Jerarquización de Deficiencias en Servicios Regulatorios e Infraestructura",
+      "prompt": "Ordene del 1 al 6 las mayores deficiencias en servicios externos y entorno que frenan su crecimiento (1 = Mayor impacto negativo; 6 = Menor impacto)",
+      "microcopy": "Mide las fallas de mercado exógenas en la cadena de valor de dispositivos médicos.",
+      "type": "rank",
+      "prefilled": false,
+      "factorCount": 6,
+      "factors": [
+        {
+          "id": "f1",
+          "label": "Lenta tramitología, demoras y costos excesivos en Registros Sanitarios ante COFEPRIS o modificaciones de Licencia."
+        },
+        {
+          "id": "f2",
+          "label": "Escasez de plantas locales comunitarias acreditadas para servicio de esterilización por ETO, Rayos Gamma o E-Beam."
+        },
+        {
+          "id": "f3",
+          "label": "Falta de laboratorios locales acreditados ISO 17025 para pruebas de biocompatibilidad (ISO 10993) y citotoxicidad."
+        },
+        {
+          "id": "f4",
+          "label": "Micro-cortes y variabilidad en la calidad de energía eléctrica que detienen los sistemas de HVAC de Cuarto Limpio."
+        },
+        {
+          "id": "f5",
+          "label": "Robos de insumos de alto valor y producto terminado en carreteras regionales (Autopista 150D, Arco Norte)."
+        },
+        {
+          "id": "f6",
+          "label": "Escasez de auditores de calidad y consultores especializados en ISO 13485, MDSAP y regulación FDA 21 CFR 820."
+        }
+      ]
+    },
+    {
+      "id": "DM-TECH-01",
+      "level": "n2",
+      "sectorId": "dispositivos",
+      "section": "SECCIÓN II: AUDITORÍA TÉCNICA DIRECTA Y ABSORCIÓN TECNOLÓGICA (P1 A P5 CONTEXTUALIZADAS)",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Absorción Tecnológica P1: Tecnologías de Sourcing Crítico",
+      "prompt": "¿Cuál de las siguientes tecnologías o equipos especializados requiere adquirir o modernizar su planta pero enfrenta sobrecostos o falta de proveedores locales calificados?",
+      "microcopy": "Identifica la tecnología de manufactura médica con mayor brecha de proveeduría en Puebla-Tlaxcala.",
+      "type": "single_select_text",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Cuartos Limpios Certificados ISO Class 7 u 8 (ISO 14644) con control automático de presión diferencial, humedad y filtración HEPA/ULPA.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Inyectoras Eléctricas de Grado Médico con micro-moldeo de precisión para componentes plásticos sanitarios de baja tolerancia.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Selladoras de Blister Médico Validadas (ISO 11607) con control continuo de temperatura, tiempo y presión de sellado.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Cámaras Industriales de Esterilización por Óxido de Etileno (ETO) o Plasma de H2O2 con ciclos validados.",
+          "score": null
+        },
+        {
+          "value": "opt5",
+          "label": "Equipos de Metrología 3D de Visión sin Contacto y Espectrómetros para verificación dimensional y química de implantes.",
+          "score": null
+        },
+        {
+          "value": "opt6",
+          "label": "Otro",
+          "score": null
+        }
+      ],
+      "text": {
+        "maxLength": 100,
+        "optionValue": "opt6"
+      }
+    },
+    {
+      "id": "DM-TECH-02",
+      "level": "n2",
+      "sectorId": "dispositivos",
+      "section": "SECCIÓN II: AUDITORÍA TÉCNICA DIRECTA Y ABSORCIÓN TECNOLÓGICA (P1 A P5 CONTEXTUALIZADAS)",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Absorción Tecnológica P2: Subaprovechamiento de Tecnologías Instaladas",
+      "prompt": "¿Qué tecnología o equipo avanzado ya tiene instalado en su planta pero NO opera como desearía o se encuentra subaprovechado?",
+      "microcopy": "Mide la falla de absorción técnica por falta de capacitación, software no integrado o validación incompleta.",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Cuarto Limpio instalado que opera con monitoreo manual de partículas por falta de sensores IoT continuos.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Inyectora médica avanzada utilizada en modo convencional sin registro digital de presión de cavidad por tiro.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Software DHR (Device History Record) o ERP médico desaprovechado (se sigue registrando en carpetas de papel).",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Selladora de blister estéril operada sin protocolo completo de validación IQ/OQ/PQ (ISO 11607).",
+          "score": null
+        },
+        {
+          "value": "opt5",
+          "label": "Máquina CMM de visión 3D usada solo para inspección final y no para Control Estadístico de Proceso (SPC) en línea.",
+          "score": null
+        },
+        {
+          "value": "opt6",
+          "label": "Ninguno / Todas las tecnologías instaladas operan a su máximo rendimiento validado.",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "DM-TECH-03",
+      "level": "n2",
+      "sectorId": "dispositivos",
+      "section": "SECCIÓN II: AUDITORÍA TÉCNICA DIRECTA Y ABSORCIÓN TECNOLÓGICA (P1 A P5 CONTEXTUALIZADAS)",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Absorción Tecnológica P3: Brecha con la Frontera Internacional",
+      "prompt": "¿Qué tecnología utilizan los fabricantes globales líderes de dispositivos médicos que los hace significativamente más competitivos que las empresas locales?",
+      "microcopy": "Evalúa la distancia a la frontera tecnológica sanitaria global (Benchmark Aghion / OMPI 2026).",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Fabricación Aditiva / Bioimpresión 3D de Implantes de Titanio y PEEK a la Medida con marcado UDI directo por láser.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Sistemas de Visión Artificial con IA al 100% en cavidad para detección instantánea de micromotas, rebabas y fisuras en empaque estéril.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Trazabilidad UDI (Unique Device Identification) automatizada con código GS1 2D DataMatrix grabado directamente en el dispositivo.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Monitoreo Digital Continuo IoT de Parámetros Ambientales de Cuarto Limpio con alertas predictivas impulsadas por IA.",
+          "score": null
+        },
+        {
+          "value": "opt5",
+          "label": "Esterilización Fría por Plasma de Peróxido de Hidrógeno de Ciclo Ultrarrápido sin residuos tóxicos.",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "DM-TECH-04",
+      "level": "n2",
+      "sectorId": "dispositivos",
+      "section": "SECCIÓN II: AUDITORÍA TÉCNICA DIRECTA Y ABSORCIÓN TECNOLÓGICA (P1 A P5 CONTEXTUALIZADAS)",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Absorción Tecnológica P4: Tecnología Revolucionaria / Apuesta Transformacional",
+      "prompt": "¿Qué tecnología transformacional o proyecto de gran calado revolucionaría la competitividad y capacidad exportadora de su planta en los próximos 2 a 3 años?",
+      "microcopy": "Mide el potencial de salto en el espacio de productos y complejidad de tecnología sanitaria (CIDE / Harvard).",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Digitalización 100% de la Planta bajo estándar MDSAP / FDA 21 CFR Part 11 con Expediente de Lote Electrónico (eDHR).",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Habilitación de Línea de Fabricación Aditiva 3D Médica para Implantes Quirúrgicos Certificados de Titanio/PEEK.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Reconversión de Empaques Médicos a Polímeros Reciclables/Compostables de Alta Barrera Estéril.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Instalación de Centro Regional de Esterilización ETO / Gamma de Ciclo Cerrado con Acreditación Internacional.",
+          "score": null
+        },
+        {
+          "value": "opt5",
+          "label": "Desarrollo de Dispositivos Médicos Activos Inteligentes con conectividad IoT para Telemedicina.",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "DM-TECH-05",
+      "level": "n2",
+      "sectorId": "dispositivos",
+      "section": "SECCIÓN II: AUDITORÍA TÉCNICA DIRECTA Y ABSORCIÓN TECNOLÓGICA (P1 A P5 CONTEXTUALIZADAS)",
+      "widget": "Tarjeta de Selección Única + Texto Libre",
+      "title": "Absorción Tecnológica P5: Demanda Explícita de Proyectos Tecnológicos Inmediatos",
+      "prompt": "¿Hay algún proyecto tecnológico específico o necesidad prioritaria que requiera abordar a la brevedad para su planta?",
+      "microcopy": "Captura la demanda real de acompañamiento técnico para asignación a programas de apoyo e inversión.",
+      "type": "single_select_text",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Proyecto 1: Certificación ISO 13485:2016 / Registro MDSAP / Obtención de Registro Sanitario COFEPRIS o FDA 510k.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Proyecto 2: Validación Físico-Ambiental de Cuarto Limpio ISO 14644 e IQ/OQ/PQ de Empaque Estéril (ISO 11607).",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Proyecto 3: Implementación de Sistema de Registro Electrónico de Lote (eDHR) y Trazabilidad UDI GS1 DataMatrix.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Proyecto 4: Automatización de Inspección de Calidad por Visión Artificial 3D en línea de ensamble médico.",
+          "score": null
+        },
+        {
+          "value": "opt5",
+          "label": "Un proyecto propio",
+          "score": null
+        }
+      ],
+      "text": {
+        "maxLength": 100,
+        "optionValue": "opt5"
+      }
+    },
+    {
+      "id": "DM-TECH-06",
+      "level": "n2",
+      "sectorId": "dispositivos",
+      "section": "SECCIÓN II: AUDITORÍA TÉCNICA DIRECTA Y ABSORCIÓN TECNOLÓGICA (P1 A P5 CONTEXTUALIZADAS)",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Control de Rechazos en Cuarto Limpio, No Conformidades (CAPA) y Rendimiento",
+      "prompt": "¿Cuál es el porcentaje promedio de rechazo de lote por contaminación en cuarto limpio y la efectividad del sistema CAPA en su planta?",
+      "microcopy": "Mide la calidad microbiológica, la robustez del sistema de gestión de calidad y la reducción de desperdicio estéril.",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Sin monitoreo ambiental continuo; tasa de rechazo en cuarto limpio > 2.0%; sistema CAPA manual.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Monitoreo periódico de partículas; rechazos en cuarto limpio entre 0.8% y 2.0%; CAPA registrado en Excel.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Monitoreo en tiempo real; rechazos en cuarto limpio entre 0.2% y 0.7%; CAPA digitalizado con causa raíz.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Cuarto limpio automatizado ISO Class 7; rechazos < 0.1%; CAPA integrado a software ISO 13485.",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "DM-TECH-07",
+      "level": "n2",
+      "sectorId": "dispositivos",
+      "section": "SECCIÓN II: AUDITORÍA TÉCNICA DIRECTA Y ABSORCIÓN TECNOLÓGICA (P1 A P5 CONTEXTUALIZADAS)",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Trazabilidad Digital UDI GS1, Registro de Lote (eDHR) e Integración 4.0",
+      "prompt": "¿Qué nivel de trazabilidad digital y cumplimiento de marcado UDI (Unique Device Identifier) utiliza su planta?",
+      "microcopy": "La trazabilidad digital es indispensable para realizar un retiro de producto (recall) en menos de 1 hora ante la autoridad sanitaria.",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Expediente de dispositivo llevado a mano en carpetas; sin código UDI impreso en empaque.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Captura posterior de número de lote y caducidad; código de barras 1D básico en caja colectiva.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Impresión de UDI (DI + PI) en cada unidad con registro digital de lote.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Trazabilidad instantánea conforme a FDA 21 CFR Part 11 / MDSAP.",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "CP-DM-01",
+      "level": "n2",
+      "sectorId": "dispositivos",
+      "section": "SECCIÓN III: SOFISTICACIÓN PRODUCTIVA Y ESPACIO DE PRODUCTOS (CIDE / HARVARD)",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Reconversión hacia la 'Fruta Madura' en Dispositivos Médicos (Alta Densidad ω_j > 0.65)",
+      "prompt": "Considerando su equipamiento, cuarto limpio y capacidades actuales, ¿hacia qué línea sanitaria de mayor valor podría reconvertirse en menos de 12 meses?",
+      "microcopy": "Mide la capacidad de diversificación hacia productos médicos adyacentes de menor riesgo regulatorio.",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Producción de Kits de Venoclisis, Catéteres y Tubos Extruidos de Alta Precisión en Grado Médico.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Fabricación de Instrumental Quirúrgico Reutilizable en Acero Inoxidable 316LVM con Acabado Pasivado.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Termoformado de Empaque Médico Primario Estéril en Tyvek y Películas Barrera de Alta Rigidez.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Ensamble de Kits de Diagnóstico Rápido In Vitro (IVD) y Cassettes Plásticos para Pruebas Inmunológicas.",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "CP-DM-02",
+      "level": "n2",
+      "sectorId": "dispositivos",
+      "section": "SECCIÓN III: SOFISTICACIÓN PRODUCTIVA Y ESPACIO DE PRODUCTOS (CIDE / HARVARD)",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Apuestas Estratégicas y Dispositivos de Alta Complejidad (Alto ICPO)",
+      "prompt": "En un horizonte de 2 a 3 años con coinversión y desarrollo regulatorio, ¿qué línea de alta tecnología sanitaria podría desarrollar su planta?",
+      "microcopy": "Evalúa la capacidad de salto hacia la manufactura de implantes y dispositivos médicos activos (Índice de Complejidad Potencial ICPO).",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Fabricación Aditiva 3D de Implantes Ortopédicos y Dentales de Titanio Grado 5 / PEEK a la Medida.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Desarrollo de Dispositivos Médicos Activos Inteligentes con Sensores IoT y Conectividad para Telemedicina.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Parches Transdérmicos de Micro-agujas para Liberación Controlada de Fármacos y Biológicos.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Prótesis Bio-mecánicas Avanzadas con Micro-controladores e Integración Sensorial.",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "CP-DM-03",
+      "level": "n2",
+      "sectorId": "dispositivos",
+      "section": "SECCIÓN III: SOFISTICACIÓN PRODUCTIVA Y ESPACIO DE PRODUCTOS (CIDE / HARVARD)",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Bioseguridad, Sustentabilidad e Inactivación Ecológica de Mermas",
+      "prompt": "¿Qué nivel de avance tiene su planta en la gestión de insumos limpios, eficiencia energética HVAC y manejo sustentable de mermas sanitarias?",
+      "microcopy": "La bioseguridad y sustentabilidad son la máxima prioridad para integrarse a cadenas de suministro globales de salud.",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Cumplimiento Básico: Disposición convencional de mermas plásticas; consumo estándar de HVAC en cuarto limpio sin recuperación.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Segregación Limpia: Mantenimiento preventivo HVAC en cuarto limpio; segregación de scrap plástico médico no contaminado para reciclaje técnico.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Eficiencia Energética HVAC y Empaque Verde: Sistema HVAC Inverter con variadores; sustitución de empaques secundarios por materiales reciclados.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Planta Médica Zero Waste / Neutra en Carbono: Inactivación in situ ecológicamente validada; uso de polímeros biobasados compostables y energía 100% verde.",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "COL-DM01",
+      "level": "n2",
+      "sectorId": "dispositivos",
+      "section": "SECCIÓN IV: SOLUCIONES COLABORATIVAS ANTE LA FALLA DE ESCALA (BIENES DE CLUB)",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Cleanroom & Medical Manufacturing Hub Comunitario",
+      "prompt": "¿Cuál sería la disposición de su planta para acceder a un Hub Comunitario con Cuartos Limpios Certificados ISO Class 7/8 y Micro-inyectoras Médicas bajo esquema Pay-per-Use?",
+      "microcopy": "Resuelve la falla de escala en infraestructura de cuarto limpio para PyMEs y desarrolladores de dispositivos médicos.",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Alto Interés / Usuario Frecuente: Rentaría turnos de cuarto limpio e inyección médica para corridas piloto y lotes de validación.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Interés Moderado / Co-inversionista: Participaría en el consorcio para aportar equipamiento o validar nuevos dispositivos.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Solo Servicio de Empaque: Utilizaría únicamente las líneas de sellado de blister estéril Tyvek en periodos de alta demanda.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Sin Interés: Cuenta con cuartos limpios e inyectoras propias suficientes.",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "COL-DM02",
+      "level": "n2",
+      "sectorId": "dispositivos",
+      "section": "SECCIÓN IV: SOLUCIONES COLABORATIVAS ANTE LA FALLA DE ESCALA (BIENES DE CLUB)",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Centro Comunitario de Esterilización ETO/Gamma y Laboratorio de Biocompatibilidad (ISO 17025)",
+      "prompt": "¿Cómo participaría su empresa en la creación de una Planta Comunitaria de Esterilización ETO/Gamma y Laboratorio de Ensayos Sanitarios Acreditado?",
+      "microcopy": "Permite reducir costos de esterilización y pruebas ISO 10993/11737 hasta en un 50% frente a laboratorios extranjeros.",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Usuario Frecuente de Esterilización: Enviaría lotes semanales a la cámara comunitaria ETO/Gamma a tarifas competitivas.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Cliente de Ensayos de Biocompatibilidad: Contrataría pruebas periódicas de citotoxicidad, bioburden y esterilidad acreditadas ISO 17025.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Socio de Investigación: Colaboraría con universidades locales para validación microbiológica de nuevos productos.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Sin Interés: Realiza la esterilización y pruebas en laboratorios privados o propios.",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "COL-DM03",
+      "level": "n2",
+      "sectorId": "dispositivos",
+      "section": "SECCIÓN IV: SOLUCIONES COLABORATIVAS ANTE LA FALLA DE ESCALA (BIENES DE CLUB)",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Consorcio de Compras Consolidadas de Polímeros Médicos, Tyvek y Servicios Regulatorios",
+      "prompt": "¿Qué grado de apertura tiene su empresa para integrarse a un Consorcio de Compras Consolidadas de materias primas sanitarias y gestión de Registros COFEPRIS/FDA?",
+      "microcopy": "La consolidación de demanda de resinas médicas USP VI y Tyvek reduce costos de importación entre 15% y 25%.",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Compra Consolidada de Resinas Médicas y Metales: Sumar volumen para importar directo PEEK, Silicona Médica y Titanio 316LVM.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Consorcio de Empaque Estéril: Comprar de forma conjunta bolsas Tyvek, cajas y películas termoformables.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Gestoría Regulatoria Colectiva: Compartir costos de asesores y auditores para registros MDSAP / COFEPRIS / FDA 510k.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Sin Interés: Prefiere mantener compras y gestiones regulatorias de forma individual.",
+          "score": null
+        }
+      ]
+    }
+  ],
+  "roadmap": [
+    {
+      "band": "platino",
+      "min": 75.0,
+      "max": null,
+      "actions": [
+        "Capa A (Digital/TI): Implementación de Inteligencia Artificial para inspección de visión 3D 100% en cavidad y Digital Twin de cuarto limpio.",
+        "Capa B (Bienes de Club): Liderazgo en el Consorcio de Compras Consolidadas de Resinas Médicas y desarrollo de implantes 3D en Cleanroom Hub."
+      ]
+    },
+    {
+      "band": "oro",
+      "min": 55.0,
+      "max": 75.0,
+      "actions": [
+        "Capa A (Digital/TI): Transición de DHR en papel a Expediente de Lote Electrónico (eDHR), marcaje UDI GS1 2D DataMatrix y monitoreo IoT de cuarto limpio.",
+        "Capa B (Bienes de Club): Uso de la Planta Comunitaria de Esterilización ETO/Gamma y laboratorios de biocompatibilidad ISO 17025."
+      ]
+    },
+    {
+      "band": "plata",
+      "min": 35.0,
+      "max": 55.0,
+      "actions": [
+        "Capa A (Digital/TI): Software básico de control estadístico de proceso (SPC), app para registro de parámetros ambientales y catálogo digital de productos.",
+        "Capa B (Bienes de Club): Acceso a turnos en el Cleanroom Hub para validación de procesos y ensayos de esterilidad en Centro Comunitario."
+      ]
+    },
+    {
+      "band": "bronce",
+      "min": 0.0,
+      "max": 35.0,
+      "actions": [
+        "Capa A (Digital/TI): Capacitación básica en Buenas Prácticas de Fabricación (NOM-241), ordenamiento de DHR en formato digital y costeo técnico.",
+        "Capa B (Bienes de Club): Incorporación urgente al programa de acompañamiento regulatorio COFEPRIS/ISO 13485 y compras consolidadas."
+      ]
+    }
+  ]
+}

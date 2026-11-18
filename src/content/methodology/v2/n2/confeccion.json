@@ -1,0 +1,756 @@
+{
+  "sectorId": "confeccion",
+  "label": "07. Diseño, Confección y Maquila de Prendas",
+  "questions": [
+    {
+      "id": "CF-01",
+      "level": "n2",
+      "sectorId": "confeccion",
+      "section": "MÓDULO 0: PERFILADO DEL ESLABÓN Y LOCALIZACIÓN TERRITORIAL (HEREDADO DE NIVEL 1)",
+      "widget": "Tarjeta de Selección Única (Pre-poblado)",
+      "title": "Sub-eslabón Dominante en la Confección y Maquila",
+      "prompt": "¿En cuál de los siguientes sub-eslabones se concentra la mayor proporción de la facturación y capacidad instalada de su taller o empresa?",
+      "microcopy": "El sub-eslabón define el nivel de automatización en corte/costura, los requerimientos de minutaje SAM y el esquema de certificaciones laborales (WRAP/SMETA).",
+      "type": "single_select",
+      "prefilled": true,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Maquila de Confección y Costura en Serie: Procesamiento de ensamble a destajo/maquila para marcas o terceros (denim, playera, casual, moda).",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Marcas de Moda / Vestidor y Comercio Directo (D2C): Diseño propio, desarrollo de colecciones, patronaje interno y venta retail o e-commerce.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Uniformes Industriales, Corporativos, Escolares y Médicos: Confección especializada de vestuario laboral de alta durabilidad y especificación técnica.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Servicios Especializados de Confección (Patronaje CAD, Corte CNC, Bordado y Estampado): Desarrollo de moldes, graduación, tizado, corte automático o decorado para la industria.",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "CF-02",
+      "level": "n2",
+      "sectorId": "confeccion",
+      "section": "MÓDULO 0: PERFILADO DEL ESLABÓN Y LOCALIZACIÓN TERRITORIAL (HEREDADO DE NIVEL 1)",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Corredor o Cluster de Confección de Operación",
+      "prompt": "¿En qué corredor o zona industrial de la región Puebla - Tlaxcala se localiza la principal planta o taller de confección?",
+      "microcopy": "La ubicación determina el acceso a mano de obra calificada en costura, disponibilidad de servicios de lavandería/estampado y riesgo de transporte.",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Corredor 1: Tehuacán - Ajalpan - Metepec (Puebla Sur): Cluster emblemático de confección de mezclilla (denim), lavanderías y exportación.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Corredor 2: ZMPT / Cuautlancingo / Puebla Centro: Confección corporativa, marcas de moda, uniformes y centros de diseño/distribución.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Corredor 3: San Martín Texmelucan - Huejotzingo: Maquila de prendas de punto, ropa deportiva, tianguis comercial y talleres medianos.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Corredor 4: Teolocholco - Chiautempan - Contla (Tlaxcala Centro-Sur): Confección de cobijas, prendas tejidas, ropa casual y maquila textil.",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "CF-03",
+      "level": "n2",
+      "sectorId": "confeccion",
+      "section": "MÓDULO 0: PERFILADO DEL ESLABÓN Y LOCALIZACIÓN TERRITORIAL (HEREDADO DE NIVEL 1)",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Certificación Laboral, Social Compliance e Inocuidad de Prenda",
+      "prompt": "¿Cuál es el nivel formal de certificación laboral, responsabilidad social o cumplimiento de marca que ostenta su taller o planta?",
+      "microcopy": "Las auditorías internacionales de Social Compliance (WRAP/SMETA) son indispensables para maquilar a marcas globales (Disney, Walmart, Target, Inditex).",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Básico / Cumplimiento Normativo STPS: Registro patronal IMSS y licencias locales sin auditorías formales de responsabilidad social o marca.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Auditoría de Cliente / Brand Audit Aprobada: Aprobación formal de proveedores de marcas nacionales o tiendas departamentales sin certificación internacional.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Certificación Internacional WRAP / SMETA / Sedex: Certificación aprobada en condiciones laborales, seguridad e higiene y derechos del trabajador.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Multicertificado Global (WRAP Gold/Platinum + OEKO-TEX Standard 100 + C-TPAT): Estándar integral de compliance social, prendas libres de tóxicos y seguridad de exportación.",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "R00-CONF-PROD",
+      "level": "n2",
+      "sectorId": "confeccion",
+      "section": "SECCIÓN I: ROMPEHIELOS DE SEVERIDAD OPERATIVA (MÉTODO DE BORDA)",
+      "widget": "Rompehielos de Jerarquización (1 al 8)",
+      "title": "Jerarquización de Fricciones en Piso de Planta y Módulos de Costura",
+      "prompt": "Ordene del 1 al 8 las siguientes fricciones operativas según el impacto económico negativo y la frecuencia con que afectan su taller (1 = Mayor impacto / Máxima gravedad; 8 = Menor impacto)",
+      "microcopy": "Permite priorizar la causa raíz de las ineficiencias de confección antes del análisis técnico en profundidad.",
+      "type": "rank",
+      "prefilled": false,
+      "factorCount": 8,
+      "factors": [
+        {
+          "id": "f1",
+          "label": "Desperdicio elevado de tela en tizado y maza de corte por falta de optimización digital."
+        },
+        {
+          "id": "f2",
+          "label": "Alta variabilidad en la medición de tiempos estándar (SAM) y cuellos de botella en módulos."
+        },
+        {
+          "id": "f3",
+          "label": "Desbalanceo constante de líneas de costura y acumulación de trabajo en proceso (WIP)."
+        },
+        {
+          "id": "f4",
+          "label": "Alta rotación, ausentismo e insuficiencia de operarias de costura capacitadas."
+        },
+        {
+          "id": "f5",
+          "label": "Cuellos de botella y demoras en las áreas de planchado, terminado, empaque y etiquetado."
+        },
+        {
+          "id": "f6",
+          "label": "Paros no programados en máquinas de coser por reventón de hilo, salto de puntada o fallas mecánicas."
+        },
+        {
+          "id": "f7",
+          "label": "Registros manuales en papel de producción por módulo y falta de control de piezas cortadas vs confeccionadas."
+        },
+        {
+          "id": "f8",
+          "label": "Reclamaciones y devoluciones de clientes por variación de tallas, costuras abiertas o defectos AQL."
+        }
+      ]
+    },
+    {
+      "id": "R00-CONF-SOURCING-MAT",
+      "level": "n2",
+      "sectorId": "confeccion",
+      "section": "SECCIÓN I: ROMPEHIELOS DE SEVERIDAD OPERATIVA (MÉTODO DE BORDA)",
+      "widget": "Rompehielos de Jerarquización (1 al 6)",
+      "title": "Jerarquización de Riesgos en Sourcing de Telas y Avíos",
+      "prompt": "Ordene del 1 al 6 las restricciones que mayor volatilidad o desabasto causan en su suministro de insumos (1 = Mayor impacto negativo; 6 = Menor impacto)",
+      "microcopy": "Mide la vulnerabilidad de la confección ante problemas en la cadena de proveeduría textil.",
+      "type": "rank",
+      "prefilled": false,
+      "factorCount": 6,
+      "factors": [
+        {
+          "id": "f1",
+          "label": "Volatilidad de precios y desabasto de telas/tejidos de calidad consistente."
+        },
+        {
+          "id": "f2",
+          "label": "Escasez y demoras en la entrega de avíos (cierres, botones, elásticos, hilo de alta tenacidad)."
+        },
+        {
+          "id": "f3",
+          "label": "Sobrecosto y tardanza en refacciones y agujas importadas para máquinas de coser especializadas."
+        },
+        {
+          "id": "f4",
+          "label": "Tardanza excesiva en la aprobación de muestras, contra-muestras y tonos por parte del cliente."
+        },
+        {
+          "id": "f5",
+          "label": "Variación de tono y encogimiento entre rollos de tela (lotes) que arruinan la simetría de la prenda."
+        },
+        {
+          "id": "f6",
+          "label": "Incremento en costos y falta de bolsas compostables, ganchos y cajas de empaque secundario."
+        }
+      ]
+    },
+    {
+      "id": "R00-CONF-SOURCING-SERV",
+      "level": "n2",
+      "sectorId": "confeccion",
+      "section": "SECCIÓN I: ROMPEHIELOS DE SEVERIDAD OPERATIVA (MÉTODO DE BORDA)",
+      "widget": "Rompehielos de Jerarquización (1 al 6)",
+      "title": "Jerarquización de Deficiencias en Servicios Externos y Entorno",
+      "prompt": "Ordene del 1 al 6 las mayores deficiencias en servicios externos e infraestructura regional que frenan su crecimiento (1 = Mayor impacto negativo; 6 = Menor impacto)",
+      "microcopy": "Mide las fallas de mercado exógenas en la cuenca de confección Puebla-Tlaxcala.",
+      "type": "rank",
+      "prefilled": false,
+      "factorCount": 6,
+      "factors": [
+        {
+          "id": "f1",
+          "label": "Falta de talleres locales de patronaje CAD, graduación digital y corte CNC de alta precisión."
+        },
+        {
+          "id": "f2",
+          "label": "Cuellos de botella y demoras en servicios subcontratados de bordado, estampado y lavandería de mezclilla."
+        },
+        {
+          "id": "f3",
+          "label": "Robos de fletes con prendas terminadas o telas en carreteras regionales (150D, Tehuacán-Puebla, Arco Norte)."
+        },
+        {
+          "id": "f4",
+          "label": "Sobrecostos y falta de consolidación en fletes de entrega a centros de distribución de retailers."
+        },
+        {
+          "id": "f5",
+          "label": "Escasez de auditores y consultores locales capacitados en normatividad laboral WRAP / SMETA / Sedex."
+        },
+        {
+          "id": "f6",
+          "label": "Tarifas elevadas de energía eléctrica en talleres de corte, fusionado y terminado."
+        }
+      ]
+    },
+    {
+      "id": "CF-TECH-01",
+      "level": "n2",
+      "sectorId": "confeccion",
+      "section": "SECCIÓN II: AUDITORÍA TÉCNICA DIRECTA Y ABSORCIÓN TECNOLÓGICA (P1 A P5 CONTEXTUALIZADAS)",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Absorción Tecnológica P1: Tecnologías de Sourcing Crítico en Confección",
+      "prompt": "¿Cuál de las siguientes tecnologías de corte, confección o diseño requiere adquirir o modernizar su empresa pero enfrenta sobrecostos o falta de proveedores locales calificados?",
+      "microcopy": "Identifica la tecnología de mayor valor con falla de proveeduría local en la cuenca de confección.",
+      "type": "single_select_text",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Mesas de Corte Automático CNC con Cabezal Oscilante y Carro Tendedor Automático: Sistema de corte automatizado para múltiples capas de tela con cero desviación de molde.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Software CAD/CAM para Patronaje 2D/3D, Graduación y Optimizador de Tizado (Lectra / Gerber / Optitex): Licencias especializadas para diseño de patrones y aprovechamiento de tela.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Autómatas de Costura Programables: Pegadoras automáticas de bolsas, confeccionadoras de cuellos/puños y atracadoras electrónicas de alta velocidad.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Sistema de Transporte Aéreo por Prendas Colgadas (Overhead Conveyor / UPS): Sistema aéreo digitalizado para mover piezas entre módulos de costura sin manipulación manual.",
+          "score": null
+        },
+        {
+          "value": "opt5",
+          "label": "Impresión Digital Textil Directa a Prenda (DTG/DTF) / Máquinas de Bordado Multicabezal con Cambio Automático de Hilo: Tecnología de personalización y decorado de alta definición.",
+          "score": null
+        },
+        {
+          "value": "opt6",
+          "label": "Otro",
+          "score": null
+        }
+      ],
+      "text": {
+        "maxLength": 100,
+        "optionValue": "opt6"
+      }
+    },
+    {
+      "id": "CF-TECH-02",
+      "level": "n2",
+      "sectorId": "confeccion",
+      "section": "SECCIÓN II: AUDITORÍA TÉCNICA DIRECTA Y ABSORCIÓN TECNOLÓGICA (P1 A P5 CONTEXTUALIZADAS)",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Absorción Tecnológica P2: Subaprovechamiento de Tecnologías Instaladas",
+      "prompt": "¿Qué tecnología o equipo ya tiene instalado en su planta o taller pero NO funciona como desearía o se encuentra subaprovechado?",
+      "microcopy": "Mide la falla de absorción por falta de capacitación en minutaje, software sin integrar o mecánicos no calificados.",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Software CAD de Patronaje utilizado únicamente como digitalizador de moldes, sin usar el módulo de tizado automático optimizado.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Mesas de Corte Automático operando a velocidad reducida o inactivas por falta de operadores capacitados en preparación de maza.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Autómatas de Costura parados o trabajando como máquinas convencionales por falta de mecánicos de ajuste electrónico.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "ERP / Sistema de Gestión de Confección instalado que no incluye el módulo de minutaje (SAM) ni registro de bultos por QR.",
+          "score": null
+        },
+        {
+          "value": "opt5",
+          "label": "Sistemas de Planchado o Terminado al Vapor operando sin recuperación de condensados ni control de presión.",
+          "score": null
+        },
+        {
+          "value": "opt6",
+          "label": "Ninguno / Todas las tecnologías instaladas operan a su máximo rendimiento.",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "CF-TECH-03",
+      "level": "n2",
+      "sectorId": "confeccion",
+      "section": "SECCIÓN II: AUDITORÍA TÉCNICA DIRECTA Y ABSORCIÓN TECNOLÓGICA (P1 A P5 CONTEXTUALIZADAS)",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Absorción Tecnológica P3: Brecha con la Frontera Internacional",
+      "prompt": "¿Qué tecnología utilizan los confeccionistas e industrias globales de vestuario que los hace significativamente más competitivos que su sector en la región?",
+      "microcopy": "Evalúa la distancia a la frontera tecnológica global (Benchmark Aghion / OMPI 2026).",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Eliminación de contra-muestras físicas reduciendo el tiempo de desarrollo de colecciones de semanas a horas.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Centrado óptico en tiempo real que compensa la deformación de la tela durante el tendido.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Celdas robotizadas para costuras continuas en telas elásticas o prendas básicas sin intervención humana.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Control de inventario en tiempo real con 99.9% de precisión sin lectura manual.",
+          "score": null
+        },
+        {
+          "value": "opt5",
+          "label": "Proceso limpio sin efluentes tóxicos ni secado térmico intensivo.",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "CF-TECH-04",
+      "level": "n2",
+      "sectorId": "confeccion",
+      "section": "SECCIÓN II: AUDITORÍA TÉCNICA DIRECTA Y ABSORCIÓN TECNOLÓGICA (P1 A P5 CONTEXTUALIZADAS)",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Absorción Tecnológica P4: Tecnología Revolucionaria / Apuesta Transformacional",
+      "prompt": "¿Qué tecnología transformacional o modelo operativo revolucionaría la competitividad de su empresa en los próximos 2 a 3 años?",
+      "microcopy": "Mide el potencial de salto en el espacio de productos y modelo de negocio (CIDE / Harvard).",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Transición Completa de Maquilador a Marca Propia D2C con Plataforma E-Commerce e Inteligencia de Colecciones.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Automatización Total del Área de Corte y Tendido con Integración Directa al Sistema ERP/MES del Cliente.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Obtención de Certificación Global WRAP / SMETA Gold para Convertirse en Proveedor Tier 1 Directo de Marcas Globales.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Implementación de Micro-Fábrica Flexible On-Demand (Producción personalizada y entrega en 48 horas).",
+          "score": null
+        },
+        {
+          "value": "opt5",
+          "label": "Instalación de Planta 100% Digitalizada con Conexión IoT en Cada Máquina de Coser y Balanceo en Tiempo Real.",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "CF-TECH-05",
+      "level": "n2",
+      "sectorId": "confeccion",
+      "section": "SECCIÓN II: AUDITORÍA TÉCNICA DIRECTA Y ABSORCIÓN TECNOLÓGICA (P1 A P5 CONTEXTUALIZADAS)",
+      "widget": "Tarjeta de Selección Única + Texto Libre",
+      "title": "Absorción Tecnológica P5: Demanda Explícita de Proyectos Tecnológicos Inmediatos",
+      "prompt": "¿Hay algún proyecto tecnológico específico o necesidad prioritaria que requiera abordar a la brevedad para su taller o empresa?",
+      "microcopy": "Captura la demanda real de acompañamiento técnico para asignación inmediata a programas de apoyo.",
+      "type": "single_select_text",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Proyecto 1: Implementación de Software CAD/CAM para Patronaje, Graduación y Optimizador de Tizado (Lectra/Gerber/Optitex).",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Proyecto 2: Auditoría e Ingeniería de Tiempos Estándar (SAM), Minutaje y Balanceo Mapeado de Líneas de Costura.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Proyecto 3: Preparación y Auditoría para Obtención de Certificación Laboral y Social Compliance (WRAP / SMETA / Sedex).",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Proyecto 4: Digitalización de Control de Producción con Código QR por Bulto y Dashboard de Eficiencia por Módulo.",
+          "score": null
+        },
+        {
+          "value": "opt5",
+          "label": "Un proyecto propio",
+          "score": null
+        }
+      ],
+      "text": {
+        "maxLength": 100,
+        "optionValue": "opt5"
+      }
+    },
+    {
+      "id": "CF-TECH-06",
+      "level": "n2",
+      "sectorId": "confeccion",
+      "section": "SECCIÓN II: AUDITORÍA TÉCNICA DIRECTA Y ABSORCIÓN TECNOLÓGICA (P1 A P5 CONTEXTUALIZADAS)",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Control de Rendimiento de Tela en Tizado y Nivel de Calidad AQL en Costura",
+      "prompt": "¿Cuál es el porcentaje promedio de aprovechamiento de tela en tizado y el nivel AQL alcanzado en la inspección final de confección?",
+      "microcopy": "Mide la eficiencia del insumo principal (tela representa hasta el 60% del costo) y el control de calidad final.",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Tizado manual con aprovechamiento de tela < 78%; inspección visual aleatoria sin norma AQL (> 4.0% de defectos).",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Tizado semidigital con aprovechamiento entre 78% y 83%; inspección muestral con AQL 2.5 - 3.0.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Tizado automático optimizado por software (> 84% a 88%); inspección formal AQL 1.5 con registro de defectos.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Aprovechamiento de tela > 88% mediante CAD 3D; calidad auditada AQL 0.65 - 1.0 para marcas de alto nivel.",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "CF-TECH-07",
+      "level": "n2",
+      "sectorId": "confeccion",
+      "section": "SECCIÓN II: AUDITORÍA TÉCNICA DIRECTA Y ABSORCIÓN TECNOLÓGICA (P1 A P5 CONTEXTUALIZADAS)",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Trazabilidad Digital por Orden de Corte, Bulto de Costura y Sistema ERP",
+      "prompt": "¿Qué nivel de trazabilidad digital e integración de información utiliza su empresa para rastrear las piezas desde la mesa de corte hasta el empaque?",
+      "microcopy": "La trazabilidad por bulto/corte evita mezclas de tono, piezas perdidas y permite el pago exacto de incentivos por minutaje.",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Tiquete de bulto escrito a mano; sin rastreo digital de piezas cortadas vs confeccionadas.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Registro posterior en hoja de cálculo de bultos cortados y entregas por módulo al final del turno.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Escaneo de tiquetes QR en cada estación de costura para control de avance y cálculo de minutaje.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Monitoreo en tiempo real por pantalla en módulo, balanceo automático y visibilidad D2C.",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "CP-CF-01",
+      "level": "n2",
+      "sectorId": "confeccion",
+      "section": "SECCIÓN III: SOFISTICACIÓN PRODUCTIVA Y ESPACIO DE PRODUCTOS (CIDE / HARVARD)",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Reconversión hacia la 'Fruta Madura' en Confección (Alta Densidad ω_j > 0.65)",
+      "prompt": "Considerando su maquinaria y personal actual, ¿hacia qué línea de confección de mayor valor agregado podría reconvertirse en menos de 12 meses?",
+      "microcopy": "Mide la capacidad de salto hacia adyacencias de menor riesgo y mejor margen que la maquila básica.",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Uniformes Industriales y Corporativos de Alta Especificación Técnica (Prendas ignífugas, compresión, ropa de trabajo normada).",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Ropa Deportiva / Activewear de Tejido Sintético Funcional (Costuras planas Flatlock, secado rápido, antiperspirante).",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Marcas de Moda Casual con Diseño Propio Comercializadas Vía E-Commerce Directo al Consumidor (D2C).",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Confección Médica y Quirúrgica de Protección (Batas estériles, uniformes clínicos antimicrobianos, campos quirúrgicos).",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "CP-CF-02",
+      "level": "n2",
+      "sectorId": "confeccion",
+      "section": "SECCIÓN III: SOFISTICACIÓN PRODUCTIVA Y ESPACIO DE PRODUCTOS (CIDE / HARVARD)",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Apuestas Estratégicas y Prendas de Alta Complejidad / Smart Clothing (Alto ICPO)",
+      "prompt": "En un horizonte de 2 a 3 años con coinversión y tecnología, ¿qué línea de alta complejidad técnica podría desarrollar su empresa?",
+      "microcopy": "Evalúa la capacidad de diversificación hacia confección de vanguardia (Índice de Complejidad Potencial ICPO).",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Vestuario de Protección Militar / Táctica con Textiles Ignífugos, Balísticos y Costuras Selladas por Ultrasonido.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Prendas Inteligentes (Smart Clothing) con Sensores Biométricos Integrados para Monitoreo Deportivo o Médico.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Ropa Técnica de Alta Montaña y Clima Extremo con Membranas Impermeables-Respirables y Encintado Térmico Completo.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Marroquinería y Accesorios de Lujo en Cuero / Materiales Sintéticos de Alta Gama con Trazabilidad Total.",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "CP-CF-03",
+      "level": "n2",
+      "sectorId": "confeccion",
+      "section": "SECCIÓN III: SOFISTICACIÓN PRODUCTIVA Y ESPACIO DE PRODUCTOS (CIDE / HARVARD)",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Economía Circular, Reciclaje de Retazo de Corte y Sostenibilidad",
+      "prompt": "¿Qué nivel de avance tiene su empresa en el aprovechamiento de residuos textiles, eficiencia energética y empaque sustentable?",
+      "microcopy": "La sostenibilidad y la gestión de retazo son exigencias crecientes en la legislación y los consumidores de moda.",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Cumplimiento Básico: Disposición convencional de retazo de corte como basura/scrap; empaque en bolsas plásticas monouso.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Reciclaje Primario: Venta o donación del retazo de corte a trituradoras para estopa/aislantes; reducción de empaque plástico.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Aprovechamiento Circular de Retazo: Desfibrado de merma de corte para reincorporación en nuevas telas recicladas (GRS); iluminación LED en nave.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Taller / Planta Zero Waste & Carbon Neutral: Proceso de confección 100% certificado en economía circular, paneles solares y empaque compostable.",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "COL-CF01",
+      "level": "n2",
+      "sectorId": "confeccion",
+      "section": "SECCIÓN IV: SOLUCIONES COLABORATIVAS ANTE LA FALLA DE ESCALA (BIENES DE CLUB)",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Digital CAD/CAM & Automatic Cutting Hub Comunitario",
+      "prompt": "¿Cuál sería la disposición de su empresa para utilizar un Centro Comunitario de Patronaje Digital, Tizado Optimizado y Corte CNC compartidos?",
+      "microcopy": "Resuelve la falla de escala que impide a talleres pequeños y medianos adquirir equipos de corte automático de > 150,000 USD.",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Usuario Frecuente de Servicio de Corte: Enviaría trazos digitales para recibir la maza de tela cortada con precisión CNC pagando por metro/prenda.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Servicio de Patronaje y Tizado Digital: Utilizaría el hub exclusivamente para digitalización de patrones, graduación de tallas y optimización de tizado.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Integración Total de Desarrollo de Muestras: Maquilaría el desarrollo completo de patrones 3D y muestras virtuales en el centro.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Sin Interés: Cuenta con mesa de corte automático y sistema CAD propio suficiente.",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "COL-CF02",
+      "level": "n2",
+      "sectorId": "confeccion",
+      "section": "SECCIÓN IV: SOLUCIONES COLABORATIVAS ANTE LA FALLA DE ESCALA (BIENES DE CLUB)",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Laboratorio Comunitario Acreditado ISO 17025 de Pruebas Físicas de Confección",
+      "prompt": "¿Cómo participaría su empresa en la creación de un Laboratorio Regional Acreditado de Calidad en Confección y Pruebas Físicas?",
+      "microcopy": "Permite certificar la calidad de costuras, encogimiento y solidez para licitaciones y clientes de retail a bajo costo.",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Usuario de Pruebas Físicas: Enviaría muestras de tela y prendas para ensayos de resistencia de costura, desgarre, pilling y encogimiento.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Inspección de Calidad AQL de Lotes: Subcontrataría auditores del laboratorio para certificación AQL de bultos terminados antes de envío a tiendas.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Certificación de Uniformes Técnicos: Certificaría el cumplimiento de normas de vestuario de protección e industrial ante clientes corporativos.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Sin Interés: Realiza sus pruebas en laboratorios de clientes o no requiere certificación.",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "COL-CF03",
+      "level": "n2",
+      "sectorId": "confeccion",
+      "section": "SECCIÓN IV: SOLUCIONES COLABORATIVAS ANTE LA FALLA DE ESCALA (BIENES DE CLUB)",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Consorcio de Compras Consolidadas de Avíos y Plataforma Comercial D2C / Exportación",
+      "prompt": "¿Qué grado de apertura tiene su empresa para integrarse a un Consorcio de Compras Consolidadas de Avíos y Comercialización Conjunta?",
+      "microcopy": "Permite reducir costos de insumos entre 12% y 20% y acceder a mercados internacionales mediante un showroom/plataforma compartida.",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Compra Consolidada de Avíos e Hilos: Sumar volumen para comprar cierres, hilos de alta tenacidad, elásticos y botones directo de fábrica.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Consorcio de Embalaje y Cajas de Empaque: Comprar de forma conjunta bolsas compostables, ganchos, tiquetes y cajas secundarias.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Plataforma Comercial y Showroom Conjunto D2C/Exportación: Participar en un showroom regional y plataforma de e-commerce compartida para vender marcas propias.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Sin Interés: Prefiere mantener sus compras y negociaciones de comercialización de forma individual.",
+          "score": null
+        }
+      ]
+    }
+  ],
+  "roadmap": [
+    {
+      "band": "platino",
+      "min": 75.0,
+      "max": null,
+      "actions": [
+        "Capa A (Digital/TI): Implementación de muestreo 3D en avatares virtuales, ERP de confección 4.0 con IA de balanceo de líneas en tiempo real y RFID en prenda.",
+        "Capa B (Bienes de Club): Liderazgo en la Plataforma Comercial D2C / Exportación Conjunta."
+      ]
+    },
+    {
+      "band": "oro",
+      "min": 55.0,
+      "max": 75.0,
+      "actions": [
+        "Capa A (Digital/TI): Captura digital de minutaje SAM con tablets por módulo, optimizador automático de tizado CAD y código QR por bulto de corte.",
+        "Capa B (Bienes de Club): Uso de servicios de corte de alta precisión en Cutting Hub y ensayos en Laboratorio ISO 17025."
+      ]
+    },
+    {
+      "band": "plata",
+      "min": 35.0,
+      "max": 55.0,
+      "actions": [
+        "Capa A (Digital/TI): App móvil para control de inventario de tela y bultos, hoja digital de balanceo de módulo y estandarización básica de tiempos.",
+        "Capa B (Bienes de Club): Maquila de tizado optimizado y corte CNC en Digital Cutting Hub y Consorcio de Compras de Avíos."
+      ]
+    },
+    {
+      "band": "bronce",
+      "min": 0.0,
+      "max": 35.0,
+      "actions": [
+        "Capa A (Digital/TI): Capacitación básica en ordenamiento de taller (5S), registro digital de piezas cortadas vs cosidas y costeo por prenda.",
+        "Capa B (Bienes de Club): Incorporación al Consorcio de Compras Consolidadas de Avíos e Hilos."
+      ]
+    }
+  ]
+}

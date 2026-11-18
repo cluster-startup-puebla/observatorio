@@ -1,0 +1,926 @@
+{
+  "instrument": "n1",
+  "questions": [
+    {
+      "id": "MOD0-WEB-01",
+      "level": "n1",
+      "sectorId": null,
+      "section": "MÓDULO 0: ENRUTAMIENTO DINÁMICO Y PERFILADO ANALÍTICO ROBUSTO DE LA FIRMA",
+      "widget": "Tarjeta de Selección Única (Selector Dinámico con Enrutamiento)",
+      "title": "MOD0-WEB-01",
+      "prompt": "¿En cuál de los siguientes 16 sectores productivos o de servicios se concentra la mayor proporción de la facturación de su empresa?",
+      "microcopy": "Define automáticamente la asignación del Instrumento de Diagnóstico Especializado de Nivel 2 que responderá la empresa tras concluir la fase general.",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "automotriz",
+          "label": "01. Automotriz, Autopartes y Electromovilidad",
+          "score": null
+        },
+        {
+          "value": "agricola-pecuaria",
+          "label": "02. Producción Agrícola y Pecuaria Tecnificada",
+          "score": null
+        },
+        {
+          "value": "alimentos",
+          "label": "03. Alimentos Empacados y Procesados",
+          "score": null
+        },
+        {
+          "value": "plasticos",
+          "label": "04. Plásticos, Polímeros y Economía Circular",
+          "score": null
+        },
+        {
+          "value": "metalmecanica",
+          "label": "05. Metalmecánica, Estructuras y Maquinados de Precisión",
+          "score": null
+        },
+        {
+          "value": "textiles",
+          "label": "06. Textiles, Hilados y Tejidos",
+          "score": null
+        },
+        {
+          "value": "confeccion",
+          "label": "07. Diseño, Confección y Maquila de Prendas",
+          "score": null
+        },
+        {
+          "value": "muebles",
+          "label": "08. Muebles, Madera y Herrajes",
+          "score": null
+        },
+        {
+          "value": "turismo",
+          "label": "09. Turismo y Servicios de Hospitalidad",
+          "score": null
+        },
+        {
+          "value": "agencias",
+          "label": "10. Agencias de Viaje y Operadores de Turismo",
+          "score": null
+        },
+        {
+          "value": "gastronomia",
+          "label": "11. Gastronomía, Comisariatos y Catering Industrial",
+          "score": null
+        },
+        {
+          "value": "medico-hospitalario",
+          "label": "12. Servicios Médicos, Hospitalarios y Laboratorios",
+          "score": null
+        },
+        {
+          "value": "dispositivos",
+          "label": "13. Dispositivos Médicos y Tecnología Sanitaria",
+          "score": null
+        },
+        {
+          "value": "construccion",
+          "label": "14. Construcción, Obra Civil y Proveedores de Materiales",
+          "score": null
+        },
+        {
+          "value": "logistica",
+          "label": "15. Logística, Transporte, Almacenaje y Última Milla",
+          "score": null
+        },
+        {
+          "value": "artes-graficas",
+          "label": "16. Artes Gráficas, Impresión Digital, Offset y Empaques",
+          "score": null
+        },
+        {
+          "value": "quimica",
+          "label": "17. Industria Química, Petroquímica y Resinas Sintéticas",
+          "score": null
+        },
+        {
+          "value": "tics",
+          "label": "18. Tecnologías de la Información, Software y Servicios Digitales",
+          "score": null
+        },
+        {
+          "value": "inmobiliario",
+          "label": "19. Desarrollo e Intermediación Inmobiliaria",
+          "score": null
+        },
+        {
+          "value": "sofom",
+          "label": "20. SOFOMES y Servicios Financieros no Bancarios",
+          "score": null
+        },
+        {
+          "value": "educacion",
+          "label": "21. Educación Superior y Profesional",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "MOD0-WEB-02",
+      "level": "n1",
+      "sectorId": null,
+      "section": "MÓDULO 0: ENRUTAMIENTO DINÁMICO Y PERFILADO ANALÍTICO ROBUSTO DE LA FIRMA",
+      "widget": "Tarjeta de Selección Única",
+      "title": "MOD0-WEB-02",
+      "prompt": "¿Cuál es el tamaño formal de su empresa según el número de colaboradores totales y el rango de facturación anual (Clasificación INEGI / Secretaría de Economía)?",
+      "microcopy": "Permite segmentar los datos para ponderar la capacidad de inversión en CAPEX y la disponibilidad de personal dedicado a I+D o gestión de calidad.",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Microempresa: 1 a 10 colaboradores | Facturación anual de hasta $4 MDP.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Pequeña Empresa: 11 a 50 colaboradores | Facturación anual de $4.01 a $100 MDP.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Mediana Empresa: 51 a 250 colaboradores | Facturación anual de $100.01 a $250 MDP.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Gran Empresa / Corporativo: Más de 250 colaboradores | Facturación anual superior a $250 MDP.",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "MOD0-WEB-03",
+      "level": "n1",
+      "sectorId": null,
+      "section": "MÓDULO 0: ENRUTAMIENTO DINÁMICO Y PERFILADO ANALÍTICO ROBUSTO DE LA FIRMA",
+      "widget": "Tarjeta de Selección Única",
+      "title": "MOD0-WEB-03",
+      "prompt": "¿En qué municipio o parque/nodo industrial-agrícola-urbano se ubica la principal instalación operativa o centro de comando de su empresa en Puebla o Tlaxcala?",
+      "microcopy": "Evalúa la exposición geográfica a riesgos de infraestructura local, disponibilidad de agua, carreteras clave (150D, Arco Norte) y acceso a mano de obra.",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Nodo 1: Zona Metropolitana de Puebla (ZMPT / FINSA / Resurrección / Chachapa / Cuautlancingo / Amozoc).",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Nodo 2: Corredor Industrial San Martín Texmelucan - Huejotzingo - Calpan.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Nodo 3: Ciudad Modelo - San José Chiapa - Libres - Huamantla - El Carmen Tequexquitla (Puebla / Tlaxcala Este).",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Nodo 4: Tlaxcala Centro-Sur (Corredor CIX I, II, III / Papalotla / Teolocholco / Chiautempan / Apizaco).",
+          "score": null
+        },
+        {
+          "value": "opt5",
+          "label": "Nodo 5: Tehuacán - Ajalpan - Tepanco (Puebla Sur) / Valles Altos (Tecamachalco - Palmar - Quecholac).",
+          "score": null
+        },
+        {
+          "value": "opt6",
+          "label": "Nodo 6: Sierra Norte / Nororiental y Valles Centrales (Atlixco, Izúcar, Huauchinango, Cuetzalan).",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "MOD0-WEB-04",
+      "level": "n1",
+      "sectorId": null,
+      "section": "MÓDULO 0: ENRUTAMIENTO DINÁMICO Y PERFILADO ANALÍTICO ROBUSTO DE LA FIRMA",
+      "widget": "Tarjeta de Selección Única (Perfilado Analítico Multi-Sectorial)",
+      "title": "MOD0-WEB-04",
+      "prompt": "¿Cuál es la naturaleza principal de las operaciones que generan el mayor valor agregado en su establecimiento?",
+      "microcopy": "Diferencia las dinámicas de costeo, intensidad de mano de obra, regulación sanitaria/ambiental y vulnerabilidad logística entre actividades industriales y de servicios.",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Manufactura e Industria Transformadora: Procesamiento físico, químico o mecánico de materias primas e insumos para la producción de bienes tangibles.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Servicios Médicos, Hospitalarios y Laboratorios de Diagnóstico: Atención clínica, hospitalización, análisis clínicos y atención sanitaria especializada.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Servicios Especializados a las Empresas / Industria: Consultoría técnica, mantenimiento especializado, ingeniería, software, metrología o soluciones B2B.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Comercio, Distribución y Maquila Logística: Compra-venta, almacenamiento, embalaje, fraccionamiento o distribución de mercancías.",
+          "score": null
+        },
+        {
+          "value": "opt5",
+          "label": "Producción Primaria Agropecuaria / Extractiva: Cultivo de campo/invernadero, cría pecuaria, acuicultura o extracción de agregados.",
+          "score": null
+        },
+        {
+          "value": "opt6",
+          "label": "Servicios Directos al Consumidor y Hospitalidad: Restauración, hotelería, turismo, educación o entretenimiento.",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "MOD0-WEB-05",
+      "level": "n1",
+      "sectorId": null,
+      "section": "MÓDULO 0: ENRUTAMIENTO DINÁMICO Y PERFILADO ANALÍTICO ROBUSTO DE LA FIRMA",
+      "widget": "Tarjeta de Selección Única (Perfilado Analítico)",
+      "title": "MOD0-WEB-05",
+      "prompt": "¿Cuál es el modelo de negocio primario mediante el cual su empresa comercializa sus productos o servicios?",
+      "microcopy": "Indispensable para evaluar la dependencia de contratos corporativos, licitaciones gubernamentales o dinámicas de volumen en mercado masivo o atención a pacientes/consumidores.",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "B2B Directo (Business-to-Business): Venta directa a otras empresas, fabricantes Tier 1/2, cadenas corporativas o clientes empresariales.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "B2B2C / Subcontratación e Integración en Cadena de Valor: Suministro de componentes, maquila o servicios que se integran en la oferta final de un tercero hacia el usuario final.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "B2C Directo al Consumidor / Paciente (Business-to-Consumer/Patient): Venta directa al cliente, usuario o paciente final mediante instalaciones o canales propios.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "B2G / Compras Públicas (Business-to-Government): Suministro de bienes, servicios médicos o infraestructura a dependencias gubernamentales e instituciones públicas.",
+          "score": null
+        },
+        {
+          "value": "opt5",
+          "label": "D2C Digital / E-commerce Directo (Direct-to-Consumer): Comercialización digital directa a través de plataformas web, app o marketplaces sin intermediarios.",
+          "score": null
+        },
+        {
+          "value": "opt6",
+          "label": "Modelo Mixto Equilibrado: Facturación distribuida de forma similar entre clientes corporativos (B2B) y consumidor/paciente final (B2C).",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "MOD0-WEB-06",
+      "level": "n1",
+      "sectorId": null,
+      "section": "MÓDULO 0: ENRUTAMIENTO DINÁMICO Y PERFILADO ANALÍTICO ROBUSTO DE LA FIRMA",
+      "widget": "Tarjeta de Selección Única (Perfilado Analítico)",
+      "title": "MOD0-WEB-06",
+      "prompt": "¿A través de qué canal transaccional recibe su empresa la mayor proporción de sus ingresos y órdenes de pedido o atención?",
+      "microcopy": "Determina el nivel de madurez digital comercial, dependencia de comisiones de terceros (OTAs/Marketplaces) y costo de adquisición de clientes o pacientes.",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Fuerza de Ventas Directa / Ejecutivos de Cuenta Corporativos: Negociación cara a cara, contratos plurianuales y órdenes de compra corporativas.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Punto de Venta Físico / Instalación Médica / Sucursales / Mostrador: Atención presencial en centros clínicos, locales comerciales o instalaciones propias.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Portal Digital Propio / E-commerce / Web-App / Citas en Línea: Plataforma web transaccional automatizada integrada al ERP o sistema de facturación/cobro.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Marketplaces / OTAs / Intermediarios Digitales: Comercialización en plataformas de terceros (Amazon, MercadoLibre, Booking, UberEats, aseguradoras).",
+          "score": null
+        },
+        {
+          "value": "opt5",
+          "label": "Red de Distribuidores / Intermediarios Comerciales / Licitaciones: Venta a través de mayoristas, comisionistas o asignación de licitaciones públicas/privadas.",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "MOD0-WEB-07",
+      "level": "n1",
+      "sectorId": null,
+      "section": "MÓDULO 0: ENRUTAMIENTO DINÁMICO Y PERFILADO ANALÍTICO ROBUSTO DE LA FIRMA",
+      "widget": "Tarjeta de Selección Única (Perfilado Analítico)",
+      "title": "MOD0-WEB-07",
+      "prompt": "¿Cuál es el alcance geográfico y nivel de integración a cadenas de valor que caracteriza las ventas o servicios de su empresa?",
+      "microcopy": "Mide la articulación con el comercio exterior (T-MEC / Turismo Médico) y el grado de exposición a fluctuaciones económicas locales vs. internacionales.",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Mercado Local / Municipal: Cobertura restringida a la localidad o municipio sede.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Mercado Regional: Cobertura enfocada en los estados de Puebla, Tlaxcala, Veracruz, Hidalgo o CMX.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Mercado Nacional: Distribución o prestación de servicios consolidada a nivel república mexicana.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Exportador Indirecto (Proveedor T-MEC): Insumos, piezas o servicios integrados en productos finales o cadenas que exportan a EE.UU., Canadá u otros mercados.",
+          "score": null
+        },
+        {
+          "value": "opt5",
+          "label": "Exportador Directo / Atención a Clientes Internacionales: Envíos directos al extranjero con pedimento propio (T-MEC, Europa, LatAm) o atención a turismo internacional.",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "ED-01",
+      "level": "n1",
+      "sectorId": null,
+      "section": "SECCIÓN I: EVALUACIÓN DEL ENTORNO EXÓGENO Y LOS 5 PILARES DEL ESTADO DE DERECHO (IMD / IMCO)",
+      "widget": "Escala Likert de 5 Puntos (Convertida a 20-100 pts)",
+      "title": "ED-01",
+      "prompt": "¿En qué medida el marco normativo, trámites estatales/municipales, licencias operativas y verificaciones regulatorias en su zona son claros, estables y predecibles?",
+      "microcopy": "Mide la certeza jurídica para inversiones y el impacto de la tramitología en los costos operativos de la empresa.",
+      "type": "likert_5",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Altamente Impredecible / Corrupción y cambios arbitrarios de reglas constantemente frenan la operación.",
+          "score": 20
+        },
+        {
+          "value": "opt2",
+          "label": "Impredecible / Tramitología lenta, discrecionalidad en licencias/permisos y poca claridad en cobros u homologaciones.",
+          "score": 40
+        },
+        {
+          "value": "opt3",
+          "label": "Neutro / Cumplimiento realizable pero requiere tiempo excesivo y gestiones complejas.",
+          "score": 60
+        },
+        {
+          "value": "opt4",
+          "label": "Predecible / Reglas claras, ventanillas funcionales y procesos digitales aceptables.",
+          "score": 80
+        },
+        {
+          "value": "opt5",
+          "label": "Altamente Predecible / Trámites 100% digitales, cero discrecionalidad y certeza jurídica absoluta de inversión.",
+          "score": 100
+        }
+      ]
+    },
+    {
+      "id": "ED-02",
+      "level": "n1",
+      "sectorId": null,
+      "section": "SECCIÓN I: EVALUACIÓN DEL ENTORNO EXÓGENO Y LOS 5 PILARES DEL ESTADO DE DERECHO (IMD / IMCO)",
+      "widget": "Escala Likert de 5 Puntos (Convertida a 20-100 pts)",
+      "title": "ED-02",
+      "prompt": "¿Cómo evalúa el nivel de seguridad pública en las vías de transporte (autopista 150D, Arco Norte) y la protección contra el delito (robo de carga/mercancías/equipos, extorsión) en su zona?",
+      "microcopy": "Evalúa el sobrecosto forzado en pólizas de seguro, custodias privadas y pérdidas directas por delincuencia en insumos o patrimonio.",
+      "type": "likert_5",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Gravedad Crítica / Sufrimos robos o extorsiones frecuentes; los costos de seguridad y primas de seguro son insostenibles.",
+          "score": 20
+        },
+        {
+          "value": "opt2",
+          "label": "Inseguro / Alta percepción de riesgo en carreteras clave (150D/Arco Norte); requerimos custodia o monitoreo privado obligatorio.",
+          "score": 40
+        },
+        {
+          "value": "opt3",
+          "label": "Moderado / Incidentes ocasionales en el sector; se invierte en GPS y seguridad sin afectar severamente la rentabilidad.",
+          "score": 60
+        },
+        {
+          "value": "opt4",
+          "label": "Seguro / Entorno controlado con patrullaje efectivo y baja incidencia delictiva en instalaciones y rutas.",
+          "score": 80
+        },
+        {
+          "value": "opt5",
+          "label": "Altamente Seguro / Cero incidencias, entorno de paz operativa y costos de seguridad mínimos.",
+          "score": 100
+        }
+      ]
+    },
+    {
+      "id": "ED-03",
+      "level": "n1",
+      "sectorId": null,
+      "section": "SECCIÓN I: EVALUACIÓN DEL ENTORNO EXÓGENO Y LOS 5 PILARES DEL ESTADO DE DERECHO (IMD / IMCO)",
+      "widget": "Escala Likert de 5 Puntos (Convertida a 20-100 pts)",
+      "title": "ED-03",
+      "prompt": "¿Cómo califica el apego a la ley y la ausencia de abusos de autoridad durante las inspecciones de autoridades (STPS, PROFEPA, COFEPRIS/COPRISEP, Protección Civil, Tránsito)?",
+      "microcopy": "Mide la imparcialidad institucional y la protección de la empresa o establecimiento ante extorsiones regulatorias o clausuras arbitrarias.",
+      "type": "likert_5",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Totalmente Arbitrario / Inspecciones usadas como mecanismo de extorsión o suspensión sin sustento técnico.",
+          "score": 20
+        },
+        {
+          "value": "opt2",
+          "label": "Arbitrario / Criterios inconsistentes entre inspectores y amenazas recurrentes de sanciones desproporcionadas.",
+          "score": 40
+        },
+        {
+          "value": "opt3",
+          "label": "Neutro / Inspecciones rigurosas pero apegadas parcialmente al marco legal formal.",
+          "score": 60
+        },
+        {
+          "value": "opt4",
+          "label": "Imparcial / Actas transparentes, criterios técnicos unificados y derecho a audiencia respetado.",
+          "score": 80
+        },
+        {
+          "value": "opt5",
+          "label": "Totalmente Imparcial / Auditorías preventivas, digitalizadas y basadas en gestión de riesgos sin acoso.",
+          "score": 100
+        }
+      ]
+    },
+    {
+      "id": "ED-04",
+      "level": "n1",
+      "sectorId": null,
+      "section": "SECCIÓN I: EVALUACIÓN DEL ENTORNO EXÓGENO Y LOS 5 PILARES DEL ESTADO DE DERECHO (IMD / IMCO)",
+      "widget": "Escala Likert de 5 Puntos (Convertida a 20-100 pts)",
+      "title": "ED-04",
+      "prompt": "¿Cuál es el nivel de calidad y confiabilidad en la infraestructura básica de su parque, nodo o zona urbana (electricidad sin micro-cortes, agua de calidad/proceso, gas, fibra óptica, caminos)?",
+      "microcopy": "Mide las fallas de infraestructura pública exógena que provocan mermas, daños en equipos biomédicos/industriales o interrupciones del servicio/producción.",
+      "type": "likert_5",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Deficiencia Crítica / Apagones frecuentes, escasez severa de agua y caminos destruidos paralizan las operaciones.",
+          "score": 20
+        },
+        {
+          "value": "opt2",
+          "label": "Deficiente / Micro-cortes eléctricos constantes dañan equipos e infraestructura; se carece de gasoducto o conectividad adecuada.",
+          "score": 40
+        },
+        {
+          "value": "opt3",
+          "label": "Aceptable / Suministro continuo con fluctuaciones menores; requiere plantas de emergencia o pipas ocasionales.",
+          "score": 60
+        },
+        {
+          "value": "opt4",
+          "label": "Bueno / Infraestructura de soporte estable, buen ancho de banda y servicios públicos continuos.",
+          "score": 80
+        },
+        {
+          "value": "opt5",
+          "label": "Excelencia / Zona/Parque con energía limpia, redundancia hídrica, fibra óptica 5G y vías de comunicación de primer nivel.",
+          "score": 100
+        }
+      ]
+    },
+    {
+      "id": "ED-05",
+      "level": "n1",
+      "sectorId": null,
+      "section": "SECCIÓN I: EVALUACIÓN DEL ENTORNO EXÓGENO Y LOS 5 PILARES DEL ESTADO DE DERECHO (IMD / IMCO)",
+      "widget": "Escala Likert de 5 Puntos (Convertida a 20-100 pts)",
+      "title": "ED-05",
+      "prompt": "¿Qué tan rápido y equitativo es el sistema de justicia mercantil y conciliación laboral en su entidad cuando se requiere resolver un litigio, cobro de facturas o arbitraje?",
+      "microcopy": "Mide la efectividad del cumplimiento de contratos (Enforcing Contracts) y la resolución expedita de controversias laborales o mercantiles.",
+      "type": "likert_5",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Ineficiente y Lento / Juicios tardan años, impunidad en cobranza mercantil y chantaje en litigios laborales.",
+          "score": 20
+        },
+        {
+          "value": "opt2",
+          "label": "Ineficiente / Procesos costosos, lentitud en juzgados y dificultad para ejecutar garantías o contratos de servicios.",
+          "score": 40
+        },
+        {
+          "value": "opt3",
+          "label": "Neutro / Tiempos de respuesta moderados; los centros de conciliación laboral funcionan a capacidad media.",
+          "score": 60
+        },
+        {
+          "value": "opt4",
+          "label": "Eficiente / Conciliación laboral rápida (menos de 45 días) y juzgados mercantiles razonablemente expeditos.",
+          "score": 80
+        },
+        {
+          "value": "opt5",
+          "label": "Altamente Eficiente / Digitalización de expedientes judiciales, arbitraje mercantil expedito y justicia transparente.",
+          "score": 100
+        }
+      ]
+    },
+    {
+      "id": "INO-01",
+      "level": "n1",
+      "sectorId": null,
+      "section": "SECCIÓN II: ECOSISTEMA DE INNOVACIÓN Y ABSORCIÓN TECNOLÓGICA (OMPI / WIPO)",
+      "widget": "Tarjeta de Selección Única",
+      "title": "INO-01",
+      "prompt": "¿Qué porcentaje aproximado de los ingresos de la empresa se destina anualmente a Investigación, Desarrollo e Innovación (I+D+i), actualización de equipamiento o capacitación técnica?",
+      "microcopy": "Determina el esfuerzo financiero consciente de la firma para renovar sus capacidades tecnológicas y operativas (OMPI Insumos).",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Sin Inversión (0%): No se asignan recursos a I+D, innovación ni a capacitación técnica especializada.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Inversión Básica (< 1%): Gastos menores en licencias de software estándar o corrección puntual de problemas.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Inversión Moderada (1% a 3%): Presupuesto asignado a mejora de procesos, rediseño de servicios/productos o capacitación técnica regular.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Inversión Avanzada (> 3%): Departamento/Equipo de I+D formal, desarrollo de prototipos, coinversión con universidades o laboratorios.",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "INO-02",
+      "level": "n1",
+      "sectorId": null,
+      "section": "SECCIÓN II: ECOSISTEMA DE INNOVACIÓN Y ABSORCIÓN TECNOLÓGICA (OMPI / WIPO)",
+      "widget": "Tarjeta de Selección Única",
+      "title": "INO-02",
+      "prompt": "¿Cuántos productos, servicios o procesos significativamente mejorados o protegidos mediante Propiedad Intelectual ha lanzado al mercado en los últimos 36 meses?",
+      "microcopy": "Mide la efectividad para transformar recursos en innovaciones tangibles comercializables (OMPI Resultados).",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Cero / Sin Innovación: La oferta de productos/servicios o procedimientos se ha mantenido idéntica en los últimos 3 años.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Innovación Incremental Menor (1 a 2): Mejoras de adaptación o ajustes menores a solicitud directa de clientes/pacientes.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Innovación Significativa (3 a 5): Nuevas líneas de producto/servicio o procesos digitalizados con secreto industrial, marca o protocolo propio.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Innovación Disruptiva (> 5 o Patentes): Múltiples lanzamientos exitosos, marcas registradas, modelos de utilidad o patentes vigentes.",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "INO-03",
+      "level": "n1",
+      "sectorId": null,
+      "section": "SECCIÓN II: ECOSISTEMA DE INNOVACIÓN Y ABSORCIÓN TECNOLÓGICA (OMPI / WIPO)",
+      "widget": "Tarjeta de Selección Única",
+      "title": "INO-03",
+      "prompt": "¿Cuál es la tasa de éxito y retorno económico estimado de las tecnologías implementadas y su grado de vinculación con centros de investigación/universidades?",
+      "microcopy": "Evalúa la ratio de eficiencia de conversión (Outputs / Inputs) del ecosistema de innovación (OMPI / WIPO).",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Sin Vinculación / Proyectos Frustrados: No se colabora con universidades y las inversiones en tecnología no han retornado valor.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Vinculación Ocasional / Retorno Lento: Colaboración puntual para residencias profesionales; el retorno de inversión tecnológica toma > 3 años.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Vinculación Activa / Retorno Positivo: Convenios de pruebas de laboratorio/evaluación; las mejoras tecnológicas recuperan su costo en 12 a 24 meses.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Alianza Estratégica / Alto Retorno: Desarrollos conjuntos con Centros CONAHCYT/Universidades con ROI tecnológico en < 12 meses.",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "INO-04",
+      "level": "n1",
+      "sectorId": null,
+      "section": "SECCIÓN II: ECOSISTEMA DE INNOVACIÓN Y ABSORCIÓN TECNOLÓGICA (OMPI / WIPO)",
+      "widget": "Tarjeta de Selección Única",
+      "title": "INO-04",
+      "prompt": "¿Cuál es el nivel de adopción e integración de tecnologías de la información (TI), sistemas de gestión en nube e inteligencia artificial en la empresa?",
+      "microcopy": "Mide la madurez digital interna que sirve de cimiento para la competitividad 4.0 y la eficiencia operativa en tiempo real.",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Adopción Elemental / Manual: Registro en cuadernos o carpetas físicas; uso de hojas Excel desarticuladas y correo básico.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Adopción Intermedia / Software Aislado: ERP/sistema de facturación básico local; contabilidad digital pero sin comunicación con áreas operativas/clínicas.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Adopción Avanzada / ERP Nube + CRM: Gestión integrada en tiempo real de finanzas, inventarios, operaciones y ventas/citas en la nube con respaldos automatizados.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Adopción 4.0 / Cloud + IoT + IA: Plataforma integral en nube, captura automatizada por sensores/QR, ciberseguridad avanzada e IA generativa/predictiva.",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "COM-01",
+      "level": "n1",
+      "sectorId": null,
+      "section": "SECCIÓN III: TRACCIÓN COMERCIAL, ESPACIO DE PRODUCTOS Y SOSTENIBILIDAD (CIDE / HARVARD)",
+      "widget": "Tarjeta de Selección Única",
+      "title": "COM-01",
+      "prompt": "¿Qué nivel de sofisticación y exigencia técnica o regulatoria caracteriza a sus principales clientes, pacientes o contratos comerciales?",
+      "microcopy": "Evalúa la capacidad de tracción y exigencia de calidad del mercado al que atiende la firma.",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Mercado Local Informal / Bajas Exigencias: Transacciones informales sin contratos a largo plazo ni requerimientos de certificación.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Mercado Regional Estándar: Cumplimiento de normas comerciales o sanitarias básicas (facturación, permisos locales) sin auditorías externas.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Cadenas Nacionales / Retail Organizado / Instituciones: Auditorías formales de calidad, códigos GS1, entregas puntuales y capacidad de respuesta.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Cadenas Globales de Valor / Certificación de Excelencia (Tier 1/OEM / COFEPRIS / Joint Commission / T-MEC): Auditorías internacionales estrictas.",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "COM-02",
+      "level": "n1",
+      "sectorId": null,
+      "section": "SECCIÓN III: TRACCIÓN COMERCIAL, ESPACIO DE PRODUCTOS Y SOSTENIBILIDAD (CIDE / HARVARD)",
+      "widget": "Tarjeta de Selección Única",
+      "title": "COM-02",
+      "prompt": "¿Qué tan exclusivo o difícil de replicar por competidores es el producto o servicio que ofrece su empresa?",
+      "microcopy": "Mide la complejidad de las capacidades acumuladas por la empresa (CIDE / Harvard).",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Alta Ubicuidad / Commodity: Producto o servicio genérico con alta competencia de precio y fácil sustitución por cualquier competidor.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Ubicuidad Media: Producto o servicio con diferenciación leve en empaque, marca o atención pero replicable en el mediano plazo.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Baja Ubicuidad / Especializado: Oferta con especificaciones técnicas o clínicas complejas que muy pocos competidores regionales pueden brindar.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Alta Exclusividad / Escasez Global: Producto/servicio protegido por tecnología propia, certificaciones raras o procesos científicos/complejos.",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "COM-03",
+      "level": "n1",
+      "sectorId": null,
+      "section": "SECCIÓN III: TRACCIÓN COMERCIAL, ESPACIO DE PRODUCTOS Y SOSTENIBILIDAD (CIDE / HARVARD)",
+      "widget": "Tarjeta de Selección Única",
+      "title": "COM-03",
+      "prompt": "¿Con qué facilidad podría su empresa adaptar su tecnología, equipamiento, instalaciones y talento para ofrecer un nuevo producto o servicio de mayor valor en menos de 12 meses?",
+      "microcopy": "Mide la agilidad de salto hacia adyacencias de menor riesgo en el espacio de productos/servicios ('Fruta Madura' ω_j).",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Dificultad Severa: Los equipos e instalaciones actuales son rígidos u obsoletos; cambiar requiere inversión masiva de CAPEX.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Dificultad Moderada: Es posible reconvertir pero requiere adquirir equipamiento costoso y reentrenar a todo el personal.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Alta Factibilidad ('Fruta Madura'): Las capacidades actuales permiten saltar a productos/servicios adyacentes de mayor margen con ajustes menores.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Reconversión Continua: Empresa ágil con equipos e infraestructura versátil capaz de cambiar de oferta en semanas según la demanda.",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "R00-REG-PROD",
+      "level": "n1",
+      "sectorId": null,
+      "section": "SECCIÓN IV: ROMPEHIELOS DE SEVERIDAD EXÓGENA REGIONAL (MÉTODO DE BORDA - ESTRUCTURA COMPLETA 8-6-6)",
+      "widget": "Rompehielos de Jerarquización - Top 3 (1 al 8)",
+      "title": "R00-REG-PROD",
+      "prompt": "Ordene del 1 al 8 las siguientes fricciones del entorno exógeno según el impacto económico negativo que provocan en la operación o servicio de su empresa (1 = Mayor impacto; 8 = Menor impacto)",
+      "microcopy": "Permite priorizar las fallas de mercado y entorno institucional que frenan el crecimiento regional (Matriz Borda Operacional).",
+      "type": "rank",
+      "prefilled": false,
+      "factorCount": 8,
+      "factors": [
+        {
+          "id": "f1",
+          "label": "Inseguridad pública en autopistas (150D, Arco Norte) y robo de mercancías, insumos o equipamiento."
+        },
+        {
+          "id": "f2",
+          "label": "Micro-cortes y deficiente calidad en el suministro de energía eléctrica de la red pública."
+        },
+        {
+          "id": "f3",
+          "label": "Tramitología lenta, burocracia y cobros excesivos en licencias/permisos municipales o estatales."
+        },
+        {
+          "id": "f4",
+          "label": "Escasez de personal técnico calificado y alta rotación de colaboradores en la zona."
+        },
+        {
+          "id": "f5",
+          "label": "Falta de disponibilidad y altos costos de suministro de agua (industrial, potable o de proceso)."
+        },
+        {
+          "id": "f6",
+          "label": "Sobrecostos en fletes logísticos y falta de infraestructura de transporte o accesibilidad."
+        },
+        {
+          "id": "f7",
+          "label": "Dificultad para acceder a financiamiento competitivo y crédito para adquirir equipamiento o tecnología."
+        },
+        {
+          "id": "f8",
+          "label": "Competencia desleal de establecimientos informales o importaciones subvaluadas."
+        }
+      ]
+    },
+    {
+      "id": "R00-REG-SOURCING-MAT",
+      "level": "n1",
+      "sectorId": null,
+      "section": "SECCIÓN IV: ROMPEHIELOS DE SEVERIDAD EXÓGENA REGIONAL (MÉTODO DE BORDA - ESTRUCTURA COMPLETA 8-6-6)",
+      "widget": "Rompehielos de Jerarquización - Top 3 (1 al 6)",
+      "title": "R00-REG-SOURCING-MAT",
+      "prompt": "Ordene del 1 al 6 los cuellos de botella que mayor volatilidad o riesgo causan en su abastecimiento de insumos, materiales y suministros generales (1 = Mayor impacto negativo; 6 = Menor impacto)",
+      "microcopy": "Mide la vulnerabilidad de la empresa ante choques en la cadena de suministro de bienes materiales.",
+      "type": "rank",
+      "prefilled": false,
+      "factorCount": 6,
+      "factors": [
+        {
+          "id": "f1",
+          "label": "Volatilidad de precios en insumos, materias primas o materiales básicos de operación."
+        },
+        {
+          "id": "f2",
+          "label": "Tiempos de entrega excesivos (Lead Times) en insumos, piezas o refacciones importadas."
+        },
+        {
+          "id": "f3",
+          "label": "Escasez de proveedores locales certificados que cumplan especificaciones técnicas o sanitarias."
+        },
+        {
+          "id": "f4",
+          "label": "Sobrecosto en materiales de empaque, embalaje, contenedores o recipientes de traslado."
+        },
+        {
+          "id": "f5",
+          "label": "Restricciones o incrementos en costos de combustibles (diésel, gas natural, LP, energía)."
+        },
+        {
+          "id": "f6",
+          "label": "Exigencia de pagos de contado o plazos de crédito reducidos por parte de proveedores."
+        }
+      ]
+    },
+    {
+      "id": "R00-REG-SOURCING-SERV",
+      "level": "n1",
+      "sectorId": null,
+      "section": "SECCIÓN IV: ROMPEHIELOS DE SEVERIDAD EXÓGENA REGIONAL (MÉTODO DE BORDA - ESTRUCTURA COMPLETA 8-6-6)",
+      "widget": "Rompehielos de Jerarquización - Top 3 (1 al 6)",
+      "title": "R00-REG-SOURCING-SERV",
+      "prompt": "Ordene del 1 al 6 las principales deficiencias o barreras que enfrenta su empresa en la contratación de servicios de apoyo al negocio y servicios especializados (1 = Mayor impacto negativo; 6 = Menor impacto)",
+      "microcopy": "Evalúa los cuellos de botella en la oferta regional de servicios intangibles de alto valor (laboratorios acreditados, consultoría normativa, mantenimiento especializado, trámites ambientales y conectividad) que condicionan el perfilado de madurez del sector y de la firma.",
+      "type": "rank",
+      "prefilled": false,
+      "factorCount": 6,
+      "factors": [
+        {
+          "id": "f1",
+          "label": "Escasez o alto costo de laboratorios acreditados de ensayo, metrología, calibración o análisis clínicos/técnicos (ISO 17025 / COFEPRIS / EMA)."
+        },
+        {
+          "id": "f2",
+          "label": "Deficiencia o falta de consultoría local especializada en certificaciones internacionales de calidad, inocuidad o gestión (IATF, ISO, GlobalGAP, BRCGS)."
+        },
+        {
+          "id": "f3",
+          "label": "Respuesta lenta o alto costo en servicios de mantenimiento preventivo y correctivo especializado para tecnología, equipos e infraestructura clave."
+        },
+        {
+          "id": "f4",
+          "label": "Retardos y complejidad burocrática en gestiones de impacto ambiental, licencias sanitarias o dictámenes de protección civil."
+        },
+        {
+          "id": "f5",
+          "label": "Deficiencia en servicios especializados de ciberseguridad, gestión de datos en nube y conectividad de banda ancha de alta velocidad."
+        },
+        {
+          "id": "f6",
+          "label": "Sobrecostos y oferta limitada de servicios de capacitación técnica avanzada para la recalificación y desarrollo de talento (Upskilling / Reskilling)."
+        }
+      ]
+    }
+  ]
+}

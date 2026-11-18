@@ -1,0 +1,756 @@
+{
+  "sectorId": "construccion",
+  "label": "14. Construcción, Obra Civil y Proveedores de Materiales",
+  "questions": [
+    {
+      "id": "CN-01",
+      "level": "n2",
+      "sectorId": "construccion",
+      "section": "MÓDULO 0: PERFILADO DEL ESLABÓN Y LOCALIZACIÓN TERRITORIAL (HEREDADO DE NIVEL 1)",
+      "widget": "Tarjeta de Selección Única (Pre-poblado)",
+      "title": "Sub-eslabón Dominante en la Cadena de Construcción",
+      "prompt": "¿En cuál de los siguientes sub-eslabones se concentra la mayor proporción de la facturación y actividad operativa de su empresa?",
+      "microcopy": "El sub-eslabón define las normas técnicas ONNCCE/NMX-C aplicables, requerimientos de maquinaria pesada y certificaciones de laboratorio o edificación sustentable.",
+      "type": "single_select",
+      "prefilled": true,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Edificación Residencial, Comercial y Vertical: Desarrolladores y constructores de vivienda, plazas comerciales, torres de departamentos y corporativos.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Obra Civil, Infraestructura Pesada y Vías de Comunicación: Carreteras, puentes, redes de agua/drenaje, cimentaciones profundas y naves industriales.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Fabricación de Materiales de Edificación y Preconcreto: Plantas de concreto premezclado, bloqueras, tubos de concreto, vigueta/bovedilla y prefabricados.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Servicios de Ingeniería, Gerencia de Obra, BIM y Topografía: Despachos de cálculo estructural, gerencia de proyectos BIM, levantamientos topográficos y ensayes de laboratorio.",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "CN-02",
+      "level": "n2",
+      "sectorId": "construccion",
+      "section": "MÓDULO 0: PERFILADO DEL ESLABÓN Y LOCALIZACIÓN TERRITORIAL (HEREDADO DE NIVEL 1)",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Corredor de Operación y Zona Metropolina / Nodo de Obra",
+      "prompt": "¿En qué corredor vial o nodo urbano/industrial de la región Puebla - Tlaxcala realiza la mayor parte de sus proyectos o tiene su planta principal?",
+      "microcopy": "La localización determina la cercanía a bancos de tiro de escombro, plantas preconcreteras, disponibilidad de mano de obra y logística de traslado de maquinaria.",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Corredor 1: ZMPT Puebla Centro - Angelópolis - Cholula - Cuautlancingo: Edificación vertical, desarrollos residenciales, plazas comerciales y centros corporativos.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Corredor 2: Autopista México-Puebla 150D - FINSA - Amozoc - Tepeaca: Infraestructura pesada, naves industriales, ampliaciones viales y plantas de materiales.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Corredor 3: Ciudad Modelo - Audi - Huamantla - CIX I/II/III Tlaxcala: Parques industriales, urbanización de polos de desarrollo y proyectos de infraestructura estatal.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Corredor 4: Tehuacán - Tecamachalco - Izúcar - Sierra Norte / Nororiental: Obra pública municipal, edificación comercial regional y caminos rurales.",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "CN-03",
+      "level": "n2",
+      "sectorId": "construccion",
+      "section": "MÓDULO 0: PERFILADO DEL ESLABÓN Y LOCALIZACIÓN TERRITORIAL (HEREDADO DE NIVEL 1)",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Certificación de Calidad, Seguridad y Normatividad en Construcción",
+      "prompt": "¿Cuál es el nivel formal de certificación, acreditación normativa u homologación de calidad que ostenta su empresa?",
+      "microcopy": "Las certificaciones internacionales y acreditaciones ONNCCE/ISO 17025 otorgan acceso a licitaciones de gran escala y proyectos de desarrolladores institucionales.",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Registro Padrón de Contratistas Básico / SIROC: Padrón estatal/municipal de contratistas y registros ante IMSS SIROC/SATIC, sin certificaciones ISO u ONNCCE.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Cumplimiento Normativo NMX-C / ONNCCE o ISO 9001:2015: Controles de calidad conforme a normas NMX-C de la edificación o Sistema de Gestión de Calidad ISO 9001 auditado.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Acreditación de Laboratorio / Seguridad e Higiene (ISO 17025 / ISO 45001): Laboratorio de pruebas acreditado ISO 17025 y/o Sistema de Gestión de Seguridad y Salud en el Trabajo ISO 45001.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Multicertificación Sustentable y Calidad Global (LEED / EDGE / ISO 14001 / ISO 9001): Certificación formal de edificación sustentable LEED/EDGE, ISO 14001 ambiental e ISO 9001.",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "R00-CONST-PROD",
+      "level": "n2",
+      "sectorId": "construccion",
+      "section": "SECCIÓN I: ROMPEHIELOS DE SEVERIDAD OPERATIVA (MÉTODO DE BORDA)",
+      "widget": "Rompehielos de Jerarquización (1 al 8)",
+      "title": "Jerarquización de Fricciones en Proceso de Obra y Planta",
+      "prompt": "Ordene del 1 al 8 los siguientes problemas operativos según el impacto económico negativo y la frecuencia con que afectan sus proyectos o planta (1 = Mayor impacto / Máxima gravedad; 8 = Menor impacto)",
+      "microcopy": "Permite priorizar la causa raíz de los retrasos y sobrecostos en obra antes de la evaluación de detalle.",
+      "type": "rank",
+      "prefilled": false,
+      "factorCount": 8,
+      "factors": [
+        {
+          "id": "f1",
+          "label": "Retrasos en programa de obra (cronograma) por imprevistos técnicos, interferencias o clima."
+        },
+        {
+          "id": "f2",
+          "label": "Mermas de material en sitio (concreto, acero de refuerzo, agregados, bloc) por desperdicio o manejo."
+        },
+        {
+          "id": "f3",
+          "label": "Paros y fallas no programadas en plantas dosificadoras, bombas de concreto o maquinaria pesada."
+        },
+        {
+          "id": "f4",
+          "label": "Escasez, alta rotación y falta de capacitación de oficiales de albañilería, fierreros y operadores."
+        },
+        {
+          "id": "f5",
+          "label": "Cuellos de botella en armado de acero, habilitado de cimbra y tiempos de colado de concreto."
+        },
+        {
+          "id": "f6",
+          "label": "Retrabajos y demoliciones por fisuras, deficiencias de revenimiento o resistencia f'c no alcanzada."
+        },
+        {
+          "id": "f7",
+          "label": "Falta de control digital de estimaciones, bitácoras de obra en papel y falta de seguimiento en tiempo real."
+        },
+        {
+          "id": "f8",
+          "label": "Reclamaciones de clientes/supervisores por acabados defectuosos, vicios ocultos o entregas tardías."
+        }
+      ]
+    },
+    {
+      "id": "R00-CONST-SOURCING-MAT",
+      "level": "n2",
+      "sectorId": "construccion",
+      "section": "SECCIÓN I: ROMPEHIELOS DE SEVERIDAD OPERATIVA (MÉTODO DE BORDA)",
+      "widget": "Rompehielos de Jerarquización (1 al 6)",
+      "title": "Jerarquización de Riesgos en Sourcing de Materiales y Equipos",
+      "prompt": "Ordene del 1 al 6 las restricciones que mayor volatilidad o desabasto causan en su suministro de insumos de edificación (1 = Mayor impacto negativo; 6 = Menor impacto)",
+      "microcopy": "Mide la vulnerabilidad de la empresa ante variaciones de precio y disponibilidad de insumos estructurales.",
+      "type": "rank",
+      "prefilled": false,
+      "factorCount": 6,
+      "factors": [
+        {
+          "id": "f1",
+          "label": "Alta volatilidad en precios del acero de refuerzo (varilla, malla electrosoldada, perfiles) y cemento."
+        },
+        {
+          "id": "f2",
+          "label": "Escasez y variabilidad de calidad en agregados (arena, grava) con certificación de banco ONNCCE."
+        },
+        {
+          "id": "f3",
+          "label": "Sobrecostos en aditivos químicos para concreto, impermeabilizantes y cimbra metálica/madera."
+        },
+        {
+          "id": "f4",
+          "label": "Variabilidad en tiempo de entrega y revenimiento del concreto premezclado suministrado por terceros."
+        },
+        {
+          "id": "f5",
+          "label": "Tardanza y sobrecosto en refacciones importadas para maquinaria pesada, plantas y vibradores."
+        },
+        {
+          "id": "f6",
+          "label": "Incremento en costos de fletes y transporte de materiales desde canteras/plantas a la obra."
+        }
+      ]
+    },
+    {
+      "id": "R00-CONST-SOURCING-SERV",
+      "level": "n2",
+      "sectorId": "construccion",
+      "section": "SECCIÓN I: ROMPEHIELOS DE SEVERIDAD OPERATIVA (MÉTODO DE BORDA)",
+      "widget": "Rompehielos de Jerarquización (1 al 6)",
+      "title": "Jerarquización de Deficiencias en Servicios e Infraestructura",
+      "prompt": "Ordene del 1 al 6 las mayores deficiencias en servicios técnicos y entorno regional que frenan la ejecución de sus obras (1 = Mayor impacto negativo; 6 = Menor impacto)",
+      "microcopy": "Mide las fallas institucionales, regulatorias y de infraestructura exógenas en la región Puebla-Tlaxcala.",
+      "type": "rank",
+      "prefilled": false,
+      "factorCount": 6,
+      "factors": [
+        {
+          "id": "f1",
+          "label": "Tramitología lenta en licencias de construcción, permisos ambientales e inspecciones IMSS SIROC/SATIC."
+        },
+        {
+          "id": "f2",
+          "label": "Falta de laboratorios locales acreditados ISO 17025 / ONNCCE para ensaye de cilindros, sueldos y acero."
+        },
+        {
+          "id": "f3",
+          "label": "Robos de herramientas, materiales (varilla, cable) y maquinaria en sitio de obra y carreteras (150D, Arco Norte)."
+        },
+        {
+          "id": "f4",
+          "label": "Tarifas elevadas y falta de factibilidad de servicios de agua, drenaje y energía para arranque de obra."
+        },
+        {
+          "id": "f5",
+          "label": "Escasez de consultores y auditores especializados en certificaciones LEED, EDGE y seguridad ISO 45001."
+        },
+        {
+          "id": "f6",
+          "label": "Bloqueos viales, conflictos con sindicatos de transporte de materiales y restricciones de horario de carga."
+        }
+      ]
+    },
+    {
+      "id": "CN-TECH-01",
+      "level": "n2",
+      "sectorId": "construccion",
+      "section": "SECCIÓN II: AUDITORÍA TÉCNICA DIRECTA Y ABSORCIÓN TECNOLÓGICA (P1 A P5 CONTEXTUALIZADAS)",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Absorción Tecnológica P1: Tecnologías de Sourcing Crítico",
+      "prompt": "¿Cuál de las siguientes tecnologías o equipos especializados requiere adquirir o modernizar su empresa pero enfrenta sobrecostos o falta de proveedores locales calificados?",
+      "microcopy": "Identifica la tecnología de edificación o control de mayor valor con falla de proveeduría local en la región.",
+      "type": "single_select_text",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Plantas Dosificadoras Automatizadas de Concreto Premezclado con dosificación gravimétrica y control de humedad de arena.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Bombas de Concreto Telescópicas / Vibrocomprimidoras de Bloques CNC de Alta Velocidad.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Estaciones Totales de Topografía Robótica / Escáner Láser 3D para levantamiento y as-built de precisión.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Maquinaria Pesada equipada con Autoguiado Satelital GPS / RTK y Control de Nivelación Automatizado.",
+          "score": null
+        },
+        {
+          "value": "opt5",
+          "label": "Software de Metodología BIM 4D/5D (Autodesk Revit / Navisworks / Opus / Neodata) integrados a ERP de Obra.",
+          "score": null
+        },
+        {
+          "value": "opt6",
+          "label": "Otro",
+          "score": null
+        }
+      ],
+      "text": {
+        "maxLength": 100,
+        "optionValue": "opt6"
+      }
+    },
+    {
+      "id": "CN-TECH-02",
+      "level": "n2",
+      "sectorId": "construccion",
+      "section": "SECCIÓN II: AUDITORÍA TÉCNICA DIRECTA Y ABSORCIÓN TECNOLÓGICA (P1 A P5 CONTEXTUALIZADAS)",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Absorción Tecnológica P2: Subaprovechamiento de Tecnologías Instaladas",
+      "prompt": "¿Qué tecnología o sistema ya tiene instalado en su empresa pero NO funciona como desearía o se encuentra subaprovechado?",
+      "microcopy": "Mide la falla de absorción por falta de capacitación, software no integrado o resistencia al cambio en residencia de obra.",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Software BIM (Revit/Navisworks) utilizado solo para renders 3D sin vincular a presupuestos (5D) ni programación (4D).",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Planta Dosificadora de Concreto operada semimanualmente sin aprovechamiento de celdas de carga ni corrección por humedad.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Estación Total GPS / Drone de Topografía cuyos datos no se integran directamente al modelo CAD/BIM de obra.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "ERP de Control de Obra (Opus/Neodata) subutilizado, llevándose las estimaciones y destajistas en hojas Excel separadas.",
+          "score": null
+        },
+        {
+          "value": "opt5",
+          "label": "Maquinaria Pesada con telemetría instalada que no se monitorea para mantenimiento preventivo ni consumo de diésel.",
+          "score": null
+        },
+        {
+          "value": "opt6",
+          "label": "Ninguno / Todas las tecnologías instaladas operan a su máximo rendimiento.",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "CN-TECH-03",
+      "level": "n2",
+      "sectorId": "construccion",
+      "section": "SECCIÓN II: AUDITORÍA TÉCNICA DIRECTA Y ABSORCIÓN TECNOLÓGICA (P1 A P5 CONTEXTUALIZADAS)",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Absorción Tecnológica P3: Brecha con la Frontera Internacional",
+      "prompt": "¿Qué tecnología utilizan las empresas constructoras internacionales líderes que las hace significativamente más competitivas que las empresas de su sector en la región?",
+      "microcopy": "Evalúa la distancia a la frontera tecnológica global (Benchmark Aghion / OMPI 2026).",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Construcción Industrializada Off-Site (Prefabricación Modular 3D Volumétrica): Fabricación de módulos completos en planta y ensamblaje ultrarrápido en sitio.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Impresión 3D de Concreto para Edificación: Extrusión robótica de concreto para muros y elementos estructurales sin necesidad de cimbra.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Maquinaria Pesada Autónomica Electrificada con Telemetría IoT: Equipos de excavación y compactación 100% eléctricos operados a distancia.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Gemelos Digitales (Digital Twins) de Infraestructura con Sensores IoT de Deformación y Estructura en Tiempo Real.",
+          "score": null
+        },
+        {
+          "value": "opt5",
+          "label": "Concretos Autoreparables / Concretos Verdes de Ultra Alto Rendimiento (UHPC) con adiciones de grafeno o bacterias.",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "CN-TECH-04",
+      "level": "n2",
+      "sectorId": "construccion",
+      "section": "SECCIÓN II: AUDITORÍA TÉCNICA DIRECTA Y ABSORCIÓN TECNOLÓGICA (P1 A P5 CONTEXTUALIZADAS)",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Absorción Tecnológica P4: Tecnología Revolucionaria / Apuesta Transformacional",
+      "prompt": "¿Qué tecnología transformacional o proyecto de gran calado revolucionaría la productividad y sostenibilidad de su empresa en los próximos 2 a 3 años?",
+      "microcopy": "Mide el potencial de salto en el espacio de productos y complejidad de infraestructura (CIDE / Harvard).",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Transición Completa a Edificación Sustentable Certificada Cero Carbono (Net Zero Energy / LEED Platinum / EDGE Advanced).",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Implementación de Planta de Prefabricación Modular Industrializada Off-Site (Paneles de Concreto / Tridilosas / Estructuras).",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Automatización Total de Planta Preconcretera con sustitución de cemento tradicional por Cemento Verde LC3.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Gestión Digital Integral de Activos 7D (BIM 7D + Mantenimiento IoT + Drones) para grandes infraestructuras.",
+          "score": null
+        },
+        {
+          "value": "opt5",
+          "label": "Reconversión a Planta de Valorización y Reciclaje de Residuos de la Construcción y Demolición (RCD) para Agregados.",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "CN-TECH-05",
+      "level": "n2",
+      "sectorId": "construccion",
+      "section": "SECCIÓN II: AUDITORÍA TÉCNICA DIRECTA Y ABSORCIÓN TECNOLÓGICA (P1 A P5 CONTEXTUALIZADAS)",
+      "widget": "Tarjeta de Selección Única + Texto Libre",
+      "title": "Absorción Tecnológica P5: Demanda Explícita de Proyectos Tecnológicos Inmediatos",
+      "prompt": "¿Hay algún proyecto tecnológico específico o necesidad prioritaria que requiera abordar a la brevedad para su empresa?",
+      "microcopy": "Captura la demanda real de acompañamiento técnico para asignación inmediata a programas de apoyo.",
+      "type": "single_select_text",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Proyecto 1: Implementación de Metodología BIM (Revit/Navisworks) y ERP de Control de Obra (Opus/Neodata).",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Proyecto 2: Acreditación Normativa ONNCCE / ISO 9001 / ISO 45001 / Certificación EDGE o LEED.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Proyecto 3: Modernización y Automatización de Dosificación Gravimétrica en Planta de Concreto / Bloquera.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Proyecto 4: Capacitación en Control Estadístico de Calidad f'c, Ensayes NMX-C y Seguridad e Higiene en Obra.",
+          "score": null
+        },
+        {
+          "value": "opt5",
+          "label": "Un proyecto propio",
+          "score": null
+        }
+      ],
+      "text": {
+        "maxLength": 100,
+        "optionValue": "opt5"
+      }
+    },
+    {
+      "id": "CN-TECH-06",
+      "level": "n2",
+      "sectorId": "construccion",
+      "section": "SECCIÓN II: AUDITORÍA TÉCNICA DIRECTA Y ABSORCIÓN TECNOLÓGICA (P1 A P5 CONTEXTUALIZADAS)",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Control de Mermas de Material en Sitio y Retrabajos por Resistencia f'c",
+      "prompt": "¿Cuál es el porcentaje promedio de mermas de material en sitio y la tasa de retrabajos/demoliciones por falla de resistencia estructural?",
+      "microcopy": "Mide la eficiencia técnica en la administración de insumos y el control de calidad en colocación de concreto/acero.",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Sin medición de desperdicio en sitio; mermas de acero/concreto superiores al 7%; retrabajos ocasionales por revenimiento o f'c defectuoso.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Registro manual de desperdicio por obra; mermas entre 3.5% y 7.0%; ensayes de cilindros en laboratorio externo.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Cuantificación digital vs explosión de insumos en ERP; mermas entre 1.5% y 3.4%; ensayes NMX-C con Cpk de resistencia.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Control estricto lean construction / 5S en obra; mermas < 1.5%; tasa de retrabajos por f'c cercana a cero (< 0.2%).",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "CN-TECH-07",
+      "level": "n2",
+      "sectorId": "construccion",
+      "section": "SECCIÓN II: AUDITORÍA TÉCNICA DIRECTA Y ABSORCIÓN TECNOLÓGICA (P1 A P5 CONTEXTUALIZADAS)",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Trazabilidad Digital de Estimaciones, Remisiones por QR e Integración ERP/BIM",
+      "prompt": "¿Qué nivel de trazabilidad digital e integración de información utiliza su empresa para gestionar las estimaciones, remisiones y avance físico de obra?",
+      "microcopy": "La trazabilidad digital vinculada a BIM/ERP garantiza la transparencia en costos, avance real y blindaje ante auditorías.",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Bitácora de obra en formato físico; estimaciones elaboradas en Excel manual sin vinculación a planos.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Hojas Excel estructuradas por concepto de obra; envío de remisiones escaneadas por correo.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Remisiones de concreto/acero con código QR vinculadas al sistema Opus/Neodata.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Seguimiento en tiempo real de avance físico y financiero desde modelo BIM en tabletas de campo.",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "CP-CN-01",
+      "level": "n2",
+      "sectorId": "construccion",
+      "section": "SECCIÓN III: SOFISTICACIÓN PRODUCTIVA Y ESPACIO DE PRODUCTOS (CIDE / HARVARD)",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Reconversión hacia la 'Fruta Madura' de Edificación (Alta Densidad ω_j > 0.65)",
+      "prompt": "Considerando su maquinaria, personal y experiencia, ¿hacia qué línea de mayor valor agregado podría reconvertirse o expandirse en menos de 12 meses?",
+      "microcopy": "Mide la capacidad de salto hacia adyacencias constructivas de menor riesgo y mayor rentabilidad.",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Prefabricados de Concreto Estructural y Arquitectónico (Tridilosas, Trabes AASTHO, Vigueta y Bovedilla de Alta Resistencia).",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Edificación de Naves Industriales Sustentables Llave en Mano para empresas de Nearshoring.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Soluciones Especializadas de Obras de Infraestructura Hídrica y Pavimentos de Concreto Permeable.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Rehabilitación y Mantenimiento Especializado de Estructuras con Fibras de Carbono e Impermeabilización Ecológica.",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "CP-CN-02",
+      "level": "n2",
+      "sectorId": "construccion",
+      "section": "SECCIÓN III: SOFISTICACIÓN PRODUCTIVA Y ESPACIO DE PRODUCTOS (CIDE / HARVARD)",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Apuestas Estratégicas y Construcción de Alta Complejidad (Alto ICPO)",
+      "prompt": "En un horizonte de 2 a 3 años con coinversión y tecnología, ¿qué línea de alta complejidad constructiva podría desarrollar su empresa?",
+      "microcopy": "Evalúa la capacidad de diversificación hacia la infraestructura de alto valor agregado (Índice de Complejidad Potencial ICPO).",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Desarrollos de Edificación Modular Industrializada 3D Off-Site de Alta Velocidad para vivienda y hospitales.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Infraestructura Pública de Alta Complejidad bajo Estándares Internacionales Envision / LEED Infrastructure.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Puentes y Estructuras Especiales de Concreto de Ultra Alto Rendimiento (UHPC) y Maquinado de Postensado.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Planta de Procesamiento y Fabricación de Agregados Reciclados de Alta Calidad a partir de Residuos RCD.",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "CP-CN-03",
+      "level": "n2",
+      "sectorId": "construccion",
+      "section": "SECCIÓN III: SOFISTICACIÓN PRODUCTIVA Y ESPACIO DE PRODUCTOS (CIDE / HARVARD)",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Sostenibilidad, Eficiencia Hídrica y Descarbonización de la Edificación",
+      "prompt": "¿Qué nivel de avance tiene su empresa en la adopción de prácticas de edificación verde, gestión de residuos y eficiencia de agua/energía?",
+      "microcopy": "La sostenibilidad y descarbonización del concreto y edificación son prioridades normativas en Puebla-Tlaxcala.",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Cumplimiento Básico Obligatorio: Disposición convencional de escombros sin separación; uso de cemento estándar sin métricas de huella de carbono.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Prácticas Ambientales Moderadas: Separación básica de residuos RCD en sitio; uso de aditivos reductores de agua; programa de seguridad e higiene.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Edificación Sustentable EDGE/LEED: Uso sistemático de concretos con adiciones minerales (LC3/ceniza); captación de agua en obra; certificación EDGE o LEED.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Empresa Carbono Neutro / Economía Circular: Planta de reciclaje RCD propia; concretos 100% descarbonizados; nave/obras certificadas LEED Platinum o EDGE Advanced.",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "COL-CN01",
+      "level": "n2",
+      "sectorId": "construccion",
+      "section": "SECCIÓN IV: SOLUCIONES COLABORATIVAS ANTE LA FALLA DE ESCALA (BIENES DE CLUB)",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Industrialized Off-Site Construction & BIM Hub Comunitario",
+      "prompt": "¿Cuál sería la disposición de su empresa para integrarse a un Centro Comunitario de Tecnología BIM y Prefabricación Modular bajo esquema Pay-per-Use?",
+      "microcopy": "Resuelve la falla de escala en la adquisición de software BIM costoso, escáneres 3D y mesas de prefabricación.",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Alto Interés / Usuario Activo: Utilizaría el Hub para modelado BIM 4D/5D, escaneo 3D de sitios y maquetación modular pagando por proyecto.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Interés Moderado / Co-inversionista: Dispuesto a participar en la coinversión o arrendamiento de mesas de prefabricación modular compartidas.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Capacidad de Servicios: Ofrecería sus propios servicios de laboratorio o ingeniería dentro de la red del Hub.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Sin Interés: Cuenta con licencias BIM e infraestructura propia suficiente o sus proyectos son de menor escala.",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "COL-CN02",
+      "level": "n2",
+      "sectorId": "construccion",
+      "section": "SECCIÓN IV: SOLUCIONES COLABORATIVAS ANTE LA FALLA DE ESCALA (BIENES DE CLUB)",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Laboratorio Comunitario Acreditado ISO 17025 / ONNCCE de Ensaye de Materiales",
+      "prompt": "¿Cómo participaría su empresa en la creación o uso de un Laboratorio Regional Acreditado de Ensaye de Concreto, Suelos y Acero en Cuádruple Hélice?",
+      "microcopy": "Permite reducir costos de laboratorio hasta en un 50% y certificar la calidad f'c y NMX-C ante supervisores e IMSS.",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Usuario Frecuente: Enviaría cilindros de concreto, viguetas, muestras de suelo y acero para ensayes acreditados ISO 17025 / ONNCCE a tarifas preferenciales.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Participante en Calibración de Mezclas: Utilizaría el laboratorio para el diseño y optimización de mezclas de concreto de alta resistencia o verdes.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Socio de Vinculación Universitaria: Dispuesto a colaborar con facultades de ingeniería civil para pruebas de resistencia y nuevos materiales.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Sin Interés: Realiza sus ensayes en laboratorios privados externos o cuenta con prensa de prueba propia.",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "COL-CN03",
+      "level": "n2",
+      "sectorId": "construccion",
+      "section": "SECCIÓN IV: SOLUCIONES COLABORATIVAS ANTE LA FALLA DE ESCALA (BIENES DE CLUB)",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Consorcio de Compras Consolidadas de Cemento, Acero T-MEC, Aditivos y Maquinaria",
+      "prompt": "¿Qué grado de apertura tiene su empresa para asociarse a un Consorcio de Compras Consolidadas de materiales y pólizas de seguro de maquinaria?",
+      "microcopy": "La consolidación de demanda de varilla, cemento y seguros permite abatir costos directos de obra entre 10% y 18%.",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Compra Consolidada de Cemento y Acero de Refuerzo: Sumar volumen para compra directa con cementeras y siderúrgicas T-MEC.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Consorcio de Aditivos Químicos, Cimbra y Adquisición de Refacciones: Comprar de forma conjunta insumos químicos y refacciones de maquinaria.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Poliza Consolidada de Seguro de Maquinaria y Obra (CAR): Negociar pólizas colectivas de seguro contra robo/daños de maquinaria pesada y obra.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Sin Interés: Prefiere mantener negociaciones directas e individuales con sus proveedores actuales.",
+          "score": null
+        }
+      ]
+    }
+  ],
+  "roadmap": [
+    {
+      "band": "platino",
+      "min": 75.0,
+      "max": null,
+      "actions": [
+        "Capa A (Digital/TI): Implementación de Gemelo Digital 7D de obra e IA para monitoreo predictivo de cronograma y seguridad.",
+        "Capa B (Bienes de Club): Liderazgo en el Consorcio de Compras Consolidadas y exportación de módulos prefabricados."
+      ]
+    },
+    {
+      "band": "oro",
+      "min": 55.0,
+      "max": 75.0,
+      "actions": [
+        "Capa A (Digital/TI): Integración BIM-ERP (5D costos/tiempos), bitácora digital en tablets y código QR en remisiones de preconcreto.",
+        "Capa B (Bienes de Club): Uso de herramientas BIM y escaneo 3D en Off-Site Construction Hub."
+      ]
+    },
+    {
+      "band": "plata",
+      "min": 35.0,
+      "max": 55.0,
+      "actions": [
+        "Capa A (Digital/TI): Software de control de obra en nube (Opus/Neodata), app móvil para estimaciones y control de insumos.",
+        "Capa B (Bienes de Club): Vinculación al Laboratorio Comunitario ISO 17025 para calibración de mezclas y ensayes f'c."
+      ]
+    },
+    {
+      "band": "bronce",
+      "min": 0.0,
+      "max": 35.0,
+      "actions": [
+        "Capa A (Digital/TI): Capacitación básica en control digital de costos de obra, registro de destajes y seguridad en sitio.",
+        "Capa B (Bienes de Club): Incorporación al Consorcio de Compras Consolidadas de Cemento y Acero de Refuerzo."
+      ]
+    }
+  ]
+}

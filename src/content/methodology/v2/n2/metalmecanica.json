@@ -1,0 +1,751 @@
+{
+  "sectorId": "metalmecanica",
+  "label": "05. Metalmecánica, Estructuras y Maquinados de Precisión",
+  "questions": [
+    {
+      "id": "MM-01",
+      "level": "n2",
+      "sectorId": "metalmecanica",
+      "section": "MÓDULO 0: PERFILADO DEL ESLABÓN Y LOCALIZACIÓN TERRITORIAL (HEREDADO DE NIVEL 1)",
+      "widget": "Tarjeta de Selección Única (Pre-poblado)",
+      "title": "Sub-eslabón Dominante en la Cadena Metalmecánica",
+      "prompt": "¿En cuál de los siguientes sub-eslabones se concentra la mayor proporción de la facturación y capacidad instalada de su taller o planta?",
+      "microcopy": "El sub-eslabón define las normas dimensionales, el tipo de maquinaria CNC/convencional y los requerimientos de inspección metrológica.",
+      "type": "single_select",
+      "prefilled": true,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Maquinado CNC de Alta Precisión (3, 4 y 5 Ejes): Fabricación de piezas mecanizadas de alta complejidad, componentes prismáticos o revolucionados para Tiers automotrices/industriales.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Pailería Pesada, Estructuras Metálicas y Soldadura: Fabricación de naves industriales, tanques a presión, chasis, fixturing de soldadura y componentes estructurales pesados.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Troquelería, Herramentales, Moldes y Dispositivos: Diseño y fabricación de troqueles de corte/doblado, moldes de inyección, escantillones de ensamble y fixturing de inspección.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Fundición, Forja, Tratamientos Térmicos y Acabados Superficiales: Procesos primarios de transformación metálica, tratamiento térmico (temple/nitruración), galvanoplastia y recubrimientos.",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "MM-02",
+      "level": "n2",
+      "sectorId": "metalmecanica",
+      "section": "MÓDULO 0: PERFILADO DEL ESLABÓN Y LOCALIZACIÓN TERRITORIAL (HEREDADO DE NIVEL 1)",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Parque Industrial o Cuenca Metalmecánica de Operación",
+      "prompt": "¿En qué parque o cuenca industrial de la región Puebla - Tlaxcala se localizan las instalaciones de su empresa?",
+      "microcopy": "La localización determina el acceso a potencia eléctrica trifásica de alta capacidad, logística pesada y cercanía con plantas tractoras.",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Corredor 1: Puebla Metropolitano / FINSA / Resurrección / Chachapa: Cercanía inmediata a VW de México, Tier 1s automotrices y proveedores herramentales.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Corredor 2: Zona Amozoc / Acajete / Tepeaca: Concentración de talleres de pailería pesada, estructuras y servicios mecánicos industriales.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Corredor 3: Tlaxcala Industrial (CIX I Tetla, CIX II Huamantla, CIX III Xiloxoxtla, Papalotla): Nodos metalmecánicos y autopartes en Tlaxcala.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Corredor 4: San Martín Texmelucan - Huejotzingo / Tehuacán: Pailería, estructuras para agroindustria y talleres de mantenimiento industrial.",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "MM-03",
+      "level": "n2",
+      "sectorId": "metalmecanica",
+      "section": "MÓDULO 0: PERFILADO DEL ESLABÓN Y LOCALIZACIÓN TERRITORIAL (HEREDADO DE NIVEL 1)",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Certificación de Calidad y Estándar Metalmecánico Vigente",
+      "prompt": "¿Cuál es el nivel formal de certificación de calidad y norma técnica especializada que ostenta su empresa?",
+      "microcopy": "Las certificaciones especializadas son el filtro de entrada para cadenas de valor Tier 1/Tier 2 automotrices, aeronáuticas o de energía.",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Sistema Básico / Sin Certificación Formal: Control interno de calibración de calibradores/micrómetros sin certificación ISO 9001 auditada por tercero.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Certificación ISO 9001:2015 Vigente: Sistema de gestión de calidad certificado aplicable a maquinados, pailería o fabricación industrial.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Certificación Especializada Automotriz / Aeronáutica (IATF 16949 / AS9100 / ISO 3834): Certificación IATF 16949 para autopartes, AS9100 para aeroespacial o ISO 3834 para soldadura de calidad.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Multicertificado de Frontera (IATF + CQI-9 + AWS / ASME Stamp + NDT Nivel II/III): Estándares avanzados de tratamiento térmico CQI-9, estampas ASME/AWS y personal NDT certificado.",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "R00-METAL-PROD",
+      "level": "n2",
+      "sectorId": "metalmecanica",
+      "section": "SECCIÓN I: ROMPEHIELOS DE SEVERIDAD OPERATIVA (MÉTODO DE BORDA)",
+      "widget": "Rompehielos de Jerarquización (1 al 8)",
+      "title": "Jerarquización de Fricciones en Proceso y Piso de Taller",
+      "prompt": "Ordene del 1 al 8 las siguientes fricciones según el impacto económico negativo y la frecuencia con que afectan su taller/planta (1 = Mayor impacto / Máxima gravedad; 8 = Menor impacto)",
+      "microcopy": "Permite identificar la causa raíz de las ineficiencias antes de la auditoría técnica detallada.",
+      "type": "rank",
+      "prefilled": false,
+      "factorCount": 8,
+      "factors": [
+        {
+          "id": "f1",
+          "label": "Reclamaciones de clientes por fuera de tolerancia dimensional / GD&T y tiempos excesivos de inspección en CMM."
+        },
+        {
+          "id": "f2",
+          "label": "Paros no programados por desgaste/rotura de herramientas de corte (insertos/cortadores) y falta de pre-setters."
+        },
+        {
+          "id": "f3",
+          "label": "Tiempos excesivos de preparación y montaje de piezas en máquina (Setup / SMED > 120 minutos)."
+        },
+        {
+          "id": "f4",
+          "label": "Mermas de materia prima, exceso de viruta y rechazos por deformación térmica en soldadura o tratamiento térmico."
+        },
+        {
+          "id": "f5",
+          "label": "Escasez, alta rotación y falta de capacitación de maquinistas CNC, programadores CAM y soldadores certificados."
+        },
+        {
+          "id": "f6",
+          "label": "Cuellos de botella y demoras en la liberación de piezas por falta de capacidad en inspección metrológica o NDT."
+        },
+        {
+          "id": "f7",
+          "label": "Registro manual de bitácoras de taller y falta de visibilidad en tiempo real del avance de órdenes de trabajo (ODT)."
+        },
+        {
+          "id": "f8",
+          "label": "Reclamaciones de clientes por acabados superficiales (Ra/Rz no alcanzado) o fallas en ensayos de tensión/dureza."
+        }
+      ]
+    },
+    {
+      "id": "R00-METAL-SOURCING-MAT",
+      "level": "n2",
+      "sectorId": "metalmecanica",
+      "section": "SECCIÓN I: ROMPEHIELOS DE SEVERIDAD OPERATIVA (MÉTODO DE BORDA)",
+      "widget": "Rompehielos de Jerarquización (1 al 6)",
+      "title": "Jerarquización de Riesgos en Sourcing de Aceros e Insumos",
+      "prompt": "Ordene del 1 al 6 las restricciones que mayor volatilidad o desabasto causan en su suministro de insumos metálicos (1 = Mayor impacto negativo; 6 = Menor impacto)",
+      "microcopy": "Mide la vulnerabilidad de la empresa ante choques de precios o escasez de materia prima especializada.",
+      "type": "rank",
+      "prefilled": false,
+      "factorCount": 6,
+      "factors": [
+        {
+          "id": "f1",
+          "label": "Sobrecostos y alta volatilidad en precios de aceros especiales (4140, D2, P20, Inox) y aluminio de grado industrial."
+        },
+        {
+          "id": "f2",
+          "label": "Dificultad para obtener certificados de molino (3.1 / 3.2) con trazabilidad de origen T-MEC (melted and poured)."
+        },
+        {
+          "id": "f3",
+          "label": "Escasez y alto costo de herramientas de corte especializadas, insertos de carburo de tungsteno y portaherramientas."
+        },
+        {
+          "id": "f4",
+          "label": "Tiempos de entrega largos (> 10 semanas) en placas de acero de gran espesor, perfiles ASTM o bloques para moldes."
+        },
+        {
+          "id": "f5",
+          "label": "Volatilidad en el costo de gases de soldadura (Argón/Mezclas), microalambre y electrodos de aporte especializados."
+        },
+        {
+          "id": "f6",
+          "label": "Refacciones importadas costosas y tardías para centros de maquinado CNC (husillos, encochers, servomotores)."
+        }
+      ]
+    },
+    {
+      "id": "R00-METAL-SOURCING-SERV",
+      "level": "n2",
+      "sectorId": "metalmecanica",
+      "section": "SECCIÓN I: ROMPEHIELOS DE SEVERIDAD OPERATIVA (MÉTODO DE BORDA)",
+      "widget": "Rompehielos de Jerarquización (1 al 6)",
+      "title": "Jerarquización de Deficiencias en Servicios Técnicos",
+      "prompt": "Ordene del 1 al 6 las mayores deficiencias en servicios técnicos externos e infraestructura regional (1 = Mayor impacto negativo; 6 = Menor impacto)",
+      "microcopy": "Mide las fallas de mercado exógenas en el ecosistema metalmecánico de Puebla y Tlaxcala.",
+      "type": "rank",
+      "prefilled": false,
+      "factorCount": 6,
+      "factors": [
+        {
+          "id": "f1",
+          "label": "Falta de proveedores locales acreditados de tratamientos térmicos (CQI-9, temple por inducción, nitruración)."
+        },
+        {
+          "id": "f2",
+          "label": "Escasez de laboratorios locales acreditados ISO 17025 para calibración CMM, metrología de alta precisión y ensayos NDT."
+        },
+        {
+          "id": "f3",
+          "label": "Robos de insumos de acero, herramientas y piezas terminadas en carreteas regionales (150D, Arco Norte)."
+        },
+        {
+          "id": "f4",
+          "label": "Altas tarifas de energía eléctrica y micro-cortes que dañan componentes electrónicos y controladores CNC."
+        },
+        {
+          "id": "f5",
+          "label": "Costo elevado e inaccesibilidad a licencias legítimas de software CAD/CAM/CAE (Mastercam, Siemens NX, SolidWorks)."
+        },
+        {
+          "id": "f6",
+          "label": "Tramitología ambiental compleja para la disposición y recolección de viruta impregnada con solubles/aceites de corte."
+        }
+      ]
+    },
+    {
+      "id": "MM-TECH-01",
+      "level": "n2",
+      "sectorId": "metalmecanica",
+      "section": "SECCIÓN II: AUDITORÍA TÉCNICA DIRECTA Y ABSORCIÓN TECNOLÓGICA (P1 A P5 CONTEXTUALIZADAS)",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Absorción Tecnológica P1: Tecnologías de Sourcing Crítico",
+      "prompt": "¿Cuál de las siguientes tecnologías o equipos de maquinado/inspección requiere adquirir su empresa pero enfrenta sobrecostos o falta de proveedores locales?",
+      "microcopy": "Identifica la tecnología de mayor valor con falla de proveeduría local en el sector metalmecánico.",
+      "type": "single_select_text",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Centros de Maquinado CNC de 5 Ejes Simultáneos / Torno-Fresadores Multitask: Maquinado complejo de superficies en un solo amarre.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Prensas de Doblado CNC y Corte Láser de Fibra de Alta Potencia (> 12 kW): Maquinario de corte y deformación de chapa de alta velocidad.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Máquinas de Medición por Coordenadas (CMM) de Brazo Articulado o Escáner Láser 3D: Inspección dimensional sin contacto directa en piso.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Hornos de Tratamiento Térmico con Atmósfera Controlada / Cumplimiento CQI-9: Infraestructura de temple, revenido y nitruración interna.",
+          "score": null
+        },
+        {
+          "value": "opt5",
+          "label": "Celdas de Soldadura Robotizada MIG/TIG/Láser con Visión de Junta: Automatización de procesos de unión de alta repetibilidad.",
+          "score": null
+        },
+        {
+          "value": "opt6",
+          "label": "Otro",
+          "score": null
+        }
+      ],
+      "text": {
+        "maxLength": 100,
+        "optionValue": "opt6"
+      }
+    },
+    {
+      "id": "MM-TECH-02",
+      "level": "n2",
+      "sectorId": "metalmecanica",
+      "section": "SECCIÓN II: AUDITORÍA TÉCNICA DIRECTA Y ABSORCIÓN TECNOLÓGICA (P1 A P5 CONTEXTUALIZADAS)",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Absorción Tecnológica P2: Subaprovechamiento de Tecnologías Instaladas",
+      "prompt": "¿Qué tecnología o maquinaria ya tiene instalada en su taller pero NO funciona como desearía o se encuentra subaprovechada?",
+      "microcopy": "Mide la falla de absorción por falta de programación CAM, postprocesadores o calibración metrológica.",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Centros CNC de 5 ejes o multitarea que se operan únicamente en 3 ejes por falta de programadores CAM capacitados.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Máquinas CMM utilizadas solo para verificación paso/no-paso sin generar informes estadísticos SPC de GD&T.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Software CAD/CAM avanzado (Siemens NX, Mastercam) subutilizado por falta de postprocesadores dedicados a sus máquinas.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Celdas robóticas de soldadura paradas o subutilizadas por falta de fixturing/jigs repetibles.",
+          "score": null
+        },
+        {
+          "value": "opt5",
+          "label": "Equipos de medición digital o preseteadores de herramientas no integrados a las máquinas CNC.",
+          "score": null
+        },
+        {
+          "value": "opt6",
+          "label": "Ninguno / Toda la maquinaria instalada opera a su máxima capacidad y rendimiento.",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "MM-TECH-03",
+      "level": "n2",
+      "sectorId": "metalmecanica",
+      "section": "SECCIÓN II: AUDITORÍA TÉCNICA DIRECTA Y ABSORCIÓN TECNOLÓGICA (P1 A P5 CONTEXTUALIZADAS)",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Absorción Tecnológica P3: Brecha con la Frontera Internacional",
+      "prompt": "¿Qué tecnología utilizan los competidores internacionales de clase mundial que los hace significativamente más competitivos que las empresas locales?",
+      "microcopy": "Evalúa la distancia a la frontera tecnológica global (Benchmark Aghion / OMPI 2026).",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Maquinado Adaptativo Asistido por IA con Monitoreo de Vibraciones y Desgaste de Herramienta en Tiempo Real.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Escaneo 3D Óptico y Fotogrametría Automática para Inspección 100% en Línea de Producción.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Soldadura por Fricción-Agitación (FSW) o Soldadura Híbrida Láser-Arco para aleaciones avanzadas de aluminio/acero.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Escaneo 3D a CAD Instantáneo para Ingeniería Inversa y Reparación de Moldes/Troqueles en Tiempo Récord.",
+          "score": null
+        },
+        {
+          "value": "opt5",
+          "label": "Sistemas Flexibles de Manufactura (FMS) con Pallet Changer Autónomo para Maquinado 24/7 sin Operador (Lights-out Manufacturing).",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "MM-TECH-04",
+      "level": "n2",
+      "sectorId": "metalmecanica",
+      "section": "SECCIÓN II: AUDITORÍA TÉCNICA DIRECTA Y ABSORCIÓN TECNOLÓGICA (P1 A P5 CONTEXTUALIZADAS)",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Absorción Tecnológica P4: Tecnología Revolucionaria / Apuesta Transformacional",
+      "prompt": "¿Qué tecnología transformacional o proyecto de gran calado revolucionaría la productividad de su empresa en los próximos 2 a 3 años?",
+      "microcopy": "Mide el potencial de salto en el espacio de productos y complejidad metalmecánica (CIDE / Harvard).",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Manufactura Aditiva de Metal (DMLS/SLM 3D Metal) para fabricación de troqueles con canales de enfriamiento conformado.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Conversión Completa a Celda Flexible FMS Autónoma de 5 Ejes integrada con Robótica de Carga/Descarga.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Certificación AS9100 / IATF 16949 con Laboratorio CMM Acreditado ISO 17025 Integrado en Planta.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Implementación de Gemelo Digital (Digital Twin) para simulación completa de esfuerzos de maquinado y distorsión por soldadura.",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "MM-TECH-05",
+      "level": "n2",
+      "sectorId": "metalmecanica",
+      "section": "SECCIÓN II: AUDITORÍA TÉCNICA DIRECTA Y ABSORCIÓN TECNOLÓGICA (P1 A P5 CONTEXTUALIZADAS)",
+      "widget": "Tarjeta de Selección Única + Texto Libre",
+      "title": "Absorción Tecnológica P5: Demanda Explícita de Proyectos Tecnológicos Inmediatos",
+      "prompt": "¿Hay algún proyecto tecnológico específico o necesidad prioritaria que requiera abordar a la brevedad para su taller o empresa?",
+      "microcopy": "Captura la demanda real de acompañamiento técnico para asignación inmediata a programas de apoyo.",
+      "type": "single_select_text",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Proyecto 1: Certificación e Implementación de Normas de Calidad (IATF 16949 / AS9100 / ISO 3834 / CQI-9).",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Proyecto 2: Adquisición de Licencias e Implementación de Módulos CAM de 5 Ejes y Postprocesadores Avanzados.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Proyecto 3: Calibración, Levantamiento Dimensional y Ensayos en Laboratorio CMM Acreditado ISO 17025.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Proyecto 4: Capacitación e Inspección NDT / Certificación de Soldadores bajo Norma AWS D1.1 / ASME IX.",
+          "score": null
+        },
+        {
+          "value": "opt5",
+          "label": "Un proyecto propio",
+          "score": null
+        }
+      ],
+      "text": {
+        "maxLength": 100,
+        "optionValue": "opt5"
+      }
+    },
+    {
+      "id": "MM-TECH-06",
+      "level": "n2",
+      "sectorId": "metalmecanica",
+      "section": "SECCIÓN II: AUDITORÍA TÉCNICA DIRECTA Y ABSORCIÓN TECNOLÓGICA (P1 A P5 CONTEXTUALIZADAS)",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Control Estadístico de Proceso (Cpk), GD&T y Tolerancias Dimensionales",
+      "prompt": "¿Cuál es el nivel de control de tolerancia dimensional (GD&T) y evaluación de capacidad de proceso (Cpk) en su planta?",
+      "microcopy": "Mide la precisión dimensional y la estabilidad del proceso de maquinado/fabricación.",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Inspección manual con vernier/micrómetro; sin evaluación de Cpk; tolerancias > ± 0.1 mm.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Verificación en CMM de piezas muestra; Cpk evaluado esporádicamente (1.00 a 1.33); tolerancias ± 0.05 mm.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Control estadístico digital en piso; informes GD&T por lote en CMM; tolerancias de precisión ± 0.01 mm.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Inspección 100% en CMM/Escáner 3D; tolerancias ajustadas (< 5 micras); Cpk >= 1.67.",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "MM-TECH-07",
+      "level": "n2",
+      "sectorId": "metalmecanica",
+      "section": "SECCIÓN II: AUDITORÍA TÉCNICA DIRECTA Y ABSORCIÓN TECNOLÓGICA (P1 A P5 CONTEXTUALIZADAS)",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Trazabilidad Digital por Orden de Trabajo (ODT), Marcaje Láser y ERP/MES",
+      "prompt": "¿Qué nivel de trazabilidad digital por pieza/lote y conectividad de taller utiliza su empresa?",
+      "microcopy": "La trazabilidad digital vincula cada pieza con su certificado de acero y parámetros de maquinado.",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Hoja de ruta física adjunta a la pieza; sin marcaje individual de piezas.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Captura manual en Excel de tiempos por máquina y código de barras en ODT.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Marcaje indivisible en pieza con código QR/DataMatrix vinculado a certificado de molino.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Monitoreo automático en tiempo real de spindle-time y avance ODT.",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "CP-MM-01",
+      "level": "n2",
+      "sectorId": "metalmecanica",
+      "section": "SECCIÓN III: SOFISTICACIÓN PRODUCTIVA Y ESPACIO DE PRODUCTOS (CIDE / HARVARD)",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Reconversión hacia la 'Fruta Madura' Metalmecánica (Alta Densidad ω_j > 0.65)",
+      "prompt": "Considerando su maquinaria y personal actual, ¿hacia qué componentes metálicos de mayor valor podría reconvertirse en menos de 12 meses?",
+      "microcopy": "Mide la capacidad de salto hacia adyacencias mecánicas de menor riesgo y mayor margen.",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Maquinado de Componentes de Alta Precisión para Tiers 2 Automotrices (Componentes de dirección, transmisión y frenos).",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Diseño y Fabricación de Fixturing / Jigs de Soldadura y Verificación Metrológica para líneas de ensamble.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Fabricación de Pailería Pesada de Alta Especifiación y Estructuras bajo Código AWS D1.1 / ASME.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Fabricación de Troqueles Sencillos de Corte/Doblado y Moldes de Inyección de Baja Cavitación.",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "CP-MM-02",
+      "level": "n2",
+      "sectorId": "metalmecanica",
+      "section": "SECCIÓN III: SOFISTICACIÓN PRODUCTIVA Y ESPACIO DE PRODUCTOS (CIDE / HARVARD)",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Apuestas Estratégicas y Componentes Complejos / Aeroespacial (Alto ICPO)",
+      "prompt": "En un horizonte de 2 a 3 años con coinversión y tecnología, ¿qué línea de alta complejidad metalmecánica podría desarrollar su empresa?",
+      "microcopy": "Evalúa la capacidad de diversificación hacia sectores de alta sofisticación (Índice de Complejidad Potencial ICPO).",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Componentes Estructurales y de Turbina para la Industria Aeronáutica / Aeroespacial (Certificación AS9100).",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Troqueles Complejos Progresivos y Herramentales para Estampado en Caliente de Acero al Boro (Hot Stamping).",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Componentes de Alta Aleación (Titanio, Inconel, Acero Inoxidable 316L) para la Industria Médica o Energética.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Celdas Automatizadas de Maquinado y Estructuras para la Industria de Electromovilidad (EV Chassis / Battery Frames).",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "CP-MM-03",
+      "level": "n2",
+      "sectorId": "metalmecanica",
+      "section": "SECCIÓN III: SOFISTICACIÓN PRODUCTIVA Y ESPACIO DE PRODUCTOS (CIDE / HARVARD)",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Eficiencia Enégética, Manejo de Viruta y Reciclaje de Solubles",
+      "prompt": "¿Qué nivel de avance tiene su empresa en la gestión ambiental de lubricantes de corte, viruta y eficiencia energética?",
+      "microcopy": "La sostenibilidad y economía circular son clave para reducir costos operativos y cumplir normas ambientales.",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Cumplimiento Básico: Disposición convencional de viruta con tambores; uso de refrigerante sin filtración ni control de concentración.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Separación de Viruta y Control de Solubles: Filtración básica de lubricantes de corte; separación por tipo de aleación (acero vs aluminio).",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Circuito Cerrado de Refrigerantes y Briqueteado de Viruta: Sistema central de filtración y centrifugado de solubles; prensado de viruta para recuperar aceite.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Planta Metalmecánica Verde / Eficiencia Energética: Recuperación total de lubricantes, briqueteado automático, uso de lubricación MQL y paneles solares.",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "COL-MM01",
+      "level": "n2",
+      "sectorId": "metalmecanica",
+      "section": "SECCIÓN IV: SOLUCIONES COLABORATIVAS ANTE LA FALLA DE ESCALA (BIENES DE CLUB)",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Tooling & Machining Hub Comunitario (Maquinado 5 Ejes y Corte Láser)",
+      "prompt": "¿Cuál sería la disposición de su empresa para utilizar un Tooling & Machining Hub Regional equipado con CNC 5 ejes y Láser de alta potencia bajo esquema Pay-per-Use?",
+      "microcopy": "Resuelve la falla de escala en maquinaria pesada de alto CAPEX para PyMEs metalmecánicas.",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Alto Interés / Usuario Frecuente: Rentaría tiempo de máquina en CNC de 5 ejes o Láser por hora/pieza para trabajos de alta complejidad.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Interés Moderado / Co-inversionista: Dispuesto a comprometer horas-máquina o proyectos para acelerar la apertura del centro.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Maquila de Try-out de Herramentales: Utilizaría el centro únicamente para pruebas (try-out) y liberación de troqueles/moldes.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Sin Interés: Cuenta con capacidad de maquinado multieje suficiente en sus propias instalaciones.",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "COL-MM02",
+      "level": "n2",
+      "sectorId": "metalmecanica",
+      "section": "SECCIÓN IV: SOLUCIONES COLABORATIVAS ANTE LA FALLA DE ESCALA (BIENES DE CLUB)",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Laboratorio Comunitario Acreditado ISO 17025 de Metrología CMM, NDT y CQI-9",
+      "prompt": "¿Cómo participaría su empresa en la operación o uso de un Laboratorio Comunitario Acreditado de Metrología y Ensayos NDT en Cuádruple Hélice?",
+      "microcopy": "Permite reducir costos de inspección metrológica CMM hasta en un 60% y emitir certificados válidos para Tier 1s.",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Usuario de Servicios Metrológicos CMM: Enviaría piezas complejas y herramentales para digitalización y reporte GD&T oficial.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Usuario de Ensayos NDT y Tratamientos Térmicos: Utilizaría el laboratorio para ensayos no destructivos (ultrasonido, líquidos penetrantes, partículas) y validación CQI-9.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Participante en Certificación de Personal: Enviaría a sus inspectores y soldadores a certificar en NDT Nivel II o norma AWS/ASME.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Sin Interés: Realiza toda su metrología en laboratorios externos fuera de la región.",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "COL-MM03",
+      "level": "n2",
+      "sectorId": "metalmecanica",
+      "section": "SECCIÓN IV: SOLUCIONES COLABORATIVAS ANTE LA FALLA DE ESCALA (BIENES DE CLUB)",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Consorcio de Compras Consolidadas de Aceros Especiales, Herramientas y Licencias CAD/CAM",
+      "prompt": "¿Qué grado de apertura tiene su empresa para integrarse a un Consorcio de Compras Consolidadas de aceros, insumos de corte y software?",
+      "microcopy": "La consolidación de demanda permite reducir costos de aceros especiales entre 12% y 20% e insumos de corte hasta en 25%.",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Compra Consolidada de Aceros Especiales y Aluminio T-MEC: Sumar requerimientos de placas y barras directo con molinos acero.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Consorcio de Insumos de Maquinado e Insertos de Carburo: Comprar de forma conjunta cortadores, insertos y fluidos de corte.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Licenciamiento Colectivo de Software CAD/CAM (Mastercam / NX / SolidWorks): Adquirir licencias flotantes corporativas a tarifas preferenciales.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Sin Interés: Prefiere mantener sus canales individuales de adquisición de materiales e insumos.",
+          "score": null
+        }
+      ]
+    }
+  ],
+  "roadmap": [
+    {
+      "band": "platino",
+      "min": 75.0,
+      "max": null,
+      "actions": [
+        "Capa A (Digital/TI): Software SPC automatizado conectado a CMM y Gemelo Digital de maquinado.",
+        "Capa B (Bienes de Club): Liderazgo en el Consorcio de Compras Consolidadas de Aceros T-MEC."
+      ]
+    },
+    {
+      "band": "oro",
+      "min": 55.0,
+      "max": 75.0,
+      "actions": [
+        "Capa A (Digital/TI): Módulos CAM de 5 ejes, postprocesadores dedicados y captura digital de ODT en tablets.",
+        "Capa B (Bienes de Club): Uso de horas de 5 ejes en Machining Hub y validación CMM en Laboratorio ISO 17025."
+      ]
+    },
+    {
+      "band": "plata",
+      "min": 35.0,
+      "max": 55.0,
+      "actions": [
+        "Capa A (Digital/TI): Software SPC básico para Cpk y app móvil de parámetros de corte y herramientas.",
+        "Capa B (Bienes de Club): Envíos de piezas a inspección CMM en Laboratorio Comunitario e integración a compras de insertos."
+      ]
+    },
+    {
+      "band": "bronce",
+      "min": 0.0,
+      "max": 35.0,
+      "actions": [
+        "Capa A (Digital/TI): Capacitación básica en lectura de planos GD&T, control de ODT y preseteo de herramientas.",
+        "Capa B (Bienes de Club): Incorporación al Consorcio de Compras de Insumos y Aceros para abatir costos."
+      ]
+    }
+  ]
+}

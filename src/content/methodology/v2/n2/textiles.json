@@ -1,0 +1,756 @@
+{
+  "sectorId": "textiles",
+  "label": "06. Textiles, Hilados y Tejidos",
+  "questions": [
+    {
+      "id": "TX-01",
+      "level": "n2",
+      "sectorId": "textiles",
+      "section": "MÓDULO 0: PERFILADO DEL ESLABÓN Y LOCALIZACIÓN TERRITORIAL (HEREDADO DE NIVEL 1)",
+      "widget": "Tarjeta de Selección Única (Pre-poblado)",
+      "title": "Sub-eslabón Dominante en la Cadena Textil",
+      "prompt": "¿En cuál de los siguientes sub-eslabones se concentra la mayor proporción de la capacidad instalada y facturación de su planta?",
+      "microcopy": "El sub-eslabón determina los requerimientos de maquinaria (telares vs hiladoras), consumo hídrico/energético y normatividad ambiental aplicable.",
+      "type": "single_select",
+      "prefilled": true,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Hilatura y Preparación de Fibra: Procesamiento de fibra corta/larga (algodón, sintéticos, mezclas, hilo regenerado) en open-end, anillo o air-jet.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Tejeduría de Calada / Tela Plana: Producción de telas en telares de chorro de aire, pinzas (rapier) o lanzadera para gabardina, mezclilla, sábanas o tela industrial.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Tejeduría de Punto / Circular y Rectilínea: Fabricación de tejido de punto (jersey, interlock, felpa, rib) para prendas de vestir o usos industriales.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Tintorería, Acabados Textiles y Textiles Técnicos: Procesos húmedos de descrudado, blanqueo, teñido en jet/barca, estampado, acabado en rama y no-tejidos.",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "TX-02",
+      "level": "n2",
+      "sectorId": "textiles",
+      "section": "MÓDULO 0: PERFILADO DEL ESLABÓN Y LOCALIZACIÓN TERRITORIAL (HEREDADO DE NIVEL 1)",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Corredor o Nodo Industrial Textil de Operación",
+      "prompt": "¿En qué corredor o municipio de la región Puebla - Tlaxcala se localiza la principal planta productiva de su empresa?",
+      "microcopy": "La localización determina la disponibilidad de descarga de efluentes, cuenca de gas natural, parque de tejeduría y acceso a mano de obra especializada.",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Corredor 1: Puebla Metropolitano / San Martín Texmelucan / Huejotzingo (Puebla Centro-Oeste): Tradición en tejeduría plana, mezclilla, estampado y acabados.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Corredor 2: Tehuacán / Ajalpan / Tepanco (Puebla Sur): Especialización en lavanderías industriales, teñido de mezclilla y acabado de confección.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Corredor 3: Chiautempan / Contla / Santa Cruz Tlaxcala (Tlaxcala Centro): Clúster de hilatura, cobijas, tejidos de punto, jacquard y artesanía industrial.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Corredor 4: Teolocholco / San Pablo del Monte / Papalotla (Tlaxcala Sur / Límite Puebla): Hilatura regenerada, no-tejidos y procesamiento de fibra sintética.",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "TX-03",
+      "level": "n2",
+      "sectorId": "textiles",
+      "section": "MÓDULO 0: PERFILADO DEL ESLABÓN Y LOCALIZACIÓN TERRITORIAL (HEREDADO DE NIVEL 1)",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Certificación Fitosanitaria, Calidad y Sustentabilidad Textil",
+      "prompt": "¿Cuál es el nivel formal de certificación de calidad y cumplimiento ambiental que ostenta su empresa?",
+      "microcopy": "Las certificaciones ecológicas y de sustancias nocivas (OEKO-TEX, ZDHC) son indispensables para vender a marcas internacionales y tiendas departamentales.",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Básico / Cumplimiento Licencias STPS-SEMARNAT: Licencias de funcionamiento básico y descargas municipales sin certificaciones ecológicas o de calidad auditable.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Certificación de Calidad / Inocuidad Textil (ISO 9001 / OEKO-TEX Standard 100): Certificado formal de calidad de gestión o acreditación de ausencia de sustancias nocivas en tela.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Certificación Ambiental Avanzada (ZDHC Level 1-3 / GOTS / ISO 14001): Cumplimiento del estándar Zero Discharge of Hazardous Chemicals o certificación de textil orgánico/reciclado.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Estándar Multicertificado Internacional (Higg Index / bluesign / GRS / ISO 50001): Evaluación completa de huella hídrica/energética Higg FEM, Global Recycled Standard y gestión energética.",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "R00-TEXT-PROD",
+      "level": "n2",
+      "sectorId": "textiles",
+      "section": "SECCIÓN I: ROMPEHIELOS DE SEVERIDAD OPERATIVA (MÉTODO DE BORDA)",
+      "widget": "Rompehielos de Jerarquización (1 al 8)",
+      "title": "Jerarquización de Fricciones en Tejeduría, Hilatura y Tintorería",
+      "prompt": "Ordene del 1 al 8 las siguientes fricciones según el impacto económico negativo y la frecuencia con que afectan su planta (1 = Mayor impacto / Máxima gravedad; 8 = Menor impacto)",
+      "microcopy": "Permite priorizar la causa raíz de la ineficiencia textil antes del análisis de detalle.",
+      "type": "rank",
+      "prefilled": false,
+      "factorCount": 8,
+      "factors": [
+        {
+          "id": "f1",
+          "label": "Paros de maquinaria por rotura de hilo, agujas dañadas o defectos en urdimbre."
+        },
+        {
+          "id": "f2",
+          "label": "Desigualdades de color en teñido (barras, metamertismo) y variabilidad entre baños de tintorería."
+        },
+        {
+          "id": "f3",
+          "label": "Variabilidad en la tensión de urdimbre/trama que provoca defectos de anchos o encogimiento en tela."
+        },
+        {
+          "id": "f4",
+          "label": "Mermas elevadas, taras y generación de segunda calidad en tejeduría o acabado."
+        },
+        {
+          "id": "f5",
+          "label": "Escasez, alta rotación y falta de capacitación de mecánicos de telares, urdidores y tintoreros."
+        },
+        {
+          "id": "f6",
+          "label": "Cuellos de botella en el área de rama de secado, termoanalizado o estrujadoras de tela."
+        },
+        {
+          "id": "f7",
+          "label": "Deficiencia en el registro manual de producción por turno y falta de trazabilidad de lote de partida."
+        },
+        {
+          "id": "f8",
+          "label": "Reclamaciones de clientes por falta de solidez al frotamiento/lavado o pilling (frisado) en tela."
+        }
+      ]
+    },
+    {
+      "id": "R00-TEXT-SOURCING-MAT",
+      "level": "n2",
+      "sectorId": "textiles",
+      "section": "SECCIÓN I: ROMPEHIELOS DE SEVERIDAD OPERATIVA (MÉTODO DE BORDA)",
+      "widget": "Rompehielos de Jerarquización (1 al 6)",
+      "title": "Jerarquización de Riesgos en Sourcing de Fibras y Químicos",
+      "prompt": "Ordene del 1 al 6 las restricciones que mayor volatilidad o desabasto causan en su suministro de insumos (1 = Mayor impacto negativo; 6 = Menor impacto)",
+      "microcopy": "Mide la vulnerabilidad de la planta textil ante choques de precios en materias primas básicas.",
+      "type": "rank",
+      "prefilled": false,
+      "factorCount": 6,
+      "factors": [
+        {
+          "id": "f1",
+          "label": "Volatilidad de precios en fibra sintética (poliéster, nylon) y algodón virgen importado."
+        },
+        {
+          "id": "f2",
+          "label": "Desabasto, sobrecosto y variabilidad en la calidad de colorantes, auxiliares y reactivos textiles."
+        },
+        {
+          "id": "f3",
+          "label": "Dificultad para conseguir hilos técnicos o especiales (aramida, elastano de alta tenacidad, hilo ignífugo)."
+        },
+        {
+          "id": "f4",
+          "label": "Sobrecostos y demoras en refacciones importadas especializadas (agujas, platinas, proyectiles, guiahilos)."
+        },
+        {
+          "id": "f5",
+          "label": "Inconsistencia en la calidad y resistencia de hilados reciclados o borra regenerada."
+        },
+        {
+          "id": "f6",
+          "label": "Volatilidad en el costo de empaque textil (polietileno de embalaje, tubos de cartón, tarimas)."
+        }
+      ]
+    },
+    {
+      "id": "R00-TEXT-SOURCING-SERV",
+      "level": "n2",
+      "sectorId": "textiles",
+      "section": "SECCIÓN I: ROMPEHIELOS DE SEVERIDAD OPERATIVA (MÉTODO DE BORDA)",
+      "widget": "Rompehielos de Jerarquización (1 al 6)",
+      "title": "Jerarquización de Deficiencias en Infraestructura y Servicios",
+      "prompt": "Ordene del 1 al 6 las mayores deficiencias en servicios e infraestructura regional que frenan su crecimiento (1 = Mayor impacto negativo; 6 = Menor impacto)",
+      "microcopy": "Mide las fallas de mercado exógenas en la cuenca textil Puebla-Tlaxcala.",
+      "type": "rank",
+      "prefilled": false,
+      "factorCount": 6,
+      "factors": [
+        {
+          "id": "f1",
+          "label": "Rigidez y sobrecostos en el tratamiento de efluentes líquidos para cumplir la NOM-001-SEMARNAT-2021."
+        },
+        {
+          "id": "f2",
+          "label": "Tarifas elevadas de gas natural/LPG y energía eléctrica para calderas, secadoras y sustitución de vapor."
+        },
+        {
+          "id": "f3",
+          "label": "Falta de laboratorios locales acreditados para ensayos textiles (solidez de color, tensión, solidez al sudor)."
+        },
+        {
+          "id": "f4",
+          "label": "Robos de cargamentos de hilo y tela en carrete y autopistas regionales (150D, Arco Norte, Perote)."
+        },
+        {
+          "id": "f5",
+          "label": "Escasez de consultores y asesores calificados en normatividad ZDHC, OEKO-TEX e Higg Index."
+        },
+        {
+          "id": "f6",
+          "label": "Tramitología lenta e incertidumbre en permisos de descarga de aguas ante CONAGUA y autoridades estatales."
+        }
+      ]
+    },
+    {
+      "id": "TX-TECH-01",
+      "level": "n2",
+      "sectorId": "textiles",
+      "section": "SECCIÓN II: AUDITORÍA TÉCNICA DIRECTA Y ABSORCIÓN TECNOLÓGICA (P1 A P5 CONTEXTUALIZADAS)",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Absorción Tecnológica P1: Tecnologías de Sourcing Crítico",
+      "prompt": "¿Cuál de las siguientes tecnologías o equipos especializados requiere adquirir o modernizar su planta pero enfrenta sobrecostos o falta de proveedores locales calificados?",
+      "microcopy": "Identifica la tecnología textil de mayor valor con falla de proveeduría en la región.",
+      "type": "single_select_text",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Telares de Chorro de Aire (Air-Jet) / Pinzas (Rapier) de Alta Velocidad (> 800 RPM): Telares de última generación con inserción automática de trama y bajo consumo energético.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Máquinas de Teñido a Presión (Jet / Overflow) de Baja Relación de Baño (1:4 - 1:5): Equipos ecotextiles de teñido con ahorro del 50% de agua y vapor por kilo de tela.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Urdidoras Electrónicas Directas / Seccionales de Tensión Constante: Equipos con control digital de hilo para urdimbres de alta densidad sin diferencias de tensión.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Rama Textil de Secado y Termofijado Automatizada con Recuperador de Calor: Rama de acabado con monitoreo de humedad en tiempo real y reciclaje térmico de chimenea.",
+          "score": null
+        },
+        {
+          "value": "opt5",
+          "label": "Máquinas de Tejeduría de Punto Electrónica Jacquard / Seamless: Maquinaria circular/rectilínea con selección electrónica de aguja para patrones complejos.",
+          "score": null
+        },
+        {
+          "value": "opt6",
+          "label": "Otro",
+          "score": null
+        }
+      ],
+      "text": {
+        "maxLength": 100,
+        "optionValue": "opt6"
+      }
+    },
+    {
+      "id": "TX-TECH-02",
+      "level": "n2",
+      "sectorId": "textiles",
+      "section": "SECCIÓN II: AUDITORÍA TÉCNICA DIRECTA Y ABSORCIÓN TECNOLÓGICA (P1 A P5 CONTEXTUALIZADAS)",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Absorción Tecnológica P2: Subaprovechamiento de Tecnologías Instaladas",
+      "prompt": "¿Qué tecnología o sistema ya tiene instalado en su planta pero NO funciona como desearía o se encuentra subaprovechado?",
+      "microcopy": "Mide la falla de absorción por falta de capacitación, software no integrado o falta de mantenimiento.",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Urdidoras electrónicas que operan con alimentadores parados por falta de sensores de rotura calibrados.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Cocina de colores / Dosificación automática de tintorería que se opera de forma manual por fallas de válvulas.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Telares de chorro de aire que consumen aire comprimido en exceso por falta de regulación de boquillas secundarias.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "ERP Textil instalado que no lleva el control de Kilos/Metros reales por telar ni el rendimiento por partida de teñido.",
+          "score": null
+        },
+        {
+          "value": "opt5",
+          "label": "Rama de secado operada por 'tiempo estimado' sin usar los sensores de humedad relativa instalados en la cámara.",
+          "score": null
+        },
+        {
+          "value": "opt6",
+          "label": "Ninguno / Todas las tecnologías instaladas operan a su máximo rendimiento.",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "TX-TECH-03",
+      "level": "n2",
+      "sectorId": "textiles",
+      "section": "SECCIÓN II: AUDITORÍA TÉCNICA DIRECTA Y ABSORCIÓN TECNOLÓGICA (P1 A P5 CONTEXTUALIZADAS)",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Absorción Tecnológica P3: Brecha con la Frontera Internacional",
+      "prompt": "¿Qué tecnología utilizan los competidores internacionales líderes que los hace significativamente más competitivos que las empresas de su sector en la región?",
+      "microcopy": "Evalúa la distancia a la frontera tecnológica global (Benchmark Aghion / OMPI 2026).",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Teñido por CO2 Supercrítico (Sin uso de Agua): Proceso de tintorería anhidro que elimina totalmente el consumo de agua y secado de la fibra.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Hilatura por Aire (Air-Jet Spinning) de Ultra Alta Velocidad: Sistema de producción de hilo a más de 500 m/min con excelente resistencia al pilling.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Impresión Textil Digital Pigmentada sin Vaporizado ni Lavado: Estampado digital de alta definición de proceso seco sin generación de efluentes contaminantes.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Sensores de Visión Artificial en Línea en Telar para Detección de Defectos: Cámaras de alta resolución que detienen el telar al primer defecto de trama/urdimbre.",
+          "score": null
+        },
+        {
+          "value": "opt5",
+          "label": "Fibras Inteligentes Termorreguladoras, Conductoras y Antibacterianas de Última Generación: Incorporación de nanomateriales para smart textiles.",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "TX-TECH-04",
+      "level": "n2",
+      "sectorId": "textiles",
+      "section": "SECCIÓN II: AUDITORÍA TÉCNICA DIRECTA Y ABSORCIÓN TECNOLÓGICA (P1 A P5 CONTEXTUALIZADAS)",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Absorción Tecnológica P4: Tecnología Revolucionaria / Apuesta Transformacional",
+      "prompt": "¿Qué tecnología transformacional o proyecto de gran calado revolucionaría la productividad y sostenibilidad de su empresa en los próximos 2 a 3 años?",
+      "microcopy": "Mide el potencial de salto en el espacio de productos y complejidad textil (CIDE / Harvard).",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Reconversión Completa hacia la Producción de Textiles Técnicos (Médicos, Automotrices o Geotextiles).",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Construcción de Planta de Tintorería 'Zero Liquid Discharge' (ZLD) con Reciclaje del 95% del Agua de Proceso.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Digitalización 4.0 Completa: Conexión IoT de todos los telares a un ERP Textil en Tiempo Real.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Planta de Hilatura de Ciclo Cerrado a partir de Reciclaje de Textil Posconsumo (Post-consumer Textile Waste).",
+          "score": null
+        },
+        {
+          "value": "opt5",
+          "label": "Automatización Total de la Cocina de Colores y Dosificación Química en Tintorería.",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "TX-TECH-05",
+      "level": "n2",
+      "sectorId": "textiles",
+      "section": "SECCIÓN II: AUDITORÍA TÉCNICA DIRECTA Y ABSORCIÓN TECNOLÓGICA (P1 A P5 CONTEXTUALIZADAS)",
+      "widget": "Tarjeta de Selección Única + Texto Libre",
+      "title": "Absorción Tecnológica P5: Demanda Explícita de Proyectos Tecnológicos Inmediatos",
+      "prompt": "¿Hay algún proyecto tecnológico específico o necesidad prioritaria que requiera abordar a la brevedad para su empresa?",
+      "microcopy": "Captura la demanda real de acompañamiento técnico para asignación inmediata a programas de apoyo.",
+      "type": "single_select_text",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Proyecto 1: Certificación Ecológica Textil (OEKO-TEX Standard 100 / ZDHC / Higg Index).",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Proyecto 2: Modernización o Ajuste de Planta PTAR para cumplimiento de la NOM-001-SEMARNAT-2021.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Proyecto 3: Instalación de Sensores de Tensión, Paradas de Hilo e IoT en Telares/Urdidoras.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Proyecto 4: Automatización de Cocina de Colores y Control Estadístico de Baños de Teñido.",
+          "score": null
+        },
+        {
+          "value": "opt5",
+          "label": "Un proyecto propio",
+          "score": null
+        }
+      ],
+      "text": {
+        "maxLength": 100,
+        "optionValue": "opt5"
+      }
+    },
+    {
+      "id": "TX-TECH-06",
+      "level": "n2",
+      "sectorId": "textiles",
+      "section": "SECCIÓN II: AUDITORÍA TÉCNICA DIRECTA Y ABSORCIÓN TECNOLÓGICA (P1 A P5 CONTEXTUALIZADAS)",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Control de Rendimiento por Kilo/Metro, Taras de Segunda Calidad y Consumo Hídrico",
+      "prompt": "¿Cuál es el porcentaje promedio de tela de segunda calidad (taras) y el nivel de eficiencia en el uso de agua por kilo procesado?",
+      "microcopy": "Mide la calidad de tejeduría/acabado y el impacto hídrico de la planta.",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Sin medición en tiempo real de paros; tela de segunda calidad superior al 6%; consumo hídrico > 120 L/kg.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Registro manual por turno; tela de segunda calidad entre 3% y 6%; consumo hídrico entre 70 y 120 L/kg.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Monitoreo de telares con paro automático; tela de segunda entre 1.5% y 3%; consumo hídrico entre 40 y 70 L/kg.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Visión artificial en línea; segunda calidad menor a 1.5%; teñido ecotextil con consumo < 40 L/kg.",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "TX-TECH-07",
+      "level": "n2",
+      "sectorId": "textiles",
+      "section": "SECCIÓN II: AUDITORÍA TÉCNICA DIRECTA Y ABSORCIÓN TECNOLÓGICA (P1 A P5 CONTEXTUALIZADAS)",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Trazabilidad Digital por Rollo / Partida de Teñido y ERP Textil",
+      "prompt": "¿Qué nivel de trazabilidad digital utiliza su planta para rastrear la partida de teñido, receta y lote de hilo en cada rollo de tela?",
+      "microcopy": "La trazabilidad digital es indispensable para responder ante reclamos de color o tono y garantizar entregas OTIF.",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Etiqueta de papel atada al rollo escrita a mano; sin conexión con la receta de teñido.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Código de barras impreso para inventario de almacén sin registro del lote de hilo o baño.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Código QR en cada rollo vinculado a la receta de cocina de colores y turno de tejeduría.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Rastreabilidad total desde el fardo de fibra hasta la entrega del rollo mediante ERP en tiempo real.",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "CP-TX-01",
+      "level": "n2",
+      "sectorId": "textiles",
+      "section": "SECCIÓN III: SOFISTICACIÓN PRODUCTIVA Y ESPACIO DE PRODUCTOS (CIDE / HARVARD)",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Reconversión hacia la 'Fruta Madura' Textil (Alta Densidad ω_j > 0.65)",
+      "prompt": "Considerando su maquinaria de tejeduría o tintorería actual, ¿hacia qué tejido o producto de mayor valor agregado podría reconvertirse en menos de 12 meses?",
+      "microcopy": "Mide la capacidad de salto hacia telas de mayor margen y menor competencia por precio.",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Transición a Textiles de Tapicería e Interiores Automotrices (Cumplimiento de pruebas de abrasión Martindale/UV).",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Reconversión a Tejidos Ignífugos, Antiestáticos o Alta Visibilidad para Vestuario de Trabajo e Industria.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Desarrollo de Telas No-Tejidas para Filtros Industriales, Geotextiles o Higiene Médica.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Fabricación de Telas de Tejido de Punto / Calada a partir de Hilados Reciclados (Poliester GRS / Algodón Regenerado).",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "CP-TX-02",
+      "level": "n2",
+      "sectorId": "textiles",
+      "section": "SECCIÓN III: SOFISTICACIÓN PRODUCTIVA Y ESPACIO DE PRODUCTOS (CIDE / HARVARD)",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Apuestas Estratégicas y Textiles Técnicos de Alta Complejidad (Alto ICPO)",
+      "prompt": "En un horizonte de 2 a 3 años con coinversión y tecnología, ¿qué línea de textiles técnicos de vanguardia podría desarrollar su empresa?",
+      "microcopy": "Evalúa la capacidad de diversificación hacia la frontera de los materiales avanzados (Índice de Complejidad Potencial ICPO).",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Desarrollo de Textiles Médicos Biocompatibles, Mallas Quirúrgicas o Calcetines Médicos de Graduación.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Fabricación de Geotextiles de Alta Tenacidad para Refuerzo de Carreteras e Infraestructura Civil.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Tejidos Estructurales de Fibra de Carbono, Kevlar o Aramida para Industria Aeroespacial y Defensa.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Smart Textiles (Textiles Inteligentes) con Sensores Biométricos Integrados para Salud y Deporte de Alto Rendimiento.",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "CP-TX-03",
+      "level": "n2",
+      "sectorId": "textiles",
+      "section": "SECCIÓN III: SOFISTICACIÓN PRODUCTIVA Y ESPACIO DE PRODUCTOS (CIDE / HARVARD)",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Tratamiento de Aguas, Eficiencia Energética y Descarbonización Textil",
+      "prompt": "¿Qué nivel de avance tiene su planta en el cumplimiento ambiental de efluentes, recuperación de calor y economía circular?",
+      "microcopy": "La sostenibilidad hídrica y de colorantes es la exigencia #1 para la continuidad de la industria textil en la cuenca Puebla-Tlaxcala.",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Cumplimiento Básico: Planta de tratamiento primario/secundario que opera con dificultad para cumplir la NOM-001; sin recuperación de calor.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Planta PTAR Estabilizada: Tratamiento biológico/fisicoquímico continuo que cumple la norma; recuperación parcial de calor en agua de caldera.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Reuso Hídrico y Recuperación Térmica: Reciclaje de más del 40% del agua de teñido; economizador de energía en rama de secado y calderas.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Planta Textil Sustentable / ZLD / Carbon Neutral: Reciclaje > 80% de agua con tratamiento terciario (ósmosis inversa); certificación ZDHC y energía limpia.",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "COL-TX01",
+      "level": "n2",
+      "sectorId": "textiles",
+      "section": "SECCIÓN IV: SOLUCIONES COLABORATIVAS ANTE LA FALLA DE ESCALA (BIENES DE CLUB)",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Textile Finishing & Technical Hub Comunitario (Rama, Teñido Ecotextil y Calandrado)",
+      "prompt": "¿Cuál sería la disposición de su empresa para maquilar o utilizar un Hub Comunitario de Acabado Textil de Alta Tecnología bajo esquema Pay-per-Use?",
+      "microcopy": "Resuelve la falla de escala en maquinaria costosa de acabado (ramas, estamparia digital, calandras) para PyMEs textiles.",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Alto Interés / Usuario Frecuente: Maquilaría el acabado, secado o termofijado de sus telas pagando exclusivamente por metro/kilo procesado.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Interés Moderado / Co-inversionista: Dispuesto a aportar capital o comprometer volumen para la adquisición de una rama de secado comunitaria.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Uso para Pruebas de Desarrollo: Utilizaría el Hub para desarrollo de muestras y nuevos acabados sin detener su línea de producción.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Sin Interés: Cuenta con planta de acabado propia suficiente o su proceso no requiere acabados especializados.",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "COL-TX02",
+      "level": "n2",
+      "sectorId": "textiles",
+      "section": "SECCIÓN IV: SOLUCIONES COLABORATIVAS ANTE LA FALLA DE ESCALA (BIENES DE CLUB)",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Laboratorio Comunitario Acreditado ISO 17025 de Pruebas Textiles y Efluentes ZDHC",
+      "prompt": "¿Cómo participaría su empresa en la creación de un Laboratorio Regional Acreditado de Ensayos Textiles en Cuádruple Hélice?",
+      "microcopy": "Permite reducir costos de laboratorio en 50% y obtener certificados de solidez de color, tensión y efluentes en menos de 24 horas.",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Usuario Frecuente de Pruebas Textiles: Enviaría muestras de cada partida para ensayos de solidez al lavado/frotamiento, pilling y composición.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Ensayos de Agua y Efluentes NOM-001 / ZDHC: Utilizaría el laboratorio para certificar periódicamente la calidad del agua de descarga (DBO, DQO, metales).",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Socio de Vinculación Universitaria: Colaboraría con universidades locales para desarrollo de nuevas recetas ecotextiles y pruebas de campo.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Sin Interés: Realiza sus análisis en laboratorios privados externos fuera de la región.",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "COL-TX03",
+      "level": "n2",
+      "sectorId": "textiles",
+      "section": "SECCIÓN IV: SOLUCIONES COLABORATIVAS ANTE LA FALLA DE ESCALA (BIENES DE CLUB)",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Consorcio de Compras Consolidadas de Hilados, Colorantes Ecológicos y Gas Natural",
+      "prompt": "¿Qué grado de apertura tiene su empresa para integrarse a un Consorcio de Compras Consolidadas de materias primas textiles?",
+      "microcopy": "La compra consolidada permite abatir costos de fibras y químicos entre 12% y 20% frente a compras individuales.",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Compra Consolidada de Hilos y Fibras (Algodón, Poliéster): Sumar volumen para importar hilados directos de hilanderías sin intermediarios.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Consorcio de Colorantes y Químicos ZDHC: Comprar de forma conjunta auxiliares textiles y colorantes ecológicos certificados.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Consorcio de Compra de Gas Natural y Energía: Negociar tarifas preferenciales de gas natural y PPA de energía renovable para calderas.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Sin Interés: Prefiere mantener negociaciones directas e individuales con sus proveedores actuales.",
+          "score": null
+        }
+      ]
+    }
+  ],
+  "roadmap": [
+    {
+      "band": "platino",
+      "min": 75.0,
+      "max": null,
+      "actions": [
+        "Capa A (Digital/TI): Implementación de cocina de colores digitalizada automatizada y sensores IoT de tensión en telar con alertas preventivas.",
+        "Capa B (Bienes de Club): Liderazgo en el Consorcio de Compras Consolidadas de Hilados y exportación a mercados de textiles técnicos."
+      ]
+    },
+    {
+      "band": "oro",
+      "min": 55.0,
+      "max": 75.0,
+      "actions": [
+        "Capa A (Digital/TI): Código QR por partida de teñido y rollo, software SPC para control de tono/receta y captura digital de producción en tablets.",
+        "Capa B (Bienes de Club): Maquila de acabados especiales en Textile Finishing Hub y validación de efluentes en Laboratorio ISO 17025."
+      ]
+    },
+    {
+      "band": "plata",
+      "min": 35.0,
+      "max": 55.0,
+      "actions": [
+        "Capa A (Digital/TI): Instalación de sensores IoT de conteo de pasadas/velocidad y app móvil para registro de paros por rotura de hilo.",
+        "Capa B (Bienes de Club): Acceso al Laboratorio Comunitario ISO 17025 para ensayos de solidez de color y ajuste de recetas."
+      ]
+    },
+    {
+      "band": "bronce",
+      "min": 0.0,
+      "max": 35.0,
+      "actions": [
+        "Capa A (Digital/TI): Capacitación básica en control digital de costos por kilo, estandarización de recetas de teñido y Buenas Prácticas Textiles.",
+        "Capa B (Bienes de Club): Incorporación al Consorcio de Compras Consolidadas de Fibras y Químicos."
+      ]
+    }
+  ]
+}

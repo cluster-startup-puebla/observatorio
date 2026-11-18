@@ -1,0 +1,751 @@
+{
+  "sectorId": "sofom",
+  "label": "20. SOFOMES y Servicios Financieros no Bancarios",
+  "questions": [
+    {
+      "id": "SF-01",
+      "level": "n2",
+      "sectorId": "sofom",
+      "section": "Inicio",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Eslabón Dominante en el Sector de Financiamiento No Bancario",
+      "prompt": "¿En cuál de las siguientes líneas de negocio financiero se concentra la mayor proporción de la cartera de su entidad?",
+      "microcopy": "Define el marco regulatorio (CONDUSEF / CNBV), los tipos de colateral y la estructura del riesgo de crédito.",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Crédito Empresarial y PYME Productivo (Hipotecario, Habilitación o Avío, Simple).",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Arrendamiento Puro y Financiero (Leasing de Maquinaria, Equipo y Flotas de Transporte).",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Factoraje Financiero y Descuento de Documentos / Cadenas Productivas Clúster.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Microfinanzas, Crédito Agrícola, Crédito con Descuento de Nómina y Consumo Especializado.",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "SF-02",
+      "level": "n2",
+      "sectorId": "sofom",
+      "section": "Inicio",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Corredor Territorial y Hub de Operaciones Financieras",
+      "prompt": "¿En qué nodo urbano o distrito financiero de la región Puebla - Tlaxcala se localiza la sede de originación de su firma?",
+      "microcopy": "Evalúa la cercanía con clústeres industriales demandantes de crédito y la densidad de infraestructura de servicio.",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Distrito Financiero Angelópolis / ZM Puebla Centro (Oficinas Corporativas).",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Corredor Industrial Cuautlancingo / Huejotzingo / Amozoc (Atención a Proveedores Industriales).",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Nodo Tlaxcala (Capital / Apizaco / Huamantla - Atención a PYMEs y Sector Agrícola).",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Operación 100% Digital / Fintech Multiregional sin Sucursales Físicas.",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "SF-03",
+      "level": "n2",
+      "sectorId": "sofom",
+      "section": "Inicio",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Certificación de Calidad y Estatus Regulatorio Financiero",
+      "prompt": "¿Cuál es el nivel de cumplimiento regulatorio y calificación de riesgo que ostenta su institución?",
+      "microcopy": "El estatus regulatorio y la calificación de riesgo son el pasaporte indispensable para acceder a fondeo de banca de desarrollo.",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Registro Básico SIPRES ante CONDUSEF / Cumplimiento Mínimo Regulado.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Auditoría Cumplida de Prevención de Lavado de Dinero (PLD/FT) ante CNBV sin observaciones graves.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "SOFOM Regulada (ER) o Certificación ISO 27001 en Ciberseguridad y Seguridad de la Información.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Multi-calificación Financiera de Riesgo (Fitch / S&P / HR Ratings) + Certificación ASOFOM / ASOMIF.",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "R00-SF-PROD",
+      "level": "n2",
+      "sectorId": "sofom",
+      "section": "Inicio",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Jerarquización de Fricciones en Operación Financiera y Originación",
+      "prompt": "Ordene del 1 al 8 los siguientes problemas operativos según el impacto negativo que generan en su entidad (1 = Mayor impacto)",
+      "microcopy": "Identifica los cuellos de botella directos en la originación, análisis de riesgo y cobranza de cartera.",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Incremento en la tasa de mora e imprevistos de cartera vencida (IMOR elevado).",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Elevado costo de fondeo institucional y dificultad para acceder a líneas de banca de desarrollo.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Procesos manuales lentos en dictaminación, análisis de crédito y comités de aprobación.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Complejidad y elevado costo de cumplimiento normativo PLD/FT ante CNBV y UIF.",
+          "score": null
+        },
+        {
+          "value": "opt5",
+          "label": "Escasez y alta rotación de ejecutivos de crédito y analistas de riesgo capacitados en la región.",
+          "score": null
+        },
+        {
+          "value": "opt6",
+          "label": "Dificultad y lentitud para validar y registrar garantías inmobiliarias y prendarias (RPP/RUG).",
+          "score": null
+        },
+        {
+          "value": "opt7",
+          "label": "Presión competitiva en tasas de interés por parte de la banca tradicional y Fintechs globales.",
+          "score": null
+        },
+        {
+          "value": "opt8",
+          "label": "Deficiente cobranza extrajudicial y judicial por lentitud en juzgados mercantiles.",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "R00-SF-SOURCING-MAT",
+      "level": "n2",
+      "sectorId": "sofom",
+      "section": "Inicio",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Jerarquización de Riesgos en Sourcing de Fondeo y Datos",
+      "prompt": "Ordene del 1 al 6 los mayores riesgos en el abastecimiento de fondeo y tecnología (1 = Mayor riesgo)",
+      "microcopy": "Determina la vulnerabilidad financiera en la consecución de pasivos y herramientas tecnológicas de análisis.",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Dificultad para obtener líneas de fondeo de segundo piso (NAFIN, BANCOMEXT, FIRA) a tasa competitiva.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Elevados costos de contratación y mantenimiento de plataformas Core Financiero SaaS.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Sobrecostos en consultas masivas a Buró/Círculo de Crédito y servicios de validación de identidad (INE/SAT).",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Dificultad para acceder a información financiera auditada y confiable de PYMEs solicitantes.",
+          "score": null
+        },
+        {
+          "value": "opt5",
+          "label": "Costo de Adquisición de Cliente (CAC) elevado a través de canales tradicionales.",
+          "score": null
+        },
+        {
+          "value": "opt6",
+          "label": "Exigentes requerimientos de colateral y aforos por parte de acreedores institucionales.",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "R00-SF-SOURCING-SERV",
+      "level": "n2",
+      "sectorId": "sofom",
+      "section": "Inicio",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Jerarquización de Deficiencias en Servicios de Apoyo",
+      "prompt": "Ordene del 1 al 6 las mayores limitaciones en servicios externos en Puebla-Tlaxcala (1 = Mayor limitación)",
+      "microcopy": "Evalúa la calidad de la oferta pericial, regulatoria y legal disponible para el sector financiero.",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Despachos de auditoría PLD/FT externos con costos elevados y baja especialización regional.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Ineficiencia y lentitud en los trámites de inscripción de garantías en el Registro Público (RPP/RUG).",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Escasez de soluciones locales especializadas en ciberseguridad financiera y hacking ético.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Falta de sociedades de información crediticia adaptadas a sectores rurales o informales.",
+          "score": null
+        },
+        {
+          "value": "opt5",
+          "label": "Servicios legales costosos e ineficientes para la recuperación judicial de cartera y ejecución de garantías.",
+          "score": null
+        },
+        {
+          "value": "opt6",
+          "label": "Escasa oferta de capacitación continua en regulación financiera, fiscal y PLD/FT.",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "SF-TECH-01",
+      "level": "n2",
+      "sectorId": "sofom",
+      "section": "Inicio",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Absorción Tecnológica P1: Cobertura de Equipamiento y Stack Tecnológico Financiero",
+      "prompt": "¿Qué sistemas y herramientas digitales operan de forma activa en su institución? (Seleccione todas las que apliquen)",
+      "microcopy": "Evalúa la amplitud de la plataforma tecnológica financiera. (+20 pts por casilla habilitada).",
+      "type": "multi_select",
+      "prefilled": false,
+      "factorCount": 5,
+      "factors": [
+        {
+          "id": "f1",
+          "label": "Core Financiero Digital en la Nube (Administración de Cartera y Contabilidad)."
+        },
+        {
+          "id": "f2",
+          "label": "Scoring Crediticio Automatizado por Algoritmos e Inteligencia Artificial."
+        },
+        {
+          "id": "f3",
+          "label": "Firma Electrónica Avanzada (e.firma SAT / Biometría INE / Firma Digital)."
+        },
+        {
+          "id": "f4",
+          "label": "Portal de Onboarding y Solicitud de Crédito 100% Digital (Web / App)."
+        },
+        {
+          "id": "f5",
+          "label": "Motor de Cumplimiento PLD/FT Automatizado con Matriz de Riesgo en Tiempo Real."
+        }
+      ]
+    },
+    {
+      "id": "SF-TECH-02",
+      "level": "n2",
+      "sectorId": "sofom",
+      "section": "Inicio",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Absorción Tecnológica P2: Subutilización Tecnológica (IST)",
+      "prompt": "¿Qué porcentaje de los módulos del Core Financiero o Motor de Scoring son ignorados o no aprovechados por el personal?",
+      "microcopy": "Mide la brecha entre la inversión tecnológica y la explotación operativa real (Score = 100 - IST).",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Integración total; solicitudes, scoring y cartera operan en plataforma sin Excel.",
+          "score": 100
+        },
+        {
+          "value": "opt2",
+          "label": "Core activo pero scoring de crédito se calcula manualmente.",
+          "score": 75
+        },
+        {
+          "value": "opt3",
+          "label": "El sistema solo se usa para emitir recibos; la cartera se gestiona en Excel.",
+          "score": 50
+        },
+        {
+          "value": "opt4",
+          "label": "Sistema obsoleto o usado como mero repositorio de archivos.",
+          "score": 25
+        }
+      ]
+    },
+    {
+      "id": "SF-TECH-03",
+      "level": "n2",
+      "sectorId": "sofom",
+      "section": "Inicio",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Absorción Tecnológica P3: Brecha con la Frontera Tecnológica Internacional",
+      "prompt": "¿Qué tecnología de vanguardia utilizan las Fintechs e instituciones globales líderes para evaluar y colocar crédito?",
+      "microcopy": "Evalúa la distancia a la frontera tecnológica financiera (Benchmark Aghion / OMPI 2026).",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Plataformas de Open Finance / APIs Bancarias, Scoring Transaccional No Tradicional con IA y Tokenización de Cartera de Crédito.",
+          "score": 100
+        },
+        {
+          "value": "opt2",
+          "label": "Motor de Scoring con IA entrenado con datos del SAT/Facturación y Firma Electrónica 100% digital.",
+          "score": 80
+        },
+        {
+          "value": "opt3",
+          "label": "Core Cloud en la Nube con solicitudes digitales y consulta automatizada a Buró de Crédito.",
+          "score": 60
+        },
+        {
+          "value": "opt4",
+          "label": "Solicitud en PDF para impresión y evaluación en hoja de cálculo Excel.",
+          "score": 40
+        },
+        {
+          "value": "opt5",
+          "label": "Procesos 100% en papel con recepción física de estados de cuenta e inspección presencial.",
+          "score": 20
+        }
+      ]
+    },
+    {
+      "id": "SF-TECH-04",
+      "level": "n2",
+      "sectorId": "sofom",
+      "section": "Inicio",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Absorción Tecnológica P4: Apuesta Transformacional a 24--36 Meses",
+      "prompt": "¿Qué proyecto transformacional tiene planeado su institución para los próximos 2 a 3 años?",
+      "microcopy": "Mide la visión estratégica a mediano plazo para evolucionar hacia modelos de servicios digitales.",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Reconversión hacia Plataforma Fintech SaaS / Marketplace de Crédito B2B o transformación a Sofipo.",
+          "score": 100
+        },
+        {
+          "value": "opt2",
+          "label": "Implementación de Open Banking APIs e integración de Scoring de Inteligencia Artificial.",
+          "score": 80
+        },
+        {
+          "value": "opt3",
+          "label": "Migración a Core Financiero 100% Cloud con onboarding biométrico INE.",
+          "score": 60
+        },
+        {
+          "value": "opt4",
+          "label": "Adopción de Firma Digital Avanzada para eliminar papelería en sucursales.",
+          "score": 40
+        },
+        {
+          "value": "opt5",
+          "label": "Sin planes de inversión o reconversión tecnológica a mediano plazo.",
+          "score": 20
+        }
+      ]
+    },
+    {
+      "id": "SF-TECH-05",
+      "level": "n2",
+      "sectorId": "sofom",
+      "section": "Inicio",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Absorción Tecnológica P5: Demanda Explícita de Proyectos Tecnológicos Inmediatos",
+      "prompt": "¿Existe algún proyecto tecnológico o necesidad específica que su institución desee abordar a la brevedad?",
+      "microcopy": "Captura la demanda real e inmediata de acompañamiento especializado. (Tarjeta Sectorial + Texto Libre, Score Neutro = 60.0 pts).",
+      "type": "single_select_text",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Proyecto 1: Motor de Scoring Crediticio con IA y Modelos Transaccionales Compartidos.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Proyecto 2: Sistema de Cumplimiento PLD/FT Unificado y Auditoría Regtech Acelerada.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Proyecto 3: Plataforma Clúster de Factoraje Digital y Cadenas Productivas.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Proyecto 4: Estructuración de Fideicomiso Colectivo de Fondeo e Integración ASOFOM.",
+          "score": null
+        },
+        {
+          "value": "opt5",
+          "label": "Un proyecto propio",
+          "score": null
+        }
+      ],
+      "text": {
+        "maxLength": 100,
+        "optionValue": "opt5"
+      }
+    },
+    {
+      "id": "SF-TECH-06",
+      "level": "n2",
+      "sectorId": "sofom",
+      "section": "Inicio",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Índice de Morosidad (IMOR), Eficiencia de Cobranza y Tiempo de Originación",
+      "prompt": "¿Cómo mide y controla su institución el índice de cartera vencida y el tiempo de respuesta en comités de crédito?",
+      "microcopy": "Métrica dura de estabilidad financiera y control de riesgo operativo.",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "IMOR > 8%; tiempo de originación > 10 días hábiles; dictamen 100% manual.",
+          "score": 25
+        },
+        {
+          "value": "opt2",
+          "label": "IMOR entre 5% y 8%; tiempo de originación entre 5 y 10 días; análisis en Excel.",
+          "score": 50
+        },
+        {
+          "value": "opt3",
+          "label": "IMOR entre 2% y 5%; tiempo de originación entre 2 y 5 días; scoring semiautomatizado.",
+          "score": 75
+        },
+        {
+          "value": "opt4",
+          "label": "IMOR < 2%; tiempo de originación < 24 horas; scoring por IA e integración API.",
+          "score": 100
+        }
+      ]
+    },
+    {
+      "id": "SF-TECH-07",
+      "level": "n2",
+      "sectorId": "sofom",
+      "section": "Inicio",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Ciberseguridad Financiera (ISO 27001), Conectividad API y Trazabilidad PLD/FT",
+      "prompt": "¿Qué nivel de ciberseguridad, integración por APIs y trazabilidad normativa tiene su plataforma financiera?",
+      "microcopy": "Métrica dura de resiliencia tecnológica y blindaje ante ciberamenazas o sanciones regulatorias.",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Expedientes de Crédito Físicos: Sin cifrado de datos; consultas manuales; sin trazabilidad de cambios en expedientes.",
+          "score": 25
+        },
+        {
+          "value": "opt2",
+          "label": "Registro Semidigital: Expedientes en PDF; consulta manual a Buró; sin certificación ISO 27001 en ciberseguridad.",
+          "score": 50
+        },
+        {
+          "value": "opt3",
+          "label": "Conectividad API Directa: Consulta automatizada a Buró; firma electrónica normada y matriz PLD/FT en sistema.",
+          "score": 75
+        },
+        {
+          "value": "opt4",
+          "label": "Ecosistema Digital 4.0 Integrado (Core Cloud + ISO 27001 + APIs Open Banking + Trazabilidad PLD en Tiempo Real).",
+          "score": 100
+        }
+      ]
+    },
+    {
+      "id": "CP-SF-01",
+      "level": "n2",
+      "sectorId": "sofom",
+      "section": "Inicio",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Reconexión hacia la 'Fruta Madura' Financiera (Alta Densidad ω_j > 0.65)",
+      "prompt": "¿Hacia qué producto financiero de mayor margen y menor riesgo podría reconvertirse su firma en < 12 meses?",
+      "microcopy": "Evalúa la factibilidad de reconversión hacia nichos de alta rentabilidad (Espacio de Productos CIDE/Harvard).",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Reconversión hacia Factoraje Financiero Electrónico para cadenas de suministro automotrices/textiles.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Desarrollo de Arrendamiento Puro (Leasing) de Maquinaria Industrial y Equipos Médicos.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Estructuración de Crédito Verde para Proyectos de Eficiencia Energética y Flotas Eléctricas.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Lanzamiento de Plataforma Fintech de Crédito Simple PYME con Autorización 100% Digital.",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "CP-SF-02",
+      "level": "n2",
+      "sectorId": "sofom",
+      "section": "Inicio",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Apuestas Estratégicas y Riesgo de Obsolescencia de la Cartera",
+      "prompt": "¿Qué porcentaje de su cartera de crédito está colgado en financiamiento de consumo no garantizado o sectores informales?",
+      "microcopy": "Identifica el riesgo de impago severo ante desaceleraciones económicas regionales.",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Riesgo Crítico (> 50% cartera): Cartera concentrada en crédito personal/consumo sin garantía colateral.",
+          "score": 25
+        },
+        {
+          "value": "opt2",
+          "label": "Riesgo Moderado (25% a 50% cartera): Cartera mixta con garantías prendarias/personales parciales.",
+          "score": 50
+        },
+        {
+          "value": "opt3",
+          "label": "Riesgo Bajo (10% a 25% cartera): Cartera mayoritariamente garantizada por hipotecas, naves o factoraje.",
+          "score": 75
+        },
+        {
+          "value": "opt4",
+          "label": "Blindaje Estructural (< 10% cartera): 100% de la cartera garantizada con aforos > 2:1 o factoraje confirmado.",
+          "score": 100
+        }
+      ]
+    },
+    {
+      "id": "CP-SF-03",
+      "level": "n2",
+      "sectorId": "sofom",
+      "section": "Inicio",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Sostenibilidad, Finanzas Verdes e Inclusión Financiera ESG",
+      "prompt": "¿Qué nivel de avance ostenta su institución en la colocación de financiamiento verde o inclusión de género?",
+      "microcopy": "Mide la adopción de criterios ESG e impacto social positivo en la cuenca Puebla-Tlaxcala.",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Nulo / Básico: Sin productos etiquetados verdes ni criterios ESG en la evaluación de crédito.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Moderado: Identificación informal de proyectos con impacto ambiental positivo.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Avanzado: Línea de Crédito Verde formalmente estructurada para paneles solares y electromovilidad.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Excelencia ESG: Sistema de Gestión de Riesgos Ambientales y Sociales (SARAS) auditado y bonos verdes.",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "COL-SF01",
+      "level": "n2",
+      "sectorId": "sofom",
+      "section": "Inicio",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Hub Comunitario de Scoring Crediticio IA y Motor PLD/FT Unificado",
+      "prompt": "¿Cuál sería el interés de su institución en participar en un Hub Comunitario de Scoring IA y Matriz PLD/FT?",
+      "microcopy": "Proyecto de Bienes de Club para reducir costos de análisis de crédito y cumplimiento regulatorio (IAIC > 1.0).",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "No interesado / Operación independiente de scoring y cumplimiento.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Interés moderado en compartir modelos de scoring de crédito para PYMEs regionales.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Interés alto en conectarse al Hub de Scoring e Inteligencia de Riesgo Crediticio Unificada.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Participación activa como socio fundador del Hub Regional Regtech y Scoring IA.",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "COL-SF02",
+      "level": "n2",
+      "sectorId": "sofom",
+      "section": "Inicio",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Centro Comunitario de Ciberseguridad Financiera (SOC) y Auditoría Regtech ISO 27001",
+      "prompt": "¿Cómo participaría su entidad en un Centro Comunitario de Ciberseguridad e Infraestructura ISO 27001?",
+      "microcopy": "Solución asociativa ante los elevados costos de certificación en ciberseguridad financiera (IFET).",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Sin interés / Gestión interna individual de ciberseguridad.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Interés en contratar servicios compartidos de monitoreo SOC y auditoría de ciberseguridad.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Integración plena al Centro Comunitario para certificar la plataforma en ISO 27001.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Co-fundación del Centro Regional de Ciberseguridad y Resiliencia Financiera.",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "COL-SF03",
+      "level": "n2",
+      "sectorId": "sofom",
+      "section": "Inicio",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Consorcio de Fondeo Colectivo, Titularización de Cartera y Emisión de Bonos Verdes",
+      "prompt": "¿Qué grado de apertura tiene su empresa para asociarse en un Consorcio de Fondeo e Integración ASOFOM?",
+      "microcopy": "Mecanismo de agregación de cartera para acceder a fondeo institucional de gran escala a menor tasa (IPCA > 12%).",
+      "type": "rank",
+      "prefilled": false,
+      "factorCount": 4,
+      "factors": [
+        {
+          "id": "f1",
+          "label": "Integración de información al expediente único de diagnóstico regional."
+        },
+        {
+          "id": "f2",
+          "label": "Levantamiento detallado de requerimientos para eliminación del Índice de Subutilización (IST)."
+        },
+        {
+          "id": "f3",
+          "label": "Evaluación de factibilidad para proyectos asociativos de Bienes de Club (Capa B)."
+        },
+        {
+          "id": "f4",
+          "label": "Formalización del plan de acción interno de digitalización (Capa A)."
+        }
+      ]
+    }
+  ],
+  "roadmap": [
+    {
+      "band": "platino",
+      "min": 85.0,
+      "max": null,
+      "actions": [
+        "Gemelo Digital / Analítica Predictiva IA.",
+        "Expansión a mercados globales / Clúster de Exportación.",
+        "Tokenización / Modelos SaaS Avanzados."
+      ]
+    },
+    {
+      "band": "oro",
+      "min": 70.0,
+      "max": 85.0,
+      "actions": [
+        "Integración total ERP-MES / Core en tiempo real.",
+        "Eliminación del IST mediante capacitación enfocada.",
+        "Automatización de trazabilidad y calidad."
+      ]
+    },
+    {
+      "band": "plata",
+      "min": 50.0,
+      "max": 70.0,
+      "actions": [
+        "Digitalización inmediata de controles de piso/servicio.",
+        "Implementación de ERP Cloud básico y código QR/GS1.",
+        "Adhesión a proyectos asociativos de Bienes de Club."
+      ]
+    },
+    {
+      "band": "bronce",
+      "min": 0.0,
+      "max": 50.0,
+      "actions": [
+        "Programa intensivo de orden y estandarización (5S).",
+        "Digitalización de bitácoras y capacitación básica.",
+        "Reestructuración urgente de procesos operativos."
+      ]
+    }
+  ]
+}

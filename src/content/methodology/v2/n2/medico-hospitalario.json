@@ -1,0 +1,756 @@
+{
+  "sectorId": "medico-hospitalario",
+  "label": "12. Servicios Médicos, Hospitalarios y Laboratorios",
+  "questions": [
+    {
+      "id": "MD-01",
+      "level": "n2",
+      "sectorId": "medico-hospitalario",
+      "section": "MÓDULO 0: PERFILADO DEL ESLABÓN Y LOCALIZACIÓN TERRITORIAL (HEREDADO DE NIVEL 1)",
+      "widget": "Tarjeta de Selección Única (Pre-poblado)",
+      "title": "Sub-eslabón Dominante en Servicios Médicos y Diagnóstico",
+      "prompt": "¿En cuál de los siguientes sub-eslabones se concentra la mayor proporción de la facturación e infraestructura de su establecimiento?",
+      "microcopy": "El sub-eslabón determina los requerimientos de Licencia Sanitaria COFEPRIS, normas de bioseguridad, quirófanos o acreditación ISO 15189.",
+      "type": "single_select",
+      "prefilled": true,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Hospital General, de Especialidad o Clínica Quirúrgica: Infraestructura hospitalaria con camas censables, quirófanos, terapia intensiva y urgencias 24/7.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Laboratorio de Análisis Clínicos, Patología y Biología Molecular: Procesamiento de muestras biológicas, anatomía patológica, citología y diagnóstico genético.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Centro de Diagnóstico por Imagen y Gabinete: Ultrasonografía, Rayos X digitales, Tomografía Computarizada (TAC), Resonancia Magnética (RMN) y Mastografía.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Clínicas Ambulatorias, Consultorios de Especialidad y Cirugía de Día: Atención médica ambulatoria, procedimientos de corta estancia y hemodiálisis.",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "MD-02",
+      "level": "n2",
+      "sectorId": "medico-hospitalario",
+      "section": "MÓDULO 0: PERFILADO DEL ESLABÓN Y LOCALIZACIÓN TERRITORIAL (HEREDADO DE NIVEL 1)",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Nodo de Salud y Cobertura Territorial",
+      "prompt": "¿En qué corredor o nodo urbano de salud de la región Puebla - Tlaxcala se ubica su establecimiento principal?",
+      "microcopy": "La localización determina la densidad de demanda de pacientes, conectividad vial para ambulancias/muestras y presencia de competidores.",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Corredor 1: ZMPT Puebla Metropolitano - Angelópolis / HUZ / Zona Dorada: Hub hospitalario y de diagnóstico de alta densidad y mayor nivel socioeconómico.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Corredor 2: Tehuacán y Nodo Agroindustrial-Sur: Centro de referencia médica para el valle de Tehuacán, Mixteca y sierras colindantes.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Corredor 3: San Martín Texmelucan - Huejotzingo: Cobertura médica y de laboratorio vinculada a zonas industriales y municipios del poniente.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Corredor 4: Tlaxcala Capital - Apizaco - Huamantla: Nodo central de servicios sanitarios y laboratorios del estado de Tlaxcala.",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "MD-03",
+      "level": "n2",
+      "sectorId": "medico-hospitalario",
+      "section": "MÓDULO 0: PERFILADO DEL ESLABÓN Y LOCALIZACIÓN TERRITORIAL (HEREDADO DE NIVEL 1)",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Acreditación Sanitaria y Normativa Vigente",
+      "prompt": "¿Cuál es el nivel formal de acreditación o certificación sanitaria que ostenta su establecimiento?",
+      "microcopy": "La certificación del Consejo de Salubridad General (CSG) o ISO 15189 valida la calidad clínica, seguridad del paciente y elegibilidad con aseguradoras.",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Cumplimiento Básico / Aviso de Funcionamiento COFEPRIS: Registro sanitario básico y Responsable Sanitario designado sin auditorías formales de acreditación.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Licencia Sanitaria COFEPRIS Vigente con Protocolos Internos: Licencia sanitaria para actos quirúrgicos/laboratorio con control de calidad interno (PNC).",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Acreditación de Calidad ISO 15189 / Certificación CSG Vigente: Laboratorio acreditado en ISO 15189 por ema o Certificado de Certificación de Hospitales CSG.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Multicertificación Internacional (JCI / ISO 9001 / ISO 13485 / ISO 15189): Estándar de la Joint Commission International o sistema integral multiauditado.",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "R00-MED-PROD",
+      "level": "n2",
+      "sectorId": "medico-hospitalario",
+      "section": "SECCIÓN I: ROMPEHIELOS DE SEVERIDAD OPERATIVA (MÉTODO DE BORDA)",
+      "widget": "Rompehielos de Jerarquización (1 al 8)",
+      "title": "Jerarquización de Fricciones en Operación Médica y Laboratorio",
+      "prompt": "Ordene del 1 al 8 las siguientes fricciones según el impacto negativo y la frecuencia con que afectan su establecimiento (1 = Mayor impacto / Máxima gravedad; 8 = Menor impacto)",
+      "microcopy": "Permite priorizar las causas de ineficiencia o riesgo clínico antes de la auditoría técnica detallada.",
+      "type": "rank",
+      "prefilled": false,
+      "factorCount": 8,
+      "factors": [
+        {
+          "id": "f1",
+          "label": "Tiempos de espera prolongados en atención de pacientes, asignación de camas o toma de muestras."
+        },
+        {
+          "id": "f2",
+          "label": "Mermas y pérdidas económicas por caducidad de reactivos de diagnóstico o insumos médicos."
+        },
+        {
+          "id": "f3",
+          "label": "Paros no programados por fallas mecánicas/electrónicas en tomógrafos, analizadores o autoclaves."
+        },
+        {
+          "id": "f4",
+          "label": "Alta rotación y escasez de personal médico especializado, químicos analistas y personal de enfermería."
+        },
+        {
+          "id": "f5",
+          "label": "Cuellos de botella en el tiempo de entrega de resultados de laboratorio o procesamiento en quirófano."
+        },
+        {
+          "id": "f6",
+          "label": "Fallas en el control de climatización, filtración HEPA o presión en quirófanos y salas limpias (ISO 14644)."
+        },
+        {
+          "id": "f7",
+          "label": "Registro manual en papel de expediente clínico y bitácoras de laboratorio, con riesgo de extravío."
+        },
+        {
+          "id": "f8",
+          "label": "Reclamaciones de pacientes o médicos tratantes por discrepancias en estudios o diferimiento de citas."
+        }
+      ]
+    },
+    {
+      "id": "R00-MED-SOURCING-MAT",
+      "level": "n2",
+      "sectorId": "medico-hospitalario",
+      "section": "SECCIÓN I: ROMPEHIELOS DE SEVERIDAD OPERATIVA (MÉTODO DE BORDA)",
+      "widget": "Rompehielos de Jerarquización (1 al 6)",
+      "title": "Jerarquización de Riesgos en Sourcing de Reactivos e Insumos",
+      "prompt": "Ordene del 1 al 6 las restricciones de suministro que mayor volatilidad o desabasto causan en su operación (1 = Mayor impacto negativo; 6 = Menor impacto)",
+      "microcopy": "Mide la vulnerabilidad de la unidad médica ante el suministro de insumos clave para el diagnóstico y tratamiento.",
+      "type": "rank",
+      "prefilled": false,
+      "factorCount": 6,
+      "factors": [
+        {
+          "id": "f1",
+          "label": "Volatilidad de precios y desabasto de reactivos para analizadores de laboratorio importados."
+        },
+        {
+          "id": "f2",
+          "label": "Escasez y sobrecosto en material de curación, suturas, jeringas y consumibles de especialidad."
+        },
+        {
+          "id": "f3",
+          "label": "Tardanza y desabasto en el suministro de medicamentos controlados u oncológicos."
+        },
+        {
+          "id": "f4",
+          "label": "Restricciones y variabilidad en la calidad del agua purificada/grado inyectable para laboratorio."
+        },
+        {
+          "id": "f5",
+          "label": "Volatilidad en el costo de gases medicinales (Oxígeno, Nitrógeno, Óxido Nitroso) en tanques/cilindros."
+        },
+        {
+          "id": "f6",
+          "label": "Tardanza en la importación y entrega de refacciones para equipos médicos y de laboratorio."
+        }
+      ]
+    },
+    {
+      "id": "R00-MED-SOURCING-SERV",
+      "level": "n2",
+      "sectorId": "medico-hospitalario",
+      "section": "SECCIÓN I: ROMPEHIELOS DE SEVERIDAD OPERATIVA (MÉTODO DE BORDA)",
+      "widget": "Rompehielos de Jerarquización (1 al 6)",
+      "title": "Jerarquización de Deficiencias en Infraestructura y Servicios",
+      "prompt": "Ordene del 1 al 6 las mayores deficiencias en servicios externos e infraestructura regulada (1 = Mayor impacto negativo; 6 = Menor impacto)",
+      "microcopy": "Mide las fallas exógenas en la cadena de servicios de salud en la región Puebla-Tlaxcala.",
+      "type": "rank",
+      "prefilled": false,
+      "factorCount": 6,
+      "factors": [
+        {
+          "id": "f1",
+          "label": "Tramitología lenta y demoras en visitas de verificación de COFEPRIS / COPRISEP."
+        },
+        {
+          "id": "f2",
+          "label": "Falta de empresas locales autorizadas para recolección oportuna de Residuos Biológico-Infecciosos (RPBI)."
+        },
+        {
+          "id": "f3",
+          "label": "Micro-cortes y variaciones de voltaje eléctrico que dañan reactivos o descalibran analizadores."
+        },
+        {
+          "id": "f4",
+          "label": "Costo elevado e indisponibilidad de software de Expediente Clínico Electrónico (ECE) certificado NOM-024."
+        },
+        {
+          "id": "f5",
+          "label": "Inseguridad y riesgo de robo de reactivos o insumos durante el traslado en carreteras regionales."
+        },
+        {
+          "id": "f6",
+          "label": "Escasez de laboratorios locales acreditados en calibración ISO/IEC 17025 para equipos médicos."
+        }
+      ]
+    },
+    {
+      "id": "MD-TECH-01",
+      "level": "n2",
+      "sectorId": "medico-hospitalario",
+      "section": "SECCIÓN II: AUDITORÍA TÉCNICA DIRECTA Y ABSORCIÓN TECNOLÓGICA (P1 A P5 CONTEXTUALIZADAS)",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Absorción Tecnológica P1: Tecnologías de Sourcing Crítico",
+      "prompt": "¿Cuál de las siguientes tecnologías o equipos de diagnóstico/tratamiento requiere adquirir o modernizar pero enfrenta sobrecostos o falta de proveedores calificados?",
+      "microcopy": "Identifica el equipamiento médico-clínico de mayor valor con falla de proveeduría en la región.",
+      "type": "single_select_text",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Tomógrafo Computarizado (TAC Multicorte) / Resonancia Magnética (RMN): Equipos de imagenología de alta resolución y bajo tiempo de escaneo.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Analizadores Automáticos de Laboratorio (Química Clínica / Hematología / Biología Molecular PCR) de Alta Velocidad.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Infraestructura de Quirófano Inteligente y Cuarto Limpio ISO 14644 con Flujo Laminar y Filtros HEPA.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Sistemas PACS/RIS Cloud para Gestión, Archivo y Distribución Digital de Imágenes Médicas (DICOM).",
+          "score": null
+        },
+        {
+          "value": "opt5",
+          "label": "Autoclaves de Esterilización Continuos y Lavadoras Desinfectadoras Automatizadas para CEYE.",
+          "score": null
+        },
+        {
+          "value": "opt6",
+          "label": "Otro",
+          "score": null
+        }
+      ],
+      "text": {
+        "maxLength": 100,
+        "optionValue": "opt6"
+      }
+    },
+    {
+      "id": "MD-TECH-02",
+      "level": "n2",
+      "sectorId": "medico-hospitalario",
+      "section": "SECCIÓN II: AUDITORÍA TÉCNICA DIRECTA Y ABSORCIÓN TECNOLÓGICA (P1 A P5 CONTEXTUALIZADAS)",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Absorción Tecnológica P2: Subaprovechamiento de Tecnologías Instaladas",
+      "prompt": "¿Qué sistema o equipo médico/clínico ya tiene instalado pero NO funciona a su máxima capacidad o se encuentra subaprovechado?",
+      "microcopy": "Mide la falla de absorción por falta de interfaces, capacitación del personal o integración digital.",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Analizadores automáticos de laboratorio operando en modo semimanual por falta de interfaz bidireccional LIMS/LIS.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Sistema PACS/RIS instalado pero utilizado solo para quemar CDs/imprimir placas en lugar de distribución digital.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Software de Expediente Clínico Electrónico (ECE) subutilizado (se sigue llevando nota médica en papel).",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Autoclaves o equipos CEYE operados con ciclos manuales sin registro digital de temperatura y presión.",
+          "score": null
+        },
+        {
+          "value": "opt5",
+          "label": "Equipos de ultrasonido o electrocardiógrafos sin integración a la red médica de la clínica.",
+          "score": null
+        },
+        {
+          "value": "opt6",
+          "label": "Ninguno / Todos los equipos e infraestructura funcionan a su máximo rendimiento.",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "MD-TECH-03",
+      "level": "n2",
+      "sectorId": "medico-hospitalario",
+      "section": "SECCIÓN II: AUDITORÍA TÉCNICA DIRECTA Y ABSORCIÓN TECNOLÓGICA (P1 A P5 CONTEXTUALIZADAS)",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Absorción Tecnológica P3: Brecha con la Frontera Internacional",
+      "prompt": "¿Qué tecnología utilizan los centros médicos o laboratorios internacionales líderes que los hace significativamente más competitivos?",
+      "microcopy": "Evalúa la distancia a la frontera tecnológica sanitaria global (Benchmark Aghion / OMPI 2026).",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Diagnóstico Asistido por Inteligencia Artificial en Imagenología y Patología Digital para detección oportuna.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Telemedicina Inmersiva e Integración Quirúrgica en Tiempo Real con Transmisión HD/4K sin latencia.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Secuenciación Genómica de Siguiente Generación (NGS) para Medicina de Precisión y Oncología Molecular.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Quirófanos Híbridos Robóticos (Sistemas Da Vinci / Guiados por Imagen 3D en tiempo real).",
+          "score": null
+        },
+        {
+          "value": "opt5",
+          "label": "Total Laboratory Automation (TLA): Cadena robótica integral de procesamiento y distribución de muestras de laboratorio.",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "MD-TECH-04",
+      "level": "n2",
+      "sectorId": "medico-hospitalario",
+      "section": "SECCIÓN II: AUDITORÍA TÉCNICA DIRECTA Y ABSORCIÓN TECNOLÓGICA (P1 A P5 CONTEXTUALIZADAS)",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Absorción Tecnológica P4: Tecnología Revolucionaria / Apuesta Transformacional",
+      "prompt": "¿Qué proyecto transformacional o incorporación tecnológica revolucionaría la competitividad y calidad de su establecimiento en los próximos 2 a 3 años?",
+      "microcopy": "Mide el potencial de salto en el espacio de servicios de salud de alta complejidad (CIDE / Harvard).",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Conversión 100% a Hospital Digital Certificado JCI / CSG con Expediente Clínico 100% Sin Papel.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Plataforma Regional de Telemedicina y Monitoreo Remoto de Pacientes (RPM) con dispositivos IoT biométricos.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Laboratorio de Referencia de Alta Especialidad Certificado ISO 15189 con automatización TLA.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Centro de Cirugía Robótica y Mínima Invasión de Alta Resolución.",
+          "score": null
+        },
+        {
+          "value": "opt5",
+          "label": "Centro de Medicina Preventiva y Diagnóstico Genómico de Precisión.",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "MD-TECH-05",
+      "level": "n2",
+      "sectorId": "medico-hospitalario",
+      "section": "SECCIÓN II: AUDITORÍA TÉCNICA DIRECTA Y ABSORCIÓN TECNOLÓGICA (P1 A P5 CONTEXTUALIZADAS)",
+      "widget": "Tarjeta de Selección Única + Texto Libre",
+      "title": "Absorción Tecnológica P5: Demanda Explícita de Proyectos Tecnológicos Inmediatos",
+      "prompt": "¿Hay algún proyecto específico o necesidad prioritaria que requiera abordar a la brevedad en su establecimiento?",
+      "microcopy": "Captura la demanda real de acompañamiento técnico para asignación inmediata a programas de apoyo.",
+      "type": "single_select_text",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Proyecto 1: Obtención de la Acreditación ISO 15189 / Certificación del Consejo de Salubridad General (CSG).",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Proyecto 2: Implementación de Expediente Clínico Electrónico (ECE) Interoperable NOM-024 / PACS RIS Cloud.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Proyecto 3: Modernización de Quirófanos / Flujo Laminar e Infraestructura de Cuartos Limpios (ISO 14644).",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Proyecto 4: Sistema Digital de Control de Calidad Interno/Externo (PNC) y Trazabilidad de Muestras de Laboratorio.",
+          "score": null
+        },
+        {
+          "value": "opt5",
+          "label": "Un proyecto propio",
+          "score": null
+        }
+      ],
+      "text": {
+        "maxLength": 100,
+        "optionValue": "opt5"
+      }
+    },
+    {
+      "id": "MD-TECH-06",
+      "level": "n2",
+      "sectorId": "medico-hospitalario",
+      "section": "SECCIÓN II: AUDITORÍA TÉCNICA DIRECTA Y ABSORCIÓN TECNOLÓGICA (P1 A P5 CONTEXTUALIZADAS)",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Control de Mermas de Reactivos e Infecciones Nosocomiales (IAAS)",
+      "prompt": "¿Cuál es el porcentaje promedio de reactivos vencidos/mermas y la tasa de Infecciones Asociadas a la Atención de la Salud (IAAS)?",
+      "microcopy": "Mide la seguridad clínica del paciente y la eficiencia económica en la gestión de reactivos.",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Mermas de reactivos > 5%; tasa de IAAS nosocomiales superior al 3.0%; registros manuales.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Mermas de reactivos entre 2% y 5%; tasa de IAAS entre 1.5% y 3.0%; control por bitácora.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Mermas de reactivos entre 0.5% y 2%; tasa de IAAS entre 0.5% y 1.5%; monitoreo continuo por epidemiología.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Mermas de reactivos < 0.5%; tasa de IAAS < 0.5%; indicadores en tiempo real y política Cero Infecciones.",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "MD-TECH-07",
+      "level": "n2",
+      "sectorId": "medico-hospitalario",
+      "section": "SECCIÓN II: AUDITORÍA TÉCNICA DIRECTA Y ABSORCIÓN TECNOLÓGICA (P1 A P5 CONTEXTUALIZADAS)",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Interoperabilidad de Expediente Clínico Electrónico (ECE) y PACS/RIS",
+      "prompt": "¿Qué nivel de integración digital y cumplimiento de la NOM-024-SSA3 ostenta su sistema de expediente clínico e imágenes médicas?",
+      "microcopy": "La interoperabilidad del ECE (HL7/DICOM) es la base para la continuidad asistencial y seguridad del paciente.",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Expediente Físico en Papel: Sin sistema ECE digital; estudios de imagen entregados impresos o en CD/DVD.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "ECE Interno Aislado (Sin NOM-024): Software local para notas médicas sin certificación de interoperabilidad HL7 ni conexión a LIMS/PACS.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "ECE Certificado NOM-024 con PACS/RIS Básico: Expediente digital normado conectado a LIS/PACS en red local.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "ECE Interoperable 4.0 Cloud (HL7 / DICOM / ISO 27001): Plataforma en la nube accesible desde móvil/tablet con firma digital del médico.",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "CP-MD-01",
+      "level": "n2",
+      "sectorId": "medico-hospitalario",
+      "section": "SECCIÓN III: SOFISTICACIÓN PRODUCTIVA Y ESPACIO DE PRODUCTOS (CIDE / HARVARD)",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Reconversión hacia la 'Fruta Madura' Médica (Alta Densidad ω_j > 0.65)",
+      "prompt": "Considerando sus instalaciones y médicos, ¿hacia qué servicio de mayor valor agregado podría expandirse en menos de 12 meses?",
+      "microcopy": "Mide la capacidad de salto hacia servicios de salud adyacentes de mayor rentabilidad.",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Unidad de Cirugía Ambulatoria de Corta Estancia y Procedimientos de Día.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Centro de Diagnóstico Preventivo de Alta Resolución (Check-ups Ejecutivos Integral).",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Laboratorio Especializado en Biología Molecular, PCR y Patología Digital.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Unidad de Hemodiálisis y Tratamiento Renal Integral.",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "CP-MD-02",
+      "level": "n2",
+      "sectorId": "medico-hospitalario",
+      "section": "SECCIÓN III: SOFISTICACIÓN PRODUCTIVA Y ESPACIO DE PRODUCTOS (CIDE / HARVARD)",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Apuestas Estratégicas y Servicios Complejos (Alto ICPO)",
+      "prompt": "En un horizonte de 2 a 3 años con coinversión y tecnología, ¿qué servicio de alta complejidad podría desarrollar su establecimiento?",
+      "microcopy": "Evalúa la capacidad de diversificación hacia medicina y diagnóstico de alta resolución (Índice ICPO).",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Centro de Cirugía Robótica de Mínima Invasión y Microcirugía.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Laboratorio de Diagnóstico Genómico de Precisión y Oncología Molecular.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Hub de Turismo Médico Internacional Acreditado JCI.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Centro de Medicina Regenerativa, Terapia Celular y Banco de Tejidos.",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "CP-MD-03",
+      "level": "n2",
+      "sectorId": "medico-hospitalario",
+      "section": "SECCIÓN III: SOFISTICACIÓN PRODUCTIVA Y ESPACIO DE PRODUCTOS (CIDE / HARVARD)",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Manejo Sustentable de RPBI, Eficiencia Hídrica y Energética",
+      "prompt": "¿Qué nivel de avance tiene su establecimiento en la gestión ambiental, tratamiento de aguas y manejo sustentable de RPBI?",
+      "microcopy": "La gestión de residuos peligrosos biológico-infecciosos (RPBI) e inocuidad ambiental es crítica.",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Cumplimiento Básico: Recolección convencional de RPBI por tercero; sin programa de eficiencia energética en HVAC.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Protocolos de Separación Avanzada: Segregación estricta de RPBI; desinfección interna; iluminación LED en todo el edificio.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Tratamiento In Situ Eficiente: Autoclave/microondas para inactivación de RPBI previo a disposición; plantas de tratamiento de aguas grises.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Hospital Verde / Eco-Clinica: Sistema HVAC Inverter con recuperación de energía, paneles solares y certificación Green Hospital.",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "COL-MD01",
+      "level": "n2",
+      "sectorId": "medico-hospitalario",
+      "section": "SECCIÓN IV: SOLUCIONES COLABORATIVAS ANTE LA FALLA DE ESCALA (BIENES DE CLUB)",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Medical Imaging & Pathology Hub Comunitario",
+      "prompt": "¿Cuál sería la disposición de su establecimiento para utilizar un Hub Comunitario de Diagnóstico por Imagen (RMN/TAC) y Patología Genómica bajo esquema Pay-per-Use?",
+      "microcopy": "Permite acceder a tomografía/resonancia de alta gama y secuenciación genómica sin inversión en CAPEX.",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Alto Interés / Usuario Frecuente: Derivaría pacientes y muestras para estudios de alta resolución pagando por estudio realizado.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Interés Moderado: Utilizaría el Hub como respaldo para picos de demanda o mantenimientos de equipos propios.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Socio Académico: Vincularía al Hub médicos residentes y técnicos para proyectos de investigación.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Sin Interés: Cuenta con equipos de alta resolución propios suficientes.",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "COL-MD02",
+      "level": "n2",
+      "sectorId": "medico-hospitalario",
+      "section": "SECCIÓN IV: SOLUCIONES COLABORATIVAS ANTE LA FALLA DE ESCALA (BIENES DE CLUB)",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Centro Comunitario de Capacitación, Calidad y Acreditación Sanitaria (ISO 15189 / CSG)",
+      "prompt": "¿Cómo participaría su establecimiento en un Centro Regional en Cuádruple Hélice para la Acreditación ISO 15189 y Certificación CSG?",
+      "microcopy": "Reduce costos de consultoría y auditorías previas de acreditación sanitaria hasta en un 50%.",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Participante en Programa de Acreditación: Incorporar a su personal a los comités de preparación ISO 15189 / CSG.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Intercambio de Control de Calidad Externo (PEEC): Participar en ensayos interlaboratorios comunitarios a tarifas preferenciales.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Capacitación Continua: Enviar médicos, químicos y enfermeras a programas continuos de bioseguridad y NOM-024.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Sin Interés: Mantiene sus procesos de certificación con auditores privados individuales.",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "COL-MD03",
+      "level": "n2",
+      "sectorId": "medico-hospitalario",
+      "section": "SECCIÓN IV: SOLUCIONES COLABORATIVAS ANTE LA FALLA DE ESCALA (BIENES DE CLUB)",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Consorcio de Compras Consolidadas de Reactivos, Medicamentos y Póliza Sanitaria",
+      "prompt": "¿Qué grado de apertura tiene su establecimiento para integrarse a un Consorcio de Compras Consolidadas de reactivos, insumos y RPBI?",
+      "microcopy": "La consolidación de demanda de reactivos e insumos médicos permite obtener ahorros directos de entre 15% y 30%.",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Compra Consolidada de Reactivos y Consumibles: Unirse a la compra por volumen de reactivos de laboratorio y material de curación.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Consolidación de Servicios de RPBI y Calibración: Contratar en paquete regional la recolección de RPBI y la calibración ISO 17025.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Póliza Consolidada de Mantenimiento de Equipos: Adquirir pólizas grupales de mantenimiento preventivo para tomógrafos y analizadores.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Sin Interés: Prefiere negociar directamente con sus proveedores actuales.",
+          "score": null
+        }
+      ]
+    }
+  ],
+  "roadmap": [
+    {
+      "band": "platino",
+      "min": 75.0,
+      "max": null,
+      "actions": [
+        "Capa A (Digital/TI): Implementación de IA diagnóstica en imagenología, plataforma de Telemedicina RPM e integración HL7.",
+        "Capa B (Bienes de Club): Liderazgo en el Medical Hub para estudios genómicos y transferencia metodológica."
+      ]
+    },
+    {
+      "band": "oro",
+      "min": 55.0,
+      "max": 75.0,
+      "actions": [
+        "Capa A (Digital/TI): Integración bidireccional LIMS/ECE, visor DICOM web para pacientes, app de agendamiento y firma digital.",
+        "Capa B (Bienes de Club): Acompañamiento en el Centro Comunitario para acreditación ISO 15189 y apoyo en CEYE."
+      ]
+    },
+    {
+      "band": "plata",
+      "min": 35.0,
+      "max": 55.0,
+      "actions": [
+        "Capa A (Digital/TI): Kit ECE Cloud certificado NOM-024, software de código de barras QR para muestras y control digital de mermas.",
+        "Capa B (Bienes de Club): Ensayos interlaboratorios comunitarios y derivación de estudios al Medical Imaging Hub."
+      ]
+    },
+    {
+      "band": "bronce",
+      "min": 0.0,
+      "max": 35.0,
+      "actions": [
+        "Capa A (Digital/TI): Capacitación básica en ECE digital, orden de laboratorio electrónica y bitácoras de inocuidad en tablet.",
+        "Capa B (Bienes de Club): Incorporación al Consorcio de Compras Consolidadas de Reactivos y Recolección de RPBI."
+      ]
+    }
+  ]
+}

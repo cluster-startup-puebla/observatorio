@@ -1,0 +1,751 @@
+{
+  "sectorId": "inmobiliario",
+  "label": "19. Desarrollo e Intermediación Inmobiliaria",
+  "questions": [
+    {
+      "id": "IN-01",
+      "level": "n2",
+      "sectorId": "inmobiliario",
+      "section": "Inicio",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Eslabón Dominante en el Sector Inmobiliario",
+      "prompt": "¿En cuál de las siguientes vertientes inmobiliarias se concentra la mayor proporción de la facturación de su empresa?",
+      "microcopy": "Define los estándares normativos (NOM-247-SE-2021 / PROFECO) y el grado de complejidad técnica y financiera.",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Desarrollo Habitacional (Interés Social, Medio, Residencial y Vertical).",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Desarrollo Industrial y Logístico (Parques Industriales, Naves KTS y Bodegas de Distribución).",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Desarrollo Comercial, Corporativo y de Usos Mixtos (Plazas Comerciales, Oficinas y Usos Mixtos).",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Intermediación, Brokerage, Valuación y Servicios PropTech (Comercialización y Gestión Patrimonial).",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "IN-02",
+      "level": "n2",
+      "sectorId": "inmobiliario",
+      "section": "Inicio",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Corredor Territorial de Operación Inmobiliaria",
+      "prompt": "¿En qué corredor o zona metropolitana de la región Puebla - Tlaxcala se localiza la mayor parte de sus proyectos?",
+      "microcopy": "Permite evaluar el costo del suelo, la velocidad de absorción del mercado y la disponibilidad de infraestructura hídrica y eléctrica.",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Corredor Metropolitano Angelópolis / Lomas de Angelópolis / San Andrés y San Pedro Cholula.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "ZM Puebla Norte / Huejotzingo / Cuautlancingo / Amozoc (Corredor Industrial y Habitacional).",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Corredor Oriental / Ciudad Modelo / Huamantla / San José Chiapa.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Nodo Tlaxcala (Capital / Apizaco / Chiautempan / Calpulalpan).",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "IN-03",
+      "level": "n2",
+      "sectorId": "inmobiliario",
+      "section": "Inicio",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Certificación de Calidad y Sustentabilidad Inmobiliaria",
+      "prompt": "¿Cuál es el nivel más alto de certificación formal o estándar normativo que ostenta su empresa?",
+      "microcopy": "Las certificaciones ambientales e institucionales son la garantía para acceder a créditos verdes y fondos institucionales.",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Cumplimiento Normativo Básico PROFECO (NOM-247-SE-2021) y Registros Municipales.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Certificación de Procesos ISO 9001:2015 o Metodología Lean Construction en Ejecución de Obra.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Certificación Sustentable EDGE Básico / LEED Certified / Cumplimiento NOM-008-ENER.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Multi-certificación de Frontera (LEED Gold/Platinum + EDGE Advanced + WELL Building Standard).",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "R00-IN-PROD",
+      "level": "n2",
+      "sectorId": "inmobiliario",
+      "section": "Inicio",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Jerarquización de Fricciones en Desarrollo y Gestión de Obra",
+      "prompt": "Ordene del 1 al 8 los siguientes problemas operativos según el impacto negativo que generan en sus desarrollos (1 = Mayor impacto)",
+      "microcopy": "Identifica los cuellos de botella directos en la ejecución física y comercial de proyectos inmobiliarios.",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Retardos y excesiva burocracia en licencias de construcción y cambio de uso de suelo.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Retrasos e incertidumbre en la obtención de dictámenes de factibilidad de agua, drenaje y energía.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Incertidumbre jurídica en la tenencia de la tierra y regularización de predios.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Sobrecostos y paros de obra por volatilidad de precios en acero, cemento y concreto.",
+          "score": null
+        },
+        {
+          "value": "opt5",
+          "label": "Escasez de mano de obra calificada en obra civil y alta rotación de subcontratistas.",
+          "score": null
+        },
+        {
+          "value": "opt6",
+          "label": "Elevado costo de financiamiento puente e intermediación financiera bancaria.",
+          "score": null
+        },
+        {
+          "value": "opt7",
+          "label": "Lentitud en la escrituración e inscripción en el Registro Público de la Propiedad.",
+          "score": null
+        },
+        {
+          "value": "opt8",
+          "label": "Baja efectividad en el cierre de ventas y dependencia de esquemas tradicionales de comercialización.",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "R00-IN-SOURCING-MAT",
+      "level": "n2",
+      "sectorId": "inmobiliario",
+      "section": "Inicio",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Jerarquización de Riesgos en Sourcing de Suelo e Insumos",
+      "prompt": "Ordene del 1 al 6 los mayores riesgos en el abastecimiento de suelo e insumos (1 = Mayor riesgo; 6 = Menor riesgo)",
+      "microcopy": "Determina la vulnerabilidad de la cadena de proveeduría y el acceso a activos territoriales estratégicos.",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Inflación y volatilidad descontrolada en materiales estructurales (acero de refuerzo/concreto).",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Escasez de suelo urbanizable bien ubicado con servicios básicos a costo razonable.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Retrasos en la acometida e instalación de infraestructura de telecomunicaciones y fibra óptica.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Escasez de proveedores locales certificados de eco-tecnologías y sistemas solares/hídricos.",
+          "score": null
+        },
+        {
+          "value": "opt5",
+          "label": "Elevados costos de derechos de conexión municipal y aportaciones de infraestructura.",
+          "score": null
+        },
+        {
+          "value": "opt6",
+          "label": "Exigencia de anticipos elevados y plazos de crédito reducidos por parte de proveedores.",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "R00-IN-SOURCING-SERV",
+      "level": "n2",
+      "sectorId": "inmobiliario",
+      "section": "Inicio",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Jerarquización de Deficiencias en Servicios de Apoyo",
+      "prompt": "Ordene del 1 al 6 las mayores limitaciones en servicios externos en Puebla-Tlaxcala (1 = Mayor limitación)",
+      "microcopy": "Evalúa la calidad del ecosistema institucional, pericial y financiero de apoyo al sector.",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Discrepancia de criterios e ineficiencia burocrática entre dependencias municipales y estatales.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Escasez de despachos locales especializados en estudios de impacto ambiental y urbano.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Lentitud en avalúos comerciales e inspecciones técnicas para créditos hipotecarios.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Falta de consultoría especializada en estructuración de Fideicomisos Inmobiliarios y FIBRAs.",
+          "score": null
+        },
+        {
+          "value": "opt5",
+          "label": "Escasez de servicios acreditados de supervisión externa de obra e ingeniería de costos.",
+          "score": null
+        },
+        {
+          "value": "opt6",
+          "label": "Deficiente infraestructura vial y de conectividad pública hacia nuevos desarrollos.",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "IN-TECH-01",
+      "level": "n2",
+      "sectorId": "inmobiliario",
+      "section": "Inicio",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Absorción Tecnológica P1: Cobertura de Equipamiento y Stack Tecnológico",
+      "prompt": "¿Qué tecnologías o sistemas digitales tiene implementados y en operación en su empresa? (Seleccione todas las que apliquen)",
+      "microcopy": "Evalúa la amplitud del stack tecnológico inmobiliario. (+20 pts por casilla habilitada).",
+      "type": "multi_select",
+      "prefilled": false,
+      "factorCount": 5,
+      "factors": [
+        {
+          "id": "f1",
+          "label": "CRM Inmobiliario y Gestión Digital de Leads de Ventas."
+        },
+        {
+          "id": "f2",
+          "label": "Modelado BIM (Building Information Modeling 3D/4D) para diseño y presupuestación."
+        },
+        {
+          "id": "f3",
+          "label": "Recorridos Virtuales 360° / Realidad Virtual / Renders 3D Interactivos para Comercialización."
+        },
+        {
+          "id": "f4",
+          "label": "ERP Especializado en Control de Obra y Presupuestos (Opus / Neodata / ERP Cloud)."
+        },
+        {
+          "id": "f5",
+          "label": "Firma Digital de Contratos y Expediente Electrónico de Clientes."
+        }
+      ]
+    },
+    {
+      "id": "IN-TECH-02",
+      "level": "n2",
+      "sectorId": "inmobiliario",
+      "section": "Inicio",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Absorción Tecnológica P2: Subutilización Tecnológica (IST)",
+      "prompt": "¿Qué porcentaje de los módulos del ERP de control de obra o CRM son ignorados o no aprovechados por el equipo?",
+      "microcopy": "Mide la brecha entre la capacidad instalada y el uso real del software (Score = 100 - IST).",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Todo el personal utiliza el ERP/CRM en tiempo real en obra y ventas.",
+          "score": 100
+        },
+        {
+          "value": "opt2",
+          "label": "Funciones básicas activas, pero reportes avanzados no se utilizan.",
+          "score": 75
+        },
+        {
+          "value": "opt3",
+          "label": "El sistema solo se usa para facturar; el control de obra se lleva en Excel.",
+          "score": 50
+        },
+        {
+          "value": "opt4",
+          "label": "Software abandonado o utilizado como mero archivo digital.",
+          "score": 25
+        }
+      ]
+    },
+    {
+      "id": "IN-TECH-03",
+      "level": "n2",
+      "sectorId": "inmobiliario",
+      "section": "Inicio",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Absorción Tecnológica P3: Brecha con la Frontera Internacional",
+      "prompt": "¿Qué tecnología de vanguardia utilizan los desarrolladores globales líderes que los hace más competitivos?",
+      "microcopy": "Evalúa la distancia a la frontera tecnológica internacional (Benchmark Aghion / OMPI 2026).",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Sistemas de construcción industrializada / modular off-site, Gemelos Digitales (Digital Twin) de edificación e integración PropTech de tokenización inmobiliaria.",
+          "score": 100
+        },
+        {
+          "value": "opt2",
+          "label": "Modelado BIM 5D con vinculación automática de costos en tiempo real y sensores IoT en obra.",
+          "score": 80
+        },
+        {
+          "value": "opt3",
+          "label": "Plataforma CRM avanzada integrada a firmas digitales y pre-aprobación hipotecaria bancaria en línea.",
+          "score": 60
+        },
+        {
+          "value": "opt4",
+          "label": "Renders 3D estáticos y recorridos 360° básicos en sitio web.",
+          "score": 40
+        },
+        {
+          "value": "opt5",
+          "label": "Planos en 2D en papel y comercialización por mantas e impresos tradicionales.",
+          "score": 20
+        }
+      ]
+    },
+    {
+      "id": "IN-TECH-04",
+      "level": "n2",
+      "sectorId": "inmobiliario",
+      "section": "Inicio",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Absorción Tecnológica P4: Apuesta Transformacional a 24--36 Meses",
+      "prompt": "¿Qué proyecto transformacional tiene planeado su empresa para los próximos 2 a 3 años?",
+      "microcopy": "Mide la visión estratégica a mediano plazo para reconvertir la oferta hacia edificación sustentable.",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Desarrollo de proyectos Net Zero (Consumo Energético Nulo) o uso de IA para análisis predictivo de suelo.",
+          "score": 100
+        },
+        {
+          "value": "opt2",
+          "label": "Certificación masiva EDGE Advanced / LEED Gold en el 100% de los nuevos desarrollos.",
+          "score": 80
+        },
+        {
+          "value": "opt3",
+          "label": "Migración total a construcción modular industrializada e integración BIM 5D.",
+          "score": 60
+        },
+        {
+          "value": "opt4",
+          "label": "Implementación de un CRM Cloud integrado a Firma Digital para eliminar trámites en papel.",
+          "score": 40
+        },
+        {
+          "value": "opt5",
+          "label": "Sin planes de inversión o reconversión tecnológica a mediano plazo.",
+          "score": 20
+        }
+      ]
+    },
+    {
+      "id": "IN-TECH-05",
+      "level": "n2",
+      "sectorId": "inmobiliario",
+      "section": "Inicio",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Absorción Tecnológica P5: Demanda Explícita de Proyectos Tecnológicos Inmediatos",
+      "prompt": "¿Existe algún proyecto tecnológico o necesidad específica que su empresa desee abordar a la brevedad?",
+      "microcopy": "Captura la demanda real e inmediata de apoyo técnico. (Tarjeta Sectorial + Texto Libre, Score Neutro = 60.0 pts).",
+      "type": "single_select_text",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Proyecto 1: Implementación de Ventanilla Única Digital de Licencias y Tramitología Urbana.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Proyecto 2: Acompañamiento y Consultoría para Certificación Ambiental EDGE / LEED.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Proyecto 3: Integración de Plataforma PropTech de Comercialización Conjunta y CRM Clúster.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Proyecto 4: Estructuración de Fideicomiso Colectivo Inmobiliario y Fondo de Coinversión.",
+          "score": null
+        },
+        {
+          "value": "opt5",
+          "label": "Un proyecto propio",
+          "score": null
+        }
+      ],
+      "text": {
+        "maxLength": 100,
+        "optionValue": "opt5"
+      }
+    },
+    {
+      "id": "IN-TECH-06",
+      "level": "n2",
+      "sectorId": "inmobiliario",
+      "section": "Inicio",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Control de Costos de Obra, Variación de Presupuesto y Tiempos de Entrega",
+      "prompt": "¿Cómo mide y controla su empresa la variación de costos de obra y el cumplimiento del cronograma de entrega?",
+      "microcopy": "Métrica dura de eficiencia operativa y calidad en la ejecución de desarrollos inmobiliarios.",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Desviación de Costo y Tiempo > 15%; presupuestos en Excel sin control de precios unitarios.",
+          "score": 25
+        },
+        {
+          "value": "opt2",
+          "label": "Desviación de Costo y Tiempo entre 8% y 15%; control mensual en Excel con variaciones al cierre.",
+          "score": 50
+        },
+        {
+          "value": "opt3",
+          "label": "Desviación de Costo y Tiempo entre 3% y 8%; control semanal mediante ERP especializado (Opus/Neodata).",
+          "score": 75
+        },
+        {
+          "value": "opt4",
+          "label": "Desviación de Costo y Tiempo < 3%; metodología Last Planner y monitoreo en tiempo real por BIM.",
+          "score": 100
+        }
+      ]
+    },
+    {
+      "id": "IN-TECH-07",
+      "level": "n2",
+      "sectorId": "inmobiliario",
+      "section": "Inicio",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Trazabilidad Digital BIM-ERP, Control de Expedientes y Gestoría",
+      "prompt": "¿Qué nivel de trazabilidad digital e integración de información utiliza su empresa desde el diseño hasta la post-venta?",
+      "microcopy": "Métrica dura de madurez digital y transparencia en el seguimiento de obras y clientes.",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Sin vinculación entre planos, presupuestos y ventas; gestoría en carpetas manuales.",
+          "score": 25
+        },
+        {
+          "value": "opt2",
+          "label": "Planos PDF y hojas de cálculo independientes; envío de reportes escaneados por correo.",
+          "score": 50
+        },
+        {
+          "value": "opt3",
+          "label": "Control de avances por QR en campo conectado al ERP presupuestal.",
+          "score": 75
+        },
+        {
+          "value": "opt4",
+          "label": "Ecosistema Digital 4.0 Integrado (BIM 5D Cloud + ERP Obra + CRM PropTech + Firma Digital de Escrituras).",
+          "score": 100
+        }
+      ]
+    },
+    {
+      "id": "CP-IN-01",
+      "level": "n2",
+      "sectorId": "inmobiliario",
+      "section": "Inicio",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Reconexión hacia la 'Fruta Madura' Inmobiliaria (Alta Densidad ω_j > 0.65)",
+      "prompt": "¿Hacia qué segmento inmobiliario de mayor valor agregado podría reconvertirse su empresa en < 12 meses?",
+      "microcopy": "Evalúa la agilidad de reconversión hacia tipologías de mayor rentabilidad (Espacio de Productos CIDE/Harvard).",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Reconversión hacia Naves Industriales KTS y Parques Logísticos T-MEC en corredores industriales.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Desarrollo de Proyectos Residenciales Verticales de Usos Mixtos con Certificación EDGE.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Reconversión de inmuebles comerciales tradicionales a Centros de Distribución de Última Milla.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Desarrollo de Vivienda de Interés Medio con Integración de Eco-tecnologías Hídricas y Solares.",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "CP-IN-02",
+      "level": "n2",
+      "sectorId": "inmobiliario",
+      "section": "Inicio",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Apuestas Estratégicas y Riesgo de Obsolescencia del Portafolio",
+      "prompt": "¿Qué porcentaje de la facturación de su empresa proviene de desarrollos tradicionales sin criterios ESG o eco-tecnologías?",
+      "microcopy": "Identifica el riesgo de desvalorización patrimonial ante normativas ambientales exigentes.",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Riesgo Crítico (> 60% facturación): Portafolio totalmente enfocado en edificación tradicional sin eficiencia energética.",
+          "score": 25
+        },
+        {
+          "value": "opt2",
+          "label": "Riesgo Moderado (30% a 60% facturación): Proyectos con incorporaciones aisladas de eco-tecnologías.",
+          "score": 50
+        },
+        {
+          "value": "opt3",
+          "label": "Riesgo Bajo (10% a 30% facturación): Portafolio predominantemente sustentable con certificaciones en proceso.",
+          "score": 75
+        },
+        {
+          "value": "opt4",
+          "label": "Blindaje Sostenible (< 10% facturación): 100% de la oferta bajo estándares EDGE / LEED / Net Zero.",
+          "score": 100
+        }
+      ]
+    },
+    {
+      "id": "CP-IN-03",
+      "level": "n2",
+      "sectorId": "inmobiliario",
+      "section": "Inicio",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Sostenibilidad, Edificación Verde y Economía Circular en Obra",
+      "prompt": "¿Qué nivel de avance ostenta su empresa en manejo de residuos de construcción, tratamiento de agua y eficiencia energética?",
+      "microcopy": "Mide la adopción de criterios ESG e impacto comunitario positivo.",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Nulo / Básico: Sin separación de escombro; cumplimiento mínimo de tiraderos municipales.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Moderado: Reciclaje parcial de residuo de acero/madera y plantas de tratamiento básicas en desarrollos.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Avanzado: Plan de Manejo de Residuos de la Construcción certificado y reutilización de agua tratada al 100%.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Excelencia ESG: Edificación Circular, huella de carbono neutra en obra y certificación WELL/LEED.",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "COL-IN01",
+      "level": "n2",
+      "sectorId": "inmobiliario",
+      "section": "Inicio",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Hub Comunitario de Gestoría Urbana, Licencias y Tramitología Unificada",
+      "prompt": "¿Cuál sería el interés de su empresa en participar en un Hub Comunitario de Ventanilla Única de Gestoría Urbana?",
+      "microcopy": "Proyecto de Bienes de Club para reducir tiempos y costos de licenciamiento (IAIC > 1.0).",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "No interesado / Gestión individual de trámites y licencias.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Interés moderado en compartir mesa de gestión para agilizar dictámenes ambientales y hídricos.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Interés alto en integrar un Hub de Gestoría Unificada para reducir tiempos de tramitología a la mitad.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Participación activa como promotor e inversionista del Hub Comunitario de Tramitología Urbana.",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "COL-IN02",
+      "level": "n2",
+      "sectorId": "inmobiliario",
+      "section": "Inicio",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Centro Comunitario de Ingeniería de Costos, Supervisión BIM y Acreditación EDGE/LEED",
+      "prompt": "¿Cómo participaría su empresa en un Centro Comunitario de Servicios Técnicos BIM y Auditoría Sustentable?",
+      "microcopy": "Solución asociativa ante la falla de escala en adopción de software e ingenierías avanzadas (IFET).",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Sin interés / Contratación externa individual de supervisión.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Interés en contratar horas de modelado BIM y consultoría EDGE a tarifas comunitarias prenegociadas.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Integración plena al Centro Comunitario para certificar todo el portafolio de proyectos.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Co-fundación del Centro Regional de Ingeniería de Costos y Sustentabilidad Inmobiliaria.",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "COL-IN03",
+      "level": "n2",
+      "sectorId": "inmobiliario",
+      "section": "Inicio",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Consorcio de Compras Consolidadas de Materiales de Construcción y Fondo Colectivo",
+      "prompt": "¿Qué grado de apertura tiene su empresa para asociarse en compras consolidadas de materiales y fondos colectivos?",
+      "microcopy": "Mecanismo de agregación de demanda para reducir costos de insumos estructurales (IPCA > 12%).",
+      "type": "rank",
+      "prefilled": false,
+      "factorCount": 4,
+      "factors": [
+        {
+          "id": "f1",
+          "label": "Integración de información al expediente único de diagnóstico regional."
+        },
+        {
+          "id": "f2",
+          "label": "Levantamiento detallado de requerimientos para eliminación del Índice de Subutilización (IST)."
+        },
+        {
+          "id": "f3",
+          "label": "Evaluación de factibilidad para proyectos asociativos de Bienes de Club (Capa B)."
+        },
+        {
+          "id": "f4",
+          "label": "Formalización del plan de acción interno de digitalización (Capa A)."
+        }
+      ]
+    }
+  ],
+  "roadmap": [
+    {
+      "band": "platino",
+      "min": 85.0,
+      "max": null,
+      "actions": [
+        "Gemelo Digital / Analítica Predictiva IA.",
+        "Expansión a mercados globales / Clúster de Exportación.",
+        "Tokenización / Modelos SaaS Avanzados."
+      ]
+    },
+    {
+      "band": "oro",
+      "min": 70.0,
+      "max": 85.0,
+      "actions": [
+        "Integración total ERP-MES / Core en tiempo real.",
+        "Eliminación del IST mediante capacitación enfocada.",
+        "Automatización de trazabilidad y calidad."
+      ]
+    },
+    {
+      "band": "plata",
+      "min": 50.0,
+      "max": 70.0,
+      "actions": [
+        "Digitalización inmediata de controles de piso/servicio.",
+        "Implementación de ERP Cloud básico y código QR/GS1.",
+        "Adhesión a proyectos asociativos de Bienes de Club."
+      ]
+    },
+    {
+      "band": "bronce",
+      "min": 0.0,
+      "max": 50.0,
+      "actions": [
+        "Programa intensivo de orden y estandarización (5S).",
+        "Digitalización de bitácoras y capacitación básica.",
+        "Reestructuración urgente de procesos operativos."
+      ]
+    }
+  ]
+}

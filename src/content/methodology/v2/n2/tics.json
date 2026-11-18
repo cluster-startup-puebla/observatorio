@@ -1,0 +1,749 @@
+{
+  "sectorId": "tics",
+  "label": "18. Tecnologías de la Información, Software y Servicios Digitales",
+  "questions": [
+    {
+      "id": "TC-01",
+      "level": "n2",
+      "sectorId": "tics",
+      "section": "Inicio",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Modelo Principal de Negocio y Entrega de Tecnología",
+      "prompt": "¿En cuál de las siguientes modalidades de producto o servicio tecnológico se concentra la mayor proporción de sus ingresos?",
+      "microcopy": "Define la estructura de costos (CAPEX vs OPEX), la tasa de recurrencia de ingresos (ARR/MRR) y los requerimientos de propiedad intelectual.",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Desarrollo de Software a la Medida / Software Factory: Proyectos bajo demanda (time & materials o precio cerrado) para clientes corporativos.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Producto Software como Servicio (SaaS B2B / B2C): Plataforma propietaria en la nube con cobro recurrente por suscripción o uso.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Servicios Administrados de TI e Infraestructura (IT MSP / Ciberseguridad): Administración de servidores, soporte cloud, redes y SOC gestionado.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Startup Deep Tech / IA Aplicada / Biotech / IoT: Empresa basada en investigación científica avanzada, algoritmos propietarios de IA o visión artificial.",
+          "score": null
+        },
+        {
+          "value": "opt5",
+          "label": "Consultoría Tecnológica e Integración de Sistemas (KISA): Implementación de ERPs corporativos (SAP, Oracle), CRM, BI y transformación digital.",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "TC-02",
+      "level": "n2",
+      "sectorId": "tics",
+      "section": "Inicio",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Ubicación del Hub de Operaciones y Mapeo de Talento",
+      "prompt": "¿En qué nodo urbano o parque tecnológico de la región Puebla - Tlaxcala se localiza la sede operativa o centro de ingeniería de su empresa?",
+      "microcopy": "Permite evaluar la proximidad con centros universitarios de investigación, incubadoras y redes de emprendimiento tecnológico.",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Corredor Universitario Cholula - San Andrés / UDLAP: Ecosistema de startups, agencias digitales y espacios de coworking.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Distrito de Innovación Puebla Capital (Angelópolis / Centro Histórico / BUAP): Oficinas corporativas, centros de I+D y desarrollo software.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Parques Tecnológicos e Industriales (Cuautlancingo / Huejotzingo / FINSA): Software embebido e integración para sector industrial/automotriz.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Nodo Tlaxcala (Capital / Apizaco / CIX Huamantla): Empresas de desarrollo de software, automatización e integración industrial en Tlaxcala.",
+          "score": null
+        },
+        {
+          "value": "opt5",
+          "label": "Operación 100% Remota / Distribución Geográfica: Empresa nativa digital sin oficina física fija, con equipo distribuido en la región.",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "TC-03",
+      "level": "n2",
+      "sectorId": "tics",
+      "section": "Inicio",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Certificación de Calidad, Ciberseguridad y Madurez de Código",
+      "prompt": "¿Cuál es el nivel más alto de certificación formal de calidad de software, ciberseguridad y gobierno de TI que ostenta su empresa?",
+      "microcopy": "Las certificaciones de ciberseguridad y madurez son el pasaporte obligatorio para vender software a grandes corporativos e instituciones financieras.",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Sin Certificación Formal: Prácticas empíricas de desarrollo de software sin marcos ISO/CMMI acreditados.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Metodologías Ágiles / Scrum Acreditado / ISO 29110: Desarrollo estructurado con sprints, backlog y gestión de historias de usuario.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Certificación ISO 27001 (SGSI) o SOC 2 Type II: Estándar formal de seguridad de la información, auditoría de controles y protección de datos.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Multicertificación de Frontera (ISO 27001 + SOC 2 + CMMI Nivel 3/5 + ISO 20000): Máximo nivel de auditoría, calidad de software y gestión TI.",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "R00-TC-PROD",
+      "level": "n2",
+      "sectorId": "tics",
+      "section": "Inicio",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Jerarquización de Fricciones en Desarrollo y Operación (DevOps / Producto - Jerarquización 1 al 8)",
+      "prompt": "Ordene del 1 al 8 los siguientes problemas operativos según el impacto negativo que generan en el crecimiento de su empresa (1 = Mayor fricción; 8 = Menor fricción)",
+      "microcopy": "Identifica si el freno principal se ubica en el talento, la arquitectura de código, la ciberseguridad o el proceso comercial B2B.",
+      "type": "rank",
+      "prefilled": false,
+      "factorCount": 8,
+      "factors": [
+        {
+          "id": "f1",
+          "label": "1. Fuga de talento técnico senior (desarrolladores full-stack, DevOps, Data Scientists) contratados por empresas extranjeras en remoto."
+        },
+        {
+          "id": "f2",
+          "label": "2. Despliegues manuales y lentos de software por falta de tuberías automatizadas de integración y entrega continua (CI/CD)."
+        },
+        {
+          "id": "f3",
+          "label": "3. Alta deuda técnica y código fuente monolítico difícil de refactorizar o escalar para arquitectura multi-tenant."
+        },
+        {
+          "id": "f4",
+          "label": "4. Incidentes de seguridad, vulnerabilidades no detectadas en código o falta de cumplimiento con la Ley LFPDPPP y SOC 2."
+        },
+        {
+          "id": "f5",
+          "label": "5. Ciclos de venta B2B extremadamente largos y resistencia de empresas locales tradicionales para adoptar software SaaS."
+        },
+        {
+          "id": "f6",
+          "label": "6. Falta de registros de propiedad intelectual, patentes de software o marcas registradas que desprotegen el valor de la empresa."
+        },
+        {
+          "id": "f7",
+          "label": "7. Altos costos operativos en servicios de nube pública (AWS, GCP, Azure) por falta de optimización de infraestructura (FinOps)."
+        },
+        {
+          "id": "f8",
+          "label": "8. Dificultad para acceder a capital de riesgo (Venture Capital / Inversionistas Ángeles) para financiar la etapa de escalamiento."
+        }
+      ]
+    },
+    {
+      "id": "R00-TC-SOURCING-MAT",
+      "level": "n2",
+      "sectorId": "tics",
+      "section": "Inicio",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Jerarquización de Riesgos en Sourcing de Infraestructura y Licencias (Jerarquización 1 al 6)",
+      "prompt": "Ordene del 1 al 6 los mayores riesgos en el abastecimiento de herramientas e infraestructura digital (1 = Mayor riesgo; 6 = Menor riesgo)",
+      "microcopy": "Mide la dependencia y sobrecostos en licencias de desarrollo, servidores en la nube y API de terceros.",
+      "type": "rank",
+      "prefilled": false,
+      "factorCount": 6,
+      "factors": [
+        {
+          "id": "f1",
+          "label": "1. Volatilidad cambiaría (USD/MXN) en el pago de servidores en la nube (AWS, Azure, GCP) y licencias SaaS en dólares."
+        },
+        {
+          "id": "f2",
+          "label": "2. Incremento inesperado en costos de consumo de APIs de modelos de Inteligencia Artificial (OpenAI, Anthropic, Google Cloud AI)."
+        },
+        {
+          "id": "f3",
+          "label": "3. Cambios unilaterales en términos de servicio o políticas de precios de distribuidores de software e infraestructura."
+        },
+        {
+          "id": "f4",
+          "label": "4. Escasez o alto costo de capacidad de cómputo especializada en GPUs para entrenamiento de modelos de IA locales."
+        },
+        {
+          "id": "f5",
+          "label": "5. Dependencia de herramientas o frameworks propietarios descontinuados que obligan a migraciones no planificadas."
+        },
+        {
+          "id": "f6",
+          "label": "6. Dificultad para facturar y deducir fiscalmente pagos de licencias y servidores contratados a proveedores extranjeros."
+        }
+      ]
+    },
+    {
+      "id": "R00-TC-SOURCING-SERV",
+      "level": "n2",
+      "sectorId": "tics",
+      "section": "Inicio",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Jerarquización de Deficiencias en Servicios Especializados del Ecosistema (Jerarquización 1 al 6)",
+      "prompt": "Ordene del 1 al 6 las mayores limitaciones en servicios de apoyo especializado en Puebla-Tlaxcala (1 = Mayor limitación; 6 = Menor limitación)",
+      "microcopy": "Identifica las carencias del ecosistema en auditoría de ciberseguridad, validez legal y aceleración B2B.",
+      "type": "rank",
+      "prefilled": false,
+      "factorCount": 6,
+      "factors": [
+        {
+          "id": "f1",
+          "label": "1. Escasez de firmas locales especializadas en auditorías penetration testing (Ethical Hacking) y certificación ISO 27001 / SOC 2."
+        },
+        {
+          "id": "f2",
+          "label": "2. Falta de despacho legal especializado en propiedad intelectual de software, contratos SaaS B2B e instrumentos SAFE/SAPI."
+        },
+        {
+          "id": "f3",
+          "label": "3. Ausencia de fondos de Venture Capital o Redes de Inversión Ángel con presencia física y foco en startups de la región."
+        },
+        {
+          "id": "f4",
+          "label": "4. Escasos programas de vinculación comercial efectiva entre startups TICs y los grandes clústeres industriales (Automotriz, Salud, Textiles)."
+        },
+        {
+          "id": "f5",
+          "label": "5. Deficiente oferta de capacitación técnica avanzada en MLOps, ciberseguridad ofensiva y arquitecturas Cloud-Native."
+        },
+        {
+          "id": "f6",
+          "label": "6. Espacios de trabajo y laboratorios universitarios con infraestructura de red/cómputo desactualizada o de acceso restringido."
+        }
+      ]
+    },
+    {
+      "id": "TC-TECH-01",
+      "level": "n2",
+      "sectorId": "tics",
+      "section": "Inicio",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Absorción Tecnológica P1: Cobertura de Stack Tecnológico y Arquitectura Cloud-Native",
+      "prompt": "¿Con cuáles de las siguientes arquitecturas y herramientas de software cuenta su empresa actualmente?",
+      "microcopy": "Suma +20.0 pts por casilla seleccionada hasta un máximo de 100.0 pts. Evalúa la sofisticación del stack tecnológico.",
+      "type": "multi_select",
+      "prefilled": false,
+      "factorCount": 5,
+      "factors": [
+        {
+          "id": "f1",
+          "label": "Arquitectura Cloud-Native en Contenedores (Docker / Kubernetes / Serverless) en proveedores principales (AWS / GCP / Azure)."
+        },
+        {
+          "id": "f2",
+          "label": "Tubería Integrada de CI/CD (GitHub Actions / GitLab CI / Jenkins) para despliegues automáticos a ambientes de prueba/producción."
+        },
+        {
+          "id": "f3",
+          "label": "Base de Datos Relacional y NoSQL Distribuida con Esquema de Respaldos Automatizados y Cifrado en Reposo (AES-256)."
+        },
+        {
+          "id": "f4",
+          "label": "Herramientas de Monitoreo de Desempeño de Aplicaciones (APM / Logging) en Tiempo Real (Datadog / New Relic / Grafana / Sentry)."
+        },
+        {
+          "id": "f5",
+          "label": "Integración de API Gateway, Autenticación Segura (OAuth 2.0 / JWT) e Infraestructura como Código (Terraform / CloudFormation)."
+        }
+      ]
+    },
+    {
+      "id": "TC-TECH-02",
+      "level": "n2",
+      "sectorId": "tics",
+      "section": "Inicio",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Absorción Tecnológica P2: Subutilización Tecnológica (Índice IST)",
+      "prompt": "De las herramientas de software, licencias o infraestructura de nube contratadas por su empresa, ¿cuántas operan por debajo de su capacidad o son ignoradas?",
+      "microcopy": "Calcula el Índice de Subutilización Tecnológica (IST). Score_P2 = 100 - IST.",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Todas las herramientas CI/CD, monitoreo y servicios Cloud se aprovechan al 100%.",
+          "score": 100
+        },
+        {
+          "value": "opt2",
+          "label": "1 herramienta subaprovechada (ej. CI/CD contratado pero despliegues finales a producción son manuales).",
+          "score": 80
+        },
+        {
+          "value": "opt3",
+          "label": "2 herramientas subaprovechadas (ej. APM instalado pero sin alertas configuradas).",
+          "score": 60
+        },
+        {
+          "value": "opt4",
+          "label": "3 o más herramientas contratadas sin uso efectivo por falta de capacitación de los desarrolladores.",
+          "score": 40
+        },
+        {
+          "value": "opt5",
+          "label": "Licencias SaaS de desarrollo o infraestructura contratada totalmente en desuso.",
+          "score": 20
+        }
+      ]
+    },
+    {
+      "id": "TC-TECH-03",
+      "level": "n2",
+      "sectorId": "tics",
+      "section": "Inicio",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Absorción Tecnológica P3: Brecha con la Frontera Tecnológica Internacional (Benchmark Aghion)",
+      "prompt": "¿Qué nivel de sofisticación tecnológica ostenta la arquitectura de software de su empresa frente a los líderes globales SaaS/Deep Tech?",
+      "microcopy": "Evalúa la brecha tecnológica internacional (Δ = 100 - Score_P3).",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Desarrollo monolítico en servidores locales (on-premise) con despliegues vía FTP/SCP sin control de versiones Git.",
+          "score": 20
+        },
+        {
+          "value": "opt2",
+          "label": "Uso de Git y servidores VPS en la nube, pero despliegues manuales y base de datos sin alta disponibilidad.",
+          "score": 40
+        },
+        {
+          "value": "opt3",
+          "label": "Arquitectura de microservicios en contenedores, tubería CI/CD automatizada y base de datos administrada.",
+          "score": 60
+        },
+        {
+          "value": "opt4",
+          "label": "Infraestructura Cloud-Native autoescalable, DevSecOps con escaneo automático de vulnerabilidades y APM continuo.",
+          "score": 80
+        },
+        {
+          "value": "opt5",
+          "label": "Plataforma totalmente distribuida, arquitecturas de IA generativa/LLMOps integradas y alta disponibilidad de 99.99%.",
+          "score": 100
+        }
+      ]
+    },
+    {
+      "id": "TC-TECH-04",
+      "level": "n2",
+      "sectorId": "tics",
+      "section": "Inicio",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Absorción Tecnológica P4: Apuesta Transformacional a 24--36 Meses (ICPO)",
+      "prompt": "¿En qué etapa se encuentra su proyecto de innovación tecnológica o desarrollo de producto SaaS B2B / IA a mediano plazo?",
+      "microcopy": "Mide la preparación de la empresa para proyectos de escalamiento y aceleración de producto.",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Mantener modelo de desarrollo a la medida (software factory) sin planes de producto propio.",
+          "score": 20
+        },
+        {
+          "value": "opt2",
+          "label": "Definición de requerimientos y alambre de pantallas (wireframes) para un nuevo producto SaaS.",
+          "score": 40
+        },
+        {
+          "value": "opt3",
+          "label": "Producto software propio en fase de pruebas con usuarios piloto y arquitectura inicial.",
+          "score": 60
+        },
+        {
+          "value": "opt4",
+          "label": "Producto SaaS en el mercado con clientes de pago, optimizando infraestructura Cloud.",
+          "score": 80
+        },
+        {
+          "value": "opt5",
+          "label": "Plataforma tecnológica consolidada con algoritmos propietarios de IA y expansión internacional.",
+          "score": 100
+        }
+      ]
+    },
+    {
+      "id": "TC-TECH-05",
+      "level": "n2",
+      "sectorId": "tics",
+      "section": "Inicio",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Absorción Tecnológica P5: Demanda Explícita de Proyectos Tecnológicos Inmediatos",
+      "prompt": "¿Hay algún proyecto tecnológico específico o necesidad prioritaria que requiera abordar a la brevedad en su empresa de TI/software?",
+      "microcopy": "Captura la demanda real de proyectos de aceleración. Asigna puntaje neutro constante de control Score_P5 = 60.0 pts.",
+      "type": "single_select_text",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Proyecto 1: Implementación de Tubería Automatizada DevSecOps (CI/CD), contenedores Docker/Kubernetes y pruebas de carga.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Proyecto 2: Auditoría de Ciberseguridad, Penetration Testing y preparación para Certificación ISO 27001 / SOC 2 Type II.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Proyecto 3: Integración de Capacidades de Inteligencia Artificial (LLMs, Visión Artificial, RAG) en plataformas software existentes.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Proyecto 4: Registro de Propiedad Intelectual de Código Fuente (INDAUTOR), Patentes y Reestructuración Corporativa (SAPI / SAFE).",
+          "score": null
+        },
+        {
+          "value": "opt5",
+          "label": "Un proyecto propio",
+          "score": null
+        }
+      ],
+      "text": {
+        "maxLength": 100,
+        "optionValue": "opt5"
+      }
+    },
+    {
+      "id": "TC-TECH-06",
+      "level": "n2",
+      "sectorId": "tics",
+      "section": "Inicio",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Calidad de Código, Cobertura de Pruebas y Tasa de Errores en Producción",
+      "prompt": "¿Cómo mide y controla su empresa la calidad del código fuente, la prueba de software y la tasa de defectos en ambientes de producción?",
+      "microcopy": "Métrica dura de calidad de ingeniería de software y confiabilidad de sistemas.",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Sin pruebas automatizadas; el cliente detecta los errores en producción; sin métricas de cobertura.",
+          "score": 25
+        },
+        {
+          "value": "opt2",
+          "label": "Cobertura de pruebas unitarias < 40%; revisión informal de código (code review) antes de publicar.",
+          "score": 50
+        },
+        {
+          "value": "opt3",
+          "label": "Cobertura de pruebas unitarias y de integración > 70%; análisis estático de código (SonarQube) en CI/CD.",
+          "score": 75
+        },
+        {
+          "value": "opt4",
+          "label": "Cobertura de pruebas > 85%; pruebas E2E automatizadas; tasa de fallas en producción < 0.1%; SLOs monitoreados.",
+          "score": 100
+        }
+      ]
+    },
+    {
+      "id": "TC-TECH-07",
+      "level": "n2",
+      "sectorId": "tics",
+      "section": "Inicio",
+      "widget": "Tarjeta de Selección Única",
+      "title": "DevSecOps, Trazabilidad de Cambios en Git y Ciberseguridad Cloud",
+      "prompt": "¿Qué nivel de trazabilidad de cambios en código, gestión de secretos y seguridad en la nube implementa su equipo de ingeniería?",
+      "microcopy": "Métrica dura de gobernanza técnica, trazabilidad Git y seguridad en la nube.",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Registro Manual / Commits Directos a Main: Sin política de ramas en Git; credenciales y claves de API guardadas directamente en el código.",
+          "score": 25
+        },
+        {
+          "value": "opt2",
+          "label": "Git con Pull Requests Básico: Uso de ramas y pull requests; gestión de secretos en variables de entorno locales sin gestor centralizado.",
+          "score": 50
+        },
+        {
+          "value": "opt3",
+          "label": "DevSecOps con Escaneo de Secretos: Políticas GitFlow/Trunk-based; escaneo automático de vulnerabilidades y credenciales en CI/CD; gestor de secretos.",
+          "score": 75
+        },
+        {
+          "value": "opt4",
+          "label": "Arquitectura Zero Trust & DevSecOps Avanzado: Gestión de identidades (IAM) de mínimo privilegio; cifrado total; auditorías de cambios automatizadas.",
+          "score": 100
+        }
+      ]
+    },
+    {
+      "id": "CP-TC-01",
+      "level": "n2",
+      "sectorId": "tics",
+      "section": "Inicio",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Reconexión hacia la 'Fruta Madura' Digital (Alta Densidad ω_j > 0.65)",
+      "prompt": "¿Hacia qué productos o servicios digitales de mayor valor agregado podría reconvertirse su empresa en < 12 meses utilizando su talento actual?",
+      "microcopy": "Evalúa la viabilidad de transición desde servicios a la medida hacia productos SaaS recurrentes de alta densidad tecnológica.",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Empaquetamiento de módulos de código en un Producto Software como Servicio (SaaS B2B) para industrias locales (Automotriz, Salud).",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Desarrollo de APIs y conectores middleware para integración de ERPs corporativos y sistemas industriales de piso de planta.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Oferta de Servicios Administrados de Ciberseguridad (SOC como Servicio) y auditorías de cumplimiento normativo.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Desarrollo de aplicaciones móviles y portales web B2B de alto rendimiento con analítica de datos integrada.",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "CP-TC-02",
+      "level": "n2",
+      "sectorId": "tics",
+      "section": "Inicio",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Apuestas Estratégicas Deep Tech y Valoración de Propiedad Intelectual (Alto ICPO)",
+      "prompt": "En un horizonte de 2 a 3 años con inversión o asociación, ¿hacia qué segmento de tecnología avanzada proyecta diversificarse?",
+      "microcopy": "Mide la ambición de desarrollar propiedad intelectual de frontera (IA, IoT, Ciberseguridad).",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Plataformas de Inteligencia Artificial Generativa y MLOps aplicadas a la automatización de procesos industriales y logísticos.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Soluciones de Ciberseguridad Avanzada basada en comportamiento y detección de amenazas Zero-Day con IA.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Placa y Software Embebido / Internet de las Cosas (IoT) para gemelos digitales en plantas de manufactura.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Plataformas Blockchain B2B para trazabilidad inmutable de cadenas de suministro y contratos inteligentes.",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "CP-TC-03",
+      "level": "n2",
+      "sectorId": "tics",
+      "section": "Inicio",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Estructura Corporativa, Gobernanza y Preparación para Levantamiento de Capital",
+      "prompt": "¿Qué nivel de madurez corporativa, gobierno de empresa y protección de propiedad intelectual ostenta su firma para recibir inversión?",
+      "microcopy": "Evalúa la preparación jurídica y financiera para levantar capital de riesgo (Venture Capital).",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Persona Física / S.A. de C.V. Básico: Sin registro formal de marcas o software en INDAUTOR; contabilidad básica sin auditoría externa.",
+          "score": 25
+        },
+        {
+          "value": "opt2",
+          "label": "S.A. de C.V. con Marcas Registradas: Marcas registradas en IMPI; contratos de confidencialidad (NDA) con empleados; estados financieros en orden.",
+          "score": 50
+        },
+        {
+          "value": "opt3",
+          "label": "Sociedad S.A.P.I. de C.V. con Registro INDAUTOR: Código registrado en INDAUTOR; estructura de S.A.P.I. aprobada; plan de opciones de acciones (ESOP).",
+          "score": 75
+        },
+        {
+          "value": "opt4",
+          "label": "Estructura Holding / Delaware C-Corp con Acuerdos SAFE: Propiedad intelectual blindada internacionalmente; Cap Table limpia; acuerdos SAFE firmados.",
+          "score": 100
+        }
+      ]
+    },
+    {
+      "id": "COL-TC01",
+      "level": "n2",
+      "sectorId": "tics",
+      "section": "Inicio",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Centro Regional de Ciberseguridad, SOC Comunitario y Nube Privada",
+      "prompt": "¿Cuál sería el interés de su empresa en participar en un Centro Comunitario de Ciberseguridad (SOC) y Nube Privada Regional?",
+      "microcopy": "Evalúa la viabilidad económica del proyecto asociativo IAIC (IAIC = Gasto Individual / Cuota Hub).",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Sin Interés / Solución Independiente: Mantener gasto individual en licencias y servidores comerciales.",
+          "score": 25
+        },
+        {
+          "value": "opt2",
+          "label": "Uso Eventual de Servicios SOC: Contratar pruebas de penetración y escaneo de vulnerabilidades a tarifa preferencial.",
+          "score": 50
+        },
+        {
+          "value": "opt3",
+          "label": "Suscripción Anual al SOC Comunitario: Integrar la infraestructura propia al centro de monitoreo de seguridad regional.",
+          "score": 75
+        },
+        {
+          "value": "opt4",
+          "label": "Co-Inversión en Infraestructura de Nube Privada: Participar como socio fundador en la instalación del data center regional.",
+          "score": 100
+        }
+      ]
+    },
+    {
+      "id": "COL-TC02",
+      "level": "n2",
+      "sectorId": "tics",
+      "section": "Inicio",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Hub de Entrenamiento de Inteligencia Artificial y Compute Cluster (GPUs)",
+      "prompt": "¿Cómo participaría su empresa en una bolsa comunitaria de capacidad de cómputo GPU de alto rendimiento para entrenar modelos de IA?",
+      "microcopy": "Mide la viabilidad de reducción de costos en infraestructura de Inteligencia Artificial (IFET).",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Uso Exclusivo de Nube Pública Comercial: Continuar pagando cómputo de GPU a tarifas comerciales en AWS/GCP sin subsidio.",
+          "score": 25
+        },
+        {
+          "value": "opt2",
+          "label": "Reserva de Horas de Cómputo en Cluster Universitario: Integrar una bolsa regional de horas de GPU en supercomputadoras de la región.",
+          "score": 50
+        },
+        {
+          "value": "opt3",
+          "label": "Hub Regional de Inteligencia Artificial Aplicada: Alianza formal (Empresas TICs - Universidad) para cofinanciar servidores GPU dedicados.",
+          "score": 75
+        },
+        {
+          "value": "opt4",
+          "label": "Consorcio de Co-Innovación MLOps e IA Soberana: Participar en un consorcio que desarrolle modelos fundacionales adaptados a la industria.",
+          "score": 100
+        }
+      ]
+    },
+    {
+      "id": "COL-TC03",
+      "level": "n2",
+      "sectorId": "tics",
+      "section": "Inicio",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Red de Inversión Ángel, Fondo de Venture Capital Regional y Matchmaking B2B",
+      "prompt": "¿Qué grado de apertura tiene su empresa para asociarse en un consorcio de comercialización B2B y participar en una Red de Inversión Ángel regional?",
+      "microcopy": "Mide el ahorro y aceleración comercial mediante asociatividad (IPCA).",
+      "type": "rank",
+      "prefilled": false,
+      "factorCount": 4,
+      "factors": [
+        {
+          "id": "f1",
+          "label": "Implementación de tubería automatizada DevSecOps (CI/CD) y escaneo de vulnerabilidades."
+        },
+        {
+          "id": "f2",
+          "label": "Diagnóstico de brechas de ciberseguridad para certificación ISO 27001 / SOC 2."
+        },
+        {
+          "id": "f3",
+          "label": "Registro de código fuente en INDAUTOR y reestructuración de estatutos S.A.P.I."
+        },
+        {
+          "id": "f4",
+          "label": "Vinculación con el catálogo regional KISA para aceleración comercial B2B."
+        }
+      ]
+    }
+  ],
+  "roadmap": [
+    {
+      "band": "platino",
+      "min": 85.0,
+      "max": null,
+      "actions": [
+        "Escalamiento comercial internacional y expansión a nuevos mercados.",
+        "Registro de patentes de algoritmos de IA e integración de LLMOps.",
+        "Liderar el Fondo de Venture Capital Regional y mentorear startups."
+      ]
+    },
+    {
+      "band": "oro",
+      "min": 70.0,
+      "max": 85.0,
+      "actions": [
+        "Certificación acelerada ISO 27001 / SOC 2 Type II.",
+        "Optimización FinOps de infraestructura Cloud para reducir costos.",
+        "Integración al Hub Regional de Entrenamiento de IA (Cluster GPUs)."
+      ]
+    },
+    {
+      "band": "plata",
+      "min": 50.0,
+      "max": 70.0,
+      "actions": [
+        "Implementación de tubería automatizada DevSecOps (CI/CD) y GitFlow.",
+        "Empaquetamiento de módulos de código en un producto SaaS B2B recurrente.",
+        "Adhesión al Centro Regional de Ciberseguridad (SOC Comunitario)."
+      ]
+    },
+    {
+      "band": "bronce",
+      "min": 0.0,
+      "max": 50.0,
+      "actions": [
+        "Adopción urgente de control de versiones Git y políticas de ramas.",
+        "Gestor de secretos centralizado y auditoría básica de ciberseguridad.",
+        "Vinculación al Catálogo Regional KISA para aceleración B2B."
+      ]
+    }
+  ]
+}

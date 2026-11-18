@@ -1,0 +1,756 @@
+{
+  "sectorId": "muebles",
+  "label": "08. Muebles, Madera y Herrajes",
+  "questions": [
+    {
+      "id": "MB-01",
+      "level": "n2",
+      "sectorId": "muebles",
+      "section": "MÓDULO 0: PERFILADO DEL ESLABÓN Y LOCALIZACIÓN TERRITORIAL (HEREDADO DE NIVEL 1)",
+      "widget": "Tarjeta de Selección Única (Pre-poblado)",
+      "title": "Sub-eslabón Dominante en la Cadena de Madera y Muebles",
+      "prompt": "¿En cuál de los siguientes sub-eslabones se concentra la mayor proporción de la producción y facturación de su empresa?",
+      "microcopy": "El sub-eslabón define los tipos de maquinaria (seccionadoras, CNC, estufas), herrajes y normatividad de emisiones/resistencia aplicable.",
+      "type": "single_select",
+      "prefilled": true,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Muebles de Madera Sólida y Diseño de Autor: Producción de mobiliario en maderas nobles (pino, encino, tzalam, cedro) con acabados artesanales o semi-industriales.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Mobiliario RTA (Ready-to-Assemble) y Muebles de Panel: Fabricación a gran escala en tableros aglomerados, MDF y triplay para autoservicio, e-commerce y tiendas departamentales.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Mobiliario de Oficina, Escolar y Comercial (BIFMA): Mobiliario modular, escritorios, sistemas de archivo y sillas de trabajo normados bajo estándares corporativos.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Herrajes, Componentes y Carpintería Industrial/Arquitectónica: Fabricación de frentes de cocina, puertas, triplay especializado, herrajes de ensamble y acabados de madera para edificación.",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "MB-02",
+      "level": "n2",
+      "sectorId": "muebles",
+      "section": "MÓDULO 0: PERFILADO DEL ESLABÓN Y LOCALIZACIÓN TERRITORIAL (HEREDADO DE NIVEL 1)",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Parque Industrial o Nodo Mueblero de Operación",
+      "prompt": "¿En qué corredor mueblero o nodo industrial de la región Puebla - Tlaxcala se localiza la principal planta de su empresa?",
+      "microcopy": "La ubicación geográfica influye en el acceso a materia prima estufada, mano de obra calificada en ebanistería y cercanía con centros de consumo.",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Corredor 1: Chipilo - Atlixco - Puebla Sur: Corredor mueblero tradicional especializado en madera sólida, carpintería fina y mobiliario residencial.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Corredor 2: Zona Metropolitana de Puebla (ZMPT, Cuautlancingo, FINSA, Resurrección): Nodo agroindustrial y manufacturero de mobiliario corporativo, RTA y empaque de madera.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Corredor 3: Huamantla - Tlaxco - Apizaco (Tlaxcala Centro-Norte): Zona forestal y de transformación primaria/secundaria de madera sólida, tableros y empaque industrial.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Corredor 4: Tehuacán - Tecamachalco (Puebla Sur-Oriente): Fabricación de mobiliario comercial, empaques agrícolas de madera y carpintería en serie.",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "MB-03",
+      "level": "n2",
+      "sectorId": "muebles",
+      "section": "MÓDULO 0: PERFILADO DEL ESLABÓN Y LOCALIZACIÓN TERRITORIAL (HEREDADO DE NIVEL 1)",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Certificación de Calidad, Origen Forestal y Emisiones",
+      "prompt": "¿Cuál es el nivel formal de certificación de cadena de custodia, calidad o emisiones que ostenta su empresa?",
+      "microcopy": "Las certificaciones internacionales FSC/PEFC y BIFMA son indispensables para suministrar a corporativos, hotelería y mercados de exportación.",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Cumplimiento Básico / Sin Certificación Formal: Registro municipal y factura de compra de madera sin certificación formal de cadena de custodia ni pruebas mecánicas.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Certificación ISO 9001 / Estándar Comercial Nacional: Sistema de gestión de calidad implementado o registro como proveedor calificado de grandes cadenas nacionales.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Certificación de Cadena de Custodia Forestal (FSC / PEFC): Certificado internacional que garantiza la procedencia legal y sustentable de la madera consumida.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Multicertificación de Frontera (BIFMA / CARB Phase 2 / TSCA Title VI / ISO 14001): Cumplimiento de estándares de resistencia BIFMA, bajas emisiones de formaldehído CARB 2 y gestión ambiental ISO 14001.",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "R00-MUEB-PROD",
+      "level": "n2",
+      "sectorId": "muebles",
+      "section": "SECCIÓN I: ROMPEHIELOS DE SEVERIDAD OPERATIVA (MÉTODO DE BORDA)",
+      "widget": "Rompehielos de Jerarquización (1 al 8)",
+      "title": "Jerarquización de Fricciones en Planta Mueblera y Taller",
+      "prompt": "Ordene del 1 al 8 las siguientes fricciones según el impacto económico negativo y la frecuencia con que afectan su empresa (1 = Mayor impacto / Máxima gravedad; 8 = Menor impacto)",
+      "microcopy": "Permite priorizar la causa raíz de las mermas y cuellos de botella antes de la evaluación de detalle.",
+      "type": "rank",
+      "prefilled": false,
+      "factorCount": 8,
+      "factors": [
+        {
+          "id": "f1",
+          "label": "Deformaciones, grietas y rajaduras en piezas de madera por alto o inestable contenido de humedad."
+        },
+        {
+          "id": "f2",
+          "label": "Tiempos excesivos de preparación (setup/SMED) en seccionadoras, tupi y centros de maquinado CNC."
+        },
+        {
+          "id": "f3",
+          "label": "Mermas elevadas de tableros/madera en proceso de despiece y mala optimización de corte."
+        },
+        {
+          "id": "f4",
+          "label": "Defectos en acabado de pintura/barniz (ojo de pescado, sobreescurrimiento, cáscara de naranja) y secado lento."
+        },
+        {
+          "id": "f5",
+          "label": "Escasez, alta rotación y falta de capacitación de carpinteros, ebanistas y programadores CNC."
+        },
+        {
+          "id": "f6",
+          "label": "Cuellos de botella y sobrecarga en estufas de secado o cabinas de barnizado/laqueado."
+        },
+        {
+          "id": "f7",
+          "label": "Registro manual de órdenes de producción en papel y falta de control de inventario en proceso (WIP)."
+        },
+        {
+          "id": "f8",
+          "label": "Reclamaciones de clientes por descuadres en ensamble RTA, despegado de cantos o falta de herrajes."
+        }
+      ]
+    },
+    {
+      "id": "R00-MUEB-SOURCING-MAT",
+      "level": "n2",
+      "sectorId": "muebles",
+      "section": "SECCIÓN I: ROMPEHIELOS DE SEVERIDAD OPERATIVA (MÉTODO DE BORDA)",
+      "widget": "Rompehielos de Jerarquización (1 al 6)",
+      "title": "Jerarquización de Riesgos en Sourcing de Madera y Herrajes",
+      "prompt": "Ordene del 1 al 6 las restricciones que mayor volatilidad o desabasto causan en su suministro de insumos (1 = Mayor impacto negativo; 6 = Menor impacto)",
+      "microcopy": "Mide la vulnerabilidad de la empresa mueblera ante choques de precios o escasez de insumos estratégicos.",
+      "type": "rank",
+      "prefilled": false,
+      "factorCount": 6,
+      "factors": [
+        {
+          "id": "f1",
+          "label": "Volatilidad en precios e inconsistencia en la calidad de madera sólida estufada (pino, encino, tzalam)."
+        },
+        {
+          "id": "f2",
+          "label": "Escasez y sobrecosto de tableros aglomerados/MDF de bajas emisiones (CARB Phase 2 / TSCA Title VI)."
+        },
+        {
+          "id": "f3",
+          "label": "Incremento en el costo de herrajes de cierre suave, correderas telescópicas y conectores importados."
+        },
+        {
+          "id": "f4",
+          "label": "Restricciones y sobrecostos en barnices, lacas UV de bajo VOC y adhesivos PUR de alta resistencia."
+        },
+        {
+          "id": "f5",
+          "label": "Volatilidad en telas de tapicería, espumas de poliuretano y materiales de empaque de protección."
+        },
+        {
+          "id": "f6",
+          "label": "Falta de refacciones oportunas para seccionadoras, enchapadoras de canto y herramental de corte CNC."
+        }
+      ]
+    },
+    {
+      "id": "R00-MUEB-SOURCING-SERV",
+      "level": "n2",
+      "sectorId": "muebles",
+      "section": "SECCIÓN I: ROMPEHIELOS DE SEVERIDAD OPERATIVA (MÉTODO DE BORDA)",
+      "widget": "Rompehielos de Jerarquización (1 al 6)",
+      "title": "Jerarquización de Deficiencias en Servicios e Infraestructura",
+      "prompt": "Ordene del 1 al 6 las mayores deficiencias en servicios técnicos y entorno regional que frenan su crecimiento (1 = Mayor impacto negativo; 6 = Menor impacto)",
+      "microcopy": "Mide las fallas de mercado exógenas en la cuenca mueblera Puebla-Tlaxcala.",
+      "type": "rank",
+      "prefilled": false,
+      "factorCount": 6,
+      "factors": [
+        {
+          "id": "f1",
+          "label": "Indisponibilidad de servicios locales de estufado automatizado de madera con control de humedad."
+        },
+        {
+          "id": "f2",
+          "label": "Escasez de laboratorios locales acreditados para pruebas mecánicas de muebles (BIFMA) y emisiones."
+        },
+        {
+          "id": "f3",
+          "label": "Robos de camiones con producto terminado y insumos en autopistas (150D, Arco Norte, Amozoc-Perote)."
+        },
+        {
+          "id": "f4",
+          "label": "Tarifas elevadas y micro-cortes de energía eléctrica que dañan controles y computadoras CNC."
+        },
+        {
+          "id": "f5",
+          "label": "Falta de asesores calificados para certificación de cadena de custodia FSC y desarrollo de producto CAD 3D."
+        },
+        {
+          "id": "f6",
+          "label": "Tramitología compleja y costos elevados en licencias ambientales (captura de polvos/VOCs) y STPS."
+        }
+      ]
+    },
+    {
+      "id": "MB-TECH-01",
+      "level": "n2",
+      "sectorId": "muebles",
+      "section": "SECCIÓN II: AUDITORÍA TÉCNICA DIRECTA Y ABSORCIÓN TECNOLÓGICA (P1 A P5 CONTEXTUALIZADAS)",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Absorción Tecnológica P1: Tecnologías de Sourcing Crítico",
+      "prompt": "¿Cuál de las siguientes tecnologías o equipos especializados requiere adquirir o modernizar su empresa pero enfrenta sobrecostos o falta de proveedores locales calificados?",
+      "microcopy": "Identifica la tecnología de mayor impacto operativo con falla de proveeduría en la cuenca mueblera.",
+      "type": "single_select_text",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Seccionadoras CNC de Alta Precisión y Centros de Maquinado Nester / 5 Ejes para Madera: Maquinado multieje y perforado automático de tableros.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Enchapadoras de Canto Automáticas con Adhesivo PUR / Tecnología Láser: Aplicación de canto con junta invisible y alta resistencia a humedad/temperatura.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Estufas de Secado de Madera Automatizadas con Control de Humedad por Sensores: Hornos con programa de secado programado para evitar grietas y alabeos.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Cabinas de Barnizado Pressurizadas con Túnel de Secado UV / Infrarrojo: Sistemas de acabado continuo sin polvo y secado ultra-rápido de lacas.",
+          "score": null
+        },
+        {
+          "value": "opt5",
+          "label": "Software CAD/CAM Mueblero Especializado con Despiece y Tizado Automático (Cabinet Vision / WoodWOP / TopSolid Wood): Generación directa de código G y listas de corte.",
+          "score": null
+        },
+        {
+          "value": "opt6",
+          "label": "Otro",
+          "score": null
+        }
+      ],
+      "text": {
+        "maxLength": 100,
+        "optionValue": "opt6"
+      }
+    },
+    {
+      "id": "MB-TECH-02",
+      "level": "n2",
+      "sectorId": "muebles",
+      "section": "SECCIÓN II: AUDITORÍA TÉCNICA DIRECTA Y ABSORCIÓN TECNOLÓGICA (P1 A P5 CONTEXTUALIZADAS)",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Absorción Tecnológica P2: Subaprovechamiento de Tecnologías Instaladas",
+      "prompt": "¿Qué tecnología o maquinaria ya tiene instalada en su planta pero NO funciona como desearía o se encuentra subaprovechada?",
+      "microcopy": "Mide la falla de absorción por falta de capacitación en programación, mantenimiento deficiente o adhesivos inadecuados.",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Seccionadora CNC o Maquinador operado de forma manual por falta de capacitación en software CAD/CAM.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Enchapadora de Canto operada con adhesivo EVA tradicional en lugar de PUR por falta de mantenimiento del calderín de cola.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Software CAD de mueblería utilizado solo para dibujo 2D sin generar despiece automático ni código CNC.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Estufas de Secado operadas al tanteo sin calibración de sensores de contenido de humedad de madera.",
+          "score": null
+        },
+        {
+          "value": "opt5",
+          "label": "Cabina de Pintura con filtración saturada o sin control de presión que genera retrabajos por polvo.",
+          "score": null
+        },
+        {
+          "value": "opt6",
+          "label": "Ninguno / Todas las tecnologías instaladas operan a su máximo rendimiento.",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "MB-TECH-03",
+      "level": "n2",
+      "sectorId": "muebles",
+      "section": "SECCIÓN II: AUDITORÍA TÉCNICA DIRECTA Y ABSORCIÓN TECNOLÓGICA (P1 A P5 CONTEXTUALIZADAS)",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Absorción Tecnológica P3: Brecha con la Frontera Internacional",
+      "prompt": "¿Qué tecnología utilizan los fabricantes muebleros internacionales líderes que los hace significativamente más competitivos que las empresas de su sector en la región?",
+      "microcopy": "Evalúa la distancia a la frontera tecnológica global (Benchmark Aghion / OMPI 2026).",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Fusión directa del canto sin pegamento visible ni degradación por calor.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Maquinado 24/7 de tableros sin intervención humana directa.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Línea de pintura ecológica ultra-eficiente.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Visualización del mueble configurado en la casa del cliente antes de producir.",
+          "score": null
+        },
+        {
+          "value": "opt5",
+          "label": "Rastreo digital inmutable desde el árbol hasta el usuario final.",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "MB-TECH-04",
+      "level": "n2",
+      "sectorId": "muebles",
+      "section": "SECCIÓN II: AUDITORÍA TÉCNICA DIRECTA Y ABSORCIÓN TECNOLÓGICA (P1 A P5 CONTEXTUALIZADAS)",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Absorción Tecnológica P4: Tecnología Revolucionaria / Apuesta Transformacional",
+      "prompt": "¿Qué tecnología transformacional o proyecto de gran calado revolucionaría la productividad y posicionamiento comercial de su empresa en los próximos 2 a 3 años?",
+      "microcopy": "Mide el potencial de salto en el espacio de productos y complejidad manufacturera (CIDE / Harvard).",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Automatización Total de Línea RTA con Empaque Automático y Clasificación Robótica de Herrajes.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Reconversión 100% a Producción Certificada FSC / CARB Phase 2 para Exportación a EE.UU./Europa.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Creación de Marca Propia D2C (Direct-to-Consumer) con Plataforma E-commerce y Configurador 3D.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Instalación de Planta Mueblera Carbono Negativo con Autogestión Térmica por Biomasa y Energía Solar.",
+          "score": null
+        },
+        {
+          "value": "opt5",
+          "label": "Desarrollo de Mobiliario Modular Inteligente con Integración de Carga Inalámbrica e Iluminación IoT.",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "MB-TECH-05",
+      "level": "n2",
+      "sectorId": "muebles",
+      "section": "SECCIÓN II: AUDITORÍA TÉCNICA DIRECTA Y ABSORCIÓN TECNOLÓGICA (P1 A P5 CONTEXTUALIZADAS)",
+      "widget": "Tarjeta de Selección Única + Texto Libre",
+      "title": "Absorción Tecnológica P5: Demanda Explícita de Proyectos Tecnológicos Inmediatos",
+      "prompt": "¿Hay algún proyecto tecnológico específico o necesidad prioritaria que requiera abordar a la brevedad para su empresa?",
+      "microcopy": "Captura la demanda real de acompañamiento técnico para asignación inmediata a programas de apoyo de Bienes de Club.",
+      "type": "single_select_text",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Proyecto 1: Implementación de Software CAD/CAM (Cabinet Vision/WoodWOP) y Generación Directa de CNC.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Proyecto 2: Auditoría y Certificación de Cadena de Custodia FSC / Ensayos Mecánicos BIFMA.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Proyecto 3: Modernización e Inserción de Sensores de Humedad en Estufas de Secado de Madera.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Proyecto 4: Transición de Adhesivos EVA a Adhesivos PUR de Alta Resistencia en Enchapado de Cantos.",
+          "score": null
+        },
+        {
+          "value": "opt5",
+          "label": "Un proyecto propio",
+          "score": null
+        }
+      ],
+      "text": {
+        "maxLength": 100,
+        "optionValue": "opt5"
+      }
+    },
+    {
+      "id": "MB-TECH-06",
+      "level": "n2",
+      "sectorId": "muebles",
+      "section": "SECCIÓN II: AUDITORÍA TÉCNICA DIRECTA Y ABSORCIÓN TECNOLÓGICA (P1 A P5 CONTEXTUALIZADAS)",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Aprovechamiento de Madera/Tablero, Desperdicio en Despiece y Rechazos de Acabado",
+      "prompt": "¿Cuál es el porcentaje promedio de aprovechamiento de materia prima en despiece y la tasa de defectos en pintura/acabado en su planta?",
+      "microcopy": "Mide la eficiencia técnica de corte, la calidad del secado y el control del proceso de pintado.",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Despiece manual con alto desperdicio; constantes grietas o imperfecciones en acabado.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Despiece con optimizador básico; retrabajos ocasionales por humedad o polvo.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Tizado y despiece por software CAD/CAM; control estadístico de pintura en cabina.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Nester automatizado con desperdicio mínimo; acabado UV continuo sin polvo.",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "MB-TECH-07",
+      "level": "n2",
+      "sectorId": "muebles",
+      "section": "SECCIÓN II: AUDITORÍA TÉCNICA DIRECTA Y ABSORCIÓN TECNOLÓGICA (P1 A P5 CONTEXTUALIZADAS)",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Trazabilidad Digital por Orden de Producción (OP), Código QR e Integración ERP",
+      "prompt": "¿Qué nivel de trazabilidad digital e integración de información utiliza su planta para rastrear cada pieza mueblera despiezada?",
+      "microcopy": "La trazabilidad por código de barras/QR en cada tablero es indispensable para evitar mezclas en ensamble RTA y controlar inventario WIP.",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Marcaje a lápiz/tiza en las piezas; sin control digital de inventario en proceso.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Impresión de etiquetas de código de barras básicas en la seccionadora para identificar la pieza.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Cada pieza despiezada lleva QR con datos de maquinado, canteado y perforado.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Rastreo en tiempo real de la OP desde la recepción de madera hasta el empaque RTA.",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "CP-MB-01",
+      "level": "n2",
+      "sectorId": "muebles",
+      "section": "SECCIÓN III: SOFISTICACIÓN PRODUCTIVA Y ESPACIO DE PRODUCTOS (CIDE / HARVARD)",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Reconversión hacia la 'Fruta Madura' Mueblera (Alta Densidad ω_j > 0.65)",
+      "prompt": "Considerando su equipamiento y capacidad técnica actual, ¿hacia qué línea de producto de mayor valor agregado podría reconvertirse en menos de 12 meses?",
+      "microcopy": "Mide la capacidad de salto hacia adyacencias de menor riesgo y alta demanda comercial.",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Fabricación de Mobiliario RTA (Ready-to-Assemble) Optimizado para Logística de E-commerce.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Mobiliario de Oficina y Comercial Normado bajo Estándares BIFMA para Licitaciones Corporativas.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Carpintería Arquitectónica de Alta Gama (Puertas Panorámicas, Lambrines, Frentes PUR) para Desarrollos Inmobiliarios.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Fabricación de Componentes de Madera Técnica (Triplay de Alta Densidad, Madera Laminada Encolada - CLT).",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "CP-MB-02",
+      "level": "n2",
+      "sectorId": "muebles",
+      "section": "SECCIÓN III: SOFISTICACIÓN PRODUCTIVA Y ESPACIO DE PRODUCTOS (CIDE / HARVARD)",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Apuestas Estratégicas y Mobiliario de Alta Complejidad (Alto ICPO)",
+      "prompt": "En un horizonte de 2 a 3 años con coinversión y tecnología, ¿qué línea de alta complejidad técnica podría desarrollar su empresa?",
+      "microcopy": "Evalúa la capacidad de diversificación hacia productos de alta sofisticación (Índice de Complejidad Potencial ICPO).",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Mobiliario Técnico Especializado para Hospitales y Laboratorios con Superficies Antibacterianas de Alta Presión.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Piezas Complejas de Madera Curvada Laminada en 5 Ejes para Diseño de Autor y Exportación.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Mobiliario Acústico Modular con Paneles Fonoabsorbentes Integrados para Espacios de Trabajo Modernos.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Mobiliario Inteligente e IoT con Conectividad Integrada, Sensores y Sistemas de Carga Inalámbrica.",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "CP-MB-03",
+      "level": "n2",
+      "sectorId": "muebles",
+      "section": "SECCIÓN III: SOFISTICACIÓN PRODUCTIVA Y ESPACIO DE PRODUCTOS (CIDE / HARVARD)",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Manejo de Residuos, Aprovechamiento de Biomasa y Emisiones VOC",
+      "prompt": "¿Qué nivel de avance tiene su empresa en el aprovechamiento de subproductos de madera y la reducción de emisiones contaminantes?",
+      "microcopy": "La sostenibilidad y sustitución de solventes son prioridades clave en la región Puebla-Tlaxcala.",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Cumplimiento Básico: Acopio de viruta/aserrín a granel sin procesar; uso de barnices convencionales a base de solvente.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Manejo de Polvos y Reciclaje: Aspiración centralizada de aserrín; venta de residuos a briqueteadoras o avícolas; barnices de medio VOC.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Aprovechamiento Térmico de Biomasa: Caldera de biomasa alimentada con aserrín propio para el secado de madera; barnices 100% base agua.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Planta Mueblera Sustentable / Carbono Neutro: Biomasa propia + energía solar; certificación FSC de cadena de custodia plena y cero emisiones VOC.",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "COL-MB01",
+      "level": "n2",
+      "sectorId": "muebles",
+      "section": "SECCIÓN IV: SOLUCIONES COLABORATIVAS ANTE LA FALLA DE ESCALA (BIENES DE CLUB)",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Woodworking CAD/CAM & Kiln Drying Hub Comunitario",
+      "prompt": "¿Cuál sería la disposición de su empresa para utilizar un Centro Comunitario de Estufado de Madera y Maquinado CNC 5 Ejes bajo esquema Pay-per-Use?",
+      "microcopy": "Resuelve la falla de escala en infraestructura de secado automatizado y maquinado de alta precisión para PyMEs.",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Alto Interés / Usuario Frecuente: Estufaría lotes de madera o maquilaría piezas 5 ejes pagando exclusivamente por metro cúbico/hora de máquina.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Interés Moderado / Co-inversionista: Dispuesto a aportar capital o comprometer volumen para la adquisición de la estufa comunitaria.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Servicio Ocasional: Utilizaría el hub únicamente para trabajos de diseño complejo o picos de producción que rebasen su capacidad.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Sin Interés: Cuenta con estufas de secado y CNC 5 ejes propios suficientes.",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "COL-MB02",
+      "level": "n2",
+      "sectorId": "muebles",
+      "section": "SECCIÓN IV: SOLUCIONES COLABORATIVAS ANTE LA FALLA DE ESCALA (BIENES DE CLUB)",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Laboratorio Comunitario Acreditado ISO 17025 de Pruebas BIFMA y Emisiones CARB",
+      "prompt": "¿Cómo participaría su empresa en la creación de un Laboratorio Regional Acreditado de Pruebas Físico-Mecánicas de Mobiliario y Emisiones?",
+      "microcopy": "Permite certificar la resistencia BIFMA y bajas emisiones CARB 2 a un costo accesible sin enviar muestras al extranjero.",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Usuario Frecuente: Enviaría prototipos de sillas, escritorios y muebles para pruebas de carga, impacto y durabilidad BIFMA.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Pruebas de Emisiones de Formaldehído: Certificaría lotes de tableros aglomerados/MDF para asegurar cumplimiento de la norma CARB Phase 2 / TSCA Title VI.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Socio de Vinculación Universitaria: Dispuesto a colaborar con facultades de diseño/ingeniería para certificar nuevos productos.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Sin Interés: Realiza sus pruebas en laboratorios externos fuera del país.",
+          "score": null
+        }
+      ]
+    },
+    {
+      "id": "COL-MB03",
+      "level": "n2",
+      "sectorId": "muebles",
+      "section": "SECCIÓN IV: SOLUCIONES COLABORATIVAS ANTE LA FALLA DE ESCALA (BIENES DE CLUB)",
+      "widget": "Tarjeta de Selección Única",
+      "title": "Consorcio de Compras Consolidadas de Madera Estufada FSC, Herrajes y Barnices",
+      "prompt": "¿Qué grado de apertura tiene su empresa para integrarse a un Consorcio de Compras Consolidadas de insumos muebleros clave?",
+      "microcopy": "La consolidación de demanda permite abatir costos de madera, herrajes y adhesivos entre 12% y 22% frente a compras individuales.",
+      "type": "single_select",
+      "prefilled": false,
+      "options": [
+        {
+          "value": "opt1",
+          "label": "Compra Consolidada de Madera Estufada Certificada FSC: Comprar directamente con productores forestales autorizados a volumen de escala.",
+          "score": null
+        },
+        {
+          "value": "opt2",
+          "label": "Consorcio de Herrajes de Cierre Suave y Adhesivos PUR: Consolidar pedidos de herrajes técnicos importados y calderines de cola PUR.",
+          "score": null
+        },
+        {
+          "value": "opt3",
+          "label": "Comercialización Conjunta y Tienda/Showroom Regional: Participar en una marca regional compartida para licitaciones y e-commerce RTA.",
+          "score": null
+        },
+        {
+          "value": "opt4",
+          "label": "Sin Interés: Prefiere mantener sus canales directos de compra actual.",
+          "score": null
+        }
+      ]
+    }
+  ],
+  "roadmap": [
+    {
+      "band": "platino",
+      "min": 75.0,
+      "max": null,
+      "actions": [
+        "Capa A (Digital/TI): Implementación de ERP Mueblero 4.0 con configurador 3D omnicanal y trazabilidad QR total.",
+        "Capa B (Bienes de Club): Liderazgo en el Consorcio de Comercialización Conjunta y exportación RTA."
+      ]
+    },
+    {
+      "band": "oro",
+      "min": 55.0,
+      "max": 75.0,
+      "actions": [
+        "Capa A (Digital/TI): Implementación de Software CAD/CAM (Cabinet Vision/WoodWOP) con tizado automático y etiquetas QR por pieza.",
+        "Capa B (Bienes de Club): Uso de Estufas de Secado en el Woodworking Hub y ensayos BIFMA en Laboratorio ISO 17025."
+      ]
+    },
+    {
+      "band": "plata",
+      "min": 35.0,
+      "max": 55.0,
+      "actions": [
+        "Capa A (Digital/TI): App móvil para control de inventario de madera, medidores digitales de humedad y optimizador de corte en laptop.",
+        "Capa B (Bienes de Club): Estufado de madera en el Hub Comunitario y participación en el Consorcio de Compras de Herrajes."
+      ]
+    },
+    {
+      "band": "bronce",
+      "min": 0.0,
+      "max": 35.0,
+      "actions": [
+        "Capa A (Digital/TI): Capacitación básica en costos, lectura de planos digitales y control de insumos en hoja de cálculo.",
+        "Capa B (Bienes de Club): Inserción en el Consorcio de Compras Consolidadas de Madera Estufada FSC y Herrajes Básicos."
+      ]
+    }
+  ]
+}
