@@ -269,9 +269,11 @@
     color: var(--text-on-brand);
   }
 
-  .btn-primary:hover {
-    background: var(--brand-primary-dark);
-    box-shadow: var(--shadow-cta);
+  @media (hover: hover) and (pointer: fine) {
+    .btn-primary:hover {
+      background: var(--brand-primary-dark);
+      box-shadow: var(--shadow-cta);
+    }
   }
 
   .btn-secondary {
@@ -280,9 +282,11 @@
     border: 1.5px solid var(--brand-accent);
   }
 
-  .btn-secondary:hover {
-    background: var(--brand-accent);
-    color: var(--on-accent);
+  @media (hover: hover) and (pointer: fine) {
+    .btn-secondary:hover {
+      background: var(--brand-accent);
+      color: var(--on-accent);
+    }
   }
 
   .btn-on-dark {
@@ -290,10 +294,12 @@
     color: #1c1c1c;
   }
 
-  .btn-on-dark:hover {
-    background: var(--brand-primary);
-    color: var(--text-on-brand);
-    box-shadow: var(--shadow-cta);
+  @media (hover: hover) and (pointer: fine) {
+    .btn-on-dark:hover {
+      background: var(--brand-primary);
+      color: var(--text-on-brand);
+      box-shadow: var(--shadow-cta);
+    }
   }
 
   .band-ink {

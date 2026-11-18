@@ -48,14 +48,15 @@ export async function SupabaseOnboarding({
   const hasLogo =
     empresario && (gate === "espera" || gate === "pase") ? await companyHasLogo(token, account.id) : true;
   const offerLogo = laterLogoOffer({ hasLogo, gate });
+  const ready = onboarded && account.role === "empresario" && gate === "pase";
   if (onboarded && account.role === "empresario") await issueConfirmedPass(token, account.id, account.email);
 
   return (
     <AuthShell
       back={false}
-      kicker="Tu perfil"
-      title={org ? "La marca de tu organismo" : "Tu empresa en la sesión"}
-      lead="Un paso más y el lugar queda apartado."
+      kicker={ready ? "Tu pase" : "Tu perfil"}
+      title={ready ? "Listo para la sesión" : org ? "La marca de tu organismo" : "Tu empresa en la sesión"}
+      lead={ready ? "Muéstralo en la entrada. El diagnóstico se contesta con esta cuenta." : "Un paso más y el lugar queda apartado."}
       footer={<AuthLogout />}
     >
       <OnboardingWizard

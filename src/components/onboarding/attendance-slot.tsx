@@ -26,20 +26,19 @@ export async function AttendanceSlot({ token, error }: { token: string; error?: 
   if (status !== "ocupa") return null;
   const notice = error ? notices[error] : "";
   return (
-    <form action={cancelAttendanceAction} className="grid gap-3">
-      {notice ? (
-        <Alert variant="destructive">
-          <AlertDescription>{notice}</AlertDescription>
-        </Alert>
-      ) : null}
-      <Field id="cancel-reason" label="Por qué cancelas tu asistencia">
-        <textarea id="cancel-reason" name="reason" required maxLength={280} rows={3} className={controlClass} />
-      </Field>
-      <PendingSubmit
-        idle="Cancelar mi lugar"
-        pendingLabel="Cancelando…"
-        className="btn btn-secondary w-fit"
-      />
-    </form>
+    <details className="rounded-2xl border border-line px-4 py-3" open={notice ? true : undefined}>
+      <summary className="cursor-pointer text-sm text-ink-secondary">No voy a asistir</summary>
+      <form action={cancelAttendanceAction} className="grid gap-3 pt-3">
+        {notice ? (
+          <Alert variant="destructive">
+            <AlertDescription>{notice}</AlertDescription>
+          </Alert>
+        ) : null}
+        <Field id="cancel-reason" label="Por qué cancelas tu asistencia">
+          <textarea id="cancel-reason" name="reason" required maxLength={280} rows={3} className={controlClass} />
+        </Field>
+        <PendingSubmit idle="Cancelar mi lugar" pendingLabel="Cancelando…" className="btn btn-secondary w-fit" />
+      </form>
+    </details>
   );
 }

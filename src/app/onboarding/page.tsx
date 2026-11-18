@@ -27,13 +27,14 @@ export default async function OnboardingPage({
     pathSector: params.sector,
     chosen: account.sectorSlug,
   });
+  const ready = account.onboarded && account.role !== "director";
 
   return (
     <AuthShell
       back={false}
-      kicker="Tu perfil"
-      title={account.role === "director" ? "La marca de tu organismo" : "Tu empresa en la sesión"}
-      lead="Un paso más y el lugar queda apartado."
+      kicker={ready ? "Tu pase" : "Tu perfil"}
+      title={ready ? "Listo para la sesión" : account.role === "director" ? "La marca de tu organismo" : "Tu empresa en la sesión"}
+      lead={ready ? "Muéstralo en la entrada. El diagnóstico se contesta con esta cuenta." : "Un paso más y el lugar queda apartado."}
       footer={<AuthLogout />}
     >
       <OnboardingWizard

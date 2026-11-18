@@ -36,12 +36,13 @@ export function FinishedProfile({
     );
   }
   return (
-    <div className="grid gap-4">
-      <ConfidentialityNote />
-      <AccessPass code={accountId} />
-      <a href="/metodologia" className="btn btn-primary w-fit">
-        Ir al diagnóstico
-      </a>
+    <div className="grid gap-3">
+      <div className="grid justify-items-center gap-5 rounded-2xl border border-line bg-elevated px-5 py-6">
+        <AccessPass code={accountId} />
+        <a href="/metodologia" className="btn btn-primary w-full">
+          Ir al diagnóstico
+        </a>
+      </div>
       {logo}
     </div>
   );

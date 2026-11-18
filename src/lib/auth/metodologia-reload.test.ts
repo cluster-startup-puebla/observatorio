@@ -44,8 +44,8 @@ describe("aviso de recarga en metodología", () => {
     expect(page).not.toContain("redirectIfEventClosed");
     expect(notice).toContain('toast("Recarga tu página ahora.")');
     expect(notice).toContain("metodologiaReloadAssignment");
-    expect(gate).toContain("currentEventOpen");
-    expect(gate).toContain('redirect("/metodologia/reload")');
+    expect(gate).not.toContain('redirect("/metodologia/reload")');
+    expect(gate).toContain("return false");
     expect(clear).toContain('new URL("/onboarding", request.url)');
     expect(clear).toContain('maxAge: 0');
     expect(readFileSync("src/app/metodologia/diagnostico/route.ts", "utf8")).toContain(

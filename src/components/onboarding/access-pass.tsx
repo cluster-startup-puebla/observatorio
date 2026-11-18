@@ -4,8 +4,8 @@ export async function AccessPass({ code }: { code: string }) {
   const src = await accessQrDataUrl(code);
 
   return (
-    <div className="grid w-fit gap-3">
-      <p data-testid="qr-listo" className="text-h3 text-ink">
+    <div className="grid justify-items-center gap-3 text-center">
+      <p data-testid="qr-listo" className="text-base font-semibold text-ink">
         Tu pase quedó listo.
       </p>
       {/* Data URL from our own generator. next/image does not accept it. */}
