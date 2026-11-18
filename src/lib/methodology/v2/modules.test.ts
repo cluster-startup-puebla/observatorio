@@ -10,11 +10,23 @@ it("el módulo usa el nombre corto y el avance es dentro del módulo", () => {
     question("a", "n1", "SECCIÓN I: ENTORNO"),
     question("b", "n1", "SECCIÓN I: ENTORNO"),
     question("c", "n2", "SECCIÓN I: ROMPEHIELOS"),
-  ] as V2Question[];
+  ];
   expect(modulePlace(questions, 1)).toEqual({ label: "Módulo 1. Entorno", meta: "2/2", progress: 100 });
   expect(modulePlace(questions, 2).progress).toBe(100);
 });
 
-function question(id: string, level: "n1" | "n2", section: string) {
-  return { id, level, section, type: "single_select", title: id, prompt: id, options: [] };
+function question(id: string, level: "n1" | "n2", section: string): V2Question {
+  return {
+    id,
+    level,
+    sectorId: null,
+    section,
+    widget: "choice",
+    title: id,
+    prompt: id,
+    microcopy: null,
+    type: "single_select",
+    prefilled: false,
+    options: [],
+  };
 }

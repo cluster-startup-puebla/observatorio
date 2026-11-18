@@ -35,7 +35,7 @@ export function SectorChart({ rows, outside }: { rows: SectorFillRow[]; outside:
             <BarChart data={data} layout="vertical" margin={{ left: 4, right: 8 }}>
               <CartesianGrid horizontal={false} />
               <XAxis type="number" allowDecimals={false} tickLine={false} axisLine={false} />
-              <YAxis type="category" dataKey="sector" width={128} tickLine={false} axisLine={false} tick={(props) => <SectorName {...props} hrefs={hrefs} />} />
+              <YAxis type="category" dataKey="sector" width={128} tickLine={false} axisLine={false} tick={(props) => <SectorName x={Number(props.x)} y={Number(props.y)} payload={props.payload as { value?: string }} hrefs={hrefs} />} />
               <ChartTooltip content={<ChartTooltipContent />} />
               <Bar dataKey="cupo" fill="var(--color-cupo)" radius={4} cursor="pointer" onClick={openSector} />
               <Bar dataKey="ocupados" fill="var(--color-ocupados)" radius={4} cursor="pointer" onClick={openSector} />
