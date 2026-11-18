@@ -1,3 +1,4 @@
+import { Averages } from "./averages";
 import { DiagnosticosRefresh } from "@/app/admin/diagnosticos/refresh";
 import { listCrumbs, PanelHeader } from "@/components/admin/panel-header";
 import { tally } from "@/lib/admin/diagnosticos/tally";
@@ -31,6 +32,7 @@ export default async function DiagnosticosPage() {
           </p>
         </article>
       </section>
+      <Averages />
     </main>
   );
 }
