@@ -2,12 +2,11 @@
 
 import type { V2LevelStep } from "@/lib/methodology/v2/bands";
 import type { V2Draft } from "@/lib/methodology/v2/draft";
-import type { InstrumentChoice } from "@/lib/methodology/v2/sector-map";
 import type { V2Question } from "@/lib/methodology/v2/types";
 import { Curtain } from "./curtain";
 import { V2Form } from "./form";
-import { Pick } from "./pick";
 import { Result } from "./result";
+import { SectorConfirm } from "./sector-confirm";
 import { showCurtain, showResult } from "./screen-phase";
 import { scheduleFlush } from "./sync";
 
@@ -15,7 +14,8 @@ type Pack = { id: string; label: string; questions: V2Question[]; roadmap: V2Lev
 
 export function ScreenView({
   profileId,
-  choice,
+  brought,
+  options,
   pack,
   draft,
   booted,
@@ -24,7 +24,8 @@ export function ScreenView({
   onEnter,
 }: {
   profileId: string;
-  choice: InstrumentChoice;
+  brought: string;
+  options: { id: string; label: string }[];
   pack: Pack | null;
   draft: V2Draft | null;
   booted: boolean;
@@ -32,8 +33,10 @@ export function ScreenView({
   onChoose: (id: string) => void;
   onEnter: () => void;
 }) {
-  if (choice.kind === "pick" && !pack) return <Pick ids={[...choice.ids]} onChoose={onChoose} />;
-  if (!pack) return null;
+  if (!pack) {
+    if (!booted) return null;
+    return <SectorConfirm brought={brought} options={options} onConfirm={onChoose} />;
+  }
 
   if (draft && showResult(draft, pack.questions.length)) {
     return (

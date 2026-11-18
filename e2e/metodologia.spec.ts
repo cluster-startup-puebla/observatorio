@@ -9,6 +9,10 @@ async function abrir(page: import("@playwright/test").Page) {
   await page.goto("/metodologia");
   const aviso = page.getByRole("button", { name: "Entiendo y empiezo" });
   if (await aviso.isVisible()) await aviso.click();
+  const confirmar = page.getByRole("button", { name: "Confirmar" });
+  const seguido = page.getByTestId("pregunta-v2").or(page.getByText("Este sector todavía no tiene diagnóstico"));
+  await expect(confirmar.or(seguido)).toBeVisible();
+  if ((await confirmar.isVisible()) && (await confirmar.isEnabled())) await confirmar.click();
 }
 
 async function empresario(page: import("@playwright/test").Page, sector: string) {
@@ -78,7 +82,9 @@ test("sin red se sigue contestando y no se abre otra fila", async ({ page }) => 
 test("textil elige entre dos y minerales no abre preguntas", async ({ page, request }) => {
   await empresario(page, "textil-y-confeccion");
   await abrir(page);
-  await expect(page.getByRole("button", { name: /Hilados|Confección/ })).toHaveCount(2);
+  const sector = page.getByLabel("El diagnóstico");
+  await expect(sector.locator("option", { hasText: "Hilados" })).toHaveCount(1);
+  await expect(sector.locator("option", { hasText: "Confección" })).toHaveCount(1);
   expect((await request.post("/test/reset")).ok()).toBeTruthy();
   await empresario(page, "minerales-no-metalicos");
   await abrir(page);

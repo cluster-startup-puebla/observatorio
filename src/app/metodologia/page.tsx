@@ -47,6 +47,7 @@ export default async function MetodologiaPage() {
       ) : (
         <MetodologiaScreen
           profileId={loaded.profileId}
+          brought={loaded.brought}
           remote={draft}
           choice={loaded.choice}
           packs={loaded.packs}

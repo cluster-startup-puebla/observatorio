@@ -15,11 +15,13 @@ type Pack = { id: string; label: string; questions: V2Question[]; roadmap: V2Lev
 
 export function MetodologiaScreen({
   profileId,
+  brought,
   remote,
   choice,
   packs,
 }: {
   profileId: string;
+  brought: string;
   remote: V2Draft | null;
   choice: InstrumentChoice;
   packs: Pack[];
@@ -39,7 +41,7 @@ export function MetodologiaScreen({
     try {
       const next = pickDraft(readDraft(localStorage, profileId), remote);
       const known = next?.instrumentId && packs.some((item) => item.id === next.instrumentId);
-      if (choice.kind === "pick" && known && next) setInstrumentId(next.instrumentId);
+      if (known && next) setInstrumentId(next.instrumentId);
       setDraft(next);
     } catch {
       setDraft(remote);
@@ -74,7 +76,8 @@ export function MetodologiaScreen({
   return (
     <ScreenView
       profileId={profileId}
-      choice={choice}
+      brought={brought}
+      options={packs.map((item) => ({ id: item.id, label: item.label }))}
       pack={pack}
       draft={draft}
       booted={booted}

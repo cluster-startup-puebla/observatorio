@@ -14,7 +14,7 @@ export function freshDraft(instrumentId: string): V2Draft {
 }
 
 export function initialInstrument(remote: V2Draft | null, choice: InstrumentChoice, ids: string[]) {
-  if (choice.kind === "one") return choice.id;
+  if (choice.kind === "none") return "";
   if (remote?.instrumentId && ids.includes(remote.instrumentId)) return remote.instrumentId;
   return "";
 }

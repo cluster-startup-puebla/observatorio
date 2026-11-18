@@ -8,6 +8,7 @@ import { pickDraft } from "@/lib/methodology/v2/recover";
 import { instrumentChoice, type InstrumentChoice } from "@/lib/methodology/v2/sector-map";
 import { sessionQuestions } from "@/lib/methodology/v2/sequence";
 import type { V2Question } from "@/lib/methodology/v2/types";
+import { sectors } from "@/lib/sectors";
 import { signedSector } from "./load-run-sector";
 
 const n1 = n1File.questions as V2Question[];
@@ -29,6 +30,7 @@ export type LoadedRun = {
   instrumentId: string;
   packs: InstrumentPack[];
   disclaimerAcceptedAt: string | null;
+  brought: string;
 };
 
 function remoteDraft(row: RunRow | null): V2Draft | null {
@@ -83,5 +85,6 @@ export async function loadRun(): Promise<LoadedRun> {
     instrumentId: chosen?.id ?? "",
     packs,
     disclaimerAcceptedAt: signed.disclaimerAcceptedAt,
+    brought: sectors.find((item) => item.slug === signed.slug)?.name ?? signed.slug,
   };
 }
