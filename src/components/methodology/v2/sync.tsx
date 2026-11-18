@@ -38,14 +38,14 @@ function markSent(draft: V2Draft) {
   writeDraft(localStorage, owner, marked);
 }
 
-export function scheduleFlush(draft: V2Draft, entering: Entering, score?: FlushScore) {
+export function scheduleFlush(draft: V2Draft, entering: Entering, score?: FlushScore): Promise<boolean> {
   held = draft;
   ownerFor(draft);
   const pending = draft.sentAt === null || draft.updatedAt > draft.sentAt;
   const online = entering === "online" || (typeof navigator !== "undefined" && navigator.onLine);
   if (!online) {
-    toast("Sin conexión. Tus respuestas siguen en este teléfono.");
-    return;
+    toast.error("No se guardó. Vuelve a intentarlo.");
+    return Promise.resolve(false);
   }
   const reason = flushPlan({
     phase: draft.phase,
@@ -54,7 +54,7 @@ export function scheduleFlush(draft: V2Draft, entering: Entering, score?: FlushS
     online,
     entering,
   });
-  if (!reason) return;
+  if (!reason) return Promise.resolve(true);
   const body = {
     instrumentId: draft.instrumentId,
     answers: draft.answers,
@@ -63,7 +63,7 @@ export function scheduleFlush(draft: V2Draft, entering: Entering, score?: FlushS
     updatedAt: draft.updatedAt,
     ...(reason === "done" ? { score: score ?? null } : {}),
   };
-  fetch("/api/metodologia/envio", {
+  return fetch("/api/metodologia/envio", {
     method: "POST",
     keepalive: true,
     headers: { "Content-Type": "application/json" },
@@ -72,9 +72,11 @@ export function scheduleFlush(draft: V2Draft, entering: Entering, score?: FlushS
     .then((response) => {
       if (!response.ok) throw new Error("envio");
       markSent(draft);
+      return true;
     })
     .catch(() => {
-      toast("Sin conexión. Tus respuestas siguen en este teléfono.");
+      toast.error("No se guardó. Vuelve a intentarlo.");
+      return false;
     });
 }
 

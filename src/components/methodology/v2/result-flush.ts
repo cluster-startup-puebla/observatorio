@@ -5,7 +5,7 @@ export type DoneFlush = (
   draft: V2Draft,
   entering: "done",
   score?: { ismsNivel2: number; band: V2Band | null },
-) => void;
+) => Promise<boolean>;
 
 export function flushDone(
   scheduleFlush: DoneFlush | undefined,
@@ -13,10 +13,7 @@ export function flushDone(
   note: number | null,
   band: V2Band | null,
 ) {
-  if (!scheduleFlush) return;
-  if (note === null) {
-    scheduleFlush(draft, "done");
-    return;
-  }
-  scheduleFlush({ ...draft, phase: "done" }, "done", { ismsNivel2: note, band });
+  if (!scheduleFlush) return Promise.resolve(true);
+  if (note === null) return scheduleFlush(draft, "done");
+  return scheduleFlush({ ...draft, phase: "done" }, "done", { ismsNivel2: note, band });
 }

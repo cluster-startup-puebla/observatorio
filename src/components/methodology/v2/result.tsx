@@ -1,6 +1,5 @@
 "use client";
 
-import { useEffect } from "react";
 import { levelStepFor, type V2Band, type V2LevelStep } from "@/lib/methodology/v2/bands";
 import type { V2Draft } from "@/lib/methodology/v2/draft";
 import { scoreLive } from "@/lib/methodology/v2/live";
@@ -8,9 +7,9 @@ import { buildReport } from "@/lib/methodology/v2/report";
 import type { V2Answers, V2Question } from "@/lib/methodology/v2/types";
 import { FinishConfetti } from "./finish-confetti";
 import { Pentagon } from "./pentagon";
-import { flushDone } from "./result-flush";
 import { ResultNote } from "./result-note";
 import { ResultReport } from "./result-report";
+import { ResultRetry, useResultSend } from "./result-retry";
 import { ScoreBars } from "./score-bars";
 import { SectorRank } from "./sector-rank";
 import { Steps } from "./steps";
@@ -30,7 +29,7 @@ export function Result({
   roadmap: V2LevelStep[];
   draft: V2Draft;
   onRetry?: () => void;
-  scheduleFlush?: Parameters<typeof flushDone>[0];
+  scheduleFlush?: Parameters<typeof useResultSend>[0];
 }) {
   let live = null as ReturnType<typeof scoreLive> | null;
   try {
@@ -44,11 +43,7 @@ export function Result({
   const step = shown === null ? null : levelStepFor(shown, roadmap);
   const band = step?.band ?? live?.band ?? null;
 
-  useEffect(() => {
-    flushDone(scheduleFlush, draft, note, band);
-  }, [scheduleFlush, note, band, draft]);
-
-  const retry = draft.sentAt === null || draft.sentAt < draft.updatedAt;
+  const send = useResultSend(scheduleFlush, draft, note, band);
 
   return (
     <main className="mx-auto flex w-full min-w-0 max-w-lg flex-col gap-8 overflow-x-clip px-4 py-8">
@@ -69,17 +64,13 @@ export function Result({
       <Pentagon questions={questions} answers={answers} />
       <ResultReport report={report} />
       <Steps step={step} signals={report.signals} />
-      {retry ? (
-        <button
-          type="button"
-          className="btn btn-primary"
-          onClick={() => {
+      {send.failed ? (
+        <ResultRetry
+          onRetry={() => {
             onRetry?.();
-            flushDone(scheduleFlush, draft, note, band);
+            send.retry();
           }}
-        >
-          Reintentar envío
-        </button>
+        />
       ) : null}
     </main>
   );

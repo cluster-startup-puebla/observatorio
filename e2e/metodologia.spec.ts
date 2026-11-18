@@ -66,7 +66,7 @@ test("sin red se sigue contestando y no se abre otra fila", async ({ page }) => 
   await page.context().setOffline(true);
   await page.getByTestId("opcion-v2").first().click();
   await page.getByRole("button", { name: "Continuar" }).click();
-  await expect(page.getByText("Sin conexión. Tus respuestas siguen en este teléfono.")).toBeVisible();
+  await expect(page.getByText("No se guardó. Vuelve a intentarlo.")).toBeVisible();
   const localCount = await page.evaluate(() => {
     const key = Object.keys(localStorage).find((item) => item.startsWith("metodologia-v2:"));
     if (!key) return 0;
