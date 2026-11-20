@@ -4,6 +4,7 @@ import { usePathname } from "next/navigation";
 import { isAuthPath } from "@/components/auth/paths";
 import { SiteFooter } from "@/components/site/footer";
 import { SiteHeader } from "@/components/site/header";
+import { SectionUrlSpy } from "@/components/site/section-url-spy";
 
 export function SiteFrame({
   children,
@@ -36,6 +37,7 @@ export function SiteFrame({
 
   return (
     <>
+      <SectionUrlSpy />
       <SiteHeader />
       <main id="contenido" className="flex flex-1 flex-col">
         {children}
