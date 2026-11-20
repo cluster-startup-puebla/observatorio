@@ -5,6 +5,7 @@ const nextConfig: NextConfig = {
   partialPrefetching: true,
   allowedDevOrigins: ["127.0.0.1", "localhost", "192.168.68.102"],
   experimental: {
+    agentUpgrade: "security",
     serverActions: {
       bodySizeLimit: "4mb",
     },
