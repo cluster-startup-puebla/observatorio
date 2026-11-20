@@ -1,3 +1,4 @@
+import { connection } from "next/server";
 import { Newspaper } from "lucide-react";
 import { ComingCard } from "@/components/app/coming-card";
 import { EvaluationBanner } from "@/components/app/evaluation-banner";
@@ -11,13 +12,15 @@ import { loadHome } from "@/lib/app/load-home";
 export const instant = false;
 
 export default async function HomePage() {
+  await connection();
   const home = await loadHome();
+  const now = new Date();
 
   return (
     <div className="grid w-full max-w-lg gap-6 md:max-w-none">
       <header className="grid gap-4">
         <HomeHeader name={home.name} />
-        <HomeGreeting name={home.name} date={new Date()} />
+        <HomeGreeting name={home.name} date={now} />
       </header>
       <ProfileGapBanner gaps={home.gaps} email={home.email} />
       <InnovationBanner show={home.showInnovation} />
