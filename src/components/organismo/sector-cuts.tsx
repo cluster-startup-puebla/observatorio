@@ -1,25 +1,29 @@
 import Link from "next/link";
 import type { SectorCut } from "@/lib/organismo/sector-cuts";
 import type { SectorSeat } from "@/lib/organismo/load-sector-seats";
+import { orgHref } from "@/lib/sessions/org-href";
 
 export function SectorCuts({
   orgSlug,
+  sessionSlug,
   cuts,
   active,
   seats = {},
 }: {
   orgSlug: string;
+  sessionSlug?: string;
   cuts: SectorCut[];
   active?: string;
   seats?: Record<string, SectorSeat | null>;
 }) {
+  const home = orgHref(orgSlug, sessionSlug);
   if (cuts.length === 0) return null;
   return (
     <section className="grid gap-3">
       <div className="flex items-baseline justify-between gap-3">
         <h2 className="text-h3 text-ink">Por sector</h2>
         {active ? (
-          <Link href={`/${orgSlug}`} className="text-small font-semibold text-link">
+          <Link href={home} className="text-small font-semibold text-link">
             Ver todos
           </Link>
         ) : null}
@@ -41,7 +45,7 @@ export function SectorCuts({
             {cuts.map((cut) => (
               <tr key={cut.slug} className={cut.slug === active ? "bg-surface-subtle" : undefined}>
                 <td className="border-t border-line px-4 py-3">
-                  <Link href={`/${orgSlug}?corte=${cut.slug}`} className="font-semibold text-ink">
+                  <Link href={`${home}?corte=${cut.slug}`} className="font-semibold text-ink">
                     {cut.name}
                   </Link>
                 </td>

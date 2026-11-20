@@ -5,6 +5,7 @@ import { redirect } from "next/navigation";
 import { readSessionAccount } from "@/lib/auth/session-account";
 import { sealRef } from "@/lib/ref-token";
 import { createSupabaseWithAccess, readAccessToken } from "@/lib/supabase/auth-session";
+import { sessionPiecePath } from "@/lib/sessions/public-path";
 import { boundSessionId, invitePath } from "./invite-path";
 import { writeInviteLink } from "./invite-link-cookie";
 
@@ -32,7 +33,7 @@ export async function copySupabaseEventLink(sectorSlug: string, requestedSession
     redirect(`/${slug}?error=enlace`);
   }
 
-  const currents = await db.from("sessions").select("id").eq("is_current", true);
+  const currents = await db.from("sessions").select("id, public_slug").eq("is_current", true);
   if (currents.error) {
     console.error("[organismo] enlace", currents.error.message);
     redirect(`/${slug}?error=enlace`);
@@ -53,7 +54,10 @@ export async function copySupabaseEventLink(sectorSlug: string, requestedSession
   const h = await headers();
   const host = h.get("x-forwarded-host") ?? h.get("host") ?? "localhost:3000";
   const proto = h.get("x-forwarded-proto") ?? "http";
-  const url = `${proto}://${host}${invitePath(sectorSlug, sealRef(orgId, refSecret()), bound.sessionId)}`;
+  const publicSlug = (currents.data ?? []).find((row) => row.id === bound.sessionId)?.public_slug;
+  const url = `${proto}://${host}${invitePath(sectorSlug, sealRef(orgId, refSecret()), bound.sessionId, publicSlug)}`;
   await writeInviteLink(slug, { url, sector: sectorSlug });
-  redirect(`/${slug}?enlace=${encodeURIComponent(url)}&sector=${encodeURIComponent(sectorSlug)}`);
+  const back = new URLSearchParams({ enlace: url, sector: sectorSlug });
+  const home = publicSlug ? sessionPiecePath(publicSlug, slug) : `/${slug}`;
+  redirect(`${home}?${back.toString()}`);
 }

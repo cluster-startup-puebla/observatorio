@@ -9,6 +9,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 
 export function OrgShell({
   slug,
+  sessionSlug,
   name,
   email,
   logoSrc,
@@ -16,6 +17,7 @@ export function OrgShell({
   children,
 }: {
   slug: string;
+  sessionSlug?: string;
   name: string;
   email: string;
   logoSrc?: string;
@@ -29,7 +31,7 @@ export function OrgShell({
       <SidebarProvider style={brandStyle} className="h-dvh min-h-0 overflow-hidden">
         <AppSidebar
           email={email}
-          groups={orgGroups(slug)}
+          groups={orgGroups(slug, sessionSlug)}
           title={name}
           subtitle="Organismo"
           logoSrc={logoSrc}

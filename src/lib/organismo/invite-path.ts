@@ -1,5 +1,11 @@
-export function invitePath(sectorSlug: string, token: string, sessionId?: string | null) {
-  const base = `/${sectorSlug}?${token}`;
+export function invitePath(
+  sectorSlug: string,
+  token: string,
+  sessionId?: string | null,
+  publicSlug?: string | null,
+) {
+  const root = publicSlug ? `/sesiones/${publicSlug}/${sectorSlug}` : `/${sectorSlug}`;
+  const base = `${root}?${token}`;
   if (!sessionId) return base;
   return `${base}&sesion=${sessionId}`;
 }

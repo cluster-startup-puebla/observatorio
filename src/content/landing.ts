@@ -1,10 +1,8 @@
 export const ctaLabel = "Crear cuenta";
 
 export const navItems = [
-  { label: "Convocan", href: "/#convocan" },
-  { label: "La sesión", href: "/#sesion" },
-  { label: "Ponentes", href: "/#ponentes" },
-  { label: "Crear cuenta", href: "/crear-cuenta" },
+  { label: "Sesiones", href: "/sesiones" },
+  { label: "Blog", href: "/blog" },
 ];
 
 export const pains = [

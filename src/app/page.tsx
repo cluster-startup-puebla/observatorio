@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { EventLanding } from "@/components/landing/event-landing";
+import { ProgramHome } from "@/components/program/program-home";
 import { redirectIfSession } from "@/lib/auth/redirect-if-session";
 import { pageMetadata, siteDescription, siteName } from "@/lib/metadata";
 
@@ -14,5 +14,5 @@ export const metadata: Metadata = pageMetadata({
 
 export default async function Home() {
   await redirectIfSession("/");
-  return <EventLanding />;
+  return <ProgramHome />;
 }

@@ -10,6 +10,7 @@ import { filterOrgCrm, orgView } from "@/lib/organismo/crm-view";
 import { listOrgCrm } from "@/lib/organismo/org-crm-read";
 import { seatFullCopy } from "@/lib/cupo/seat-full-copy";
 import { ownerBySlug } from "@/lib/organismo/owner";
+import { redirectLegacyPiece } from "@/lib/sessions/redirect-legacy";
 import { usesSupabaseAuth } from "@/lib/supabase/auth-session";
 
 export const instant = false;
@@ -23,6 +24,7 @@ export default async function CrmPage({
 }) {
   const { sector } = await params;
   const query = await searchParams;
+  if (usesSupabaseAuth()) await redirectLegacyPiece(sector, "crm", query);
   const owner = await ownerBySlug(sector);
   if (!owner) notFound();
   const vista = orgView(query.vista);

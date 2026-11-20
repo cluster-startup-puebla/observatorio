@@ -1,7 +1,8 @@
 import type { AdminLink } from "@/components/admin/nav";
+import { sessionPiecePath } from "@/lib/sessions/public-path";
 
-export function orgLinks(slug: string): AdminLink[] {
-  const root = `/${slug}`;
+export function orgLinks(slug: string, sessionSlug?: string): AdminLink[] {
+  const root = sessionSlug ? sessionPiecePath(sessionSlug, slug) : `/${slug}`;
   return [
     { href: root, label: "Inicio", group: "Panel" },
     { href: `${root}/invitaciones`, label: "Invitaciones", group: "Panel" },
@@ -10,8 +11,8 @@ export function orgLinks(slug: string): AdminLink[] {
   ];
 }
 
-export function orgGroups(slug: string) {
-  const links = orgLinks(slug);
+export function orgGroups(slug: string, sessionSlug?: string) {
+  const links = orgLinks(slug, sessionSlug);
   return [
     { name: "Panel", links: links.filter((link) => link.group === "Panel") },
     { name: "Seguridad", links: links.filter((link) => link.group === "Seguridad") },

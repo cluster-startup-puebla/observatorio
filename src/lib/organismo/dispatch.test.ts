@@ -9,10 +9,9 @@ describe("dispatch del segmento", () => {
     expect(layout).toContain("return children");
   });
 
-  it("la landing no se pinta cuando el slug es de un organismo", () => {
+  it("la ruta vieja redirige a la sesión", () => {
     const page = readFileSync("src/app/[sector]/page.tsx", "utf8");
-    expect(page).toContain("ownerBySlug");
-    expect(page).toContain("OrgHome");
-    expect(page).toContain("EventLanding");
+    expect(page).toContain("redirectLegacyPiece");
+    expect(page).not.toContain("EventLanding");
   });
 });

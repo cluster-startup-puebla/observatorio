@@ -21,6 +21,12 @@ describe("enlace con sesión", () => {
     expect(token.includes("sesion")).toBe(false);
   });
 
+  it("con slug público el enlace vive bajo la sesión", () => {
+    expect(invitePath("turismo", "abc", sessionA, "18-11-26-arranque-puebla-x-puebla")).toBe(
+      `/sesiones/18-11-26-arranque-puebla-x-puebla/turismo?abc&sesion=${sessionA}`,
+    );
+  });
+
   it("sin sesión no agrega el parámetro", () => {
     expect(invitePath("turismo", "abc", null)).toBe("/turismo?abc");
     expect(invitePath("turismo", "abc")).toBe("/turismo?abc");

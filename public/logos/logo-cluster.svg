@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 300" role="img" aria-label="Clúster de Startups e Innovación">
+  <text x="0" y="78" fill="#585858" font-family="Roboto, sans-serif" font-size="72" font-weight="400">Clúster de</text>
+  <text x="0" y="176" fill="#a81870" font-family="Roboto, sans-serif" font-size="96" font-weight="700">STARTUPS</text>
+  <text x="0" y="268" font-family="Roboto, sans-serif" font-size="72">
+    <tspan fill="#585858" font-weight="400">e </tspan>
+    <tspan fill="#a81870" font-weight="500">INNOVACIÓN</tspan>
+  </text>
+</svg>

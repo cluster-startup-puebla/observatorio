@@ -10,6 +10,7 @@ import { sectors } from "@/lib/sectors";
 
 export async function OrgHome({
   slug,
+  sessionSlug,
   name,
   orgId,
   url,
@@ -20,6 +21,7 @@ export async function OrgHome({
   brandColor,
 }: {
   slug: string;
+  sessionSlug?: string;
   name: string;
   orgId: string;
   url?: string;
@@ -37,14 +39,14 @@ export async function OrgHome({
     : "Aperturas y conversiones del enlace en los últimos 14 días.";
   return (
     <div className="grid gap-6">
-      <OrgTour slug={slug} sessions={sessions.length} crm={false} tour={false} />
+      <OrgTour slug={slug} sessionSlug={sessionSlug} sessions={sessions.length} crm={false} tour={false} />
       <header className="grid gap-2">
         <h1 className="text-h1 text-ink">{name}</h1>
         <p className="text-body text-ink-secondary">Panel de {slug}</p>
       </header>
       <CopyLink url={url} sector={sector} failed={failed} ready={ready} sessions={sessions} brandColor={brandColor} />
       <LinkCards opens={stats.opens} conversions={stats.conversions} rate={stats.rate} />
-      <SectorCuts orgSlug={slug} cuts={stats.cuts} active={chosen?.slug} seats={seats} />
+      <SectorCuts orgSlug={slug} sessionSlug={sessionSlug} cuts={stats.cuts} active={chosen?.slug} seats={seats} />
       <OpensChart bars={stats.bars} hint={hint} color={brandColor} />
     </div>
   );

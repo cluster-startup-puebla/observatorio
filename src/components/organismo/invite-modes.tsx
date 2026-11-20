@@ -2,6 +2,7 @@ import Link from "next/link";
 import { EmailBox } from "@/components/organismo/email-box";
 import { InviteUpload } from "@/components/organismo/invite-upload";
 import { ManualInvite } from "@/components/organismo/manual-invite";
+import { orgHref } from "@/lib/sessions/org-href";
 
 const modes = [
   {
@@ -30,15 +31,18 @@ function activeMode(mode: string, error?: string): Mode {
 
 export function InviteModes({
   slug,
+  sessionSlug,
   mode,
   error,
 }: {
   slug: string;
+  sessionSlug?: string;
   mode: string;
   error?: string;
 }) {
   const active = activeMode(mode, error);
   const current = modes.find((item) => item.id === active) ?? modes[0];
+  const invites = `${orgHref(slug, sessionSlug)}/invitaciones`;
 
   return (
     <div className="grid gap-6">
@@ -48,7 +52,7 @@ export function InviteModes({
           return (
             <Link
               key={item.id}
-              href={`/${slug}/invitaciones?modo=${item.id}`}
+              href={`${invites}?modo=${item.id}`}
               aria-current={on ? "page" : undefined}
               className={
                 on
@@ -65,7 +69,7 @@ export function InviteModes({
       {active === "mano" ? <ManualInvite slug={slug} error={error} /> : null}
       {active === "archivo" ? (
         <div className="grid gap-5">
-          <a className="text-small font-semibold text-link" href={`/${slug}/invitaciones/plantilla`}>
+          <a className="text-small font-semibold text-link" href={`${invites}/plantilla`}>
             Descargar plantilla
           </a>
           <InviteUpload slug={slug} error={error} />

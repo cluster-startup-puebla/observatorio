@@ -2,6 +2,8 @@ import { notFound } from "next/navigation";
 import { PasswordForm } from "@/components/organismo/password-form";
 import { PasswordSaved } from "@/components/organismo/password-saved";
 import { ownerBySlug } from "@/lib/organismo/owner";
+import { redirectLegacyPiece } from "@/lib/sessions/redirect-legacy";
+import { usesSupabaseAuth } from "@/lib/supabase/auth-session";
 
 export const instant = false;
 
@@ -13,9 +15,10 @@ export default async function SeguridadPage({
   searchParams: Promise<{ error?: string; listo?: string }>;
 }) {
   const { sector } = await params;
+  const query = await searchParams;
+  if (usesSupabaseAuth()) await redirectLegacyPiece(sector, "seguridad", query);
   const owner = await ownerBySlug(sector);
   if (!owner) notFound();
-  const query = await searchParams;
   return (
     <div className="grid max-w-md gap-6">
       <header className="grid gap-2">

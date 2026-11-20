@@ -39,7 +39,7 @@ function ProgramMark({ item }: { item: ProgramSlot }) {
   );
 }
 
-export function Session() {
+export function Session({ sectors }: { sectors?: { name: string; href: string }[] }) {
   return (
     <section id="sesion" data-testid="bloque-evento" className="scroll-mt-24 container-site py-20 lg:py-28">
       <SectionHeading title="Estrategia estatal de vinculación industrial con el ecosistema de innovación." />
@@ -50,7 +50,7 @@ export function Session() {
       </p>
       <SessionFacts />
       <ForumBenefits />
-      <ForumSectors />
+      <ForumSectors sectors={sectors} />
       <ol className="mt-12 max-w-3xl border-t border-line">
         {program.map((item) => (
           <li

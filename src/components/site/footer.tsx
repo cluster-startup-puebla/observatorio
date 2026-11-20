@@ -1,14 +1,8 @@
 import Link from "next/link";
-import { clusterEmail, clusterUrl } from "@/content/landing";
+import { ClusterMark } from "@/components/program/cluster-mark";
+import { clusterEmail, clusterUrl, navItems } from "@/content/landing";
 
-const LINKS = [
-  { label: "Convocan", href: "/#convocan" },
-  { label: "La sesión", href: "/#sesion" },
-  { label: "Crear cuenta", href: "/crear-cuenta" },
-  { label: "Diagnóstico T-MEC", href: "/diagnostico-tmec-puebla" },
-  { label: "Aviso de privacidad", href: "/aviso-de-privacidad" },
-  { label: "Uso de datos", href: "/uso-de-datos" },
-];
+const links = [...navItems, { label: "Crear cuenta", href: "/crear-cuenta" }];
 
 export function SiteFooter() {
   return (
@@ -18,13 +12,10 @@ export function SiteFooter() {
           <Link href="/#inicio" className="font-display text-h4 text-ink">
             Observatorio
           </Link>
-          <p className="mt-4 max-w-sm text-small text-ink-secondary">
-            Es una iniciativa del{" "}
-            <a href={clusterUrl} className="text-link" target="_blank" rel="noopener noreferrer">
-              Clúster de Startups e Innovación
-            </a>
-            .
-          </p>
+          <p className="mt-4 max-w-sm text-small text-ink-secondary">Es una iniciativa del</p>
+          <a href={clusterUrl} className="mt-3 inline-block" target="_blank" rel="noopener noreferrer">
+            <ClusterMark className="h-16 w-auto" />
+          </a>
         </div>
 
         <div>
@@ -37,7 +28,7 @@ export function SiteFooter() {
         <div>
           <p className="text-micro uppercase text-ink-muted">En esta página</p>
           <ul className="mt-3 space-y-2 text-small">
-            {LINKS.map((item) => (
+            {links.map((item) => (
               <li key={item.href}>
                 <Link href={item.href} className="text-link">
                   {item.label}

@@ -6,6 +6,8 @@ import { ownerBySlug } from "@/lib/organismo/owner";
 import { resolveOrgLogoSrc } from "@/lib/organismo/resolve-logo";
 import { readSessionAccount } from "@/lib/auth/session-account";
 import { sectors } from "@/lib/sectors";
+import { redirectLegacyPiece } from "@/lib/sessions/redirect-legacy";
+import { usesSupabaseAuth } from "@/lib/supabase/auth-session";
 
 export const instant = false;
 
@@ -17,9 +19,10 @@ export default async function InvitacionesPage({
   searchParams: Promise<{ error?: string; modo?: string }>;
 }) {
   const { sector } = await params;
+  const query = await searchParams;
+  if (usesSupabaseAuth()) await redirectLegacyPiece(sector, "invitaciones", query);
   const owner = await ownerBySlug(sector);
   if (!owner) notFound();
-  const query = await searchParams;
   const link = await readInviteLink(owner.slug);
   const named = sectors.find((item) => item.slug === link?.sector);
   const account = await readSessionAccount();
