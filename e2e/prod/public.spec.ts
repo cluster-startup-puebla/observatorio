@@ -12,18 +12,19 @@ test("la home publicada es la del observatorio", async ({ page }) => {
   await expect(page.getByTestId("bloque-evento")).toContainText("Quinta Real");
 });
 
-test("la ficha social apunta a este dominio", async ({ page }) => {
+test("la ficha social apunta a este dominio", async ({ page, request }) => {
   await page.goto("/");
   const og = page.locator('meta[property="og:image"]');
-  await expect(og).toHaveAttribute("content", /^https:\/\/observatorio\.clusterdestartups\.org\/og\.png/);
+  await expect(og).toHaveAttribute("content", /^https:\/\/observatorio\.clusterdestartups\.org\//);
+  const card = await request.get((await og.getAttribute("content")) ?? "");
+  expect(card.ok()).toBeTruthy();
+  expect(card.headers()["content-type"]).toContain("image/");
 });
 
-test("el logo del clúster y la imagen social cargan", async ({ request }) => {
+test("el logo del clúster carga", async ({ request }) => {
   const logo = await request.get("/logos/logo-cluster.webp");
-  const card = await request.get("/og.png");
   expect(logo.ok()).toBeTruthy();
   expect(logo.headers()["content-type"]).toContain("image/");
-  expect(card.ok()).toBeTruthy();
 });
 
 test("un sector real queda seleccionado", async ({ page }) => {

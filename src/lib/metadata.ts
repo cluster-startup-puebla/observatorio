@@ -5,13 +5,6 @@ export const siteName = "Observatorio Tecnológico de Puebla";
 export const siteDescription =
   "Crea tu cuenta para la sesión de tu sector y ayuda a construir el primer Observatorio Tecnológico del estado.";
 
-export const ogImage = {
-  url: "/og.png",
-  width: 2400,
-  height: 1260,
-  alt: "Lo que Puebla no sabe que necesita, tu empresa puede decirlo primero.",
-} as const;
-
 const titleTemplate = `%s · ${siteName}`;
 
 function metadataBase() {
@@ -28,7 +21,6 @@ const socialDefaults = {
   siteName,
   locale: "es_MX",
   type: "website" as const,
-  images: [ogImage],
 };
 
 export const rootMetadata: Metadata = {
@@ -55,7 +47,6 @@ export const rootMetadata: Metadata = {
       template: titleTemplate,
     },
     description: siteDescription,
-    images: [ogImage.url],
   },
 };
 
