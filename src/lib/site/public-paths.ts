@@ -1,0 +1,32 @@
+export const privatePaths = [
+  "/admin",
+  "/api",
+  "/login",
+  "/onboarding",
+  "/metodologia",
+  "/mesa",
+  "/organismo",
+  "/panel",
+  "/registro",
+  "/register",
+  "/recuperar",
+  "/restablecer",
+  "/verificar",
+  "/innovacion-abierta",
+  "/test",
+  "/v1",
+  "/sesiones/*/",
+  "/*/crm",
+  "/*/invitaciones",
+  "/*/seguridad",
+];
+
+export const staticPublicPages = [
+  { path: "/", changeFrequency: "weekly", priority: 1 },
+  { path: "/sesiones", changeFrequency: "weekly", priority: 0.8 },
+  { path: "/blog", changeFrequency: "weekly", priority: 0.8 },
+  { path: "/diagnostico-tmec-puebla", changeFrequency: "monthly", priority: 0.6 },
+  { path: "/crear-cuenta", changeFrequency: "monthly", priority: 0.5 },
+  { path: "/aviso-de-privacidad", changeFrequency: "yearly", priority: 0.3 },
+  { path: "/uso-de-datos", changeFrequency: "yearly", priority: 0.3 },
+] as const;
