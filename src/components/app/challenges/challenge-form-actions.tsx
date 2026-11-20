@@ -1,5 +1,6 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { publishChallenge } from "@/lib/app/challenges/publish-challenge";
@@ -11,22 +12,24 @@ export function ChallengeFormActions({
   value,
   challengeId,
   published,
-  onDone,
   onAskPublish,
 }: {
   value: ChallengeFormState;
   challengeId?: string;
   published: boolean;
-  onDone: () => void;
   onAskPublish: () => void;
 }) {
+  const router = useRouter();
+
   async function saveDraft() {
-    const error = await saveChallengeDraft({ ...value, id: challengeId });
-    if (error) toast.error(error);
-    else {
-      toast.success("Borrador guardado.");
-      onDone();
+    const result = await saveChallengeDraft({ ...value, id: challengeId });
+    if ("error" in result) {
+      toast.error(result.error);
+      return;
     }
+    toast.success("Borrador guardado.");
+    router.push(`/app/challenges/${result.id}/edit`);
+    router.refresh();
   }
 
   async function savePublished() {
@@ -34,12 +37,13 @@ export function ChallengeFormActions({
     if (error) toast.error(error);
     else {
       toast.success("Reto actualizado.");
-      onDone();
+      router.push("/app/challenges");
+      router.refresh();
     }
   }
 
   return (
-    <div className="mt-auto flex flex-wrap gap-2 pt-2">
+    <div className="sticky bottom-24 z-10 flex flex-wrap gap-2 border-t border-line bg-elevated/95 py-3 backdrop-blur md:static md:border-0 md:bg-transparent md:py-0 md:backdrop-blur-none">
       {published ? (
         <Button type="button" onClick={savePublished}>
           Guardar cambios
@@ -61,12 +65,12 @@ export function ChallengeFormActions({
 export async function runPublish(
   value: ChallengeFormState,
   challengeId: string | undefined,
-  onDone: () => void,
 ) {
   const error = await publishChallenge({ ...value, id: challengeId });
-  if (error) toast.error(error);
-  else {
-    toast.success("Reto publicado.");
-    onDone();
+  if (error) {
+    toast.error(error);
+    return;
   }
+  toast.success("Reto publicado.");
+  window.location.assign("/app/challenges");
 }

@@ -58,7 +58,9 @@ Default al crear: `red` o borrador; al publicar a portal, checkbox de atribució
 
 | Canal | Ruta | Contenido |
 | --- | --- | --- |
-| App | `/app/challenges` | CRUD de la empresa |
+| App lista | `/app/challenges` | Lista de la empresa |
+| App crear | `/app/challenges/new` | Alta con TipTap (editor / preview / dividido) |
+| App editar | `/app/challenges/[id]/edit` | Edición; soft delete = ocultar (no hard delete) |
 | Portal | `/retos` y `/retos/[id]` | Listado + detalle públicos |
 | Admin | `/admin/retos` | Moderación superadmin |
 

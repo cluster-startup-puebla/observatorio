@@ -1,19 +1,16 @@
 "use client";
 
+import Link from "next/link";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import type { MyChallenge } from "@/lib/app/challenges/load-mine";
 import { areaLabel, isChallengeArea } from "@/lib/challenges/areas";
 import { statusLabel, visibilityLabel } from "@/lib/challenges/status";
 import type { ChallengeStatus, ChallengeVisibility } from "@/lib/challenges/status";
-import { ChallengeForm } from "./challenge-form";
-import { emptyChallengeForm, formFromRow } from "./challenge-defaults";
-import { CloseConfirm } from "./close-confirm";
+import { HideConfirm } from "./hide-confirm";
 
 export function ChallengeList({ rows }: { rows: MyChallenge[] }) {
-  const [creating, setCreating] = useState(false);
-  const [editing, setEditing] = useState<MyChallenge | null>(null);
-  const [closingId, setClosingId] = useState<string | null>(null);
+  const [hidingId, setHidingId] = useState<string | null>(null);
 
   return (
     <div className="grid gap-6">
@@ -24,8 +21,8 @@ export function ChallengeList({ rows }: { rows: MyChallenge[] }) {
             Publica necesidades tecnológicas de tu operación.
           </p>
         </div>
-        <Button type="button" onClick={() => setCreating(true)}>
-          Nuevo reto
+        <Button asChild>
+          <Link href="/app/challenges/new">Nuevo reto</Link>
         </Button>
       </div>
       {rows.length === 0 ? (
@@ -33,24 +30,35 @@ export function ChallengeList({ rows }: { rows: MyChallenge[] }) {
       ) : (
         <ul className="divide-y divide-line border-y border-line">
           {rows.map((row) => (
-            <li key={row.id} className="flex flex-wrap items-center justify-between gap-3 py-4">
-              <div>
+            <li
+              key={row.id}
+              className="flex flex-wrap items-center justify-between gap-3 py-4"
+            >
+              <div className="min-w-0">
                 <p className="font-medium text-ink">{row.name}</p>
                 <p className="text-small text-ink-secondary">
                   {isChallengeArea(row.area) ? areaLabel(row.area) : row.area}
                   {" · "}
                   {statusLabel[row.status as ChallengeStatus] ?? row.status}
                   {" · "}
-                  {visibilityLabel[row.visibility as ChallengeVisibility] ?? row.visibility}
+                  {visibilityLabel[row.visibility as ChallengeVisibility] ??
+                    row.visibility}
                 </p>
               </div>
               <div className="flex gap-2">
-                <Button type="button" size="sm" variant="outline" onClick={() => setEditing(row)}>
-                  Editar
-                </Button>
-                {row.status === "publicado" ? (
-                  <Button type="button" size="sm" variant="ghost" onClick={() => setClosingId(row.id)}>
-                    Cerrar
+                {row.status !== "oculto" ? (
+                  <Button asChild size="sm" variant="outline">
+                    <Link href={`/app/challenges/${row.id}/edit`}>Editar</Link>
+                  </Button>
+                ) : null}
+                {row.status !== "oculto" ? (
+                  <Button
+                    type="button"
+                    size="sm"
+                    variant="ghost"
+                    onClick={() => setHidingId(row.id)}
+                  >
+                    Ocultar
                   </Button>
                 ) : null}
               </div>
@@ -58,25 +66,12 @@ export function ChallengeList({ rows }: { rows: MyChallenge[] }) {
           ))}
         </ul>
       )}
-      {creating ? (
-        <ChallengeForm
+      {hidingId ? (
+        <HideConfirm
           open
-          onOpenChange={setCreating}
-          initial={emptyChallengeForm()}
+          onOpenChange={(open) => !open && setHidingId(null)}
+          challengeId={hidingId}
         />
-      ) : null}
-      {editing ? (
-        <ChallengeForm
-          key={editing.id}
-          open
-          onOpenChange={(open) => !open && setEditing(null)}
-          initial={formFromRow(editing)}
-          challengeId={editing.id}
-          status={editing.status}
-        />
-      ) : null}
-      {closingId ? (
-        <CloseConfirm open onOpenChange={(open) => !open && setClosingId(null)} challengeId={closingId} />
       ) : null}
     </div>
   );

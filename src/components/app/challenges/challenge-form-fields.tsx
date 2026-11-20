@@ -1,6 +1,6 @@
 "use client";
 
-import { RichTextEditor } from "@/components/challenges/rich-text-editor";
+import { DescriptionEditor } from "@/components/challenges/description-editor";
 import { CHALLENGE_AREAS, areaLabel } from "@/lib/challenges/areas";
 
 const field = "rounded-lg border border-line px-3 py-2";
@@ -54,16 +54,11 @@ export function ChallengeFormFields({
       </label>
       <div className="grid gap-1 text-small">
         <span>Descripción</span>
-        {!disabled ? (
-          <RichTextEditor
-            value={value.descriptionHtml}
-            onChange={(descriptionHtml) => onChange({ ...value, descriptionHtml })}
-          />
-        ) : (
-          <div className="rounded-lg border border-line px-3 py-2 text-ink-secondary">
-            No editable
-          </div>
-        )}
+        <DescriptionEditor
+          value={value.descriptionHtml}
+          onChange={(descriptionHtml) => onChange({ ...value, descriptionHtml })}
+          disabled={disabled}
+        />
       </div>
       <label className="grid gap-1 text-small">
         Meta de éxito

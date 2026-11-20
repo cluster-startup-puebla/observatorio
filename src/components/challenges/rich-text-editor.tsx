@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect } from "react";
 import { Color } from "@tiptap/extension-color";
 import Highlight from "@tiptap/extension-highlight";
 import TextAlign from "@tiptap/extension-text-align";
@@ -19,26 +20,35 @@ export function RichTextEditor({
   const editor = useEditor({
     immediatelyRender: false,
     extensions: [
-      StarterKit,
+      StarterKit.configure({ heading: { levels: [1, 2, 3] } }),
       Underline,
       TextStyle,
       Color,
-      Highlight,
+      Highlight.configure({ multicolor: true }),
       TextAlign.configure({ types: ["heading", "paragraph"] }),
     ],
     content: value,
     onUpdate: ({ editor: current }) => onChange(current.getHTML()),
     editorProps: {
       attributes: {
-        class: "min-h-40 px-3 py-2 text-body text-ink focus:outline-none",
+        class:
+          "prose prose-sm max-w-none min-h-48 px-3 py-3 text-body text-ink focus:outline-none md:min-h-72 md:px-4",
       },
     },
   });
 
+  useEffect(() => {
+    if (editor && value !== editor.getHTML()) {
+      editor.commands.setContent(value);
+    }
+  }, [value, editor]);
+
   return (
-    <div className="rounded-lg border border-line bg-elevated">
+    <div className="flex min-h-0 flex-col">
       <RichTextToolbar editor={editor} />
-      <EditorContent editor={editor} />
+      <div className="flex-1 overflow-y-auto">
+        <EditorContent editor={editor} />
+      </div>
     </div>
   );
 }

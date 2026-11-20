@@ -11,9 +11,9 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
-import { closeChallenge } from "@/lib/app/challenges/close-challenge";
+import { hideChallenge } from "@/lib/app/challenges/hide-challenge";
 
-export function CloseConfirm({
+export function HideConfirm({
   open,
   onOpenChange,
   challengeId,
@@ -23,9 +23,9 @@ export function CloseConfirm({
   challengeId: string;
 }) {
   async function confirm() {
-    const error = await closeChallenge(challengeId);
+    const error = await hideChallenge(challengeId);
     if (error) toast.error(error);
-    else toast.success("Reto cerrado.");
+    else toast.success("Reto oculto.");
     onOpenChange(false);
   }
 
@@ -33,14 +33,15 @@ export function CloseConfirm({
     <AlertDialog open={open} onOpenChange={onOpenChange}>
       <AlertDialogContent>
         <AlertDialogHeader>
-          <AlertDialogTitle>Cerrar reto</AlertDialogTitle>
+          <AlertDialogTitle>Ocultar reto</AlertDialogTitle>
           <AlertDialogDescription>
-            El reto dejará de estar publicado. ¿Continuar?
+            Soft delete: el reto se oculta del portal y de la red. No se borra
+            de la base. ¿Continuar?
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
           <AlertDialogCancel>Cancelar</AlertDialogCancel>
-          <AlertDialogAction onClick={confirm}>Cerrar</AlertDialogAction>
+          <AlertDialogAction onClick={confirm}>Ocultar</AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialog>
