@@ -5,7 +5,7 @@ export function DiagnosticBanner({ closing = false }: { closing?: boolean }) {
   return (
     <aside
       data-testid="bloque-via-partners"
-      className={closing ? "-mb-24 bg-surface-subtle" : "border-b border-line bg-surface-subtle"}
+      className={closing ? "bg-surface-subtle" : "border-b border-line bg-surface-subtle"}
     >
       <div
         className={
