@@ -9,6 +9,7 @@ const kept = new Set([
   "em",
   "u",
   "s",
+  "h1",
   "h2",
   "h3",
   "ul",

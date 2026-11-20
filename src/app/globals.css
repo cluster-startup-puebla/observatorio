@@ -274,6 +274,60 @@
     font-size: var(--text-small);
   }
 
+  .prose-challenge {
+    color: var(--text-primary);
+    line-height: 1.6;
+  }
+  .prose-challenge h1 {
+    margin: 0 0 0.75rem;
+    font-family: var(--font-display), sans-serif;
+    font-size: var(--text-h2);
+    font-weight: 700;
+    line-height: 1.2;
+  }
+  .prose-challenge h2 {
+    margin: 1.25rem 0 0.5rem;
+    font-family: var(--font-display), sans-serif;
+    font-size: var(--text-h3);
+    font-weight: 700;
+    line-height: 1.25;
+  }
+  .prose-challenge h3 {
+    margin: 1rem 0 0.4rem;
+    font-family: var(--font-display), sans-serif;
+    font-size: 1.125rem;
+    font-weight: 700;
+    line-height: 1.3;
+  }
+  .prose-challenge p {
+    margin: 0.5rem 0;
+  }
+  .prose-challenge ul,
+  .prose-challenge ol {
+    margin: 0.5rem 0;
+    padding-left: 1.25rem;
+  }
+  .prose-challenge ul {
+    list-style: disc;
+  }
+  .prose-challenge ol {
+    list-style: decimal;
+  }
+  .prose-challenge strong {
+    font-weight: 700;
+  }
+  .prose-challenge u {
+    text-decoration: underline;
+  }
+  .prose-challenge mark {
+    background: color-mix(in oklch, var(--brand-primary) 25%, transparent);
+    padding: 0 0.15em;
+  }
+  .prose-challenge a {
+    color: var(--link);
+    text-decoration: underline;
+  }
+
   .container-site {
     width: 100%;
     max-width: var(--container-site);

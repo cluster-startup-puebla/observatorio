@@ -58,19 +58,19 @@ export function ChallengeList({ rows }: { rows: MyChallenge[] }) {
               </p>
             </div>
             <div className="flex gap-2">
-              {row.status !== "oculto" ? (
+              {row.status !== "oculto" && row.status !== "cerrado" ? (
                 <Button asChild size="sm" variant="outline">
                   <Link href={`/app/challenges/${row.id}/edit`}>Editar</Link>
                 </Button>
               ) : null}
-              {row.status !== "oculto" ? (
+              {row.status === "borrador" || row.status === "publicado" ? (
                 <Button
                   type="button"
                   size="sm"
                   variant="ghost"
                   onClick={() => setHidingId(row.id)}
                 >
-                  Ocultar
+                  Cerrar
                 </Button>
               ) : null}
             </div>

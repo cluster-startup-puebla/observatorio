@@ -2,6 +2,7 @@
 
 import { CHALLENGE_AREAS, areaLabel } from "@/lib/challenges/areas";
 import type { ChallengeFormState } from "./challenge-form-fields";
+import { FieldSelect } from "./field-select";
 
 const field =
   "w-full rounded-lg border border-line bg-elevated px-4 py-3 text-body text-ink";
@@ -19,10 +20,9 @@ export function ChallengeAreaFields({
     <>
       <label className="grid gap-2 text-small">
         Área
-        <select
-          className={field}
+        <FieldSelect
           value={value.area}
-          onChange={(e) => onChange({ ...value, area: e.target.value })}
+          onChange={(area) => onChange({ ...value, area })}
           disabled={disabled}
         >
           {CHALLENGE_AREAS.map((area) => (
@@ -30,7 +30,7 @@ export function ChallengeAreaFields({
               {areaLabel(area)}
             </option>
           ))}
-        </select>
+        </FieldSelect>
       </label>
       {value.area === "otro" ? (
         <label className="grid gap-2 text-small">

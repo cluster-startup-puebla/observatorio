@@ -23,7 +23,7 @@ export function EmpresarioShell({
 }) {
   return (
     <TooltipProvider>
-      <SidebarProvider className="h-dvh min-h-0 overflow-hidden">
+      <SidebarProvider className="h-dvh min-h-0 overflow-hidden bg-surface-subtle">
         <DesktopSidebar email={email} />
         <SidebarInset className="min-h-0 overflow-hidden bg-surface-subtle">
           <header className="hidden h-12 shrink-0 items-center gap-2 border-b px-3 md:flex">

@@ -25,6 +25,7 @@ export async function loadMyChallenges(): Promise<MyChallenge[]> {
       "id, name, area, area_note, description_html, success_metric, urgency, status, visibility, show_company, updated_at",
     )
     .eq("company_id", ctx.company.id)
+    .in("status", ["borrador", "publicado"])
     .order("updated_at", { ascending: false });
   if (rows.error) throw new Error(rows.error.message);
   return (rows.data ?? []).map((row) => ({

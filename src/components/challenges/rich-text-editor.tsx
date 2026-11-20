@@ -32,7 +32,7 @@ export function RichTextEditor({
     editorProps: {
       attributes: {
         class:
-          "prose prose-sm max-w-none min-h-48 px-3 py-3 text-body text-ink focus:outline-none md:min-h-72 md:px-4",
+          "prose-challenge max-w-none min-h-48 px-3 py-3 focus:outline-none md:min-h-72 md:px-4",
       },
     },
   });

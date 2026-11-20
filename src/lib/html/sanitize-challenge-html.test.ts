@@ -4,8 +4,10 @@ import { sanitizeChallengeHtml } from "./sanitize-challenge-html";
 describe("sanitizeChallengeHtml", () => {
   it("keeps tip tap markup", () => {
     const html =
+      "<h1>Titulo</h1>" +
       '<p style="text-align: center">Hola <u>mundo</u> <mark>resaltado</mark></p>' +
       "<ul><li><strong>a</strong></li></ul>";
+    expect(sanitizeChallengeHtml(html)).toContain("<h1>Titulo</h1>");
     expect(sanitizeChallengeHtml(html)).toContain("<u>mundo</u>");
     expect(sanitizeChallengeHtml(html)).toContain("<mark>");
     expect(sanitizeChallengeHtml(html)).toContain("text-align: center");

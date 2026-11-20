@@ -25,7 +25,7 @@ export function HideConfirm({
   async function confirm() {
     const error = await hideChallenge(challengeId);
     if (error) toast.error(error);
-    else toast.success("Reto oculto.");
+    else toast.success("Reto cerrado.");
     onOpenChange(false);
   }
 
@@ -33,15 +33,14 @@ export function HideConfirm({
     <AlertDialog open={open} onOpenChange={onOpenChange}>
       <AlertDialogContent>
         <AlertDialogHeader>
-          <AlertDialogTitle>Ocultar reto</AlertDialogTitle>
+          <AlertDialogTitle>Cerrar reto</AlertDialogTitle>
           <AlertDialogDescription>
-            Soft delete: el reto se oculta del portal y de la red. No se borra
-            de la base. ¿Continuar?
+            ¿Seguro que deseas cerrar este reto?
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
           <AlertDialogCancel>Cancelar</AlertDialogCancel>
-          <AlertDialogAction onClick={confirm}>Ocultar</AlertDialogAction>
+          <AlertDialogAction onClick={confirm}>Cerrar</AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialog>

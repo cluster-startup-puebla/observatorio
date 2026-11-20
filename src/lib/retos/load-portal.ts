@@ -1,5 +1,6 @@
 import "server-only";
 
+import { eventLogoSrc } from "@/lib/program/public-logos";
 import { createSupabaseAnon } from "@/lib/supabase/auth-session";
 import { companyLabel } from "./company-label";
 
@@ -11,11 +12,12 @@ export type PortalChallenge = {
   successMetric: string;
   urgency: string | null;
   companyLabel: string;
+  logoSrc: string | null;
   publishedAt: string;
 };
 
 const select =
-  "id, name, area, description_html, success_metric, urgency, show_company, company_name_snapshot, published_at";
+  "id, name, area, description_html, success_metric, urgency, show_company, company_name_snapshot, published_at, companies(profile_id)";
 
 function mapRow(row: {
   id: string;
@@ -27,7 +29,10 @@ function mapRow(row: {
   show_company: boolean;
   company_name_snapshot: string | null;
   published_at: string | null;
+  companies: { profile_id: string } | { profile_id: string }[] | null;
 }): PortalChallenge {
+  const company = Array.isArray(row.companies) ? row.companies[0] : row.companies;
+  const profileId = company?.profile_id ?? null;
   return {
     id: row.id,
     name: row.name,
@@ -39,6 +44,8 @@ function mapRow(row: {
       showCompany: row.show_company,
       snapshot: row.company_name_snapshot,
     }),
+    logoSrc:
+      row.show_company && profileId ? eventLogoSrc(profileId) : null,
     publishedAt: row.published_at ?? "",
   };
 }
