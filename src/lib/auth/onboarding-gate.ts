@@ -5,7 +5,8 @@ import { createSupabaseWithAccess, readAccessToken, usesSupabaseAuth } from "@/l
 import { pathAfterSignIn } from "./home";
 import { readSessionAccount } from "./session-account";
 
-async function seatOccupied() {
+/** Kept for the commented seat gate below. */
+export async function seatOccupied() {
   const token = await readAccessToken();
   if (!token) return false;
   const state = await createSupabaseWithAccess(token).rpc("my_attendance_state");
@@ -25,5 +26,7 @@ export async function redirectUnfinishedEmpresario() {
       }),
     );
   }
-  if (!account.onboarded || account.awaitingApproval || !(await seatOccupied())) redirect("/onboarding");
+  if (!account.onboarded) redirect("/onboarding");
+  // Cuenta libre: aceptación / asiento ya no bloquean el diagnóstico.
+  // if (account.awaitingApproval || !(await seatOccupied())) redirect("/onboarding");
 }
