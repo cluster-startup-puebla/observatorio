@@ -1,5 +1,6 @@
-import Image from "next/image";
+import { PixelLogoGrid } from "@/components/ui/pixel-logo-grid";
 import type { PublicLogo } from "@/lib/program/public-logos";
+import { CompanyCta } from "./bits";
 import { PxpFrame } from "./frame";
 
 export function PxpParticipants({ logos }: { logos: PublicLogo[] }) {
@@ -7,16 +8,16 @@ export function PxpParticipants({ logos }: { logos: PublicLogo[] }) {
 
   return (
     <PxpFrame id="participantes" tone="sand">
-      <h2 className="text-[clamp(2rem,4vw,3rem)] leading-tight font-extrabold text-ink">
-        Empresas que ya declararon su necesidad
+      <h2 className="pxp-title max-w-[36ch] text-ink">
+        Empresas que ya colaboran en el ecosistema
       </h2>
-      <ul className="mt-10 grid grid-cols-3 gap-6 lg:grid-cols-6">
-        {logos.map((logo) => (
-          <li key={logo.src} className="grid h-24 place-items-center">
-            <Image src={logo.src} alt={logo.name} width={160} height={80} className="max-h-16 w-auto object-contain" />
-          </li>
-        ))}
-      </ul>
+      <div className="mt-10">
+        <PixelLogoGrid logos={logos} />
+      </div>
+      <div className="mt-10 flex flex-col items-start gap-5">
+        <p className="pxp-copy text-ink">¿Quieres formar parte de ellas?</p>
+        <CompanyCta />
+      </div>
     </PxpFrame>
   );
 }

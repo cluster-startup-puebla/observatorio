@@ -19,7 +19,7 @@ export function PxpFaq() {
   return (
     <PxpFrame id="faq" tone="sand">
       <div className="grid gap-10 lg:grid-cols-[16rem_minmax(0,1fr)]">
-        <h2 className="text-[clamp(2rem,4vw,3rem)] leading-tight font-extrabold text-ink lg:sticky lg:top-28">
+        <h2 className="pxp-title text-ink lg:sticky lg:top-28">
           Preguntas frecuentes
         </h2>
         <div className="divide-y divide-line border-y border-line">
@@ -29,14 +29,25 @@ export function PxpFaq() {
               <div key={question}>
                 <button
                   type="button"
-                  className="flex w-full items-center justify-between gap-4 py-4 text-left text-body font-bold text-ink"
+                  className="flex w-full items-center justify-between gap-4 py-4 text-left font-display text-base font-bold text-ink lg:text-lg"
                   aria-expanded={shown}
                   onClick={() => setOpen(shown ? -1 : index)}
                 >
                   {question}
                   <span aria-hidden>{shown ? "−" : "+"}</span>
                 </button>
-                {shown ? <p className="pb-4 text-body text-ink-secondary">{answer}</p> : null}
+                <div
+                  aria-hidden={!shown}
+                  className={`grid motion-reduce:transition-none ${shown ? "grid-rows-[1fr] duration-500" : "grid-rows-[0fr] duration-300"} transition-[grid-template-rows] ease-[cubic-bezier(0.22,1,0.36,1)]`}
+                >
+                  <div className="overflow-hidden">
+                    <p
+                      className={`pxp-copy pb-4 text-ink-secondary motion-reduce:transition-none ${shown ? "translate-y-0 opacity-100 duration-500" : "translate-y-1 opacity-0 duration-200"} transition-[opacity,translate] ease-[cubic-bezier(0.22,1,0.36,1)]`}
+                    >
+                      {answer}
+                    </p>
+                  </div>
+                </div>
               </div>
             );
           })}

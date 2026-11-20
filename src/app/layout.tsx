@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Roboto, Source_Serif_4 } from "next/font/google";
+import { Archivo, Raleway } from "next/font/google";
 import { cookies } from "next/headers";
 import Script from "next/script";
 import { Toaster } from "@/components/ui/sonner";
@@ -7,19 +7,18 @@ import { SiteFrame } from "@/components/site/site-frame";
 import { rootMetadata } from "@/lib/metadata";
 import "./globals.css";
 
-const roboto = Roboto({
-  variable: "--font-roboto",
+const archivo = Archivo({
+  variable: "--font-archivo",
   subsets: ["latin"],
   display: "swap",
-  weight: ["400", "500", "700"],
+  weight: ["700", "800"],
 });
 
-const sourceSerif = Source_Serif_4({
-  variable: "--font-source",
+const raleway = Raleway({
+  variable: "--font-raleway",
   subsets: ["latin"],
   display: "swap",
-  style: ["normal", "italic"],
-  weight: ["400", "600"],
+  weight: ["400", "500", "600"],
 });
 
 const themeScript = `(function(){try{var t=localStorage.getItem("observatorio-theme");document.documentElement.dataset.theme=t==="dark"?"dark":"light";}catch(e){document.documentElement.dataset.theme="light";}})();`;
@@ -35,7 +34,7 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
       data-theme="light"
       data-scroll-behavior="smooth"
       suppressHydrationWarning
-      className={`${roboto.variable} ${sourceSerif.variable} h-full antialiased`}
+      className={`${archivo.variable} ${raleway.variable} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col bg-surface text-ink">
         <Script id="observatorio-theme" strategy="beforeInteractive">

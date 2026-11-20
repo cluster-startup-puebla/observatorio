@@ -16,7 +16,7 @@ export function HeaderMenu({
   return (
     <nav
       id="mobile-nav"
-      className={`lg:hidden ${onField ? "border-t border-white/25" : "border-t border-line"}`}
+      className={`lg:hidden ${onField ? "border-t border-white/25" : "border-t border-line bg-surface"}`}
       aria-label="Principal"
     >
       <ul className="container-site flex flex-col py-2">

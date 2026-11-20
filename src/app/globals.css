@@ -2,7 +2,7 @@
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
 
-@source inline("bg-sidebar text-sidebar-foreground bg-sidebar-accent text-sidebar-accent-foreground bg-sidebar-border text-sidebar-primary text-sidebar-primary-foreground border-sidebar-border ring-sidebar-ring hover:bg-sidebar hover:bg-sidebar-accent hover:bg-sidebar-border hover:text-sidebar-accent-foreground hover:text-sidebar-foreground data-active:bg-sidebar-accent data-active:text-sidebar-accent-foreground data-open:hover:bg-sidebar-accent data-open:hover:text-sidebar-accent-foreground active:bg-sidebar-accent active:text-sidebar-accent-foreground peer-hover:text-sidebar-accent-foreground");
+@source inline("bg-sidebar text-sidebar-foreground bg-sidebar-accent text-sidebar-accent-foreground bg-sidebar-border text-sidebar-primary text-sidebar-primary-foreground border-sidebar-border ring-sidebar-ring hover:bg-sidebar hover:bg-sidebar-accent hover:bg-sidebar-border hover:text-sidebar-accent-foreground hover:text-sidebar-foreground data-active:bg-sidebar-accent data-active:text-sidebar-accent-foreground data-open:hover:bg-sidebar-accent data-open:hover:text-sidebar-accent-foreground active:bg-sidebar-accent active:text-sidebar-accent-foreground peer-hover:text-sidebar-accent-foreground pxp-kicker pxp-display pxp-title pxp-label pxp-copy pxp-pull site-bar pxp-drop");
 
 /* Oscuro solo con data-theme, no con la preferencia del sistema. */
 @custom-variant dark ([data-theme="dark"] &);
@@ -150,7 +150,6 @@
   --color-on-mark: var(--on-accent);
   --color-sand: var(--bg-sand);
   --color-surface: var(--bg-base);
-  --font-serif: var(--font-source), Georgia, "Times New Roman", serif;
   --color-surface-subtle: var(--bg-subtle);
   --color-elevated: var(--bg-elevated);
   --color-line: var(--border-default);
@@ -159,9 +158,9 @@
   --color-ink-muted: var(--text-muted);
   --color-link: var(--link);
 
-  --font-sans: var(--font-roboto), "Roboto", ui-sans-serif, system-ui, sans-serif;
-  --font-display: var(--font-roboto), "Roboto", sans-serif;
-  --font-body: var(--font-roboto), "Roboto", sans-serif;
+  --font-sans: var(--font-raleway), "Raleway", ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-archivo), "Archivo", sans-serif;
+  --font-body: var(--font-raleway), "Raleway", sans-serif;
 
   --text-display: clamp(3.25rem, 7vw, 5.5rem);
   --text-display--line-height: 0.98;
@@ -209,14 +208,14 @@
   body {
     background: var(--bg-base);
     color: var(--text-primary);
-    font-family: var(--font-roboto), "Roboto", sans-serif;
+    font-family: var(--font-body), "Raleway", sans-serif;
   }
 
   h1,
   h2,
   h3,
   .display {
-    font-family: var(--font-roboto), "Roboto", sans-serif;
+    font-family: var(--font-display), "Archivo", sans-serif;
     font-weight: 700;
   }
 
@@ -294,8 +293,8 @@
     justify-content: center;
     gap: 0.5rem;
     border-radius: var(--radius-full);
-    font-family: var(--font-roboto), "Roboto", sans-serif;
-    font-weight: 600;
+    font-family: var(--font-display), "Archivo", sans-serif;
+    font-weight: 700;
     font-size: 1rem;
     line-height: 1;
     padding: 0.875rem 1.75rem;
@@ -696,14 +695,90 @@ html[data-reading="on"] .doc-table-stack {
     transform: none;
   }
 
-  .pxp-marquee {
+  .stage-seq .stage-step {
+    opacity: 0;
+    transform: translateY(28px);
+    transition:
+      opacity 560ms cubic-bezier(0.22, 1, 0.36, 1),
+      transform 560ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .stage-seq.is-in .stage-step {
+    opacity: 1;
+    transform: none;
+  }
+
+  .stage-seq.is-in .stage-step:nth-child(1) {
+    transition-delay: 0s;
+  }
+
+  .stage-seq.is-in .stage-step:nth-child(2) {
+    transition-delay: 0.9s;
+  }
+
+  .stage-seq.is-in .stage-step:nth-child(3) {
+    transition-delay: 1.8s;
+  }
+
+  .pxp-marquee,
+  .pxp-marquee-back {
     animation: pxp-marquee 48s linear infinite;
   }
 
+  .pxp-marquee-back {
+    animation-direction: reverse;
+  }
+
   .pxp-reel:hover .pxp-marquee,
+  .pxp-reel:hover .pxp-marquee-back,
   .pxp-reel:focus-within .pxp-marquee,
-  .pxp-marquee.is-paused {
+  .pxp-reel:focus-within .pxp-marquee-back,
+  .pxp-marquee.is-paused,
+  .pxp-marquee-back.is-paused {
     animation-play-state: paused;
+  }
+}
+
+@utility site-bar {
+  interpolate-size: allow-keywords;
+  transition:
+    width 520ms cubic-bezier(0.22, 1, 0.36, 1),
+    background-color 420ms ease,
+    color 420ms ease,
+    border-color 420ms ease,
+    border-radius 520ms cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 420ms ease,
+    padding 420ms ease;
+}
+
+@utility pxp-drop {
+  animation: pxp-drop 1.4s ease-in-out infinite;
+}
+
+@keyframes pxp-drop {
+  0%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.4;
+  }
+  50% {
+    transform: translateY(7px);
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .site-bar {
+    transition: none;
+  }
+
+  .pxp-drop {
+    animation: none;
+  }
+
+  .convergence-drift {
+    transform: none !important;
+    opacity: 1 !important;
   }
 }
 
@@ -726,5 +801,78 @@ html[data-reading="on"] .doc-table-stack {
     margin-inline: auto;
     justify-content: center;
   }
+}
+
+@utility pxp-kicker {
+  font-family: var(--font-display), "Archivo", sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  line-height: 1;
+  text-transform: uppercase;
+  @media (width >= 64rem) {
+    font-size: 13px;
+  }
+}
+
+@utility pxp-display {
+  font-family: var(--font-display), "Archivo", sans-serif;
+  font-size: 56px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 0.95;
+  text-wrap: balance;
+  @media (width >= 64rem) {
+    font-size: 96px;
+  }
+}
+
+@utility pxp-title {
+  font-family: var(--font-display), "Archivo", sans-serif;
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 1.1;
+  text-wrap: balance;
+  @media (width >= 64rem) {
+    font-size: 44px;
+  }
+}
+
+@utility pxp-label {
+  font-family: var(--font-display), "Archivo", sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.25;
+  text-wrap: balance;
+  @media (width >= 64rem) {
+    font-size: 22px;
+  }
+}
+
+@utility pxp-copy {
+  max-width: 65ch;
+  font-family: var(--font-body), "Raleway", sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.6;
+  text-wrap: pretty;
+  @media (width >= 64rem) {
+    font-size: 18px;
+  }
+}
+
+@utility pxp-pull {
+  font-family: var(--font-display), "Archivo", sans-serif;
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1.2;
+  text-wrap: balance;
+  @media (width >= 64rem) {
+    font-size: 40px;
+  }
+}
+
+.pxp-copy strong {
+  font-weight: 600;
 }
 

@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
-import { ctaLabel } from "@/content/landing";
+import { companyAccountHref, ctaLabel } from "@/content/landing";
 import { tokenFromQuery } from "@/lib/organismo/event-token";
 import { reserveHref } from "@/lib/sectors";
 
@@ -19,7 +19,7 @@ export function HeaderCtas({
   onNavigate?: () => void;
   loginOnly?: boolean;
 }) {
-  const href = reserveHref(path, tokenFromQuery(useSearchParams()));
+  const accountHref = path === "/" ? companyAccountHref : reserveHref(path, tokenFromQuery(useSearchParams()));
   const primary = onField
     ? `btn bg-white text-program-field hover:bg-white/90 ${size}`
     : `btn btn-primary ${size}`;
@@ -30,7 +30,7 @@ export function HeaderCtas({
   return (
     <>
       {loginOnly ? null : (
-        <Link href={href} onClick={onNavigate} className={primary}>
+        <Link href={accountHref} onClick={onNavigate} className={primary}>
           {ctaLabel}
         </Link>
       )}

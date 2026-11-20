@@ -9,21 +9,16 @@ export function PxpHeading({
   title: ReactNode;
   light?: boolean;
 }) {
+  const ink = light ? "text-white" : "text-ink";
   return (
     <div>
-      {eyebrow ? (
-        <p className={`text-xs font-bold tracking-[0.18em] uppercase ${light ? "text-white" : "text-program-field"}`}>
-          {eyebrow}
-        </p>
-      ) : null}
-      <h2 className={`mt-3 max-w-[18ch] text-[clamp(2rem,4vw,3.25rem)] leading-[1.05] font-extrabold ${light ? "text-white" : "text-ink"}`}>
-        {title}
-      </h2>
+      {eyebrow ? <p className={`pxp-kicker ${light ? "text-white" : "text-program-field"}`}>{eyebrow}</p> : null}
+      <h2 className={`pxp-title mt-4 max-w-[36ch] ${ink}`}>{title}</h2>
       <span aria-hidden className={`mt-4 block h-0.5 w-12 ${light ? "bg-white" : "bg-program-field"}`} />
     </div>
   );
 }
 
 export function PxpItalic({ children }: { children: ReactNode }) {
-  return <em className="font-serif font-normal text-program-field italic">{children}</em>;
+  return <span className="text-program-field">{children}</span>;
 }

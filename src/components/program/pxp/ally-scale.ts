@@ -1,0 +1,21 @@
+/** Optical height in px so each mark carries a similar ink weight. */
+export const allyHeight: Record<string, number> = {
+  "ammje-angelopolis": 42,
+  canacine: 34,
+  "canacintra-puebla": 28,
+  canagraf: 42,
+  "canirac-puebla": 28,
+  "cce-puebla": 28,
+  "citex-puebla-tlaxcala": 34,
+  "clauz-cluster-automotriz-zona-centro": 36,
+  "cluster-agroalimentario-puebla": 52,
+  "cluster-chignahuapan-zacatlan": 44,
+  "cluster-educacion-desarrollo-talento": 46,
+  "cluster-plasticos-economia-circular": 50,
+  "cluster-quimica-farmaceutica": 56,
+  "cmic-delegacion-puebla": 26,
+  "cnet-puebla": 36,
+  "coparmex-puebla": 48,
+  "puebla-care": 32,
+  "vive-puebla-cluster-industria-reuniones": 32,
+};

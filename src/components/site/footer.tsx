@@ -20,7 +20,7 @@ export function SiteFooter() {
           </Link>
           <p className="mt-4 text-small text-white/80">Es una iniciativa del</p>
           <a href={clusterUrl} className="mt-3 inline-block text-white" target="_blank" rel="noopener noreferrer">
-            <ClusterMark className="h-16 w-auto" />
+            <ClusterMark light className="h-16 w-auto" />
           </a>
         </div>
         <div>

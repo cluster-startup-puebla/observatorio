@@ -29,7 +29,7 @@ export function PxpAudiences() {
             ))}
           </ul>
           <Link href={companyAccountHref} className="btn mt-8 w-full bg-program-field text-white sm:w-fit">
-            Crear cuenta y registrar mi necesidad
+            Crear cuenta
           </Link>
         </article>
         <article className="border border-line bg-surface p-8">

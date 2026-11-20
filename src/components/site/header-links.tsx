@@ -13,7 +13,7 @@ export function HeaderLinks({ path, onField }: { path: string; onField: boolean 
               <Link
                 href={item.href}
                 aria-current={current ? "page" : undefined}
-                className={`text-small whitespace-nowrap transition ${navLinkClass(current, onField)}`}
+                className={`text-small whitespace-nowrap transition-colors duration-500 ${navLinkClass(current, onField)}`}
               >
                 {item.label}
               </Link>

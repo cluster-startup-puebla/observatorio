@@ -6,6 +6,7 @@ import { Menu, X } from "lucide-react";
 import { ReadingToggle } from "@/components/diagnostico/reading-dock";
 import { HeaderCtas } from "@/components/site/header-ctas";
 import { ThemeToggle } from "@/components/site/theme-toggle";
+import { companyAccountHref } from "@/content/landing";
 
 export function HeaderTools({
   path,
@@ -24,7 +25,7 @@ export function HeaderTools({
     <div className="flex shrink-0 items-center gap-2">
       {onDiagnostic ? <ReadingToggle /> : null}
       <Link
-        href="/crear-cuenta"
+        href={path === "/" ? companyAccountHref : "/crear-cuenta"}
         className={`btn px-3 py-2 text-small lg:hidden ${onHero ? "bg-white text-program-field" : "btn-primary"}`}
       >
         Crear cuenta
