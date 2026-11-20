@@ -14,7 +14,7 @@ function SessionGroup({
 }) {
   return (
     <section className="grid gap-4">
-      <h2 className="text-h3 text-ink">{title}</h2>
+      <h2 className="text-[1.05rem] leading-[1.2] text-ink">{title}</h2>
       {rows.length === 0 ? (
         <EmptySessionCard label={empty} />
       ) : (
@@ -25,11 +25,11 @@ function SessionGroup({
                 href={`/app/sesiones/${session.publicSlug}`}
                 className="flex items-center gap-4 rounded-2xl border border-line bg-elevated p-4 transition-colors hover:border-program-field"
               >
-                <SessionDate iso={session.sessionOn} />
+                <SessionDate iso={session.sessionOn} compact />
                 <span className="min-w-0">
-                  <span className="block text-h3 text-ink">{session.title}</span>
+                  <span className="block text-[1.05rem] leading-[1.2] font-bold text-ink">{session.title}</span>
                   {session.venue ? (
-                    <span className="mt-1 block text-small text-ink-secondary">{session.venue}</span>
+                    <span className="mt-1 block text-[0.7rem] leading-[1.5] text-ink-secondary">{session.venue}</span>
                   ) : null}
                 </span>
               </Link>

@@ -16,6 +16,7 @@ export type HomeScreen = {
   next: SectorSession | null;
   showEvaluation: boolean;
   showInnovation: boolean;
+  sectorName: string;
 };
 
 const empty: HomeScreen = {
@@ -25,6 +26,7 @@ const empty: HomeScreen = {
   next: null,
   showEvaluation: false,
   showInnovation: false,
+  sectorName: "",
 };
 
 function mexicoToday() {
@@ -45,13 +47,14 @@ export async function loadHome(): Promise<HomeScreen> {
   const db = createSupabaseWithAccess(token);
   const [profile, company, run, gaps, innovation] = await Promise.all([
     db.from("profiles").select("full_name").eq("id", account.id).maybeSingle(),
-    db.from("companies").select("sector_id, sectors(slug)").eq("profile_id", account.id).maybeSingle(),
+    db.from("companies").select("sector_id, sectors(name, slug)").eq("profile_id", account.id).maybeSingle(),
     db.from("methodology_v2_runs").select("phase, score").eq("profile_id", account.id).maybeSingle(),
     loadProfileGaps(token, account.id),
     db.rpc("open_innovation_joined"),
   ]);
   if (company.error) throw new Error(company.error.message);
   if (run.error) throw new Error(run.error.message);
+  const sector = sectorOf(company.data?.sectors);
   const sectorId = company.data?.sector_id;
   const sessions = typeof sectorId === "string" ? await loadSectorSessions(token, sectorId) : [];
   const name = typeof profile.data?.full_name === "string" ? profile.data.full_name : "";
@@ -61,9 +64,10 @@ export async function loadHome(): Promise<HomeScreen> {
     gaps: gaps.gaps,
     next: nextForSector(sessions, mexicoToday()),
     showEvaluation: showFirstEvaluation({
-      sectorHasPack: sectorHasPackFor(sectorOf(company.data?.sectors).slug),
+      sectorHasPack: sectorHasPackFor(sector.slug),
       finished: companyScore(run.data) !== null,
     }),
     showInnovation: innovation.data === false,
+    sectorName: sector.name ?? "",
   };
 }

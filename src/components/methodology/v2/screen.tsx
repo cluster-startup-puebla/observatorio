@@ -7,7 +7,7 @@ import { pickDraft } from "@/lib/methodology/v2/recover";
 import type { InstrumentChoice } from "@/lib/methodology/v2/sector-map";
 import type { V2Question } from "@/lib/methodology/v2/types";
 import { touch } from "./move";
-import { freshDraft, initialInstrument } from "./screen-phase";
+import { freshDraft, initialInstrument, openSavedDraft } from "./screen-phase";
 import { ScreenView } from "./screen-view";
 import { scheduleFlush } from "./sync";
 
@@ -39,7 +39,7 @@ export function MetodologiaScreen({
 
   useEffect(() => {
     try {
-      const next = pickDraft(readDraft(localStorage, profileId), remote);
+      const next = openSavedDraft(localStorage, profileId, remote, packs);
       const known = next?.instrumentId && packs.some((item) => item.id === next.instrumentId);
       if (known && next) setInstrumentId(next.instrumentId);
       setDraft(next);

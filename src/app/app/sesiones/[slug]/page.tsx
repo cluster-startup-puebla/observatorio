@@ -53,7 +53,7 @@ async function SessionDetail({ params }: { params: Promise<{ slug: string }> }) 
 
   return (
     <article className="grid w-full max-w-2xl gap-3 md:max-w-none">
-      <h1 className="text-h2 text-ink">{session.title}</h1>
+      <h1 className="text-[1.4rem] leading-[1.15] text-ink">{session.title}</h1>
       <p className="text-body text-ink">{sessionOnLabel(session.sessionOn)}</p>
       <p className="text-body text-ink-secondary">{session.venue}</p>
       {status ? <p className="text-body text-ink">{status}</p> : null}

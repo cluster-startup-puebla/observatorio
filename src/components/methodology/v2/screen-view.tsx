@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useRef, useState } from "react";
 import type { V2LevelStep } from "@/lib/methodology/v2/bands";
 import type { V2Draft } from "@/lib/methodology/v2/draft";
 import type { V2Question } from "@/lib/methodology/v2/types";
@@ -33,18 +34,32 @@ export function ScreenView({
   onChoose: (id: string) => void;
   onEnter: () => void;
 }) {
+  const finished = Boolean(draft && pack && showResult(draft, pack.questions.length));
+  const [celebrate, setCelebrate] = useState(false);
+  const seen = useRef(false);
+
+  useEffect(() => {
+    if (!booted) return;
+    if (!seen.current) {
+      seen.current = true;
+      return;
+    }
+    if (finished) setCelebrate(true);
+  }, [booted, finished]);
+
   if (!pack) {
     if (!booted) return null;
     return <SectorConfirm brought={brought} options={options} onConfirm={onChoose} />;
   }
 
-  if (draft && showResult(draft, pack.questions.length)) {
+  if (draft && finished) {
     return (
       <Result
         questions={pack.questions}
         answers={draft.answers}
         roadmap={pack.roadmap}
         draft={draft}
+        celebrate={celebrate}
         scheduleFlush={scheduleFlush}
       />
     );

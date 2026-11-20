@@ -13,6 +13,7 @@ export function Result({
   answers,
   roadmap,
   draft,
+  celebrate = false,
   onRetry,
   scheduleFlush,
 }: {
@@ -20,6 +21,7 @@ export function Result({
   answers: V2Answers;
   roadmap: V2LevelStep[];
   draft: V2Draft;
+  celebrate?: boolean;
   onRetry?: () => void;
   scheduleFlush?: Parameters<typeof useResultSend>[0];
 }) {
@@ -32,7 +34,7 @@ export function Result({
         read={read}
         questions={questions}
         answers={answers}
-        celebration={read.shown === null ? null : <FinishConfetti />}
+        celebration={celebrate && read.shown !== null ? <FinishConfetti /> : null}
       />
       {send.failed ? (
         <ResultRetry

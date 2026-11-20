@@ -51,7 +51,7 @@ async function SessionsBody() {
 
   return (
     <div className="grid gap-8">
-      <h1 className="text-h2 text-ink">Sesiones</h1>
+      <h1 className="text-[1.4rem] leading-[1.15] text-ink">Sesiones</h1>
       <SessionGroups upcoming={groups.upcoming} past={groups.past} />
     </div>
   );

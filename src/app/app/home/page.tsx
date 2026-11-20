@@ -35,7 +35,7 @@ async function HomeBody() {
       </header>
       <ProfileGapBanner gaps={home.gaps} email={home.email} />
       <InnovationBanner show={home.showInnovation} />
-      <EvaluationBanner show={home.showEvaluation} />
+      <EvaluationBanner show={home.showEvaluation} sector={home.sectorName} />
       <SessionBanner next={home.next} />
       <section className="grid gap-4 border-t border-line pt-6">
         <h2 className="text-h3 text-ink">Feed</h2>
