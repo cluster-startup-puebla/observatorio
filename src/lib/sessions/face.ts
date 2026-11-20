@@ -34,13 +34,19 @@ export function isSessionZone(value: string): value is SessionZone {
   return (sessionTimeZones as readonly string[]).includes(value);
 }
 
-export function sessionOnLabel(iso: string) {
+export function sessionDateParts(iso: string) {
   const match = /^(\d{4})-(\d{2})-(\d{2})/.exec(iso);
-  if (!match) return iso;
+  if (!match) return null;
   const month = months[Number(match[2]) - 1];
   const day = Number(match[3]);
-  if (!month || day < 1) return iso;
-  return `${day} de ${month} de ${match[1]}`;
+  if (!month || day < 1) return null;
+  return { year: match[1], month, day };
+}
+
+export function sessionOnLabel(iso: string) {
+  const parts = sessionDateParts(iso);
+  if (!parts) return iso;
+  return `${parts.day} de ${parts.month} de ${parts.year}`;
 }
 
 export function clockFace(value: string) {
