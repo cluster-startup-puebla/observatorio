@@ -10,12 +10,13 @@ import { ProfileGapBanner } from "@/components/app/profile-gap-banner";
 import { SessionBanner } from "@/components/app/session-banner";
 import { loadHome } from "@/lib/app/load-home";
 import { sessionLife } from "@/lib/app/view-cache";
+import HomeLoading from "./loading";
 
 export const instant = false;
 
 export default function HomePage() {
   return (
-    <Suspense fallback={null}>
+    <Suspense fallback={<HomeLoading />}>
       <HomeBody />
     </Suspense>
   );

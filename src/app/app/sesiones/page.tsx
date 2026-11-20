@@ -6,6 +6,7 @@ import { splitSessions } from "@/lib/app/sector-sessions";
 import { sessionLife, sessionsTag } from "@/lib/app/view-cache";
 import { readSessionAccount } from "@/lib/auth/session-account";
 import { createSupabaseWithAccess, readAccessToken } from "@/lib/supabase/auth-session";
+import SessionsLoading from "./loading";
 
 export const instant = false;
 
@@ -33,7 +34,7 @@ async function companySectorId(token: string, profileId: string) {
 
 export default function SessionsPage() {
   return (
-    <Suspense fallback={null}>
+    <Suspense fallback={<SessionsLoading />}>
       <SessionsBody />
     </Suspense>
   );

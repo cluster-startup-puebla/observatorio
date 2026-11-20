@@ -1,6 +1,6 @@
 import { Skeleton } from "@/components/ui/skeleton";
 
-const bar = "bg-ink/10";
+const bar = "bg-ink/25";
 
 function HeaderShape() {
   return (
@@ -26,16 +26,10 @@ function GreetingShape() {
 
 function CardShape() {
   return (
-    <div className="rounded-[2rem] bg-brand/15 px-6 py-8">
-      <div className="flex items-start justify-between gap-4">
-        <span className="grid gap-3">
-          <Skeleton className="h-4 w-36 bg-white/80" />
-          <Skeleton className="h-10 w-24 bg-white/80" />
-          <Skeleton className="h-4 w-32 bg-white/80" />
-        </span>
-        <Skeleton className="h-4 w-20 bg-white/80" />
-      </div>
-      <Skeleton className="mt-6 h-1 w-full rounded-full bg-white/70" />
+    <div className="rounded-[2rem] border border-line bg-elevated px-6 py-8 shadow-[0_16px_40px_-12px_rgb(22_40_79/0.18)]">
+      <Skeleton className={`h-6 w-full max-w-xl ${bar}`} />
+      <Skeleton className={`mt-3 h-6 w-full max-w-md ${bar}`} />
+      <Skeleton className={`mt-6 h-11 w-full rounded-full sm:w-80 ${bar}`} />
     </div>
   );
 }
@@ -45,10 +39,10 @@ function FeedShape() {
     <section className="grid gap-4 border-t border-line pt-6">
       <Skeleton className={`h-7 w-16 ${bar}`} />
       <div className="flex flex-col items-center md:rounded-[2rem] md:border md:border-line md:bg-elevated md:px-6 md:py-8 md:shadow-[0_16px_40px_-12px_rgb(22_40_79/0.18)]">
-        <Skeleton className={`h-6 w-28 rounded-full ${bar} md:bg-muted`} />
-        <Skeleton className={`mt-6 size-10 rounded-full ${bar} md:bg-muted`} />
-        <Skeleton className={`mt-4 h-7 w-28 ${bar} md:bg-muted`} />
-        <Skeleton className={`mt-2 h-4 w-56 max-w-full ${bar} md:bg-muted`} />
+        <Skeleton className={`h-7 w-32 rounded-full ${bar}`} />
+        <Skeleton className={`mt-6 size-12 rounded-full ${bar}`} />
+        <Skeleton className={`mt-4 h-8 w-40 ${bar}`} />
+        <Skeleton className={`mt-3 h-5 w-72 max-w-full ${bar}`} />
       </div>
     </section>
   );

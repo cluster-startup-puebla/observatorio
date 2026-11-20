@@ -1,26 +1,14 @@
 import { Skeleton } from "@/components/ui/skeleton";
 
-const bar = "bg-ink/10";
-
-function EmptyShape() {
-  return (
-    <div className="rounded-[2rem] border border-line bg-elevated px-6 py-8 shadow-[0_16px_40px_-12px_rgb(22_40_79/0.18)]">
-      <div className="flex flex-col items-center">
-        <Skeleton className="size-10 rounded-full" />
-        <Skeleton className="mt-4 h-5 w-52" />
-      </div>
-    </div>
-  );
-}
+const bar = "bg-ink/25";
 
 function SessionShape() {
   return (
     <div className="flex items-center gap-4 rounded-2xl border border-line bg-elevated p-4">
-      <Skeleton className="h-16 w-16 shrink-0 rounded-xl" />
+      <Skeleton className={`h-16 w-16 shrink-0 rounded-xl ${bar}`} />
       <span className="grid min-w-0 flex-1 gap-2">
-        <Skeleton className="h-4 w-4/5" />
-        <Skeleton className="h-4 w-3/5" />
-        <Skeleton className="h-3 w-2/5" />
+        <Skeleton className={`h-5 w-full max-w-sm ${bar}`} />
+        <Skeleton className={`h-4 w-full max-w-xs ${bar}`} />
       </span>
     </div>
   );
@@ -31,16 +19,17 @@ export default function SessionsLoading() {
     <div className="grid gap-8" aria-busy="true" aria-live="polite">
       <span className="sr-only">Cargando</span>
       <Skeleton className={`h-7 w-36 ${bar}`} />
-      <div className="grid gap-10">
-        <section className="grid gap-4">
-          <Skeleton className={`h-5 w-24 ${bar}`} />
-          <EmptyShape />
-        </section>
-        <section className="grid gap-4">
-          <Skeleton className={`h-5 w-20 ${bar}`} />
-          <SessionShape />
-        </section>
-      </div>
+      <section className="grid gap-3">
+        <Skeleton className={`h-5 w-24 ${bar}`} />
+        <SessionShape />
+        <SessionShape />
+        <SessionShape />
+      </section>
+      <section className="grid gap-3">
+        <Skeleton className={`h-5 w-20 ${bar}`} />
+        <SessionShape />
+        <SessionShape />
+      </section>
     </div>
   );
 }
