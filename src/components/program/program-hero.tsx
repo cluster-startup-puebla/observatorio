@@ -8,8 +8,8 @@ function HeroMark() {
 
 export function ProgramHero() {
   return (
-    <section id="inicio" className="scroll-mt-24 bg-[#a71c6f] text-white">
-      <div className="container-site flex flex-col py-10 lg:py-14">
+    <section id="inicio" data-program-field className="scroll-mt-24 bg-program-field text-white">
+      <div className="container-site flex flex-col pt-4 pb-12 lg:pt-6 lg:pb-16">
         <div className="relative pl-6">
           <span aria-hidden className="absolute top-1.5 bottom-0 left-0 w-px bg-white/70" />
           <span aria-hidden className="absolute top-1.5 left-0 size-1.5 -translate-x-1/2 rounded-full bg-white" />

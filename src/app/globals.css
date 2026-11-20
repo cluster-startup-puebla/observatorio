@@ -22,6 +22,7 @@
   --medal-platino: #3e4c5e;
   --medal-platino-wash: #e7eef5;
   --brand-gradient: linear-gradient(135deg, #e8186a 0%, #16284f 100%);
+  --program-field: #a71c6f;
 }
 
 :root,
@@ -135,6 +136,7 @@
   --color-sidebar-ring: var(--sidebar-ring);
 
   --color-brand: var(--brand-primary);
+  --color-program-field: var(--program-field);
   --color-brand-dark: var(--brand-primary-dark);
   --color-brand-light: var(--brand-primary-light);
   --color-navy: var(--brand-secondary);
@@ -370,6 +372,10 @@
   [data-theme="dark"] .logo-negative {
     filter: brightness(0) invert(1);
   }
+}
+
+[data-program-field] :focus-visible {
+  outline-color: #fff;
 }
 
 .band-photo {

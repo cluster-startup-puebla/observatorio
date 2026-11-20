@@ -10,12 +10,16 @@ function toggleTheme() {
   localStorage.setItem(STORAGE_KEY, next);
 }
 
-export function ThemeToggle() {
+export function ThemeToggle({ onField = false }: { onField?: boolean }) {
   return (
     <button
       type="button"
       onClick={toggleTheme}
-      className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-line text-ink-secondary transition hover:text-mark"
+      className={`inline-flex size-11 items-center justify-center rounded-full border transition ${
+        onField
+          ? "border-white/40 text-white hover:border-white hover:bg-white/10"
+          : "border-line text-ink-secondary hover:text-mark"
+      }`}
     >
       <span className="sr-only">
         <span className="dark:hidden">Modo oscuro</span>

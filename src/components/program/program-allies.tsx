@@ -1,6 +1,7 @@
-import { ConvenerRow } from "@/components/landing/atoms/convener-row";
 import { GovernmentLockup } from "@/components/landing/atoms/government-lockup";
 import { ClusterMark } from "@/components/program/cluster-mark";
+import { LogoCarousel } from "@/components/ui/logo-carousel";
+import { conveners } from "@/content/conveners";
 
 export function ProgramAllies() {
   return (
@@ -14,8 +15,15 @@ export function ProgramAllies() {
         <div className="mt-12">
           <GovernmentLockup />
         </div>
-        <div className="mt-10">
-          <ConvenerRow />
+        <div className="mt-12">
+          <LogoCarousel
+            logos={conveners.map((logo) => ({
+              name: logo.alt,
+              src: logo.src,
+              width: logo.width,
+              height: logo.height,
+            }))}
+          />
         </div>
       </div>
     </section>
