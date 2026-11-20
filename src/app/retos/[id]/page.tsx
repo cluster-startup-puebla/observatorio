@@ -13,7 +13,13 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { id } = await params;
   const row = await getPortalChallenge(id);
-  if (!row) return pageMetadata({ title: "Reto", path: `/retos/${id}` });
+  if (!row) {
+    return pageMetadata({
+      title: "Reto",
+      description: "Reto del Observatorio Tecnológico de Puebla.",
+      path: `/retos/${id}`,
+    });
+  }
   return pageMetadata({
     title: row.name,
     description: row.successMetric.slice(0, 140),
