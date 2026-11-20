@@ -1,3 +1,4 @@
+import { BackfillButton } from "@/app/admin/lavas/backfill-button";
 import { BoostForm } from "@/app/admin/lavas/boost-form";
 import { LavasAdmin } from "@/app/admin/lavas/lavas-admin";
 import { ManualForm } from "@/app/admin/lavas/manual-form";
@@ -11,7 +12,13 @@ export const instant = false;
 export default async function LavasPage({
   searchParams,
 }: {
-  searchParams: Promise<{ error?: string; edit?: string; ok?: string; panel?: string }>;
+  searchParams: Promise<{
+    error?: string;
+    edit?: string;
+    ok?: string;
+    panel?: string;
+    summary?: string;
+  }>;
 }) {
   await requireSuperadmin();
   const params = await searchParams;
@@ -22,7 +29,7 @@ export default async function LavasPage({
   ]);
   return (
     <>
-      <LavasOkToast ok={params.ok} />
+      <LavasOkToast ok={params.ok} summary={params.summary} />
       <LavasAdmin rows={rows} edit={params.edit} error={params.error}>
         <BoostForm
           multiplier={boost.multiplier}
@@ -33,6 +40,7 @@ export default async function LavasPage({
           companies={companies}
           error={params.panel === "manual" ? params.error : undefined}
         />
+        <BackfillButton />
       </LavasAdmin>
     </>
   );
