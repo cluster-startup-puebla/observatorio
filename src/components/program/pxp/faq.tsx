@@ -7,8 +7,14 @@ const items = [
   ["¿Qué es una necesidad tecnológica?", "Un reto concreto de la operación de tu empresa que podría resolverse con tecnología."],
   ["¿Cada cuánto se responde?", "Cada año o cada vez que tu empresa implementa una tecnología nueva."],
   ["¿Dónde se responde?", "Durante las sesiones o desde la cuenta de tu empresa en la plataforma."],
-  ["¿Qué pasa después de declarar mi necesidad?", "Se suma a la estadística anónima del Observatorio. Con ella, startups y equipos de desarrollo construyen soluciones que se validan con empresas como la tuya."],
-  ["¿Se publica el nombre de mi empresa o mi necesidad?", "No. Tu necesidad solo se usa como estadística anónima por sector. Por ejemplo, “el sector muebles necesita sistemas de trazabilidad”."],
+  [
+    "¿Qué pasa después de declarar mi necesidad?",
+    "Puedes publicarla como reto en el portal, con el nombre de tu empresa o como licitación anónima. También sigue alimentando la estadística agregada del Observatorio.",
+  ],
+  [
+    "¿Se publica el nombre de mi empresa o mi necesidad?",
+    "Tú eliges. Al publicar un reto puedes mostrar la razón social o dejarlo anónimo. Los hallazgos agregados por sector siguen siendo anónimos.",
+  ],
   ["¿Qué son las empresas de innovación abierta (EIA)?", "Empresas que se abren a probar y co-crear soluciones con startups. Las que participan ganan ventaja competitiva."],
   ["¿Tiene costo?", "No. Participar es gratuito para las empresas."],
 ] as const;

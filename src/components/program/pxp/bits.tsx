@@ -13,7 +13,9 @@ export function PrivacyCallout() {
       <p className="flex gap-3">
         <Lock aria-hidden className="mt-1 shrink-0 text-program-field" size={18} />
         <span className="text-base leading-snug text-pretty text-ink">
-          <strong className="font-semibold">Tu empresa nunca aparece con nombre.</strong> Las necesidades se usan solo como estadística anónima. Por ejemplo: “El sector muebles necesita sistemas de trazabilidad.”
+          <strong className="font-semibold">Tú decides la atribución.</strong>{" "}
+          Puedes publicar un reto con el nombre de tu empresa o como licitación anónima.
+          Los hallazgos agregados por sector siguen siendo estadística anónima.
         </span>
       </p>
     </Callout>

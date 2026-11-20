@@ -7,13 +7,13 @@ import { pageMetadata } from "@/lib/metadata";
 export const metadata: Metadata = pageMetadata({
   title: "Uso de datos",
   description:
-    "Qué datos pide el registro del Observatorio, para qué se usa cada uno y qué nunca se publica.",
+    "Qué datos pide el registro del Observatorio, para qué se usa cada uno y qué se publica o eliges atribuir.",
   path: "/uso-de-datos",
 });
 
 export default function DataUsePage() {
   return (
-    <LegalArticle title="Uso de datos" updated="15 de octubre de 2026">
+    <LegalArticle title="Uso de datos" updated="20 de noviembre de 2026">
       <p>
         Esta página explica, en concreto, qué se hace con lo que dejas en el registro y en la
         sesión. El marco legal está en el{" "}
@@ -39,9 +39,10 @@ export default function DataUsePage() {
       <LegalHeading>Qué se publica</LegalHeading>
       <p>
         El Observatorio publica hallazgos agregados y anónimos por sector: tipos de necesidad, no
-        empresas ni personas. Un dato solo se atribuye a tu empresa si tú lo autorizas por escrito,
-        para ese caso.
+        empresas ni personas. Además, una empresa puede publicar un reto en /retos con su razón
+        social o como licitación anónima; esa atribución la elige al publicar.
       </p>
+
 
       <LegalHeading>Qué no se hace</LegalHeading>
       <ul className="list-disc space-y-2 pl-5">
