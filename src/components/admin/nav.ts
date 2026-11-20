@@ -19,6 +19,7 @@ export const adminLinks: AdminLink[] = [
   { href: "/admin/sesiones", label: "Sesiones", group: "Contenido" },
   { href: "/admin/metodologia", label: "Metodología", group: "Contenido" },
   { href: "/admin/medios", label: "Medios", group: "Contenido" },
+  { href: "/admin/lavas", label: "Lavas", group: "Contenido" },
 ];
 
 export function adminGroups() {
