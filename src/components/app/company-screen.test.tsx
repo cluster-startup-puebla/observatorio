@@ -23,7 +23,9 @@ describe("CompanyScreen", () => {
   it("omite campos vacíos y no pinta el checklist", () => {
     const html = renderToStaticMarkup(<CompanyScreen home={empty} />);
     expect(html).toContain("Empresa");
-    expect(html).toContain("Tu lugar en el sector");
+    expect(html).toContain("Todavía no hay una evaluación");
+    expect(html).not.toContain("Tu lugar en el sector");
+    expect(html).not.toContain("El sector");
     expect(html).not.toContain("Pendientes");
     expect(html).not.toContain("Última calificación");
     expect(html).not.toContain("Sitio web");
