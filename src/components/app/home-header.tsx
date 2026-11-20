@@ -1,15 +1,16 @@
 import Link from "next/link";
 import { LavasChip } from "@/components/app/lavas-chip";
 import { personInitials } from "@/lib/app/initials";
+import type { LavaPanel } from "@/lib/lavas/load-panel";
 
-export function HomeHeader({ name }: { name: string }) {
+export function HomeHeader({ name, lavas }: { name: string; lavas: LavaPanel }) {
   return (
     <div className="flex items-center justify-between gap-3">
       <p className="min-w-0 font-display text-small text-ink">
         Puebla<span className="text-brand">X</span>Puebla
       </p>
       <div className="flex shrink-0 items-center gap-2">
-        <LavasChip />
+        <LavasChip balance={lavas.balance} panel={lavas} />
         <Link
           href="/app/profile"
           aria-label="Tu perfil"
