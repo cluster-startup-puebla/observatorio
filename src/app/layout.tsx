@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Archivo, Raleway } from "next/font/google";
 import { cookies } from "next/headers";
 import Script from "next/script";
@@ -24,6 +24,10 @@ const raleway = Raleway({
 const themeScript = `(function(){try{var t=localStorage.getItem("observatorio-theme");document.documentElement.dataset.theme=t==="dark"?"dark":"light";}catch(e){document.documentElement.dataset.theme="light";}})();`;
 
 export const metadata: Metadata = rootMetadata;
+
+export const viewport: Viewport = {
+  themeColor: "#a71c6f",
+};
 export const instant = false;
 
 export default async function RootLayout({ children }: LayoutProps<"/">) {

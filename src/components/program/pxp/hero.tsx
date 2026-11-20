@@ -5,12 +5,12 @@ import { companyAccountHref, ctaLabel } from "@/content/landing";
 import { HeroMark } from "./hero-mark";
 
 const mark =
-  "pointer-events-none aspect-square h-[min(50svh,28rem)] w-auto shrink-0 text-white max-lg:absolute max-lg:top-1/2 max-lg:right-0 max-lg:h-[min(28svh,11rem)] max-lg:-translate-y-1/2 max-lg:opacity-20";
+  "pointer-events-none z-0 aspect-square w-auto shrink-0 text-white lg:h-[min(50svh,28rem)] lg:ml-auto max-lg:absolute max-lg:top-1 max-lg:-right-8 max-lg:h-[9.5rem] max-lg:opacity-[0.18]";
 
 export function PxpHero() {
   return (
     <div className="relative z-10 mx-auto flex w-full max-w-[1200px] flex-1 items-center gap-8 px-4 py-6">
-      <div className="relative w-full max-w-xl pl-6">
+      <div className="relative z-10 w-full max-w-xl pl-6">
         <span aria-hidden className="absolute top-1.5 bottom-0 left-0 w-px bg-white/70" />
         <span aria-hidden className="absolute top-1.5 left-0 size-1.5 -translate-x-1/2 rounded-full bg-white" />
         <p className="pxp-kicker text-white">Levantamiento de necesidades tecnológicas</p>
@@ -41,7 +41,7 @@ export function PxpHero() {
           <span className="absolute top-1/2 right-0 size-1.5 translate-x-1/2 -translate-y-1/2 rounded-full bg-white" />
         </div>
       </div>
-      <HeroMark className={`${mark} lg:ml-auto`} />
+      <HeroMark className={mark} />
     </div>
   );
 }
