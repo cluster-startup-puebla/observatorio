@@ -5,7 +5,7 @@ import { companyAccountHref, ctaLabel } from "@/content/landing";
 import { HeroMark } from "./hero-mark";
 
 const mark =
-  "pointer-events-none z-0 aspect-square w-auto shrink-0 text-white lg:h-[min(50svh,28rem)] lg:ml-auto max-lg:absolute max-lg:top-1 max-lg:-right-8 max-lg:h-[9.5rem] max-lg:opacity-[0.18]";
+  "pointer-events-none aspect-square w-auto shrink-0 text-white lg:z-0 lg:h-[min(50svh,28rem)] lg:ml-auto max-lg:absolute max-lg:top-8 max-lg:-right-[16%] max-lg:z-20 max-lg:h-[26rem] max-lg:opacity-[0.34]";
 
 export function PxpHero() {
   return (

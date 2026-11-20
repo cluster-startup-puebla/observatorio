@@ -33,7 +33,7 @@ export function SiteHeader() {
       </a>
 
       <header
-        className={`site-header sticky top-0 z-50 ${overField ? "" : "border-b border-line bg-surface/95 text-ink backdrop-blur-md"}`}
+        className={`site-header sticky top-0 z-50 transition-[background-color,border-color,color,box-shadow] duration-500 ease-out ${overField ? "border-transparent bg-transparent" : "border-b border-line bg-surface/95 text-ink backdrop-blur-md"}`}
         data-program-field={overField ? "" : undefined}
       >
         <div className={headerShell(overField, lifted && !open)}>
@@ -55,7 +55,16 @@ export function SiteHeader() {
             onToggle={() => setOpen((value) => !value)}
           />
         </div>
-        {open ? <HeaderMenu path={path} onField={false} onNavigate={() => setOpen(false)} /> : null}
+        <div
+          className={`grid transition-[grid-template-rows] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none lg:hidden ${open ? "grid-rows-[1fr]" : "grid-rows-[0fr]"}`}
+        >
+          <div
+            className={`overflow-hidden transition-opacity duration-500 ease-out motion-reduce:transition-none ${open ? "opacity-100" : "opacity-0"}`}
+            inert={open ? undefined : true}
+          >
+            <HeaderMenu path={path} onField={false} onNavigate={() => setOpen(false)} />
+          </div>
+        </div>
       </header>
     </>
   );
