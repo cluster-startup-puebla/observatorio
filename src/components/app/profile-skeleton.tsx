@@ -19,11 +19,11 @@ export function ProfileSkeleton() {
           <div className="relative z-20 -mt-14 flex flex-col gap-4 sm:flex-row sm:items-start">
             <Skeleton className="size-28 shrink-0 rounded-full bg-ink/10" />
             <div className="min-w-0 pb-1 sm:mt-16">
-              <Skeleton className="h-[2.3rem] w-72 max-w-full bg-ink/10" />
+              <Skeleton className="h-[2.3rem] w-72 max-w-full bg-ink/10 md:h-[1.8rem]" />
               <Skeleton className="mt-1 h-[1.8rem] w-48 max-w-full bg-ink/10" />
             </div>
           </div>
-          <div className="mt-8 grid gap-4">
+          <div className="mt-8 grid gap-4 md:mt-6">
             <div>
               <Skeleton className="h-[1.225rem] w-20 bg-ink/10" />
               <Skeleton className="mt-1 h-[1.8rem] w-36 bg-ink/10" />
@@ -33,7 +33,7 @@ export function ProfileSkeleton() {
               <Skeleton className="mt-1 h-[1.8rem] w-64 max-w-full bg-ink/10" />
             </div>
           </div>
-          <section className="mt-10 border-t border-line pt-8">
+          <section className="mt-10 border-t border-line pt-8 md:mt-8 md:pt-6">
             <Skeleton className="h-[1.4625rem] w-24 bg-ink/10" />
             <div className="mt-5 flex items-center gap-4">
               <Skeleton className="size-14 shrink-0 rounded-full bg-ink/10" />

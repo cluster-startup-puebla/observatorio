@@ -51,12 +51,12 @@ export function IdentityCard({ person }: { person: Identity }) {
             className="relative z-20 size-28 rounded-full border-2 border-ink/40 bg-elevated text-h3"
           />
           <div className="min-w-0 pb-1 sm:mt-16">
-            <h1 className="font-display text-h2 text-ink">{name}</h1>
+            <h1 className="font-display text-h2 text-ink md:text-h3">{name}</h1>
             {role ? <p className="mt-1 text-body text-ink-secondary">{role}</p> : null}
           </div>
         </div>
         {rows.length ? (
-          <dl className="mt-8 grid gap-4">
+          <dl className="mt-8 grid gap-4 md:mt-6">
             {rows.map((row) => (
               <div key={row.label}>
                 <dt className="text-micro text-ink-secondary">{row.label}</dt>
@@ -66,16 +66,16 @@ export function IdentityCard({ person }: { person: Identity }) {
           </dl>
         ) : null}
         {person.company ? (
-          <section className="mt-10 border-t border-line pt-8">
+          <section className="mt-10 border-t border-line pt-8 md:mt-8 md:pt-6">
             <h2 className="font-display text-h4 text-ink">Empresa</h2>
             <Link href="/app/company" className="group mt-5 flex items-center gap-4">
               <Mark
                 name={person.company}
                 logo={person.logoUrl}
-                className="size-14 shrink-0 rounded-full border-2 border-ink/40 bg-elevated object-contain p-1"
+                className="size-14 shrink-0 rounded-full border-2 border-ink/40 bg-elevated object-contain p-1 transition-colors group-hover:border-brand"
               />
-              <span className="min-w-0 flex-1 text-body text-ink group-hover:text-brand">{person.company}</span>
-              <ChevronRight aria-hidden className="size-4 shrink-0 text-ink-muted" />
+              <span className="min-w-0 flex-1 text-body text-ink transition-colors group-hover:text-brand">{person.company}</span>
+              <ChevronRight aria-hidden className="size-4 shrink-0 text-ink-muted transition-colors group-hover:text-brand" />
             </Link>
           </section>
         ) : null}
