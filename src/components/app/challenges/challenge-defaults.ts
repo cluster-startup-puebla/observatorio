@@ -3,7 +3,8 @@ import type { ChallengeFormState } from "./challenge-form-fields";
 export function emptyChallengeForm(): ChallengeFormState {
   return {
     name: "",
-    area: "otro",
+    area: "ti",
+    areaNote: "",
     descriptionHtml: "<p></p>",
     successMetric: "",
     urgency: "",
@@ -15,6 +16,7 @@ export function emptyChallengeForm(): ChallengeFormState {
 export function formFromRow(row: {
   name: string;
   area: string;
+  areaNote?: string | null;
   descriptionHtml: string;
   successMetric: string;
   urgency: string | null;
@@ -24,6 +26,7 @@ export function formFromRow(row: {
   return {
     name: row.name,
     area: row.area,
+    areaNote: row.areaNote ?? "",
     descriptionHtml: row.descriptionHtml,
     successMetric: row.successMetric,
     urgency: (row.urgency as ChallengeFormState["urgency"]) || "",

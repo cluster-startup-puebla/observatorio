@@ -6,6 +6,7 @@ export type MyChallenge = {
   id: string;
   name: string;
   area: string;
+  areaNote: string | null;
   descriptionHtml: string;
   successMetric: string;
   urgency: string | null;
@@ -21,7 +22,7 @@ export async function loadMyChallenges(): Promise<MyChallenge[]> {
   const rows = await ctx.db
     .from("challenges")
     .select(
-      "id, name, area, description_html, success_metric, urgency, status, visibility, show_company, updated_at",
+      "id, name, area, area_note, description_html, success_metric, urgency, status, visibility, show_company, updated_at",
     )
     .eq("company_id", ctx.company.id)
     .order("updated_at", { ascending: false });
@@ -30,6 +31,7 @@ export async function loadMyChallenges(): Promise<MyChallenge[]> {
     id: row.id,
     name: row.name,
     area: row.area,
+    areaNote: row.area_note,
     descriptionHtml: row.description_html,
     successMetric: row.success_metric,
     urgency: row.urgency,

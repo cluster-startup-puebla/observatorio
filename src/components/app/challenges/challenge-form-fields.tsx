@@ -1,13 +1,15 @@
 "use client";
 
 import { DescriptionEditor } from "@/components/challenges/description-editor";
-import { CHALLENGE_AREAS, areaLabel } from "@/lib/challenges/areas";
+import { ChallengeAreaFields } from "./challenge-area-fields";
 
-const field = "rounded-lg border border-line px-3 py-2";
+const field =
+  "w-full rounded-lg border border-line bg-elevated px-4 py-3 text-body text-ink";
 
 export type ChallengeFormState = {
   name: string;
   area: string;
+  areaNote: string;
   descriptionHtml: string;
   successMetric: string;
   urgency: "" | "baja" | "media" | "alta";
@@ -25,8 +27,8 @@ export function ChallengeFormFields({
   disabled?: boolean;
 }) {
   return (
-    <div className="grid gap-4">
-      <label className="grid gap-1 text-small">
+    <div className="grid gap-5 px-1">
+      <label className="grid gap-2 text-small">
         Nombre
         <input
           className={field}
@@ -37,22 +39,8 @@ export function ChallengeFormFields({
           disabled={disabled}
         />
       </label>
-      <label className="grid gap-1 text-small">
-        Área
-        <select
-          className={field}
-          value={value.area}
-          onChange={(e) => onChange({ ...value, area: e.target.value })}
-          disabled={disabled}
-        >
-          {CHALLENGE_AREAS.map((area) => (
-            <option key={area} value={area}>
-              {areaLabel(area)}
-            </option>
-          ))}
-        </select>
-      </label>
-      <div className="grid gap-1 text-small">
+      <ChallengeAreaFields value={value} onChange={onChange} disabled={disabled} />
+      <div className="grid gap-2 text-small">
         <span>Descripción</span>
         <DescriptionEditor
           value={value.descriptionHtml}
@@ -60,7 +48,7 @@ export function ChallengeFormFields({
           disabled={disabled}
         />
       </div>
-      <label className="grid gap-1 text-small">
+      <label className="grid gap-2 text-small">
         Meta de éxito
         <textarea
           className={field}

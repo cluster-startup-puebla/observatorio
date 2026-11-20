@@ -2,7 +2,8 @@
 
 import type { ChallengeFormState } from "./challenge-form-fields";
 
-const field = "rounded-lg border border-line px-3 py-2";
+const field =
+  "w-full rounded-lg border border-line bg-elevated px-4 py-3 text-body text-ink";
 
 export function ChallengeVisibilityFields({
   value,
@@ -14,8 +15,8 @@ export function ChallengeVisibilityFields({
   disabled?: boolean;
 }) {
   return (
-    <div className="grid gap-4">
-      <label className="grid gap-1 text-small">
+    <div className="grid gap-5 px-1">
+      <label className="grid gap-2 text-small">
         Urgencia
         <select
           className={field}
@@ -34,7 +35,7 @@ export function ChallengeVisibilityFields({
           <option value="alta">Alta</option>
         </select>
       </label>
-      <label className="grid gap-1 text-small">
+      <label className="grid gap-2 text-small">
         Visibilidad
         <select
           className={field}
@@ -51,7 +52,7 @@ export function ChallengeVisibilityFields({
           <option value="portal">Portal público</option>
         </select>
       </label>
-      <label className="flex items-center gap-2 text-small">
+      <label className="flex items-center gap-2 px-1 text-small">
         <input
           type="checkbox"
           checked={value.showCompany}

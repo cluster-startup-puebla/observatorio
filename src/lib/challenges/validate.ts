@@ -4,6 +4,7 @@ import type { ChallengeUrgency, ChallengeVisibility } from "./status";
 export type ChallengeInput = {
   name: string;
   area: string;
+  areaNote?: string;
   descriptionHtml: string;
   successMetric: string;
   urgency: ChallengeUrgency | "" | null;
@@ -20,6 +21,15 @@ export function validateChallengeInput(
   }
   if (!isChallengeArea(input.area)) {
     return { ok: false, error: "Elige un área válida." };
+  }
+  if (input.area === "otro") {
+    const note = (input.areaNote ?? "").trim();
+    if (note.length < 4 || note.length > 160) {
+      return {
+        ok: false,
+        error: "Con área «Otro», escribe una nota de 4 a 160 caracteres.",
+      };
+    }
   }
   const plain = input.descriptionHtml.replace(/<[^>]+>/g, "").replace(/\s+/g, "");
   if (plain.length < 8) {

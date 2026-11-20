@@ -12,19 +12,32 @@ export function ComingCard({
   body,
   screen = false,
   feed = false,
+  badge = "Próximamente",
+  actions,
 }: {
   icon: LucideIcon;
   title: string;
   body: ReactNode;
   screen?: boolean;
   feed?: boolean;
+  badge?: string | false;
+  actions?: ReactNode;
 }) {
   const content = (
     <div className="flex flex-col items-center text-center">
-      <span className="badge-brand normal-case">Próximamente</span>
-      <Icon aria-hidden className="mt-6 size-10 text-ink" strokeWidth={1.75} />
+      {badge ? <span className="badge-brand normal-case">{badge}</span> : null}
+      <Icon
+        aria-hidden
+        className={`${badge ? "mt-6" : "mt-0"} size-10 text-ink`}
+        strokeWidth={1.75}
+      />
       <h2 className="mt-4 text-h3 text-ink">{title}</h2>
       <p className="mt-2 text-small leading-snug text-ink-secondary">{body}</p>
+      {actions ? (
+        <div className="mt-6 flex w-full max-w-xs flex-col gap-2 sm:max-w-none sm:flex-row sm:justify-center">
+          {actions}
+        </div>
+      ) : null}
     </div>
   );
 

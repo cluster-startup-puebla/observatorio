@@ -28,7 +28,7 @@ export function ChallengeEditor({
   const published = status === "publicado";
 
   return (
-    <div className="mx-auto grid w-full max-w-3xl gap-6 pb-28 md:pb-8">
+    <div className="mx-auto grid w-full max-w-5xl gap-6 px-1 pb-28 md:pb-8">
       <div className="flex flex-wrap items-end justify-between gap-3">
         <div>
           <p className="text-small text-ink-secondary">

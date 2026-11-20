@@ -9,7 +9,7 @@ export async function loadOneChallenge(id: string): Promise<MyChallenge | null> 
   const result = await ctx.db
     .from("challenges")
     .select(
-      "id, name, area, description_html, success_metric, urgency, status, visibility, show_company, updated_at",
+      "id, name, area, area_note, description_html, success_metric, urgency, status, visibility, show_company, updated_at",
     )
     .eq("id", id)
     .eq("company_id", ctx.company.id)
@@ -21,6 +21,7 @@ export async function loadOneChallenge(id: string): Promise<MyChallenge | null> 
     id: row.id,
     name: row.name,
     area: row.area,
+    areaNote: row.area_note,
     descriptionHtml: row.description_html,
     successMetric: row.success_metric,
     urgency: row.urgency,

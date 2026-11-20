@@ -20,4 +20,17 @@ describe("validateChallengeInput", () => {
     expect(validateChallengeInput({ ...base, name: "Corto" }).ok).toBe(false);
     expect(validateChallengeInput({ ...base, descriptionHtml: "<p></p>" }).ok).toBe(false);
   });
+
+  it("exige nota cuando el área es otro", () => {
+    expect(
+      validateChallengeInput({ ...base, area: "otro", areaNote: "" }).ok,
+    ).toBe(false);
+    expect(
+      validateChallengeInput({
+        ...base,
+        area: "otro",
+        areaNote: "Mantenimiento de hornos",
+      }),
+    ).toEqual({ ok: true });
+  });
 });

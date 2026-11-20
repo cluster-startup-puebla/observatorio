@@ -21,6 +21,13 @@ const RichTextEditor = dynamic(
 
 const KEY = "challenge-editor-view-mode";
 
+function initialMode(): DescriptionMode {
+  if (typeof window === "undefined") return "split";
+  const saved = localStorage.getItem(KEY);
+  if (saved === "editor" || saved === "preview" || saved === "split") return saved;
+  return window.matchMedia("(min-width: 768px)").matches ? "split" : "editor";
+}
+
 export function DescriptionEditor({
   value,
   onChange,
@@ -30,12 +37,9 @@ export function DescriptionEditor({
   onChange: (html: string) => void;
   disabled?: boolean;
 }) {
-  const [mode, setMode] = useState<DescriptionMode>("editor");
+  const [mode, setMode] = useState<DescriptionMode>("split");
   useEffect(() => {
-    const saved = localStorage.getItem(KEY);
-    if (saved === "editor" || saved === "preview" || saved === "split") {
-      setMode(saved);
-    }
+    setMode(initialMode());
   }, []);
   useEffect(() => {
     localStorage.setItem(KEY, mode);
@@ -49,18 +53,25 @@ export function DescriptionEditor({
     );
   }
 
+  const showSplit = mode === "split";
+  const showEditor = mode !== "preview";
+  const showPreview = mode !== "editor";
+
   return (
     <div className="flex flex-col overflow-hidden rounded-lg border border-line bg-elevated">
       <DescriptionModeBar mode={mode} setMode={setMode} />
-      <div className={cn("grid min-h-64", mode === "split" && "md:grid-cols-2")}>
-        {mode !== "preview" ? (
-          <RichTextEditor value={value} onChange={onChange} />
-        ) : null}
-        {mode !== "editor" ? (
+      <div
+        className={cn(
+          "grid min-h-64 md:min-h-80",
+          showSplit && "md:grid-cols-2",
+        )}
+      >
+        {showEditor ? <RichTextEditor value={value} onChange={onChange} /> : null}
+        {showPreview ? (
           <div
             className={cn(
               "overflow-y-auto bg-surface-subtle p-4",
-              mode === "split" && "hidden border-l border-line md:block",
+              showSplit && "hidden border-l border-line md:block",
               mode === "preview" && "block",
             )}
           >

@@ -2,6 +2,7 @@ export type ChallengeFormInput = {
   id?: string;
   name: string;
   area: string;
+  areaNote?: string;
   descriptionHtml: string;
   successMetric: string;
   urgency: "" | "baja" | "media" | "alta";
@@ -18,6 +19,7 @@ export function contentFields(
   return {
     name: form.name.trim(),
     area: form.area,
+    area_note: form.area === "otro" ? (form.areaNote ?? "").trim() : null,
     description_html: html,
     success_metric: form.successMetric.trim(),
     sector_id: sectorId,
