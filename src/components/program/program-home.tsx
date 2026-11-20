@@ -1,5 +1,6 @@
 import { LogoWall } from "@/components/program/logo-wall";
 import { ProgramAllies } from "@/components/program/program-allies";
+import { ProgramEssence } from "@/components/program/program-essence";
 import { ProgramHero } from "@/components/program/program-hero";
 import { ProgramHow } from "@/components/program/program-how";
 import { ProgramNext } from "@/components/program/program-next";
@@ -11,6 +12,7 @@ export async function ProgramHome() {
   return (
     <>
       <ProgramHero />
+      <ProgramEssence />
       <ProgramAllies />
       <ProgramStatements />
       <ProgramHow />

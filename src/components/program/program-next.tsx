@@ -4,8 +4,8 @@ import { ProgramSection } from "./program-section";
 export function ProgramNext() {
   return (
     <ProgramSection title="Dónde sigue">
-      <p className="max-w-3xl text-body text-ink">
-        El programa sigue en las sesiones. La bitácora publica lo que cada encuentro deja.
+      <p className="max-w-[65ch] text-body text-ink">
+        Sigue en las sesiones. La bitácora, el registro público de lo que cada encuentro deja, publica ese resultado.
       </p>
       <ul className="mt-6 grid gap-3 text-body">
         <li>

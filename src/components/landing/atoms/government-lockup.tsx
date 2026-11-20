@@ -20,6 +20,8 @@ function markScale(src: string) {
   return 1;
 }
 
+export const governmentMarks = groups.flat();
+
 export function GovernmentLockup({ optical = false }: { optical?: boolean }) {
   const target = optical ? 44 : 36;
   return (

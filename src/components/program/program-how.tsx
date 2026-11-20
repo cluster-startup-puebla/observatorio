@@ -1,35 +1,26 @@
-import Link from "next/link";
-import { ProgramSection } from "./program-section";
+import { ProgramHowClose } from "./program-how-close";
 
 const steps = [
-  "La empresa expresa la necesidad en el Observatorio.",
+  "La empresa expresa la necesidad en Foro Puebla x Puebla.",
   "Un equipo de desarrollo aporta la solución.",
-  "El trabajo toma una de tres formas: piloto en operación real, codesarrollo, o adopción de una tecnología ya probada.",
+  "El trabajo toma una de tres formas: piloto en operación real, codesarrollo (la empresa y el equipo construyen la salida juntos) o adopción de una tecnología ya probada.",
 ];
-
-const forms = ["Piloto en operación real", "Codesarrollo", "Adopción de una tecnología ya probada"];
 
 export function ProgramHow() {
   return (
-    <ProgramSection title="Cómo">
-      <ol className="grid max-w-3xl gap-4">
-        {steps.map((step, index) => (
-          <li key={step} className="grid grid-cols-[auto_minmax(0,1fr)] gap-4">
-            <span className="text-h4 text-ink">{index + 1}</span>
-            <p className="text-body text-ink">{step}</p>
-          </li>
-        ))}
-      </ol>
-      <ul className="mt-8 grid gap-3 sm:grid-cols-3">
-        {forms.map((form) => (
-          <li key={form} className="border border-line px-4 py-3 text-small text-ink">
-            {form}
-          </li>
-        ))}
-      </ul>
-      <Link href="/crear-cuenta" className="btn btn-primary mt-8">
-        Crear cuenta
-      </Link>
-    </ProgramSection>
+    <section className="scroll-mt-24 border-t border-line">
+      <div className="container-site py-16 lg:py-24">
+        <h2 className="text-h2 max-w-3xl text-balance text-ink">Cómo</h2>
+        <ol className="mt-6 grid max-w-[65ch] gap-4">
+          {steps.map((step, index) => (
+            <li key={step} className="grid grid-cols-[auto_minmax(0,1fr)] gap-4">
+              <span className="text-h4 text-ink">{index + 1}</span>
+              <p className="text-body text-ink">{step}</p>
+            </li>
+          ))}
+        </ol>
+      </div>
+      <ProgramHowClose />
+    </section>
   );
 }

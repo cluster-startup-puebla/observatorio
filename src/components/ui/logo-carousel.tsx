@@ -1,25 +1,35 @@
 "use client";
 
-import { useSyncExternalStore } from "react";
-import Image from "next/image";
-import { opticalLogoHeight } from "@/components/landing/atoms/partner-mark";
+import { useState, useSyncExternalStore } from "react";
 import { LogoColumn } from "@/components/ui/logo-column";
+import { LogoStill } from "@/components/ui/logo-still";
 import { logoColumns, type CarouselLogo } from "@/components/ui/logo-sets";
 
-function subscribe(onChange: () => void) {
-  const query = window.matchMedia("(prefers-reduced-motion: reduce)");
-  query.addEventListener("change", onChange);
-  return () => query.removeEventListener("change", onChange);
+function subscribe(query: string, onChange: () => void) {
+  const media = window.matchMedia(query);
+  media.addEventListener("change", onChange);
+  return () => media.removeEventListener("change", onChange);
 }
 
-function reducedMotion() {
-  return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+function matches(query: string) {
+  return window.matchMedia(query).matches;
 }
 
 export function LogoCarousel({ logos }: { logos: CarouselLogo[] }) {
-  const reduce = useSyncExternalStore(subscribe, reducedMotion, () => false);
+  const reduce = useSyncExternalStore(
+    (onChange) => subscribe("(prefers-reduced-motion: reduce)", onChange),
+    () => matches("(prefers-reduced-motion: reduce)"),
+    () => false,
+  );
+  const narrow = useSyncExternalStore(
+    (onChange) => subscribe("(max-width: 639px)", onChange),
+    () => matches("(max-width: 639px)"),
+    () => false,
+  );
+  const [paused, setPaused] = useState(false);
+
   if (logos.length === 0) return null;
-  if (reduce) return <LogoStill logos={logos} />;
+  if (reduce || narrow) return <LogoStill logos={logos} named={narrow} />;
 
   const columns = logoColumns(logos, 6);
   return (
@@ -31,34 +41,17 @@ export function LogoCarousel({ logos }: { logos: CarouselLogo[] }) {
       </ul>
       <div aria-hidden className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6">
         {columns.map((column, index) => (
-          <LogoColumn key={column[0].src} logos={column} index={index} />
+          <LogoColumn key={column[0].src} logos={column} index={index} paused={paused} />
         ))}
       </div>
+      <button
+        type="button"
+        className="mt-4 text-small text-ink underline underline-offset-4"
+        aria-pressed={paused}
+        onClick={() => setPaused((value) => !value)}
+      >
+        {paused ? "Reanudar aliados" : "Pausar aliados"}
+      </button>
     </div>
-  );
-}
-
-function LogoStill({ logos }: { logos: CarouselLogo[] }) {
-  return (
-    <ul className="grid grid-cols-3 items-center gap-x-4 gap-y-6 sm:grid-cols-4 lg:grid-cols-6">
-      {logos.map((logo) => (
-        <li key={logo.src} className="grid h-16 place-items-center">
-          <ImageMark logo={logo} />
-        </li>
-      ))}
-    </ul>
-  );
-}
-
-function ImageMark({ logo }: { logo: CarouselLogo }) {
-  return (
-    <Image
-      src={logo.src}
-      alt={logo.name}
-      width={logo.width}
-      height={logo.height}
-      className="logo-negative w-auto max-w-full object-contain"
-      style={{ height: opticalLogoHeight(logo.width, logo.height, 40) }}
-    />
   );
 }

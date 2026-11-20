@@ -8,12 +8,12 @@ import type { CarouselLogo } from "@/components/ui/logo-sets";
 
 const cycleMs = 2200;
 
-export function LogoColumn({ logos, index }: { logos: CarouselLogo[]; index: number }) {
+export function LogoColumn({ logos, index, paused = false }: { logos: CarouselLogo[]; index: number; paused?: boolean }) {
   const [current, setCurrent] = useState(0);
   const logo = logos[current] ?? logos[0];
 
   useEffect(() => {
-    if (logos.length < 2) return;
+    if (paused || logos.length < 2) return;
     let interval = 0;
     const start = window.setTimeout(() => {
       interval = window.setInterval(() => {
@@ -24,7 +24,7 @@ export function LogoColumn({ logos, index }: { logos: CarouselLogo[]; index: num
       window.clearTimeout(start);
       window.clearInterval(interval);
     };
-  }, [index, logos.length]);
+  }, [index, logos.length, paused]);
 
   if (!logo) return null;
 
