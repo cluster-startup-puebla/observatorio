@@ -38,7 +38,7 @@ export function HeaderMenu({
       </ul>
       <div className="container-site grid gap-2 pb-4">
         <Suspense>
-          <HeaderCtas path={path} onField={onField} onNavigate={onNavigate} />
+          <HeaderCtas path={path} onField={onField} onNavigate={onNavigate} loginOnly />
         </Suspense>
       </div>
     </nav>

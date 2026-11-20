@@ -1,15 +1,12 @@
 "use client";
 
 import Link from "next/link";
-import { Suspense, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
-import { Menu, X } from "lucide-react";
-import { ReadingToggle } from "@/components/diagnostico/reading-dock";
-import { HeaderCtas } from "@/components/site/header-ctas";
 import { HeaderLinks } from "@/components/site/header-links";
 import { HeaderMenu } from "@/components/site/header-menu";
+import { HeaderTools } from "@/components/site/header-tools";
 import { onProgramField } from "@/components/site/header-tone";
-import { ThemeToggle } from "@/components/site/theme-toggle";
 
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
@@ -30,9 +27,10 @@ export function SiteHeader() {
     return () => window.removeEventListener("scroll", sync);
   }, [onField]);
 
-  const bar = onField
-    ? `bg-program-field text-white ${lifted ? "shadow-[0_12px_28px_-16px_rgba(28,0,16,0.6)]" : ""}`
-    : "border-b border-line bg-surface/95 backdrop-blur-md";
+  const onHero = onField && !lifted;
+  const bar = onHero
+    ? "bg-transparent text-white"
+    : "border-b border-line bg-surface/95 text-ink backdrop-blur-md";
 
   return (
     <>
@@ -43,44 +41,30 @@ export function SiteHeader() {
         Saltar al contenido
       </a>
 
-      <header className={`site-header sticky top-0 z-50 ${bar}`} data-program-field={onField ? "" : undefined}>
+      <header className={`site-header sticky top-0 z-50 ${bar}`} data-program-field={onHero ? "" : undefined}>
         <div className="container-site flex items-center justify-between gap-6 py-3">
           <div className="flex min-w-0 items-center gap-5 xl:gap-7">
             <Link
               href="/#inicio"
-              className={`shrink-0 font-display text-h4 whitespace-nowrap ${onField ? "text-white" : "text-ink"}`}
+              className={`shrink-0 font-display text-h4 whitespace-nowrap ${onHero ? "text-white" : "text-ink"}`}
             >
               Observatorio
             </Link>
             <span
               aria-hidden
-              className={`hidden h-4 w-px lg:block ${onField ? "bg-white/45" : "bg-line"}`}
+              className={`hidden h-4 w-px lg:block ${onHero ? "bg-white/45" : "bg-line"}`}
             />
-            <HeaderLinks path={path} onField={onField} />
+            <HeaderLinks path={path} onField={onHero} />
           </div>
-          <div className="flex shrink-0 items-center gap-2">
-            {onDiagnostic ? <ReadingToggle /> : null}
-            <div className="hidden items-center gap-2 lg:flex">
-              <Suspense>
-                <HeaderCtas path={path} onField={onField} />
-              </Suspense>
-            </div>
-            <ThemeToggle onField={onField} />
-            <button
-              type="button"
-              className={`inline-flex size-11 items-center justify-center rounded-full border lg:hidden ${
-                onField ? "border-white/40 text-white" : "border-line text-ink"
-              }`}
-              aria-expanded={open}
-              aria-controls="mobile-nav"
-              aria-label={open ? "Cerrar menú" : "Abrir menú"}
-              onClick={() => setOpen((value) => !value)}
-            >
-              {open ? <X size={18} /> : <Menu size={18} />}
-            </button>
-          </div>
+          <HeaderTools
+            path={path}
+            onHero={onHero}
+            onDiagnostic={onDiagnostic}
+            open={open}
+            onToggle={() => setOpen((value) => !value)}
+          />
         </div>
-        {open ? <HeaderMenu path={path} onField={onField} onNavigate={() => setOpen(false)} /> : null}
+        {open ? <HeaderMenu path={path} onField={onHero} onNavigate={() => setOpen(false)} /> : null}
       </header>
     </>
   );

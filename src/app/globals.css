@@ -23,11 +23,13 @@
   --medal-platino-wash: #e7eef5;
   --brand-gradient: linear-gradient(135deg, #e8186a 0%, #16284f 100%);
   --program-field: #a71c6f;
+  --program-x: #f4b6d8;
 }
 
 :root,
 [data-theme="light"] {
   --bg-base: #ffffff;
+  --bg-sand: #f4efe8;
   --bg-subtle: #f7f7f8;
   --bg-elevated: #ffffff;
   --border-default: #e5e7eb;
@@ -52,6 +54,7 @@
 
 [data-theme="dark"] {
   --bg-base: #232323;
+  --bg-sand: #2a2724;
   --bg-subtle: #2c2c2c;
   --bg-elevated: #303030;
   --border-default: #454545;
@@ -137,6 +140,7 @@
 
   --color-brand: var(--brand-primary);
   --color-program-field: var(--program-field);
+  --color-program-x: var(--program-x);
   --color-brand-dark: var(--brand-primary-dark);
   --color-brand-light: var(--brand-primary-light);
   --color-navy: var(--brand-secondary);
@@ -144,7 +148,9 @@
   --color-on-brand: var(--text-on-brand);
   --color-mark: var(--brand-accent);
   --color-on-mark: var(--on-accent);
+  --color-sand: var(--bg-sand);
   --color-surface: var(--bg-base);
+  --font-serif: var(--font-source), Georgia, "Times New Roman", serif;
   --color-surface-subtle: var(--bg-subtle);
   --color-elevated: var(--bg-elevated);
   --color-line: var(--border-default);
@@ -675,6 +681,38 @@ html[data-reading="on"] .doc-table-stack {
 @media (prefers-reduced-motion: no-preference) {
   .reading-progress > span {
     transition: width 120ms linear;
+  }
+
+  .pxp-reveal {
+    opacity: 0;
+    transform: translateY(12px);
+    transition:
+      opacity 700ms ease-out,
+      transform 700ms ease-out;
+  }
+
+  .pxp-reveal.is-in {
+    opacity: 1;
+    transform: none;
+  }
+
+  .pxp-marquee {
+    animation: pxp-marquee 48s linear infinite;
+  }
+
+  .pxp-reel:hover .pxp-marquee,
+  .pxp-reel:focus-within .pxp-marquee,
+  .pxp-marquee.is-paused {
+    animation-play-state: paused;
+  }
+}
+
+@keyframes pxp-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
   }
 }
 

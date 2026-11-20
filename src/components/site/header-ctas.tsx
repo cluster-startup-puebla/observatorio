@@ -12,10 +12,12 @@ export function HeaderCtas({
   path,
   onField,
   onNavigate,
+  loginOnly = false,
 }: {
   path: string;
   onField: boolean;
   onNavigate?: () => void;
+  loginOnly?: boolean;
 }) {
   const href = reserveHref(path, tokenFromQuery(useSearchParams()));
   const primary = onField
@@ -27,9 +29,11 @@ export function HeaderCtas({
 
   return (
     <>
-      <Link href={href} onClick={onNavigate} className={primary}>
-        {ctaLabel}
-      </Link>
+      {loginOnly ? null : (
+        <Link href={href} onClick={onNavigate} className={primary}>
+          {ctaLabel}
+        </Link>
+      )}
       <Link href="/login" onClick={onNavigate} className={secondary}>
         Entrar
       </Link>

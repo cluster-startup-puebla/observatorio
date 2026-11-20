@@ -1,9 +1,15 @@
 export const ctaLabel = "Crear cuenta";
 
 export const navItems = [
+  { label: "El programa", href: "/#programa" },
+  { label: "Cómo funciona", href: "/#como-funciona" },
+  { label: "Observatorio", href: "/#observatorio" },
   { label: "Sesiones", href: "/sesiones" },
   { label: "Blog", href: "/blog" },
 ];
+
+export const companyAccountHref = "/crear-cuenta?tipo=empresa";
+export const teamAccountHref = "/crear-cuenta?tipo=equipo";
 
 export const pains = [
   "Procesos que sabes que deberían automatizarse, pero ningún software de catálogo entiende tu industria.",

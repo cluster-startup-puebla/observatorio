@@ -1,17 +1,17 @@
 ---
-title: "Arranca el Foro Puebla x Puebla: el Clúster de Startups e Innovación inicia un programa permanente de escucha a la industria"
+title: "Arranca Puebla x Puebla: el Clúster de Startups e Innovación inicia un programa permanente de escucha a la industria"
 description: "La primera sesión del Observatorio Tecnológico reunió a 114 empresarios y directivos en el Hotel Quinta Real para detectar, desde las propias empresas, qué tecnología necesita la industria poblana."
 excerpt: "La primera sesión del Observatorio Tecnológico reunió a 114 empresarios y directivos en el Hotel Quinta Real para detectar, desde las propias empresas, qué tecnología necesita la industria poblana."
 date: "2026-11-19"
 author: "Observatorio Tecnológico de Puebla"
 category: "sala-de-prensa"
-tags: ["Foro Puebla x Puebla", "Observatorio", "Puebla", "T-MEC", "economía circular"]
+tags: ["Puebla x Puebla", "Observatorio", "Puebla", "T-MEC", "economía circular"]
 image:
   src: "/blog/foro-puebla-x-puebla.webp"
-  alt: "Presídium del Foro Puebla x Puebla, el 18 de noviembre de 2026 en el Hotel Quinta Real."
+  alt: "Presídium de Puebla x Puebla, el 18 de noviembre de 2026 en el Hotel Quinta Real."
 ---
 
-Puebla, Pue., 19 de noviembre de 2026. El Clúster de Startups e Innovación dio el primer paso de un programa continuo de escucha con la industria del estado. El miércoles 18 de noviembre, el Hotel Quinta Real fue sede del Foro Puebla x Puebla, la sesión de lanzamiento del Observatorio Tecnológico de Puebla, que reunió a 114 personas entre el registro, a las 8:30, y el cierre, a las 11:35.
+Puebla, Pue., 19 de noviembre de 2026. El Clúster de Startups e Innovación dio el primer paso de un programa continuo de escucha con la industria del estado. El miércoles 18 de noviembre, el Hotel Quinta Real fue sede de Puebla x Puebla, la sesión de lanzamiento del Observatorio Tecnológico de Puebla, que reunió a 114 personas entre el registro, a las 8:30, y el cierre, a las 11:35.
 
 El objetivo del programa es identificar las necesidades tecnológicas de las empresas poblanas y, con ellas, acercar a emprendedores y startups que puedan resolverlas. El formato fue un desayuno de trabajo y no una feria: la mañana sirvió para escuchar el contexto y para que cada empresa dejara por escrito la necesidad tecnológica de su operación.
 
