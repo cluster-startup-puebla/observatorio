@@ -1,24 +1,9 @@
-import { Flag } from "lucide-react";
-import { ComingCard } from "@/components/app/coming-card";
-import { screenFrame } from "@/components/app/screen-frame";
+import { ChallengeList } from "@/components/app/challenges/challenge-list";
+import { loadMyChallenges } from "@/lib/app/challenges/load-mine";
 
 export const instant = false;
 
-export default function ChallengesPage() {
-  return (
-    <div className={screenFrame}>
-      <ComingCard
-        screen
-        icon={Flag}
-        title="Retos"
-        body={
-          <>
-            Aquí podrás lanzar retos públicos,
-            <br />
-            anónimos o privados.
-          </>
-        }
-      />
-    </div>
-  );
+export default async function ChallengesPage() {
+  const rows = await loadMyChallenges();
+  return <ChallengeList rows={rows} />;
 }
