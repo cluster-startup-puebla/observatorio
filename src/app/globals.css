@@ -8,9 +8,10 @@
 @custom-variant dark ([data-theme="dark"] &);
 
 :root {
-  --brand-primary: #e8186a;
-  --brand-primary-dark: #b8104f;
-  --brand-primary-light: #ff4d93;
+  --program-field: #a71c6f;
+  --brand-primary: var(--program-field);
+  --brand-primary-dark: #7e1452;
+  --brand-primary-light: #d56aa3;
   --brand-secondary: #16284f;
   --brand-secondary-light: #28406f;
   --medal-bronce: #8c5a2b;
@@ -21,8 +22,7 @@
   --medal-oro-wash: #fbf3d0;
   --medal-platino: #3e4c5e;
   --medal-platino-wash: #e7eef5;
-  --brand-gradient: linear-gradient(135deg, #e8186a 0%, #16284f 100%);
-  --program-field: #a71c6f;
+  --brand-gradient: linear-gradient(135deg, var(--program-field) 0%, #16284f 100%);
   --program-x: #f4b6d8;
 }
 
@@ -37,11 +37,11 @@
   --text-secondary: #4b5563;
   --text-muted: #5c6570;
   --text-on-brand: #ffffff;
-  --link: #e8186a;
-  --focus-ring: rgb(232 24 106 / 0.4);
+  --link: var(--program-field);
+  --focus-ring: rgb(167 28 111 / 0.4);
   --brand-accent: var(--brand-primary);
   --on-accent: #ffffff;
-  --accent-soft: rgb(232 24 106 / 0.12);
+  --accent-soft: rgb(167 28 111 / 0.12);
   --success: #1e8e5a;
   --warning: #b8860b;
   --error: #c6303e;
@@ -62,11 +62,11 @@
   --text-secondary: #c8c8c8;
   --text-muted: #a3a3a3;
   --text-on-brand: #ffffff;
-  --link: #ff4d93;
-  --focus-ring: rgb(255 77 147 / 0.5);
+  --link: var(--brand-primary-light);
+  --focus-ring: rgb(213 106 163 / 0.5);
   --brand-accent: var(--brand-primary-light);
   --on-accent: #1c1c1c;
-  --accent-soft: rgb(255 77 147 / 0.16);
+  --accent-soft: rgb(213 106 163 / 0.16);
   --success: #3ddc91;
   --warning: #f5c244;
   --error: #ff6b7a;
@@ -195,7 +195,7 @@
   --radius-full: 9999px;
 
   --shadow-card: var(--card-shadow);
-  --shadow-cta: 0 4px 12px rgb(232 24 106 / 0.25);
+  --shadow-cta: 0 4px 12px rgb(167 28 111 / 0.25);
 
   --container-site: 80rem;
 }

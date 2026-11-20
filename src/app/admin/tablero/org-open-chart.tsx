@@ -5,7 +5,7 @@ import { ChartPanel } from "@/app/admin/tablero/chart-panel";
 import { ChartContainer, ChartTooltip, ChartTooltipContent, type ChartConfig } from "@/components/ui/chart";
 import type { OrgOpenSeries } from "@/lib/admin/tablero/org-open-bars";
 
-const palette = ["#e8186a", "#16284f", "#b8860b", "#0f766e", "#7c3aed", "#0369a1", "#b45309", "#be185d"];
+const palette = ["#a71c6f", "#16284f", "#b8860b", "#0f766e", "#7c3aed", "#0369a1", "#b45309", "#be185d"];
 
 export function OrgOpenChart({
   bars,

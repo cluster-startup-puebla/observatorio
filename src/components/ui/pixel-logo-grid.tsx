@@ -11,7 +11,7 @@ function LogoCard({ logo }: { logo: PixelLogo }) {
       className={cn(
         "group relative isolate grid h-24 place-items-center overflow-hidden border-r border-b border-line bg-surface",
         "transition-shadow duration-300 hover:z-[2]",
-        "hover:shadow-[0_8px_24px_-8px_rgb(232_24_106/0.25),0_0_0_1px_rgb(232_24_106/0.4)]",
+        "hover:shadow-[0_8px_24px_-8px_rgb(167_28_111/0.25),0_0_0_1px_rgb(167_28_111/0.4)]",
       )}
     >
       <PixelCanvas />

@@ -1,7 +1,7 @@
 import { createPixel, type Pixel } from "@/components/ui/pixel";
 
-const LIGHT = ["#e8186a", "#ff4d93", "#16284f", "#28406f"];
-const DARK = ["#ff4d93", "#ff8ab5", "#f5f6f8", "#e8186a"];
+const LIGHT = ["#a71c6f", "#d56aa3", "#16284f", "#28406f"];
+const DARK = ["#d56aa3", "#f4b6d8", "#f5f6f8", "#a71c6f"];
 
 export function seedPixels(
   canvas: HTMLCanvasElement,

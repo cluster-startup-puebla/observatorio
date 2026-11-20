@@ -1,5 +1,5 @@
 export function ClusterMark({ className, light = false }: { className?: string; light?: boolean }) {
-  const accent = light ? "currentColor" : "#a81870";
+  const accent = light ? "currentColor" : "#a71c6f";
   const tone = light ? "text-white" : "text-ink";
   return (
     <svg viewBox="0 0 720 300" role="img" aria-label="Clúster de Startups e Innovación" className={`${tone} ${className ?? ""}`}>
