@@ -5,6 +5,7 @@ export type EmpresarioValues = {
   jobTitle: string;
   whatsapp: string;
   companyName: string;
+  website: string;
   marketSize: string;
   employeeBand: string;
   municipality: string;
@@ -21,6 +22,7 @@ export function emptyEmpresarioValues(sectorSlug: string): EmpresarioValues {
     jobTitle: "",
     whatsapp: "",
     companyName: "",
+    website: "",
     marketSize: "",
     employeeBand: "",
     municipality: "",

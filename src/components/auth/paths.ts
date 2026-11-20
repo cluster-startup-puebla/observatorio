@@ -9,6 +9,7 @@ export const authPaths = [
   "/onboarding",
   "/metodologia",
   "/admin",
+  "/app",
 ];
 
 export function isAuthPath(path: string) {

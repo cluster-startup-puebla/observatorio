@@ -5,7 +5,7 @@ describe("homeForRole", () => {
   it("manda cada rol a la ruta que ya existe", () => {
     expect(homeForRole("superadmin")).toBe("/admin");
     expect(homeForRole("moderador")).toBe("/admin/mesa");
-    expect(homeForRole("empresario")).toBe("/metodologia");
+    expect(homeForRole("empresario")).toBe("/app/home");
     expect(homeForRole("director")).toBe("/organismo");
     expect(homeForRole("capturista")).toBe("/organismo");
     expect(homeForRole("invitador")).toBe("/organismo");
@@ -29,20 +29,23 @@ describe("homeForRole", () => {
 describe("pathAfterSignIn", () => {
   it("manda al empresario sin perfil a onboarding", () => {
     expect(pathAfterSignIn({ role: "empresario", onboarded: false })).toBe("/onboarding");
-    expect(pathAfterSignIn({ role: "empresario", onboarded: true, awaitingApproval: true })).toBe("/onboarding");
-    expect(pathAfterSignIn({ role: "empresario", onboarded: true })).toBe("/metodologia");
+    expect(pathAfterSignIn({ role: "empresario", onboarded: true, awaitingApproval: true })).toBe("/app/home");
+    expect(pathAfterSignIn({ role: "empresario", onboarded: true })).toBe("/app/home");
     expect(pathAfterSignIn({ role: "director", onboarded: true, slug: "canacintra" })).toBe("/canacintra");
     expect(pathAfterSignIn({ role: "superadmin", onboarded: true })).toBe("/admin");
   });
 
-  it("deja al empresario registrado en onboarding hasta que abre el evento", () => {
-    expect(pathAfterSignIn({ role: "empresario", onboarded: true, eventOpen: false })).toBe("/onboarding");
-    expect(pathAfterSignIn({ role: "empresario", onboarded: true, eventOpen: true })).toBe("/metodologia");
-    expect(pathAfterSignIn({ role: "empresario", onboarded: true })).toBe("/metodologia");
+  it("manda al empresario con perfil a su inicio aunque espere aprobación o el evento esté cerrado", () => {
+    expect(pathAfterSignIn({ role: "empresario", onboarded: true, eventOpen: false })).toBe("/app/home");
+    expect(pathAfterSignIn({ role: "empresario", onboarded: true, eventOpen: true })).toBe("/app/home");
+    expect(pathAfterSignIn({ role: "empresario", onboarded: true })).toBe("/app/home");
     expect(pathAfterSignIn({ role: "empresario", onboarded: false, eventOpen: true })).toBe("/onboarding");
     expect(
       pathAfterSignIn({ role: "empresario", onboarded: true, awaitingApproval: true, eventOpen: true }),
-    ).toBe("/onboarding");
+    ).toBe("/app/home");
+    expect(
+      pathAfterSignIn({ role: "empresario", onboarded: true, awaitingApproval: true, eventOpen: false }),
+    ).toBe("/app/home");
   });
 
   it("no afecta a quien no es empresario", () => {

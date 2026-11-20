@@ -1,5 +1,6 @@
 export const privatePaths = [
   "/admin",
+  "/app",
   "/api",
   "/login",
   "/onboarding",

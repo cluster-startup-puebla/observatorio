@@ -3,7 +3,7 @@ import type { AccountRole } from "@/lib/directory";
 const homes: Record<AccountRole, string> = {
   superadmin: "/admin",
   moderador: "/admin/mesa",
-  empresario: "/metodologia",
+  empresario: "/app/home",
   director: "/organismo",
   capturista: "/organismo",
   invitador: "/organismo",
@@ -27,7 +27,6 @@ export function pathAfterSignIn(input: {
   eventOpen?: boolean;
   slug?: string | null;
 }) {
-  if (input.role === "empresario" && (!input.onboarded || input.awaitingApproval)) return "/onboarding";
-  if (input.role === "empresario" && input.eventOpen === false) return "/onboarding";
+  if (input.role === "empresario" && !input.onboarded) return "/onboarding";
   return homeForRole(input.role, input.slug);
 }

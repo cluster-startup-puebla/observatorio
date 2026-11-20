@@ -7,6 +7,7 @@ const valid = {
   jobTitle: "Directora",
   whatsapp: "2221234567",
   companyName: "Taller Norte",
+  website: "ejemplo.com",
   marketSize: "regional",
   employeeBand: "11–50",
   municipality: "Puebla",
@@ -50,6 +51,26 @@ describe("onboarding empresario", () => {
     expect(parsed.sectorSlug).toBe("Cerámica");
     expect(empresarioErrors(parsed)).toBeNull();
     expect(stepReady(1, { ...valid, sectorSlug: "Cerámica" })).toBe(true);
+  });
+
+  it("el sitio acepta dominio o https y rechaza vacío, espacios o más de 200", () => {
+    const form = new FormData();
+    fill(form, valid);
+    form.set("sector", valid.sectorSlug);
+    expect(parseEmpresarioForm(form).website).toBe("ejemplo.com");
+    fill(form, { ...valid, website: "  https://ejemplo.com  " });
+    const https = parseEmpresarioForm(form);
+    expect(https.website).toBe("https://ejemplo.com");
+    expect(empresarioErrors(https)).toBeNull();
+    fill(form, { ...valid, website: "" });
+    expect(empresarioErrors(parseEmpresarioForm(form))).toBe("sitio");
+    expect(stepReady(1, { ...valid, website: "" })).toBe(false);
+    fill(form, { ...valid, website: "ejemplo .com" });
+    expect(empresarioErrors(parseEmpresarioForm(form))).toBe("sitio");
+    fill(form, { ...valid, website: "hola" });
+    expect(empresarioErrors(parseEmpresarioForm(form))).toBe("sitio");
+    fill(form, { ...valid, website: `${"ejemplo.".repeat(40)}com` });
+    expect(empresarioErrors(parseEmpresarioForm(form))).toBe("sitio");
   });
 
   it("un comentario de más de 500 caracteres no pasa", () => {

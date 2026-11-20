@@ -49,7 +49,10 @@ export async function SupabaseOnboarding({
     empresario && (gate === "espera" || gate === "pase") ? await companyHasLogo(token, account.id) : true;
   const offerLogo = laterLogoOffer({ hasLogo, gate });
   const ready = onboarded && account.role === "empresario" && gate === "pase";
-  if (onboarded && account.role === "empresario") await issueConfirmedPass(token, account.id, account.email);
+  if (onboarded && account.role === "empresario") {
+    await issueConfirmedPass(token, account.id, account.email);
+    redirect("/app/home");
+  }
 
   return (
     <AuthShell

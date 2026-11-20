@@ -20,6 +20,7 @@ it("copia la fila al perfil y no trae logo", () => {
     jobTitle: "Directora",
     whatsapp: "",
     companyName: "Norte",
+    website: "",
     marketSize: "local",
     employeeBand: "1–10",
     municipality: "Puebla",

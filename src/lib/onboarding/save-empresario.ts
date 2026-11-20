@@ -42,6 +42,7 @@ export async function saveEmpresarioProfile(
       {
         profile_id: profileId,
         legal_name: profile.companyName,
+        website: profile.website || null,
         sector_id: sector.data.id,
         sector_source: fromLink ? "link" : "path",
         employee_band: band,

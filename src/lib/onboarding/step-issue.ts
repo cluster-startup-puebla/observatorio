@@ -3,12 +3,14 @@ import { acceptedIndustry } from "@/lib/sectors";
 import type { EmpresarioValues } from "./empresario-steps";
 import { parseMarketSize } from "./market-sizes";
 import { isPueblaMunicipio } from "./puebla-municipios";
+import { websiteError } from "./website";
 
 const serverMessages: Record<string, string> = {
   nombre: "Escribe tu nombre.",
   puesto: "Escribe tu puesto.",
   whatsapp: "El WhatsApp lleva de 10 a 15 dígitos, o déjalo vacío.",
   empresa: "Escribe el nombre de la empresa.",
+  sitio: "Escribe el sitio, como ejemplo.com o https://ejemplo.com.",
   mercado: "Elige el tamaño de mercado.",
   empleados: "Elige el tamaño de la empresa.",
   municipio: "Elige un municipio de Puebla.",
@@ -37,6 +39,7 @@ function personIssue(values: EmpresarioValues) {
 
 function companyIssue(values: EmpresarioValues) {
   if (values.companyName.trim().length < 2) return serverMessages.empresa;
+  if (websiteError(values.website.trim())) return serverMessages.sitio;
   if (!parseMarketSize(values.marketSize)) return serverMessages.mercado;
   if (!companySizes.includes(values.employeeBand)) return serverMessages.empleados;
   if (!isPueblaMunicipio(values.municipality)) return serverMessages.municipio;

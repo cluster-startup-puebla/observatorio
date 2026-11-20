@@ -24,6 +24,7 @@ export function toEmpresarioProfile(row: PublicRegistrationRow): EmpresarioProfi
     jobTitle: text(row.job_title),
     whatsapp: text(row.whatsapp),
     companyName: text(row.company_name),
+    website: "",
     marketSize: text(row.market_size),
     employeeBand: text(row.employee_band),
     municipality: text(row.municipality),

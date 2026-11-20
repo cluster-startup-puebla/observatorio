@@ -2,12 +2,14 @@ import { companySizes } from "@/content/landing";
 import { acceptedIndustry } from "@/lib/sectors";
 import { parseMarketSize } from "./market-sizes";
 import { isPueblaMunicipio } from "./puebla-municipios";
+import { websiteError } from "./website";
 
 export type EmpresarioProfile = {
   fullName: string;
   jobTitle: string;
   whatsapp: string;
   companyName: string;
+  website: string;
   marketSize: string;
   employeeBand: string;
   municipality: string;
@@ -22,6 +24,7 @@ export function parseEmpresarioForm(form: FormData): EmpresarioProfile {
     jobTitle: String(form.get("jobTitle") ?? "").trim(),
     whatsapp: String(form.get("whatsapp") ?? "").replace(/\D/g, ""),
     companyName: String(form.get("companyName") ?? "").trim(),
+    website: String(form.get("website") ?? "").trim(),
     marketSize: String(form.get("marketSize") ?? "").trim(),
     employeeBand: String(form.get("employeeBand") ?? "").trim(),
     municipality: String(form.get("municipality") ?? "").trim(),
@@ -36,6 +39,8 @@ export function empresarioErrors(input: EmpresarioProfile): string | null {
   if (input.jobTitle.length < 2) return "puesto";
   if (input.whatsapp && (input.whatsapp.length < 10 || input.whatsapp.length > 15)) return "whatsapp";
   if (input.companyName.length < 2) return "empresa";
+  const sitio = websiteError(input.website);
+  if (sitio) return sitio;
   if (!parseMarketSize(input.marketSize)) return "mercado";
   if (!companySizes.includes(input.employeeBand)) return "empleados";
   if (!isPueblaMunicipio(input.municipality)) return "municipio";

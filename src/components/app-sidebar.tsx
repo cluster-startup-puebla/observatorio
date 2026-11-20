@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, type ReactNode } from "react";
 import { usePathname } from "next/navigation";
 import { AppSidebarGroup } from "@/components/app-sidebar-group";
 import { sidebarIcons } from "@/components/app-sidebar-icons";
@@ -20,7 +20,8 @@ import {
 
 export function AppSidebar({
   email,
-  groups,
+  groups = [],
+  menu,
   title = "Observatorio",
   subtitle = "Superadmin",
   logoSrc,
@@ -28,7 +29,8 @@ export function AppSidebar({
   logout = "admin",
 }: {
   email: string;
-  groups: { name: string; links: AdminLink[] }[];
+  groups?: { name: string; links: AdminLink[] }[];
+  menu?: ReactNode;
   title?: string;
   subtitle?: string;
   logoSrc?: string;
@@ -46,19 +48,21 @@ export function AppSidebar({
         <AppSidebarBrand title={title} subtitle={subtitle} logoSrc={logoSrc} brandColor={brandColor} />
       </SidebarHeader>
       <SidebarContent>
-        <SidebarMenu className="gap-1">
-          {groups.map((group) => (
-            <AppSidebarGroup
-              key={group.name}
-              name={group.name}
-              links={group.links}
-              path={path}
-              icon={sidebarIcons[group.name]}
-              open={openName === group.name}
-              onOpenChange={(open) => setOverride({ path, name: open ? group.name : null })}
-            />
-          ))}
-        </SidebarMenu>
+        {menu ?? (
+          <SidebarMenu className="gap-1">
+            {groups.map((group) => (
+              <AppSidebarGroup
+                key={group.name}
+                name={group.name}
+                links={group.links}
+                path={path}
+                icon={sidebarIcons[group.name]}
+                open={openName === group.name}
+                onOpenChange={(open) => setOverride({ path, name: open ? group.name : null })}
+              />
+            ))}
+          </SidebarMenu>
+        )}
       </SidebarContent>
       <SidebarFooter>
         <AppSidebarUser email={email || "Sin sesión"} title={subtitle} door={logout} />

@@ -1,0 +1,59 @@
+import { renderToStaticMarkup } from "react-dom/server";
+import { describe, expect, it } from "vitest";
+import type { CompanyHome } from "@/lib/app/company-score";
+import { CompanyScreen } from "./company-screen";
+
+const empty: CompanyHome = {
+  legalName: null,
+  sectorName: null,
+  employeeBand: "  ",
+  website: "",
+  municipality: null,
+  marketSize: null,
+  referral: null,
+  sessionInterest: null,
+  score: null,
+  actions: [],
+};
+
+describe("CompanyScreen", () => {
+  it("omite campos vacíos y no pinta el checklist", () => {
+    const html = renderToStaticMarkup(<CompanyScreen home={empty} />);
+    expect(html).toContain("Empresa");
+    expect(html).toContain("Tu lugar en el sector");
+    expect(html).not.toContain("Pendientes");
+    expect(html).not.toContain("Última calificación");
+    expect(html).not.toContain("Sitio web");
+    expect(html).not.toContain("Tamaño");
+  });
+
+  it("muestra los datos, la calificación y los enlaces", () => {
+    const html = renderToStaticMarkup(
+      <CompanyScreen
+        home={{
+          legalName: "Aceros",
+          sectorName: "Metalmecánica",
+          employeeBand: "1_10",
+          website: "ejemplo.com",
+          municipality: "Puebla",
+          marketSize: "local",
+          referral: "Un organismo",
+          sessionInterest: "Diagnóstico",
+          score: { band: "oro", ismsNivel2: 72.5 },
+          actions: [
+            { label: "Sube el logo de tu empresa", href: "/app/home" },
+            { label: "Unirme a la sesión", href: "/app/sesiones/hoy" },
+          ],
+        }}
+      />,
+    );
+    expect(html).toContain("Aceros");
+    expect(html).toContain("1–10");
+    expect(html).toContain("Local (municipio / zona metropolitana)");
+    expect(html).toContain("Última calificación");
+    expect(html).toContain("Oro · 72.50");
+    expect(html).toContain("Pendientes");
+    expect(html).toContain('href="/app/home"');
+    expect(html).toContain('href="/app/sesiones/hoy"');
+  });
+});
