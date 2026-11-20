@@ -5,6 +5,7 @@ import Script from "next/script";
 import { Toaster } from "@/components/ui/sonner";
 import { SiteFrame } from "@/components/site/site-frame";
 import { rootMetadata } from "@/lib/metadata";
+import { publicOrigin } from "@/lib/public-origin";
 import "./globals.css";
 
 const archivo = Archivo({
@@ -23,7 +24,17 @@ const raleway = Raleway({
 
 const themeScript = `(function(){try{var t=localStorage.getItem("observatorio-theme");document.documentElement.dataset.theme=t==="dark"?"dark":"light";}catch(e){document.documentElement.dataset.theme="light";}})();`;
 
-export const metadata: Metadata = rootMetadata;
+export async function generateMetadata(): Promise<Metadata> {
+  const origin = await publicOrigin();
+  if (!origin) return rootMetadata;
+  const image = new URL("/opengraph-image", origin).toString();
+  return {
+    ...rootMetadata,
+    metadataBase: origin,
+    openGraph: { ...rootMetadata.openGraph, images: [image] },
+    twitter: { ...rootMetadata.twitter, images: [image] },
+  };
+}
 
 export const viewport: Viewport = {
   themeColor: "#a71c6f",

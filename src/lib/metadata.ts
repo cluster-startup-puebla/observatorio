@@ -17,6 +17,8 @@ function metadataBase() {
   return new URL(`http://localhost:${port}`);
 }
 
+const socialImage = "/opengraph-image";
+
 const socialDefaults = {
   siteName,
   locale: "es_MX",
@@ -72,11 +74,13 @@ export function pageMetadata({
       title: socialTitle,
       description,
       url: path,
+      images: [socialImage],
     },
     twitter: {
       card: "summary_large_image",
       title: socialTitle,
       description,
+      images: [socialImage],
     },
   };
 }
