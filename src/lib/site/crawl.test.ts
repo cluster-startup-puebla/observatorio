@@ -25,6 +25,8 @@ describe("índice público", () => {
     const text = llmsText({ origin, sessions: [session] });
     expect(text.startsWith("# Observatorio Tecnológico de Puebla")).toBe(true);
     expect(text).toContain(`${origin}/sesiones/${session.publicSlug}`);
-    expect(text).toContain("el nombre de una empresa no aparece");
+    expect(text).toContain("licitación anónima");
+    expect(text).toContain(`${origin}/retos`);
+
   });
 });

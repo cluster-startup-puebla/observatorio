@@ -5,6 +5,7 @@ export const navItems = [
   { label: "Cómo funciona", href: "/#como-funciona" },
   { label: "Observatorio", href: "/#observatorio" },
   { label: "Sesiones", href: "/sesiones" },
+  { label: "Retos", href: "/retos" },
   { label: "Blog", href: "/blog" },
 ];
 

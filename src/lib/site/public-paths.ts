@@ -26,6 +26,7 @@ export const staticPublicPages = [
   { path: "/", changeFrequency: "weekly", priority: 1 },
   { path: "/sesiones", changeFrequency: "weekly", priority: 0.8 },
   { path: "/blog", changeFrequency: "weekly", priority: 0.8 },
+  { path: "/retos", changeFrequency: "weekly", priority: 0.7 },
   { path: "/diagnostico-tmec-puebla", changeFrequency: "monthly", priority: 0.6 },
   { path: "/crear-cuenta", changeFrequency: "monthly", priority: 0.5 },
   { path: "/aviso-de-privacidad", changeFrequency: "yearly", priority: 0.3 },
