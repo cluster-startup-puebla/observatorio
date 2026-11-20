@@ -1,6 +1,8 @@
+import { Suspense } from "react";
+import { cacheLife, cacheTag } from "next/cache";
 import { redirect } from "next/navigation";
-import { connection } from "next/server";
 import { loadSessionDetail } from "@/lib/app/load-sector-sessions";
+import { sessionLife, sessionsTag } from "@/lib/app/view-cache";
 import { readSessionAccount } from "@/lib/auth/session-account";
 import { sessionOnLabel } from "@/lib/sessions/face";
 import { createSupabaseWithAccess, readAccessToken } from "@/lib/supabase/auth-session";
@@ -24,11 +26,21 @@ async function companySectorId(token: string, profileId: string) {
   return typeof sectorId === "string" ? sectorId : "";
 }
 
-export default async function SessionDetailPage({ params }: { params: Promise<{ slug: string }> }) {
+export default function SessionDetailPage({ params }: { params: Promise<{ slug: string }> }) {
+  return (
+    <Suspense fallback={null}>
+      <SessionDetail params={params} />
+    </Suspense>
+  );
+}
+
+async function SessionDetail({ params }: { params: Promise<{ slug: string }> }) {
+  "use cache: private";
+  cacheLife(sessionLife);
   const { slug } = await params;
-  await connection();
   const account = await readSessionAccount();
   const token = await readAccessToken();
+  if (account) cacheTag(sessionsTag(account.id));
   if (!account || !token) redirect("/app/sesiones");
 
   const sectorId = await companySectorId(token, account.id);

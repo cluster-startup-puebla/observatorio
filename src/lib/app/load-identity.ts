@@ -2,6 +2,7 @@ import "server-only";
 
 import { cacheLife, cacheTag } from "next/cache";
 import type { Identity } from "@/lib/app/identity";
+import { steadyLife } from "@/lib/app/view-cache";
 import { readSessionAccount } from "@/lib/auth/session-account";
 import { createSupabaseWithAccess, readAccessToken } from "@/lib/supabase/auth-session";
 
@@ -31,7 +32,7 @@ export async function loadIdentity(): Promise<Identity> {
 
 async function readIdentity(userId: string, token: string, fallbackEmail: string): Promise<Identity> {
   "use cache";
-  cacheLife("hours");
+  cacheLife(steadyLife);
   cacheTag(identityTag(userId));
   const db = createSupabaseWithAccess(token);
   const [profile, company, logo] = await Promise.all([

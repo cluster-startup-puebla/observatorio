@@ -1,7 +1,9 @@
-import { connection } from "next/server";
+import { Suspense } from "react";
+import { cacheLife, cacheTag } from "next/cache";
 import { SessionGroups } from "@/components/app/session-groups";
-import { splitSessions } from "@/lib/app/sector-sessions";
 import { loadSectorSessions } from "@/lib/app/load-sector-sessions";
+import { splitSessions } from "@/lib/app/sector-sessions";
+import { sessionLife, sessionsTag } from "@/lib/app/view-cache";
 import { readSessionAccount } from "@/lib/auth/session-account";
 import { createSupabaseWithAccess, readAccessToken } from "@/lib/supabase/auth-session";
 
@@ -29,10 +31,20 @@ async function companySectorId(token: string, profileId: string) {
   return typeof sectorId === "string" ? sectorId : "";
 }
 
-export default async function SessionsPage() {
-  await connection();
+export default function SessionsPage() {
+  return (
+    <Suspense fallback={null}>
+      <SessionsBody />
+    </Suspense>
+  );
+}
+
+async function SessionsBody() {
+  "use cache: private";
+  cacheLife(sessionLife);
   const account = await readSessionAccount();
   const token = await readAccessToken();
+  if (account) cacheTag(sessionsTag(account.id));
   const sectorId = account && token ? await companySectorId(token, account.id) : "";
   const rows = token && sectorId ? await loadSectorSessions(token, sectorId) : [];
   const groups = splitSessions(rows, mexicoToday());

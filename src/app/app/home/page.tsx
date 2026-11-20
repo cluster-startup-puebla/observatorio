@@ -1,4 +1,5 @@
-import { connection } from "next/server";
+import { Suspense } from "react";
+import { cacheLife } from "next/cache";
 import { Newspaper } from "lucide-react";
 import { ComingCard } from "@/components/app/coming-card";
 import { EvaluationBanner } from "@/components/app/evaluation-banner";
@@ -8,11 +9,21 @@ import { InnovationBanner } from "@/components/app/innovation-banner";
 import { ProfileGapBanner } from "@/components/app/profile-gap-banner";
 import { SessionBanner } from "@/components/app/session-banner";
 import { loadHome } from "@/lib/app/load-home";
+import { sessionLife } from "@/lib/app/view-cache";
 
 export const instant = false;
 
-export default async function HomePage() {
-  await connection();
+export default function HomePage() {
+  return (
+    <Suspense fallback={null}>
+      <HomeBody />
+    </Suspense>
+  );
+}
+
+async function HomeBody() {
+  "use cache: private";
+  cacheLife(sessionLife);
   const home = await loadHome();
   const now = new Date();
 

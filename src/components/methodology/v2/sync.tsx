@@ -1,6 +1,7 @@
 "use client";
 
 import { toast } from "sonner";
+import { refreshCompanyView } from "@/lib/app/refresh-company-view";
 import { readDraft, writeDraft, type V2Draft } from "@/lib/methodology/v2/draft";
 import { flushPlan } from "@/lib/methodology/v2/flush";
 
@@ -72,6 +73,7 @@ export function scheduleFlush(draft: V2Draft, entering: Entering, score?: FlushS
     .then((response) => {
       if (!response.ok) throw new Error("envio");
       markSent(draft);
+      if (draft.phase === "done") void refreshCompanyView();
       return true;
     })
     .catch(() => {

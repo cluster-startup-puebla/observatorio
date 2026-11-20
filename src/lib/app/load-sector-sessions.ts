@@ -1,6 +1,5 @@
 import "server-only";
 
-import { connection } from "next/server";
 import type { SectorSession } from "@/lib/app/sector-sessions";
 import { createSupabaseWithAccess } from "@/lib/supabase/auth-session";
 
@@ -23,7 +22,6 @@ function toSectorSession(row: SessionRow): SectorSession {
 }
 
 export async function loadSectorSessions(token: string, sectorId: string) {
-  await connection();
   const result = await createSupabaseWithAccess(token)
     .from("sessions")
     .select(columns)

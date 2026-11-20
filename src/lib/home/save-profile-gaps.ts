@@ -3,6 +3,7 @@
 import { revalidatePath, updateTag } from "next/cache";
 import { redirect } from "next/navigation";
 import { identityTag } from "@/lib/app/load-identity";
+import { companyTag } from "@/lib/app/view-cache";
 import { readSessionAccount } from "@/lib/auth/session-account";
 import { resendSignupConfirmation } from "@/lib/auth/resend-confirmation";
 import { saveCompanyLogo } from "@/lib/onboarding/save-company-logo";
@@ -23,7 +24,10 @@ async function actor() {
 
 function done(profileId: string): never {
   updateTag(identityTag(profileId));
+  updateTag(companyTag(profileId));
   revalidatePath(home);
+  revalidatePath("/app/company");
+  revalidatePath("/app/profile");
   redirect(home);
 }
 
