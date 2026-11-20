@@ -3,6 +3,7 @@ import { mesaHref } from "@/lib/admin/mesa/href";
 import { recordArrival } from "@/lib/admin/mesa/record";
 import { requireMesa } from "@/lib/auth/guards";
 import type { CrmStatus } from "@/lib/crm-status";
+import { maybeAwardArrival } from "@/lib/lavas/maybe-award-arrival";
 import { createSupabaseWithAccess, readAccessToken } from "@/lib/supabase/auth-session";
 import { NextResponse, type NextRequest } from "next/server";
 
@@ -38,6 +39,12 @@ export async function POST(request: NextRequest) {
   if (!plan.ok) return redirectTo(request, `codigo=${profileId}&error=${encodeURIComponent(plan.reason)}`);
   const inserted = await db.from("arrivals").insert(plan.arrival);
   if (inserted.error) return redirectTo(request, `error=${encodeURIComponent(inserted.error.message)}`);
+  const company = await db.from("companies").select("id").eq("profile_id", profileId).maybeSingle();
+  if (company.data?.id) {
+    await maybeAwardArrival(db, { companyId: company.data.id, profileId }).catch((error) =>
+      console.error("lavas llegada", error),
+    );
+  }
   if (plan.crmEvent && contact.data) {
     await db.from("crm_events").insert({
       contact_id: contact.data.id,

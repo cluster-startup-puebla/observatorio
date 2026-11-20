@@ -12,6 +12,7 @@ import { nextForSector, type SectorSession } from "./sector-sessions";
 export type HomeScreen = {
   name: string;
   email: string;
+  companyId: string | null;
   gaps: ProfileGap[];
   next: SectorSession | null;
   showEvaluation: boolean;
@@ -22,6 +23,7 @@ export type HomeScreen = {
 const empty: HomeScreen = {
   name: "",
   email: "",
+  companyId: null,
   gaps: [],
   next: null,
   showEvaluation: false,
@@ -47,7 +49,7 @@ export async function loadHome(): Promise<HomeScreen> {
   const db = createSupabaseWithAccess(token);
   const [profile, company, run, gaps, innovation] = await Promise.all([
     db.from("profiles").select("full_name").eq("id", account.id).maybeSingle(),
-    db.from("companies").select("sector_id, sectors(name, slug)").eq("profile_id", account.id).maybeSingle(),
+    db.from("companies").select("id, sector_id, sectors(name, slug)").eq("profile_id", account.id).maybeSingle(),
     db.from("methodology_v2_runs").select("phase, score").eq("profile_id", account.id).maybeSingle(),
     loadProfileGaps(token, account.id),
     db.rpc("open_innovation_joined"),
@@ -61,6 +63,7 @@ export async function loadHome(): Promise<HomeScreen> {
   return {
     name,
     email: account.email,
+    companyId: typeof company.data?.id === "string" ? company.data.id : null,
     gaps: gaps.gaps,
     next: nextForSector(sessions, mexicoToday()),
     showEvaluation: showFirstEvaluation({

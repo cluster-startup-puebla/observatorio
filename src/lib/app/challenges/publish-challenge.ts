@@ -43,6 +43,7 @@ export async function publishChallenge(form: ChallengeFormInput): Promise<string
     "@/lib/lavas/award-challenge-publish"
   );
   await awardLavasForChallengePublish({
+    db: ctx.db,
     companyId: ctx.company.id,
     challengeId: result.data.id,
     origen: "live",

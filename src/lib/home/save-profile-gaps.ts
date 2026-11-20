@@ -9,6 +9,7 @@ import { resendSignupConfirmation } from "@/lib/auth/resend-confirmation";
 import { saveCompanyLogo } from "@/lib/onboarding/save-company-logo";
 import { serverIssue } from "@/lib/onboarding/step-issue";
 import { websiteError } from "@/lib/onboarding/website";
+import { awardProfileGapsIfComplete } from "@/lib/lavas/maybe-award-profile";
 import { createSupabaseWithAccess, readAccessToken } from "@/lib/supabase/auth-session";
 
 export type GapFormState = { error?: string; sent?: boolean } | null;
@@ -41,6 +42,7 @@ export async function saveProfileLogo(_previous: GapFormState, formData: FormDat
     show: true,
   });
   if (!saved.ok) return { error: serverIssue(saved.reason) };
+  await awardProfileGapsIfComplete(current.accessToken, current.profileId);
   done(current.profileId);
 }
 
@@ -57,6 +59,7 @@ export async function saveProfileWebsite(_previous: GapFormState, formData: Form
     .select("id")
     .maybeSingle();
   if (saved.error || !saved.data) return { error: "No se pudo guardar el sitio web." };
+  await awardProfileGapsIfComplete(current.accessToken, current.profileId);
   done(current.profileId);
 }
 

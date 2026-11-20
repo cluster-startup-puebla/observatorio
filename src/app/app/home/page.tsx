@@ -10,6 +10,7 @@ import { ProfileGapBanner } from "@/components/app/profile-gap-banner";
 import { SessionBanner } from "@/components/app/session-banner";
 import { loadHome } from "@/lib/app/load-home";
 import { sessionLife } from "@/lib/app/view-cache";
+import { loadHomeLavaPanel } from "@/lib/lavas/load-home-panel";
 import HomeLoading from "./loading";
 
 export const instant = false;
@@ -26,12 +27,13 @@ async function HomeBody() {
   "use cache: private";
   cacheLife(sessionLife);
   const home = await loadHome();
+  const lavas = await loadHomeLavaPanel(home.companyId);
   const now = new Date();
 
   return (
     <div className="grid w-full max-w-lg gap-6 md:max-w-none">
       <header className="grid gap-4">
-        <HomeHeader name={home.name} />
+        <HomeHeader name={home.name} lavas={lavas} />
         <HomeGreeting name={home.name} date={now} />
       </header>
       <ProfileGapBanner gaps={home.gaps} email={home.email} />

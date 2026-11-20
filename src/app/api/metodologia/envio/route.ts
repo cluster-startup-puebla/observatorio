@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { maybeAwardEvaluation } from "@/lib/lavas/maybe-award-evaluation";
 import { applyRun, type RunInput, type RunRow } from "@/lib/methodology/v2/apply-run";
 import { memoryRuns, saveRun } from "@/lib/methodology/v2/memory-runs";
 import { readAccountId } from "@/lib/session";
@@ -74,5 +75,16 @@ export async function POST(request: Request) {
     { onConflict: "profile_id" },
   );
   if (saved.error) return NextResponse.json({ error: "no se pudo guardar el envío" }, { status: 500 });
+  if (result.row.phase === "done" && result.row.score != null) {
+    const company = await db.from("companies").select("id").eq("profile_id", profileId).maybeSingle();
+    if (company.data?.id) {
+      await maybeAwardEvaluation(db, {
+        companyId: company.data.id,
+        instrumentId: result.row.instrument_id,
+        phase: result.row.phase,
+        scored: true,
+      }).catch((error) => console.error("lavas evaluacion", error));
+    }
+  }
   return NextResponse.json({ ok: true });
 }
