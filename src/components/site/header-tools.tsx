@@ -37,7 +37,9 @@ export function HeaderTools({
           <HeaderCtas path={path} onField={onHero} />
         </Suspense>
       </div>
-      <ThemeToggle onField={onHero} />
+      <div className="hidden lg:block">
+        <ThemeToggle onField={onHero} />
+      </div>
       <button
         type="button"
         className={`inline-flex size-11 items-center justify-center rounded-full border lg:hidden ${
