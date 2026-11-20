@@ -4,12 +4,13 @@ import { revalidatePath, updateTag } from "next/cache";
 import { redirect } from "next/navigation";
 import { identityTag } from "@/lib/app/load-identity";
 import { readSessionAccount } from "@/lib/auth/session-account";
+import { resendSignupConfirmation } from "@/lib/auth/resend-confirmation";
 import { saveCompanyLogo } from "@/lib/onboarding/save-company-logo";
 import { serverIssue } from "@/lib/onboarding/step-issue";
 import { websiteError } from "@/lib/onboarding/website";
 import { createSupabaseWithAccess, readAccessToken } from "@/lib/supabase/auth-session";
 
-export type GapFormState = { error: string } | null;
+export type GapFormState = { error?: string; sent?: boolean } | null;
 
 const home = "/app/home";
 
@@ -17,7 +18,7 @@ async function actor() {
   const account = await readSessionAccount();
   const accessToken = await readAccessToken();
   if (!account || account.role !== "empresario" || !accessToken) return null;
-  return { profileId: account.id, accessToken };
+  return { profileId: account.id, accessToken, email: account.email };
 }
 
 function done(profileId: string): never {
@@ -53,4 +54,13 @@ export async function saveProfileWebsite(_previous: GapFormState, formData: Form
     .maybeSingle();
   if (saved.error || !saved.data) return { error: "No se pudo guardar el sitio web." };
   done(current.profileId);
+}
+
+export async function sendProfileVerification(_previous: GapFormState): Promise<GapFormState> {
+  const current = await actor();
+  if (!current) return { error: serverIssue("cuenta") };
+  const result = await resendSignupConfirmation(current.email);
+  if (result === "limite") return { error: "Hay demasiados intentos. Espera un momento e inténtalo de nuevo." };
+  if (result === "correo") return { error: "No hay un correo para verificar." };
+  return { sent: true };
 }

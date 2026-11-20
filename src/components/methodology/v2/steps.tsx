@@ -1,18 +1,5 @@
 import type { V2LevelStep } from "@/lib/methodology/v2/bands";
-
-function splitActions(actions: string[]) {
-  const own: string[] = [];
-  const shared: string[] = [];
-  const plain: string[] = [];
-  for (const action of actions) {
-    const house = action.match(/^Capa A\s*\([^)]*\):\s*(.*)$/i);
-    const others = action.match(/^Capa B\s*\([^)]*\):\s*(.*)$/i);
-    if (house?.[1]) own.push(house[1].trim());
-    else if (others?.[1]) shared.push(others[1].trim());
-    else plain.push(action);
-  }
-  return { own, shared, plain };
-}
+import { stepGroups } from "@/lib/methodology/v2/step-groups";
 
 function List({ items }: { items: string[] }) {
   if (items.length === 0) return null;
@@ -36,7 +23,7 @@ function Group({ title, items }: { title: string; items: string[] }) {
 }
 
 export function Steps({ step, signals }: { step: V2LevelStep | null; signals: string[] }) {
-  const groups = splitActions(step?.actions ?? []);
+  const groups = stepGroups(step?.actions ?? []);
   const empty = signals.length + groups.own.length + groups.shared.length + groups.plain.length === 0;
   if (empty) return null;
   return (

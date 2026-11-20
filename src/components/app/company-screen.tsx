@@ -1,72 +1,42 @@
-import { AppCard } from "@/components/app/app-card";
 import { CompanyChecklist } from "@/components/app/company-checklist";
+import { CompanyHeader } from "@/components/app/company-header";
+import { ResultNote } from "@/components/methodology/v2/result-note";
+import { ResultView } from "@/components/methodology/v2/result-view";
 import { SectorRank } from "@/components/methodology/v2/sector-rank";
-import { bandLabel } from "@/lib/admin/empresas/band-label";
-import type { CompanyHome, CompanyScore } from "@/lib/app/company-score";
-import { marketSizes } from "@/lib/onboarding/market-sizes";
+import type { CompanyHome } from "@/lib/app/company-score";
+import { readResult } from "@/lib/methodology/v2/read-result";
 
-const medals: Record<string, string> = {
+const bands: Record<string, string> = {
   platino: "Platino",
   oro: "Oro",
   plata: "Plata",
   bronce: "Bronce",
 };
 
-function clean(value: string | null | undefined) {
-  const text = value?.trim() ?? "";
-  return text || null;
+function CompanyMedal({ home }: { home: CompanyHome }) {
+  if (!home.score) return null;
+  const band = home.score.band ? (bands[home.score.band] ?? home.score.band) : null;
+  return <ResultNote shown={home.score.ismsNivel2} together band={band} reportHref="/metodologia" />;
 }
 
-function named(value: string | null, labelFor: (raw: string) => string | null | undefined) {
-  const raw = clean(value);
-  if (!raw) return null;
-  return clean(labelFor(raw) ?? null) ?? raw;
-}
-
-function grade(score: CompanyScore) {
-  const band = score.band ? (medals[score.band] ?? score.band) : "";
-  const note = score.ismsNivel2.toFixed(2);
-  return band ? `${band} · ${note}` : note;
-}
-
-function rowsFor(home: CompanyHome) {
-  const pairs: [string, string | null][] = [
-    ["Empresa", clean(home.legalName)],
-    ["Sector", clean(home.sectorName)],
-    ["Tamaño", named(home.employeeBand, bandLabel)],
-    ["Sitio web", clean(home.website)],
-    ["Municipio", clean(home.municipality)],
-    ["Mercado", named(home.marketSize, (raw) => marketSizes.find((item) => item.value === raw)?.label)],
-    ["Cómo llegó", clean(home.referral)],
-    ["Interés", clean(home.sessionInterest)],
-  ];
-  return pairs.flatMap(([label, value]) => (value ? [{ label, value }] : []));
+function CompanyResult({ home }: { home: CompanyHome }) {
+  if (!home.result) {
+    return (
+      <>
+        <CompanyMedal home={home} />
+        <SectorRank />
+      </>
+    );
+  }
+  const { questions, answers, roadmap } = home.result;
+  return <ResultView read={readResult(questions, answers, roadmap)} questions={questions} answers={answers} />;
 }
 
 export function CompanyScreen({ home }: { home: CompanyHome }) {
-  const rows = rowsFor(home);
   return (
-    <div className="grid w-full max-w-lg gap-8 md:max-w-none">
-      <AppCard>
-        <h1 className="text-h3 text-ink">Empresa</h1>
-        {rows.length ? (
-          <dl className="mt-6 grid gap-5">
-            {rows.map((row) => (
-              <div key={row.label}>
-                <dt className="text-micro text-ink-secondary">{row.label}</dt>
-                <dd className="mt-1 text-body text-ink">{row.value}</dd>
-              </div>
-            ))}
-          </dl>
-        ) : null}
-        {home.score ? (
-          <p className="mt-6">
-            <span className="block text-micro text-ink-secondary">Última calificación</span>
-            <span className="mt-1 block text-body text-ink">{grade(home.score)}</span>
-          </p>
-        ) : null}
-      </AppCard>
-      <SectorRank />
+    <div className="grid w-full min-w-0 max-w-lg gap-8 md:max-w-none">
+      <CompanyHeader home={home} />
+      <CompanyResult home={home} />
       <CompanyChecklist actions={home.actions} />
     </div>
   );

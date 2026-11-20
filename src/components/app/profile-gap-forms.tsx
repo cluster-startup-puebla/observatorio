@@ -1,11 +1,17 @@
 "use client";
 
 import { useActionState } from "react";
+import { LogoFileField } from "@/components/app/logo-file-field";
 import { PendingSubmit } from "@/components/auth/pending-submit";
 import { Field, controlClass } from "@/components/landing/molecules/field";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import type { ProfileGap } from "@/lib/home/profile-gaps";
-import { saveProfileLogo, saveProfileWebsite, type GapFormState } from "@/lib/home/save-profile-gaps";
+import {
+  saveProfileLogo,
+  saveProfileWebsite,
+  sendProfileVerification,
+  type GapFormState,
+} from "@/lib/home/save-profile-gaps";
 
 const empty: GapFormState = null;
 
@@ -23,17 +29,7 @@ function LogoGapForm() {
   return (
     <form action={action} className="grid gap-3">
       <GapAlert error={state?.error} />
-      <Field id="profile-logo" label="Logo">
-        <input
-          id="profile-logo"
-          name="logo"
-          type="file"
-          accept="image/png,image/jpeg,image/webp"
-          className={controlClass}
-          required
-        />
-      </Field>
-      <p className="text-small text-ink-secondary">PNG, JPG o WEBP · hasta 2 MB.</p>
+      <LogoFileField />
       <PendingSubmit idle="Guardar logo" pendingLabel="Guardando logo…" className="btn btn-primary w-fit" />
     </form>
   );
@@ -62,12 +58,28 @@ function WebsiteGapForm() {
   );
 }
 
-export function ProfileGapForms({ gaps }: { gaps: ProfileGap[] }) {
+function VerifyGapForm({ email }: { email: string }) {
+  const [state, action] = useActionState(sendProfileVerification, empty);
+  if (state?.sent) {
+    return (
+      <Alert>
+        <AlertDescription>
+          Enviamos un enlace a {email}. Ábrelo para confirmar la cuenta. Revisa la bandeja de correo no deseado.
+        </AlertDescription>
+      </Alert>
+    );
+  }
   return (
-    <div className="mt-6 grid gap-6">
-      {gaps.map((gap) =>
-        gap.id === "logo" ? <LogoGapForm key={gap.id} /> : <WebsiteGapForm key={gap.id} />,
-      )}
-    </div>
+    <form action={action} className="grid gap-3">
+      <GapAlert error={state?.error} />
+      <p className="text-body text-ink">{email}</p>
+      <PendingSubmit idle="Enviar correo" pendingLabel="Enviando…" className="btn btn-primary w-fit" />
+    </form>
   );
+}
+
+export function ProfileGapForm({ gap, email }: { gap: ProfileGap; email: string }) {
+  if (gap.id === "logo") return <LogoGapForm />;
+  if (gap.id === "website") return <WebsiteGapForm />;
+  return <VerifyGapForm email={email} />;
 }

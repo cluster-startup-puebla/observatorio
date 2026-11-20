@@ -1,5 +1,5 @@
-import { RouteSkeleton } from "@/components/app/route-skeleton";
+import { CompanySkeleton } from "@/components/app/company-skeleton";
 
 export default function CompanyLoading() {
-  return <RouteSkeleton />;
+  return <CompanySkeleton />;
 }

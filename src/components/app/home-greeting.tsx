@@ -1,13 +1,14 @@
-import { dayPart, firstName, mexicoHour } from "@/lib/app/greeting";
-
-function capitalized(saludo: string) {
-  return saludo.charAt(0).toUpperCase() + saludo.slice(1);
-}
+import { dayPart, mexicoHour } from "@/lib/app/greeting";
 
 export function HomeGreeting({ name, date }: { name: string; date: Date }) {
-  const nombre = firstName(name);
+  const nombre = name.trim();
   const saludo = dayPart(mexicoHour(date));
-  const text = nombre ? `Hola ${nombre}, ${saludo}` : capitalized(saludo);
 
-  return <h1 className="text-h1 text-ink">{text}</h1>;
+  return (
+    <div>
+      <p className="text-small font-normal text-ink">{saludo}</p>
+      {nombre ? <h1 className="font-display text-h2 text-ink">{nombre}</h1> : null}
+      <p className="text-small font-normal text-ink-secondary">Colaboremos con la innovación del estado</p>
+    </div>
+  );
 }

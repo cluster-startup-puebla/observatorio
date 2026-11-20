@@ -1,25 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ChevronRight } from "lucide-react";
+import { LogoBanner } from "@/components/app/identity-banner";
 import { personInitials } from "@/lib/app/initials";
 import type { Identity } from "@/lib/app/identity";
-
-function LogoBanner({ logo }: { logo: string | null }) {
-  return (
-    <div className="relative z-0 h-52 md:h-72">
-      <div className="absolute inset-0 overflow-hidden bg-surface-subtle">
-        {logo ? (
-          <div aria-hidden className="grid h-full grid-cols-4 place-items-center gap-8 p-8 sm:grid-cols-6">
-            {Array.from({ length: 12 }, (_, index) => (
-              <Image key={index} src={logo} alt="" width={160} height={80} unoptimized className="max-h-16 w-full object-contain md:max-h-24" />
-            ))}
-          </div>
-        ) : null}
-      </div>
-      <div aria-hidden className="absolute right-0 bottom-0 left-28 h-0.5 bg-ink/20 md:left-36" />
-    </div>
-  );
-}
 
 function Mark({ name, logo, className }: { name: string; logo: string | null; className: string }) {
   if (logo) {
@@ -56,7 +40,7 @@ export function IdentityCard({ person }: { person: Identity }) {
           </div>
         </div>
         {rows.length ? (
-          <dl className="mt-8 grid gap-4 md:mt-6">
+          <dl className="mt-6 grid gap-4">
             {rows.map((row) => (
               <div key={row.label}>
                 <dt className="text-micro text-ink-secondary">{row.label}</dt>
@@ -66,7 +50,7 @@ export function IdentityCard({ person }: { person: Identity }) {
           </dl>
         ) : null}
         {person.company ? (
-          <section className="mt-10 border-t border-line pt-8 md:mt-8 md:pt-6">
+          <section className="mt-8 border-t border-line pt-6">
             <h2 className="font-display text-h4 text-ink">Empresa</h2>
             <Link href="/app/company" className="group mt-5 flex items-center gap-4">
               <Mark

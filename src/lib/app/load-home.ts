@@ -11,18 +11,20 @@ import { nextForSector, type SectorSession } from "./sector-sessions";
 
 export type HomeScreen = {
   name: string;
+  email: string;
   gaps: ProfileGap[];
-  counter: string;
   next: SectorSession | null;
   showEvaluation: boolean;
+  showInnovation: boolean;
 };
 
 const empty: HomeScreen = {
   name: "",
+  email: "",
   gaps: [],
-  counter: "0/2",
   next: null,
   showEvaluation: false,
+  showInnovation: false,
 };
 
 function mexicoToday() {
@@ -41,11 +43,12 @@ export async function loadHome(): Promise<HomeScreen> {
   const token = await readAccessToken();
   if (!account || !token) return empty;
   const db = createSupabaseWithAccess(token);
-  const [profile, company, run, gaps] = await Promise.all([
+  const [profile, company, run, gaps, innovation] = await Promise.all([
     db.from("profiles").select("full_name").eq("id", account.id).maybeSingle(),
     db.from("companies").select("sector_id, sectors(slug)").eq("profile_id", account.id).maybeSingle(),
     db.from("methodology_v2_runs").select("phase, score").eq("profile_id", account.id).maybeSingle(),
     loadProfileGaps(token, account.id),
+    db.rpc("open_innovation_joined"),
   ]);
   if (company.error) throw new Error(company.error.message);
   if (run.error) throw new Error(run.error.message);
@@ -54,12 +57,13 @@ export async function loadHome(): Promise<HomeScreen> {
   const name = typeof profile.data?.full_name === "string" ? profile.data.full_name : "";
   return {
     name,
+    email: account.email,
     gaps: gaps.gaps,
-    counter: gaps.counter,
     next: nextForSector(sessions, mexicoToday()),
     showEvaluation: showFirstEvaluation({
       sectorHasPack: sectorHasPackFor(sectorOf(company.data?.sectors).slug),
       finished: companyScore(run.data) !== null,
     }),
+    showInnovation: innovation.data === false,
   };
 }

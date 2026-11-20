@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 const METAL: Record<string, { wash: string; ink: string }> = {
   Bronce: { wash: "var(--medal-bronce-wash)", ink: "var(--medal-bronce)" },
   Plata: { wash: "var(--medal-plata-wash)", ink: "var(--medal-plata)" },
@@ -9,10 +11,12 @@ export function ResultNote({
   shown,
   together,
   band,
+  reportHref,
 }: {
   shown: number;
   together: boolean;
   band: string | null;
+  reportHref?: string;
 }) {
   const metal = band ? METAL[band] : { wash: "var(--accent-soft)", ink: "var(--brand-secondary)" };
   return (
@@ -36,6 +40,11 @@ export function ResultNote({
           ? "Esta es la nota de la empresa. Junta lo que dice la dirección con lo que se ve en la operación."
           : "Esta es la nota de lo que ve la dirección. Todavía no se junta con la operación."}
       </p>
+      {reportHref ? (
+        <Link href={reportHref} className="btn btn-primary">
+          Ver el reporte
+        </Link>
+      ) : null}
     </section>
   );
 }

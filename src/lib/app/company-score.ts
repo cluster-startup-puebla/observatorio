@@ -1,7 +1,17 @@
+import type { V2LevelStep } from "@/lib/methodology/v2/bands";
+import type { V2Answers, V2Question } from "@/lib/methodology/v2/types";
 import { profileGaps } from "@/lib/home/profile-gaps";
 import type { CompanyAction, CompanyGap } from "./company-actions";
+import type { EvaluationTrace } from "./evaluation-trace";
 
 export type CompanyScore = { band: string | null; ismsNivel2: number };
+
+export type CompanyResult = {
+  questions: V2Question[];
+  answers: V2Answers;
+  roadmap: V2LevelStep[];
+  trace: EvaluationTrace;
+};
 
 export type CompanyHome = {
   legalName: string | null;
@@ -12,7 +22,10 @@ export type CompanyHome = {
   marketSize: string | null;
   referral: string | null;
   sessionInterest: string | null;
+  logoUrl: string | null;
+  convenerLogoUrl: string | null;
   score: CompanyScore | null;
+  result: CompanyResult | null;
   actions: CompanyAction[];
 };
 
@@ -25,7 +38,10 @@ export const emptyCompanyHome: CompanyHome = {
   marketSize: null,
   referral: null,
   sessionInterest: null,
+  logoUrl: null,
+  convenerLogoUrl: null,
   score: null,
+  result: null,
   actions: [],
 };
 
@@ -49,5 +65,7 @@ export function companyScore(row: { phase?: string; score?: unknown } | null): C
 }
 
 export function companyGaps(hasLogo: boolean, website: string | null): CompanyGap[] {
-  return profileGaps({ hasLogo, website: website ?? "" }).gaps.map((gap) => gap.id);
+  return profileGaps({ hasLogo, website: website ?? "", emailConfirmed: true }).gaps.flatMap((gap) =>
+    gap.id === "logo" || gap.id === "website" ? [gap.id] : [],
+  );
 }

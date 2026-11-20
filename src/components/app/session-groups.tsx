@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { EmptySessionCard } from "@/components/app/empty-session-card";
 import { SessionDate } from "@/components/sessions/session-date";
 import type { SectorSession } from "@/lib/app/sector-sessions";
 
@@ -15,7 +16,7 @@ function SessionGroup({
     <section className="grid gap-4">
       <h2 className="text-h3 text-ink">{title}</h2>
       {rows.length === 0 ? (
-        <p className="text-body text-ink-secondary">{empty}</p>
+        <EmptySessionCard label={empty} />
       ) : (
         <ul className="grid gap-3">
           {rows.map((session) => (
