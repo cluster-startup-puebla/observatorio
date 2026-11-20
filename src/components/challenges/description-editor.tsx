@@ -22,7 +22,7 @@ const RichTextEditor = dynamic(
 const KEY = "challenge-editor-view-mode";
 
 function initialMode(): DescriptionMode {
-  if (typeof window === "undefined") return "split";
+  if (typeof window === "undefined") return "editor";
   const saved = localStorage.getItem(KEY);
   if (saved === "editor" || saved === "preview" || saved === "split") return saved;
   return window.matchMedia("(min-width: 768px)").matches ? "split" : "editor";
@@ -37,7 +37,7 @@ export function DescriptionEditor({
   onChange: (html: string) => void;
   disabled?: boolean;
 }) {
-  const [mode, setMode] = useState<DescriptionMode>("split");
+  const [mode, setMode] = useState<DescriptionMode>("editor");
   useEffect(() => {
     setMode(initialMode());
   }, []);
@@ -47,7 +47,7 @@ export function DescriptionEditor({
 
   if (disabled) {
     return (
-      <div className="rounded-lg border border-line bg-elevated p-4">
+      <div className="min-w-0 max-w-full overflow-hidden rounded-lg border border-line bg-elevated p-4">
         <RichTextView html={value} />
       </div>
     );
@@ -58,11 +58,11 @@ export function DescriptionEditor({
   const showPreview = mode !== "editor";
 
   return (
-    <div className="flex flex-col overflow-hidden rounded-lg border border-line bg-elevated">
+    <div className="flex min-w-0 max-w-full flex-col overflow-hidden rounded-lg border border-line bg-elevated">
       <DescriptionModeBar mode={mode} setMode={setMode} />
       <div
         className={cn(
-          "grid min-h-64 md:min-h-80",
+          "grid min-h-52 min-w-0 md:min-h-80",
           showSplit && "md:grid-cols-2",
         )}
       >
@@ -70,7 +70,7 @@ export function DescriptionEditor({
         {showPreview ? (
           <div
             className={cn(
-              "overflow-y-auto bg-surface-subtle p-4",
+              "min-w-0 overflow-y-auto bg-surface-subtle p-4",
               showSplit && "hidden border-l border-line md:block",
               mode === "preview" && "block",
             )}

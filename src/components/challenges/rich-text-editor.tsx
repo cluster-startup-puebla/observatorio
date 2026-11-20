@@ -32,7 +32,7 @@ export function RichTextEditor({
     editorProps: {
       attributes: {
         class:
-          "prose-challenge max-w-none min-h-48 px-3 py-3 focus:outline-none md:min-h-72 md:px-4",
+          "prose-challenge max-w-full min-h-48 break-words px-3 py-3 focus:outline-none md:min-h-72 md:px-4",
       },
     },
   });
@@ -44,10 +44,10 @@ export function RichTextEditor({
   }, [value, editor]);
 
   return (
-    <div className="flex min-h-0 flex-col">
+    <div className="flex min-h-0 min-w-0 max-w-full flex-col overflow-hidden">
       <RichTextToolbar editor={editor} />
-      <div className="flex-1 overflow-y-auto">
-        <EditorContent editor={editor} />
+      <div className="min-w-0 flex-1 overflow-x-hidden overflow-y-auto">
+        <EditorContent editor={editor} className="max-w-full [&_.ProseMirror]:max-w-full" />
       </div>
     </div>
   );

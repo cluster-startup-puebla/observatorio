@@ -3,7 +3,7 @@
 import { ChevronDown } from "lucide-react";
 
 const selectClass =
-  "w-full appearance-none rounded-lg border border-line bg-elevated py-3 pl-4 pr-11 text-body text-ink";
+  "w-full min-w-0 max-w-full appearance-none rounded-lg border border-line bg-elevated py-3 pl-4 pr-11 text-body text-ink";
 
 export function FieldSelect({
   value,

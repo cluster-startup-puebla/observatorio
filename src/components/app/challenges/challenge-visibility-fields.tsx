@@ -17,7 +17,7 @@ export function ChallengeVisibilityFields({
   logoUrl?: string | null;
 }) {
   return (
-    <div className="grid gap-5 px-1">
+    <div className="grid min-w-0 max-w-full gap-5">
       <label className="grid gap-2 text-small">
         Urgencia
         <FieldSelect

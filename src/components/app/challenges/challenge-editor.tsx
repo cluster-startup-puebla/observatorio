@@ -32,8 +32,8 @@ export function ChallengeEditor({
   const published = status === "publicado";
 
   return (
-    <div className="grid w-full gap-6 px-1 pb-28 md:pb-8">
-      <div>
+    <div className="grid w-full min-w-0 max-w-full gap-6 pb-8">
+      <div className="min-w-0">
         <p className="text-small text-ink-secondary">
           <Link href="/app/challenges" className="text-link">
             Retos
@@ -41,7 +41,7 @@ export function ChallengeEditor({
           {" / "}
           {challengeId ? "Editar" : "Nuevo"}
         </p>
-        <h1 className="mt-1 font-display text-h2 text-ink">{title}</h1>
+        <h1 className="mt-1 break-words font-display text-h2 text-ink">{title}</h1>
       </div>
       {locked ? (
         <Alert variant="destructive">

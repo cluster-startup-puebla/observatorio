@@ -43,17 +43,22 @@ export function ChallengeFormActions({
   }
 
   return (
-    <div className="sticky bottom-24 z-10 flex flex-wrap gap-2 border-t border-line bg-elevated/95 py-3 backdrop-blur md:static md:border-0 md:bg-transparent md:py-0 md:backdrop-blur-none">
+    <div className="flex w-full min-w-0 flex-col gap-2 sm:flex-row sm:flex-wrap">
       {published ? (
-        <Button type="button" onClick={savePublished}>
+        <Button type="button" className="w-full sm:w-auto" onClick={savePublished}>
           Guardar cambios
         </Button>
       ) : (
         <>
-          <Button type="button" variant="outline" onClick={saveDraft}>
+          <Button
+            type="button"
+            variant="outline"
+            className="w-full sm:w-auto"
+            onClick={saveDraft}
+          >
             Guardar borrador
           </Button>
-          <Button type="button" onClick={onAskPublish}>
+          <Button type="button" className="w-full sm:w-auto" onClick={onAskPublish}>
             Publicar
           </Button>
         </>

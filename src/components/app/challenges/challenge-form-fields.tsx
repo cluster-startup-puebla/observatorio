@@ -4,7 +4,7 @@ import { DescriptionEditor } from "@/components/challenges/description-editor";
 import { ChallengeAreaFields } from "./challenge-area-fields";
 
 const field =
-  "w-full rounded-lg border border-line bg-elevated px-4 py-3 text-body text-ink";
+  "w-full min-w-0 max-w-full rounded-lg border border-line bg-elevated px-4 py-3 text-body text-ink";
 
 export type ChallengeFormState = {
   name: string;
@@ -27,8 +27,8 @@ export function ChallengeFormFields({
   disabled?: boolean;
 }) {
   return (
-    <div className="grid gap-5 px-1">
-      <label className="grid gap-2 text-small">
+    <div className="grid min-w-0 max-w-full gap-5">
+      <label className="grid min-w-0 gap-2 text-small">
         Nombre
         <input
           className={field}
@@ -37,18 +37,19 @@ export function ChallengeFormFields({
           maxLength={80}
           required
           disabled={disabled}
+          autoComplete="off"
         />
       </label>
       <ChallengeAreaFields value={value} onChange={onChange} disabled={disabled} />
-      <div className="grid gap-2 text-small">
-        <span>Descripción</span>
+      <div className="grid min-w-0 gap-2 text-small">
+        <span>¿Qué te gustaría resolver?</span>
         <DescriptionEditor
           value={value.descriptionHtml}
           onChange={(descriptionHtml) => onChange({ ...value, descriptionHtml })}
           disabled={disabled}
         />
       </div>
-      <label className="grid gap-2 text-small">
+      <label className="grid min-w-0 gap-2 text-small">
         Meta de éxito
         <textarea
           className={field}
@@ -58,6 +59,7 @@ export function ChallengeFormFields({
           rows={3}
           required
           disabled={disabled}
+          autoComplete="off"
         />
       </label>
     </div>

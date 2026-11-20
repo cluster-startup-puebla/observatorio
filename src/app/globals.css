@@ -277,6 +277,13 @@
   .prose-challenge {
     color: var(--text-primary);
     line-height: 1.6;
+    max-width: 100%;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+  .prose-challenge * {
+    max-width: 100%;
+    overflow-wrap: anywhere;
   }
   .prose-challenge h1 {
     margin: 0 0 0.75rem;

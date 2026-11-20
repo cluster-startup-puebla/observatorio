@@ -29,8 +29,8 @@ export function EmpresarioShell({
           <header className="hidden h-12 shrink-0 items-center gap-2 border-b px-3 md:flex">
             <SidebarTrigger className="size-8 rounded-lg text-ink-secondary hover:bg-surface-subtle hover:text-ink [&_svg]:size-4" />
           </header>
-          <div className="min-h-0 flex-1 overflow-y-auto px-6 pt-6 pb-32 md:pb-6">
-            <div className="w-full">{children}</div>
+          <div className="min-h-0 flex-1 overflow-x-hidden overflow-y-auto px-4 pt-6 pb-32 md:px-6 md:pb-6">
+            <div className="w-full min-w-0 max-w-full">{children}</div>
           </div>
         </SidebarInset>
         <MobileNav />
