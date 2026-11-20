@@ -16,6 +16,7 @@ export function SiteHeader() {
   const onField = onProgramField(path);
   const lifted = useHeroNotch(onField);
   const onHero = onField && !lifted;
+  const overField = onHero && !open;
   const onDiagnostic = path === "/diagnostico-tmec-puebla";
 
   useEffect(() => {
@@ -32,29 +33,29 @@ export function SiteHeader() {
       </a>
 
       <header
-        className={`site-header sticky top-0 z-50 ${onField ? "" : "border-b border-line bg-surface/95 text-ink backdrop-blur-md"}`}
-        data-program-field={onHero ? "" : undefined}
+        className={`site-header sticky top-0 z-50 ${overField ? "" : "border-b border-line bg-surface/95 text-ink backdrop-blur-md"}`}
+        data-program-field={overField ? "" : undefined}
       >
-        <div className={headerShell(onField, lifted)}>
+        <div className={headerShell(overField, lifted && !open)}>
           <div className="flex min-w-0 items-center gap-5 xl:gap-7">
             <Link
               href="/#inicio"
-              className={`shrink-0 font-display text-h4 whitespace-nowrap transition-colors duration-500 ${onHero ? "text-white" : "text-ink"}`}
+              className={`shrink-0 font-display text-h4 whitespace-nowrap transition-colors duration-500 ${overField ? "text-white" : "text-ink"}`}
             >
               Observatorio
             </Link>
-            <span aria-hidden className={`hidden h-4 w-px transition-colors duration-500 lg:block ${onHero ? "bg-white/45" : "bg-line"}`} />
-            <HeaderLinks path={path} onField={onHero} />
+            <span aria-hidden className={`hidden h-4 w-px transition-colors duration-500 lg:block ${overField ? "bg-white/45" : "bg-line"}`} />
+            <HeaderLinks path={path} onField={overField} />
           </div>
           <HeaderTools
             path={path}
-            onHero={onHero}
+            onHero={overField}
             onDiagnostic={onDiagnostic}
             open={open}
             onToggle={() => setOpen((value) => !value)}
           />
         </div>
-        {open ? <HeaderMenu path={path} onField={onHero} onNavigate={() => setOpen(false)} /> : null}
+        {open ? <HeaderMenu path={path} onField={false} onNavigate={() => setOpen(false)} /> : null}
       </header>
     </>
   );

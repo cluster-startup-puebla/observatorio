@@ -16,7 +16,7 @@ export function HeaderMenu({
   return (
     <nav
       id="mobile-nav"
-      className={`lg:hidden ${onField ? "border-t border-white/25" : "border-t border-line bg-surface"}`}
+      className="border-t border-line bg-surface lg:hidden"
       aria-label="Principal"
     >
       <ul className="container-site flex flex-col py-2">
@@ -38,7 +38,7 @@ export function HeaderMenu({
       </ul>
       <div className="container-site grid gap-2 pb-4">
         <Suspense>
-          <HeaderCtas path={path} onField={onField} onNavigate={onNavigate} loginOnly />
+          <HeaderCtas path={path} onField={onField} onNavigate={onNavigate} />
         </Suspense>
       </div>
     </nav>

@@ -36,7 +36,7 @@ export function ConvergenceCenter({
           className="absolute top-1/2 left-1/2 size-16 -translate-x-1/2 -translate-y-1/2 rounded-full border border-dashed border-ink/25 lg:size-20"
         />
         <div ref={empresasRef} className={`${slot} left-0`}>
-          <motion.span aria-label="Empresas" className={`${bubble} z-10 bg-navy`} style={{ x: empresasX, y: empresasY, opacity: born }} />
+          <motion.span aria-label="Empresas" className={`${bubble} z-10 bg-navy dark:bg-navy-light`} style={{ x: empresasX, y: empresasY, opacity: born }} />
         </div>
         <div ref={b2bRef} className={`${slot} right-0`}>
           <motion.span aria-label="Startups B2B" className={`${bubble} z-10 bg-program-field`} style={{ x: b2bX, y: b2bY, opacity: born }} />
@@ -49,7 +49,7 @@ export function ConvergenceCenter({
         </motion.span>
       </div>
       <p className="text-xs leading-5 font-bold">
-        <span className="text-navy">Empresas</span>
+        <span className="text-navy dark:text-ink">Empresas</span>
         <span className="text-ink-muted"> · </span>
         <span className="text-program-field">Startups B2B</span>
       </p>

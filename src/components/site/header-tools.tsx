@@ -24,12 +24,14 @@ export function HeaderTools({
   return (
     <div className="flex shrink-0 items-center gap-2">
       {onDiagnostic ? <ReadingToggle /> : null}
-      <Link
-        href={path === "/" ? companyAccountHref : "/crear-cuenta"}
-        className={`btn px-3 py-2 text-small lg:hidden ${onHero ? "bg-white text-program-field" : "btn-primary"}`}
-      >
-        Crear cuenta
-      </Link>
+      {open ? null : (
+        <Link
+          href={path === "/" ? companyAccountHref : "/crear-cuenta"}
+          className={`btn px-3 py-2 text-small lg:hidden ${onHero ? "bg-white text-program-field" : "btn-primary"}`}
+        >
+          Crear cuenta
+        </Link>
+      )}
       <div className="hidden items-center gap-2 lg:flex">
         <Suspense>
           <HeaderCtas path={path} onField={onHero} />
