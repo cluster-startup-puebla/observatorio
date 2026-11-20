@@ -1,4 +1,5 @@
 import { Field, controlClass } from "@/components/landing/molecules/field";
+import { ActionButton } from "@/components/ui/action-button";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { createHandInviteAction } from "@/lib/organismo/hand-invite-action";
 
@@ -31,9 +32,7 @@ export function CrmHandInvite({ slug, error }: { slug: string; error?: string })
       <Field id="crm-correo" label="Correo">
         <input id="crm-correo" name="correo" type="email" required autoComplete="email" className={controlClass} />
       </Field>
-      <button type="submit" className="btn btn-primary">
-        Crear invitación
-      </button>
+      <ActionButton pendingLabel="Creando…">Crear invitación</ActionButton>
     </form>
   );
 }

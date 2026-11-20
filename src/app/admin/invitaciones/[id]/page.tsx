@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 import { DetailFrame } from "@/components/admin/detail-frame";
+import { ActionButton } from "@/components/ui/action-button";
 import { tabQuery } from "@/lib/admin/tab-query";
 import { loadInvitacion } from "@/lib/admin/invitaciones/detail";
 import { requireSuperadmin } from "@/lib/auth/require-superadmin";
@@ -36,9 +37,7 @@ export default async function InvitacionDetailPage({
     >
       {query.error ? <p className="text-small text-mark">{query.error}</p> : null}
       <form action={`/api/admin/invitaciones/${id}`} method="post" className="mt-4">
-        <button className="btn btn-primary" type="submit">
-          Confirmar
-        </button>
+        <ActionButton hold pendingLabel="Confirmando…">Confirmar</ActionButton>
       </form>
     </DetailFrame>
   );

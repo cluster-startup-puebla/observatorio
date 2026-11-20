@@ -20,7 +20,6 @@ const entries = [
   "/registro",
   "/verificar",
   "/recuperar",
-  "/restablecer",
 ];
 const stayed = [
   "/onboarding",
@@ -35,6 +34,10 @@ const stayed = [
 ];
 
 describe("sessionRedirect", () => {
+  it("restablecer se queda con sesión para poder leer el enlace", () => {
+    expect(sessionRedirect({ path: "/restablecer", account: { role: "empresario", onboarded: true } })).toBeNull();
+  });
+
   it("sin cuenta no redirige", () => {
     for (const path of entries) expect(sessionRedirect({ path, account: null })).toBeNull();
   });

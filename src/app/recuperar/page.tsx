@@ -23,9 +23,6 @@ export default async function RecoverPage() {
           <Link href="/login" className="text-link">
             Volver a entrar
           </Link>
-          <Link href="/restablecer" className="text-link">
-            Ver la pantalla de nueva contraseña
-          </Link>
         </>
       }
     >

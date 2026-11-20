@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
+import { ActionButton } from "@/components/ui/action-button";
 import { AverageDetail } from "./average-detail";
 
 type Summary = {
@@ -46,9 +47,9 @@ export function Averages() {
           <p className="mt-2 text-h2 text-ink tabular-nums">{summary?.average ?? "—"}</p>
           <p className="mt-1 text-sm text-ink-secondary">Promedio de quienes cerraron</p>
         </div>
-        <button className="btn btn-primary" type="button" disabled={pending} onClick={() => void refresh()}>
-          {pending ? "Actualizando…" : "Actualizar promedios"}
-        </button>
+        <ActionButton type="button" pending={pending} pendingLabel="Actualizando…" onClick={() => void refresh()}>
+          Actualizar promedios
+        </ActionButton>
       </div>
       <div className="mt-5 h-2 overflow-hidden rounded-full bg-line">
         <div className="h-full rounded-full bg-brand transition-[width] duration-500" style={{ width: `${width}%` }} />

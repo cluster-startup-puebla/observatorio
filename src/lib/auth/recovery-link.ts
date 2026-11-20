@@ -11,3 +11,17 @@ export function recoveryHash(hash: string) {
   if (params.get("type") !== "recovery" || !access || !refresh) return null;
   return { access, refresh };
 }
+
+export const recoveryStoreKey = "observatorio-recovery";
+
+export function storedRecovery(raw: string | null) {
+  if (!raw) return null;
+  try {
+    const parsed = JSON.parse(raw) as { access?: unknown; refresh?: unknown };
+    if (typeof parsed.access !== "string" || typeof parsed.refresh !== "string") return null;
+    if (!parsed.access || !parsed.refresh) return null;
+    return { access: parsed.access, refresh: parsed.refresh };
+  } catch {
+    return null;
+  }
+}

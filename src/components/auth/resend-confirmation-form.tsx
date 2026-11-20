@@ -3,11 +3,12 @@
 import { useActionState } from "react";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { resendConfirmationAction, type ResendState } from "@/lib/auth/resend-confirmation-action";
+import { ActionButton } from "@/components/ui/action-button";
 
 const empty: ResendState = { sent: false, error: "" };
 
 export function ResendConfirmationForm({ email }: { email: string }) {
-  const [state, action, pending] = useActionState(resendConfirmationAction, empty);
+  const [state, action] = useActionState(resendConfirmationAction, empty);
   if (state.sent) {
     return (
       <Alert>
@@ -26,9 +27,7 @@ export function ResendConfirmationForm({ email }: { email: string }) {
       ) : null}
       <p className="text-body text-ink">{email}</p>
       <input type="hidden" name="correo" value={email} />
-      <button type="submit" className="btn btn-primary" disabled={pending}>
-        Reenviar correo
-      </button>
+      <ActionButton pendingLabel="Enviando…">Reenviar correo</ActionButton>
     </form>
   );
 }

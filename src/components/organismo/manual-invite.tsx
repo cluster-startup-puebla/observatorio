@@ -1,4 +1,5 @@
 import { Field, controlClass } from "@/components/landing/molecules/field";
+import { ActionButton } from "@/components/ui/action-button";
 import { InviteNotice } from "@/components/organismo/invite-notice";
 import { createInviteAction } from "@/lib/organismo-actions";
 
@@ -16,9 +17,7 @@ export function ManualInvite({ slug, error }: { slug: string; error?: string }) 
       <Field id="correo-invitado" label="Correo del invitado">
         <input id="correo-invitado" name="correo" type="email" required autoComplete="email" className={controlClass} />
       </Field>
-      <button type="submit" className="btn btn-primary">
-        Crear invitación
-      </button>
+      <ActionButton pendingLabel="Creando…">Crear invitación</ActionButton>
     </form>
   );
 }

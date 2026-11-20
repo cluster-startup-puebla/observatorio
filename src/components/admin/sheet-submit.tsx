@@ -1,7 +1,7 @@
 "use client";
 
-import { Loader2 } from "lucide-react";
-import { useState, type CSSProperties } from "react";
+import type { CSSProperties } from "react";
+import { ActionButton } from "@/components/ui/action-button";
 
 export function SheetSubmit({
   children,
@@ -16,27 +16,9 @@ export function SheetSubmit({
   className?: string;
   style?: CSSProperties;
 }) {
-  const [pending, setPending] = useState(false);
-  const locked = Boolean(disabled || pending);
   return (
-    <button
-      className={`btn btn-primary${locked ? " pointer-events-none opacity-70" : ""}${className ? ` ${className}` : ""}`}
-      style={style}
-      type="submit"
-      aria-busy={pending}
-      aria-disabled={locked}
-      onClick={(event) => {
-        if (locked) {
-          event.preventDefault();
-          return;
-        }
-        const form = event.currentTarget.form;
-        if (form && !form.checkValidity()) return;
-        setPending(true);
-      }}
-    >
-      {pending ? <Loader2 className="size-4 animate-spin" aria-hidden /> : null}
-      {pending ? pendingLabel : children}
-    </button>
+    <ActionButton hold pendingLabel={pendingLabel} disabled={disabled} className={className} style={style}>
+      {children}
+    </ActionButton>
   );
 }

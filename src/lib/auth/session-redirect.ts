@@ -16,7 +16,6 @@ const sessionEntries = new Set<string>([
   "/registro",
   "/verificar",
   "/recuperar",
-  "/restablecer",
 ]);
 
 function destination(account: GateAccount) {

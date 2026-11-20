@@ -1,7 +1,9 @@
+import { ActionButton } from "@/components/ui/action-button";
+
 export function RepairPasses() {
   return (
     <form action="/api/admin/pases/faltantes" method="post">
-      <button className="btn btn-primary" type="submit">Generar los que faltan</button>
+      <ActionButton hold pendingLabel="Generando…">Generar los que faltan</ActionButton>
     </form>
   );
 }

@@ -1,7 +1,6 @@
 "use client";
 
-import { Loader2 } from "lucide-react";
-import { useFormStatus } from "react-dom";
+import { ActionButton } from "@/components/ui/action-button";
 
 export function PendingSubmit({
   idle,
@@ -14,17 +13,20 @@ export function PendingSubmit({
   forcePending?: boolean;
   className?: string;
 }) {
-  const status = useFormStatus();
-  const pending = forcePending || status.pending;
+  const variant = className.includes("btn-secondary")
+    ? "secondary"
+    : className.includes("btn-on-dark")
+      ? "on-dark"
+      : className.includes("btn-primary")
+        ? "primary"
+        : "plain";
+  const extra = className
+    .split(/\s+/)
+    .filter((token) => token && token !== "btn" && !token.startsWith("btn-"))
+    .join(" ");
   return (
-    <button
-      type="submit"
-      className={`${className}${pending ? " pointer-events-none opacity-70" : ""}`}
-      disabled={pending}
-      aria-busy={pending}
-    >
-      {pending ? <Loader2 className="size-4 animate-spin" aria-hidden /> : null}
-      {pending ? pendingLabel : idle}
-    </button>
+    <ActionButton variant={variant} pending={forcePending} pendingLabel={pendingLabel} className={extra || undefined}>
+      {idle}
+    </ActionButton>
   );
 }

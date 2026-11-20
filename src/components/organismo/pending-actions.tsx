@@ -1,3 +1,4 @@
+import { ActionButton } from "@/components/ui/action-button";
 import { crmEventAction } from "@/lib/crm-actions";
 import { pendingInviteAction } from "@/lib/crm/link-acceptance";
 
@@ -19,9 +20,9 @@ export function PendingActions({
         <input type="hidden" name="personId" value={person.id} />
         <input type="hidden" name="event" value={action} />
         <input type="hidden" name="vista" value={vista} />
-        <button type="submit" className="btn btn-primary">
+        <ActionButton pendingLabel={action === "aceptar" ? "Aceptando…" : "Contactando…"}>
           {action === "aceptar" ? "Aceptar" : "Contactar"}
-        </button>
+        </ActionButton>
       </form>
       {action === "aceptar" ? (
         <form action={crmEventAction}>
@@ -29,9 +30,9 @@ export function PendingActions({
           <input type="hidden" name="personId" value={person.id} />
           <input type="hidden" name="event" value="rechazar" />
           <input type="hidden" name="vista" value={vista} />
-          <button type="submit" className="btn btn-secondary">
+          <ActionButton variant="secondary" pendingLabel="Rechazando…">
             Rechazar
-          </button>
+          </ActionButton>
         </form>
       ) : null}
     </div>

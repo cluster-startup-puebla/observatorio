@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { redirect } from "next/navigation";
 import { AuthSplit } from "@/components/auth/auth-split";
+import { ActionButton } from "@/components/ui/action-button";
 import { FormAlert } from "@/components/auth/form-alert";
 import { PasswordInput } from "@/components/auth/password-input";
 import { controlClass, Field } from "@/components/landing/molecules/field";
@@ -78,9 +79,7 @@ export default async function AdminSignupPage({
         <div id="admin-signup-error">
           <FormAlert message={error} />
         </div>
-        <button type="submit" className="btn btn-primary">
-          Crear superadmin
-        </button>
+        <ActionButton pendingLabel="Creando…">Crear superadmin</ActionButton>
       </form>
     </AuthSplit>
   );

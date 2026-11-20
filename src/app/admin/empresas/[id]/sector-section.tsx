@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { ActionButton } from "@/components/ui/action-button";
 
 export function SectorSection({
   id,
@@ -42,7 +43,7 @@ export function SectorSection({
       </ul>
       {sector_source === "path" && !admitted_at && !has_link ? (
         <form action={`/api/admin/empresas/${id}/aceptar`} method="post">
-          <button className="btn btn-primary" type="submit">Aceptar</button>
+          <ActionButton hold pendingLabel="Aceptando…">Aceptar</ActionButton>
         </form>
       ) : null}
     </div>

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { AuthShell } from "@/components/auth/auth-shell";
 import { ResetForm } from "@/components/auth/reset-form";
-import { redirectIfSession } from "@/lib/auth/redirect-if-session";
+import { readSessionAccount } from "@/lib/auth/session-account";
 import { pageMetadata } from "@/lib/metadata";
 
 export const instant = false;
@@ -14,7 +14,7 @@ export const metadata: Metadata = pageMetadata({
 });
 
 export default async function ResetPage() {
-  await redirectIfSession("/restablecer");
+  const account = await readSessionAccount();
   return (
     <AuthShell
       title="Nueva contraseña"
@@ -24,7 +24,7 @@ export default async function ResetPage() {
         </Link>
       }
     >
-      <ResetForm />
+      <ResetForm signedIn={Boolean(account)} />
     </AuthShell>
   );
 }

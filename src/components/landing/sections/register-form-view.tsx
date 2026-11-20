@@ -1,5 +1,5 @@
-import { Loader2 } from "lucide-react";
 import { GovernmentLockup } from "@/components/landing/atoms/government-lockup";
+import { ActionButton } from "@/components/ui/action-button";
 import { Kicker } from "@/components/landing/atoms/kicker";
 import { RegisterContactFields } from "@/components/landing/sections/register-contact-fields";
 import type { Errors, FormState } from "@/components/landing/sections/register-form-model";
@@ -36,15 +36,9 @@ export function RegisterFormView({
       {downloadDiagnostic ? (
         <p className="text-small text-ink-secondary">Al terminar se descarga el diagnóstico integral de VIA Partners.</p>
       ) : null}
-      <button
-        type="submit"
-        className={`btn btn-primary${pending ? " pointer-events-none opacity-70" : ""}`}
-        disabled={pending}
-        aria-busy={pending}
-      >
-        {pending ? <Loader2 className="size-4 animate-spin" aria-hidden /> : null}
-        {pending ? "Preparando…" : downloadDiagnostic ? "Registrarme y descargar" : ctaLabel}
-      </button>
+      <ActionButton pending={pending} pendingLabel="Preparando…">
+        {downloadDiagnostic ? "Registrarme y descargar" : ctaLabel}
+      </ActionButton>
       <p className="text-small text-ink-muted">Cupo limitado de 15 a 30 empresas por sesión. Sin costo.</p>
       <div className="flex flex-wrap items-center gap-3 text-small text-ink-secondary">
         <Kicker>Con el respaldo de</Kicker>
