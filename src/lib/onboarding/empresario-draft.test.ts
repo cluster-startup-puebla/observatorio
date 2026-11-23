@@ -37,8 +37,8 @@ describe("onboarding empresario", () => {
     expect(stepReady(1, valid)).toBe(true);
   });
 
-  it("el check del logo exige un archivo", () => {
-    expect(stepReady(1, { ...valid, showLogo: true, hasLogo: false })).toBe(false);
+  it("el check del logo sin archivo no bloquea el paso", () => {
+    expect(stepReady(1, { ...valid, showLogo: true, hasLogo: false })).toBe(true);
     expect(stepReady(1, { ...valid, showLogo: true, hasLogo: true })).toBe(true);
     expect(stepReady(1, { ...valid, showLogo: false, hasLogo: false })).toBe(true);
   });

@@ -13,12 +13,9 @@ describe("logo de empresa", () => {
     expect(() => companyLogoObjectPath(id, "image/gif")).toThrow("tipo de imagen no permitido");
   });
 
-  it("sin check y sin archivo no sube", () => {
+  it("sin archivo no sube, aunque el check esté marcado", () => {
     expect(logoUploadDecision({ show: false, hasFile: false })).toEqual({ action: "skip" });
-  });
-
-  it("el check sin archivo se rechaza", () => {
-    expect(logoUploadDecision({ show: true, hasFile: false })).toEqual({ action: "reject" });
+    expect(logoUploadDecision({ show: true, hasFile: false })).toEqual({ action: "skip" });
   });
 
   it("con archivo sube y el check decide si se muestra", () => {
@@ -26,8 +23,10 @@ describe("logo de empresa", () => {
     expect(logoUploadDecision({ show: false, hasFile: true })).toEqual({ action: "store", show: false });
   });
 
-  it("el drop del logo declara el tope de 2 MB", () => {
+  it("el check abre el drop y declara el tope de 2 MB", () => {
     const source = readFileSync("src/components/onboarding/company-logo-fields.tsx", "utf8");
+    expect(source.indexOf('name="showLogo"')).toBeLessThan(source.indexOf("<FileDrop"));
+    expect(source).toContain("{showLogo ? (");
     expect(source).toContain("maxBytes={2097152}");
   });
 

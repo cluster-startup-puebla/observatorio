@@ -1,8 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { PendingSubmit } from "@/components/auth/pending-submit";
 import { ConfidentialityNote } from "@/components/onboarding/confidentiality-note";
+import { EmpresarioFormNav } from "@/components/onboarding/empresario-form-nav";
 import { TermsAccept } from "@/components/onboarding/terms-accept";
 import { EmpresarioStepCompany } from "@/components/onboarding/empresario-step-company";
 import { EmpresarioStepPerson } from "@/components/onboarding/empresario-step-person";
@@ -36,7 +36,10 @@ export function EmpresarioForm({
   }
 
   function nextStep() {
-    const next = stepIssue(step, values);
+    const clearShow = step === 1 && values.showLogo && !values.hasLogo;
+    const ready = clearShow ? { ...values, showLogo: false } : values;
+    if (clearShow) patch({ showLogo: false });
+    const next = stepIssue(step, ready);
     if (next) {
       setIssue(next);
       return;
@@ -70,20 +73,7 @@ export function EmpresarioForm({
         <TermsAccept checked={terms} onChange={setTerms} />
       </div>
       {notice ? <p className="text-small text-mark">{notice}</p> : null}
-      <div className="flex flex-wrap gap-3">
-        {step > 0 ? (
-          <button type="button" className="btn btn-secondary" onClick={() => setStep((s) => s - 1)}>
-            Atrás
-          </button>
-        ) : null}
-        {step < 2 ? (
-          <button type="button" className="btn btn-primary" onClick={nextStep}>
-            Continuar
-          </button>
-        ) : (
-          <PendingSubmit idle="Terminar perfil" pendingLabel="Terminando…" />
-        )}
-      </div>
+      <EmpresarioFormNav step={step} onBack={() => setStep((s) => s - 1)} onNext={nextStep} />
     </form>
   );
 }

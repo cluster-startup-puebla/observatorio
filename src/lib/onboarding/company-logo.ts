@@ -1,5 +1,6 @@
+/** Sin archivo, el check de mostrar se apaga: no rechaza el flujo. */
 export function logoUploadDecision(input: { show: boolean; hasFile: boolean }) {
-  if (!input.hasFile) return input.show ? { action: "reject" as const } : { action: "skip" as const };
+  if (!input.hasFile) return { action: "skip" as const };
   return { action: "store" as const, show: input.show };
 }
 

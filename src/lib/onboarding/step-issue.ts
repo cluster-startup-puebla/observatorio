@@ -44,7 +44,6 @@ function companyIssue(values: EmpresarioValues) {
   if (!companySizes.includes(values.employeeBand)) return serverMessages.empleados;
   if (!isPueblaMunicipio(values.municipality)) return serverMessages.municipio;
   if (!acceptedIndustry(values.sectorSlug)) return serverMessages.sector;
-  if (values.showLogo && !values.hasLogo) return serverMessages.logo;
   return null;
 }
 
