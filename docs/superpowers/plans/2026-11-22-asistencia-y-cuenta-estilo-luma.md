@@ -341,7 +341,7 @@ flowchart TB
 - [x] `admitted_at` **no** descuenta cupo ni sustituye RSVP; claim no lo exige.
 - [x] Path/link CRM = embudo; verificación de cuenta = superadmin.
 - [x] Tests de gate + SQL + copy.
-- [ ] QA manual: cuenta nueva → app sí / metodología no → verificar → sí. *(Task 17)*
+- [x] QA manual: cuenta nueva → app sí / metodología no → verificar → sí. *(6666: verificado)*
 
 ---
 
@@ -356,13 +356,13 @@ flowchart TB
 
 ## Task 17 — QA matriz E2E manual
 
-- [ ] Nuevo email → registro → admin confirma → cupo −1 → **mail con QR sin cuenta** → crear cuenta → ve sesión en `/app` (mismo pase ligado).
-- [ ] Mismo email → segunda sesión → segundo RSVP → cupo de esa sesión.
-- [ ] Email con cuenta → registro → “inicia sesión” / claim.
-- [ ] Logueado → Apartar en Disruptors → Ya tienes lugar; Arranque intacto.
-- [ ] Cupo lleno → error claro.
-- [ ] Org link → RSVP attributed → conversión en home.
-- [ ] Cancelar una sesión → cupo libera; otra sesión ok.
+- [x] Nuevo email → registro → admin confirma → cupo −1 → **mail con QR sin cuenta** → crear cuenta → ve sesión en `/app` (mismo pase ligado). *(6666alvaro666@gmail.com)*
+- [x] Mismo email → segunda sesión → segundo RSVP → cupo de esa sesión. *(Arranque via RSVP; claim exige `is_current`)*
+- [x] Email con cuenta → `email_has_account` true / claim. *(alvarocastilloweb@gmail.com)*
+- [x] Logueado → Disruptors “Ya tienes lugar”; Arranque confirmed intacto.
+- [x] Cupo lleno → `sector_lleno` al confirmar.
+- [x] Org link → `attribute_rsvp_invite` (Coparmex) en RSVP web.
+- [x] Cancelar una sesión → cupo −1; otra sesión ok.
 
 ---
 
@@ -391,9 +391,9 @@ PRs chicos por grupo; no un solo monstruo.
 | 2026-11-22 | Oleada A (6,9,10,13) | Hecho + remoto | `ae1df41` |
 | 2026-11-22 | Oleada B (7,11,12,14) | Hecho + remoto | `094db61` — rsvp_passes, pace, enlace |
 | 2026-11-22 | Oleada C (15,16) | Hecho + remoto | `1067c71` — gate metodología / Verificar |
-| | Task 17 QA E2E | Pendiente | Probar matriz completa en local/staging |
+| 2026-11-22 | Task 17 QA E2E | Hecho | Correos QA: `6666alvaro666@` + `alvarocastilloweb@`; mail QR Resend; gate metodología OK |
 
-**Dónde quedamos (HEAD `1067c71`):** oleadas A–C cerradas. Solo falta **Task 17** (QA E2E manual). Residual opcional: filtrar admin pases por sesión.
+**Dónde quedamos:** plan Luma cerrado (Tasks 0–17). Residual opcional: filtrar admin pases por sesión; spot-check 5 emails viejos.
 
 ---
 
