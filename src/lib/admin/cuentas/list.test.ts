@@ -38,8 +38,11 @@ describe("lista de cuentas", () => {
     expect(list).toContain("email");
     expect(list).toContain("role");
     expect(list).toContain("applyCuentaSearch");
+    expect(list).toContain("cuentaSearchOrgIds");
     expect(list).toContain("listQueryQ");
     expect(list).toContain(".range(page.from, page.to)");
+    const apply = readFileSync("src/lib/admin/cuentas/apply-cuenta-search.ts", "utf8");
+    expect(apply).toMatch(/^export function applyCuentaSearch/m);
     expect(list).toContain('{ count: "exact" }');
     expect(list).not.toContain("password");
     expect(route).toContain("await requireSuperadmin()");

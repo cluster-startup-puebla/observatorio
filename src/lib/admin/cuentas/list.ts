@@ -4,6 +4,7 @@ import { adminDb } from "@/lib/admin/admin-db";
 import { listQueryQ } from "@/lib/admin/list-query";
 import { pageQuery } from "@/lib/admin/page-query";
 import { applyCuentaSearch } from "./apply-cuenta-search";
+import { cuentaSearchOrgIds } from "./cuenta-search-org-ids";
 import { cuentaDisplayName, cuentaMarkSrc, orgHasLogo } from "./cuenta-row";
 
 export async function listCuentas(rawPage: string | undefined, rawQ?: string) {
@@ -18,15 +19,18 @@ export async function listCuentas(rawPage: string | undefined, rawQ?: string) {
   };
   const db = await adminDb();
   if (!db) return empty;
-  let profilesQuery = db
-    .from("profiles")
-    .select(
-      "id, full_name, email, role, onboarded_at, job_title, whatsapp, organization_id",
-      { count: "exact" },
-    )
-    .order("created_at", { ascending: false });
-  profilesQuery = await applyCuentaSearch(db, profilesQuery, q);
-  const profiles = await profilesQuery.range(page.from, page.to);
+  const orgIds = await cuentaSearchOrgIds(db, q);
+  const profiles = await applyCuentaSearch(
+    db
+      .from("profiles")
+      .select(
+        "id, full_name, email, role, onboarded_at, job_title, whatsapp, organization_id",
+        { count: "exact" },
+      )
+      .order("created_at", { ascending: false }),
+    q,
+    orgIds,
+  ).range(page.from, page.to);
   if (profiles.error) throw new Error(profiles.error.message);
   const orgs = await db
     .from("organizations")
