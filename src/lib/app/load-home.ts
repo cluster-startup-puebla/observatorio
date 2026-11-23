@@ -1,5 +1,6 @@
 import "server-only";
 
+import { isCompanyVerified } from "@/lib/auth/company-verified";
 import { readSessionAccount } from "@/lib/auth/session-account";
 import type { ProfileGap } from "@/lib/home/profile-gaps";
 import { loadProfileGaps } from "@/lib/home/load-profile-gaps";
@@ -49,7 +50,7 @@ export async function loadHome(): Promise<HomeScreen> {
   const db = createSupabaseWithAccess(token);
   const [profile, company, run, gaps, innovation] = await Promise.all([
     db.from("profiles").select("full_name").eq("id", account.id).maybeSingle(),
-    db.from("companies").select("id, sector_id, sectors(name, slug)").eq("profile_id", account.id).maybeSingle(),
+    db.from("companies").select("id, sector_id, admitted_at, sectors(name, slug)").eq("profile_id", account.id).maybeSingle(),
     db.from("methodology_v2_runs").select("phase, score").eq("profile_id", account.id).maybeSingle(),
     loadProfileGaps(token, account.id),
     db.rpc("open_innovation_joined"),
@@ -69,6 +70,9 @@ export async function loadHome(): Promise<HomeScreen> {
     showEvaluation: showFirstEvaluation({
       sectorHasPack: sectorHasPackFor(sector.slug),
       finished: companyScore(run.data) !== null,
+      verified: isCompanyVerified(
+        typeof company.data?.admitted_at === "string" ? company.data.admitted_at : null,
+      ),
     }),
     showInnovation: innovation.data === false,
     sectorName: sector.name ?? "",

@@ -1,6 +1,7 @@
 import "server-only";
 
 import { mexicoDay } from "@/lib/admin/tablero/pace-bars";
+import { isCompanyVerified } from "@/lib/auth/company-verified";
 import { readSessionAccount } from "@/lib/auth/session-account";
 import { loadSectorSessions } from "@/lib/app/load-sector-sessions";
 import { nextForSector } from "@/lib/app/sector-sessions";
@@ -13,11 +14,12 @@ import { companyGaps, companyScore, emptyCompanyHome, sectorOf, type CompanyHome
 import { sectorHasPackFor, showFirstEvaluation } from "./evaluation-banner";
 
 const columns =
-  "legal_name, sector_id, employee_band, referral_source, market_size, municipality, session_interest, website, sectors(name, slug)";
+  "legal_name, sector_id, admitted_at, employee_band, referral_source, market_size, municipality, session_interest, website, sectors(name, slug)";
 
 type CompanyRow = {
   legal_name: string;
   sector_id: string;
+  admitted_at: string | null;
   employee_band: string;
   referral_source: string | null;
   market_size: string | null;
@@ -72,6 +74,7 @@ export async function loadCompanyHome(): Promise<CompanyHome> {
       showEvaluation: showFirstEvaluation({
         sectorHasPack: sectorHasPackFor(sector.slug),
         finished: score !== null,
+        verified: isCompanyVerified(row.admitted_at),
       }),
       sessionHref: next ? `/app/sesiones/${next.publicSlug}` : null,
     }),
