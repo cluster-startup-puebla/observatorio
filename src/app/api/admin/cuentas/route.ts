@@ -6,7 +6,9 @@ import type { NextRequest } from "next/server";
 
 export async function GET(request: NextRequest) {
   await requireSuperadmin();
-  const body = await listCuentas(request.nextUrl.searchParams.get("page") ?? undefined);
+  const page = request.nextUrl.searchParams.get("page") ?? undefined;
+  const q = request.nextUrl.searchParams.get("q") ?? undefined;
+  const body = await listCuentas(page, q);
   return Response.json(body);
 }
 

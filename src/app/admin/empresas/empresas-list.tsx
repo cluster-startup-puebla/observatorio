@@ -3,11 +3,13 @@
 import { CreateEmpresaForm } from "@/app/admin/empresas/create-form";
 import { EmpresaRowActions } from "@/app/admin/empresas/row-actions";
 import { DataList } from "@/components/admin/data-list";
+import { ListSearch } from "@/components/admin/list-search";
 
 export function EmpresasList({
   rows,
   page,
   total,
+  q,
   error,
   sectors,
   profiles,
@@ -15,6 +17,7 @@ export function EmpresasList({
   rows: Record<string, string>[];
   page: number;
   total: number;
+  q?: string;
   error?: string;
   sectors: { id: string; name: string }[];
   profiles: { id: string; email: string }[];
@@ -36,7 +39,15 @@ export function EmpresasList({
       page={page}
       total={total}
       basePath="/admin/empresas"
+      q={q}
       error={error}
+      toolbar={
+        <ListSearch
+          basePath="/admin/empresas"
+          q={q}
+          placeholder="Razón social…"
+        />
+      }
       rowActions={(row) => <EmpresaRowActions row={row} sectors={sectors} />}
     >
       <CreateEmpresaForm open={Boolean(error)} sectors={sectors} profiles={profiles} />

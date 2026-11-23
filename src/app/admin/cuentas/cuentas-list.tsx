@@ -5,18 +5,21 @@ import { CuentaRowActions } from "@/app/admin/cuentas/row-actions";
 import { RolePillow } from "@/app/admin/cuentas/role-pillow";
 import { StaffForm } from "@/app/admin/cuentas/staff-form";
 import { DataList } from "@/components/admin/data-list";
+import { ListSearch } from "@/components/admin/list-search";
 
 export function CuentasList({
   rows,
   page,
   total,
   orgs,
+  q,
   error,
 }: {
   rows: Record<string, string>[];
   page: number;
   total: number;
   orgs: { id: string; name: string }[];
+  q?: string;
   error?: string;
 }) {
   return (
@@ -39,7 +42,15 @@ export function CuentasList({
       page={page}
       total={total}
       basePath="/admin/cuentas"
+      q={q}
       error={error}
+      toolbar={
+        <ListSearch
+          basePath="/admin/cuentas"
+          q={q}
+          placeholder="Nombre, correo u organismo…"
+        />
+      }
       rowActions={(row) => <CuentaRowActions row={row} orgs={orgs} />}
     >
       <StaffForm orgs={orgs} error={error ?? ""} />

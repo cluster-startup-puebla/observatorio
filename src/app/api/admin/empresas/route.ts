@@ -9,7 +9,8 @@ export async function GET(request: NextRequest) {
   await requireSuperadmin();
   const params = request.nextUrl.searchParams;
   if (params.get("vista") === "asistentes") return Response.json(await loadAttending(params.get("sector")));
-  return Response.json(await listEmpresas(params.get("page") ?? undefined));
+  const q = params.get("q") ?? undefined;
+  return Response.json(await listEmpresas(params.get("page") ?? undefined, q));
 }
 
 export async function POST(request: NextRequest) {
