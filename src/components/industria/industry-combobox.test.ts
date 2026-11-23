@@ -11,7 +11,8 @@ describe("industry combobox compartido", () => {
     expect(shared).toContain('from "@/lib/sectors"');
     expect(onboarding).toContain("IndustryCombobox");
     expect(registro).toContain("IndustryCombobox");
-    expect(org).toContain("IndustryCombobox");
+    expect(org).toContain("sectors.map");
+    expect(org).toContain("copyLinkControl");
     expect(sectors).not.toContain("heldThisSession");
   });
 });
