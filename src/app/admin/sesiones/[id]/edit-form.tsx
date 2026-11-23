@@ -9,6 +9,7 @@ export function EditSessionForm({
   row,
   sectors,
   quotas,
+  instruments,
   open,
   trigger,
 }: {
@@ -16,6 +17,7 @@ export function EditSessionForm({
   row: Record<string, string>;
   sectors: { id: string; name: string; slug: string }[];
   quotas: Record<string, number>;
+  instruments: { id: string; label: string }[];
   open?: boolean;
   trigger?: React.ReactNode;
 }) {
@@ -25,9 +27,14 @@ export function EditSessionForm({
         <SessionFields
           sectors={sectors}
           quotas={quotas}
+          instruments={instruments}
           defaults={{
+            title: row.title,
             venue: row.venue,
             format_name: row.format_name,
+            modality: row.modality_value || row.modality,
+            kind: row.kind_value || row.kind,
+            instrument_id: row.instrument_id,
             session_on: row.session_on,
             starts_local: row.starts_local,
             ends_local: row.ends_local,

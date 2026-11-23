@@ -1,16 +1,23 @@
 import { SessionZoneField } from "@/app/admin/sesiones/session-zone-field";
 import { QuotaFields } from "@/app/admin/sesiones/quota-fields";
+import { SessionShapeFields } from "@/app/admin/sesiones/session-shape-fields";
 
 type Sector = { id: string; name: string; slug: string };
+type Instrument = { id: string; label: string };
 
 export function SessionFields({
   defaults,
   sectors,
   quotas,
+  instruments,
 }: {
   defaults?: {
+    title?: string;
     venue?: string;
     format_name?: string;
+    modality?: string;
+    kind?: string;
+    instrument_id?: string;
     session_on?: string;
     starts_local?: string;
     ends_local?: string;
@@ -23,10 +30,15 @@ export function SessionFields({
   };
   sectors: Sector[];
   quotas?: Record<string, number>;
+  instruments: Instrument[];
 }) {
   const d = defaults ?? {};
   return (
     <>
+      <label className="grid gap-1 text-small">
+        Título
+        <input name="title" defaultValue={d.title} required className="rounded-lg border border-line px-3 py-2" />
+      </label>
       <label className="grid gap-1 text-small">
         Lugar
         <input name="venue" defaultValue={d.venue} required className="rounded-lg border border-line px-3 py-2" />
@@ -35,6 +47,10 @@ export function SessionFields({
         Formato
         <input name="format_name" defaultValue={d.format_name} required className="rounded-lg border border-line px-3 py-2" />
       </label>
+      <SessionShapeFields
+        instruments={instruments}
+        defaults={{ modality: d.modality, kind: d.kind, instrument_id: d.instrument_id }}
+      />
       <label className="grid gap-1 text-small">
         Fecha
         <input name="session_on" type="date" defaultValue={d.session_on} required className="rounded-lg border border-line px-3 py-2" />

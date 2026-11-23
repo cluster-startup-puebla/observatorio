@@ -24,16 +24,24 @@ describe("detalle de sesiones", () => {
   });
 
   it("el handler guarda la vigencia sin apagar las demás", () => {
-    const source = readFileSync("src/app/api/admin/sesiones/[id]/route.ts", "utf8");
+    const source = readFileSync("src/lib/admin/sesiones/update-session.ts", "utf8");
+    const route = readFileSync("src/app/api/admin/sesiones/[id]/route.ts", "utf8");
     const detail = readFileSync("src/lib/admin/sesiones/detail.ts", "utf8");
-    expect(source).toContain("await requireSuperadmin()");
+    expect(route).toContain("await requireSuperadmin()");
+    expect(route).toContain("updateSession");
     expect(source).toContain("currentFlip");
     expect(source).toContain('.from("sessions")');
     expect(source).toContain("is_current");
     expect(source).not.toContain("is_current: false");
     expect(source).toContain("scheduleFromForm");
     expect(source).toContain("saveSessionQuotas");
+    expect(source).toContain("sessionIdentityFromForm");
+    expect(source).toContain("sessionShapeFromForm");
+    expect(source).toContain("modality");
+    expect(source).toContain("instrument_id");
     expect(detail).toContain("session_sector_quotas");
+    expect(detail).toContain("loadSessionAttendees");
   });
 });
+
 

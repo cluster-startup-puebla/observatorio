@@ -2,6 +2,7 @@ import "server-only";
 
 import { adminDb } from "@/lib/admin/admin-db";
 import { pageQuery } from "@/lib/admin/page-query";
+import { kindLabel, modalityLabel } from "@/lib/admin/sesiones/kinds";
 import { clockFace, sessionOnLabel } from "@/lib/sessions/face";
 
 export async function listSesiones(rawPage: string | undefined) {
@@ -20,7 +21,7 @@ export async function listSesiones(rawPage: string | undefined) {
   const result = await db
     .from("sessions")
     .select(
-      "id, venue, format_name, session_on, starts_local, ends_local, time_zone, capacity_min, capacity_max, audience, includes, is_current, session_sector_quotas(sector_id, capacity)",
+      "id, title, public_slug, venue, format_name, modality, kind, instrument_id, session_on, starts_local, ends_local, time_zone, capacity_min, capacity_max, audience, includes, is_current, session_sector_quotas(sector_id, capacity)",
     )
     .order("is_current", { ascending: false })
     .range(page.from, page.to);
@@ -32,8 +33,15 @@ export async function listSesiones(rawPage: string | undefined) {
     quotasBySession[row.id] = Object.fromEntries(quotas.map((item) => [item.sector_id, item.capacity]));
     return {
       id: row.id,
+      title: row.title,
+      public_slug: row.public_slug,
       venue: row.venue,
       format_name: row.format_name,
+      modality: modalityLabel(String(row.modality ?? "presencial")),
+      modality_value: String(row.modality ?? "presencial"),
+      kind: kindLabel(String(row.kind ?? "foro")),
+      kind_value: String(row.kind ?? "foro"),
+      instrument_id: row.instrument_id ?? "",
       session_on: row.session_on,
       session_on_label: sessionOnLabel(row.session_on),
       starts_local: clockFace(row.starts_local),

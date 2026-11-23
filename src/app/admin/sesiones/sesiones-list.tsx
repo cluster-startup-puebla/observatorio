@@ -10,6 +10,7 @@ export function SesionesList({
   total,
   error,
   sectors,
+  instruments,
   quotasBySession,
 }: {
   rows: Record<string, string>[];
@@ -17,18 +18,19 @@ export function SesionesList({
   total: number;
   error?: string;
   sectors: { id: string; name: string; slug: string }[];
+  instruments: { id: string; label: string }[];
   quotasBySession: Record<string, Record<string, number>>;
 }) {
   return (
     <DataList
       title="Sesiones"
-      lead="La sesión, sus sectores y el cupo de invitados."
+      lead="La sesión, su tipo, plantilla y el cupo de invitados."
       columns={[
-        { key: "venue", label: "Lugar" },
-        { key: "format_name", label: "Formato" },
+        { key: "title", label: "Título" },
+        { key: "kind", label: "Plantilla" },
+        { key: "modality", label: "Tipo" },
         { key: "session_on_label", label: "Fecha" },
         { key: "starts_local", label: "Empieza" },
-        { key: "ends_local", label: "Termina" },
         { key: "is_current", label: "Vigente" },
       ]}
       rows={rows}
@@ -37,10 +39,15 @@ export function SesionesList({
       basePath="/admin/sesiones"
       error={error}
       rowActions={(row) => (
-        <SesionRowActions row={row} sectors={sectors} quotas={quotasBySession[row.id] ?? {}} />
+        <SesionRowActions
+          row={row}
+          sectors={sectors}
+          quotas={quotasBySession[row.id] ?? {}}
+          instruments={instruments}
+        />
       )}
     >
-      <CreateSessionForm open={Boolean(error)} sectors={sectors} />
+      <CreateSessionForm open={Boolean(error)} sectors={sectors} instruments={instruments} />
     </DataList>
   );
 }

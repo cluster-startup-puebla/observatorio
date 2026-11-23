@@ -1,14 +1,16 @@
-import { loadEventLogos } from "@/lib/admin/empresas/load-event-logos";
+import { LogoTile } from "@/app/admin/tablero/logo-tile";
+import { loadLatestLogos } from "@/lib/admin/tablero/latest-logos";
 
-export async function LogosTab() {
-  const logos = await loadEventLogos();
-  if (logos.length === 0) return <p className="text-small text-ink-muted">Nadie pidió mostrar su logo.</p>;
+export async function LogosTab({ sessionId }: { sessionId: string }) {
+  const logos = await loadLatestLogos(sessionId);
+  if (logos.length === 0) {
+    return <p className="text-small text-ink-muted">Nadie pidió mostrar su logo en esta sesión.</p>;
+  }
   return (
-    <ul className="grid gap-4 sm:grid-cols-2">
+    <ul className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
       {logos.map((logo) => (
-        <li key={logo.companyId} className="grid gap-2 rounded-lg border border-line p-3">
-          <img src={`/api/admin/empresas/${logo.companyId}/logo`} alt="" className="h-16 w-auto object-contain" />
-          <p className="text-small text-ink">{logo.name}</p>
+        <li key={logo.companyId}>
+          <LogoTile logo={logo} />
         </li>
       ))}
     </ul>

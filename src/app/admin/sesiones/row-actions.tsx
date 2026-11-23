@@ -9,10 +9,12 @@ export function SesionRowActions({
   row,
   sectors,
   quotas,
+  instruments,
 }: {
   row: Record<string, string>;
   sectors: { id: string; name: string; slug: string }[];
   quotas: Record<string, number>;
+  instruments: { id: string; label: string }[];
 }) {
   return (
     <RowActions
@@ -25,6 +27,7 @@ export function SesionRowActions({
           row={row}
           sectors={sectors}
           quotas={quotas}
+          instruments={instruments}
           trigger={
             <Button type="button" variant="ghost" size="icon-sm" aria-label="Editar">
               <Pencil className="size-4" />

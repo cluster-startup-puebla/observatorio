@@ -1,6 +1,7 @@
 import { SesionesList } from "@/app/admin/sesiones/sesiones-list";
 import { sessionSectorChoices } from "@/lib/admin/sesiones/choices";
 import { listSesiones } from "@/lib/admin/sesiones/list";
+import { instrumentOptions } from "@/lib/methodology/v2/instrument-options";
 import { requireSuperadmin } from "@/lib/auth/require-superadmin";
 
 export const instant = false;
@@ -16,9 +17,11 @@ export default async function SesionesPage({
   return (
     <SesionesList
       rows={data.rows}
-      page={data.page} total={data.total}
+      page={data.page}
+      total={data.total}
       error={params.error}
       sectors={sectors}
+      instruments={instrumentOptions()}
       quotasBySession={data.quotasBySession}
     />
   );

@@ -7,6 +7,8 @@ describe("lista de sesiones", () => {
     const route = readFileSync("src/app/api/admin/sesiones/route.ts", "utf8");
     expect(list).toContain('.from("sessions")');
     expect(list).toContain("venue");
+    expect(list).toContain("title");
+    expect(list).toContain("public_slug");
     expect(list).toContain("format_name");
     expect(list).toContain("session_on");
     expect(list).toContain("starts_local");
@@ -18,7 +20,15 @@ describe("lista de sesiones", () => {
     expect(list).toContain('{ count: "exact", head: true }');
     expect(list).toContain("total");
     expect(route).toContain("await requireSuperadmin()");
-    expect(route).toContain("saveSessionQuotas");
+    expect(route).toContain("createSession");
+    const create = readFileSync("src/lib/admin/sesiones/create-session.ts", "utf8");
+    expect(create).toContain("sessionIdentityFromForm");
+    expect(create).toContain("sessionShapeFromForm");
+    expect(create).toContain("public_slug");
+    expect(create).toContain("modality");
+    expect(create).toContain("instrument_id");
   });
 });
+
+
 

@@ -1,22 +1,17 @@
-import { adminDb } from "@/lib/admin/admin-db";
 import { redirectTo } from "@/lib/admin/redirect";
 import { removeBy } from "@/lib/admin/remove-row";
-import { sessionSectorChoices } from "@/lib/admin/sesiones/choices";
-import { currentFlip } from "@/lib/admin/sesiones/current";
-import { loadAttending } from "@/lib/admin/empresas/load-attending";
+import { loadSessionAttendees } from "@/lib/admin/sesiones/load-attendees";
 import { loadSesion } from "@/lib/admin/sesiones/detail";
-import { quotaDraft } from "@/lib/admin/sesiones/quotas";
-import { scheduleFromForm } from "@/lib/admin/sesiones/schedule";
-import { saveSessionQuotas } from "@/lib/admin/sesiones/save-quotas";
+import { updateSession } from "@/lib/admin/sesiones/update-session";
 import { requireSuperadmin } from "@/lib/auth/require-superadmin";
 import type { NextRequest } from "next/server";
 
-export async function GET(request: NextRequest, context: { params: Promise<{ id: string }> }) {
+export async function GET(_request: NextRequest, context: { params: Promise<{ id: string }> }) {
   await requireSuperadmin();
   const { id } = await context.params;
   const row = await loadSesion(id);
   if (!row) return Response.json({ error: "no encontrada" }, { status: 404 });
-  const attending = await loadAttending(request.nextUrl.searchParams.get("sector"));
+  const attending = await loadSessionAttendees(id);
   return Response.json({ ...row, attending });
 }
 
@@ -30,39 +25,7 @@ export async function POST(request: NextRequest, context: { params: Promise<{ id
     const path = removed.ok ? list : `${list}?error=${encodeURIComponent(removed.reason)}`;
     return redirectTo(request, path);
   }
-  const current = await loadSesion(id);
-  if (!current) return redirectTo(request, `${list}?error=${encodeURIComponent("no encontrada")}`);
-  const sectors = await sessionSectorChoices();
-  const capacityMin = Number(form.get("capacity_min") ?? current.session.capacity_min);
-  const draft = quotaDraft(form, sectors.map((sector) => sector.id), capacityMin);
-  if (!draft.ok) return redirectTo(request, `${list}?error=${encodeURIComponent(draft.reason)}`);
-  const capacityMax = draft.total > 0 ? draft.total : Number(form.get("capacity_max") ?? current.session.capacity_max);
-  const schedule = scheduleFromForm(form, current.session);
-  if (!schedule.ok) return redirectTo(request, `${list}?error=${encodeURIComponent(schedule.reason)}`);
-  const flip = currentFlip(current.rows, id, form.get("is_current") === "on");
-  const db = await adminDb();
-  if (!db) {
-    console.error("sesiones update: sin sesión");
-    return redirectTo(request, `${list}?error=${encodeURIComponent("No se pudo guardar. Intenta de nuevo.")}`);
-  }
-  const updated = await db
-    .from("sessions")
-    .update({
-      venue: String(form.get("venue") ?? current.session.venue),
-      format_name: String(form.get("format_name") ?? current.session.format_name),
-      ...schedule.fields,
-      capacity_min: capacityMin,
-      capacity_max: capacityMax,
-      audience: String(form.get("audience") ?? current.session.audience),
-      includes: String(form.get("includes") ?? current.session.includes),
-      is_current: flip.isCurrent,
-    })
-    .eq("id", flip.setId);
-  if (updated.error) {
-    console.error("sessions update", updated.error);
-    return redirectTo(request, `${list}?error=${encodeURIComponent("No se pudo guardar. Intenta de nuevo.")}`);
-  }
-  const saved = await saveSessionQuotas(id, draft.rows);
+  const saved = await updateSession(id, form);
   if (!saved.ok) return redirectTo(request, `${list}?error=${encodeURIComponent(saved.reason)}`);
   return redirectTo(request, list);
 }
