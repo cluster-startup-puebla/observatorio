@@ -5,7 +5,6 @@ import { readSessionAccount } from "@/lib/auth/session-account";
 import { attributeSignup } from "@/lib/organismo/attribute-signup";
 import { finishInMemory } from "./complete-empresario-memory";
 import { createSupabaseWithAccess, readAccessToken, usesSupabaseAuth } from "@/lib/supabase/auth-session";
-import { logoUploadDecision } from "./company-logo";
 import { empresarioErrors, parseEmpresarioForm, type EmpresarioProfile } from "./empresario-draft";
 import { inviteToken } from "./invite-token";
 import { issueConfirmedPass } from "./issue-confirmed-pass";
@@ -51,17 +50,10 @@ export async function completeEmpresarioAction(formData: FormData) {
   const profile = parseEmpresarioForm(formData);
   const token = await inviteToken(formData);
   const supabase = usesSupabaseAuth();
-  const file = formData.get("logo");
-  const decision = logoUploadDecision({
-    show: formData.get("showLogo") === "1",
-    hasFile: file instanceof File && file.size > 0,
-  });
   const reason =
-    decision.action === "reject"
-      ? "logo"
-      : empresarioErrors(profile) ??
-        (formData.get("terminos") === "si" ? null : "terminos") ??
-        (!supabase && !id ? "cuenta" : null);
+    empresarioErrors(profile) ??
+    (formData.get("terminos") === "si" ? null : "terminos") ??
+    (!supabase && !id ? "cuenta" : null);
   if (reason) back(reason, profile, token);
   if (supabase) await finishInSupabase(profile, token, formData);
   else await finishInMemory(id, profile, token);

@@ -15,7 +15,6 @@ export function toSeat(
   row: {
     id?: string | null;
     sectors?: SectorEmbed | SectorEmbed[] | null;
-    owner?: ProfileEmbed | ProfileEmbed[] | null;
   },
   _pending: Set<string>,
   released: Set<string>,

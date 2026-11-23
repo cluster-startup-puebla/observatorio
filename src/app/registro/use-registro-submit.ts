@@ -66,7 +66,7 @@ export function useRegistroSubmit(
     clearIssue();
     const result = await runRegistroSubmit({ values, sector, invitacion, sessionId, lockedReferral, terms });
     if ("yaTieneCuenta" in result) setYaTieneCuenta(true);
-    else if ("error" in result) setError(result.error);
+    else if ("error" in result) setError(result.error ?? "No se pudo guardar.");
     else setDone(true);
     setPending(false);
   }

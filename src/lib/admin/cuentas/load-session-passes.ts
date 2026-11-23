@@ -1,18 +1,13 @@
 import "server-only";
 
 import type { SupabaseClient } from "@supabase/supabase-js";
+import { one } from "@/lib/admin/pases/pass-list-embed";
 
 export type CuentaSessionPass = {
   rsvpId: string;
   sessionTitle: string;
   sessionSlug: string;
   issuedAt: string | null;
-};
-
-type RsvpRow = {
-  id: string;
-  sessions: { title: string | null; public_slug: string | null } | null;
-  rsvp_passes: { issued_at: string | null } | { issued_at: string | null }[] | null;
 };
 
 export async function loadCuentaSessionPasses(
@@ -27,12 +22,13 @@ export async function loadCuentaSessionPasses(
     .eq("status", "confirmed")
     .or(`profile_id.eq.${profileId},email.eq.${mail}`);
   if (listed.error) throw new Error(listed.error.message);
-  return ((listed.data ?? []) as RsvpRow[]).map((row) => {
-    const pass = Array.isArray(row.rsvp_passes) ? row.rsvp_passes[0] : row.rsvp_passes;
+  return (listed.data ?? []).map((row) => {
+    const session = one(row.sessions as { title: string | null; public_slug: string | null } | { title: string | null; public_slug: string | null }[] | null);
+    const pass = one(row.rsvp_passes as { issued_at: string | null } | { issued_at: string | null }[] | null);
     return {
-      rsvpId: row.id,
-      sessionTitle: row.sessions?.title?.trim() || "Sesión",
-      sessionSlug: row.sessions?.public_slug?.trim() || "",
+      rsvpId: String(row.id),
+      sessionTitle: session?.title?.trim() || "Sesión",
+      sessionSlug: session?.public_slug?.trim() || "",
       issuedAt: pass?.issued_at ?? null,
     };
   });

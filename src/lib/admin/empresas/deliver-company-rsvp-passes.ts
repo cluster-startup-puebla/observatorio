@@ -1,6 +1,7 @@
 import "server-only";
 
 import type { SupabaseClient } from "@supabase/supabase-js";
+import { one } from "@/lib/admin/pases/pass-list-embed";
 import { deliverRsvpPass } from "@/lib/mail/deliver-rsvp-pass";
 
 /** After path accept: mail RSVP QR for every confirmed seat of this company owner. */
@@ -21,7 +22,7 @@ export async function deliverCompanyRsvpPasses(db: SupabaseClient, companyId: st
     .eq("status", "confirmed");
   if (listed.error || !listed.data?.length) return;
   for (const row of listed.data) {
-    const title = (row.sessions as { title: string | null } | null)?.title?.trim() || "la sesión";
+    const title = one(row.sessions as { title: string | null } | { title: string | null }[] | null)?.title?.trim() || "la sesión";
     await deliverRsvpPass(db, mail, String(row.id), String(row.session_id), title);
   }
 }

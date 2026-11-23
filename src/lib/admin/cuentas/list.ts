@@ -48,22 +48,33 @@ export async function listCuentas(rawPage: string | undefined, rawQ?: string) {
     page: page.page,
     total: profiles.count ?? 0,
     q,
-    rows: (profiles.data ?? []).map((row) => {
-      const orgId = row.organization_id ?? "";
-      const fullName = row.full_name ?? "";
-      return {
-        id: row.id,
-        full_name: fullName,
-        display_name: cuentaDisplayName(fullName, named.get(orgId) ?? ""),
-        email: row.email ?? "",
-        role: row.role,
-        onboarded_at: row.onboarded_at ? "Terminado" : "Sin terminar",
-        job_title: row.job_title ?? "",
-        whatsapp: row.whatsapp ?? "",
-        organization_id: orgId,
-        logo: marked.get(orgId) ?? "",
-      };
-    }),
+    rows: (profiles.data ?? []).map(
+      (row: {
+        id: string;
+        full_name: string | null;
+        email: string | null;
+        role: string;
+        onboarded_at: string | null;
+        job_title: string | null;
+        whatsapp: string | null;
+        organization_id: string | null;
+      }) => {
+        const orgId = row.organization_id ?? "";
+        const fullName = row.full_name ?? "";
+        return {
+          id: row.id,
+          full_name: fullName,
+          display_name: cuentaDisplayName(fullName, named.get(orgId) ?? ""),
+          email: row.email ?? "",
+          role: row.role,
+          onboarded_at: row.onboarded_at ? "Terminado" : "Sin terminar",
+          job_title: row.job_title ?? "",
+          whatsapp: row.whatsapp ?? "",
+          organization_id: orgId,
+          logo: marked.get(orgId) ?? "",
+        };
+      },
+    ),
     orgs: (orgs.data ?? []).map((org) => ({ id: org.id, name: org.name ?? org.id })),
   };
 }

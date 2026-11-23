@@ -1,18 +1,12 @@
 import type { SupabaseClient } from "@supabase/supabase-js";
 import { mesaGuest, type MesaGuest } from "@/lib/admin/mesa/guest";
+import { one } from "@/lib/admin/pases/pass-list-embed";
 
-type ProfileGuest = {
-  full_name: string | null;
-  companies:
-    | { legal_name: string | null; referral_source: string | null; sectors: { name: string | null } | null }
-    | { legal_name: string | null; referral_source: string | null; sectors: { name: string | null } | null }[]
-    | null;
+type CompanyEmbed = {
+  legal_name: string | null;
+  referral_source: string | null;
+  sectors: { name: string | null } | { name: string | null }[] | null;
 };
-
-function companyOf(row: ProfileGuest) {
-  const raw = row.companies;
-  return Array.isArray(raw) ? raw[0] : raw;
-}
 
 /** Prefer account/company card; fall back to RSVP row when needed. */
 export async function loadMesaGuest(
@@ -28,11 +22,11 @@ export async function loadMesaGuest(
       .maybeSingle();
     if (listed.error) throw new Error(listed.error.message);
     if (listed.data) {
-      const company = companyOf(listed.data as ProfileGuest);
+      const company = one(listed.data.companies as CompanyEmbed | CompanyEmbed[] | null);
       const guest = mesaGuest({
         full_name: listed.data.full_name,
         company_name: company?.legal_name,
-        sector_name: company?.sectors?.name,
+        sector_name: one(company?.sectors)?.name,
         invited_by: company?.referral_source,
       });
       if (guest.name || guest.company) return guest;
@@ -45,11 +39,10 @@ export async function loadMesaGuest(
     .eq("id", rsvpId)
     .maybeSingle();
   if (seat.error) throw new Error(seat.error.message);
-  const sector = seat.data?.sectors as { name: string | null } | { name: string | null }[] | null;
-  const sectorName = Array.isArray(sector) ? sector[0]?.name : sector?.name;
   return mesaGuest({
     full_name: seat.data?.full_name || seat.data?.email,
     company_name: seat.data?.company_name,
-    sector_name: sectorName || seat.data?.sector_slug,
+    sector_name: one(seat.data?.sectors as { name: string | null } | { name: string | null }[] | null)?.name
+      || seat.data?.sector_slug,
   });
 }
