@@ -4,7 +4,7 @@ import { gapCaption, profileGaps } from "./profile-gaps";
 
 const logo = { id: "logo", label: "Logo" };
 const website = { id: "website", label: "Sitio web" };
-const verify = { id: "verify", label: "Verificar cuenta" };
+const verify = { id: "verify", label: "Confirmar correo" };
 
 describe("huecos del perfil", () => {
   it("logo y sitio faltantes cuentan como el paso 1 de 2", () => {
@@ -28,7 +28,7 @@ describe("huecos del perfil", () => {
     expect(result.gaps).toEqual([]);
   });
 
-  it("suma verificar cuenta cuando el correo no está confirmado", () => {
+  it("suma confirmar correo cuando el correo no está confirmado", () => {
     const all = profileGaps({ hasLogo: false, website: "", emailConfirmed: false });
     expect(all.counter).toBe("1/3");
     expect(all.gaps).toEqual([logo, website, verify]);
@@ -54,7 +54,7 @@ describe("huecos del perfil", () => {
     const file = readFileSync("src/components/app/logo-file-field.tsx", "utf8");
     const action = readFileSync("src/lib/home/save-profile-gaps.ts", "utf8");
     expect(pieces).toContain('label: "Sitio web"');
-    expect(pieces).toContain('label: "Verificar cuenta"');
+    expect(pieces).toContain('label: "Confirmar correo"');
     expect(banner).toContain("AppCard");
     expect(banner).toContain("Completa tu perfil");
     expect(banner).toContain("return null");

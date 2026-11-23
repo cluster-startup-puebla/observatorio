@@ -17,14 +17,15 @@ describe("registro externo", () => {
     expect(waitsForExternalApproval("chosen", null)).toBe(false);
   });
 
-  it("quien llegó por enlace lo acepta el organismo", () => {
-    expect(externalApprovalLabel("path", null)).toBe("Sin verificar");
-    expect(externalApprovalLabel("path", "2026-10-24T00:00:00Z")).toBe("Verificada");
-    expect(externalApprovalLabel("link", null)).toBe("Sin organismo");
-    expect(externalApprovalLabel("link", null, ["cargado"])).toBe("Pendiente");
-    expect(externalApprovalLabel("link", null, ["confirmo"])).toBe("Aceptada");
+  it("la columna de aprobación refleja aceptación de empresa (no correo)", () => {
+    expect(externalApprovalLabel("path", null)).toBe("Sin aceptar");
+    expect(externalApprovalLabel("path", "2026-10-24T00:00:00Z")).toBe("Aceptada");
+    expect(externalApprovalLabel("link", null)).toBe("Sin aceptar");
+    expect(externalApprovalLabel("link", "2026-10-24T00:00:00Z")).toBe("Aceptada");
+    expect(externalApprovalLabel("link", null, ["cargado"])).toBe("Pendiente en lista");
+    expect(externalApprovalLabel("link", null, ["confirmo"])).toBe("Aceptada en lista");
     expect(externalApprovalLabel("link", null, ["no"])).toBe("Rechazada");
-    expect(externalApprovalLabel("path", null, ["cargado"])).toBe("Pendiente");
+    expect(externalApprovalLabel("path", null, ["cargado"])).toBe("Pendiente en lista");
     expect(acceptorLabel("Clúster Agroindustria Puebla", "link", "")).toBe("Clúster Agroindustria Puebla");
     expect(acceptorLabel("", "path", "")).toBe("Superadmin");
     expect(acceptorLabel("—", "chosen", "")).toBe("Nadie");

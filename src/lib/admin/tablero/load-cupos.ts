@@ -3,6 +3,7 @@ import "server-only";
 import { adminDb } from "@/lib/admin/admin-db";
 import { fetchCuposSessionData } from "./cupos-session-data";
 import { omittedCompanyRows } from "./omitted-companies";
+import { openSessionFill } from "./open-session-fill";
 import { sectorFill } from "./sector-fill";
 
 type CupoSession = { id: string; venue: string; sessionOn: string | null };
@@ -32,7 +33,11 @@ export async function loadCupos(sessionId?: string | null) {
   if (session.error) throw new Error(session.error.message);
   if (!session.data) return idle();
   const data = await fetchCuposSessionData(db, session.data.id);
-  const fill = sectorFill(data.quotasRows, data.seats);
+  const capacityMax = Number(session.data.capacity_max ?? 0);
+  const fill =
+    data.quotasRows.length === 0
+      ? openSessionFill(capacityMax, data.seats)
+      : sectorFill(data.quotasRows, data.seats);
   const outside = await omittedCompanyRows(
     db,
     data.companies,

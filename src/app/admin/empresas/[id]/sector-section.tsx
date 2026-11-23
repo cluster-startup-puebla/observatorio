@@ -40,10 +40,15 @@ export function SectorSection({
         </li>
       </ul>
       {!admitted_at ? (
-        <form action={`/api/admin/empresas/${id}/aceptar`} method="post">
-          <ActionButton hold pendingLabel="Verificando…">Verificar cuenta</ActionButton>
+        <form action={`/api/admin/empresas/${id}/aceptar`} method="post" className="space-y-2">
+          <p className="text-small text-ink-secondary">
+            Aceptar la empresa habilita diagnósticos y metodología. No confirma el correo ni el lugar RSVP.
+          </p>
+          <ActionButton hold pendingLabel="Aceptando…">Aceptar empresa</ActionButton>
         </form>
-      ) : null}
+      ) : (
+        <p className="text-small text-ink-secondary">Empresa aceptada: ya puede resolver diagnósticos.</p>
+      )}
     </div>
   );
 }

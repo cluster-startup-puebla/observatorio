@@ -6,7 +6,7 @@ export type ProfileGap = {
 const pieces: ProfileGap[] = [
   { id: "logo", label: "Logo" },
   { id: "website", label: "Sitio web" },
-  { id: "verify", label: "Verificar cuenta" },
+  { id: "verify", label: "Confirmar correo" },
 ];
 
 export function profileGaps(input: { hasLogo: boolean; website: string; emailConfirmed?: boolean }) {

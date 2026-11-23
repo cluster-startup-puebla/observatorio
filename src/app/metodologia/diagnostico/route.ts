@@ -7,7 +7,7 @@ import { answersFromStored, calculateIntegralResult } from "@/lib/methodology/sc
 export async function GET(request: Request) {
   await redirectUnfinishedEmpresario();
   if (!(await readCompanyVerified())) {
-    return new Response("Tu cuenta está pendiente de verificación.\n", { status: 403 });
+    return new Response("Tu empresa está pendiente de aceptación.\n", { status: 403 });
   }
   await redirectIfEventClosed();
   const persona = new URL(request.url).searchParams.get("persona") ?? "";

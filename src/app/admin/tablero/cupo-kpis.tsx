@@ -29,14 +29,18 @@ export function CupoKpis({ fill }: { fill: Fill }) {
       <article className="rounded-2xl border border-line bg-elevated p-5" data-testid="tablero-cupo-pendiente">
         <p className="text-small text-ink-secondary">Pendientes</p>
         <p className="mt-2 text-h2 text-ink tabular-nums">{fill.pendientes.toLocaleString("es-MX")}</p>
-        <p className="mt-2 text-small text-ink-muted">Solicitudes RSVP por confirmar lugar</p>
+        <p className="mt-2 text-small text-ink-muted">RSVP pendientes de confirmar lugar (no es aceptar empresa)</p>
       </article>
     </section>
   );
 }
 
 function places(fill: Fill) {
-  if (fill.cupo === 0) return "Sin sesión";
+  if (fill.cupo <= 0) {
+    return fill.ocupados > 0
+      ? `${fill.ocupados.toLocaleString("es-MX")} (sin cupo definido)`
+      : "Sin cupo definido";
+  }
   const ocupados = fill.ocupados.toLocaleString("es-MX");
   const cupo = fill.cupo.toLocaleString("es-MX");
   return `${ocupados} de ${cupo}`;
