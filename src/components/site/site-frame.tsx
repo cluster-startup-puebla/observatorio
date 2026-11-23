@@ -5,6 +5,7 @@ import { isAuthPath } from "@/components/auth/paths";
 import { SiteFooter } from "@/components/site/footer";
 import { SiteHeader } from "@/components/site/header";
 import { SectionUrlSpy } from "@/components/site/section-url-spy";
+import { isOrgPanelPath } from "@/lib/organismo/panel-path";
 
 export function SiteFrame({
   children,
@@ -15,8 +16,7 @@ export function SiteFrame({
 }) {
   const path = usePathname();
   const panel = path.startsWith("/admin") && path !== "/admin/login" && path !== "/admin/signup";
-  const orgPanel =
-    orgSlug.length > 0 && (path === `/${orgSlug}` || path.startsWith(`/${orgSlug}/`));
+  const orgPanel = isOrgPanelPath(path, orgSlug);
   const auth = isAuthPath(path);
 
   if (panel || orgPanel) {
