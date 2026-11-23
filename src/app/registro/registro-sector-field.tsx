@@ -1,4 +1,4 @@
-import { FilterCombobox } from "@/components/onboarding/filter-combobox";
+import { IndustryCombobox } from "@/components/industria/industry-combobox";
 import { sectors } from "@/lib/sectors";
 
 export function RegistroSectorField({
@@ -21,16 +21,5 @@ export function RegistroSectorField({
     );
   }
 
-  return (
-    <FilterCombobox
-      id="sector"
-      name="sector"
-      label="Industria"
-      value={value}
-      allowCustom
-      placeholder="Escribe o elige"
-      options={sectors.map((item) => ({ value: item.slug, label: item.name }))}
-      onChange={onChange}
-    />
-  );
+  return <IndustryCombobox value={value} onChange={onChange} />;
 }

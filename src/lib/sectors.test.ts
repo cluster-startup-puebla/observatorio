@@ -9,11 +9,29 @@ describe("sectors", () => {
     );
     expect(sectors.find((sector) => sector.slug === "agroindustria")?.name).toBe("Agronomía");
     expect(sectorSlug("Textil y confección")).toBe("textil-y-confeccion");
-    expect(inviteSectors).toHaveLength(sectors.length - 3);
-    expect(inviteSector("tecnologia-y-servicios-de-ti")).toBe(false);
-    expect(inviteSector("quimica")).toBe(false);
-    expect(inviteSector("minerales-no-metalicos")).toBe(false);
+    expect(inviteSectors).toHaveLength(sectors.length);
+    expect(inviteSector("tecnologia-y-servicios-de-ti")).toBe(true);
+    expect(inviteSector("quimica")).toBe(true);
+    expect(inviteSector("minerales-no-metalicos")).toBe(true);
     expect(inviteSector("turismo")).toBe(true);
+    expect(sectors.map((sector) => sector.name)).toEqual([
+      "Automotriz y autopartes",
+      "Dispositivos médicos",
+      "Textil y confección",
+      "Alimentos y bebidas",
+      "Mueble y madera",
+      "Metalmecánica",
+      "Construcción",
+      "Química",
+      "Artes gráficas y empaque",
+      "Plásticos y Economía circular",
+      "Minerales no metálicos",
+      "Tecnología y servicios de TI",
+      "Turismo",
+      "Logística",
+      "Agronomía",
+      "Gastronomía",
+    ]);
   });
 
   it("una ruta conocida deja el sector seleccionado y bloqueado", () => {

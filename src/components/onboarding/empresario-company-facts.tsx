@@ -3,7 +3,7 @@ import { OnboardingSelect } from "@/components/onboarding/onboarding-select";
 import { companySizes } from "@/content/landing";
 import { marketSizes } from "@/lib/onboarding/market-sizes";
 import { pueblaMunicipios } from "@/lib/onboarding/puebla-municipios";
-import { sectors } from "@/lib/sectors";
+import { IndustryCombobox } from "@/components/industria/industry-combobox";
 
 type CompanyFacts = {
   marketSize: string;
@@ -44,14 +44,8 @@ export function EmpresarioCompanyFacts({
         options={pueblaMunicipios.map((name) => ({ value: name, label: name }))}
         onChange={(municipality) => onChange({ municipality })}
       />
-      <FilterCombobox
-        id="sector"
-        name="sector"
-        label="Industria"
+      <IndustryCombobox
         value={values.sectorSlug}
-        allowCustom
-        placeholder="Escribe o elige"
-        options={sectors.map((sector) => ({ value: sector.slug, label: sector.name }))}
         onChange={(sectorSlug) => onChange({ sectorSlug })}
       />
     </>

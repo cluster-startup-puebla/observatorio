@@ -1,10 +1,10 @@
 import { CopyLinkResult } from "@/components/organismo/copy-link-result";
+import { CopyLinkSector } from "@/components/organismo/copy-link-sector";
 import { CopyLinkSubmit } from "@/components/organismo/copy-link-submit";
 import { SessionPick } from "@/components/session-pick";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { copyEventLinkAction } from "@/lib/organismo/copy-link-action";
 import { sidebarInk } from "@/lib/organismo/brand-color";
-import { inviteSectors } from "@/lib/sectors";
 
 const chevron =
   "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%234b5563' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E\")";
@@ -31,7 +31,6 @@ export function CopyLink({
   brandColor?: string;
   preferredSessionId?: string | null;
 }) {
-  const selected = sector && inviteSectors.some((item) => item.slug === sector) ? sector : "turismo";
   const tone = sidebarInk(brandColor);
 
   return (
@@ -42,16 +41,9 @@ export function CopyLink({
         </Alert>
       ) : null}
       <form action={copyEventLinkAction} className="flex flex-wrap items-end gap-3">
-        <label className="grid w-56 max-w-full gap-1 text-small text-ink-secondary">
-          Sector
-          <select name="sector" key={selected} defaultValue={selected} data-tour="sector" className={`${control} w-full`} style={chevronStyle}>
-            {inviteSectors.map((item) => (
-              <option key={item.slug} value={item.slug}>
-                {item.name}
-              </option>
-            ))}
-          </select>
-        </label>
+        <span data-tour="sector" className="contents">
+          <CopyLinkSector sector={sector} />
+        </span>
         <SessionPick
           sessions={sessions}
           preferredId={preferredSessionId}

@@ -14,21 +14,17 @@ const keptSlug: Record<string, string> = {
   Agronomía: "agroindustria",
 };
 
+/** Catálogo único (onboarding, registro, enlaces de organismo). */
 export const sectors = diagnosticIndustries.map((name) => ({
   name,
   slug: keptSlug[name] ?? sectorSlug(name),
 }));
 
-const heldThisSession = new Set([
-  "quimica",
-  "minerales-no-metalicos",
-  "tecnologia-y-servicios-de-ti",
-]);
-
-export const inviteSectors = sectors.filter((sector) => !heldThisSession.has(sector.slug));
+/** @deprecated Alias del catálogo completo; ya no se ocultan sectores. */
+export const inviteSectors = sectors;
 
 export function inviteSector(slug: string) {
-  return inviteSectors.some((sector) => sector.slug === slug);
+  return sectors.some((sector) => sector.slug === slug);
 }
 
 export function resolveSector(input: { pathSector?: string; chosen?: string }): {
