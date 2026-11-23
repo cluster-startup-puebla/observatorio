@@ -4,6 +4,7 @@ import { nextCrmInsert } from "@/lib/admin/crm/next-event";
 import { requireSuperadmin } from "@/lib/auth/require-superadmin";
 import { readSuperadmin } from "@/lib/auth/require-superadmin";
 import type { CrmStatus } from "@/lib/crm-status";
+import { deliverOrgRsvpPass } from "@/lib/organismo/deliver-org-rsvp-pass";
 import { sendAcceptedPass } from "@/lib/mail/send-accepted-pass";
 import { readAccessToken } from "@/lib/supabase/auth-session";
 import { NextResponse, type NextRequest } from "next/server";
@@ -24,6 +25,7 @@ export async function POST(request: NextRequest, context: { params: Promise<{ id
       const code = approved.error.message.includes("sector_lleno") ? "sector_lleno" : approved.error.message;
       return NextResponse.redirect(new URL(`${back}&error=${encodeURIComponent(code)}`, request.url));
     }
+    await deliverOrgRsvpPass(db, id).catch((error) => console.error("deliverOrgRsvpPass", error));
     const token = await readAccessToken();
     if (token) await sendAcceptedPass(token, id);
     return NextResponse.redirect(new URL(back, request.url));

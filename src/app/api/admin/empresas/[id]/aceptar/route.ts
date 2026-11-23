@@ -1,4 +1,5 @@
 import { adminDb } from "@/lib/admin/admin-db";
+import { deliverCompanyRsvpPasses } from "@/lib/admin/empresas/deliver-company-rsvp-passes";
 import { safeAdminNext } from "@/lib/admin/crm/safe-admin-next";
 import { requireSuperadmin } from "@/lib/auth/require-superadmin";
 import { NextResponse, type NextRequest } from "next/server";
@@ -16,5 +17,6 @@ export async function POST(request: NextRequest, context: { params: Promise<{ id
   if (approved.error) {
     return NextResponse.redirect(new URL(`${back}?error=${encodeURIComponent(approved.error.message)}`, request.url));
   }
+  await deliverCompanyRsvpPasses(db, id).catch((error) => console.error("deliverCompanyRsvpPasses", error));
   return NextResponse.redirect(new URL(back, request.url));
 }
