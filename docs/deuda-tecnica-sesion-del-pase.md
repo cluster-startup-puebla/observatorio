@@ -1,13 +1,24 @@
-# Deuda técnica: el pase no sabe de qué sesión sale
+# Deuda técnica: el pase y la sesión
 
-El QR se guarda en `passes` con `profile_id`, `image_asset_id` e `issued_at`. No hay `session_id`. El correo `event_pass` puede llevar `outbox_messages.session_id`, pero al encolarlo no se llena. `companies.session_interest` es texto libre de qué le interesa a la persona, no la sesión del evento.
+## Resuelto parcialmente (RSVP / QR)
 
-Hoy hay una sola sesión vigente. Usarla como si fuera la del pase sería una suposición. Con dos vigentes, el detalle mentiría.
+El correo de confirmación y la mesa pueden trabajar con el **`rsvp_id`** estable de `session_rsvps` (no regenerar QR al reenviar). El adjunto de cuenta liga `profile_id` en `session_rsvps`; el flujo nuevo ya no depende de password temporal.
 
-El detalle del pase muestra «Sin sesión» a propósito. No consulta la sesión vigente para rellenar ese hueco.
+## Pendiente en `passes`
 
-## Orden que debe quedar
+La tabla `passes` sigue sin `session_id` ni `rsvp_id` obligatorio: el QR puede vivir en RSVP mientras el detalle admin de pase aún muestra «Sin sesión» si no hay columna guardada.
 
-1. Al emitir el pase se guarda la sesión a la que pertenece.
-2. El detalle lee esa sesión y enlaza a `/admin/sesiones/[id]`.
-3. Un pase viejo, sin sesión guardada, sigue diciendo «Sin sesión».
+Orden deseado:
+
+1. Al emitir o sincronizar pase, persistir `session_id` y/o `rsvp_id` en `passes`.
+2. El detalle admin enlaza a `/admin/sesiones/[id]`.
+3. Pases viejos sin sesión guardada siguen mostrando «Sin sesión».
+
+## Otras lecturas legacy
+
+- `private.sector_occupied_ids` / `sector_is_full` aún mezclan `admitted_at` y CRM para cupo **viejo** por sector; cupo por sesión debe usar `private.session_is_full` + `session_rsvps`.
+- `companies.session_interest` es texto libre, no sustituye `session_id` del RSVP.
+
+## Dual-write registro
+
+Ver [rsvp-dual-write.md](../superpowers/notes/rsvp-dual-write.md) (`public_registrations` vs `session_rsvps`).

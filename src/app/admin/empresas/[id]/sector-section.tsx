@@ -6,9 +6,7 @@ export function SectorSection({
   source_label,
   acceptor,
   conveners,
-  sector_source,
   admitted_at,
-  has_link,
 }: {
   id: string;
   source_label: string;
@@ -41,9 +39,9 @@ export function SectorSection({
           )}
         </li>
       </ul>
-      {sector_source === "path" && !admitted_at && !has_link ? (
+      {!admitted_at ? (
         <form action={`/api/admin/empresas/${id}/aceptar`} method="post">
-          <ActionButton hold pendingLabel="Aceptando…">Aceptar</ActionButton>
+          <ActionButton hold pendingLabel="Verificando…">Verificar cuenta</ActionButton>
         </form>
       ) : null}
     </div>

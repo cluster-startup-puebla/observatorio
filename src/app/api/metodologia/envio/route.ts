@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { maybeAwardEvaluation } from "@/lib/lavas/maybe-award-evaluation";
 import { applyRun, type RunInput, type RunRow } from "@/lib/methodology/v2/apply-run";
 import { memoryRuns, saveRun } from "@/lib/methodology/v2/memory-runs";
+import { readCompanyVerified } from "@/lib/auth/read-company-verified";
 import { readAccountId } from "@/lib/session";
 import { createSupabaseWithAccess, readAccessToken, usesSupabaseAuth } from "@/lib/supabase/auth-session";
 
@@ -55,6 +56,9 @@ export async function POST(request: Request) {
 
   const token = await readAccessToken();
   if (!token) return denied();
+  if (!(await readCompanyVerified())) {
+    return NextResponse.json({ error: "cuenta sin verificar" }, { status: 403 });
+  }
   const db = createSupabaseWithAccess(token);
   const user = await db.auth.getUser();
   const profileId = user.data.user?.id;

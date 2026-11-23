@@ -2,9 +2,9 @@
 
 > **For agentic workers:** implementar task-by-task. Cada archivo de código ≤ 90 líneas.
 
-**Goal:** Separar **asiento en el evento** (RSVP por correo, multi-sesión, cupo al confirmar) de **cuenta Observatorio** (login / `/app` / diagnóstico). Al crear cuenta, enganchar RSVPs previos. Eliminar el embudo “crea cuenta para apartar / password inventado”.
+**Goal:** Separar **asiento** (RSVP), **cuenta** (login/`/app`) y **cuenta verificada** (superadmin; desbloquea diagnósticos). Al crear cuenta, enganchar RSVPs. Sin “crea cuenta para el pase”.
 
-**Architecture:** Nueva unidad `session_rsvps` (email + session). Cupo y conversiones leen RSVPs `confirmed`. CRM/org atribuyen origen; ya no son el gate del cupo. **Al confirmar el lugar se genera el QR del pase aunque no haya cuenta** (anclado al RSVP); si después crean cuenta, el pase se engancha al perfil.
+**Architecture:** `session_rsvps` = lugar. Cupo/conversiones leen RSVPs `confirmed`. CRM/org = atribución, no gate de cupo. QR al confirmar sin cuenta. **`companies.admitted_at` (u homónimo “verificada”)** = verificación de cuenta por superadmin para diagnóstico — **no** es el cupo del evento.
 
 **Tech stack:** Next.js App Router, Supabase SQL/RPC, Vitest, shadcn Alert/toast.
 
@@ -66,6 +66,8 @@ Moderación de cuenta ≠ cupo. Redefinir o deprecar como gate de asiento.
 7. `companies.session_id` = origen de alta (opcional); **no** inventario de asientos.
 8. CRM “aceptar” ya no llama `sector_is_full` como gate principal (compat: no-op si RSVP ya confirmed).
 9. **No se borra legacy:** no `DROP` de `public_registrations`, `companies`, `crm_*`, `passes`, `admitted_at`, ni perfiles. Se **añade** `session_rsvps` + backfill; lecturas nuevas prefieren RSVP; tablas viejas quedan hasta migrar lecturas.
+10. **Tres capas (Yamil):** RSVP ≠ cuenta ≠ verificación. Copy UI: **verificada** (no “aprobada”). Crear cuenta y entrar al sistema es libre tras onboarding; **diagnósticos / metodología / producto analítico** exigen verificación del superadmin (`admitted_at` reutilizado o renombrado en UI).
+11. Verificación **no** bloquea: login, perfil, empresa, listado de sesiones, apartar/claim, ver pase. **Sí** bloquea: metodología/diagnóstico (y lo que se liste en Task 15).
 
 ---
 
@@ -86,8 +88,8 @@ Moderación de cuenta ≠ cupo. Redefinir o deprecar como gate de asiento.
 
 **Verificación Task 2 (obligatoria antes de Task 3 en prod):**
 
-- [ ] `count(public_registrations completed)` ≤ `count(session_rsvps)` mapeados (+ explicar huérfanos).
-- [ ] `count(companies admitted)` vs RSVPs confirmed ligados (diff documentado).
+- [x] `count(public_registrations completed)` ≤ `count(session_rsvps)` mapeados (+ explicar huérfanos).
+- [x] `count(companies admitted)` vs RSVPs confirmed ligados (diff documentado). *(~101 = 101)*
 - [ ] Spot-check 5 emails conocidos (p.ej. cuentas de prueba Disruptors/Arranque).
 
 ---
@@ -107,9 +109,14 @@ flowchart TB
   subgraph pase [Pase]
     qr["QR al confirmar RSVP"]
   end
-  subgraph cuenta [Cuenta opcional]
-    signup["/crear-cuenta o magic link"]
+  subgraph cuenta [Cuenta]
+    signup["Crear cuenta / login"]
     attach["attach_rsvps_for_email"]
+    appFree["/app perfil sesiones claim"]
+  end
+  subgraph verif [Verificada]
+    adminV["Superadmin verifica"]
+    diag["Diagnósticos / metodología"]
   end
   reg --> rsvp
   app --> rsvp
@@ -117,7 +124,10 @@ flowchart TB
   rsvp -->|"confirmed"| qr
   signup --> attach
   attach --> rsvp
-  attach -->|"liga profile al pase existente"| qr
+  attach -->|"liga profile al pase"| qr
+  signup --> appFree
+  adminV -->|"admitted_at / verificada"| diag
+  appFree -.->|"sin verificar: bloqueado"| diag
 ```
 
 ---
@@ -148,10 +158,10 @@ flowchart TB
 
 **Files:** misma migración o `…_session_rsvps_backfill.sql`
 
-- [ ] De `public_registrations` completed → RSVP por `session_id` (`pending` si no poured/accepted; `confirmed` si poured o accept histórico).
-- [ ] De companies con `admitted_at` + `session_id` → RSVP confirmed ligado.
-- [ ] Companies admitted + `session_id` null → RSVP Arranque si existe slug.
-- [ ] Test SQL o script de conteos (no inventar emails).
+- [x] De `public_registrations` completed → RSVP por `session_id` (`pending` si no poured/accepted; `confirmed` si poured o accept histórico).
+- [x] De companies con `admitted_at` + `session_id` → RSVP confirmed ligado.
+- [x] Companies admitted + `session_id` null → RSVP Arranque si existe slug.
+- [x] Test SQL o script de conteos (no inventar emails). *(conteo remoto: ~101 confirmed ≈ admitidos)*
 
 ---
 
@@ -161,10 +171,10 @@ flowchart TB
 - Create/replace: migration `session_rsvp_capacity.sql`
 - Modify tests: `src/lib/cupo/sector-quota-sql.test.ts`, `seat-rules.test.ts`
 
-- [ ] `private.session_confirmed_count(session_id, sector_id nullable)`.
-- [ ] `private.session_is_full(session_id, sector_id nullable)` — con quotas usa sector; sin quotas usa `capacity_max`.
-- [ ] Reemplazar usos de `sector_is_full` en accept/approve por variante con `session_id`.
-- [ ] Mantener wrappers legacy solo si hacen falta para no romper deploy a medias (marcar deprecated).
+- [x] `private.session_confirmed_count(session_id, sector_id nullable)`.
+- [x] `private.session_is_full(session_id, sector_id nullable)` — con quotas usa sector; sin quotas usa `capacity_max`.
+- [x] Reemplazar usos de `sector_is_full` en accept/approve por variante con `session_id`. *(confirm_registration_rsvp + approve_link_signup)*
+- [x] Mantener wrappers legacy solo si hacen falta para no romper deploy a medias (marcar deprecated).
 
 ---
 
@@ -175,10 +185,10 @@ flowchart TB
 - Modify: `src/app/registro/actions.ts`, form/done
 - Tests: registro actions / SQL
 
-- [ ] Submit crea/actualiza RSVP `pending` (si requiere admin) o `confirmed` si política auto para sesión abierta sin revisión — **v1 Disruptors: `pending` hasta admin accept** (conservador) **o confirmed si `is_current` y sin org** — decidir en Task 0: default **pending + admin confirma** para no abrir flood; documentar.
-- [ ] Default acordado en este plan: **registro público → `pending`; admin “Confirmar lugar” → `confirmed` + descuenta cupo**. Self-serve `/app` claim → `confirmed` directo si cuenta ya existía con historial aceptado.
-- [ ] Unique email+session: idempotente.
-- [ ] Nuevo flujo escribe `session_rsvps`; si aún se usa `public_registrations`, **también** se escribe ahí en dual-write hasta que admin lea solo RSVPs. **No drop** de la tabla en este plan.
+- [x] Submit crea/actualiza RSVP `pending` (vía `sync_public_registration_rsvp`).
+- [x] Default: **registro público → `pending`; admin “Confirmar lugar” → `confirmed` + descuenta cupo**. Claim `/app` → `confirmed` con historial.
+- [x] Unique email+session: idempotente.
+- [x] Dual-write: sigue escribiendo `public_registrations` + sync a `session_rsvps`. **No drop**.
 
 ---
 
@@ -189,11 +199,11 @@ flowchart TB
 - Modify: `src/app/api/admin/registros/[id]/aceptar/route.ts`, UI accept
 - Modify: list/map registros
 
-- [ ] Botón “Confirmar lugar”: `pending` → `confirmed`, chequea cupo, **genera QR + mail con pase**.
-- [ ] Si email ya tiene `company`/`profile`: attach `profile_id`/`company_id` al RSVP/pase; **no** raise `ya tiene cuenta`.
-- [ ] Si no hay cuenta: **no** crear `auth.users` ni password; el pase vive en el RSVP.
-- [ ] Copy UI: “Confirmar lugar” / “Reenviar pase”; no “Aceptar = crear cuenta”.
-- [ ] Tests: email con company existente; sin cuenta + QR; cupo lleno; idempotente.
+- [x] Botón “Confirmar lugar”: `pending` → `confirmed`, chequea cupo, **genera QR + mail con pase**.
+- [x] Si email ya tiene `company`/`profile`: attach `profile_id`/`company_id` al RSVP; **no** raise `ya tiene cuenta`.
+- [x] Si no hay cuenta: **no** crear `auth.users` ni password; el pase vive en el RSVP.
+- [x] Copy UI: “Confirmar lugar” / “Reenviar pase”; no “Aceptar = crear cuenta”.
+- [x] Tests: route SQL/UI mínimos (`confirm-rsvp-sql`, `aceptar/route.test`).
 
 ---
 
@@ -203,9 +213,9 @@ flowchart TB
 - Modify: `src/app/registro/registro-done.tsx`, `page.tsx`
 - Modify: leads landing Disruptors si aplica
 
-- [ ] Done: “Te llega el correo con tu lugar.” Sin CTA primario a `/crear-cuenta`.
-- [ ] Link secundario: “¿Quieres el diagnóstico? Inicia sesión o crea acceso.”
-- [ ] Si email ya registrado en auth al submit: respuesta `ya_tiene_cuenta` → UI “Inicia sesión para ver/apartar tus sesiones”.
+- [x] Done: sin CTA primario a `/crear-cuenta`; copy de pase por correo.
+- [x] Link secundario: “¿Quieres el diagnóstico? Crea acceso / inicia sesión.”
+- [ ] Si email ya registrado en auth al submit: respuesta `ya_tiene_cuenta` → UI “Inicia sesión…”.
 
 ---
 
@@ -215,10 +225,10 @@ flowchart TB
 - Migration: `attach_rsvps_for_email`
 - Modify: `src/lib/auth/signup-empresario.ts`, `pour.ts`, `complete-empresario.ts`
 
-- [ ] Tras crear company: RPC liga RSVPs del email a profile/company.
-- [ ] **No re-emite QR** si el pase del RSVP ya existe; solo liga `profile_id` al pase.
+- [x] Tras crear company (onboarding): RPC liga RSVPs del email a profile/company.
+- [x] **No re-emite QR** al attach (QR ya salió al confirmar RSVP; solo liga profile en RSVP).
 - [ ] Si hubiera RSVP confirmed sin pase (datos viejos): emitir una vez.
-- [ ] Pour legacy: si aún existe, solo attach; no duplicar company.
+- [ ] Pour legacy: cablear attach también en `pour` / signup si no pasa por `complete-empresario`.
 
 ---
 
@@ -229,9 +239,9 @@ flowchart TB
 - Modify: `session-attendance.ts`, `[slug]/page.tsx`, action + toast
 - Tests
 
-- [ ] Requisitos: sesión `is_current`, usuario con company; si nunca fue aceptado históricamente, **v1: permitir claim solo si ya hay `admitted_at` OR ya tiene algún RSVP confirmed** (evitar cuentas spam); documentar.
-- [ ] Insert RSVP confirmed + cupo; multi-sesión OK.
-- [ ] UI: botón “Apartar lugar” / estado “Ya tienes lugar” / cupo lleno.
+- [x] Requisitos: sesión `is_current` + historial (`admitted_at` o RSVP confirmed).
+- [x] Insert RSVP confirmed + cupo; multi-sesión OK.
+- [x] UI: botón “Apartar lugar” / estado “Ya tienes lugar” / cupo lleno (toast).
 
 ---
 
@@ -241,9 +251,10 @@ flowchart TB
 - Migration: alterar `attendance_cancellations` o cancel en `session_rsvps`
 - Modify: `cancel_my_attendance`, attendance-slot, onboarding
 
-- [ ] Cancelar libera cupo de **esa** sesión.
-- [ ] Otras sesiones intactas.
-- [ ] `my_attendance_state(session_id)` o leer RSVP por slug.
+- [x] Cancelar libera cupo de **esa** sesión (`cancel_session_rsvp`).
+- [x] Otras sesiones intactas.
+- [x] Estado por RSVP de la sesión de la empresa / onboarding.
+- [ ] UI cancel en `/app/sesiones/[slug]` (hoy solo onboarding).
 
 ---
 
@@ -254,8 +265,8 @@ flowchart TB
 - Modify: `src/lib/crm-actions.ts`, admin CRM route
 - Tests: link-acceptance
 
-- [ ] Approve CRM: si ya hay RSVP confirmed para esa sesión+email, solo avanza embudo; no bloquea por cupo de nuevo.
-- [ ] Si no hay RSVP: crear/confirm RSVP al aprobar (compat lista excel/enlace viejo) **y** chequear cupo ahí.
+- [x] Approve CRM: si ya hay RSVP confirmed, solo avanza embudo; no bloquea por cupo de nuevo.
+- [x] Si no hay RSVP: crear/confirm RSVP al aprobar **y** chequear `session_is_full`.
 - [ ] UI copy: “Aceptar en CRM” ≠ “dar de alta cuenta”.
 
 ---
@@ -266,8 +277,8 @@ flowchart TB
 - Modify: `attribute_link_signup` o nuevo `attribute_rsvp_invite`
 - Modify: copy-link / registro con `invitacion`
 
-- [ ] RSVP guarda `organization_id` / `invite_token` al registrarse con enlace.
-- [ ] No exige `auth.uid()` para atribuir origen.
+- [x] RSVP guarda `organization_id` / `invite_token` al registrarse con enlace.
+- [x] No exige `auth.uid()` para atribuir origen (`attribute_rsvp_invite` + anon grant).
 - [ ] Al attach, opcionalmente crea/actualiza `crm_contacts`.
 
 ---
@@ -278,9 +289,9 @@ flowchart TB
 - Modify: `home-conversions.ts`, `link-conversions.ts`, `load-supabase-home.ts`
 - Modify: `load-sector-pace.ts`, `load-sector-seats.ts`
 
-- [ ] Conversion = RSVP `confirmed` con `organization_id` del org (y sesión del panel).
-- [ ] Pace bars: filled desde RSVPs confirmed por sector/sesión.
-- [ ] Tests de `link-stats` / conversions actualizados.
+- [x] Conversion = RSVP `confirmed` con `organization_id` del org (y sesión del panel).
+- [ ] Pace bars: filled desde RSVPs confirmed por sector/sesión. *(TODO en `load-sector-pace`; sigue CRM)*
+- [x] Tests de conversions actualizados.
 
 ---
 
@@ -290,10 +301,11 @@ flowchart TB
 - Modify: `load-cupos.ts`, `sector-fill.ts`, `cupo-seat.ts`, `latest-logos.ts`, `session-contact-ids.ts`
 - Modify: board copy (`reading.ts`) si cambia semántica
 
-- [ ] Ocupados = RSVPs confirmed de la sesión.
-- [ ] Pendientes = RSVPs pending (o “sin cuenta” = confirmed sin profile).
-- [ ] Omitidos / fuera de lista según sector vs quotas.
-- [ ] Tests snapshot/cupo.
+- [x] Ocupados = RSVPs confirmed de la sesión.
+- [x] Pendientes = RSVPs pending.
+- [ ] KPI aparte “sin cuenta” (confirmed sin `profile_id`).
+- [x] Omitidos / fuera de lista según sector vs quotas.
+- [x] Tests sector-fill / rsvp-seat.
 
 ---
 
@@ -304,29 +316,38 @@ flowchart TB
 - Modify: enqueue/send al confirmar; mesa/scan por rsvp/session
 - Tests pases
 
-- [ ] Al confirmar RSVP: crear pase + QR + correo (sin password, sin exigir cuenta).
-- [ ] Unique: un pase por `rsvp_id` (o por `session_id`+email).
-- [ ] Reenviar desde admin reusa el mismo QR.
-- [ ] Attach cuenta: update `profile_id` en pase existente.
-- [ ] Admin pases / mesa: filtrar por sesión; check-in sin login del asistente.
+- [x] Al confirmar RSVP: QR + correo (sin password; QR = `rsvp_id` vía `sendRsvpPass`).
+- [ ] Unique: fila en `passes` por `rsvp_id` (hoy el QR no persiste en `passes`).
+- [x] Reenviar desde admin reusa el mismo QR (`rsvp_id` estable).
+- [ ] Attach cuenta: update `profile_id` en fila `passes` (sí se liga en `session_rsvps`).
+- [x] Mesa: UUID → RSVP confirmado; check-in sin cuenta (sin `arrivals` si no hay profile).
+- [ ] Admin pases / mesa: filtrar por sesión de forma explícita en listados.
 
 ---
 
-## Task 15 — Redefinir awaiting-approval / admitted_at
+## Task 15 — Cuenta verificada (gate de diagnósticos)
+
+**Decisión de producto (Yamil):** todas las cuentas deben quedar **verificadas** por superadmin para usar diagnósticos. Pueden crear cuenta y entrar; sin verificación no ven metodología/diagnóstico.
 
 **Files:**
-- Modify: `awaiting-approval.ts`, `session-hold.ts`, onboarding gates
-- Modify: `approve_external_signup` usage
+- Modify: `awaiting-approval.ts`, `session-hold.ts`, gates de `/metodologia` y `/app` según rutas
+- Modify: UI Empresas admin — copy “Verificar cuenta” (no “Aprobar asiento”)
+- Modify: `approve_external_signup` / path pending = **verificar**, no cupo
+- Optional: helper `isCompanyVerified(company)` leyendo `admitted_at`
 
-- [ ] No bloquear `/app` por “esperando org” si el producto es cuenta libre (ya parcialmente así).
-- [ ] `admitted_at` = verificación de empresa para logo/eventuales privilegios; **no** cupo.
-- [ ] Path pending admin: moderación, no asiento.
+- [ ] Entrar a `/app` (home, perfil, empresa, sesiones, claim) **sin** exigir verificación.
+- [ ] Gate diagnóstico/metodología: si no verificada → mensaje “Tu cuenta está en revisión / pendiente de verificación” (Alert/toast shadcn; sin `alert()`).
+- [ ] Admin: acción explícita “Verificar” setea `admitted_at` (reusa columna; copy nueva).
+- [ ] `admitted_at` **no** descuenta cupo ni sustituye RSVP.
+- [ ] Path/link pending: org CRM = embudo de enlace; verificación de cuenta = solo superadmin.
+- [ ] Tests de gate + copy.
+- [ ] QA: cuenta nueva → entra app → no entra metodología → superadmin verifica → sí entra.
 
 ---
 
 ## Task 16 — Limpieza y deprecaciones
 
-- [ ] Dejar de usar password temporal en accept.
+- [x] Dejar de usar password temporal en accept. *(ruta usa `confirm_registration_rsvp` + `sendRsvpPass`)*
 - [ ] Documentar `public_registrations` vs `session_rsvps` (migración de lecturas admin).
 - [ ] Actualizar `docs/deuda-tecnica-sesion-del-pase.md` cuando quede resuelto.
 - [ ] AGENTS / notas breves si aplica.
@@ -351,7 +372,7 @@ flowchart TB
 2. Tasks 4–6 (registro + admin confirm + UX)  
 3. Tasks 7–9 (cuenta + /app + cancel)  
 4. Tasks 10–13 (CRM + org + tablero)  
-5. Tasks 14–16 (mail/pases + cleanup)  
+5. Tasks 14–16 (pases formales + **verificación Task 15** + cleanup)  
 6. Task 17 QA  
 
 PRs chicos por grupo; no un solo monstruo.
@@ -366,9 +387,10 @@ PRs chicos por grupo; no un solo monstruo.
 | 2026-11-22 | Tasks 4–6 registro+admin+UX | Hecho + remoto | `8804081` — `510` sync/confirm; `541` attribute invite; QR mail |
 | 2026-11-22 | Tasks 7–9 + 14 mesa | Hecho + remoto | `9ee857e` — `520` claim; `530` attach; `540` cancel+mesa; cancel UI solo onboarding |
 | 2026-11-22 | Tasks 10–13 CRM+org+tablero | Hecho + remoto | `1e2485a` + `43f1912` — `542/544`; conversiones org; cupos admin RSVP |
-| | Tasks 15–17 cleanup+QA | Pendiente | Deuda pase/session doc; QA E2E manual; cancel en `/app` |
+| 2026-11-22 | Producto: verificación de cuenta | Plan actualizado | Yamil: cuentas verificadas por superadmin para diagnósticos; copy “verificada” |
+| | Tasks 15–17 | Pendiente | Task 15 = gate verificación; 16 cleanup; 17 QA (+ cancel `/app`, pace org) |
 
-**Dónde quedamos (HEAD `43f1912`):** núcleo Luma shipped en `develop` (ahead of origin). Gaps: cancel por sesión en `/app`, `sector_pace` organismo aún CRM, métrica “sin cuenta”, QA E2E Task 17.
+**Dónde quedamos (HEAD `ba703c4`):** núcleo RSVP shipped. Siguiente bloque grande: **Task 15 verificación**. Gaps: cancel en `/app`, pace organismo, KPI sin cuenta, QA E2E.
 
 ---
 

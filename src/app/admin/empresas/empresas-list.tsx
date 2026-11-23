@@ -30,7 +30,7 @@ export function EmpresasList({
         { key: "sector_name", label: "Sector" },
         { key: "convoco", label: "Convocó", links: true },
         { key: "llegada", label: "Llegada" },
-        { key: "aprobacion", label: "Aprobación" },
+        { key: "aprobacion", label: "Verificación" },
       ]}
       rows={rows}
       page={page}

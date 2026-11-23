@@ -15,7 +15,7 @@ export function externalApprovalLabel(
     if (known.some((status) => accepted.has(status))) return "Aceptada";
     return "Pendiente";
   }
-  if (source === "path") return admittedAt ? "Aceptada" : "Pendiente";
+  if (source === "path") return admittedAt ? "Verificada" : "Sin verificar";
   return "Sin organismo";
 }
 

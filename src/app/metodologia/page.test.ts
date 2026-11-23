@@ -9,4 +9,6 @@ it("la página deja las 18 y sigue con el aviso de recarga", () => {
   expect(page).not.toContain("SECTIONS");
   expect(page).not.toContain("persona");
   expect(page).toContain("pickDraft");
+  expect(page).toContain("readCompanyVerified");
+  expect(page).toContain("PendingVerificationAlert");
 });

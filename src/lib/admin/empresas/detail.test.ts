@@ -38,7 +38,7 @@ describe("detalle de empresas", () => {
     expect(section).toContain("has_link");
     expect(section).toContain("La acepta");
     expect(section).toContain("/aceptar");
-    expect(section).toContain("Aceptar");
+    expect(section).toContain("Verificar cuenta");
     expect(route).toContain('rpc("approve_external_signup"');
     expect(route).toContain("requireSuperadmin()");
   });

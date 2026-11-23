@@ -3,8 +3,10 @@ import { ThemeToggle } from "@/components/site/theme-toggle";
 import { Disclaimer } from "@/components/methodology/v2/disclaimer";
 import { ForgetDraft } from "@/components/methodology/v2/forget-draft";
 import { MetodologiaScreen } from "@/components/methodology/v2/screen";
+import { PendingVerificationAlert } from "@/components/methodology/pending-verification-alert";
 import { prepareMetodologiaReload } from "@/lib/auth/metodologia-reload-gate";
 import { redirectUnfinishedEmpresario } from "@/lib/auth/onboarding-gate";
+import { readCompanyVerified } from "@/lib/auth/read-company-verified";
 import { draftStarted, needsDisclaimer } from "@/lib/methodology/v2/disclaimer-gate";
 import { pickDraft } from "@/lib/methodology/v2/recover";
 import { loadRun } from "./load-run";
@@ -14,6 +16,7 @@ export const instant = false;
 
 export default async function MetodologiaPage() {
   await redirectUnfinishedEmpresario();
+  const verified = await readCompanyVerified();
   const showReloadNotice = await prepareMetodologiaReload();
   const loaded = await loadRun();
   const draft = pickDraft(null, loaded.draft);
@@ -37,7 +40,11 @@ export default async function MetodologiaPage() {
           <AuthLogout />
         </div>
       </div>
-      {showDisclaimer ? (
+      {!verified ? (
+        <div className="container-site py-10">
+          <PendingVerificationAlert />
+        </div>
+      ) : showDisclaimer ? (
         <div className="container-site flex w-full flex-1 flex-col justify-center py-4 pb-10">
           <ForgetDraft profileId={loaded.profileId} />
           <Disclaimer />
