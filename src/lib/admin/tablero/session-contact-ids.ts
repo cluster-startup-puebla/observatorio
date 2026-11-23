@@ -1,21 +1,13 @@
 import "server-only";
 
 import type { adminDb } from "@/lib/admin/admin-db";
-import { companySessionOrFilter } from "./company-session-filter";
 
 type Db = NonNullable<Awaited<ReturnType<typeof adminDb>>>;
 
 /** Contact ids tied to a session via company.session_id or link_copies. */
 export async function sessionContactIds(db: Db, sessionId: string) {
-  const session = await db.from("sessions").select("id, is_current").eq("id", sessionId).maybeSingle();
-  if (session.error) throw new Error(session.error.message);
-  if (!session.data) return new Set<string>();
-
-  let companiesQuery = db.from("companies").select("profile_id");
-  const orFilter = companySessionOrFilter(session.data);
-  companiesQuery = orFilter ? companiesQuery.or(orFilter) : companiesQuery.eq("session_id", sessionId);
   const [companies, links] = await Promise.all([
-    companiesQuery,
+    db.from("companies").select("profile_id").eq("session_id", sessionId),
     db.from("link_copies").select("organization_id").eq("session_id", sessionId),
   ]);
   if (companies.error) throw new Error(companies.error.message);

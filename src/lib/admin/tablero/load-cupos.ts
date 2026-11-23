@@ -3,7 +3,6 @@ import "server-only";
 import { adminDb } from "@/lib/admin/admin-db";
 import type { EmpresaSource } from "@/lib/admin/empresas/empresa-row";
 import { pendingLinkEmails } from "@/lib/admin/empresas/pending-link-emails";
-import { companySessionOrFilter } from "./company-session-filter";
 import { companySeatColumns, toQuota, toSeat } from "./cupo-seat";
 import { omittedCompanyRows } from "./omitted-companies";
 import { sectorFill } from "./sector-fill";
@@ -23,21 +22,22 @@ function releasedIds(rows: { company_id?: string | null }[] | null) {
 }
 
 export async function loadCupos(sessionId?: string | null) {
+  if (!sessionId) return idle();
   const db = await adminDb();
   if (!db) return idle();
-  const columns = "id, venue, session_on, capacity_max, is_current";
-  const session = sessionId
-    ? await db.from("sessions").select(columns).eq("id", sessionId).maybeSingle()
-    : await db.from("sessions").select(columns).eq("is_current", true).maybeSingle();
+  const session = await db
+    .from("sessions")
+    .select("id, venue, session_on, capacity_max, is_current")
+    .eq("id", sessionId)
+    .maybeSingle();
   if (session.error) throw new Error(session.error.message);
   if (!session.data) return idle();
-  let companiesQuery = db
+  const companiesQuery = db
     .from("companies")
     .select(companySeatColumns)
     .eq("owner.role", "empresario")
-    .not("owner.onboarded_at", "is", null);
-  const orFilter = companySessionOrFilter(session.data);
-  companiesQuery = orFilter ? companiesQuery.or(orFilter) : companiesQuery.eq("session_id", session.data.id);
+    .not("owner.onboarded_at", "is", null)
+    .eq("session_id", session.data.id);
   const [quotas, companies, pending, cancelled] = await Promise.all([
     db.from("session_sector_quotas").select("capacity, sectors(name, slug)").eq("session_id", session.data.id),
     companiesQuery,

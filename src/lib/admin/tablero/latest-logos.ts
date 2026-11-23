@@ -5,25 +5,16 @@ import { companyOwner } from "@/lib/admin/empresas/company-owner";
 import { showableLogos } from "@/lib/admin/empresas/event-logos";
 import { waitsForExternalApproval } from "@/lib/admin/empresas/external-approval";
 import { pendingLinkEmails } from "@/lib/admin/empresas/pending-link-emails";
-import { companySessionOrFilter } from "./company-session-filter";
 
 export async function loadLatestLogos(sessionId?: string | null) {
   const db = await adminDb();
-  if (!db) return [];
-  let query = db
+  if (!db || !sessionId) return [];
+  const companies = await db
     .from("companies")
     .select(`id, legal_name, profile_id, show_logo_on_event, sector_source, admitted_at, created_at, owner:${companyOwner}(email)`)
     .eq("show_logo_on_event", true)
+    .eq("session_id", sessionId)
     .order("created_at", { ascending: false });
-  if (sessionId) {
-    const session = await db.from("sessions").select("id, is_current").eq("id", sessionId).maybeSingle();
-    if (session.error) throw new Error(session.error.message);
-    if (session.data) {
-      const orFilter = companySessionOrFilter(session.data);
-      query = orFilter ? query.or(orFilter) : query.eq("session_id", sessionId);
-    }
-  }
-  const companies = await query;
   if (companies.error) throw new Error(companies.error.message);
   const pending = await pendingLinkEmails(db);
   const listed = companies.data ?? [];

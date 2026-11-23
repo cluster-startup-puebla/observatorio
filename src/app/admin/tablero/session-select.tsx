@@ -16,13 +16,12 @@ import type { SessionChoice } from "@/lib/admin/tablero/session-choices";
 export function SessionSelect({ choices, selectedId }: { choices: SessionChoice[]; selectedId: string | null }) {
   const router = useRouter();
   const [pending, start] = useTransition();
-  const initial = selectedId ?? choices.find((choice) => choice.current)?.id ?? choices[0]?.id ?? "";
-  const [selected, setSelected] = useState(initial);
+  const [selected, setSelected] = useState(selectedId ?? "");
   if (choices.length === 0) return null;
 
   function apply(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    start(() => router.push(`/admin?sesion=${selected}`));
+    start(() => router.push(selected ? `/admin?sesion=${selected}` : "/admin"));
   }
 
   return (
@@ -38,6 +37,7 @@ export function SessionSelect({ choices, selectedId }: { choices: SessionChoice[
           style={{ backgroundImage: sessionChevron }}
           onChange={(event) => setSelected(event.target.value)}
         >
+          <option value="">Elige una sesión</option>
           {choices.map((choice) => (
             <option key={choice.id} value={choice.id}>
               {optionLabel(choice)}
@@ -46,15 +46,15 @@ export function SessionSelect({ choices, selectedId }: { choices: SessionChoice[
         </select>
       </label>
       <div className="flex flex-wrap items-center gap-2">
-        <Button type="submit" size="lg" disabled={pending} className="min-w-[10.5rem] rounded-full px-4">
+        <Button type="submit" size="lg" disabled={pending || !selected} className="min-w-[10.5rem] rounded-full px-4">
           {pending ? <Loader2 className="size-4 animate-spin" aria-hidden /> : null}
           {pending ? "Cargando…" : "Ver convocatoria"}
         </Button>
-        <Button size="lg" variant="outline" className="rounded-full px-4" asChild>
-          <Link href={`/admin/sesiones/${selected}`} aria-disabled={pending}>
-            Ver detalle
-          </Link>
-        </Button>
+        {selected ? (
+          <Button size="lg" variant="outline" className="rounded-full px-4" asChild>
+            <Link href={`/admin/sesiones/${selected}`}>Ver detalle</Link>
+          </Button>
+        ) : null}
       </div>
     </form>
   );
