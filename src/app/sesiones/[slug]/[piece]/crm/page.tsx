@@ -49,11 +49,17 @@ export default async function CrmPage({
         <CrmToggle vista={vista} estado={query.estado} />
       </header>
       {vista === "tarjetas" ? (
-        <CrmCards people={people} vista={vista} slug={owner.slug} error={query.error} />
+        <CrmCards
+          people={people}
+          vista={vista}
+          slug={owner.slug}
+          error={query.error}
+          sessionSlug={session.publicSlug}
+        />
       ) : (
         <div className="grid gap-4">
           <CrmFilters estado={query.estado} />
-          <CrmTable people={people} vista={vista} slug={owner.slug} />
+          <CrmTable people={people} vista={vista} slug={owner.slug} sessionSlug={session.publicSlug} />
         </div>
       )}
     </div>

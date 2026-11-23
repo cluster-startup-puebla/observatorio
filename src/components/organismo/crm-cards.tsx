@@ -15,11 +15,13 @@ export function CrmCards({
   vista,
   slug,
   error,
+  sessionSlug,
 }: {
   people: CrmPerson[];
   vista: "tabla" | "tarjetas";
   slug: string;
   error?: string;
+  sessionSlug?: string;
 }) {
   return (
     <div className="grid items-start gap-4 lg:grid-cols-3">
@@ -38,7 +40,7 @@ export function CrmCards({
               rows.map((person) => (
                 <article key={person.id} className="grid gap-2 rounded-xl border border-line bg-elevated p-4">
                   <CrmCardBody person={person} />
-                  <PendingActions person={person} slug={slug} vista={vista} />
+                  <PendingActions person={person} slug={slug} vista={vista} sessionSlug={sessionSlug} />
                 </article>
               ))
             )}

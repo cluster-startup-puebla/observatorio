@@ -6,10 +6,12 @@ export function CrmTable({
   people,
   vista,
   slug,
+  sessionSlug,
 }: {
   people: CrmPerson[];
   vista: "tabla" | "tarjetas";
   slug: string;
+  sessionSlug?: string;
 }) {
   return (
     <div className="overflow-x-auto border border-line" data-tour="crm">
@@ -38,7 +40,7 @@ export function CrmTable({
                 <td className="px-4 py-3">{person.correo}</td>
                 <td className="px-4 py-3">{orgEstadoLabel(person.status)}</td>
                 <td className="px-4 py-3">
-                  <PendingActions person={person} slug={slug} vista={vista} />
+                  <PendingActions person={person} slug={slug} vista={vista} sessionSlug={sessionSlug} />
                 </td>
               </tr>
             ))
