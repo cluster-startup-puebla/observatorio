@@ -3,15 +3,18 @@ import { describe, expect, it } from "vitest";
 import { WelcomeMail } from "./welcome-mail";
 
 describe("correo de bienvenida", () => {
-  it("avisa que la cuenta existe y manda a iniciar sesión", async () => {
+  it("habla de beneficios sin datos del foro", async () => {
     const html = await render(<WelcomeMail continueHref="https://observatorio.example/login" />);
-    expect(html).toContain("Tu cuenta ya fue creada");
-    expect(html).toContain("termina el perfil de tu empresa");
+    expect(html).toContain("Tu cuenta ya está lista");
+    expect(html).toContain("diagnóstico de tu sector");
+    expect(html).toContain("innovación abierta");
     expect(html).toContain("https://observatorio.example/login");
     expect(html).toContain("Iniciar sesión");
-    expect(html).not.toContain("Tu lugar ya está apartado");
-    expect(html).not.toContain("Ahí queda tu pase");
-    expect(html).toContain("Hotel Quinta Real, Puebla");
+    expect(html).not.toContain("organismo te acepte");
+    expect(html).not.toContain("Hotel Quinta Real");
+    expect(html).not.toContain("Fecha:");
+    expect(html).not.toContain("Dónde:");
+    expect(html).not.toContain("Horario:");
     expect(html).not.toContain("cid:pase");
   });
 
@@ -19,6 +22,5 @@ describe("correo de bienvenida", () => {
     const html = await render(<WelcomeMail continueHref={null} />);
     expect(html).toContain("Iniciar sesión");
     expect(html).toContain("https://observatorio.clusterdestartups.org/login");
-    expect(html).not.toContain("Inicia sesión para terminar tu perfil.");
   });
 });
