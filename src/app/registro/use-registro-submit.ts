@@ -20,22 +20,38 @@ const empty = {
 
 const fallback = "No se pudo guardar. Revisa los datos e intenta de nuevo.";
 
-export function useRegistroSubmit(sector: string, invitacion: string, sessionId: string) {
+export function useRegistroSubmit(
+  sector: string,
+  invitacion: string,
+  sessionId: string,
+  lockedReferral?: string | null,
+) {
   const [ready, setReady] = useState(false);
   const [done, setDone] = useState(false);
   const [error, setError] = useState("");
   const [pending, setPending] = useState(false);
   const [terms, setTerms] = useState(false);
-  const [values, setValues] = useState(empty);
+  const [values, setValues] = useState({
+    ...empty,
+    referralSource: lockedReferral ?? "",
+  });
 
   useEffect(() => {
     setDone(readRegistroDone());
     setReady(true);
   }, []);
 
+  useEffect(() => {
+    if (lockedReferral) setValues((current) => ({ ...current, referralSource: lockedReferral }));
+  }, [lockedReferral]);
+
   function patch(next: Partial<typeof empty>) {
     setError("");
-    setValues((current) => ({ ...current, ...next }));
+    setValues((current) => ({
+      ...current,
+      ...next,
+      ...(lockedReferral ? { referralSource: lockedReferral } : {}),
+    }));
   }
 
   function acceptTerms(next: boolean) {
@@ -50,6 +66,7 @@ export function useRegistroSubmit(sector: string, invitacion: string, sessionId:
     try {
       const result = await submitRegistro({
         ...values,
+        referralSource: lockedReferral || values.referralSource,
         sectorSlug: sector || values.sectorSlug,
         inviteToken: invitacion,
         sessionId,

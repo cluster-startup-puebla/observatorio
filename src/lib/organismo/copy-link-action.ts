@@ -10,8 +10,10 @@ import { copySupabaseEventLink } from "./copy-link-supabase";
 
 export async function copyEventLinkAction(formData: FormData) {
   const sector = String(formData.get("sector") ?? "").trim() || "turismo";
+  const sessionId = String(formData.get("session_id") ?? "").trim();
+  console.info("[organismo] generar enlace", { sector, sessionId: sessionId || null });
   if (usesSupabaseAuth()) {
-    await copySupabaseEventLink(sector, String(formData.get("session_id") ?? ""));
+    await copySupabaseEventLink(sector, sessionId);
     return;
   }
   const id = await readAccountId();

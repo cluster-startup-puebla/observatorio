@@ -6,6 +6,7 @@ import { OpensChart } from "@/components/organismo/opens-chart";
 import { SectorCuts } from "@/components/organismo/sector-cuts";
 import { loadOrgHome } from "@/lib/organismo/load-home";
 import { loadSectorSeats } from "@/lib/organismo/load-sector-seats";
+import { orgSessionIdBySlug } from "@/lib/organismo/session-id-by-slug";
 import { sectors } from "@/lib/sectors";
 
 export async function OrgHome({
@@ -32,7 +33,11 @@ export async function OrgHome({
   brandColor?: string;
 }) {
   const chosen = sectors.find((item) => item.slug === corte);
-  const [stats, sessions] = await Promise.all([loadOrgHome(orgId, chosen?.slug), loadCurrentSessions()]);
+  const sessionId = sessionSlug ? await orgSessionIdBySlug(sessionSlug) : null;
+  const [stats, sessions] = await Promise.all([
+    loadOrgHome(orgId, chosen?.slug, sessionId),
+    loadCurrentSessions(),
+  ]);
   const seats = await loadSectorSeats(stats.cuts.map((cut) => cut.slug));
   const hint = chosen
     ? `Aperturas y conversiones de ${chosen.name} en los últimos 14 días.`
@@ -44,7 +49,15 @@ export async function OrgHome({
         <h1 className="text-h1 text-ink">{name}</h1>
         <p className="text-body text-ink-secondary">Panel de {slug}</p>
       </header>
-      <CopyLink url={url} sector={sector} failed={failed} ready={ready} sessions={sessions} brandColor={brandColor} />
+      <CopyLink
+        url={url}
+        sector={sector}
+        failed={failed}
+        ready={ready}
+        sessions={sessions}
+        brandColor={brandColor}
+        preferredSessionId={sessionId}
+      />
       <LinkCards opens={stats.opens} conversions={stats.conversions} rate={stats.rate} />
       <SectorCuts orgSlug={slug} sessionSlug={sessionSlug} cuts={stats.cuts} active={chosen?.slug} seats={seats} />
       <OpensChart bars={stats.bars} hint={hint} color={brandColor} />

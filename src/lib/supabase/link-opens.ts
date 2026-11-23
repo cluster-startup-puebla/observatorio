@@ -12,21 +12,33 @@ function anonClient() {
   return createClient(url, key, { auth: { persistSession: false, autoRefreshToken: false } });
 }
 
-export async function recordLinkOpen(input: { token: string; sectorSlug: string; at: string }) {
+export async function recordLinkOpen(input: {
+  token: string;
+  sectorSlug: string;
+  at: string;
+  sessionId?: string | null;
+}) {
   const orgId = openRef(input.token, refSecret());
   if (!orgId || !isUuid(orgId)) return;
   await anonClient().rpc("record_link_open", {
     org_id: orgId,
     sector_slug: input.sectorSlug,
+    p_session_id: input.sessionId && isUuid(input.sessionId) ? input.sessionId : null,
   });
 }
 
-export async function opensForOrganization(client: SupabaseClient, orgId: string) {
-  const { data, error } = await client
+export async function opensForOrganization(
+  client: SupabaseClient,
+  orgId: string,
+  sessionId?: string | null,
+) {
+  let query = client
     .from("link_opens")
-    .select("opened_at, sectors(slug)")
+    .select("opened_at, session_id, sectors(slug)")
     .eq("organization_id", orgId)
     .order("opened_at", { ascending: false });
+  if (sessionId) query = query.eq("session_id", sessionId);
+  const { data, error } = await query;
   if (error) throw new Error(error.message);
   return (data ?? []).map((row) => {
     const nested = row.sectors as { slug?: string } | { slug?: string }[] | null;

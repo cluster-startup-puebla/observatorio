@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { AuthShell } from "@/components/auth/auth-shell";
 import { pageMetadata } from "@/lib/metadata";
+import { eventToken } from "@/lib/organismo/event-token";
+import { inviteReferralSource } from "@/lib/registro/invite-referral";
 import { loadRegistroSessionId } from "@/lib/registro/resolve-session";
 import { sessionIdBySlug } from "@/lib/registro/session-id-by-slug";
 import { RegistroForm } from "./registro-form";
@@ -19,12 +21,15 @@ type Search = Promise<Record<string, string | string[] | undefined>>;
 export default async function RegistroPage({ searchParams }: { searchParams: Search }) {
   const params = await searchParams;
   const sector = typeof params.sector === "string" ? params.sector : undefined;
-  const invitacion = typeof params.invitacion === "string" ? params.invitacion : undefined;
+  const invitacion =
+    (typeof params.invitacion === "string" ? params.invitacion : undefined) ??
+    eventToken(params) ??
+    undefined;
   const querySesion = typeof params.sesion === "string" ? params.sesion : undefined;
-  const sessionId = await loadRegistroSessionId({
-    queryId: querySesion,
-    lookup: sessionIdBySlug,
-  });
+  const [sessionId, lockedReferral] = await Promise.all([
+    loadRegistroSessionId({ queryId: querySesion, lookup: sessionIdBySlug }),
+    inviteReferralSource(invitacion),
+  ]);
 
   return (
     <AuthShell
@@ -42,6 +47,7 @@ export default async function RegistroPage({ searchParams }: { searchParams: Sea
           sector={sector}
           invitacion={invitacion}
           sessionId={sessionId}
+          lockedReferral={lockedReferral}
           sourceFilter="cluster"
         />
       ) : (

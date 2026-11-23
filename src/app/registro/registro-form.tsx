@@ -14,14 +14,16 @@ export function RegistroForm({
   sector,
   invitacion,
   sessionId,
+  lockedReferral,
   sourceFilter = "all",
 }: {
   sector?: string;
   invitacion?: string;
   sessionId: string;
+  lockedReferral?: string | null;
   sourceFilter?: ReferralSourceFilter;
 }) {
-  const form = useRegistroSubmit(sector ?? "", invitacion ?? "", sessionId);
+  const form = useRegistroSubmit(sector ?? "", invitacion ?? "", sessionId, lockedReferral);
 
   if (!form.ready) return null;
   if (form.done) return <RegistroDone sector={sector} invitacion={invitacion} />;
@@ -42,6 +44,7 @@ export function RegistroForm({
         onChange={form.patch}
         onTerms={form.acceptTerms}
         sourceFilter={sourceFilter}
+        lockedReferral={lockedReferral}
       />
       {form.error ? (
         <Alert variant="destructive">

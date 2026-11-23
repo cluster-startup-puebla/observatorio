@@ -1,6 +1,7 @@
 "use server";
 
 import { serverIssue } from "@/lib/onboarding/step-issue";
+import { inviteReferralSource } from "@/lib/registro/invite-referral";
 import { stepOneIssue, type StepOne } from "@/lib/registro/step-one";
 import { stepTwoIssue, type StepTwo } from "@/lib/registro/step-two";
 import { createSupabaseAnon } from "@/lib/supabase/auth-session";
@@ -36,33 +37,38 @@ function rpcSentence(message: string | undefined) {
 type Input = StepOne & StepTwo & { inviteToken: string; sessionId: string };
 
 export async function submitRegistro(input: Input) {
-  const person = stepOneIssue(input);
+  const lockedReferral = await inviteReferralSource(input.inviteToken);
+  const payload = {
+    ...input,
+    referralSource: lockedReferral || input.referralSource,
+  };
+  const person = stepOneIssue(payload);
   if (person) return { error: sentence(person) };
-  const company = stepTwoIssue(input);
+  const company = stepTwoIssue(payload);
   if (company) return { error: sentence(company) };
-  if (!input.sessionId.trim()) return { error: sentence("sesion") };
+  if (!payload.sessionId.trim()) return { error: sentence("sesion") };
   const supabase = createSupabaseAnon();
   const started = await supabase.rpc("start_public_registration", {
-    full_name: input.fullName,
-    job_title: input.jobTitle,
-    email: input.email,
-    whatsapp: input.whatsapp,
-    sector_slug: input.sectorSlug,
-    invite_token: input.inviteToken,
-    p_session_id: input.sessionId,
+    full_name: payload.fullName,
+    job_title: payload.jobTitle,
+    email: payload.email,
+    whatsapp: payload.whatsapp,
+    sector_slug: payload.sectorSlug,
+    invite_token: payload.inviteToken,
+    p_session_id: payload.sessionId,
   });
   if (started.error || typeof started.data !== "string" || !started.data) {
     return { error: rpcSentence(started.error?.message) };
   }
   const finished = await supabase.rpc("finish_public_registration", {
     registration_id: started.data,
-    company_name: input.companyName,
-    market_size: input.marketSize,
-    employee_band: input.employeeBand,
-    municipality: input.municipality,
-    sector_slug: input.sectorSlug,
-    referral_source: input.referralSource,
-    session_interest: input.sessionInterest,
+    company_name: payload.companyName,
+    market_size: payload.marketSize,
+    employee_band: payload.employeeBand,
+    municipality: payload.municipality,
+    sector_slug: payload.sectorSlug,
+    referral_source: payload.referralSource,
+    session_interest: payload.sessionInterest,
   });
   if (finished.error) return { error: rpcSentence(finished.error.message) };
   return { ok: true as const };

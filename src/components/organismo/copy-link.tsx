@@ -1,6 +1,5 @@
-import { SheetSubmit } from "@/components/admin/sheet-submit";
-import { CopyLinkButton } from "@/components/organismo/copy-link-button";
-import { LinkReady } from "@/components/organismo/link-ready";
+import { CopyLinkResult } from "@/components/organismo/copy-link-result";
+import { CopyLinkSubmit } from "@/components/organismo/copy-link-submit";
 import { SessionPick } from "@/components/session-pick";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { copyEventLinkAction } from "@/lib/organismo/copy-link-action";
@@ -13,9 +12,7 @@ const chevron =
 const control =
   "h-9 appearance-none rounded-md border border-line bg-elevated bg-[length:1rem] bg-[position:right_0.75rem_center] bg-no-repeat pr-9 pl-3 text-small text-ink";
 
-const chevronStyle = {
-  backgroundImage: chevron,
-};
+const chevronStyle = { backgroundImage: chevron };
 
 export function CopyLink({
   url,
@@ -24,6 +21,7 @@ export function CopyLink({
   ready,
   sessions = [],
   brandColor,
+  preferredSessionId,
 }: {
   url?: string;
   sector?: string;
@@ -31,6 +29,7 @@ export function CopyLink({
   ready?: boolean;
   sessions?: { id: string; label: string }[];
   brandColor?: string;
+  preferredSessionId?: string | null;
 }) {
   const selected = sector && inviteSectors.some((item) => item.slug === sector) ? sector : "turismo";
   const tone = sidebarInk(brandColor);
@@ -53,31 +52,21 @@ export function CopyLink({
             ))}
           </select>
         </label>
-        <SessionPick sessions={sessions} tour="sesion" className={`${control} w-72 max-w-full`} selectStyle={chevronStyle} />
+        <SessionPick
+          sessions={sessions}
+          preferredId={preferredSessionId}
+          tour="sesion"
+          className={`${control} w-72 max-w-full`}
+          selectStyle={chevronStyle}
+        />
         <span data-tour="generar" className="inline-flex">
-          <SheetSubmit
-            pendingLabel="Generando…"
-            className="h-9 rounded-md px-4 py-0 text-small shadow-none hover:brightness-95"
+          <CopyLinkSubmit
+            className="h-9 rounded-md px-4 text-small font-semibold shadow-none hover:brightness-95 disabled:opacity-70"
             style={{ background: tone.background, color: tone.ink }}
-          >
-            Generar enlace
-          </SheetSubmit>
+          />
         </span>
       </form>
-      {ready && url ? <LinkReady url={url} /> : null}
-      {url ? (
-        <div className="flex flex-col gap-2 sm:flex-row sm:items-center">
-          <p
-            data-testid="enlace-evento"
-            className="min-w-0 flex-1 break-all rounded-lg border border-line bg-surface-subtle px-3 py-2 font-mono text-small text-ink"
-          >
-            {url}
-          </p>
-          <CopyLinkButton url={url} />
-        </div>
-      ) : (
-        <p className="text-small text-ink-muted">Elige el sector y genera el enlace para compartirlo.</p>
-      )}
+      <CopyLinkResult url={url} ready={ready} />
     </section>
   );
 }

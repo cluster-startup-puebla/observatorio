@@ -26,7 +26,14 @@ export async function PieceView({
     return <OrgPiece owner={owner} sessionSlug={sessionSlug} searchParams={searchParams} />;
   }
   if (kind === "sector" && sector.slug && sector.name) {
-    return <SectorPiece name={sector.name} slug={sector.slug} searchParams={searchParams} />;
+    return (
+      <SectorPiece
+        name={sector.name}
+        slug={sector.slug}
+        sessionSlug={sessionSlug}
+        searchParams={searchParams}
+      />
+    );
   }
   notFound();
 }

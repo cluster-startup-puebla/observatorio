@@ -1,3 +1,4 @@
+import { readFileSync } from "node:fs";
 import { renderToStaticMarkup } from "react-dom/server";
 import { describe, expect, it } from "vitest";
 import { ActionButton } from "./action-button";
@@ -28,4 +29,11 @@ describe("ActionButton", () => {
     expect(html).toContain('data-state="disabled"');
     expect(html).toContain("Rechazar");
   });
+
+  it("el hold no bloquea el submit en el mismo tick", () => {
+    const source = readFileSync("src/components/ui/action-button.tsx", "utf8");
+    expect(source).toContain("queueMicrotask");
+    expect(source).toContain("setHeld(true)");
+  });
 });
+

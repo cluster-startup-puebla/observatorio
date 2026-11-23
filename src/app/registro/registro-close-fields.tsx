@@ -12,6 +12,7 @@ export function RegistroCloseFields({
   onChange,
   onTerms,
   sourceFilter = "all",
+  lockedReferral,
 }: {
   referralSource: string;
   sessionInterest: string;
@@ -19,17 +20,24 @@ export function RegistroCloseFields({
   onChange: (patch: { referralSource?: string; sessionInterest?: string }) => void;
   onTerms: (terms: boolean) => void;
   sourceFilter?: ReferralSourceFilter;
+  lockedReferral?: string | null;
 }) {
   return (
     <div className="grid min-w-0 gap-4">
       <div className="grid gap-2">
         <p className="text-small font-semibold text-ink">Cómo te enteraste</p>
-        <SourceCombobox
-          compact
-          filter={sourceFilter}
-          value={referralSource}
-          onChange={(next) => onChange({ referralSource: next })}
-        />
+        {lockedReferral ? (
+          <p className="rounded-lg border border-line bg-surface-subtle px-3 py-2 text-small text-ink">
+            {lockedReferral}
+          </p>
+        ) : (
+          <SourceCombobox
+            compact
+            filter={sourceFilter}
+            value={referralSource}
+            onChange={(next) => onChange({ referralSource: next })}
+          />
+        )}
       </div>
       <Field id="sessionInterest" label="Qué te interesa">
         <textarea

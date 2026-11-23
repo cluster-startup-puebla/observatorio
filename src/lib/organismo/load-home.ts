@@ -6,9 +6,9 @@ import { linkStats } from "./link-stats";
 import { loadSupabaseHome } from "./load-supabase-home";
 import { sectorCuts } from "./sector-cuts";
 
-export async function loadOrgHome(orgId: string, sectorSlug?: string) {
+export async function loadOrgHome(orgId: string, sectorSlug?: string, sessionId?: string | null) {
   await connection();
-  if (usesSupabaseAuth()) return loadSupabaseHome(orgId, sectorSlug);
+  if (usesSupabaseAuth()) return loadSupabaseHome(orgId, sectorSlug, sessionId);
   const directory = getDirectory();
   const opens = await directory.opensFor(orgId);
   const names = new Map(sectors.map((sector) => [sector.slug, sector.name]));

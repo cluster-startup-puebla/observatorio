@@ -47,7 +47,8 @@ export function ActionButton({
         if (event.defaultPrevented || !hold || locked) return;
         const form = event.currentTarget.form;
         if (form && !form.checkValidity()) return;
-        setHeld(true);
+        // Defer so disabling the button does not cancel the submit.
+        queueMicrotask(() => setHeld(true));
       }}
     >
       {busy ? <Loader2 className="size-4 animate-spin" aria-hidden /> : null}

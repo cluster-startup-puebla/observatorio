@@ -5,14 +5,17 @@ export function SessionPick({
   className,
   selectStyle,
   tour,
+  preferredId,
 }: {
   sessions: { id: string; label: string }[];
   className?: string;
   selectStyle?: CSSProperties;
   tour?: string;
+  preferredId?: string | null;
 }) {
   if (sessions.length === 0) return null;
-  const only = sessions.length === 1 ? sessions[0].id : "";
+  const preferred = preferredId && sessions.some((session) => session.id === preferredId) ? preferredId : "";
+  const only = sessions.length === 1 ? sessions[0].id : preferred;
   return (
     <label className="grid gap-1 text-small text-ink-secondary">
       Sesión
