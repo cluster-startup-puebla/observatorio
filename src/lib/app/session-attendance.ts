@@ -3,7 +3,7 @@ import "server-only";
 import { createSupabaseWithAccess } from "@/lib/supabase/auth-session";
 
 const copy: Record<string, string> = {
-  confirmed: "Ya tienes lugar",
+  confirmed: "En espera",
   pending: "Tu lugar se confirma aparte",
   cancelled: "Cancelaste tu lugar",
 };
@@ -14,7 +14,7 @@ export async function sessionAttendanceLabel(token: string, profileId: string, s
   const session = await db.from("sessions").select("id, is_current").eq("public_slug", slug).maybeSingle();
   if (session.error) throw new Error(session.error.message);
   if (!session.data?.id) {
-    return { label: "", canClaim: false, canCancel: false, sessionId: null as string | null };
+    return emptyAttendance(null);
   }
 
   const profile = await db.from("profiles").select("email").eq("id", profileId).maybeSingle();
@@ -22,20 +22,26 @@ export async function sessionAttendanceLabel(token: string, profileId: string, s
   const email = String(profile.data?.email ?? "")
     .trim()
     .toLowerCase();
-  if (!email) {
-    return { label: "", canClaim: false, canCancel: false, sessionId: session.data.id };
-  }
+  if (!email) return emptyAttendance(session.data.id);
 
   const rsvp = await db
     .from("session_rsvps")
-    .select("status")
+    .select("id, status")
     .eq("session_id", session.data.id)
     .eq("email", email)
     .maybeSingle();
   if (rsvp.error) throw new Error(rsvp.error.message);
   const status = rsvp.data?.status ?? "";
-  const label = copy[status] ?? "";
-  const canClaim = Boolean(session.data.is_current) && status !== "confirmed";
-  const canCancel = status === "confirmed";
-  return { label, canClaim, canCancel, sessionId: session.data.id };
+  const rsvpId = status === "confirmed" && typeof rsvp.data?.id === "string" ? rsvp.data.id : null;
+  return {
+    label: copy[status] ?? "",
+    canClaim: Boolean(session.data.is_current) && status !== "confirmed",
+    canCancel: status === "confirmed",
+    sessionId: session.data.id,
+    rsvpId,
+  };
+}
+
+function emptyAttendance(sessionId: string | null) {
+  return { label: "", canClaim: false, canCancel: false, sessionId, rsvpId: null as string | null };
 }

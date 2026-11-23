@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button";
 export function ClaimSessionButton({ sessionId }: { sessionId: string }) {
   const [pending, start] = useTransition();
   const [done, setDone] = useState(false);
-  if (done) return <p className="text-body text-ink">Ya tienes lugar</p>;
+  if (done) return <p className="text-body text-ink">Quedaste en espera de aceptación.</p>;
 
   return (
     <Button
@@ -24,11 +24,11 @@ export function ClaimSessionButton({ sessionId }: { sessionId: string }) {
             return;
           }
           setDone(true);
-          toast.success("Lugar apartado.");
+          toast.success("Solicitud enviada. Quedas en espera.");
         })
       }
     >
-      {pending ? "Apartando…" : "Apartar lugar"}
+      {pending ? "Enviando…" : "Solicitar lugar"}
     </Button>
   );
 }

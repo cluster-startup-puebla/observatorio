@@ -3,6 +3,10 @@ import { cacheLife, cacheTag } from "next/cache";
 import { redirect } from "next/navigation";
 import { CancelSessionRsvp } from "@/components/app/cancel-session-rsvp";
 import { ClaimSessionButton } from "@/components/app/claim-session-button";
+import { SessionDetailShell } from "@/components/app/session-detail-shell";
+import { SessionPassQr } from "@/components/app/session-pass-qr";
+import { SessionPassWaiting } from "@/components/app/session-pass-waiting";
+import { loadPassAuthorization } from "@/lib/app/load-pass-authorization";
 import { sessionAttendanceLabel } from "@/lib/app/session-attendance";
 import { loadSessionDetail } from "@/lib/app/load-sector-sessions";
 import { sessionLife, sessionsTag } from "@/lib/app/view-cache";
@@ -45,15 +49,28 @@ async function SessionDetail({ params }: { params: Promise<{ slug: string }> }) 
   if (!session) redirect("/app/sesiones");
 
   const attendance = await sessionAttendanceLabel(token, account.id, slug);
+  const passOk = attendance.rsvpId
+    ? await loadPassAuthorization(token, account.id, account.email)
+    : false;
+
+  const status =
+    attendance.rsvpId && passOk
+      ? "Ya tienes lugar"
+      : attendance.label || undefined;
 
   return (
-    <article className="grid w-full max-w-2xl gap-3 md:max-w-none">
-      <h1 className="text-[1.4rem] leading-[1.15] text-ink">{session.title}</h1>
-      <p className="text-body text-ink">{sessionOnLabel(session.sessionOn)}</p>
-      <p className="text-body text-ink-secondary">{session.venue}</p>
-      {attendance.label ? <p className="text-body text-ink">{attendance.label}</p> : null}
-      {attendance.canClaim && attendance.sessionId ? <ClaimSessionButton sessionId={attendance.sessionId} /> : null}
-      {attendance.canCancel && attendance.sessionId ? <CancelSessionRsvp sessionId={attendance.sessionId} /> : null}
-    </article>
+    <SessionDetailShell
+      title={session.title}
+      when={sessionOnLabel(session.sessionOn)}
+      venue={session.venue}
+      status={status}
+    >
+      <div className="grid gap-4">
+        {attendance.rsvpId && passOk ? <SessionPassQr rsvpId={attendance.rsvpId} /> : null}
+        {attendance.rsvpId && !passOk ? <SessionPassWaiting /> : null}
+        {attendance.canClaim && attendance.sessionId ? <ClaimSessionButton sessionId={attendance.sessionId} /> : null}
+        {attendance.canCancel && attendance.sessionId ? <CancelSessionRsvp sessionId={attendance.sessionId} /> : null}
+      </div>
+    </SessionDetailShell>
   );
 }
