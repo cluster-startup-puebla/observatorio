@@ -1,4 +1,5 @@
 import type { EmpresarioProfile } from "@/lib/onboarding/empresario-draft";
+import { attributeInviteAfterPour } from "./pour-attribute";
 
 type PublicRegistrationRow = {
   full_name: string | null;
@@ -40,22 +41,6 @@ function firstRow(data: unknown) {
   return row as PublicRegistrationRow;
 }
 
-async function attributeInvite(token: string | null, email: string, profile: EmpresarioProfile) {
-  if (!token) return;
-  try {
-    const { attributeSignup } = await import("@/lib/organismo/attribute-signup");
-    await attributeSignup({
-      token,
-      email,
-      sectorSlug: profile.sectorSlug,
-      nombre: profile.fullName,
-      empresa: profile.companyName,
-    });
-  } catch {
-    // The profile is already saved; poured_at is still marked.
-  }
-}
-
 export async function pourRegistration(accessToken: string, profileId: string, email: string) {
   if (!accessToken || !profileId) return false;
   try {
@@ -75,7 +60,9 @@ export async function pourRegistration(accessToken: string, profileId: string, e
       false,
     );
     if (!saved.ok) return false;
-    await attributeInvite(row.invite_token, email, profile);
+    const { syncAttachedRsvps } = await import("@/lib/onboarding/sync-attached-rsvps");
+    await syncAttachedRsvps(accessToken, profileId, email);
+    await attributeInviteAfterPour(row.invite_token, email, profile);
     try {
       await db.rpc("mark_public_registration_poured", { profile_id: profileId });
     } catch {

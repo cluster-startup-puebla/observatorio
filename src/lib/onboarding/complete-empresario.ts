@@ -2,13 +2,14 @@
 
 import { redirect } from "next/navigation";
 import { readSessionAccount } from "@/lib/auth/session-account";
-import { getDirectory } from "@/lib/memory-directory";
 import { attributeSignup } from "@/lib/organismo/attribute-signup";
+import { finishInMemory } from "./complete-empresario-memory";
 import { createSupabaseWithAccess, readAccessToken, usesSupabaseAuth } from "@/lib/supabase/auth-session";
 import { logoUploadDecision } from "./company-logo";
 import { empresarioErrors, parseEmpresarioForm, type EmpresarioProfile } from "./empresario-draft";
 import { inviteToken } from "./invite-token";
 import { issueConfirmedPass } from "./issue-confirmed-pass";
+import { syncAttachedRsvps } from "./sync-attached-rsvps";
 import { saveCompanyLogo } from "./save-company-logo";
 import { saveEmpresarioProfile } from "./save-empresario";
 
@@ -32,7 +33,7 @@ async function finishInSupabase(profile: EmpresarioProfile, token: string, formD
   if (!logo.ok) back("logo", profile, token);
   const saved = await saveEmpresarioProfile(access!, session!.id, profile, Boolean(token), logo.show ?? false);
   if (!saved.ok) back(saved.reason, profile, token);
-  await createSupabaseWithAccess(access!).rpc("attach_rsvps_for_email");
+  await syncAttachedRsvps(access!, session!.id, session!.email);
   if (token) {
     await attributeSignup({
       token,
@@ -43,28 +44,6 @@ async function finishInSupabase(profile: EmpresarioProfile, token: string, formD
     });
   }
   await issueConfirmedPass(access!, session!.id, session!.email);
-}
-
-async function finishInMemory(id: string, profile: EmpresarioProfile, token: string) {
-  const directory = getDirectory();
-  const session = await readSessionAccount();
-  await directory.completeOnboarding(id, {
-    sectorSlug: profile.sectorSlug,
-    size: profile.employeeBand,
-    name: profile.fullName,
-    jobTitle: profile.jobTitle,
-    whatsapp: profile.whatsapp || undefined,
-    companyName: profile.companyName,
-    marketSize: profile.marketSize,
-    municipality: profile.municipality,
-    referralSource: profile.referralSource,
-    sessionInterest: profile.sessionInterest,
-    email: session?.email,
-  });
-  const account = await directory.getAccount(id);
-  if (account?.onboarded && token) {
-    await directory.attributeRegistration({ token, email: account.email, sectorSlug: profile.sectorSlug });
-  }
 }
 
 export async function completeEmpresarioAction(formData: FormData) {

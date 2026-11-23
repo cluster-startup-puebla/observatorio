@@ -1,5 +1,5 @@
 import { requireSuperadmin } from "@/lib/auth/require-superadmin";
-import { sendRsvpPass } from "@/lib/mail/send-rsvp-pass";
+import { deliverRsvpPass } from "@/lib/mail/deliver-rsvp-pass";
 import { isUuid } from "@/lib/ref-token";
 import { createSupabaseWithAccess, readAccessToken } from "@/lib/supabase/auth-session";
 import { NextResponse, type NextRequest } from "next/server";
@@ -33,7 +33,7 @@ export async function POST(request: NextRequest, context: { params: Promise<{ id
   }
   const session = await db.from("sessions").select("title").eq("id", row.session_id).maybeSingle();
   const label = session.data?.title?.trim() || "la sesión";
-  const sent = await sendRsvpPass(String(row.to_email), String(row.rsvp_id), label);
+  const sent = await deliverRsvpPass(db, String(row.to_email), String(row.rsvp_id), String(row.session_id), label);
   if (!sent.ok) return redirect(request, "error", "El lugar quedó confirmado. El pase no salió.");
   return redirect(request, "ok", "1");
 }
