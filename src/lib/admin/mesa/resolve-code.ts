@@ -3,18 +3,34 @@ import "server-only";
 import type { SupabaseClient } from "@supabase/supabase-js";
 import { looksLikeUuid } from "@/lib/admin/pases/scan";
 
-export type MesaCode = { kind: "profile"; profileId: string } | { kind: "rsvp"; rsvpId: string; profileId: string | null };
+export type MesaCode =
+  | { kind: "profile"; profileId: string }
+  | { kind: "rsvp"; rsvpId: string; profileId: string | null };
 
+/** Resolve QR payload: RSVP id, profile id, or legacy non-uuid profile key. */
 export async function resolveMesaCode(db: SupabaseClient, raw: string): Promise<MesaCode | null> {
   const code = raw.trim();
   if (!code) return null;
   if (!looksLikeUuid(code)) return { kind: "profile", profileId: code };
 
-  const listed = await db.rpc("mesa_rsvp_guest", { p_rsvp_id: code });
-  if (listed.error) throw new Error(listed.error.message);
-  const row = Array.isArray(listed.data) ? listed.data[0] : listed.data;
-  if (row) {
-    return { kind: "rsvp", rsvpId: code, profileId: (row.profile_id as string | null) ?? null };
+  const seat = await db
+    .from("session_rsvps")
+    .select("id, profile_id")
+    .eq("id", code)
+    .eq("status", "confirmed")
+    .maybeSingle();
+  if (seat.error) throw new Error(seat.error.message);
+  if (seat.data?.id) {
+    return {
+      kind: "rsvp",
+      rsvpId: String(seat.data.id),
+      profileId: seat.data.profile_id ? String(seat.data.profile_id) : null,
+    };
   }
-  return { kind: "profile", profileId: code };
+
+  const profile = await db.from("profiles").select("id").eq("id", code).maybeSingle();
+  if (profile.error) throw new Error(profile.error.message);
+  if (profile.data?.id) return { kind: "profile", profileId: String(profile.data.id) };
+
+  return null;
 }

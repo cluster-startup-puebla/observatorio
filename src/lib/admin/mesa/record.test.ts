@@ -19,15 +19,16 @@ describe("escaneo de la mesa", () => {
     });
   });
 
-  it("el handler inserta arrivals y el hecho llegar", () => {
-    const source = readFileSync("src/app/api/admin/mesa/route.ts", "utf8");
-    expect(source).toContain("await requireMesa()");
-    expect(source).toContain("scannedBy: account.id");
-    expect(source).toContain("guestQuery");
-    expect(source).toContain("recordArrival");
-    expect(source).toContain('.from("arrivals")');
-    expect(source).toContain('.from("crm_events")');
-    expect(source).toContain("mesa_guest");
-    expect(source).toContain("NextResponse.redirect(new URL(`${mesaHref}?${query}`, request.url), 303)");
+  it("el handler usa mesa_prepare_arrival e inserta arrivals", () => {
+    const process = readFileSync("src/lib/admin/mesa/process-scan.ts", "utf8");
+    const route = readFileSync("src/app/api/admin/mesa/route.ts", "utf8");
+    const sql = readFileSync("supabase/migrations/20261124040000_mesa_prepare_arrival.sql", "utf8");
+    expect(route).toContain("await requireMesa()");
+    expect(route).toContain("processMesaScan");
+    expect(process).toContain("mesa_prepare_arrival");
+    expect(process).toContain("guestQuery");
+    expect(process).toContain('.from("arrivals")');
+    expect(sql).toContain("rsvp_passes");
+    expect(sql).toContain("session_rsvps");
   });
 });

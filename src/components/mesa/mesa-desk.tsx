@@ -2,9 +2,9 @@
 
 import { useRouter } from "next/navigation";
 import { MesaArrivalDialog } from "@/components/mesa/arrival-dialog";
+import { MesaCodeForm } from "@/components/mesa/mesa-code-form";
 import { MesaQrScanner } from "@/components/mesa/qr-scanner";
 import { mesaHref } from "@/lib/admin/mesa/href";
-import { scanDeskAction } from "@/lib/flow-actions";
 
 export function MesaDesk({
   hold,
@@ -13,7 +13,6 @@ export function MesaDesk({
   sector,
   invitedBy,
   error,
-  action,
 }: {
   hold: string;
   name?: string;
@@ -21,17 +20,16 @@ export function MesaDesk({
   sector?: string;
   invitedBy?: string;
   error?: string;
-  action?: string;
 }) {
   const router = useRouter();
   const open = Boolean(name || error);
 
   return (
     <>
-      <form action={action ?? scanDeskAction} method="post" className="flex min-h-0 flex-1 flex-col">
-        <input id="codigo" name="codigo" type="hidden" defaultValue="" />
+      <div id="mesa-scan-form" className="flex min-h-0 flex-1 flex-col gap-6 pb-2">
         <MesaQrScanner hold={hold} paused={open} />
-      </form>
+        <MesaCodeForm />
+      </div>
       <MesaArrivalDialog
         open={open}
         name={name}

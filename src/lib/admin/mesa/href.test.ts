@@ -14,9 +14,11 @@ describe("mesa del panel", () => {
     const page = readFileSync("src/app/admin/mesa/page.tsx", "utf8");
     const desk = readFileSync("src/components/mesa/mesa-desk.tsx", "utf8");
     const dialog = readFileSync("src/components/mesa/arrival-dialog.tsx", "utf8");
-    expect(desk).toContain("scanDeskAction");
-    expect(page).not.toContain("Código QR");
+    expect(desk).toContain("MesaQrScanner");
+    expect(desk).toContain("MesaCodeForm");
+    expect(readFileSync("src/components/mesa/qr-scanner.tsx", "utf8")).toContain("scanMesaAction");
     expect(page).not.toContain("Volver al panel");
+
     expect(dialog).toContain('data-testid="bienvenida"');
     expect(dialog).toContain('data-testid="estatus"');
     expect(page).not.toContain("requireSuperadmin");

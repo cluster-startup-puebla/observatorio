@@ -1,28 +1,32 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useTransition } from "react";
 import { Scanner, type IDetectedBarcode } from "@yudiel/react-qr-scanner";
+import { scanMesaAction } from "@/lib/admin/mesa/scan-action";
 
 export function MesaQrScanner({ hold, paused = false }: { hold: string; paused?: boolean }) {
   const last = useRef(hold);
   const [ready, setReady] = useState(false);
   const [cameraError, setCameraError] = useState("");
+  const [, startTransition] = useTransition();
 
   useEffect(() => setReady(true), []);
+  useEffect(() => {
+    if (paused) last.current = hold;
+  }, [paused, hold]);
 
   function onScan(codes: IDetectedBarcode[]) {
     const value = codes[0]?.rawValue?.trim() ?? "";
     if (!value || value === last.current || paused) return;
-    const input = document.getElementById("codigo");
-    if (!(input instanceof HTMLInputElement) || !input.form) return;
     last.current = value;
-    input.value = value;
-    input.form.requestSubmit();
+    startTransition(() => {
+      void scanMesaAction(value);
+    });
   }
 
   return (
-    <div className="flex min-h-0 flex-1 items-center justify-center">
-      <div className="grid w-full max-w-[min(100%,calc(100dvh-18rem))] gap-3">
+    <div className="flex min-h-0 flex-1 items-center justify-center overflow-hidden">
+      <div className="grid w-full max-w-[min(100%,calc(100dvh-20rem))] gap-3">
         <div className="relative aspect-square overflow-hidden rounded-2xl border border-line bg-black">
           {ready ? (
             <Scanner
@@ -41,9 +45,7 @@ export function MesaQrScanner({ hold, paused = false }: { hold: string; paused?:
             />
           ) : null}
         </div>
-        <p className={cameraError ? "text-center text-small text-mark" : "text-center text-small text-ink-secondary"}>
-          {cameraError || "Apunta la cámara al pase."}
-        </p>
+        {cameraError ? <p className="text-center text-small text-mark">{cameraError}</p> : null}
       </div>
     </div>
   );

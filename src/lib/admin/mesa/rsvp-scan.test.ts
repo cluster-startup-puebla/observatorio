@@ -11,13 +11,14 @@ describe("mesa con QR de RSVP", () => {
     expect(rsvpOnlyCheckIn({ rsvpConfirmed: false })).toEqual({ ok: false, reason: "sin qr" });
   });
 
-  it("el handler resuelve RSVP antes del perfil", () => {
-    const route = readFileSync("src/app/api/admin/mesa/route.ts", "utf8");
-    const resolve = readFileSync("src/lib/admin/mesa/resolve-code.ts", "utf8");
-    expect(route).toContain("resolveMesaCode");
-    expect(route).toContain("mesa_rsvp_guest");
-    expect(route).toContain("rsvpOnlyCheckIn");
-    expect(resolve).toContain("mesa_rsvp_guest");
+  it("el handler prepara llegada por RPC y manda el código en claro", () => {
+    const process = readFileSync("src/lib/admin/mesa/process-scan.ts", "utf8");
+    const action = readFileSync("src/lib/admin/mesa/scan-action.ts", "utf8");
+    const scanner = readFileSync("src/components/mesa/qr-scanner.tsx", "utf8");
+    expect(process).toContain("mesa_prepare_arrival");
+    expect(action).toContain("createSupabaseAdmin");
+    expect(action).toContain("readCode");
+    expect(scanner).toContain("scanMesaAction(value)");
   });
 
   it("onboarding cancela por sesión cuando hay session_id", () => {

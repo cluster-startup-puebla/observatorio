@@ -3,7 +3,6 @@ import { Kicker } from "@/components/landing/atoms/kicker";
 import { MesaDesk } from "@/components/mesa/mesa-desk";
 import { mesaHref } from "@/lib/admin/mesa/href";
 import { requireMesa } from "@/lib/auth/guards";
-import { usesSupabaseAuth } from "@/lib/supabase/auth-session";
 
 export const instant = false;
 
@@ -40,7 +39,6 @@ export default async function MesaPage({
         sector={arrived ? params.sector : undefined}
         invitedBy={arrived ? params.invito : undefined}
         error={params.error}
-        action={usesSupabaseAuth() ? "/api/admin/mesa" : undefined}
       />
     </main>
   );

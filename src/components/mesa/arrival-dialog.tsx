@@ -9,13 +9,7 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
-
-const reasons: Record<string, string> = {
-  "sin qr": "Ese código no tiene pase.",
-  "transición inválida": "Esta persona ya registró su llegada.",
-  "ya llegó": "Esta persona ya registró su llegada.",
-  "Escribe el código del QR.": "No se leyó ningún pase.",
-};
+import { arrivalDetail } from "@/components/mesa/arrival-copy";
 
 function Fact({ label, value }: { label: string; value?: string }) {
   if (!value) return null;
@@ -45,7 +39,6 @@ export function MesaArrivalDialog({
   onClose: () => void;
 }) {
   const arrived = Boolean(name);
-  const detail = error ? (reasons[error] ?? error) : "La asistencia quedó registrada.";
 
   return (
     <AlertDialog open={open} onOpenChange={(next) => { if (!next) onClose(); }}>
@@ -70,7 +63,9 @@ export function MesaArrivalDialog({
               <Fact label="Invitó" value={invitedBy} />
             </div>
           ) : null}
-          <AlertDialogDescription className="text-body text-ink-secondary">{detail}</AlertDialogDescription>
+          <AlertDialogDescription className="text-body text-ink-secondary">
+            {arrivalDetail(error)}
+          </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter className="sm:justify-center">
           <AlertDialogAction className="w-full">Seguir escaneando</AlertDialogAction>
