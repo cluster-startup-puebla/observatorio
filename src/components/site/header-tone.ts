@@ -1,5 +1,5 @@
 export function onProgramField(path: string) {
-  return path === "/";
+  return path === "/v2";
 }
 
 export function navLinkClass(current: boolean, onField: boolean) {

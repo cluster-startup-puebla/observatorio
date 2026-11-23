@@ -1,11 +1,7 @@
 export const ctaLabel = "Crear cuenta";
 
 export const navItems = [
-  { label: "El programa", href: "/#programa" },
-  { label: "Cómo funciona", href: "/#como-funciona" },
-  { label: "Observatorio", href: "/#observatorio" },
   { label: "Sesiones", href: "/sesiones" },
-  { label: "Retos", href: "/retos" },
   { label: "Blog", href: "/blog" },
 ];
 

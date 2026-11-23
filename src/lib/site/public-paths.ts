@@ -16,6 +16,7 @@ export const privatePaths = [
   "/innovacion-abierta",
   "/test",
   "/v1",
+  "/v2",
   "/sesiones/*/",
   "/*/crm",
   "/*/invitaciones",
