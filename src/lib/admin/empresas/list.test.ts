@@ -57,4 +57,10 @@ describe("lista de empresas", () => {
     expect(convoco).toBeGreaterThan(-1);
     expect(convoco).toBeLessThan(llegada);
   });
+
+  it("filtra legal_name con q", () => {
+    const list = readFileSync("src/lib/admin/empresas/list.ts", "utf8");
+    expect(list).toContain("applyEmpresaSearch");
+    expect(list).toContain("listQueryQ");
+  });
 });
