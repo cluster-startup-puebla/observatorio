@@ -8,3 +8,9 @@ export function mailOrigin(siteUrl: string | undefined) {
 export function continueHref(siteUrl: string | undefined) {
   return `${mailOrigin(siteUrl)}/login`;
 }
+
+export function accountHref(siteUrl: string | undefined, email: string) {
+  const mail = email.trim().toLowerCase();
+  const query = mail ? `?correo=${encodeURIComponent(mail)}` : "";
+  return `${mailOrigin(siteUrl)}/crear-cuenta${query}`;
+}

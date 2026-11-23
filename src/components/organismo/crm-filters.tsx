@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { crmHref } from "@/lib/organismo/crm-query";
 
 const estados = [
   { value: "", label: "Todas" },
@@ -7,16 +8,15 @@ const estados = [
   { value: "confirmado", label: "Confirmado" },
 ];
 
-export function CrmFilters({ estado }: { estado?: string }) {
+export function CrmFilters({ estado, sesion }: { estado?: string; sesion?: string }) {
   return (
     <nav className="flex flex-wrap gap-2" aria-label="Estado">
       {estados.map((item) => {
         const active = (estado ?? "") === item.value;
-        const href = item.value ? `?vista=tabla&estado=${item.value}` : "?vista=tabla";
         return (
           <Link
             key={item.label}
-            href={href}
+            href={crmHref({ vista: "tabla", estado: item.value || undefined, sesion })}
             aria-current={active ? "true" : undefined}
             className={
               active

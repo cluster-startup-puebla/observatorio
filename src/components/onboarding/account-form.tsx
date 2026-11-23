@@ -25,6 +25,7 @@ export function AccountForm({
   const liveSector = params.get("sector") ?? sector ?? "";
   const liveCuenta = params.get("cuenta") ?? cuenta ?? "";
   const liveInvite = params.get("invitacion") ?? invitacion ?? "";
+  const liveCorreo = params.get("correo") ?? "";
   const [state, action] = useActionState<AccountFormState, FormData>(createAccountAction, null);
   const notice = state?.error ? registerError(state.error) : error;
 
@@ -43,7 +44,14 @@ export function AccountForm({
       <input type="hidden" name="cuenta" value={liveCuenta} />
       <input type="hidden" name="invitacion" value={liveInvite} />
       <Field id="correo" label="Correo" error={state?.errors?.email}>
-        <input id="correo" name="correo" type="email" autoComplete="email" className={controlClass} />
+        <input
+          id="correo"
+          name="correo"
+          type="email"
+          autoComplete="email"
+          defaultValue={liveCorreo}
+          className={controlClass}
+        />
       </Field>
       <Field id="contrasena" label="Contraseña" error={state?.errors?.password}>
         <PasswordInput id="contrasena" name="contrasena" label="contraseña" autoComplete="new-password" />

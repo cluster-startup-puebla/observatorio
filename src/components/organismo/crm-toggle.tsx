@@ -1,6 +1,15 @@
 import Link from "next/link";
+import { crmHref } from "@/lib/organismo/crm-query";
 
-export function CrmToggle({ vista, estado }: { vista: "tabla" | "tarjetas"; estado?: string }) {
+export function CrmToggle({
+  vista,
+  estado,
+  sesion,
+}: {
+  vista: "tabla" | "tarjetas";
+  estado?: string;
+  sesion?: string;
+}) {
   const vistas = [
     { value: "tabla" as const, label: "Tabla" },
     { value: "tarjetas" as const, label: "Tarjetas" },
@@ -12,11 +21,11 @@ export function CrmToggle({ vista, estado }: { vista: "tabla" | "tarjetas"; esta
         return (
           <Link
             key={item.value}
-            href={
-              item.value === "tabla" && estado
-                ? `?vista=tabla&estado=${estado}`
-                : `?vista=${item.value}`
-            }
+            href={crmHref({
+              vista: item.value,
+              estado: item.value === "tabla" ? estado : undefined,
+              sesion,
+            })}
             aria-current={active ? "page" : undefined}
             className={
               active

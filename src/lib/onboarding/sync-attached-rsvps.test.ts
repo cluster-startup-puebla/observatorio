@@ -16,6 +16,6 @@ describe("sync RSVPs al tener cuenta", () => {
     expect(emit).toContain('from("rsvp_passes")');
     expect(emit).toContain("deliverRsvpPass");
     expect(deliver).toContain('rpc("record_rsvp_pass"');
-    expect(readFileSync("src/lib/mail/send-rsvp-pass.ts", "utf8")).toContain("idempotencyKey");
+    expect(readFileSync("src/lib/mail/send-rsvp-pass.tsx", "utf8")).toContain("idempotencyKey");
   });
 });

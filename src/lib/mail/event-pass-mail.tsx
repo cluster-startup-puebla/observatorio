@@ -1,9 +1,16 @@
 import { Text } from "@react-email/components";
 import { mailBrand, publicFacts } from "./brand";
+import { MailAccountCta } from "./mail-account-cta";
 import { PassBlock } from "./pass-block";
 import { MailShell } from "./shell";
 
-export function EventPassMail({ sessionLabel }: { sessionLabel: string | null }) {
+export function EventPassMail({
+  sessionLabel,
+  accountHref,
+}: {
+  sessionLabel: string | null;
+  accountHref?: string | null;
+}) {
   return (
     <MailShell preview="Guarda tu pase. En la mesa lo escanean." title="Tu pase ya está listo">
       <Text style={{ margin: "0 0 12px", color: mailBrand.navy, fontSize: 16, lineHeight: "1.5" }}>
@@ -11,6 +18,7 @@ export function EventPassMail({ sessionLabel }: { sessionLabel: string | null })
       </Text>
       <PassBlock />
       <FactLine sessionLabel={sessionLabel} />
+      {accountHref ? <MailAccountCta href={accountHref} /> : null}
     </MailShell>
   );
 }
