@@ -1,7 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Archivo, Raleway } from "next/font/google";
 import { cookies } from "next/headers";
-import Script from "next/script";
 import { Toaster } from "@/components/ui/sonner";
 import { SiteFrame } from "@/components/site/site-frame";
 import { rootMetadata } from "@/lib/metadata";
@@ -52,9 +51,7 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
       className={`${archivo.variable} ${raleway.variable} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col bg-surface text-ink">
-        <Script id="observatorio-theme" strategy="beforeInteractive">
-          {themeScript}
-        </Script>
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
         <SiteFrame orgSlug={orgSlug}>{children}</SiteFrame>
         <Toaster />
       </body>
