@@ -362,15 +362,13 @@ PRs chicos por grupo; no un solo monstruo.
 
 | Fecha | Bloque | Estado | Commit / notas |
 |---|---|---|---|
-| 2026-11-22 | Tasks 0–3 modelo+cupo | Hecho (código+remoto) | Migraciones `500/501/502`; backfill 101 confirmed |
-| 2026-11-22 | Tasks 4–6 registro+admin+UX | Hecho | `510` sync/confirm; send-rsvp-pass QR; done sin CTA fuerte |
-| 2026-11-22 | Tasks 7–9 claim+attach+cancel | Hecho (parcial UI cancel) | `520` claim; `530` attach; `540` cancel; cancel en onboarding, no aún en `/app` |
-| 2026-11-22 | Tasks 10–12 CRM+org | Hecho (código) | `541/542/544`; conversiones = RSVP confirmed+org |
-| 2026-11-22 | Task 13 tablero | Hecho | load-cupos desde session_rsvps |
-| 2026-11-22 | Task 14 mesa RSVP | Hecho parcial | scan UUID → RSVP; sin profile = check-in sin arrivals |
-| | Tasks 15–17 cleanup+QA | Pendiente | |
+| 2026-11-22 | Tasks 0–3 modelo+cupo | Hecho + remoto | `f12d624` — mig `500/501/502` (+400/410 Disruptors); backfill 101 confirmed |
+| 2026-11-22 | Tasks 4–6 registro+admin+UX | Hecho + remoto | `8804081` — `510` sync/confirm; `541` attribute invite; QR mail |
+| 2026-11-22 | Tasks 7–9 + 14 mesa | Hecho + remoto | `9ee857e` — `520` claim; `530` attach; `540` cancel+mesa; cancel UI solo onboarding |
+| 2026-11-22 | Tasks 10–13 CRM+org+tablero | Hecho + remoto | `1e2485a` + `43f1912` — `542/544`; conversiones org; cupos admin RSVP |
+| | Tasks 15–17 cleanup+QA | Pendiente | Deuda pase/session doc; QA E2E manual; cancel en `/app` |
 
-**Dónde quedamos:** commits por bloque en curso; migraciones `540+` hay que aplicar en remoto si no están. Gaps: cancel en `/app`, pace organismo aún CRM, métrica “sin cuenta”, QA E2E manual.
+**Dónde quedamos (HEAD `43f1912`):** núcleo Luma shipped en `develop` (ahead of origin). Gaps: cancel por sesión en `/app`, `sector_pace` organismo aún CRM, métrica “sin cuenta”, QA E2E Task 17.
 
 ---
 
