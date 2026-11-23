@@ -1,28 +1,31 @@
 export type AdminLink = { href: string; label: string; group: string };
 
 export const adminLinks: AdminLink[] = [
-  { href: "/admin", label: "Inicio", group: "Operación" },
-  { href: "/admin/mesa", label: "Registro", group: "Operación" },
-  { href: "/admin/diagnosticos", label: "Diagnósticos", group: "Operación" },
-  { href: "/admin/innovacion", label: "Innovación abierta", group: "Operación" },
-  { href: "/admin/retos", label: "Retos", group: "Operación" },
+  { href: "/admin", label: "Inicio", group: "Dashboard" },
+  { href: "/admin/mesa", label: "Registro", group: "Dashboard" },
+  { href: "/admin/pases", label: "Pases y llegadas", group: "Dashboard" },
+
+  { href: "/admin/registros", label: "Registros públicos", group: "Embudo" },
+  { href: "/admin/invitaciones", label: "Invitaciones", group: "Embudo" },
+  { href: "/admin/crm", label: "CRM", group: "Embudo" },
+
+  { href: "/admin/cuentas", label: "Cuentas", group: "Directorio" },
+  { href: "/admin/empresas", label: "Empresas", group: "Directorio" },
+  { href: "/admin/organismos", label: "Organismos", group: "Directorio" },
+  { href: "/admin/logo", label: "Logos", group: "Directorio" },
+
+  { href: "/admin/sesiones", label: "Sesiones", group: "Programa" },
+  { href: "/admin/sectores", label: "Sectores", group: "Programa" },
+  { href: "/admin/metodologia", label: "Metodología", group: "Programa" },
+  { href: "/admin/medios", label: "Medios", group: "Programa" },
+
+  { href: "/admin/diagnosticos", label: "Diagnósticos", group: "Participación" },
+  { href: "/admin/innovacion", label: "Innovación abierta", group: "Participación" },
+  { href: "/admin/retos", label: "Retos", group: "Participación" },
+  { href: "/admin/lavas", label: "Lavas", group: "Participación" },
 
   { href: "/admin/bandeja", label: "Bandeja", group: "Comunicación" },
   { href: "/admin/correo", label: "Correo masivo", group: "Comunicación" },
-
-  { href: "/admin/cuentas", label: "Cuentas", group: "Directorio" },
-  { href: "/admin/organismos", label: "Organismos", group: "Directorio" },
-  { href: "/admin/empresas", label: "Empresas", group: "Directorio" },
-  { href: "/admin/logo", label: "Logos", group: "Directorio" },
-  { href: "/admin/crm", label: "CRM", group: "Directorio" },
-  { href: "/admin/registros", label: "Registros públicos", group: "Directorio" },
-  { href: "/admin/invitaciones", label: "Invitaciones", group: "Directorio" },
-  { href: "/admin/pases", label: "Pases y llegadas", group: "Directorio" },
-  { href: "/admin/sectores", label: "Sectores", group: "Contenido" },
-  { href: "/admin/sesiones", label: "Sesiones", group: "Contenido" },
-  { href: "/admin/metodologia", label: "Metodología", group: "Contenido" },
-  { href: "/admin/medios", label: "Medios", group: "Contenido" },
-  { href: "/admin/lavas", label: "Lavas", group: "Contenido" },
 ];
 
 export function adminGroups() {

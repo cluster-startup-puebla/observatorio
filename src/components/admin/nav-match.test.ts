@@ -11,14 +11,16 @@ describe("nav match", () => {
       ["/admin/cuentas", "Directorio", "/admin/cuentas"],
       ["/admin/logo", "Directorio", "/admin/logo"],
       ["/admin/cuentas/360ab36d-9882-44c6-9b61-1010b9aab795", "Directorio", "/admin/cuentas"],
-      ["/admin/metodologia/integral", "Contenido", "/admin/metodologia"],
-      ["/admin/metodologia/abc", "Contenido", "/admin/metodologia"],
+      ["/admin/metodologia/integral", "Programa", "/admin/metodologia"],
+      ["/admin/metodologia/abc", "Programa", "/admin/metodologia"],
       ["/admin/correo/abc", "Comunicación", "/admin/correo"],
       ["/admin/bandeja", "Comunicación", "/admin/bandeja"],
-      ["/admin/innovacion", "Operación", "/admin/innovacion"],
-      ["/admin/mesa", "Operación", "/admin/mesa"],
-      ["/admin/mesa/profile-1", "Operación", "/admin/mesa"],
-      ["/admin", "Operación", "/admin"],
+      ["/admin/innovacion", "Participación", "/admin/innovacion"],
+      ["/admin/mesa", "Dashboard", "/admin/mesa"],
+      ["/admin/mesa/profile-1", "Dashboard", "/admin/mesa"],
+      ["/admin", "Dashboard", "/admin"],
+      ["/admin/registros", "Embudo", "/admin/registros"],
+      ["/admin/pases", "Dashboard", "/admin/pases"],
     ] as const;
 
     for (const [path, group, href] of cases) {
