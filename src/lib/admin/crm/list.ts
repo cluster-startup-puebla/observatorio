@@ -3,11 +3,12 @@ import "server-only";
 import { adminDb } from "@/lib/admin/admin-db";
 import { crmEstado, crmOrigen } from "@/lib/admin/crm/query";
 import { pageQuery } from "@/lib/admin/page-query";
+import { sessionContactIds } from "@/lib/admin/tablero/session-contact-ids";
 import { crmLabel } from "@/lib/crm-label";
 
 export async function listCrm(
   rawPage: string | undefined,
-  filters?: { estado?: string; origen?: string; all?: boolean; organizationId?: string },
+  filters?: { estado?: string; origen?: string; all?: boolean; organizationId?: string; sessionId?: string },
 ) {
   const page = pageQuery(rawPage);
   const estado = crmEstado(filters?.estado);
@@ -21,6 +22,11 @@ export async function listCrm(
     .order("created_at", { ascending: false });
   if (filters?.organizationId) query = query.eq("organization_id", filters.organizationId);
   if (origen) query = query.eq("source", origen);
+  if (filters?.sessionId) {
+    const allowed = await sessionContactIds(db, filters.sessionId);
+    if (allowed.size === 0) return { page: page.page, rows: [], total: 0 };
+    query = query.in("id", [...allowed]);
+  }
   if (estado) {
     const matched = await db.from("crm_contact_status").select("contact_id").eq("status", estado);
     if (matched.error) throw new Error(matched.error.message);

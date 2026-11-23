@@ -1,18 +1,20 @@
 import { readFileSync } from "node:fs";
 import { expect, it } from "vitest";
 
-it("la lista la lee el superadmin", () => {
+it("la lista la lee el superadmin y filtra por sesión", () => {
   const source = readFileSync("src/lib/admin/registros/list.ts", "utf8");
   expect(source).toContain("adminDb");
   expect(source).toContain("public_registrations");
-  expect(source).toContain("id, full_name");
-  expect(source).toContain("referral_source");
-  expect(source).toContain("poured_profile_id");
-  expect(source).toContain('order("poured_at", { ascending: false, nullsFirst: true })');
-  expect(source).toContain('from("companies")');
+  expect(source).toContain("session_id");
+  expect(source).toContain("sessions(");
+  expect(source).toContain('eq("session_id"');
   expect(source).not.toContain("SERVICE_ROLE");
+  const page = readFileSync("src/app/admin/registros/page.tsx", "utf8");
+  expect(page).toContain("params.sesion");
   const screen = readFileSync("src/app/admin/registros/registros-list.tsx", "utf8");
-  expect(screen).toContain("/admin/cuentas/");
-  expect(screen).toContain("/admin/empresas/");
-  expect(screen).toContain("Se enteró por");
+  expect(screen).toContain("SessionFilter");
+  const columns = readFileSync("src/app/admin/registros/registros-columns.tsx", "utf8");
+  expect(columns).toContain("Sesión");
+  expect(columns).toContain("/admin/cuentas/");
+  expect(columns).toContain("Se enteró por");
 });

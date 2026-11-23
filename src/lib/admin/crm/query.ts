@@ -20,6 +20,7 @@ export type CrmLink = {
   vista?: string;
   estado?: string;
   origen?: string;
+  sesion?: string;
   page?: number;
 };
 
@@ -29,6 +30,7 @@ export function crmSearch(input: CrmLink) {
   if (vista !== "tabla") params.set("vista", vista);
   if (input.estado) params.set("estado", input.estado);
   if (input.origen) params.set("origen", input.origen);
+  if (input.sesion) params.set("sesion", input.sesion);
   if (input.page && input.page > 1) params.set("page", String(input.page));
   return params;
 }

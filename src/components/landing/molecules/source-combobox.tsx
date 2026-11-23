@@ -3,28 +3,31 @@
 import { useId, useRef, useState } from "react";
 import { ChevronDown } from "lucide-react";
 import { useComboboxDismiss } from "@/components/admin/use-combobox-dismiss";
+import { controlClass } from "@/components/landing/molecules/field";
 import { SourceLogo } from "@/components/landing/molecules/source-logo";
 import { SourceMenu } from "@/components/landing/molecules/source-menu";
-import { automotrizSource } from "@/content/automotriz-source";
-import { extraReferralSources } from "@/content/extra-referral-sources";
-import { clusterLogo, partners } from "@/content/landing";
-import { controlClass } from "@/components/landing/molecules/field";
+import {
+  referralSources,
+  type ReferralSourceFilter,
+} from "@/content/referral-sources";
 
 export function SourceCombobox({
   value,
   onChange,
   error,
   compact = false,
+  filter = "all",
 }: {
   value: string;
   onChange: (value: string) => void;
   error?: string;
   compact?: boolean;
+  filter?: ReferralSourceFilter;
 }) {
   const [open, setOpen] = useState(false);
   const rootRef = useRef<HTMLDivElement>(null);
   const listId = useId();
-  const sources = [...partners, automotrizSource, ...extraReferralSources, clusterLogo];
+  const sources = referralSources(filter);
   const selected = sources.find((partner) => partner.alt === value);
   useComboboxDismiss(rootRef, setOpen);
 

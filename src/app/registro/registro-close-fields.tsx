@@ -3,6 +3,7 @@
 import { controlClass, Field } from "@/components/landing/molecules/field";
 import { SourceCombobox } from "@/components/landing/molecules/source-combobox";
 import { TermsAccept } from "@/components/onboarding/terms-accept";
+import type { ReferralSourceFilter } from "@/content/referral-sources";
 
 export function RegistroCloseFields({
   referralSource,
@@ -10,12 +11,14 @@ export function RegistroCloseFields({
   terms,
   onChange,
   onTerms,
+  sourceFilter = "all",
 }: {
   referralSource: string;
   sessionInterest: string;
   terms: boolean;
   onChange: (patch: { referralSource?: string; sessionInterest?: string }) => void;
   onTerms: (terms: boolean) => void;
+  sourceFilter?: ReferralSourceFilter;
 }) {
   return (
     <div className="grid min-w-0 gap-4">
@@ -23,6 +26,7 @@ export function RegistroCloseFields({
         <p className="text-small font-semibold text-ink">Cómo te enteraste</p>
         <SourceCombobox
           compact
+          filter={sourceFilter}
           value={referralSource}
           onChange={(next) => onChange({ referralSource: next })}
         />

@@ -20,7 +20,7 @@ const empty = {
 
 const fallback = "No se pudo guardar. Revisa los datos e intenta de nuevo.";
 
-export function useRegistroSubmit(sector: string, invitacion: string) {
+export function useRegistroSubmit(sector: string, invitacion: string, sessionId: string) {
   const [ready, setReady] = useState(false);
   const [done, setDone] = useState(false);
   const [error, setError] = useState("");
@@ -52,6 +52,7 @@ export function useRegistroSubmit(sector: string, invitacion: string) {
         ...values,
         sectorSlug: sector || values.sectorSlug,
         inviteToken: invitacion,
+        sessionId,
         terms,
       });
       if ("error" in result) {

@@ -1,37 +1,41 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useTransition, type FormEvent } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { Loader2 } from "lucide-react";
+import {
+  sessionChevron,
+  sessionFilterShell,
+  sessionSelectClass,
+} from "@/components/admin/session-filter-styles";
 import { Button } from "@/components/ui/button";
 import { sessionOnLabel } from "@/lib/sessions/face";
+import type { SessionChoice } from "@/lib/admin/tablero/session-choices";
 
-const chevron =
-  "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%234b5563' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E\")";
-
-const selectClass =
-  "h-9 w-80 max-w-full appearance-none rounded-lg border border-line bg-elevated bg-[length:1rem] bg-[position:right_0.75rem_center] bg-no-repeat pr-10 pl-3 text-small text-ink";
-
-type Choice = {
-  id: string;
-  venue: string;
-  sessionOn: string | null;
-  current: boolean;
-};
-
-export function SessionSelect({ choices, selectedId }: { choices: Choice[]; selectedId: string | null }) {
+export function SessionSelect({ choices, selectedId }: { choices: SessionChoice[]; selectedId: string | null }) {
+  const router = useRouter();
+  const [pending, start] = useTransition();
   const initial = selectedId ?? choices.find((choice) => choice.current)?.id ?? choices[0]?.id ?? "";
   const [selected, setSelected] = useState(initial);
-  if (choices.length < 2) return null;
+  if (choices.length === 0) return null;
+
+  function apply(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    start(() => router.push(`/admin?sesion=${selected}`));
+  }
+
   return (
-    <form action="/admin" method="get" className="flex flex-wrap items-end gap-3">
-      <label className="grid gap-1 text-small text-ink">
+    <form onSubmit={apply} className={sessionFilterShell}>
+      <label className="grid min-w-0 flex-1 gap-1.5 text-small font-medium text-ink">
         Sesión
         <select
           name="sesion"
           value={selected}
+          disabled={pending}
           data-testid="tablero-sesion"
-          className={selectClass}
-          style={{ backgroundImage: chevron }}
+          className={sessionSelectClass}
+          style={{ backgroundImage: sessionChevron }}
           onChange={(event) => setSelected(event.target.value)}
         >
           {choices.map((choice) => (
@@ -41,17 +45,22 @@ export function SessionSelect({ choices, selectedId }: { choices: Choice[]; sele
           ))}
         </select>
       </label>
-      <Button type="submit" size="sm">
-        Ver convocatoria
-      </Button>
-      <Button size="sm" variant="outline" asChild>
-        <Link href={`/admin/sesiones/${selected}`}>Ver detalle</Link>
-      </Button>
+      <div className="flex flex-wrap items-center gap-2">
+        <Button type="submit" size="lg" disabled={pending} className="min-w-[10.5rem] rounded-full px-4">
+          {pending ? <Loader2 className="size-4 animate-spin" aria-hidden /> : null}
+          {pending ? "Cargando…" : "Ver convocatoria"}
+        </Button>
+        <Button size="lg" variant="outline" className="rounded-full px-4" asChild>
+          <Link href={`/admin/sesiones/${selected}`} aria-disabled={pending}>
+            Ver detalle
+          </Link>
+        </Button>
+      </div>
     </form>
   );
 }
 
-function optionLabel(choice: Choice) {
+function optionLabel(choice: SessionChoice) {
   const when = choice.sessionOn ? ` · ${sessionOnLabel(choice.sessionOn)}` : "";
   const current = choice.current ? " (vigente)" : "";
   return `${choice.venue}${when}${current}`;

@@ -7,9 +7,11 @@ describe("consulta del CRM", () => {
     expect(crmHref({ vista: "tarjetas", estado: "cargado", origen: "excel" })).toBe(
       "/admin/crm?vista=tarjetas&estado=cargado&origen=excel",
     );
+    expect(crmHref({ sesion: "sess-1" })).toBe("/admin/crm?sesion=sess-1");
     expect(crmHref({})).toBe("/admin/crm");
     expect(organismoCrmHref("org-1", { vista: "tarjetas", page: 2 })).toBe(
       "/admin/organismos/org-1?vista=tarjetas&page=2&tab=crm",
     );
   });
 });
+

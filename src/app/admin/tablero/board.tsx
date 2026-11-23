@@ -7,12 +7,10 @@ import { OrgOpenChart } from "@/app/admin/tablero/org-open-chart";
 import { PaceChart } from "@/app/admin/tablero/pace-chart";
 import { UnconvenedCard } from "@/app/admin/tablero/unconvened-card";
 import { SectorChart } from "@/app/admin/tablero/sector-chart";
-import { SessionSelect } from "@/app/admin/tablero/session-select";
 import { TableroSignals } from "@/app/admin/tablero/signals";
 import { cupoSignals, type Signal } from "@/lib/admin/tablero/reading";
 import type { ShowableLogo } from "@/lib/admin/empresas/event-logos";
 import type { DataRow } from "@/components/admin/data-columns";
-import type { SessionChoice } from "@/lib/admin/tablero/session-choices";
 import type { OmittedSector, SectorFillRow } from "@/lib/admin/tablero/sector-fill";
 import type { OrgOpenSeries } from "@/lib/admin/tablero/org-open-bars";
 import type { Tablero } from "@/lib/admin/tablero/types";
@@ -30,13 +28,11 @@ type Cupos = {
 export function TableroBoard({
   board,
   cupos,
-  choices,
   logos,
   opens,
 }: {
   board: Tablero;
   cupos: Cupos;
-  choices: SessionChoice[];
   logos: ShowableLogo[];
   opens: { bars: Record<string, string | number>[]; series: OrgOpenSeries[] };
 }) {
@@ -46,7 +42,6 @@ export function TableroBoard({
       <div className="grid min-w-0 gap-6">
         <TableroKpis board={board} />
         {board.invitations > 0 ? <TableroSignals board={board} /> : null}
-        <SessionSelect choices={choices} selectedId={cupos.session?.id ?? null} />
         <CupoKpis fill={cupos} />
         <UnconvenedCard rows={cupos.omitidos} companies={cupos.companies} />
         <CupoAlerts rows={cupos.rows} />

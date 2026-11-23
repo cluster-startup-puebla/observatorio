@@ -1,3 +1,4 @@
+import { ChevronDown } from "lucide-react";
 import { controlClass, Field } from "@/components/landing/molecules/field";
 
 export function OnboardingSelect({
@@ -19,22 +20,28 @@ export function OnboardingSelect({
 }) {
   return (
     <Field id={id} label={label}>
-      <select
-        id={id}
-        name={name === null ? undefined : (name ?? id)}
-        required
-        disabled={disabled}
-        className={controlClass}
-        value={value}
-        onChange={(event) => onChange(event.target.value)}
-      >
-        <option value="">Elige una opción</option>
-        {options.map((option) => (
-          <option key={option.value} value={option.value}>
-            {option.label}
-          </option>
-        ))}
-      </select>
+      <div className="relative min-w-0">
+        <select
+          id={id}
+          name={name === null ? undefined : (name ?? id)}
+          required
+          disabled={disabled}
+          className={`${controlClass} appearance-none pr-11`}
+          value={value}
+          onChange={(event) => onChange(event.target.value)}
+        >
+          <option value="">Elige una opción</option>
+          {options.map((option) => (
+            <option key={option.value} value={option.value}>
+              {option.label}
+            </option>
+          ))}
+        </select>
+        <ChevronDown
+          aria-hidden
+          className="pointer-events-none absolute top-1/2 right-3 size-4 -translate-y-1/2 text-ink-muted"
+        />
+      </div>
     </Field>
   );
 }

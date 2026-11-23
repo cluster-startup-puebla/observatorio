@@ -6,11 +6,22 @@ import { RegistroCloseFields } from "./registro-close-fields";
 import { RegistroCompanyFields } from "./registro-company-fields";
 import { RegistroPersonFields } from "./registro-person-fields";
 import { RegistroSectorField } from "./registro-sector-field";
+import type { ReferralSourceFilter } from "@/content/referral-sources";
 import { RegistroDone } from "./registro-done";
 import { useRegistroSubmit } from "./use-registro-submit";
 
-export function RegistroForm({ sector, invitacion }: { sector?: string; invitacion?: string }) {
-  const form = useRegistroSubmit(sector ?? "", invitacion ?? "");
+export function RegistroForm({
+  sector,
+  invitacion,
+  sessionId,
+  sourceFilter = "all",
+}: {
+  sector?: string;
+  invitacion?: string;
+  sessionId: string;
+  sourceFilter?: ReferralSourceFilter;
+}) {
+  const form = useRegistroSubmit(sector ?? "", invitacion ?? "", sessionId);
 
   if (!form.ready) return null;
   if (form.done) return <RegistroDone sector={sector} invitacion={invitacion} />;
@@ -30,6 +41,7 @@ export function RegistroForm({ sector, invitacion }: { sector?: string; invitaci
         terms={form.terms}
         onChange={form.patch}
         onTerms={form.acceptTerms}
+        sourceFilter={sourceFilter}
       />
       {form.error ? (
         <Alert variant="destructive">

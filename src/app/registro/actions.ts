@@ -18,10 +18,12 @@ const codes = [
   "referencia",
   "interes",
   "terminos",
+  "sesion",
 ];
 
 function sentence(code: string) {
   if (code === "correo") return "Escribe un correo válido.";
+  if (code === "sesion") return "No encontramos la sesión de este registro.";
   return serverIssue(code);
 }
 
@@ -31,13 +33,14 @@ function rpcSentence(message: string | undefined) {
   return code ? sentence(code) : serverIssue("guardar");
 }
 
-type Input = StepOne & StepTwo & { inviteToken: string };
+type Input = StepOne & StepTwo & { inviteToken: string; sessionId: string };
 
 export async function submitRegistro(input: Input) {
   const person = stepOneIssue(input);
   if (person) return { error: sentence(person) };
   const company = stepTwoIssue(input);
   if (company) return { error: sentence(company) };
+  if (!input.sessionId.trim()) return { error: sentence("sesion") };
   const supabase = createSupabaseAnon();
   const started = await supabase.rpc("start_public_registration", {
     full_name: input.fullName,
@@ -46,6 +49,7 @@ export async function submitRegistro(input: Input) {
     whatsapp: input.whatsapp,
     sector_slug: input.sectorSlug,
     invite_token: input.inviteToken,
+    p_session_id: input.sessionId,
   });
   if (started.error || typeof started.data !== "string" || !started.data) {
     return { error: rpcSentence(started.error?.message) };

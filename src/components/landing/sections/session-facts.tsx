@@ -2,18 +2,32 @@ import { ArrowUpRight } from "lucide-react";
 import { sessionFacts } from "@/content/landing";
 
 const quintaRealMap = "https://maps.app.goo.gl/Dzgq3VtHbAPJT4U58";
-
 const compactLabels = new Set(["Dónde", "Horario"]);
+const emphasis = new Set(["Horario", "Grupo"]);
 
-export function SessionFacts({ compact = false }: { compact?: boolean }) {
-  const facts = compact ? sessionFacts.filter((fact) => compactLabels.has(fact.label)) : sessionFacts;
+export type FactItem = { label: string; value: string };
+
+export function SessionFacts({
+  compact = false,
+  facts = sessionFacts,
+  placeHref = quintaRealMap,
+}: {
+  compact?: boolean;
+  facts?: readonly FactItem[];
+  placeHref?: string;
+}) {
+  const rows = compact ? facts.filter((fact) => compactLabels.has(fact.label)) : facts;
   return (
     <dl className={listClass(compact)}>
-      {facts.map((fact) => (
+      {rows.map((fact) => (
         <div key={fact.label} className={compact ? "min-w-0" : "min-w-0 bg-surface-subtle p-6"}>
           <dt className="text-micro uppercase text-ink-muted">{fact.label}</dt>
           <dd className={valueClass(compact, fact.label)}>
-            {fact.label === "Dónde" ? <Place compact={compact} value={fact.value} /> : fact.value}
+            {fact.label === "Dónde" ? (
+              <Place compact={compact} value={fact.value} href={placeHref} />
+            ) : (
+              fact.value
+            )}
           </dd>
         </div>
       ))}
@@ -28,14 +42,14 @@ function listClass(compact: boolean) {
 
 function valueClass(compact: boolean, label: string) {
   if (compact) return "mt-1 text-small break-words text-ink";
-  if (label === "Horario" || label === "Grupo") return "mt-2 text-h3 text-balance text-ink";
+  if (emphasis.has(label)) return "mt-2 text-h3 text-balance text-ink";
   return "mt-2 break-words text-body text-ink";
 }
 
-function Place({ compact, value }: { compact: boolean; value: string }) {
+function Place({ compact, value, href }: { compact: boolean; value: string; href: string }) {
   return (
     <a
-      href={quintaRealMap}
+      href={href}
       target="_blank"
       rel="noopener noreferrer"
       className="inline-flex max-w-full items-center gap-1 break-words text-link"

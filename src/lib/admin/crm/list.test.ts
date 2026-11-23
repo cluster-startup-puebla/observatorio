@@ -20,6 +20,7 @@ describe("lista de CRM", () => {
     const route = readFileSync("src/app/api/admin/crm/route.ts", "utf8");
     expect(list).toContain('.from("crm_contacts")');
     expect(list).toContain('.from("crm_contact_status")');
+    expect(list).toContain("sessionContactIds");
     expect(list).toContain("nombre");
     expect(list).toContain("empresa");
     expect(list).toContain("email");
@@ -28,3 +29,4 @@ describe("lista de CRM", () => {
     expect(route).toContain("await requireSuperadmin()");
   });
 });
+
