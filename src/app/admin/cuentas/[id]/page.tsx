@@ -3,7 +3,7 @@ import { CorreosSection } from "@/app/admin/cuentas/[id]/correos-section";
 import { CuentaFicha } from "@/app/admin/cuentas/[id]/cuenta-ficha";
 import { CuentaHeader } from "@/app/admin/cuentas/[id]/cuenta-header";
 import { CuentaNav } from "@/app/admin/cuentas/[id]/cuenta-nav";
-import { PaseSection } from "@/app/admin/empresas/[id]/pase-section";
+import { CuentaPaseTab } from "@/app/admin/cuentas/[id]/pase-tab";
 import { RespuestasSection } from "@/app/admin/empresas/[id]/respuestas-section";
 import { PanelHeader, parentLabel, trailCrumbs } from "@/components/admin/panel-header";
 import { Alert, AlertDescription } from "@/components/ui/alert";
@@ -49,7 +49,7 @@ export default async function CuentaDetailPage({
         kind={kind}
         place={place}
         placeHref={placeHref}
-        hasPass={Boolean(data.pass?.image_asset_id)}
+        hasPass={Boolean(data.pass?.image_asset_id) || data.sessionPasses.length > 0}
       />
       {query.error ? (
         <Alert variant="destructive" className="mt-6">
@@ -58,7 +58,9 @@ export default async function CuentaDetailPage({
       ) : null}
       <CuentaNav id={id} active={active} tabs={tabs} answers={lines.length} mail={data.mail.length} />
       <div className="mt-6">
-        {active === "pase" ? <PaseSection assetId={data.pass?.image_asset_id ?? null} /> : null}
+        {active === "pase" ? (
+          <CuentaPaseTab assetId={data.pass?.image_asset_id ?? null} sessions={data.sessionPasses} />
+        ) : null}
         {active === "respuestas" ? <RespuestasSection lines={lines} /> : null}
         {active === "correos" ? <CorreosSection mail={data.mail} /> : null}
         {active === "ficha" ? (

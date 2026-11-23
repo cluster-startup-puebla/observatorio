@@ -30,6 +30,7 @@ describe("detalle de cuentas", () => {
     const route = readFileSync("src/app/api/admin/cuentas/[id]/route.ts", "utf8");
     expect(source).toContain('.from("companies")');
     expect(source).toContain('.from("passes")');
+    expect(source).toContain("loadCuentaSessionPasses");
     expect(source).toContain('.from("response_choices")');
     expect(source).toContain('.from("outbox_messages")');
     expect(source).not.toContain("password");
