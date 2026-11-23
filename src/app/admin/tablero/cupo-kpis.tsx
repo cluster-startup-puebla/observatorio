@@ -25,7 +25,7 @@ export function CupoKpis({ fill }: { fill: Fill }) {
       <article className="rounded-2xl border border-line bg-elevated p-5" data-testid="tablero-cupo-pendiente">
         <p className="text-small text-ink-secondary">Pendientes</p>
         <p className="mt-2 text-h2 text-ink tabular-nums">{fill.pendientes.toLocaleString("es-MX")}</p>
-        <p className="mt-2 text-small text-ink-muted">Terminaron el perfil y siguen sin aceptar</p>
+        <p className="mt-2 text-small text-ink-muted">Solicitudes RSVP por confirmar lugar</p>
       </article>
     </section>
   );
