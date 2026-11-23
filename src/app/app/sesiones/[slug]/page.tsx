@@ -1,6 +1,7 @@
 import { Suspense } from "react";
 import { cacheLife, cacheTag } from "next/cache";
 import { redirect } from "next/navigation";
+import { CancelSessionRsvp } from "@/components/app/cancel-session-rsvp";
 import { ClaimSessionButton } from "@/components/app/claim-session-button";
 import { sessionAttendanceLabel } from "@/lib/app/session-attendance";
 import { loadSessionDetail } from "@/lib/app/load-sector-sessions";
@@ -52,6 +53,7 @@ async function SessionDetail({ params }: { params: Promise<{ slug: string }> }) 
       <p className="text-body text-ink-secondary">{session.venue}</p>
       {attendance.label ? <p className="text-body text-ink">{attendance.label}</p> : null}
       {attendance.canClaim && attendance.sessionId ? <ClaimSessionButton sessionId={attendance.sessionId} /> : null}
+      {attendance.canCancel && attendance.sessionId ? <CancelSessionRsvp sessionId={attendance.sessionId} /> : null}
     </article>
   );
 }

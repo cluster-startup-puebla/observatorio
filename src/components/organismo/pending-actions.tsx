@@ -20,8 +20,8 @@ export function PendingActions({
         <input type="hidden" name="personId" value={person.id} />
         <input type="hidden" name="event" value={action} />
         <input type="hidden" name="vista" value={vista} />
-        <ActionButton pendingLabel={action === "aceptar" ? "Aceptando…" : "Contactando…"}>
-          {action === "aceptar" ? "Aceptar" : "Contactar"}
+        <ActionButton pendingLabel={action === "aceptar" ? "Confirmando…" : "Contactando…"}>
+          {action === "aceptar" ? "Aceptar en lista" : "Contactar"}
         </ActionButton>
       </form>
       {action === "aceptar" ? (

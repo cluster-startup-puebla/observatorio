@@ -4,6 +4,7 @@ import type { SupabaseClient } from "@supabase/supabase-js";
 import { pendingLinkEmails } from "@/lib/admin/empresas/pending-link-emails";
 import type { EmpresaSource } from "@/lib/admin/empresas/empresa-row";
 import { companySeatColumns, toQuota } from "./cupo-seat";
+import { confirmedSinCuenta } from "./confirmed-sin-cuenta";
 import { toRsvpSeat, rsvpFillColumns } from "./rsvp-seat";
 
 export async function fetchCuposSessionData(db: SupabaseClient, sessionId: string) {
@@ -36,5 +37,6 @@ export async function fetchCuposSessionData(db: SupabaseClient, sessionId: strin
     companies: (companies.data ?? []) as EmpresaSource[],
     pending,
     released,
+    confirmedSinCuenta: confirmedSinCuenta(rsvps.data ?? []),
   };
 }

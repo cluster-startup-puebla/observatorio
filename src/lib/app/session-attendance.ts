@@ -13,14 +13,18 @@ export async function sessionAttendanceLabel(token: string, profileId: string, s
   const db = createSupabaseWithAccess(token);
   const session = await db.from("sessions").select("id, is_current").eq("public_slug", slug).maybeSingle();
   if (session.error) throw new Error(session.error.message);
-  if (!session.data?.id) return { label: "", canClaim: false, sessionId: null as string | null };
+  if (!session.data?.id) {
+    return { label: "", canClaim: false, canCancel: false, sessionId: null as string | null };
+  }
 
   const profile = await db.from("profiles").select("email").eq("id", profileId).maybeSingle();
   if (profile.error) throw new Error(profile.error.message);
   const email = String(profile.data?.email ?? "")
     .trim()
     .toLowerCase();
-  if (!email) return { label: "", canClaim: false, sessionId: session.data.id };
+  if (!email) {
+    return { label: "", canClaim: false, canCancel: false, sessionId: session.data.id };
+  }
 
   const rsvp = await db
     .from("session_rsvps")
@@ -32,5 +36,6 @@ export async function sessionAttendanceLabel(token: string, profileId: string, s
   const status = rsvp.data?.status ?? "";
   const label = copy[status] ?? "";
   const canClaim = Boolean(session.data.is_current) && status !== "confirmed";
-  return { label, canClaim, sessionId: session.data.id };
+  const canCancel = status === "confirmed";
+  return { label, canClaim, canCancel, sessionId: session.data.id };
 }

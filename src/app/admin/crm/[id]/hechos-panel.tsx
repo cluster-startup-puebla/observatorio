@@ -51,7 +51,7 @@ export function HechosPanel({
           <input type="hidden" name="event" value="aprobar" />
           <Button type="submit" size="lg" className="w-fit px-4">
             <BadgeCheck />
-            Aceptar registro
+            Confirmar enlace
           </Button>
         </form>
       ) : null}

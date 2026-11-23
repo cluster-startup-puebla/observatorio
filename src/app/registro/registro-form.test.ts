@@ -10,5 +10,6 @@ it("el registro público muestra el formulario y no redirige a crear cuenta", ()
   expect(form).not.toContain("CompanyLogoFields");
   expect(form).not.toContain("contrasena");
   expect(form).toContain("lockedReferral");
+  expect(form).toContain("RegistroAccountAlert");
 });
 

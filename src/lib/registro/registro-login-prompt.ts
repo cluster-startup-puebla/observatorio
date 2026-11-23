@@ -1,0 +1,1 @@
+export const registroYaTieneCuentaCode = "ya_tiene_cuenta" as const;

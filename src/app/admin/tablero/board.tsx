@@ -23,6 +23,7 @@ type Cupos = {
   companies: DataRow[];
   rows: SectorFillRow[];
   session: { id: string } | null;
+  confirmedSinCuenta?: number;
 };
 
 export function TableroBoard({

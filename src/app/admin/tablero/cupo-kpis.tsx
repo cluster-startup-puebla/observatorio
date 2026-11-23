@@ -1,8 +1,11 @@
+import { CupoSinCuentaHint } from "./cupo-sin-cuenta-hint";
+
 type Fill = {
   cupo: number;
   ocupados: number;
   pendientes: number;
   omitidos: { personas: number }[];
+  confirmedSinCuenta?: number;
 };
 
 export function registeredTotal(fill: Fill) {
@@ -21,6 +24,7 @@ export function CupoKpis({ fill }: { fill: Fill }) {
       <article className="rounded-2xl border border-line bg-elevated p-5" data-testid="tablero-cupo">
         <p className="text-small text-ink-secondary">Ocupados</p>
         <p className="mt-2 text-h2 text-ink tabular-nums">{places(fill)}</p>
+        <CupoSinCuentaHint count={fill.confirmedSinCuenta ?? 0} />
       </article>
       <article className="rounded-2xl border border-line bg-elevated p-5" data-testid="tablero-cupo-pendiente">
         <p className="text-small text-ink-secondary">Pendientes</p>

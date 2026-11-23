@@ -8,7 +8,12 @@ import { sectorFill } from "./sector-fill";
 type CupoSession = { id: string; venue: string; sessionOn: string | null };
 
 function idle() {
-  return { ...sectorFill([], []), companies: [] as Record<string, string>[], session: null as CupoSession | null };
+  return {
+    ...sectorFill([], []),
+    companies: [] as Record<string, string>[],
+    session: null as CupoSession | null,
+    confirmedSinCuenta: 0,
+  };
 }
 
 function chosen(row: { id: string; venue: string; session_on: string | null }): CupoSession {
@@ -35,5 +40,5 @@ export async function loadCupos(sessionId?: string | null) {
     data.pending,
     data.released,
   );
-  return { ...fill, companies: outside, session: chosen(session.data) };
+  return { ...fill, companies: outside, session: chosen(session.data), confirmedSinCuenta: data.confirmedSinCuenta };
 }

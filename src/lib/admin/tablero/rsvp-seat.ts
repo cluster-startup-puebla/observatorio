@@ -3,7 +3,7 @@ import type { Seat } from "./sector-fill";
 type SectorEmbed = { name?: string | null; slug?: string | null };
 
 export const rsvpFillColumns =
-  "status, sector_slug, sectors:sector_id(name, slug)";
+  "status, profile_id, sector_slug, sectors:sector_id(name, slug)";
 
 function one<T>(value: T | T[] | null | undefined) {
   if (!value) return null;

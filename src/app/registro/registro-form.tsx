@@ -7,6 +7,7 @@ import { RegistroCompanyFields } from "./registro-company-fields";
 import { RegistroPersonFields } from "./registro-person-fields";
 import { RegistroSectorField } from "./registro-sector-field";
 import type { ReferralSourceFilter } from "@/content/referral-sources";
+import { RegistroAccountAlert } from "./registro-account-alert";
 import { RegistroDone } from "./registro-done";
 import { useRegistroSubmit } from "./use-registro-submit";
 
@@ -46,6 +47,7 @@ export function RegistroForm({
         sourceFilter={sourceFilter}
         lockedReferral={lockedReferral}
       />
+      {form.yaTieneCuenta ? <RegistroAccountAlert /> : null}
       {form.error ? (
         <Alert variant="destructive">
           <AlertDescription>{form.error}</AlertDescription>

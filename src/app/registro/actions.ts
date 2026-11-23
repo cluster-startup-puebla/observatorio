@@ -4,7 +4,9 @@ import { serverIssue } from "@/lib/onboarding/step-issue";
 import { inviteReferralSource } from "@/lib/registro/invite-referral";
 import { stepOneIssue, type StepOne } from "@/lib/registro/step-one";
 import { stepTwoIssue, type StepTwo } from "@/lib/registro/step-two";
+import { registroEmailHasAccount } from "@/lib/registro/email-has-account";
 import { attributeRsvpInvite } from "@/lib/registro/rsvp-invite-attribute";
+import { registroYaTieneCuentaCode } from "@/lib/registro/registro-login-prompt";
 import { createSupabaseAnon } from "@/lib/supabase/auth-session";
 
 const codes = [
@@ -48,6 +50,9 @@ export async function submitRegistro(input: Input) {
   const company = stepTwoIssue(payload);
   if (company) return { error: sentence(company) };
   if (!payload.sessionId.trim()) return { error: sentence("sesion") };
+  if (await registroEmailHasAccount(payload.email)) {
+    return { code: registroYaTieneCuentaCode };
+  }
   const supabase = createSupabaseAnon();
   const started = await supabase.rpc("start_public_registration", {
     full_name: payload.fullName,

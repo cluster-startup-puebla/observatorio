@@ -1,8 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { submitRegistro } from "./actions";
-import { readRegistroDone, rememberRegistro } from "./registro-memory";
+import { readRegistroDone } from "./registro-memory";
+import { runRegistroSubmit } from "./run-registro-submit";
 
 const empty = {
   fullName: "",
@@ -18,8 +18,6 @@ const empty = {
   sessionInterest: "",
 };
 
-const fallback = "No se pudo guardar. Revisa los datos e intenta de nuevo.";
-
 export function useRegistroSubmit(
   sector: string,
   invitacion: string,
@@ -29,12 +27,10 @@ export function useRegistroSubmit(
   const [ready, setReady] = useState(false);
   const [done, setDone] = useState(false);
   const [error, setError] = useState("");
+  const [yaTieneCuenta, setYaTieneCuenta] = useState(false);
   const [pending, setPending] = useState(false);
   const [terms, setTerms] = useState(false);
-  const [values, setValues] = useState({
-    ...empty,
-    referralSource: lockedReferral ?? "",
-  });
+  const [values, setValues] = useState({ ...empty, referralSource: lockedReferral ?? "" });
 
   useEffect(() => {
     setDone(readRegistroDone());
@@ -45,8 +41,13 @@ export function useRegistroSubmit(
     if (lockedReferral) setValues((current) => ({ ...current, referralSource: lockedReferral }));
   }, [lockedReferral]);
 
-  function patch(next: Partial<typeof empty>) {
+  function clearIssue() {
     setError("");
+    setYaTieneCuenta(false);
+  }
+
+  function patch(next: Partial<typeof empty>) {
+    clearIssue();
     setValues((current) => ({
       ...current,
       ...next,
@@ -55,35 +56,20 @@ export function useRegistroSubmit(
   }
 
   function acceptTerms(next: boolean) {
-    setError("");
+    clearIssue();
     setTerms(next);
   }
 
   async function submit() {
     if (pending) return;
     setPending(true);
-    setError("");
-    try {
-      const result = await submitRegistro({
-        ...values,
-        referralSource: lockedReferral || values.referralSource,
-        sectorSlug: sector || values.sectorSlug,
-        inviteToken: invitacion,
-        sessionId,
-        terms,
-      });
-      if ("error" in result) {
-        setError(result.error ?? fallback);
-        return;
-      }
-      rememberRegistro();
-      setDone(true);
-    } catch {
-      setError(fallback);
-    } finally {
-      setPending(false);
-    }
+    clearIssue();
+    const result = await runRegistroSubmit({ values, sector, invitacion, sessionId, lockedReferral, terms });
+    if ("yaTieneCuenta" in result) setYaTieneCuenta(true);
+    else if ("error" in result) setError(result.error);
+    else setDone(true);
+    setPending(false);
   }
 
-  return { ready, done, error, pending, terms, acceptTerms, values, patch, submit };
+  return { ready, done, error, yaTieneCuenta, pending, terms, acceptTerms, values, patch, submit };
 }
