@@ -27,12 +27,14 @@ describe("conteo del cupo", () => {
 
   it("las dos aceptaciones lanzan sector_lleno", () => {
     const gate = readFileSync("supabase/migrations/20261027170100_accept_respects_sector_quota.sql", "utf8");
-    expect(gate).toContain("function public.approve_link_signup(contact_id uuid)");
+    const link = readFileSync("supabase/migrations/20261123054200_approve_link_signup_rsvp.sql", "utf8");
     expect(gate).toContain("function public.approve_external_signup(company_id uuid)");
     expect(gate.match(/raise exception 'sector_lleno'/g)).toHaveLength(2);
-    expect(gate).toContain("private.sector_is_full");
-    expect(gate).toContain("'confirmar'");
-    expect(gate).toContain("'registrar'");
+    expect(link).toContain("function public.approve_link_signup(contact_id uuid)");
+    expect(link).toContain("private.session_is_full");
+    expect(link).toContain("raise exception 'sector_lleno'");
+    expect(link).toContain("'confirmar'");
+    expect(link).toContain("'registrar'");
     expect(gate).toContain("admitted_at = clock_timestamp()");
   });
 

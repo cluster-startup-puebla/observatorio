@@ -12,6 +12,7 @@ function counted(row: { mine?: number | null; others?: number | null }) {
   return Number(row.mine ?? 0) + Number(row.others ?? 0);
 }
 
+// TODO: sector_pace still counts CRM+companies; switch to session_rsvps.confirmed per session/sector.
 export async function loadSectorPace(slug: string): Promise<SectorPaceLoad> {
   const db = await orgDb();
   if (!db) return { kind: "closed", filled: 0 };

@@ -1,10 +1,7 @@
 export type Seat = {
   sectorSlug: string;
   sectorName: string;
-  onboarded: boolean;
-  role: string;
-  linkPending: boolean;
-  externalPending: boolean;
+  status: "confirmed" | "pending";
   released: boolean;
 };
 
@@ -25,10 +22,6 @@ export type OmittedSector = {
   pendientes: number;
 };
 
-function ready(seat: Seat) {
-  return seat.onboarded && seat.role === "empresario";
-}
-
 export function sectorFill(quotas: SectorQuota[], seats: Seat[]) {
   const rows = quotas.map((quota) => ({
     sector: quota.sectorName,
@@ -42,9 +35,8 @@ export function sectorFill(quotas: SectorQuota[], seats: Seat[]) {
   let fuera = 0;
   for (const seat of seats) {
     if (seat.released) continue;
-    if (!ready(seat)) continue;
     const row = bySlug.get(seat.sectorSlug);
-    const waiting = seat.linkPending || seat.externalPending;
+    const waiting = seat.status === "pending";
     if (!row) {
       const slug = seat.sectorSlug || "sin-sector";
       const current = omitted.get(slug) ?? {

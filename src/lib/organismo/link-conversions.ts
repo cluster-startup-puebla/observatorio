@@ -12,3 +12,9 @@ export function linkConversions(rows: { slug: string; status: string | null }[])
   }
   return counts;
 }
+
+export function peopleStats(people: { slug: string; status: string | null; at: string }[]) {
+  const registrations = linkConversions(people);
+  const conversions = [...registrations.values()].reduce((sum, count) => sum + count, 0);
+  return { registrations, conversions, moments: conversionMoments(people) };
+}

@@ -1,31 +1,26 @@
 import "server-only";
 
 import type { adminDb } from "@/lib/admin/admin-db";
+import { collectSessionContactIds } from "./session-contact-ids-collect";
 
 type Db = NonNullable<Awaited<ReturnType<typeof adminDb>>>;
 
-/** Contact ids tied to a session via company.session_id or link_copies. */
+/** Contact ids tied to a session via RSVPs, company.session_id, or link_copies. */
 export async function sessionContactIds(db: Db, sessionId: string) {
-  const [companies, links] = await Promise.all([
+  const [companies, links, rsvps] = await Promise.all([
     db.from("companies").select("profile_id").eq("session_id", sessionId),
     db.from("link_copies").select("organization_id").eq("session_id", sessionId),
+    db.from("session_rsvps").select("profile_id, email").eq("session_id", sessionId),
   ]);
   if (companies.error) throw new Error(companies.error.message);
   if (links.error) throw new Error(links.error.message);
-
-  const profiles = (companies.data ?? []).map((row) => row.profile_id).filter(Boolean);
-  const orgs = [...new Set((links.data ?? []).map((row) => row.organization_id).filter(Boolean))];
-  const ids = new Set<string>();
-
-  if (profiles.length > 0) {
-    const byProfile = await db.from("crm_contacts").select("id").in("profile_id", profiles);
-    if (byProfile.error) throw new Error(byProfile.error.message);
-    for (const row of byProfile.data ?? []) ids.add(row.id);
-  }
-  if (orgs.length > 0) {
-    const byOrg = await db.from("crm_contacts").select("id").in("organization_id", orgs);
-    if (byOrg.error) throw new Error(byOrg.error.message);
-    for (const row of byOrg.data ?? []) ids.add(row.id);
-  }
-  return ids;
+  if (rsvps.error) throw new Error(rsvps.error.message);
+  return collectSessionContactIds(db, {
+    profileIds: [
+      ...(companies.data ?? []).map((row) => row.profile_id),
+      ...(rsvps.data ?? []).map((row) => row.profile_id),
+    ],
+    emails: (rsvps.data ?? []).map((row) => row.email),
+    orgIds: (links.data ?? []).map((row) => row.organization_id),
+  });
 }

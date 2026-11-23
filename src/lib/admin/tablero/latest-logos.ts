@@ -5,15 +5,18 @@ import { companyOwner } from "@/lib/admin/empresas/company-owner";
 import { showableLogos } from "@/lib/admin/empresas/event-logos";
 import { waitsForExternalApproval } from "@/lib/admin/empresas/external-approval";
 import { pendingLinkEmails } from "@/lib/admin/empresas/pending-link-emails";
+import { companyIdsForSessionLogos } from "./latest-logos-company-ids";
 
 export async function loadLatestLogos(sessionId?: string | null) {
   const db = await adminDb();
   if (!db || !sessionId) return [];
+  const companyIds = await companyIdsForSessionLogos(db, sessionId);
+  if (companyIds.length === 0) return [];
   const companies = await db
     .from("companies")
     .select(`id, legal_name, profile_id, show_logo_on_event, sector_source, admitted_at, created_at, owner:${companyOwner}(email)`)
     .eq("show_logo_on_event", true)
-    .eq("session_id", sessionId)
+    .in("id", companyIds)
     .order("created_at", { ascending: false });
   if (companies.error) throw new Error(companies.error.message);
   const pending = await pendingLinkEmails(db);

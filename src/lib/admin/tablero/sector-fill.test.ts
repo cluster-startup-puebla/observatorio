@@ -10,10 +10,7 @@ const quotas = [
 function seat(partial: Partial<Seat> & Pick<Seat, "sectorSlug">): Seat {
   return {
     sectorName: partial.sectorSlug,
-    onboarded: true,
-    role: "empresario",
-    linkPending: false,
-    externalPending: false,
+    status: "confirmed",
     released: false,
     ...partial,
   };
@@ -23,20 +20,18 @@ describe("cupo por sector", () => {
   it("separa ocupados, pendientes y quien está fuera de la sesión", () => {
     const result = sectorFill(quotas, [
       seat({ sectorSlug: "turismo" }),
-      seat({ sectorSlug: "turismo", linkPending: true }),
-      seat({ sectorSlug: "turismo", externalPending: true }),
+      seat({ sectorSlug: "turismo", status: "pending" }),
       seat({ sectorSlug: "alimentos" }),
       seat({ sectorSlug: "textil", sectorName: "Textil" }),
-      seat({ sectorSlug: "turismo", onboarded: false }),
-      seat({ sectorSlug: "turismo", role: "director" }),
+      seat({ sectorSlug: "turismo", released: true }),
     ]);
     expect(result.cupo).toBe(3);
     expect(result.ocupados).toBe(2);
-    expect(result.pendientes).toBe(2);
+    expect(result.pendientes).toBe(1);
     expect(result.fuera).toBe(1);
     expect(result.omitidos).toEqual([{ sector: "Textil", slug: "textil", personas: 1, pendientes: 0 }]);
     expect(result.rows).toEqual([
-      { sector: "Turismo", slug: "turismo", cupo: 2, ocupados: 1, pendientes: 2 },
+      { sector: "Turismo", slug: "turismo", cupo: 2, ocupados: 1, pendientes: 1 },
       { sector: "Alimentos", slug: "alimentos", cupo: 1, ocupados: 1, pendientes: 0 },
     ]);
   });
@@ -52,23 +47,22 @@ describe("cupo por sector", () => {
     });
   });
 
-  it("el tablero lee la sesión elegida o la vigente, los cupos y la aceptación", () => {
+  it("el tablero lee RSVPs de la sesión elegida", () => {
     const source = [
       readFileSync("src/lib/admin/tablero/load-cupos.ts", "utf8"),
-      readFileSync("src/lib/admin/tablero/cupo-seat.ts", "utf8"),
+      readFileSync("src/lib/admin/tablero/cupos-session-data.ts", "utf8"),
+      readFileSync("src/lib/admin/tablero/rsvp-seat.ts", "utf8"),
     ].join("\n");
-    expect(source).toContain('.eq("is_current", true)');
+    expect(source).toContain("session_rsvps");
     expect(source).toContain("session_sector_quotas");
-    expect(source).toContain("pendingLinkEmails");
-    expect(source).toContain("waitsForExternalApproval");
     expect(source).toContain("sectorFill");
     expect(source).toContain("sessionId");
-    expect(source).toContain("attendance_cancellations");
+    expect(source).toContain("toRsvpSeat");
   });
 
   it("cuenta a quien espera en un sector que no se convocó", () => {
     const result = sectorFill(quotas, [
-      seat({ sectorSlug: "textil", sectorName: "Textil", linkPending: true }),
+      seat({ sectorSlug: "textil", sectorName: "Textil", status: "pending" }),
       seat({ sectorSlug: "textil", sectorName: "Textil" }),
     ]);
     expect(result.fuera).toBe(1);

@@ -1,9 +1,7 @@
 import "server-only";
 
 import { adminDb } from "@/lib/admin/admin-db";
-import type { EmpresaSource } from "@/lib/admin/empresas/empresa-row";
-import { pendingLinkEmails } from "@/lib/admin/empresas/pending-link-emails";
-import { companySeatColumns, toQuota, toSeat } from "./cupo-seat";
+import { fetchCuposSessionData } from "./cupos-session-data";
 import { omittedCompanyRows } from "./omitted-companies";
 import { sectorFill } from "./sector-fill";
 
@@ -17,10 +15,6 @@ function chosen(row: { id: string; venue: string; session_on: string | null }): 
   return { id: row.id, venue: row.venue, sessionOn: row.session_on };
 }
 
-function releasedIds(rows: { company_id?: string | null }[] | null) {
-  return new Set((rows ?? []).map((row) => String(row.company_id ?? "")).filter(Boolean));
-}
-
 export async function loadCupos(sessionId?: string | null) {
   if (!sessionId) return idle();
   const db = await adminDb();
@@ -32,29 +26,14 @@ export async function loadCupos(sessionId?: string | null) {
     .maybeSingle();
   if (session.error) throw new Error(session.error.message);
   if (!session.data) return idle();
-  const companiesQuery = db
-    .from("companies")
-    .select(companySeatColumns)
-    .eq("owner.role", "empresario")
-    .not("owner.onboarded_at", "is", null)
-    .eq("session_id", session.data.id);
-  const [quotas, companies, pending, cancelled] = await Promise.all([
-    db.from("session_sector_quotas").select("capacity, sectors(name, slug)").eq("session_id", session.data.id),
-    companiesQuery,
-    pendingLinkEmails(db),
-    db.from("attendance_cancellations").select("company_id"),
-  ]);
-  if (quotas.error) throw new Error(quotas.error.message);
-  if (companies.error) throw new Error(companies.error.message);
-  if (cancelled.error) throw new Error(cancelled.error.message);
-  const released = releasedIds(cancelled.data);
-  const listed = (companies.data ?? []) as EmpresaSource[];
-  const seats = listed.map((row) => toSeat(row, pending, released));
-  const quotasRows = (quotas.data ?? []).flatMap((row) => {
-    const quota = toQuota(row);
-    return quota ? [quota] : [];
-  });
-  const fill = sectorFill(quotasRows, seats);
-  const outside = await omittedCompanyRows(db, listed, new Set(fill.omitidos.map((row) => row.slug)), pending, released);
+  const data = await fetchCuposSessionData(db, session.data.id);
+  const fill = sectorFill(data.quotasRows, data.seats);
+  const outside = await omittedCompanyRows(
+    db,
+    data.companies,
+    new Set(fill.omitidos.map((row) => row.slug)),
+    data.pending,
+    data.released,
+  );
   return { ...fill, companies: outside, session: chosen(session.data) };
 }

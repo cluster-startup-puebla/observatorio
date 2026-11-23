@@ -55,4 +55,13 @@ describe("aceptación del enlace", () => {
     expect(sql).toContain("'registrar'");
     expect(sql).toContain("grant execute on function public.approve_link_signup(uuid) to authenticated");
   });
+
+  it("aceptar CRM confirma RSVP sin repetir cupo si ya estaba confirmado", () => {
+    const sql = readFileSync("supabase/migrations/20261123054200_approve_link_signup_rsvp.sql", "utf8");
+    expect(sql).toContain("function public.approve_link_signup(contact_id uuid)");
+    expect(sql).toContain("rsvp_status is distinct from 'confirmed'");
+    expect(sql).toContain("private.session_is_full");
+    expect(sql).toContain("on conflict (session_id, email)");
+    expect(sql).toContain("'invite'");
+  });
 });
