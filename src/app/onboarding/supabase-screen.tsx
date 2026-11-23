@@ -78,7 +78,9 @@ export async function SupabaseOnboarding({
         offerLogo={offerLogo}
         logoError={params.error === "logo" ? "logo" : undefined}
       />
-      {onboarded && account.role === "empresario" ? <AttendanceSlot token={token} error={params.error} /> : null}
+      {onboarded && account.role === "empresario" ? (
+        <AttendanceSlot token={token} profileId={account.id} error={params.error} />
+      ) : null}
     </AuthShell>
   );
 }

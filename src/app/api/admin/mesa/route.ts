@@ -1,7 +1,9 @@
 import { guestQuery, mesaGuest } from "@/lib/admin/mesa/guest";
 import { mesaHref } from "@/lib/admin/mesa/href";
+import { resolveMesaCode } from "@/lib/admin/mesa/resolve-code";
 import { recordArrival } from "@/lib/admin/mesa/record";
 import { requireMesa } from "@/lib/auth/guards";
+import { rsvpOnlyCheckIn } from "@/lib/admin/pases/scan";
 import type { CrmStatus } from "@/lib/crm-status";
 import { maybeAwardArrival } from "@/lib/lavas/maybe-award-arrival";
 import { createSupabaseWithAccess, readAccessToken } from "@/lib/supabase/auth-session";
@@ -11,14 +13,34 @@ function redirectTo(request: NextRequest, query: string) {
   return NextResponse.redirect(new URL(`${mesaHref}?${query}`, request.url), 303);
 }
 
+async function guestFromRsvp(
+  db: Awaited<ReturnType<typeof createSupabaseWithAccess>>,
+  rsvpId: string,
+  request: NextRequest,
+) {
+  const listed = await db.rpc("mesa_rsvp_guest", { p_rsvp_id: rsvpId });
+  if (listed.error) return redirectTo(request, `error=${encodeURIComponent(listed.error.message)}`);
+  const row = Array.isArray(listed.data) ? listed.data[0] : listed.data;
+  const plan = rsvpOnlyCheckIn({ rsvpConfirmed: Boolean(row) });
+  if (!plan.ok) return redirectTo(request, `error=${encodeURIComponent(plan.reason)}`);
+  return redirectTo(request, guestQuery(rsvpId, mesaGuest(row ?? null)));
+}
+
 export async function POST(request: NextRequest) {
   const account = await requireMesa();
   const form = await request.formData();
-  const profileId = String(form.get("codigo") ?? "").trim();
+  const rawCode = String(form.get("codigo") ?? "").trim();
   const token = account ? await readAccessToken() : null;
   const db = token ? createSupabaseWithAccess(token) : null;
-  if (!db || !account || !profileId) return redirectTo(request, "error=sin%20qr");
+  if (!db || !account || !rawCode) return redirectTo(request, "error=sin%20qr");
 
+  const resolved = await resolveMesaCode(db, rawCode);
+  if (!resolved) return redirectTo(request, "error=sin%20qr");
+  if (resolved.kind === "rsvp" && !resolved.profileId) {
+    return guestFromRsvp(db, resolved.rsvpId, request);
+  }
+
+  const profileId = resolved.kind === "profile" ? resolved.profileId : (resolved.profileId as string);
   const [pass, arrival, contact] = await Promise.all([
     db.from("passes").select("profile_id").eq("profile_id", profileId).maybeSingle(),
     db.from("arrivals").select("profile_id").eq("profile_id", profileId).maybeSingle(),
@@ -29,8 +51,9 @@ export async function POST(request: NextRequest) {
     const status = await db.from("crm_contact_status").select("status").eq("contact_id", contact.data.id).maybeSingle();
     crmStatus = (status.data?.status as CrmStatus | null) ?? null;
   }
+  const hasRsvpPass = resolved.kind === "rsvp";
   const plan = recordArrival({
-    hasPass: Boolean(pass.data),
+    hasPass: Boolean(pass.data) || hasRsvpPass,
     hasArrival: Boolean(arrival.data),
     crmStatus,
     profileId,

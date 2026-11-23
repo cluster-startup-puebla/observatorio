@@ -2,6 +2,7 @@ import { PendingSubmit } from "@/components/auth/pending-submit";
 import { Field, controlClass } from "@/components/landing/molecules/field";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { cancelAttendanceAction } from "@/lib/onboarding/cancel-attendance";
+import { loadCancelableRsvp } from "@/lib/onboarding/attendance-rsvp";
 import { createSupabaseWithAccess } from "@/lib/supabase/auth-session";
 
 const notices: Record<string, string> = {
@@ -11,24 +12,43 @@ const notices: Record<string, string> = {
   cancelar: "No se pudo cancelar.",
 };
 
-export async function AttendanceSlot({ token, error }: { token: string; error?: string }) {
+export async function AttendanceSlot({
+  token,
+  profileId,
+  error,
+}: {
+  token: string;
+  profileId: string;
+  error?: string;
+}) {
   const db = createSupabaseWithAccess(token);
-  const state = await db.rpc("my_attendance_state");
-  const status = typeof state.data === "string" ? state.data : "";
-  if (status === "cancelo") {
-    const row = await db.from("attendance_cancellations").select("reason").maybeSingle();
+  const rsvp = await loadCancelableRsvp(db, profileId);
+  if (rsvp?.status === "cancelled") {
     return (
       <p className="text-body text-ink">
-        Cancelaste tu lugar.{row.data?.reason ? ` ${row.data.reason}` : ""}
+        Cancelaste tu lugar.{rsvp.cancel_reason ? ` ${rsvp.cancel_reason}` : ""}
       </p>
     );
   }
-  if (status !== "ocupa") return null;
+  if (rsvp?.status !== "confirmed" || !rsvp.session_id) {
+    const state = await db.rpc("my_attendance_state");
+    const status = typeof state.data === "string" ? state.data : "";
+    if (status === "cancelo") {
+      const row = await db.from("attendance_cancellations").select("reason").maybeSingle();
+      return (
+        <p className="text-body text-ink">
+          Cancelaste tu lugar.{row.data?.reason ? ` ${row.data.reason}` : ""}
+        </p>
+      );
+    }
+    if (status !== "ocupa") return null;
+  }
   const notice = error ? notices[error] : "";
   return (
     <details className="rounded-2xl border border-line px-4 py-3" open={notice ? true : undefined}>
       <summary className="cursor-pointer text-sm text-ink-secondary">No voy a asistir</summary>
       <form action={cancelAttendanceAction} className="grid gap-3 pt-3">
+        <input type="hidden" name="session_id" value={rsvp?.session_id ?? ""} />
         {notice ? (
           <Alert variant="destructive">
             <AlertDescription>{notice}</AlertDescription>

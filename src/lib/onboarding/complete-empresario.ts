@@ -4,7 +4,7 @@ import { redirect } from "next/navigation";
 import { readSessionAccount } from "@/lib/auth/session-account";
 import { getDirectory } from "@/lib/memory-directory";
 import { attributeSignup } from "@/lib/organismo/attribute-signup";
-import { readAccessToken, usesSupabaseAuth } from "@/lib/supabase/auth-session";
+import { createSupabaseWithAccess, readAccessToken, usesSupabaseAuth } from "@/lib/supabase/auth-session";
 import { logoUploadDecision } from "./company-logo";
 import { empresarioErrors, parseEmpresarioForm, type EmpresarioProfile } from "./empresario-draft";
 import { inviteToken } from "./invite-token";
@@ -32,6 +32,7 @@ async function finishInSupabase(profile: EmpresarioProfile, token: string, formD
   if (!logo.ok) back("logo", profile, token);
   const saved = await saveEmpresarioProfile(access!, session!.id, profile, Boolean(token), logo.show ?? false);
   if (!saved.ok) back(saved.reason, profile, token);
+  await createSupabaseWithAccess(access!).rpc("attach_rsvps_for_email");
   if (token) {
     await attributeSignup({
       token,
