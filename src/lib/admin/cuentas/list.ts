@@ -1,20 +1,37 @@
 import "server-only";
 
 import { adminDb } from "@/lib/admin/admin-db";
+import { listQueryQ } from "@/lib/admin/list-query";
 import { pageQuery } from "@/lib/admin/page-query";
+import { applyCuentaSearch } from "./apply-cuenta-search";
 import { cuentaDisplayName, cuentaMarkSrc, orgHasLogo } from "./cuenta-row";
 
-export async function listCuentas(rawPage: string | undefined) {
+export async function listCuentas(rawPage: string | undefined, rawQ?: string) {
   const page = pageQuery(rawPage);
+  const q = listQueryQ(rawQ);
+  const empty = {
+    page: page.page,
+    rows: [] as Record<string, string>[],
+    orgs: [] as { id: string; name: string }[],
+    total: 0,
+    q,
+  };
   const db = await adminDb();
-  if (!db) return { page: page.page, rows: [] as Record<string, string>[], orgs: [] as { id: string; name: string }[], total: 0 };
-  const profiles = await db
+  if (!db) return empty;
+  let profilesQuery = db
     .from("profiles")
-    .select("id, full_name, email, role, onboarded_at, job_title, whatsapp, organization_id", { count: "exact" })
-    .order("created_at", { ascending: false })
-    .range(page.from, page.to);
+    .select(
+      "id, full_name, email, role, onboarded_at, job_title, whatsapp, organization_id",
+      { count: "exact" },
+    )
+    .order("created_at", { ascending: false });
+  profilesQuery = await applyCuentaSearch(db, profilesQuery, q);
+  const profiles = await profilesQuery.range(page.from, page.to);
   if (profiles.error) throw new Error(profiles.error.message);
-  const orgs = await db.from("organizations").select("id, name, media_assets(purpose)").order("name");
+  const orgs = await db
+    .from("organizations")
+    .select("id, name, media_assets(purpose)")
+    .order("name");
   if (orgs.error) throw new Error(orgs.error.message);
   const named = new Map((orgs.data ?? []).map((org) => [org.id, org.name ?? ""]));
   const marked = new Map(
@@ -26,6 +43,7 @@ export async function listCuentas(rawPage: string | undefined) {
   return {
     page: page.page,
     total: profiles.count ?? 0,
+    q,
     rows: (profiles.data ?? []).map((row) => {
       const orgId = row.organization_id ?? "";
       const fullName = row.full_name ?? "";

@@ -37,6 +37,8 @@ describe("lista de cuentas", () => {
     expect(list).toContain("full_name");
     expect(list).toContain("email");
     expect(list).toContain("role");
+    expect(list).toContain("applyCuentaSearch");
+    expect(list).toContain("listQueryQ");
     expect(list).toContain(".range(page.from, page.to)");
     expect(list).toContain('{ count: "exact" }');
     expect(list).not.toContain("password");
