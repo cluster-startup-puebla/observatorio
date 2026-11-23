@@ -35,6 +35,14 @@ export function selectedOption(question: V2Question, answer: V2Answer | undefine
   return { option: options[index], index };
 }
 
+/** Maps an option index onto 20–100 when the bank has no numeric score. */
+export function steppedScore(index: number, optionCount: number): number | null {
+  if (!Number.isInteger(index) || index < 0 || optionCount < 1 || index >= optionCount) return null;
+  if (optionCount === 1) return 20;
+  if (optionCount === FIVE_STEP.length) return FIVE_STEP[index] ?? null;
+  return Math.round(20 + (index / (optionCount - 1)) * 80);
+}
+
 export function satItemScore(
   question: V2Question,
   answer: V2Answer | undefined,
@@ -48,7 +56,7 @@ export function satItemScore(
   if (option.score !== null) return option.score;
   if (slot === 6 || slot === 7) return ordinalScore(question.id, index);
   if (slot === 1) return 20;
-  return index < FIVE_STEP.length ? FIVE_STEP[index] : null;
+  return steppedScore(index, question.options?.length ?? FIVE_STEP.length);
 }
 
 export function satItemScoreOrMissing(

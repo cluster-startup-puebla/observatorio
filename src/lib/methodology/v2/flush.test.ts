@@ -21,3 +21,8 @@ it("sin red no hay envío, y al volver se reintenta si quedó pendiente", () => 
   expect(flushPlan({ ...base, pending: false, entering: "online" })).toBeNull();
   expect(flushPlan({ ...base, entering: "online" })).toBe("retry");
 });
+
+it("el cierre se manda aunque un flush previo haya limpiado pending", () => {
+  expect(flushPlan({ ...base, pending: false, entering: "done" })).toBe("done");
+  expect(flushPlan({ ...base, online: false, pending: false, entering: "done" })).toBeNull();
+});
