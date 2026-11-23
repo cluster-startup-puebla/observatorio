@@ -1,8 +1,7 @@
 import { CopyLinkResult } from "@/components/organismo/copy-link-result";
-import { copyLinkChevronStyle, copyLinkControl } from "@/components/organismo/copy-link-controls";
 import { CopyLinkSector } from "@/components/organismo/copy-link-sector";
+import { CopyLinkSession } from "@/components/organismo/copy-link-session";
 import { CopyLinkSubmit } from "@/components/organismo/copy-link-submit";
-import { SessionPick } from "@/components/session-pick";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { copyEventLinkAction } from "@/lib/organismo/copy-link-action";
 import { sidebarInk } from "@/lib/organismo/brand-color";
@@ -34,17 +33,13 @@ export function CopyLink({
         </Alert>
       ) : null}
       <form action={copyEventLinkAction} className="flex flex-wrap items-end gap-3">
-        <CopyLinkSector sector={sector} />
-        <SessionPick
-          sessions={sessions}
-          preferredId={preferredSessionId}
-          tour="sesion"
-          className={`${copyLinkControl} w-72 max-w-full`}
-          selectStyle={copyLinkChevronStyle}
-        />
-        <span data-tour="generar" className="inline-flex">
+        <span data-tour="sector" className="contents">
+          <CopyLinkSector sector={sector} />
+        </span>
+        <CopyLinkSession sessions={sessions} preferredId={preferredSessionId} />
+        <span data-tour="generar" className="inline-flex pb-0.5">
           <CopyLinkSubmit
-            className="h-9 rounded-md px-4 text-small font-semibold shadow-none hover:brightness-95 disabled:opacity-70"
+            className="h-[3.25rem] rounded-sm px-5 text-small font-semibold shadow-none hover:brightness-95 disabled:opacity-70"
             style={{ background: tone.background, color: tone.ink }}
           />
         </span>

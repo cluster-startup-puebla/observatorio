@@ -1,25 +1,23 @@
-import { copyLinkChevronStyle, copyLinkControl } from "@/components/organismo/copy-link-controls";
-import { inviteSector, sectors } from "@/lib/sectors";
+"use client";
+
+import { useState } from "react";
+import { IndustryCombobox } from "@/components/industria/industry-combobox";
+import { inviteSector } from "@/lib/sectors";
 
 export function CopyLinkSector({ sector }: { sector?: string }) {
-  const selected = sector && inviteSector(sector) ? sector : "turismo";
+  const initial = sector && inviteSector(sector) ? sector : "turismo";
+  const [value, setValue] = useState(initial);
   return (
-    <label className="grid w-56 max-w-full gap-1 text-small text-ink-secondary">
-      Sector
-      <select
+    <div className="min-w-[16rem] max-w-full flex-1">
+      <IndustryCombobox
+        id="org-sector"
         name="sector"
-        key={selected}
-        defaultValue={selected}
-        data-tour="sector"
-        className={copyLinkControl}
-        style={copyLinkChevronStyle}
-      >
-        {sectors.map((item) => (
-          <option key={item.slug} value={item.slug}>
-            {item.name}
-          </option>
-        ))}
-      </select>
-    </label>
+        label="Sector"
+        value={value}
+        allowCustom={false}
+        placeholder="Escribe o elige"
+        onChange={setValue}
+      />
+    </div>
   );
 }
