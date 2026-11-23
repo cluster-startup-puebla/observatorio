@@ -19,6 +19,7 @@ export function DataList({
   total,
   basePath,
   q,
+  extras,
   error,
   rowActions,
   toolbar,
@@ -32,6 +33,7 @@ export function DataList({
   total: number;
   basePath: string;
   q?: string;
+  extras?: Record<string, string | undefined>;
   error?: string;
   rowActions?: (row: DataRow) => React.ReactNode;
   toolbar?: ReactNode;
@@ -39,7 +41,9 @@ export function DataList({
 }) {
   const router = useRouter();
   const pages = pageCount(total);
-  const href = (next: number) => listHref({ basePath, page: next, q });
+  const extrasKey = JSON.stringify(extras ?? {});
+  const href = (next: number) =>
+    listHref({ basePath, page: next, q, extras: JSON.parse(extrasKey) as typeof extras });
   const tableColumns: ColumnDef<DataRow>[] = [
     ...columns.map((column) => columnDef(column)),
     {
@@ -57,7 +61,9 @@ export function DataList({
 
   useEffect(() => {
     if (page > pages) router.replace(href(pages));
-  }, [basePath, page, pages, q, router]);
+  }, [basePath, extrasKey, page, pages, q, router]);
+
+
 
   return (
     <main className="px-8 py-8">

@@ -2,7 +2,7 @@ import { describe, expect, it } from "vitest";
 import { listHref, listQueryQ } from "./list-query";
 
 describe("list query", () => {
-  it("normaliza q y arma href sin tirar la búsqueda", () => {
+  it("normaliza q y arma href sin tirar la búsqueda ni extras", () => {
     expect(listQueryQ(undefined)).toBe("");
     expect(listQueryQ("  Ana  ")).toBe("Ana");
     expect(listQueryQ("Ana, Luis")).toBe("Ana Luis");
@@ -13,5 +13,8 @@ describe("list query", () => {
     expect(listHref({ basePath: "/admin/empresas", page: 1, q: "Capleton" })).toBe(
       "/admin/empresas?q=Capleton",
     );
+    expect(
+      listHref({ basePath: "/admin/pases", page: 2, q: "Julio", extras: { sector: "sec-1" } }),
+    ).toBe("/admin/pases?q=Julio&sector=sec-1&page=2");
   });
 });

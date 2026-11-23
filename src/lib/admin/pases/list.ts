@@ -1,32 +1,55 @@
 import "server-only";
 
 import { adminDb } from "@/lib/admin/admin-db";
+import { listQueryQ } from "@/lib/admin/list-query";
 import { pageQuery } from "@/lib/admin/page-query";
+import { loadPassListRows } from "@/lib/admin/pases/load-pass-list";
+import type { PassListRow } from "@/lib/admin/pases/pass-list-row";
 
-export async function listPases(rawPage: string | undefined) {
+function matchesQ(row: PassListRow, q: string) {
+  if (!q) return true;
+  const hay = `${row.name} ${row.email} ${row.company}`.toLowerCase();
+  return q
+    .toLowerCase()
+    .split(" ")
+    .filter(Boolean)
+    .every((part) => hay.includes(part));
+}
+
+export async function listPases(
+  rawPage: string | undefined,
+  rawQ?: string,
+  rawSector?: string,
+) {
   const page = pageQuery(rawPage);
+  const q = listQueryQ(rawQ);
+  const sector = (rawSector ?? "").trim();
+  const empty = {
+    page: page.page,
+    rows: [] as PassListRow[],
+    total: 0,
+    q,
+    sector,
+    sectors: [] as { id: string; name: string }[],
+  };
   const db = await adminDb();
-  if (!db) return { page: page.page, rows: [] as Record<string, string>[], total: 0 };
-  const passes = await db
-    .from("passes")
-    .select("profile_id, image_asset_id, issued_at", { count: "exact" })
-    .order("issued_at", { ascending: false })
-    .range(page.from, page.to);
-  if (passes.error) throw new Error(passes.error.message);
-  const ids = (passes.data ?? []).map((row) => row.profile_id);
-  const arrivals = ids.length
-    ? await db.from("arrivals").select("profile_id, scanned_at").in("profile_id", ids)
-    : { data: [], error: null };
-  if (arrivals.error) throw new Error(arrivals.error.message);
-  const arrived = new Set((arrivals.data ?? []).map((row) => row.profile_id));
+  if (!db) return empty;
+
+  const [all, sectors] = await Promise.all([
+    loadPassListRows(db),
+    db.from("sectors").select("id, name").order("position"),
+  ]);
+  if (sectors.error) throw new Error(sectors.error.message);
+
+  const filtered = all.filter(
+    (row) => matchesQ(row, q) && (!sector || row.sector_id === sector),
+  );
   return {
     page: page.page,
-    total: passes.count ?? 0,
-    rows: (passes.data ?? []).map((row) => ({
-      id: row.profile_id,
-      profile_id: row.profile_id,
-      issued_at: row.issued_at,
-      llegada: arrived.has(row.profile_id) ? "Llegó" : "Sin escanear",
-    })),
+    total: filtered.length,
+    q,
+    sector,
+    sectors: (sectors.data ?? []).map((row) => ({ id: row.id, name: row.name ?? row.id })),
+    rows: filtered.slice(page.from, page.to + 1),
   };
 }

@@ -4,5 +4,8 @@ import type { NextRequest } from "next/server";
 
 export async function GET(request: NextRequest) {
   await requireSuperadmin();
-  return Response.json(await listPases(request.nextUrl.searchParams.get("page") ?? undefined));
+  const params = request.nextUrl.searchParams;
+  return Response.json(
+    await listPases(params.get("page") ?? undefined, params.get("q") ?? undefined, params.get("sector") ?? undefined),
+  );
 }

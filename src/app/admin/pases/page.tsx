@@ -9,11 +9,11 @@ export const instant = false;
 export default async function PasesPage({
   searchParams,
 }: {
-  searchParams: Promise<{ page?: string; error?: string; ok?: string }>;
+  searchParams: Promise<{ page?: string; error?: string; ok?: string; q?: string; sector?: string }>;
 }) {
   await requireSuperadmin();
   const params = await searchParams;
-  const data = await listPases(params.page);
+  const data = await listPases(params.page, params.q, params.sector);
   const notice = params.error ? (
     <Alert variant="destructive">
       <AlertDescription>{params.error}</AlertDescription>
@@ -24,7 +24,15 @@ export default async function PasesPage({
     </Alert>
   ) : null;
   return (
-    <PasesList rows={data.rows} page={data.page} total={data.total} notice={notice}>
+    <PasesList
+      rows={data.rows}
+      page={data.page}
+      total={data.total}
+      q={data.q}
+      sector={data.sector}
+      sectors={data.sectors}
+      notice={notice}
+    >
       <RepairPasses />
     </PasesList>
   );

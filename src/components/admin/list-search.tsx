@@ -9,10 +9,12 @@ export function ListSearch({
   basePath,
   q,
   placeholder = "Buscar por nombre…",
+  extras,
 }: {
   basePath: string;
   q?: string;
   placeholder?: string;
+  extras?: Record<string, string | undefined>;
 }) {
   const router = useRouter();
   const initial = listQueryQ(q);
@@ -20,14 +22,17 @@ export function ListSearch({
 
   useEffect(() => setValue(initial), [initial]);
 
+  const extrasKey = JSON.stringify(extras ?? {});
+
   useEffect(() => {
     const next = listQueryQ(value);
     if (next === initial) return;
     const timer = window.setTimeout(() => {
-      router.replace(listHref({ basePath, q: next, page: 1 }));
+      router.replace(listHref({ basePath, q: next, page: 1, extras: JSON.parse(extrasKey) as typeof extras }));
     }, 300);
     return () => window.clearTimeout(timer);
-  }, [basePath, initial, router, value]);
+  }, [basePath, extrasKey, initial, router, value]);
+
 
   return (
     <label className="grid max-w-sm gap-1.5 text-small font-medium text-ink">

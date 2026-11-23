@@ -9,14 +9,19 @@ describe("lista de pases", () => {
     expect(canMarkArrival({ hasPass: true, hasArrival: true })).toEqual({ ok: false, reason: "ya llegó" });
   });
 
-  it("la lista lee passes y arrivals", () => {
+  it("la lista une RSVP y legacy con búsqueda y sector", () => {
     const list = readFileSync("src/lib/admin/pases/list.ts", "utf8");
-    const route = readFileSync("src/app/api/admin/pases/route.ts", "utf8");
-    expect(list).toContain('.from("passes")');
-    expect(list).toContain('.from("arrivals")');
-    expect(list).toContain("profile_id");
-    expect(list).toContain(".range(page.from, page.to)");
-    expect(list).toContain('{ count: "exact" }');
-    expect(route).toContain("await requireSuperadmin()");
+    const load = readFileSync("src/lib/admin/pases/load-pass-list.ts", "utf8");
+    const page = readFileSync("src/app/admin/pases/page.tsx", "utf8");
+    const ui = readFileSync("src/app/admin/pases/pases-list.tsx", "utf8");
+    expect(load).toContain("rsvp_passes");
+    expect(load).toContain('.from("passes")');
+    expect(list).toContain("matchesQ");
+    expect(list).toContain("sector");
+    expect(page).toContain("params.q");
+    expect(page).toContain("params.sector");
+    expect(ui).toContain("session");
+    expect(ui).toContain("cuenta");
+    expect(ui).toContain("issued_label");
   });
 });
