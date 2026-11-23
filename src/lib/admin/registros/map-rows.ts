@@ -21,9 +21,14 @@ function one<T>(value: T | T[] | null | undefined) {
   return Array.isArray(value) ? (value[0] ?? null) : value;
 }
 
-export function mapRegistroRows(rows: RegistroSource[], companies: Map<string, string>): RegistroRow[] {
+export function mapRegistroRows(
+  rows: RegistroSource[],
+  companies: Map<string, string>,
+  rsvpStatus: Map<string, string> = new Map(),
+): RegistroRow[] {
   return rows.map((row) => {
     const session = one(row.sessions);
+    const key = `${row.session_id ?? ""}:${row.email ?? ""}`;
     return {
       id: row.id ?? "",
       full_name: row.full_name ?? "",
@@ -37,6 +42,7 @@ export function mapRegistroRows(rows: RegistroSource[], companies: Map<string, s
       company_id: companies.get(row.poured_profile_id ?? "") ?? "",
       session_id: row.session_id ?? "",
       session_title: session?.title ?? "",
+      rsvp_status: rsvpStatus.get(key) ?? "",
     };
   });
 }

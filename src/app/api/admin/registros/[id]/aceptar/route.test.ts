@@ -3,12 +3,12 @@ import { expect, it } from "vitest";
 
 const route = readFileSync("src/app/api/admin/registros/[id]/aceptar/route.ts", "utf8");
 
-it("el superadmin acepta, vuelca y manda el pase", () => {
+it("el superadmin confirma RSVP y manda el pase sin crear password", () => {
   expect(route).toContain("requireSuperadmin");
-  expect(route).toContain("temporaryPassword");
-  expect(route).toContain('rpc("accept_public_registration"');
-  expect(route).toContain("sendPublicPass");
+  expect(route).toContain('rpc("confirm_registration_rsvp"');
+  expect(route).toContain("sendRsvpPass");
   expect(route).toContain("NextResponse.redirect(url, 303)");
-  expect(route).toContain("openRef");
+  expect(route).not.toContain("temporaryPassword");
+  expect(route).not.toContain("accept_public_registration");
   expect(route).not.toContain("SERVICE_ROLE");
 });

@@ -2,13 +2,20 @@
 
 import { ActionButton } from "@/components/ui/action-button";
 
-export function AcceptRegistro({ id, completed, poured }: { id: string; completed: string; poured: string }) {
+export function AcceptRegistro({
+  id,
+  completed,
+  confirmed,
+}: {
+  id: string;
+  completed: string;
+  confirmed: boolean;
+}) {
   if (!completed) return null;
-  const label = poured ? "Enviar pase" : "Aceptar";
   return (
     <form action={`/api/admin/registros/${id}/aceptar`} method="post">
-      <ActionButton hold pendingLabel={poured ? "Enviando…" : "Aceptando…"}>
-        {label}
+      <ActionButton hold pendingLabel={confirmed ? "Reenviando…" : "Confirmando…"}>
+        {confirmed ? "Reenviar pase" : "Confirmar lugar"}
       </ActionButton>
     </form>
   );

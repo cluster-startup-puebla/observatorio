@@ -4,6 +4,7 @@ import { serverIssue } from "@/lib/onboarding/step-issue";
 import { inviteReferralSource } from "@/lib/registro/invite-referral";
 import { stepOneIssue, type StepOne } from "@/lib/registro/step-one";
 import { stepTwoIssue, type StepTwo } from "@/lib/registro/step-two";
+import { attributeRsvpInvite } from "@/lib/registro/rsvp-invite-attribute";
 import { createSupabaseAnon } from "@/lib/supabase/auth-session";
 
 const codes = [
@@ -71,5 +72,12 @@ export async function submitRegistro(input: Input) {
     session_interest: payload.sessionInterest,
   });
   if (finished.error) return { error: rpcSentence(finished.error.message) };
+  const synced = await supabase.rpc("sync_public_registration_rsvp", {
+    p_registration_id: started.data,
+  });
+  if (synced.error) console.error("sync_public_registration_rsvp", synced.error.message);
+  if (payload.inviteToken.trim()) {
+    await attributeRsvpInvite(supabase, started.data, payload.inviteToken);
+  }
   return { ok: true as const };
 }

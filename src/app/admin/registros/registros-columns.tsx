@@ -22,11 +22,17 @@ const columns: DataColumn[] = [
   { key: "sector_slug", label: "Sector" },
   { key: "referral_source", label: "Se enteró por" },
   { key: "estado", label: "Estado", render: (row) => (row.completed_at ? "Completo" : "A medias") },
-  { key: "cuenta", label: "Cuenta", render: (row) => (row.poured_at ? "Ya tiene cuenta" : "") },
+  {
+    key: "lugar",
+    label: "Lugar",
+    render: (row) => (row.rsvp_status === "confirmed" ? "Confirmado" : row.completed_at ? "Pendiente" : ""),
+  },
   {
     key: "aceptar",
     label: "",
-    render: (row) => <AcceptRegistro id={row.id} completed={row.completed_at} poured={row.poured_at} />,
+    render: (row) => (
+      <AcceptRegistro id={row.id} completed={row.completed_at} confirmed={row.rsvp_status === "confirmed"} />
+    ),
   },
 ];
 

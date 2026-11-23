@@ -1,17 +1,16 @@
-import { temporaryPassword } from "@/lib/admin/registros/temp-password";
 import { requireSuperadmin } from "@/lib/auth/require-superadmin";
-import { sendPublicPass } from "@/lib/mail/send-public-pass";
-import { isUuid, openRef } from "@/lib/ref-token";
+import { sendRsvpPass } from "@/lib/mail/send-rsvp-pass";
+import { isUuid } from "@/lib/ref-token";
 import { createSupabaseWithAccess, readAccessToken } from "@/lib/supabase/auth-session";
 import { NextResponse, type NextRequest } from "next/server";
 
 const back = "/admin/registros";
 
 function phrase(message: string) {
-  if (message.includes("sector_lleno")) return "Ese sector ya llenó su cupo.";
+  if (message.includes("sector_lleno")) return "Ese sector o sesión ya llenó su cupo.";
   if (message.includes("incompleto")) return "El registro todavía no está completo.";
-  if (message.includes("ya tiene cuenta")) return "Ese correo ya tiene empresa. Acéptalo desde Empresas.";
-  return "No se pudo aceptar.";
+  if (message.includes("sesion")) return "El registro no tiene sesión.";
+  return "No se pudo confirmar el lugar.";
 }
 
 function redirect(request: NextRequest, key: "error" | "ok", value: string) {
@@ -24,25 +23,17 @@ export async function POST(request: NextRequest, context: { params: Promise<{ id
   await requireSuperadmin();
   const { id } = await context.params;
   const token = await readAccessToken();
-  if (!token || !isUuid(id)) return redirect(request, "error", "No se pudo aceptar.");
+  if (!token || !isUuid(id)) return redirect(request, "error", "No se pudo confirmar el lugar.");
   const db = createSupabaseWithAccess(token);
-  const found = await db.from("public_registrations").select("invite_token").eq("id", id).maybeSingle();
-  if (found.error || !found.data) return redirect(request, "error", "No se pudo aceptar.");
-  const secret = process.env.REF_SECRET ?? "e2e-ref-secret";
-  const opened = found.data.invite_token ? openRef(found.data.invite_token, secret) : null;
-  const orgId = opened && isUuid(opened) ? opened : null;
-  const accepted = await db.rpc("accept_public_registration", {
-    registration_id: id,
-    account_password: temporaryPassword,
-    org_id: orgId,
-  });
-  const acceptedRow = Array.isArray(accepted.data) ? accepted.data[0] : accepted.data;
-  const profileId = acceptedRow?.guest_id;
-  if (accepted.error || !profileId) {
-    console.error("accept_public_registration", accepted.error?.message ?? "sin perfil");
-    return redirect(request, "error", phrase(accepted.error?.message ?? ""));
+  const confirmed = await db.rpc("confirm_registration_rsvp", { p_registration_id: id });
+  const row = Array.isArray(confirmed.data) ? confirmed.data[0] : confirmed.data;
+  if (confirmed.error || !row?.rsvp_id) {
+    console.error("confirm_registration_rsvp", confirmed.error?.message);
+    return redirect(request, "error", phrase(confirmed.error?.message ?? ""));
   }
-  const sent = await sendPublicPass(token, profileId);
-  if (!sent.ok) return redirect(request, "error", "La cuenta quedó lista. El pase no salió.");
+  const session = await db.from("sessions").select("title").eq("id", row.session_id).maybeSingle();
+  const label = session.data?.title?.trim() || "la sesión";
+  const sent = await sendRsvpPass(String(row.to_email), String(row.rsvp_id), label);
+  if (!sent.ok) return redirect(request, "error", "El lugar quedó confirmado. El pase no salió.");
   return redirect(request, "ok", "1");
 }
