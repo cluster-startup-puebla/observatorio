@@ -13,7 +13,17 @@ import { Button } from "@/components/ui/button";
 import { sessionOnLabel } from "@/lib/sessions/face";
 import type { SessionChoice } from "@/lib/admin/tablero/session-choices";
 
-export function SessionSelect({ choices, selectedId }: { choices: SessionChoice[]; selectedId: string | null }) {
+export function SessionSelect({
+  choices,
+  selectedId,
+  basePath = "/admin",
+  submitLabel = "Ver convocatoria",
+}: {
+  choices: SessionChoice[];
+  selectedId: string | null;
+  basePath?: string;
+  submitLabel?: string;
+}) {
   const router = useRouter();
   const [pending, start] = useTransition();
   const [selected, setSelected] = useState(selectedId ?? "");
@@ -21,7 +31,7 @@ export function SessionSelect({ choices, selectedId }: { choices: SessionChoice[
 
   function apply(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    start(() => router.push(selected ? `/admin?sesion=${selected}` : "/admin"));
+    start(() => router.push(selected ? `${basePath}?sesion=${selected}` : basePath));
   }
 
   return (
@@ -48,7 +58,7 @@ export function SessionSelect({ choices, selectedId }: { choices: SessionChoice[
       <div className="flex flex-wrap items-center gap-2">
         <Button type="submit" size="lg" disabled={pending || !selected} className="min-w-[10.5rem] rounded-full px-4">
           {pending ? <Loader2 className="size-4 animate-spin" aria-hidden /> : null}
-          {pending ? "Cargando…" : "Ver convocatoria"}
+          {pending ? "Cargando…" : submitLabel}
         </Button>
         {selected ? (
           <Button size="lg" variant="outline" className="rounded-full px-4" asChild>
