@@ -1,4 +1,5 @@
 import { DisruptorsAbout } from "@/components/sessions/disruptors/about";
+import { DisruptorsDebate } from "@/components/sessions/disruptors/debate";
 import { DisruptorsInviteOpen } from "@/components/sessions/disruptors/invite-open";
 import { DisruptorsMoments } from "@/components/sessions/disruptors/moments";
 import { DisruptorsSpeakers } from "@/components/sessions/disruptors/speakers";
@@ -21,6 +22,7 @@ export function DisruptorsInviteLanding({
       <DisruptorsInviteOpen sector={sector} reserveHref={reserveHref} brand={brand} />
       <DisruptorsAbout />
       <DisruptorsMoments />
+      <DisruptorsDebate />
       <DisruptorsSpeakers />
       <section id="registro" className="scroll-mt-24 band-ink py-20">
         <div className="container-site max-w-2xl">

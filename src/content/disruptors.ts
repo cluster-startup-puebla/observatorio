@@ -29,8 +29,7 @@ export const disruptorsFacts = [
   { label: "Formato", value: "Experiencia presencial" },
   { label: "Horario", value: "Registro 8:30 · Inicio 9:00 am" },
   { label: "Quién asiste", value: "Empresarios, líderes, organismos y tomadores de decisión" },
-  { label: "Grupo", value: "Hasta 1,214 personas en el auditorio" },
-  { label: "Incluye", value: "Acceso cortesía del Clúster vía este registro" },
+  { label: "Cortesías", value: "Ecosistema de clústeres" },
 ] as const;
 
 export const disruptorsMoments = [

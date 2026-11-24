@@ -4,7 +4,7 @@ import { disruptorsSpeakers } from "@/content/disruptors-speakers";
 
 export function DisruptorsSpeakers() {
   return (
-    <section id="ponentes" className="scroll-mt-24 border-t border-line py-16 lg:py-20">
+    <section id="ponentes" className="scroll-mt-24 border-t border-line bg-surface-subtle py-16 lg:py-20">
       <div className="container-site">
         <header className="max-w-2xl">
           <span className="block h-1 w-12 bg-brand" aria-hidden />
