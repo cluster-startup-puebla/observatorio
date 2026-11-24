@@ -1,6 +1,6 @@
 import {
   portalInviteBody,
-  portalInviteCta,
+  portalInviteCtas,
   portalInviteEyebrow,
   portalInviteHeadline,
 } from "@/content/portal";
@@ -24,12 +24,21 @@ export function PortalInviteSection() {
               </h2>
               <p className="mt-4 max-w-xl text-pretty text-body text-white/80">{portalInviteBody}</p>
             </div>
-            <a
-              href={portalInviteCta.href}
-              className="btn w-full bg-white text-center text-navy hover:bg-program-x sm:w-fit"
-            >
-              {portalInviteCta.label}
-            </a>
+            <div className="flex w-full flex-col gap-3 sm:w-fit sm:flex-row">
+              {portalInviteCtas.map((cta) => (
+                <a
+                  key={cta.href}
+                  href={cta.href}
+                  className={
+                    cta.primary
+                      ? "btn w-full bg-white text-center text-navy hover:bg-program-x sm:w-fit"
+                      : "btn w-full border border-white/70 bg-transparent text-center text-white hover:bg-white/10 sm:w-fit"
+                  }
+                >
+                  {cta.label}
+                </a>
+              ))}
+            </div>
           </div>
         </div>
       </div>

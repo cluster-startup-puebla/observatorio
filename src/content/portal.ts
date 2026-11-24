@@ -9,10 +9,10 @@ export const portalInviteHeadline =
 export const portalInviteBody =
   "Suma tu institución al ecosistema de innovación de Puebla. Te orientamos para crear tu cuenta y subir tu identidad.";
 
-export const portalInviteCta = {
-  label: "Únete",
-  href: "mailto:hola@alvarocastillo.dev?subject=Quiero%20unirme%20a%20Puebla%20x%20Puebla",
-} as const;
+export const portalInviteCtas = [
+  { label: "Soy un org empresarial", href: "/crear-cuenta?cuenta=organismo", primary: true },
+  { label: "Soy empresa", href: "/crear-cuenta", primary: false },
+] as const;
 
 export const observatorioCta = {
   label: "Observatorio tecnológico",

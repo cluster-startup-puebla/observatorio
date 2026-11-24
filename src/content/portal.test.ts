@@ -1,9 +1,10 @@
 import { expect, it } from "vitest";
-import { observatorioCta, portalInviteCta, startupsCta } from "@/content/portal";
+import { observatorioCta, portalInviteCtas, startupsCta } from "@/content/portal";
 
-it("la portada apunta observatorio a cuenta y el banner a correo", () => {
+it("la portada apunta observatorio a cuenta y el banner a los dos registros", () => {
   expect(observatorioCta.href).toBe("/crear-cuenta?tipo=empresa");
   expect(startupsCta.href).toBe("/sesiones");
-  expect(portalInviteCta.href).toContain("mailto:hola@alvarocastillo.dev");
-  expect(portalInviteCta.label).toBe("Únete");
+  expect(portalInviteCtas.map((cta) => cta.label)).toEqual(["Soy un org empresarial", "Soy empresa"]);
+  expect(portalInviteCtas[0].href).toBe("/crear-cuenta?cuenta=organismo");
+  expect(portalInviteCtas[1].href).toBe("/crear-cuenta");
 });
