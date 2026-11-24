@@ -21,10 +21,9 @@ describe("maybeAwardArrival", () => {
     );
   });
 
-  it("mesa llama el award tras insertar arrival", () => {
-    const src = readFileSync("src/app/api/admin/mesa/route.ts", "utf8");
+  it("el escaneo de la mesa llama el award tras registrar la llegada", () => {
+    const src = readFileSync("src/lib/admin/mesa/process-scan.ts", "utf8");
     expect(src).toContain("maybeAwardArrival");
-    expect(src).toMatch(/\.insert\(plan\.arrival\)[\s\S]*maybeAwardArrival/);
+    expect(src).toMatch(/from\("arrivals"\)\.insert[\s\S]*maybeAwardArrival/);
   });
 });
-

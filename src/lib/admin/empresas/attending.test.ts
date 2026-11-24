@@ -33,9 +33,12 @@ describe("empresas que asistirán", () => {
   it("empresas y la sesión consultan la misma lista", () => {
     const empresas = readFileSync("src/app/api/admin/empresas/route.ts", "utf8");
     const sesion = readFileSync("src/app/api/admin/sesiones/[id]/route.ts", "utf8");
+    const attendees = readFileSync("src/lib/admin/sesiones/load-attendees.ts", "utf8");
     expect(empresas).toContain('get("vista") === "asistentes"');
     expect(empresas).toContain("loadAttending");
-    expect(sesion).toContain("loadAttending");
+    expect(sesion).toContain("loadSessionAttendees");
+    expect(attendees).toContain("loadAttendingRows");
+    expect(attendees).toContain("attendingCompanies");
   });
 
   it("saca al enlace que todavía no se acepta", () => {

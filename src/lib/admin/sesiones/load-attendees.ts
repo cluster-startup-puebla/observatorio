@@ -2,6 +2,8 @@ import "server-only";
 
 import { adminDb } from "@/lib/admin/admin-db";
 import { companyOwner } from "@/lib/admin/empresas/company-owner";
+import { attendingCompanies } from "@/lib/admin/empresas/attending";
+import { loadAttendingRows } from "@/lib/admin/empresas/load-attending";
 
 export type SessionAttendee = {
   companyId: string;
@@ -65,5 +67,9 @@ export async function loadSessionAttendees(sessionId: string): Promise<SessionAt
       source: "rsvp",
     });
   }
-  return [...map.values()].sort((a, b) => a.legalName.localeCompare(b.legalName, "es"));
+  // Misma regla que la lista general: solo entra quien ya fue aceptado.
+  const accepted = new Set(attendingCompanies(await loadAttendingRows(db), null).rows.map((row) => row.id));
+  return [...map.values()]
+    .filter((attendee) => accepted.has(attendee.companyId))
+    .sort((a, b) => a.legalName.localeCompare(b.legalName, "es"));
 }
