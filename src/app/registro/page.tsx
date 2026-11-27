@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { AuthShell } from "@/components/auth/auth-shell";
 import { pageMetadata } from "@/lib/metadata";
 import { eventToken } from "@/lib/organismo/event-token";
@@ -35,12 +34,7 @@ export default async function RegistroPage({ searchParams }: { searchParams: Sea
     <AuthShell
       kicker="Invitación del Clúster de Startups e Innovación"
       title="Regístrate a DISRUPTORS 2026"
-      lead="Acceso cortesía. Sin cuenta: completa el formulario y te llega el pase por correo."
-      links={
-        <Link href="/login" className="text-small text-link">
-          ¿Ya te registraste? Inicia sesión
-        </Link>
-      }
+      lead="Acceso cortesía. Completa el formulario."
     >
       {sessionId ? (
         <RegistroForm

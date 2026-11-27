@@ -33,9 +33,9 @@ export function useRegistroSubmit(
   const [values, setValues] = useState({ ...empty, referralSource: lockedReferral ?? "" });
 
   useEffect(() => {
-    setDone(readRegistroDone());
+    setDone(readRegistroDone(sessionId));
     setReady(true);
-  }, []);
+  }, [sessionId]);
 
   useEffect(() => {
     if (lockedReferral) setValues((current) => ({ ...current, referralSource: lockedReferral }));

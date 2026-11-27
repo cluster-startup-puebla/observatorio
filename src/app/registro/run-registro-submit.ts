@@ -37,7 +37,7 @@ export async function runRegistroSubmit(input: {
     });
     if ("code" in result && result.code === registroYaTieneCuentaCode) return { yaTieneCuenta: true as const };
     if ("error" in result) return { error: result.error ?? fallback };
-    rememberRegistro();
+    rememberRegistro(input.sessionId);
     return { done: true as const };
   } catch {
     return { error: fallback };

@@ -14,17 +14,17 @@ export function RegistroDone({ sector, invitacion }: { sector?: string; invitaci
       </span>
       <h2 className="text-h4 text-ink">Quedó registrado</h2>
       <p className="text-body text-balance text-ink">
-        Cuando confirmen tu lugar te llega el pase por correo, con o sin cuenta.
+        Te enviaremos el pase por correo cuando confirmemos tu lugar.
       </p>
       <p className="text-small text-ink-secondary">Si no lo ves, revisa spam.</p>
-      <p className="text-small mt-4 text-ink-secondary">
-        ¿Quieres el diagnóstico?{" "}
+      <p className="text-small mt-4 text-balance text-ink-secondary">
+        ¿No tienes cuenta?{" "}
         <Link href={access} className="text-link">
-          Crea acceso
-        </Link>{" "}
-        o{" "}
+          Créala
+        </Link>
+        . ¿Ya tienes?{" "}
         <Link href="/login" className="text-link">
-          inicia sesión
+          Inicia sesión
         </Link>
         .
       </p>
